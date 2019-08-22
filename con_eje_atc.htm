@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="cache-control" content="max-age=0">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Jquery -->
+        <script src="/jquery/jquery-3.1.1.min.js"></script>
+        <script src="/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+        <script src="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+         <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
+        
+        <script src="/bootstrap/v3.3.7/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="/bootstrap/v3.3.7/js/locales/bootstrap-datetimepicker.es.js"></script>
+        
+        <link rel="stylesheet" href="/bootstrap/v3.3.7/css/bootstrap-datetimepicker.min.css">
+        
+        <!-- Paramquery -->
+        <script src="/pqgrid/v3.4/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="/pqgrid/v3.4/pqgrid.min.css">
+        <link rel="stylesheet" href="/pqgrid/v3.4/pqgrid.ui.min.css">
+        
+        <link rel='stylesheet' href='/pqgrid/v3.4/themes/bootstrap/pqgrid.css' />
+        
+        <!-- Boostrap -->
+        
+        <link rel="stylesheet" href="/bootstrap/v3.3.7/css/bootstrap.min.css">
+               
+        <script src="jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>
+        <script src="jquery/inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script>
+        <script src="jquery/inputmask4x/inputmask/inputmask.extensions.min.js"></script>
+        <script src="jquery/inputmask4x/inputmask/inputmask.min.js"></script>
+        <script src="jquery/inputmask4x/inputmask/jquery.inputmask.min.js"></script>
+		
+        <script src="con_eje_atc.js"></script>
+		<script src="syn_util.js"></script>
+        
+        <style>
+        
+            .inp_dis[readonly]{
+                background-color: #fff;
+            }
+            
+            .inp_dis[disabled]{
+                background-color: #fff;
+            }
+            
+            .ui-widget-header .ui-state-active{color: black;}
+            
+            .ui-state-highlight
+            {
+                color: #000 !important
+            }
+            
+            #bd_prin {
+                height: calc(100vh - 120px);
+                min-height: 460px;
+                overflow-y: auto; 
+            }
+            
+            @media screen and (max-width: 480px) {
+                #bd_prin {
+                    height: 300px;
+                    overflow-y: auto; 
+                }
+            }
+            
+            .modal-header{background-color:#dddddd;}
+            
+            .glyphicon
+            {
+               font-family: 'Glyphicons Halflings' !important;
+            }
+
+        </style>
+
+    </head>
+    
+    <body>
+        <br>
+		<div class="container">
+			<div class="well well-sm"  style="text-align: center">
+				<span id="div_mod0" style="font-size: 14px;text-align: center;"></span>
+				<br>
+				<span id="div_tit0" style="font-size: 24px;text-align: center;"></span>
+			</div>
+    	</div>
+       
+		<div class= "container">
+			<div id="div_prim0">
+				<div  id="bd_prin">
+					<!-- PARAMQUERY PRINCIPAL -->
+					<div id="div_grid_principal">
+
+					</div>
+				</div>
+			</div>	
+		</div>
+        
+        
+		<!-- Div de Filtros de búsqueda -->
+		<div id="div_filtros" style="display: none">
+			<div class="container">
+				<h2>Favor Ingresar los criterios de búsqueda</h2>
+			</div>
+			
+			<div class="container"><!-- Row 1 -->
+				<div class="well well-sm">Filtros Generales</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_nro_atc">Nro. de Atención</label>
+						<input name="tx_nro_atc" id="tx_nro_atc" class="form-control input-normal">
+						<p class="help-block">Digite el número de atención</p>
+					</div>  
+				</div>
+				<div class="col-sm-6 " id="userFormColumn2">
+					<div class="form-group">
+						<label for="lastName">Nro. de Orden</label>
+						<input name="lastName" id="lastName" class="form-control input-normal">
+						<p class="help-block">Digite el número de orden</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="container"><!-- Row 2 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="phone">Nro de Suministro</label>
+						<input name="phone" id="phone" class="form-control input-normal">
+						<p class="help-block">Digite el número de suministro</p>
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="mobile">Rol</label>
+						<input name="phone" id="phone" class="form-control input-normal">
+						<p class="help-block">Digite el rol</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 7 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="phone">Canal de Comunicación</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Todos</option>
+							<option value="E">Personal</option>
+						</select>
+						
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="mobile">Tipo de Atención</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Todos</option>
+							<option value="E">Consulta</option>
+						</select>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 3 -->
+				<div class="well well-sm">Motivos de la Atención Comercial</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="phone">Motivo Cliente</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">A</option>
+							<option value="E">B</option>
+						</select>
+						<p class="help-block">Seleccione un motivo de Cliente</p>
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="mobile">Motivo Empresa</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">A</option>
+							<option value="E">B</option>
+						</select>
+						<p class="help-block">Seleccione un motivo de Empresa</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 4 -->
+				<div class="well well-sm">Fechas</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="phone">Fecha</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Ingreso</option>
+							<option value="E">Cierre</option>
+							<option value="A">Vencimiento</option>
+							<option value="E">Todos</option>
+						</select>
+						
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="mobile">Rango</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Del Día</option>
+							<option value="E">Período</option>
+						</select>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 5 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="firstName">Desde</label>
+						<input name="firstName" id="firstName" class="form-control input-normal">
+						<p class="help-block">Fecha de Inicio.</p>
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="lastName">Hasta</label>
+						<input name="lastName" id="lastName" class="form-control input-normal">
+						<p class="help-block">Fecha Fin.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 6 -->
+				<div class="well well-sm">Estado</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="phone">Estado</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Finalizados</option>
+							<option value="E">Pendientes</option>
+						</select>
+						
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="mobile">Plazos</label>
+						<select id="cb_estado" class="form-control input-normal inp_dis">
+							<option value="A">Todos</option>
+							<option value="E">En Plazo</option>
+						</select>
+						
+					</div>
+				</div>
+			</div>
+			
+			<br>
+			<div class="container"><!-- Row botones -->
+				<div class="col-md-12" id="userFormColumn1">
+					<div class="form-group">
+						<button class="btn btn-primary" id="co_filtrar"><span class="glyphicon glyphicon-search"></span> Buscar</button>				
+						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		   
+		
+        <!-- ***********Div de Respuesta********** -->
+		<div id="div_respuesta" style="display: none">
+			<div class="container">
+				<h2>Respuesta a la Atención Comercial</h2>
+			</div>
+			
+			<div class="container"><!-- Row 1 -->
+				<div class="well well-sm">Datos de la Atención Comercial</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_nro_atc_res">Nro. de Atención</label>
+						<input name="tx_nro_atc_res" id="tx_nro_atc_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_fec_ini_atc_res">Fecha de Inicio</label>
+						<input name="tx_fec_ini_atc_res" id="tx_fec_ini_atc_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+
+			<div class="container"><!-- Row 2 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_rol_cre_res">Rol Creador</label>
+						<input name="tx_rol_cre_res" id="tx_rol_cre_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_ac_res">Área Comercial</label>
+						<input name="tx_ac_res" id="tx_ac_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 3 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_sub_dc_res">Sub. Dirección Comercial</label>
+						<input name="tx_sub_dc_res" id="tx_sub_dc_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_canal_res">Canal de Atención</label>
+						<input name="tx_canal_res" id="tx_canal_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="container"><!-- Row 4 -->
+				<div class="well well-sm">Datos del Cliente</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_cliente_res">Número de Cliente</label>
+						<input name="tx_cliente_res" id="tx_cliente_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_nombre_res">Nombre</label>
+						<input name="tx_nombre_res" id="tx_nombre_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 5 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_tarifa_res">Tarifa</label>
+						<input name="tx_tarifa_res" id="tx_tarifa_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_actividad_res">Actividad Comercial</label>
+						<input name="tx_actividad_res" id="tx_actividad_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 6 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_est_cli_res">Estado Cliente</label>
+						<input name="tx_est_cli_res" id="tx_est_cli_res" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="tx_est_con_res">Estado Conexión</label>
+						<input name="tx_est_con_res" id="tx_est_con_res" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 7 -->
+				<div class="col-sm-12" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_dir_res">Dirección</label>
+						<input name="tx_dir_res" id="tx_dir_res" class="form-control input-normal">
+					</div>  
+				</div>
+			</div>
+			
+			<div class="container">
+				<div class="well well-sm">Motivos de la Atención Comercial</div>
+				<div class="col-sm-12">
+					<!-- PARAMQUERY MOTIVOS -->
+					<div id="div_grid_motivo">
+
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="container"><!-- Row 7 -->
+				<div class="well well-sm">Respuesta a la Atención Comercial</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="cb_canal_res">Canal</label>
+						<select id="cb_canal_res" class="form-control input-normal inp_dis">
+							<option value="A">Escrito</option>
+							<option value="E">Personal</option>
+							<option value="E">Teléfono</option>
+						</select>	
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="cb_respuesta">Respuesta</label>
+						<select id="cb_respuesta" class="form-control input-normal inp_dis">
+							<option value="A">No Procede</option>
+							<option value="E">Procede</option>
+						</select>	
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 7 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="cb_motivo_res">Motivo</label>
+						<select id="cb_motivo_res" class="form-control input-normal inp_dis">
+							<option value="A">Descontinuación</option>
+							<option value="E">Personal</option>
+						</select>	
+					</div>  
+				</div>
+				<div class="col-sm-6" id="userFormColumn2">
+					<div class="form-group">
+						<label for="cb_causa_res">Causa</label>
+						<select id="cb_causa_res" class="form-control input-normal inp_dis">
+							<option value="A">Cliente</option>
+							<option value="E">Contratista</option>
+							<option value="E">Empresa</option>
+						</select>	
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 7 -->
+				<div class="col-sm-12" id="userFormColumn1">
+					<div class="form-group">
+						<label for="tx_obs_res">Observación</label>
+						<textarea id="tx_obs_res" name="tx_obs_res" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2"></textarea>
+					</div>  
+				</div>
+			</div>
+			
+			<br>
+			<div class="container"><!-- Row botones -->
+				<div class="col-md-12" id="userFormColumn1">
+					<div class="form-group">
+						<button class="btn btn-primary" id="co_finaliza"><span class="glyphicon glyphicon-floppy-disk"></span> Finalizar</button>				
+						<button class="btn" id="co_volver_fin"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+        <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
+        
+        <form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte_v2.asp" target="_blank">
+            <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+            <input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+            <input type="hidden" id="tx_rol" name="tx_rol" value="">
+            <input type="hidden" id="tx_ip" name="tx_ip" value="">
+            <input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+            <input type="hidden" id="sql" name="sql" value="">
+            <input type="hidden" id="Rol" name="Rol" value="">
+            <input type="hidden" id="tituloexcel" name="tituloexcel">
+            <input type="hidden" id="excel_archivo" name="excel_archivo">
+            <input type="hidden" id="filtro" name="filtro">
+            <input type="hidden" id="excel_cabecera" name="excel_cabecera">
+        </form>    
+       <input type="hidden" id="nom_rol" name="nom_rol">
+         
+    </body>
+    
+</html>

@@ -1,0 +1,4 @@
+{
+	"data":[{"c1":"Lectura Facturacion","c2":"05/06/2017","c3":"Pedro Perez","c4":"123456","c5":"MARCA","c6":"2.5 \" ","c7":"123","c8":"122","c9":"22","c10":"CLAVE","c11":"irreg","c12":"OBSERVACION"}],
+	"sql":"select  f.nro_suministro nic,   "
+	}

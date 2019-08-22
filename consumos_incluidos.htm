@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="cache-control" content="max-age=0">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta http-equiv="pragma" content="no-cache">
+
+		<!--JS PARA JQUERY Y JQUERY UI-->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+		<link rel="stylesheet" href="css/estilos_editar.css" type="text/css">
+		
+        <!-- PARAMQUERY -->
+		<script src="pqgrid/v3.2/pqgrid.min.js"></script>
+		<link rel="stylesheet" href="pqgrid/v3.2/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v3.2/themes/office/pqgrid.css">
+		<link rel="stylesheet" href="pqgrid/v3.2/pqgrid.ui.min.css">
+        <script src="consumos_incluidos.js"></script>
+	
+
+	<style type="text/css">
+		body {			
+			margin: 0;
+			padding: 0;
+			/*overflow: hidden;*/
+			height: 100%; 
+			max-height: 100%; 
+			line-height: 1.5em;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+		}
+ 
+		/*#header {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			overflow: hidden;
+		}
+ 
+		main {
+			position: fixed;
+			top: 83px;
+			left: 0px;
+			right: 0;
+			bottom: 0;
+			overflow: auto;
+		}*/
+ 
+		.fila1 {
+			padding-bottom:7px;
+			vertical-align: middle;
+			display:table;
+		}
+ 
+		.label2 {
+			display:table-cell;
+			width: 105px;
+			vertical-align: middle;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+ 
+		.label3 {
+			display:table-cell;
+			vertical-align: middle;
+			width: 140px;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+        
+        .label4 {
+			display:table-cell;
+			vertical-align: middle;			
+			text-align:left;
+			padding-right:4px;
+            padding-left:4px;
+			font-size: 12px;
+		}
+        
+        input[type=text]{
+            padding-right:4px;
+            padding-left:4px;
+        }
+		
+		.divDerecha {
+			vertical-align:top;
+			display:table-cell;
+			padding-right:8px;
+		}
+		
+		.combo_tmp
+		{
+			border: 1px solid rgb(176,190,197);
+			border-radius: 4px;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+		
+		td.pq-grid-cell{
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color:#000000;
+		}
+		
+		.fieldset_new 
+		{
+			border: 1px solid rgb(176,190,197);
+			border-radius: 4px;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			width:460px;
+			margin-left:110px;
+			height:55px;
+		}
+
+	</style>
+</head>
+    
+<body  style="margin-left:0px;margin-top:0px;"  class="fondo_dat">
+    <header id="header">
+        <div style="margin-left:1px;padding: 10px 10px 10px 10px;width:600px" class="tit1">
+ 
+        </div>
+        <div style="margin-left:10px;border: 1px solid rgb(176,190,197);border-radius: 4px; width:960px;padding: 10px 0px 0px 0px;">
+            <div class="fila1"><div class="label2">N° Cliente</div>
+                <input type="text" id="tx_cliente" name="tx_cliente" class="texto2" style="width:120px" maxlength=10>&nbsp;&nbsp;
+                <button id="co_leer" style="width:90px; height:25px;margin-top:-3px"></button>
+                <button id="co_cerrar" style="width:90px; height:25px;margin-top:-3px"></button>
+            </div>
+        </div>
+    </header>
+    <main  id="bodytmp">
+ 
+    <p style="margin-left:10px;width:400px"class="tit2">Generales del Cliente</p>
+    
+	<div id="DatosFijos" style="margin-left:10px;border: 1px solid rgb(176,190,197);border-radius: 4px; width:960px;">
+        <br>
+		<div class="fila1">
+			<div class="label2">Nombre</div><input id="tx_nombre" name="tx_nombre" type="text" class="texto2" style="width:800px" readonly>
+		</div>
+ 
+		<div class="fila1">
+			<div class="label2">Dirección</div><textarea id="tx_direccion" name="tx_direccion" class="texto2"  style="height:40px;width:800px" readonly></textarea>
+		</div>
+ 
+		<div class="fila1">
+			<div class="label2">Estado</div><input id="tx_estado" name="tx_estado" type="text" class="texto2" style="width:327px" readonly>
+			<div class="label3">Estado Conexión</div><input id="tx_conex" name="tx_conex" type="text" class="texto2" style="width:327px" readonly>
+		</div>
+ 
+		<div class="fila1">
+			<div class="label2">Regional</div><input id="tx_regional" name="tx_regional" type="text" class="texto2" style="width:327px" readonly>
+            <div class="label3">Ruta</div><input id="tx_ruta" name="tx_ruta" type="text" class="texto2" style="width:327px" readonly>
+		</div>
+ 
+		<div class="fila1">
+			<div class="label2">Tarifa</div><input id="tx_tarifa" name="tx_tarifa" type="text" class="texto2" style="width:327px;height:42px" readonly>
+			<div class="label3">Actividad</div><input id="tx_act" name="tx_act" type="text" class="texto2" style="width:327px;height:42px" readonly>
+		</div>
+        
+		<br>
+	</div>
+    
+        <br>
+        <div id="grid_variable" style="margin-left:10px;">            
+        </div>
+        
+    	<div id="div_edit" style="display:none">
+					
+            <div style="margin-left:5px;width:570px;overflow: auto;border: 0px solid rgb(176,190,197);border-radius: 4px;">
+                <br>
+                <div class="fila1">
+                    <div class="label3">Consumo a Incluir</div><input id="tx_consumo" name="tx_consumo" type="text" class="texto2" maxlength="12" style="width:160px;text-align:right;">
+                    <div class="label4">GALONES</div>
+                </div>
+                <div class="fila1">
+                    <div class="label3">Año</div>
+                    <select id="cb_anyo" name="cb_anyo" class="combo3" style="width:60px;height:24px;">
+                        <option value=""></option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                    </select>
+                    <div class="label3" style="width:40px;">Mes: </div>
+                    <select id="cb_anyo" name="cb_anyo" class="combo3" style="width:56px;height:24px;">
+                        <option value=""></option>
+                        <option value="01">ENE</option>
+                        <option value="02">FEB</option>
+                        <option value="03">MAR</option>
+                        <option value="04">ABR</option>
+                        <option value="05">MAY</option>
+                        <option value="06">JUN</option>
+                        <option value="07">JUL</option>
+                        <option value="08">AGO</option>
+                        <option value="09">SEP</option>
+                        <option value="10">OCT</option>
+                        <option value="11">NOV</option>
+                        <option value="12">DIC</option>
+                    </select>
+                    <div class="label4">PERIODO DE FACTURACIÓN</div>
+                </div>
+                <div class="fila1">
+                    <div class="label3">Observación</div><textarea id="tx_obs" name="tx_obs" class="texto2" style="width:420px;height:70px" ></textarea>
+                </div>
+            </div>				 
+		</div>
+ 
+    </main>
+ 
+    <br/>
+	<div id="dialog-message" title="Mensaje...">
+		<span id="lb_mensaje" class="label_Arial_12px"></span>
+	</div>
+	
+	<div id="dialog-confirm" title="Mensaje...">
+	  <span id="lb_mensaje_div" class="label_Arial_12px"></span>
+	</div>
+ 
+	<div id="dialog-modal" style="display:none;overflow-y:no" title="Favor ingrese la observación:" >
+		<table width="100%" style="height:90px" border="0" cellspacing="0" cellpadding="0" style="margin-top:3px;margin-left:3px;">
+			<tr>
+				<td>
+					<textarea id="tx_obs2" name="tx_obs2" rows="8" style="font-size: 12px;width:560px; text-transform: uppercase;height:110px" class="texto2" ></textarea>
+				</td>
+			</tr>
+			<tr style="display:none;">
+				<td align="right">
+				<button id="co_nuevo">Aceptar</button>					
+				<button id="co_cancel"> Cancelar</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+<textarea id="tx_observatexto" name="tx_observatexto" style="display:none"></textarea>
+<textarea name="tx_query" id="tx_query" value="" cols="80" rows="3" style="display:none"></textarea>
+<form id="archfrExcel" name="archfrExcel" method="post" action="/raiz/syn_globales/excel_reporte.asp">
+<input type="hidden" id="titulo" name="titulo">
+<input type="hidden" id="sql" name="sql">
+<input type="hidden" id="Rol" name="Rol" value="">
+<input type="hidden" id="RolFun" name="RolFun" value="">
+<input type="hidden" id="Ip" name="Ip" value="1">
+<input type="hidden" id="filtro" name="filtro">
+<input type="hidden" id="Empresa" name="Empresa">
+<input type="hidden" id="tituloexcel" name="tituloexcel">
+<input type="hidden" id="excel_archivo" name="excel_archivo">
+<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+</form>
+</body>
+ 
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="cache-control" content="max-age=0">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta http-equiv="pragma" content="no-cache">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Jquery -->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+        <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+ 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
+        
+		<!-- Paramquery -->
+		<script src="pqgrid/v3.4/pqgrid.min.js"></script>
+		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.ui.min.css">
+		
+        <link rel='stylesheet' href='pqgrid/v3.4/themes/bootstrap/pqgrid.css' />
+		
+        <!-- Boostrap -->
+		
+		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">  
+        
+        <script src="syn_util.js"></script>    
+		<script src="pro_ejec_odt.js"></script>
+		
+		<style>
+			
+			.inp_dis[readonly]{
+			 background-color: white;
+			}
+            
+            .inp_dis[disabled]{
+			 background-color: white;
+			}
+			
+			
+		</style>
+
+	</head>
+	
+<body>
+    <div class="container" id="div_prim0">
+        <div class="well well-sm"  style="text-align: center">
+            <span id="div_mod1" style="font-size: 14px;text-align: center;"></span>
+			<br>
+            <span id="div_tit1" style="font-size: 24px;text-align: center;"></span>
+        </div>
+        
+    </div>    
+
+	<div class="container" id="div_prim" >
+		<form class="form-horizontal">
+                <div class="panel-body">
+                    <div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label class="control-label col-sm-4 col-md-4" for="tx_direccion">Desde:</label>
+								<div class="col-sm-8 col-md-8"> 
+									<input type="text" id="tx_direccion" name="tx_direccion" class="form-control inp_dis" >
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="form-group">
+								<label class="control-label col-sm-4 col-md-4" for="tx_direccion">Hasta:</label>
+								<div class="col-sm-8 col-md-8"> 
+									<input type="text" id="tx_direccion" name="tx_direccion" class="form-control inp_dis" >
+								</div>
+							</div>
+						</div>
+						
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="tx_direccion">Ciclo de Facturación:</label>
+                        <div class="col-sm-10"> 
+                            <input type="text" id="tx_direccion" name="tx_direccion" class="form-control inp_dis" >
+						</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="tx_direccion">Proceso:</label>
+                        <div class="col-sm-10"> 
+							<select id="cb_estado" class="form-control inp_dis ">
+							<option value="A">A</option>
+							<option value="E">B</option>
+							</select>
+						</div>
+                    </div>
+					<div class="form-group">
+                 		
+						<div class="col-sm-10 col-sm-offset-2"> 
+							<button class="btn btn-primary" id="co_generar"><span class="glyphicon glyphicon-search"></span>  Leer</button>				
+							<button class="btn" id="co_cerrar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+						</div>
+                    </div>
+               
+                </div>
+   
+        </form>
+        
+    </div>
+
+<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+<input type="hidden" id="tx_rol" name="tx_rol" value="">
+<input type="hidden" id="tx_ip" name="tx_ip" value="">
+<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+
+<div id="dialog-message" title="Mensaje...">
+  <span id="lb_mensaje" class="label_Arial_12px"></span>
+</div>
+	
+	<div class="container"><!-- Row 1 -->
+		<div class="col-sm-6" id="userFormColumn1">
+			<div class="form-group">
+				<label for="firstName">Desde</label>
+				<input name="firstName" id="firstName" class="form-control input-normal">
+				<p class="help-block">Fecha de Inicio.</p>
+			</div>  
+		</div>
+		<div class="col-sm-6" id="userFormColumn2">
+			<div class="form-group">
+				<label for="lastName">Hasta</label>
+				<input name="lastName" id="lastName" class="form-control input-normal">
+				<p class="help-block">Fecha Fin.</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container"><!-- Row 2 -->
+		<div class="col-sm-6" id="userFormColumn1">
+			<div class="form-group">
+				<label for="phone">Ciclo de Facturación</label>
+				<input name="phone" id="phone" class="form-control input-normal">
+				<p class="help-block">Seleccione el ciclo de facturación</p>
+			</div>  
+		</div>
+		<div class="col-sm-6" id="userFormColumn2">
+			<div class="form-group">
+				<label for="mobile">Proceso ODT</label>
+				<select id="cb_estado" class="form-control input-normal inp_dis">
+					<option value="A">A</option>
+					<option value="E">B</option>
+				</select>
+				<p class="help-block">Seleccione el tipo de proceso.</p>
+			</div>
+		</div>
+		
+	</div>
+	<div class="container"><!-- Row 3 -->
+		<div class="col-md-12" id="userFormColumn1">
+			<div class="form-group">
+				<button class="btn btn-primary" id="co_generar"><span class="glyphicon glyphicon-search"></span>  Leer</button>				
+				<button class="btn" id="co_cerrar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	
+
+</body>
+
+</html>

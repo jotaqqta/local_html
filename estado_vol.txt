@@ -1,0 +1,4 @@
+<option value=""></option>
+<option value="I">INGRESADO</option>
+<option value="P">EN FACTURACIÓN</option>
+<option value="F">FACTURADO</option>

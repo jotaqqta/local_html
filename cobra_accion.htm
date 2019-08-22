@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="cache-control" content="max-age=0">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Jquery -->
+        <script src="/jquery/jquery-3.1.1.min.js"></script>
+        <script src="/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+        <script src="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+         <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
+        
+        <script src="/bootstrap/v3.3.7/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="/bootstrap/v3.3.7/js/locales/bootstrap-datetimepicker.es.js"></script>
+        
+        <link rel="stylesheet" href="/bootstrap/v3.3.7/css/bootstrap-datetimepicker.min.css">
+                             
+      
+        
+        <!-- Paramquery -->
+        <script src="/pqgrid/v3.4/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="/pqgrid/v3.4/pqgrid.min.css">
+        <link rel="stylesheet" href="/pqgrid/v3.4/pqgrid.ui.min.css">
+        
+        <link rel='stylesheet' href='/pqgrid/v3.4/themes/bootstrap/pqgrid.css' />
+        
+        <!-- Boostrap -->
+        
+        <link rel="stylesheet" href="/bootstrap/v3.3.7/css/bootstrap.min.css">
+               
+        
+        <script src="/syn_util.js"></script>
+        <script src="/jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>
+        <script src="/jquery/inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script>
+        <script src="/jquery/inputmask4x/inputmask/inputmask.extensions.min.js"></script>
+        <script src="/jquery/inputmask4x/inputmask/inputmask.min.js"></script>
+        <script src="/jquery/inputmask4x/inputmask/jquery.inputmask.min.js"></script>
+		
+        <script src="cobra_accion.js"></script>
+        
+        <style>
+        
+            .inp_dis[readonly]{
+                background-color: #fff;
+            }
+            
+            .inp_dis[disabled]{
+                background-color: #fff;
+            }
+            
+            .ui-widget-header .ui-state-active{color: black;}
+            
+            .ui-widget-header .ui-icon {
+                background-image: url(/jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/images/ui-icons_444444_256x240.png);
+            }
+            
+            .ui-state-highlight{
+                color: #000 !important
+            }
+            
+            #bd_acc{
+                height: 460px;
+            }
+            
+            #bd_prin {
+                height: calc(100vh - 117px);
+                min-height: 460px;
+                overflow-y: auto; 
+            }
+            
+            @media screen and (max-width: 480px) {
+                #bd_prin {
+                    /* height: 480px; */
+                    height: 300px;
+                    overflow-y: auto; 
+                }
+            }
+            
+            .modal-header{background-color:#dddddd;}
+            
+            .glyphicon{
+               font-family: 'Glyphicons Halflings' !important;
+            }
+            
+            #div_grid input{
+                text-transform: uppercase;
+            }
+            
+            .btn-left{
+                margin-left: 6px;
+            }
+            
+            .pq-grid-col{
+               font-weight:bold ;
+            }
+
+        </style>
+
+    </head>
+    
+    <body>
+        <div class="container-fluid">
+       
+            <div class="well well-sm" style="text-align: center">
+                <span id="div_mod0" style="font-size: 14px;text-align: center;"></span>
+                <br>
+                <span id="div_tit0" style="font-size: 24px;text-align: center;"></span>
+            </div>
+		
+            <div id="div_prim0">
+                <div class="panel panel-default">
+                    <div class="panel-body" id="bd_prin">
+                        <!-- PARAMQUERY PRINCIPAL -->
+                        <div id="div_grid_principal"> 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+		
+            <div id="div_cobranza" style="display:none">
+                <form class="form-horizontal">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>Datos del Suministro</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-2" for="tx_cliente">N° Suministro:</label>
+                                <div class="col-sm-4 col-md-4"> 
+                                    <input type="text" id="tx_cliente" name="tx_cliente" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                                 <label class="control-label col-sm-2 col-md-2" for="tx_estado">Estado:</label>
+                                <div class="col-sm-4  col-md-4"> 
+                                    <input type="text" id="tx_estado" name="tx_estado" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-2" for="tx_nombre">Nombre:</label>
+                                <div class="col-sm-10 col-md-10"> 
+                                    <input type="text" id="tx_nombre" name="tx_nombre" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-2" for="tx_direccion">Dirección:</label>
+                                <div class="col-sm-10 col-md-10"> 
+                                    <input type="text" id="tx_direccion" name="tx_direccion" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-2" for="tx_telefono">Teléfono:</label>
+                                <div class="col-sm-4 col-md-4"> 
+                                    <input type="text" id="tx_telefono" name="tx_telefono" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                                <label class="col-sm-2 col-md-2 control-label" for="tx_correo">Correo:</label>
+                                <div class="col-sm-4  col-md-4"> 
+                                    <input type="text" id="tx_correo" name="tx_correo" class="form-control inp_dis input-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2 col-md-2" for="tx_tarifa">Tarifa:</label>
+                                <div class="col-sm-4 col-md-4"> 
+                                    <textarea id="tx_tarifa" name="tx_tarifa" rows="2" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis input-sm" readonly></textarea>  
+                                </div>
+                                <label class="control-label col-sm-2 col-md-2" for="tx_act_eco">Actividad Económica:</label>
+                                <div class="col-sm-4 col-md-4"> 
+                                    <textarea id="tx_act_eco" name="tx_act_eco" rows="2" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis input-sm" readonly></textarea>  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">    
+                                    <label class="control-label col-sm-3 col-md-4" for="tx_deuda_total_ini">Deuda Inicial:</label>
+                                    <div class="col-sm-3 col-md-2" style="padding: 0px 0px 0px 10px;"> 
+                                        <input type="text" id="tx_deuda_total_ini" name="tx_deuda_total_ini" class="form-control inp_dis input-sm" style="text-align:right; padding: 5px 5px 5px 5px;" readonly>
+                                    </div>
+                                    <label class="control-label col-sm-3 col-md-4" for="tx_ant_saldo_ini">Antiguedad Inicial:</label>
+                                    <div class="col-sm-3 col-md-2" style="padding: 0px 0px 0px 10px;"> 
+                                        <input type="text" id="tx_ant_saldo_ini" name="tx_ant_saldo_ini" class="form-control inp_dis input-sm" style="text-align:right; padding: 5px 5px 5px 5px;" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label col-sm-3 col-md-4" for="tx_deuda_total">Deuda Actual:</label>
+                                    <div class="col-sm-3 col-md-2" style="padding: 0px 0px 0px 10px;"> 
+                                        <input type="text" id="tx_deuda_total" name="tx_deuda_total" class="form-control inp_dis input-sm" style="text-align:right; padding: 5px 5px 5px 5px;" readonly>
+                                    </div>
+                                    <label class="control-label col-sm-3 col-md-4" for="tx_ant_saldo">Antiguedad Actual:</label>
+                                    <div class="col-sm-3 col-md-2" style="padding: 0px 0px 0px 10px;"> 
+                                        <input type="text" id="tx_ant_saldo" name="tx_ant_saldo" class="form-control inp_dis input-sm" style="text-align:right; padding: 5px 5px 5px 5px;" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-2 col-md-offset-2"> 
+                                <button type="button" class="btn-left btn btn-primary" id="co_deuda" ><span class="glyphicon glyphicon-usd"></span> Deuda</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_pago" ><span class="glyphicon glyphicon-file"></span> Pagos</button>	
+                                <button type="button" class="btn-left btn btn-primary" id="co_direccion" ><span class="glyphicon glyphicon-edit"></span> Dirección</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_valorizar" ><span class="glyphicon glyphicon-pencil"></span> Valorización</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_juzgado" ><span class="glyphicon glyphicon-briefcase"></span> Enviar a Juzgado</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_anular" ><span class="glyphicon glyphicon-remove"></span> Anulación</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_finalizar" ><span class="glyphicon glyphicon-ok"></span> Finalización</button>
+                                <button type="button" class="btn-left btn btn-primary" id="co_volver1"><span class="glyphicon glyphicon-chevron-left"></span> Volver</button>
+                            </div> 
+
+                        </div>
+                    </div>
+
+                </form>
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>Acciones de Cobranza</b>
+                        </div>
+                
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#todos">Todos</a></li>
+                        <li><a data-toggle="tab" href="#acciones">Cobranza Teléfonica</a></li>
+                        <li><a data-toggle="tab" href="#avisos">Avisos</a></li>
+                        <li><a data-toggle="tab" href="#insp_corte">Inspecciones y Corte</a></li>
+                        <li><a data-toggle="tab" href="#proc_judi">Proceso Judicial</a></li>
+                        <li><a data-toggle="tab" href="#obser">Observaciones</a></li>
+                      </ul>
+
+                      <div class="tab-content">
+                            <div id="todos" class="tab-pane fade in active">
+                              <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY TODOS -->
+                                    <div id="div_grid_todos"> 
+
+                                    </div>
+                                </div>
+                            </div>  
+                            <div id="acciones" class="tab-pane fade">
+                                <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY LLAMADAS TELEFONICAS -->
+                                    <div id="div_grid_call_tel"> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="avisos" class="tab-pane fade">
+                              <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY NOTIFICACIONES -->
+                                    <div id="div_grid_avisos"> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="insp_corte" class="tab-pane fade">
+                              <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY INSPEC Y CORTE -->
+                                    <div id="div_grid_ins_cor"> 
+
+                                    </div>
+                                </div>
+                            </div>  
+                            <div id="proc_judi" class="tab-pane fade">
+                              <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY INSPEC Y CORTE -->
+                                    <div id="div_grid_judicial"> 
+
+                                    </div>
+                                </div>
+                            </div> 
+                            <div id="obser" class="tab-pane fade">
+                              <div class="panel-body" id="bd_acc">
+                                    <!-- PARAMQUERY INSPEC Y CORTE -->
+                                    <div id="div_grid_obs"> 
+
+                                    </div>
+                                </div>
+                            </div>
+                      </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Eventos de Cobranza</b>
+                    </div>    
+                    <div class="panel-body" id="bd_acc">    
+                        <!-- PARAMQUERY PRINCIPAL -->
+
+                        <div id="div_grid_event"> 
+
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> <!-- fin container-fluid-->
+            
+        <!-- Modal -->
+        <div id="div_filtro_bts" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" >
+						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la búsqueda</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" id="frm_filtro">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Fecha Creación:</label>
+                                <div class="col-sm-4">
+                                    <div class="input-append date form_datetime" >
+                                        <input type="text" class="form-control inp_dis" id="tx_fil_fec_ini" value="" readonly>
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="input-append date form_datetime" >
+                                        <input type="text" class="form-control inp_dis" id="tx_fil_fec_fin" value="" readonly>
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div>
+                                </div> 
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="tx_fil_deu_min">Deuda:</label>
+                                <div class="col-sm-4"> 
+                                    <input type="text" id="tx_fil_deu_min" name="tx_fil_deu_min" class="form-control inp_dis" >
+                                </div>
+                                <div class="col-sm-4"> 
+                                    <input type="text" id="tx_fil_deu_max" name="tx_fil_deu_max" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_fil_tip_cli">Tipo Cliente:</label>
+                                <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_fil_tip_cli" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_fil_conve">Tiene Convenio:</label>
+                                <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_fil_conve" class="form-control inp_dis">
+                                        <option value=""> </option>
+                                        <option value="S">SI</option>
+                                        <option value="N">NO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="tx_fil_cliente">N° Suministro:</label>
+                                <div class="col-sm-8"> 
+                                    <input type="text" id="tx_fil_cliente" name="tx_fil_cliente" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                                 
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn-left btn btn-primary" id="co_fil_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
+                        <button type="button" class="btn-left btn btn-primary" id="co_fil_aceptar"><span class="glyphicon glyphicon-search"></span> Aceptar</button>
+                        <button type="button"  data-dismiss="modal" class="btn btn-default" id="co_close"><span class="glyphicon glyphicon-off"></span> Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal llamada Teléfonica-->
+        <div id="dlg_llam_tel" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Ingrese los datos de la llamada:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_tip_resp">Tipo Respuesta:</label>
+                                <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_tip_resp" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Fecha Compromiso:</label>
+                                <div class="col-sm-8">
+                                    <div class="input-append date form_datetime" >
+                                        <input type="text" class="form-control inp_dis" id="tx_fil_fec_comp" value="">
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Observaciones:</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <textarea id="tx_obs_llam" name="tx_obs_llam" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_llama"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_llam"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Modal Inspeccion-->
+        <div id="dlg_inspec" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Ingrese los datos de la Inspección</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="cb_tip_insp">Tipo Inspección:</label>
+                                <div class="col-sm-9"> 
+                                    <select class="form-control" id="cb_tip_insp" class="form-control inp_dis">
+                                        <option value="1">Inspección General</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="cb_motivo_ins">Motivo:</label>
+                                <div class="col-sm-9"> 
+                                    <select class="form-control" id="cb_motivo_ins" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" >Observaciones:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <textarea id="tx_obs_insp" name="tx_obs_insp" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_inspec"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_inspec"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+         <!-- Modal Corte-->
+        <div id="dlg_corte" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Ingrese los datos del Corte</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="cb_motivo_cor">Motivo:</label>
+                                <div class="col-sm-9"> 
+                                    <select class="form-control" id="cb_motivo_cor" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" >Observaciones:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <textarea id="tx_obs_corte" name="tx_obs_corte" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_corte"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_corte"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Modal Notificaciones-->
+        <div id="dlg_noti" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Ingrese los datos de la Notificación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_ofi_con">Oficina de Contacto:</label>
+                                <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_ofi_con" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Observaciones:</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <textarea id="tx_obs_noti" name="tx_obs_noti" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_noti"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_noti"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+         <!-- Modal Notificaciones Captura-->
+        <div id="dlg_noti_capt" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Captura de Datos de la Notificación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_ofi_con">Entregada:</label>
+                                 <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_entrega" class="form-control inp_dis">
+                                        <option value=""> </option>
+                                        <option value="S">SI</option>
+                                        <option value="N">NO</option> 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Fecha Terreno:</label>
+                                <div class="col-sm-8">
+                                    <div class="input-append date form_datetime" >
+                                        <input type="text" class="form-control inp_dis" id="tx_fecha_terr" value="">
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" for="cb_tip_resp_noti">Tipo Respuesta:</label>
+                                <div class="col-sm-8"> 
+                                    <select class="form-control" id="cb_tip_resp_noti" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Fecha Compromiso:</label>
+                                <div class="col-sm-8">
+                                    <div class="input-append date form_datetime" >
+                                        <input type="text" class="form-control inp_dis" id="tx_fecha_comp_noti" value="">
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4" >Observaciones:</label>
+                                <div class="col-sm-8 col-md-8">
+                                    <textarea id="tx_obs_noti_cap" name="tx_obs_noti_cap" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_noti_cap"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_noti_cap"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Modal Asignar Analista-->
+        <div id="dlg_analista" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Seleccione el Analista</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="cb_analista">Analista:</label>
+                                <div class="col-sm-9"> 
+                                    <select class="form-control" id="cb_analista" class="form-control inp_dis"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" >Observaciones:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <textarea id="tx_obs_analista" name="tx_obs_analista" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_analista"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_analista"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Modal Asignar valorización-->
+        <div id="dlg_valorizar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Ingrese los datos de la Valorización Judicial</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="tx_nombre_val">Nombre:</label>
+                                <div class="col-sm-9"> 
+                                   <input type="text" id="tx_nombre_val" name="tx_nombre_val" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 col-md-3" for="cb_tipo_doc">Tipo. Identidad:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <select class="form-control inp_dis" id="cb_tipo_doc" name="cb_tipo_doc"></select>
+                                </div>                  
+                            </div>
+                            <div class="form-group" id="no_cedula">
+                                <label class="control-label col-sm-3 col-md-3" for="tx_doc">Nro. Identidad:</label>
+                                <div class="col-sm-9 col-md-9"  > 
+                                    <input type="text" id="tx_doc" name="tx_doc" class="form-control inp_dis" style="text-transform: uppercase;" maxlength="20">
+                                </div>
+                            </div>
+                            <div class="form-group" id="cedula" style="display:none">
+                                <label class="control-label col-sm-3 col-md-3" for="tx_doc1">Nro. Identidad:</label>
+                                <div class="col-sm-2 fr_linea">
+                                    <input type="text" id="tx_doc1" name="tx_doc1" class="form-control inp_dis" style="text-align: right" maxlength="2">
+                                </div>
+                                <div class="col-sm-2 fr_linea">
+                                    <select class="form-control inp_dis" id="cb_tipo_doc2" name="cb_tipo_doc2"></select>
+                                </div>
+                                <div class="col-sm-2 fr_linea">
+                                    <input type="text" id="tx_doc2" name="tx_doc2" class="form-control inp_dis" maxlength="5">
+                                </div>
+                                <div class="col-sm-3 fr_linea">
+                                    <input type="text" id="tx_doc3" name="tx_doc3" class="form-control  inp_dis" maxlength="6">
+                                </div>                     
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="tx_finca">Finca:</label>
+                                <div class="col-sm-9"> 
+                                   <input type="text" id="tx_finca" name="tx_finca" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="tx_tomo">Tomo:</label>
+                                <div class="col-sm-9"> 
+                                   <input type="text" id="tx_tomo" name="tx_tomo" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="tx_folio">Folio:</label>
+                                <div class="col-sm-9"> 
+                                   <input type="text" id="tx_folio" name="tx_folio" class="form-control inp_dis" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" >Observaciones:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <textarea id="tx_obs_valorizar" name="tx_obs_valorizar" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3 col-md-3" ></label>
+                                <div class="col-sm-9 col-md-9">
+                                    <label><input type="checkbox" id="ch_propietario" name="ch_propietario" > Verificado Por Valorización</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_valorizar"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_valorizar"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Modal ENVIAR JUZAGADO - ANULACION - FINALIZACION-->
+        <div id="dlg_obs" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title">Digite las observaciones</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" >
+                            
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" >Observaciones:</label>
+                                <div class="col-sm-9 col-md-9">
+                                    <textarea id="tx_obs_obs" name="tx_obs_obs" rows="3" cols="60" style="text-transform: uppercase;" class="form-control texto2 inp_dis" ></textarea>  
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">                    
+                        <button type="button" class="btn btn-primary" id="co_ok_obs"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn " data-dismiss="modal" id="co_can_obs"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>                    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
+        
+        <div>
+            <input type="hidden" id="tx_tel_p" name="tx_tel_p">
+            <input type="hidden" id="tx_mail_p" name="tx_mail_p">
+        </div>
+        
+        <form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte_v2.asp" target="_blank">
+            <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+            <input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+            <input type="hidden" id="tx_rol" name="tx_rol" value="">
+            <input type="hidden" id="tx_ip" name="tx_ip" value="">
+            <input type="hidden" id="sql" name="sql" value="">
+            <input type="hidden" id="tituloexcel" name="tituloexcel">
+            <input type="hidden" id="excel_archivo" name="excel_archivo">
+            <input type="hidden" id="filtro" name="filtro">
+            <input type="hidden" id="excel_cabecera" name="excel_cabecera">
+        </form>    
+       <input type="hidden" id="nom_rol" name="nom_rol">
+         
+    </body>
+    
+</html>

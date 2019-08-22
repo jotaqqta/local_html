@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script src="/jquery/jquery-3.1.1.min.js"></script>
+    <script src="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="../css/estilos_editar.css" type="text/css">
+    <script src="inspeccion1.js"></script>
+     <style>
+            body {			
+                margin: 0;
+                padding: 0;
+                background-color:rgb(255, 255, 255);
+                max-height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 12px;
+            }
+		.fila1 {
+			padding-bottom:10px;
+			vertical-align: middle;
+			display:table;
+		}
+ 
+		.label2 {
+			display:table-cell;
+			width: 145px;
+			vertical-align: middle;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+		.label3 {
+			display:table-cell;
+			vertical-align: middle;
+			width: 140px;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+        .co_opt
+        {
+
+            font-size: 13px;
+            width: 275px;
+            height: 50px;
+
+        }
+         .panel_opt
+         {
+             margin: auto;
+             width:1000px;
+             text-align:center;
+         }
+         .btn_sel
+         {
+             height: 200px;
+         }
+
+         .form_sel.form
+         {
+                margin: auto;
+                width:1000px;
+                text-align:center;
+         }
+         .co_button
+         {
+             width: 105px;
+         }
+    </style>
+</head>
+    
+<body>
+
+<div>
+    <div class="panel_opt">
+     <div id="tit1" style="margin: auto;padding: 10px 10px 10px 10px;width:1000px; text-align:center " class="tit1"> </div>   
+    <div style="margin: auto;padding: 10px 10px 10px 10px;width:1000px; text-align:center " class="tit2" id="sub-titulo1">  </div>
+        <div class="btn_sel">
+            <br>
+            <div><button id="co_cliente" rel = "form1" class="co_opt"></button></div>
+            <br>
+            <div></div>
+            <div></div>
+            <div><button id="co_no_cliente" rel = "form2" class="co_opt"></button></div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div class="form_sel">
+    <br>
+    <div id="form1" class="form" style="display: none;">
+        
+        <div id="DatosFijos" style="margin:auto; width:795px;">
+            <div style="margin-left:15px;padding: 5px 1px 1px 1px;width:717px; text-align:center " class="tit2 titsec" id="sub-titulo2">  </div>
+            <br>
+            <div class="fila1">
+                <div class="label2">Número de Cliente</div>
+                <input type="text" id="tx_cliente" name="tx_cliente" maxlength="20" class="texto2">
+                <span class="" style="padding-right:10px"></span>
+                <button id="co_leer" type="button" name="co_leer" style="width:100px;height:21px;padding:0px" title="Leer"></button>
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Nombre de la cuenta</div><input type="text" id="tx_nombre" name="tx_nombre" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Documento de Identidad</div>
+                <input type="text" id= "tx_doc" name = "tx_doc" maxlength="20" class="texto2" data="SObligatorioindicador" disabled="disabled" style="width:590px" rel="1" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Ruta Comercial</div><input type="text" id="tx_ruta" name="tx_ruta" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Tarifa</div><input type="text" id="tx_tarifa" name="tx_tarifa" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled" >
+            </div>
+            
+                        <div class="fila1">
+                <div class="label2">Actividad</div><input type="text" id="tx_actividad" name="tx_actividad" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled" >
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Estado de Cliente</div>
+                <input type="text" id= "tx_estado" name = "tx_estado" maxlength="20" class="texto2" data="SObligatorioindicador" disabled="disabled" style="width:590px" rel="1" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Estado de Conexión</div><input type="text" id="tx_est_con" name="tx_est_con" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Provincia</div><input type="text" id="tx_provincia" name="tx_provincia" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+            
+                        <div class="fila1">
+                <div class="label2">Distrito</div><input type="text" id="tx_distrito" name="tx_corregimiento" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Corregimiento</div>
+                <input type="text" id= "tx_corre" name = "tx_corre" maxlength="20" class="texto2" data="SObligatorioindicador" disabled="disabled" style="width:590px" rel="1" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Barrio</div><input type="text" id="tx_barrio" name="tx_barrio" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Dirección</div><input type="text" id="tx_direccion" name="tx_direccion" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Nombre Contacto</div><input type="text" id="tx_nom_con" name="tx_nom_con" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" disabled="disabled">
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Teléfono Contacto</div>
+                <input type="text" id= "tx_tel_con" name = "tx_tel_con" maxlength="20" class="texto2" data="SObligatorioindicador"  style="width:590px" rel="1" disabled="disabled">
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Relación o Parentesco</div><select id="cb_relacion" name="cb_relacion" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" disabled="disabled"></select>
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Tipo de Inspección</div>
+                <select id="cb_tp_ins" name="cb_tp_ins" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" disabled="disabled"></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Motivo de Inspección</div>
+                <select id="cb_mot_ins" name="cb_mot_ins" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" disabled="disabled"></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Observación de Inspección</div><textarea id="tx_observaciones" name="tx_observaciones" style="width:590px;height:50px" class="texto2" rel="1" data="SObligatorioindicador" disabled="disabled"></textarea>
+            </div>
+            
+              <br>
+
+            <div class="fila1" style="margin:auto;text-align:right;width:675px">
+                <button id="co_limpiar1" class="co_limpiar1" style="float:left;margin-left: 90px;"></button>
+                <button id="co_guardar1" class="co_button" disabled="disabled"></button> <span class="" style="padding-right:10px"></span>
+                <button id="co_volver1" class="co_button"></button>
+            </div>
+            
+        </div>
+          
+        
+    </div>
+    
+    <div id="form2" class="form" style="display: none;">
+
+        <div id="DatosFijos" style="margin:auto; width:795px;">
+           <div style="margin-left:15px;padding: 5px 1px 1px 1px;width:717px; text-align:center " class="tit2 titsec" id="sub-titulo3">  </div>
+            <br>
+            <div class="fila1">
+                <div class="label2">Nombre de Referencia</div>
+                <input type="text" id="tx_nom_ref" name="tx_nom_ref" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador">
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Actividad Comercial</div><select id="cb_act_com" name="cb_act_com" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            <div class="fila1">
+                <div class="label2">Dirección</div>
+                <input type="text" id= "tx_dir_ref" name = "tx_dir_ref" maxlength="20" class="texto2" data="SObligatorioindicador" style="width:590px" rel="1" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Referencia Adicional</div><input type="text" id="tx_ref_adc" name="tx_ref_adc" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Provincia</div><select id="cb_prov_ref" name="cb_prov_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            
+                        <div class="fila1">
+                <div class="label2">Distrito</div><select id="cb_dist_ref" name="cb_dist_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Corregimiento</div><select id="cb_corr_ref" name="cb_corr_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Barrio</div>
+                <select id="cb_barrio_ref" name="cb_barrio_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Nombre Contacto</div><input type="text" id="tx_nom_con_ref" name="tx_nom_con_ref" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Teléfono Contacto</div><input type="text" id="tx_tel_con_ref" name="tx_tel_con_ref" maxlength="40" class="texto2" style="width:590px" rel="1" data="SObligatorioindicador" >
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Relación o Parentesco</div><select id="cb_relacion_ref" name="cb_relacion_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+
+            <div class="fila1">
+                <div class="label2">Tipo de Inspección</div>
+                <select id="cb_tp_ins_ref" name="cb_tp_ins_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Motivo de Inspección</div>
+                <select id="cb_mot_ins_ref" name="cb_mot_ins_ref" style="width:590px" class="combo2" rel="1" data="SObligatorioindicador" ></select>
+            </div>
+            
+            <div class="fila1">
+                <div class="label2">Observación de Inspección</div><textarea id="tx_observaciones_ref" name="tx_observaciones_ref" style="width:590px;height:50px" class="texto2" rel="1" data="SObligatorioindicador" ></textarea>
+            </div>
+            
+            <br>
+            <div class="fila1" style="margin:auto;text-align:right;width:675px">
+            <button id="co_limpiar2" class="co_limpiar2" style="float:left;margin-left: 90px;"></button>
+            <button id="co_guardar2" class="co_button"></button><span class="" style="padding-right:10px"></span>
+            <button id="co_volver2" class="co_button"></button>
+                
+        </div>
+        </div>
+            
+        
+        
+        
+    </div>
+</div>   
+
+
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="cache-control" content="max-age=0">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta http-equiv="pragma" content="no-cache">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Jquery -->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+		
+		<!-- Boostrap -->
+		<script src="bosstrap1.js"></script>
+		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+		
+		<!-- InputMask -->
+		<script src="jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>
+		
+		
+		<style>
+		
+			.inp_dis[readonly]{
+			 background-color: white;
+			}
+		
+		</style>
+
+	</head>
+	
+<body>
+	
+	<div class="container" id="div_tit" >
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div style="font-size: 14px;text-align: center;">Módulo de Gestión Técnica</div>
+				<div style="font-size: 24px;text-align: center;">Creación de Inspección</div>
+			</div>
+			<div class="panel-body">
+				<div style="margin: auto;text-align: center;">
+					<button id="co_cliente" class="btn btn-primary" style="width: 290px"><span class="glyphicon glyphicon-user"></span> CLIENTE EXISTENTE</button>
+					<br><br>
+					<button id="co_predio" class="btn btn-primary" style="width: 290px"><pan class="glyphicon glyphicon-home"></pan> PREDIO SIN CONTRATO</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="container" id="div_clie" style="display: none;">
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div style="font-size: 24px;text-align: center;">Captura de Inspección para Cliente Existente</div>
+			</div>
+			<div class="panel-body">
+				<br>
+				<form class="form-horizontal">
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_cliente">N° Cliente:</label>
+				<div class="col-sm-2">
+				<input type="text" class="form-control" id="tx_cliente" placeholder="Ingrese Nic">
+				</div><div class="col-sm-2"><button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Leer</button></div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_nombre" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_doc">N° Identidad:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_doc" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_ruta">Ruta Comercial:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_ruta" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_tarifa">Tarifa:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_tarifa" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_actividad">Actividad:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_actividad" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_estado">Estado Cliente:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_estado" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_est_con">Estado Conexión:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_est_con" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_provincia">Provincia:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_provincia" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_distrito">Distrito:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_distrito" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_corre">Corregimiento:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_corre" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_barrio">Barrio:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_barrio" readonly>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_direccion">Dirección:</label>
+				<div class="col-sm-10"> 
+				<textarea class="form-control inp_dis" rows="4" id="tx_direccion" readonly></textarea>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_nom_con">Nombre Contacto:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" id="tx_nom_con" placeholder="">
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_tel_con">Teléfono Contacto:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" id="tx_tel_con" placeholder="">
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_relacion">Relación o Parentesco:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_relacion"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_tp_ins">Tipo de Inspección:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_tp_ins"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_mot_ins">Motivo:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_mot_ins"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_obs">Observación:</label>
+				<div class="col-sm-10"> 
+				<textarea class="form-control" rows="4" id="tx_obs"></textarea>
+				</div>
+				</div>
+
+
+				<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" id="co_limpiar1"><pan class="glyphicon glyphicon-grain"></pan> Limpiar</button>
+				<button class="btn btn-primary" id="co_guardar1"><span class="glyphicon glyphicon-save"></span> Guardar</button>
+				<button class="btn" id="co_volver1"><span class="glyphicon glyphicon-chevron-left"></span> Volver</button>
+				</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="div_predio" style="display: none;">
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div style="font-size: 24px;text-align: center;">Captura de Inspección en Predio sin Contrato</div>
+			</div>
+			<div class="panel-body">
+				<br>
+				<form class="form-horizontal">
+
+				<div class="form-group" id="frm_nom_ref">
+				<label class="control-label col-sm-2" for="tx_nom_ref">Nombre Referencia:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" id="tx_nom_ref" placeholder="">
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_act_com">Actividad Comercial:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_act_com"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_dir_ref">Dirección:</label>
+				<div class="col-sm-10"> 
+				<textarea class="form-control" rows="3" id="tx_dir_ref"></textarea>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_corr_ref">Corregimiento:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_corr_ref"></select>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_barrio_ref">Barrio:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_barrio_ref"></select>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_nom_con_ref">Nombre Contacto:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" id="tx_nom_con_ref" placeholder="">
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_tel_con_ref">Teléfono Contacto:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control" id="tx_tel_con_ref" placeholder="">
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_relacion_ref">Relación o Parentesco:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_relacion_ref"></select>
+				</div>
+				</div>
+				
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_tp_ins_ref">Tipo de Inspección:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_tp_ins_ref"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_mot_ins_ref">Motivo:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_mot_ins_ref"></select>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_obs_ref">Observación:</label>
+				<div class="col-sm-10"> 
+				<textarea class="form-control" rows="4" id="tx_obs_ref"></textarea>
+				</div>
+				</div>
+
+
+				<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" id="co_limpiar2"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
+				<button class="btn btn-primary" id="co_guardar2"><span class="glyphicon glyphicon-save"></span> Guardar</button>
+				<button class="btn" id="co_volver2"><pan class="glyphicon glyphicon-chevron-left"></pan> Volver</button>
+				</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+
+</html>

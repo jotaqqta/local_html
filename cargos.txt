@@ -1,0 +1,4 @@
+<option value=""></option>
+<option value="0001">CONSUMO DE AGUA</option>
+<option value="0004">MATERIALES AGUA</option>
+<option value="0045">COSTOS LEGALES POR CNR</option>

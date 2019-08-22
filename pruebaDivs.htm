@@ -1,0 +1,60 @@
+<html>
+<head>
+	<style>
+		#contenedorPrincipal{
+			/*background-image: url(images/transparencia.png);*/
+			display:none;
+			height:100%;
+			position:fixed;
+			width:100%;
+			z-index: 9999;
+			background-color: #444;
+		}
+
+		#contenedorInterno{
+			height:70%;
+			margin-left:15%;
+			margin-top:15%;
+			width:70%;
+			background-color: #006;
+		}
+	</style>
+	<script src="jquery/jquery-3.1.1.min.js"></script>
+	<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		// Capturar evento del botón
+		$('#botonVerCapa').on("click",function(){
+			$('#contenedorPrincipal').fadeIn('slow'); // Visualiza la capa principal
+			return false; //Para evitar el efecto de burbujeo
+		});
+
+		// Combinación de eventos (mouseout y click) para realizar el efecto deseado
+		$('#contenedorInterno').mouseout(function(){
+			/*
+			* Se captura el evento click siempre y cuando este suceda fuera
+			* de la capa interna para cerrar la capa principal que es el contenedor
+			* de la capa interna
+			*/
+			$('#contenedorPrincipal').on("click",function(){
+				$('#contenedorPrincipal').fadeOut('slow');
+			});
+			return false; // Para evitar el efecto de burbujeo
+		});
+
+	});
+
+	</script>
+</head>
+<body>
+<div id="contenedorPrincipal">
+<div id="contenedorInterno">
+<img src="http://www.google.com.co/images/srpr/logo3w.png" border="0">
+</div>
+</div>
+<input type="button" id="botonVerCapa" value="Ver Capa">
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="X-UA-Compatible" content="IE=10" />
+
+		<!--JS PARA JQUERY Y JQUERY UI-->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+        <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+
+		<!-- PARAMQUERY -->
+        <script src="pqgrid/v3.2/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.ui.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/themes/office/pqgrid.css">
+    
+		<script src="consulta_volumenes_fijos.js"></script>
+        <link rel="stylesheet" href="css/estilos_editar.css" type="text/css">
+		<script src="datepicker_idioma.js"></script>
+		
+		<style>
+			
+            .fila1 {
+                padding-bottom:4px;
+                vertical-align: middle;
+                display:table;
+			}
+            
+            .left {
+                float:left;
+                height:25px;
+                width:100px;
+                vertical-align:middle;
+                text-align: right;
+            }
+            
+            .right {
+                float:left;
+                height:25px;
+                width:350px;
+                margin-left: 10px;
+                vertical-align:middle;
+                text-align: left;
+            }
+			
+		</style>
+		
+	</head>
+    <body  style="margin:0px">
+		
+	<div id="grid_principal" ></div>
+	
+	<!-- DIV PARA CUADRO DIÁLOGO CON LOS FILTROS-->
+	<div id="div_filtro" style="display:none">
+        <br>
+        <div class="fila1">
+            <div class="left">
+                <label>Fecha Desde</label>
+            </div>
+            <div class="right">
+                <input type="text" id="tx_fecha_inicio" name="tx_fecha_inicio" class="texto1" maxlength="10" style="width:340px;" data="1">
+            </div>
+        </div>
+        <div class="fila1">
+            <div class="left">
+                <label>Fecha Hasta</label>
+            </div>
+            <div class="right">
+                <input type="text" id="tx_fecha_fin" name="tx_fecha_fin" class="texto1" maxlength="10" style="width:340px;" data="1">
+            </div>
+        </div>
+        <div class="fila1">
+            <div class="left">
+                <label>Nro Suministro</label>
+            </div>
+            <div class="right">
+                <input type="text" id="tx_cliente" name="tx_cliente" class="texto1" maxlength="8" autofocus style="width:340px;" data="1">
+            </div>
+        </div>
+        <div class="fila1">
+            <div class="left">
+                <label>Estado</label>
+            </div>
+            <div class="right">
+                <select id="cb_estado" name="cb_estado" class="combo1" style="width:340px;" data="1" >
+				</select>
+            </div>
+        </div>
+        <div class="fila1">
+            <div class="left">
+                <label>Rol</label>
+            </div>
+            <div class="right">
+                <input type="text" id="tx_Rol" name="tx_Rol" class="texto1" style="width:340px;" data="1">
+            </div>
+        </div>
+	</div>
+	
+	<div id="dialog-message" title="Mensaje...">
+	  <span id="lb_mensaje" class="label_Arial_12px"></span>
+	</div>
+    
+
+	<form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte.asp" target="_blank">
+		<input type="hidden" id="tx_empresa" name="tx_empresa">
+		<input type="hidden" id="sql" name="sql" value="">
+		<input type="hidden" id="titulo_excel" name="titulo_excel">
+		<input type="hidden" id="excel_archivo" name="excel_archivo">
+		<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+		<input type="hidden" id="Rol" name="Rol">
+		<input type="hidden" id="tx_ip" name="tx_ip">
+		<input type="hidden" id="tx_fec_ini" name="tx_fec_ini" value="">
+		<input type="hidden" id="tx_fec_fin" name="tx_fec_fin" value="">
+		<input type="hidden" id="filtro" name="filtro" value="">
+	</form>	
+	
+	</body>
+	
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="X-UA-Compatible" content="IE=10" />
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache" />
+
+		<!--JS PARA JQUERY Y JQUERY UI-->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+        <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+		
+        <!-- PARAMQUERY -->
+        <script src="pqgrid/v3.2/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.ui.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/themes/office/pqgrid.css">
+        
+        <script src="forma_ajuste_con.js"></script>
+		<link rel="stylesheet" href="css/estilos_editar.css" type="text/css">
+
+        <style>
+	       body {			
+				margin: 0;
+				padding: 0;
+				background-color:rgb(222, 236, 249);
+				max-height: 100%;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+			}
+
+			#header {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 83px;
+				overflow: hidden;
+			}
+
+			main {
+				position: fixed;
+				top: 250px;
+				bottom: 0;
+				overflow: auto;
+			}
+
+			.fila1 {
+                padding-bottom:2px;
+                vertical-align: middle;
+                display:table;
+			}
+
+			.label2 {
+				display:table-cell;
+				width: 120px;
+				text-align:right;
+				padding-right:4px;
+			}
+
+			.label3 {
+				display:table-cell;
+				vertical-align: middle;
+				width: 140px;
+				text-align:right;
+				padding-right:4px;
+			}
+			.divDerecha {
+                vertical-align:top;
+				display:table-cell;
+				padding-right:8px;
+			}
+            .combo_tmp
+            {
+                border: 1px solid rgb(176,190,197);
+                border-radius: 4px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            .panel_borde
+            {
+                margin:auto;
+                border: 1px solid rgb(176,190,197);
+                border-radius: 4px; 
+                width:860px;
+            }
+            .ui-tabs .ui-tabs-panel 
+            {
+                padding: 1em 0.5em;
+            }
+            .panel_borde
+            {
+                margin:auto;
+                border: 1px solid rgb(176,190,197);
+                border-radius: 4px;
+                padding: 6px 6px 6px 6px;
+                width:840px;
+            }
+            .container {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .left {
+                float:left;
+                height:14px;
+                width:100px;
+                vertical-align:middle;
+            }
+            .leftT {
+                float:left;
+                height:20px;
+                width:100px;
+                 font-size: 12px;
+            }
+
+            #right {
+                float:inline;
+                display: inline-block;
+                margin:0 auto;
+                width:100px;
+            }
+            .colIzquierda {
+                float:left;
+                vertical-align:middle;
+                margin-right: 2px;
+				display:table-cell;
+				padding:4px 4px 2px 4px;
+                height:14px;
+                width:410px;
+                color: #000; 
+                background-color: #FFFFFF;
+                border-style: solid;
+                border-color:#C3C3C3; 
+                border-width: 1px;
+                font-size:12px;
+			}
+            .colDerecha {
+                vertical-align:middle;
+				display:table-cell;
+				padding:4px 4px 2px 4px;
+                height:14px;
+                width:410px;
+                color: #000; 
+                background-color: #FFFFFF;
+                border-style: solid;
+                border-color:#C3C3C3; 
+                border-width: 1px;
+                font-size:12px;
+			}
+            .colDoble {
+                float:left;
+                vertical-align:middle;
+                margin-right: 4px;
+				display:table-cell;
+				padding:4px 4px 2px 4px;
+                height:14px;
+                width:830px;
+                color: #000; 
+                background-color: #FFFFFF;
+                border-style: solid;
+                border-color:#C3C3C3; 
+                border-width: 1px;
+                font-size:12px;
+			}
+            .ui-widget-header {
+                background: rgb(222, 236, 249) url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+            }
+            .ui-dialog .ui-dialog-content {
+                padding: 0px;
+            }
+        </style>
+    </head>
+<body>
+    <div style="margin:auto;width:860px;">
+        <form id="frefcon_0007" name="frefcon_0007" method="post" action="frefcon_0007.asp" target="aprobacionajuste">
+        <div style="margin-left:0px;padding: 10px 10px 10px 10px;width:800px" class="tit1"></div>
+        <div class="panel_borde">
+            <div class="fila1">
+                <div class="colIzquierda">
+                    <div class="left" style="width:100px;">
+                        <label>N° Orden:</label>
+                    </div>
+                    <div style="width:290px" class="left">
+                        <label id="lbl_orden" name="lbl_orden" ></label>
+                    </div>
+                </div>
+                <div class="colDerecha">
+                    <div style="width:100px;" class="left">
+                        <label>Emisión:</label>
+                    </div>	
+                    <div style="width:290px" class="left">
+                        <label id="lbl_fecha" name="lbl_fecha" ></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colIzquierda">
+                    <div style="width:100px;" class="left">
+                        <label>Ingresado Por:</label>
+                    </div>
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_ingresado" name="lbl_ingresado"></label>
+                    </div>
+                </div>
+                <div class="colDerecha">
+                    <div style="width:100px;" class="left">
+                        <label>Aprobado Por:</label>
+                    </div>	
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_aprobado" name="lbl_aprobado"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colDoble">
+                    <div class="left" style="width:100px;">
+                        <label>Motivo:</label>
+                    </div>
+                    <div style="width:710px;" class="left">
+                        <label id="lbl_motivo" name="lbl_motivo"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colDoble">
+                    <div class="left" style="width:100px;">
+                        <label>Nombre:</label>
+                    </div>
+                    <div style="width:710px;" class="left">
+                        <label id="lbl_nombre" name="lbl_nombre"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colDoble">
+                    <div class="left" style="width:100px;">
+                        <label>Dirección:</label>
+                    </div>
+                    <div style="width:710px;" class="left">
+                        <label id="lbl_direccion" name="lbl_direccion"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colIzquierda">
+                    <div class="left" style="width:100px;">
+                        <label>Estado:</label>
+                    </div>
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_estado" name="lbl_estado" ></label>
+                    </div>
+                </div>
+                <div class="colDerecha">
+                    <div style="width:100px;" class="left">
+                        <label>Conexión:</label>
+                    </div>	
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_conexion" name="lbl_conexion" ></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colIzquierda">
+                    <div class="left" style="width:100px;">
+                        <label>Regional:</label>
+                    </div>
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_regional" name="lbl_regional" ></label>
+                    </div>
+                </div>
+                <div class="colDerecha">
+                    <div style="width:100px;" class="left">
+                        <label>Ruta:</label>
+                    </div>	
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_ruta" name="lbl_ruta" ></label>
+                    </div>
+                </div>
+            </div>
+            <div class="fila1">
+                <div class="colIzquierda">
+                    <div class="left" style="width:100px;">
+                        <label>Tarifa:</label>
+                    </div>
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_tarifa" name="lbl_tarifa" ></label>
+                    </div>
+                </div>
+                <div class="colDerecha">
+                    <div style="width:100px;" class="left">
+                        <label>Actividad:</label>
+                    </div>	
+                    <div style="width:290px;" class="left">
+                        <label id="lbl_actividad" name="lbl_actividad" ></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tabs" style="margin-top:10px;display:none">
+            <ul>
+                <li><a href="#tabs-1">Documentos Afectados</a></li>
+                <li><a href="#tabs-2">Cargos Ajustados</a></li>
+                <li><a href="#tabs-3">Observación</a></li>
+            </ul>
+            <div id="tabs-1" style="margin-left:0px;">
+                <div id="grid1"></div>
+            </div>
+            <div id="tabs-2" style="margin-left:0px;">
+                <div id="grid2" ></div>
+            </div>
+            <div id="tabs-3" style="margin-left:0px;">
+                <div id="grid3" style="margin-top:0px;margin-left:0px"></div>
+            </div>
+        </div>
+            
+        <div style="margin-top:5px">
+            <button id="btn_pdf" type="button">PDF</button>
+            <button id="btn_excel" type="button">Excel</button>
+            <button id="btn_cerrar" type="button">Cerrar</button>
+        </div>
+        <div id="dialog-originales" style="display:none">
+            <div id="grid_originales" ></div>
+        </div>
+		<div id="dialog-pdf" style="display:none">
+            
+        </div>
+        
+        <br/>
+		
+		<input type="hidden" id="CodEmpresa" name="CodEmpresa">
+        <input type="hidden" id="Cliente"  name="Cliente">
+		<input type="hidden" id="CorDocumento"  name="CorDocumento">
+		<input type="hidden" id="Empresa" name="Empresa" >
+		<input type="hidden" id="Rol" name="Rol" >
+		</form>
+		<form id="frm_excel" action="aconsum_0004b_xls.asp" name="frm_excel"  method="post">
+			<input type="hidden" id="tx_datos_gri" name="tx_datos_gri">
+		</form>
+        <div id="dialog-message" title="Mensaje...">
+            <span id="lb_mensaje" class="label_Arial_12px"></span>
+        </div>
+	</div>
+</body>
+</html>

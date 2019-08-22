@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/jquery/jquery-3.1.1.min.js"></script>
+    <script src="/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="../css/estilos_editar.css" type="text/css">
+    
+    <script type="text/javascript" src="jquery/Inputmask4x/jquery.inputmask.bundle.min.js"></script>
+    <script type="text/javascript" src="jquery/Inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script>
+    <script type="text/javascript" src="jquery/Inputmask4x/inputmask/inputmask.extensions.min.js"></script>
+    <script src="mascara.js"></script>
+   
+<title>Title</title>
+    <style>
+            body {			
+                margin: 0;
+                padding: 0;
+                background-color:rgb(255, 255, 255);
+                max-height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 12px;
+            }
+		.fila1 {
+			padding-bottom:10px;
+			vertical-align: middle;
+			display:table;
+		}
+ 
+		.label2 {
+			display:table-cell;
+			width: 145px;
+			vertical-align: middle;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+		.label3 {
+			display:table-cell;
+			vertical-align: middle;
+			width: 140px;
+			text-align:right;
+			padding-right:4px;
+			font-size: 12px;
+		}
+        .co_opt
+        {
+
+            font-size: 13px;
+            width: 275px;
+            height: 50px;
+
+        }
+         .panel_opt
+         {
+             margin: auto;
+             width:1000px;
+             text-align:center;
+         }
+         .btn_sel
+         {
+             height: 200px;
+         }
+
+         .form_sel.form
+         {
+                margin: auto;
+                width:1000px;
+                text-align:center;
+         }
+         .co_button
+         {
+             width: 105px;
+         }
+    </style>
+</head>
+<body>
+    <div class="fila1">
+        <div class="label2">Teléfono</div>
+        <input type="text" id="test1" name="test1" maxlength="20" class="texto2">
+        <span class="" style="padding-right:10px"></span>
+        <button id="co_leer" type="button" name="co_leer" style="width:100px;height:21px;padding:0px" title="Leer">Leer</button>
+    </div>
+    <div class="fila1">
+        <div class="label2">Email</div>
+        <input type="text" id="test2" name="test2" maxlength="20" class="texto2">
+		<div class="label2">Libre</div>
+        <input type="text" id="test4" name="test4" maxlength="20" class="texto2">
+        <div class="label2">Porcentaje</div>
+        <input type="text" id="tx_porcentaje" name="tx_procentaje" class="texto2">
+        <span class="" style="padding-right:10px"></span>
+        <button id="co_leer2" type="button" name="co_leer" style="width:100px;height:21px;padding:0px" title="Leer">Leer</button>
+        <label class="control-label col-sm-3 col-md-3" for="tx_label">1090389529</label>
+        <label class="radio-inline">
+          <input type="radio" name="rd_entrega" class="rd_entrega" value = "S">Si
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rd_entrega" class="rd_entrega" value = "N">No
+        </label>
+        <button id="co_radio" type="button" name="co_radio"  style="width:100px;height:21px;padding:0px" title="Leer Radio">Leer</button>
+    </div
+</body>
+</html>

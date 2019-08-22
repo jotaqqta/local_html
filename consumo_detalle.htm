@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="X-UA-Compatible" content="IE=10" />
+
+		<!--JS PARA JQUERY Y JQUERY UI-->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+        <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/smoothness/jquery-ui.min.css">
+
+		<!-- PARAMQUERY -->
+        <script src="pqgrid/v3.2/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/pqgrid.ui.min.css">
+        <link rel="stylesheet" href="pqgrid/v3.2/themes/office/pqgrid.css">
+    
+		<script src="consumo_detalle.js"></script>
+        <link rel="stylesheet" href="css/estilos_editar.css" type="text/css">
+		
+		
+	</head>
+    <body  style="margin:0px">
+		
+        <div id="grid_principal" ></div>
+
+        <div id="dialog-message" title="Mensaje...">
+          <span id="lb_mensaje" class="label_Arial_12px"></span>
+        </div>
+
+
+        <form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_reportes/excel_reporte.asp" target="_blank">
+            <input type="hidden" id="tx_empresa" name="tx_empresa">
+            <input type="hidden" id="sql" name="sql" value="">
+            <input type="hidden" id="tituloexcel" name="tituloexcel">
+            <input type="hidden" id="excel_archivo" name="excel_archivo">
+            <input type="hidden" id="excel_cabecera" name="excel_cabecera">
+            <input type="hidden" id="Rol" name="Rol">
+            <input type="hidden" id="tx_rol_fun" name="tx_rol_fun">
+            <input type="hidden" id="tx_cen_oper" name="tx_cen_oper" >
+            <input type="hidden" id="tx_ip" name="tx_ip">
+            <input type="hidden" id="total_RecordsInicial" name="total_RecordsInicial" value="0">
+            <input type="hidden" id="tx_fec_ini" name="tx_fec_ini" value="">
+            <input type="hidden" id="tx_fec_fin" name="tx_fec_fin" value="">
+            <input type="hidden" id="filtro" name="filtro" value="">
+        </form>
+	
+	</body>
+	
+</html>

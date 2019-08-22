@@ -1,0 +1,5 @@
+[
+	{ c1: '1000', c2: '21', c3: '100', c4: 'DESCRIPCIÓN DE LA RUTA1'},
+	{ c1: '1000', c2: '21', c3: '150', c4: 'DESCRIPCIÓN DE LA RUTA2'},
+	{ c1: '1000', c2: '21', c3: '200', c4: 'DESCRIPCIÓN DE LA RUTA3'}
+]

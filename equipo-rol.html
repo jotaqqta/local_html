@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta http-equiv="cache-control" content="max-age=0">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta http-equiv="pragma" content="no-cache">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+        
+        
+		<!-- Jquery -->
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+        <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+ 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
+        
+		<!-- Paramquery -->
+		<script src="pqgrid/v3.4/pqgrid.min.js"></script>
+		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.ui.min.css">
+		
+        <link rel='stylesheet' href='pqgrid/v3.4/themes/bootstrap/pqgrid.css' />
+		
+        <!-- Boostrap -->
+		
+		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+        
+        
+		<script src="equipo-rol.js"></script>
+		
+		<style>
+		
+			.inp_dis[readonly]{
+			 background-color: white;
+			}
+            
+            .inp_dis[disabled]{
+			 background-color: white;
+			}
+		
+            .ui-widget-header .ui-state-active
+			{
+			color: black;
+			}
+            
+            .ui-widget-header .ui-icon {
+               background-image: url(jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/images/ui-icons_444444_256x240.png);
+           }
+            
+		</style>
+
+	</head>
+	
+<body>
+	
+	
+	<div class="container" id="div_prim">
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div id="div_mod1" style="font-size: 14px;text-align: center;"></div>
+				<div id="div_tit1" style="font-size: 24px;text-align: center;"></div>
+			</div>
+			<div class="panel-body">
+				<br>
+				<form class="form-horizontal">
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_mot_ins">Tipo de Equipo:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_tipo_equipo"></select>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_mot_ins">Regional:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_regional"></select>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="cb_mot_ins">Equipo:</label>
+				<div class="col-sm-10"> 
+				<select class="form-control" id="cb_equipo"></select>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
+                    <div class="col-sm-10"> 
+                        <!--
+                        <textarea class="form-control" rows="4" id="tx_desc"></textarea>
+                        -->
+                        <div class="form-control" style= "height: 90px" id="tx_desc"></div>
+                    </div>
+				</div>
+                    
+                <div class="form-group">
+				<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
+                    <div class="col-sm-10"> 
+                        <textarea class="form-control" rows="4" id="tx_desc1"></textarea>
+                    </div>
+				</div>
+				
+				<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span>  Leer</button>
+				<button class="btn" id="co_cerrar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+				</div>
+				</div>
+				
+				
+				
+                <!-- PARAMQUERY CON LOS ROLES -->
+				<div id="div_grid"> 
+				</div>
+				
+				</form>
+			</div>   
+		</div>  
+	</div>
+	
+	<div class="container" id="div_rol" style="display: none;">
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div id="div_mod2" style="font-size: 14px;text-align: center;"></div>
+				<div id="div_tit2" style="font-size: 24px;text-align: center;"></div>
+				<div id="div_tipo" style="font-size: 18px;text-align: center; font-weight: 300">Tipo de Equipo</div>
+				<div id="div_eq" style="font-size: 18px;text-align: center; font-weight: 400">Nombre del Equipo</div>
+			</div>
+			<div class="panel-body">
+				<br>
+				<form class="form-horizontal">
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_rol">Rol:</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="tx_rol" placeholder="Digite el Rol">
+				</div>
+				<div class="col-sm-2">
+					<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Leer</button>
+				</div>
+				</div>
+
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_nom" readonly>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_id">Identificación:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_id" readonly>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_ruta">Cargo:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_cargo" readonly>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_nombre">Área:</label>
+				<div class="col-sm-10"> 
+				<input type="text" class="form-control inp_dis" id="tx_area" readonly>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label class="control-label col-sm-2" for="tx_obs">Observación:</label>
+				<div class="col-sm-10"> 
+				<textarea class="form-control" rows="4" id="tx_obs" placeholder="Debe digitar observación de al menos 15 caracteres .."></textarea>
+				</div>
+				</div>
+
+
+				<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" id="co_guardar"><span class="glyphicon glyphicon-save"></span> Agregar</button>
+				<button class="btn" id="co_volver"><pan class="glyphicon glyphicon-chevron-left"></pan> Volver</button>
+				</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+    <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+	<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+	<input type="hidden" id="tx_rol" name="tx_rol" value="">
+	<input type="hidden" id="tx_ip" name="tx_ip" value="">
+	<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+    
+    <div id="dialog-message" title="Mensaje...">
+	  <span id="lb_mensaje" class="label_Arial_12px"></span>
+	</div>
+
+
+
+
+</body>
+
+</html>
