@@ -7,6 +7,12 @@ $(document).ready(function() {
 // PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function(){return false;});
 
+//Invocar la cabecera de la pagina
+$("#div_header").load("header.htm", function() {
+	$("#div_mod0").html(g_modulo);
+	$("#div_tit0").html(g_titulo);	
+});
+	
 // SE COLOCAN LOS TITULOS
 $("#div_mod1").html(g_modulo);
 $("#div_tit1").html(g_titulo);
@@ -18,7 +24,6 @@ var data = [
         { c1: 'RCARVAJAL', c2: 'RAÚL CARVAJAL', c3: 'OPERACIONES COMERCIALES'},
         { c1: 'ARODRIGUEZ2', c2: 'ANA RODRIGUEZ', c3: 'OPERACIONES COMERCIALES'},
         { c1: 'ARAMIREZ', c2: 'ANYELO RAMIREZ', c3: 'OPERACIONES COMERCAIELS'},
-     
     ];
 var obj = {
             width: '100%',
@@ -60,11 +65,6 @@ var obj = {
 		obj.dataModel = { data: data };
 
 var grid = pq.grid("#div_grid", obj);
-//$("#co_rol" ).find("span").removeClass("ui-button-icon");
-/*$("#co_rol" ).button({
-        icons: {primary: "glyphicon glyphicon-plus"},
-        label:"Agregar Rol"
-    });*/
 
 //EVENTO CLICK PARA AGREGAR ROL AL EQUIPO
 
@@ -74,22 +74,19 @@ $("#co_rol").on("click", function (e) {
 	 $("#div_rol").slideDown();
 	 $("#tx_rol").focus();
     
-    //fn_mensaje("BOTON ROL", g_titulo,$(""));
 });
 
 
 $("#co_volver").on("click", function(){	   
 		
-		$("#div_prim").slideDown();
-	 $("#div_rol").slideUp();
-		//$("#div_grid").pqGrid( "width", "auto");
-		$("#div_grid").pqGrid( "option", "width", 'auto' );
-	});
+	$("#div_prim").slideDown();
+	$("#div_rol").slideUp();
+	$("#div_grid").pqGrid( "option", "width", 'auto' );
+});
 
     
     //pruebas con salto de linea
     $("#tx_desc").html("Oficina: xxxx <br> Caja: yyyy <br> Cajero: xyxyxy <br> Valor: 9999");
-    $("#tx_desc1").val("Oficina: xxxx <br> Caja: yyyy <br> Cajero: xyxyxy <br> Valor: 9999");
 
 });
 
@@ -116,7 +113,7 @@ $("#co_volver").on("click", function(){
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
- function fn_mensaje_boostrap(p_mensaje, p_titulo, $p_objeto)
+function fn_mensaje_boostrap(p_mensaje, p_titulo, $p_objeto)
 {
     $("#lb_mensaje").html(p_mensaje);
         
@@ -134,5 +131,4 @@ $("#co_volver").on("click", function(){
 		open: function( event, ui ) {$("#co_menj_ok").focus();}
     });
 	
-	//$("#dialog-message").dialog("open");
 }
