@@ -40,7 +40,7 @@ $(document).ready(function() {
 		$("#div_tit0").html(g_titulo);	
 	});
     
-
+    $("#div_footer").load("footer.htm");  ///raiz/syn_globales/
 
 // CREACIÓN DEL PARAMQUERY
 var data = [
