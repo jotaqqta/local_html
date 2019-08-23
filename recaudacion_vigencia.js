@@ -182,9 +182,9 @@ $(document).ready(function() {
     
     $("#toolbar_pr").hide();
     
-    setTimeout(function(){ fn_carga_grid_principal()  }, 0);
+    //setTimeout(function(){ fn_carga_grid_principal()  }, 0);
     
-    setTimeout(function(){ fn_carga_grid2()  }, 0);
+    
     
     g_alto_aux =$("#bd_prin").height();
     
