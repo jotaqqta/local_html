@@ -49,7 +49,7 @@
 	</head>
 	
 <body>
-	
+	<!--Titulo y Cabecera-->
 	<div id="header" class="container">
 		<div id="div_header" >
 			</div>	
@@ -64,17 +64,29 @@
 				<form class="form-horizontal">
 				
 				<div class="form-group">
-				<label class="control-label col-sm-2" for="cb_mot_ins">Tipo de Equipo:</label>
-				<div class="col-sm-10"> 
-				<select class="form-control" id="cb_tipo_equipo"></select>
+					<label class="control-label col-sm-2 col-md-2" for="tx_cliente">N° Suministro:</label>
+					<div class="col-sm-4 col-md-4"> 
+						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control inp_dis" style="padding-right:0px; text-align:right;">
+						<input type="hidden" id="tx_ord_ate" name="tx_ord_ate"  >
+					</div>
+					 <div class="col-sm-6 col-md-6"> 
+						<button type="button" class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span> Leer</button>
+						<button type="button" class="btn btn-default" id="co_cancelar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+					</div>
 				</div>
+					
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="cb_mot_ins">Tipo de Equipo:</label>
+					<div class="col-sm-10"> 
+						<select class="form-control" id="cb_tipo_equipo"></select>
+					</div>
 				</div>
 				
 				<div class="form-group">
-				<label class="control-label col-sm-2" for="cb_mot_ins">Regional:</label>
-				<div class="col-sm-10"> 
-				<select class="form-control" id="cb_regional"></select>
-				</div>
+					<label class="control-label col-sm-2" for="cb_mot_ins">Regional:</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="cb_regional"></select>
+					</div>
 				</div>
 				
 				<div class="form-group">
@@ -85,10 +97,10 @@
 				</div>
 				
 				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
-				<div class="col-sm-10"> 
-				<textarea class="form-control" rows="4" id="tx_desc"></textarea>
-				</div>
+					<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
+					<div class="col-sm-10"> 
+						<textarea class="form-control" rows="4" id="tx_desc"></textarea>
+					</div>
 				</div>
 				
 				<div class="form-group"> 
@@ -128,10 +140,10 @@
 				</div>
 
 				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
-				<div class="col-sm-10"> 
-				<input type="text" class="form-control inp_dis" id="tx_nom" readonly>
-				</div>
+					<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
+					<div class="col-sm-10"> 
+						<input type="text" class="form-control inp_dis" id="tx_nom" readonly>
+					</div>
 				</div>
 				
 				<div class="form-group">

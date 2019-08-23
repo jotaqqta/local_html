@@ -5,7 +5,7 @@ var g_titulo="Asignación de Roles a Equipos de Trabajo";
 $(document).ready(function() {
 
 // PARA ELIMINAR EL SUBMIT
-	$("button").on("click", function(){return false;});
+$("button").on("click", function(){return false;});
 
 //Invocar la cabecera de la pagina
 $("#div_header").load("header.htm", function() {
@@ -77,8 +77,7 @@ $("#co_rol").on("click", function (e) {
 });
 
 
-$("#co_volver").on("click", function(){	   
-		
+$("#co_volver").on("click", function(){
 	$("#div_prim").slideDown();
 	$("#div_rol").slideUp();
 	$("#div_grid").pqGrid( "option", "width", 'auto' );
@@ -87,7 +86,10 @@ $("#co_volver").on("click", function(){
     
     //pruebas con salto de linea
     $("#tx_desc").html("Oficina: xxxx <br> Caja: yyyy <br> Cajero: xyxyxy <br> Valor: 9999");
-
+	$("#cb_tipo_equipo").val();
+	
+	//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#"));  //sin objeto
+	//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#cb_tipo_doc")); //con objeto
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
