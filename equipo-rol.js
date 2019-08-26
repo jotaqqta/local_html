@@ -15,7 +15,7 @@ $("#div_header").load("header.htm", function() {
 	
 $("#div_footer").load("footer.htm");
 	
-$("#tx_ing_nic").on("keypress", ValidaSoloNumeros);
+$("#tx_cliente").on("keypress", ValidaSoloNumeros);
 	
 // CREACIÓN DEL PARAMQUERY
 var data = [
