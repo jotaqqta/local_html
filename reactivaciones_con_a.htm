@@ -19,7 +19,11 @@
 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
  		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
         
-		<!-- Paramquery -->
+	    <script src="bootstrap/v3.3.7/js/bootstrap-datetimepicker.min.js"></script>  <!--/raiz/-->
+        <script src="bootstrap/v3.3.7/js/locales/bootstrap-datetimepicker.es.js"></script>
+        <link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap-datetimepicker.min.css">
+        
+        <!-- Paramquery -->
 		<script src="pqgrid/v3.4/pqgrid.min.js"></script>
 		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.min.css">
 		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.ui.min.css">
@@ -88,12 +92,14 @@
 				
 					<div class="form-group " >
                             
-                        <label class="col-sm-2" for="fec_ini">Fecha Proceso:</label>
+                        <label class="control-label col-sm-2" for="fec_ini">Fecha Proceso:</label>
                         <div class="col-sm-4"> 
-                        
-                           <input name="fec_ini" id="fec_ini" class="form-control input-normal form_datetime" placeholder="dd/mm/yyyy">
+                           <div class="input-append date form_datetime" >
+                                        <input type="text" name="fec_ini" id="fec_ini" class="form-control inp_dis"  value="" readonly>
+                                        <span class="add-on"><i class="icon-calendar"></i></span>
+                           </div>
                         </div>
-                        <label class="col-sm-2" for="fec_fin">Fec Cambio est. conexión:</label>
+                        <label class="control-label col-sm-2" for="fec_fin">Fec Cambio est. conexión:</label>
                         <div class="col-sm-4" >
                           <input name="fec_fin" id="fec_fin" class="form-control input-normal form_datetime" placeholder="dd/mm/yyyy">		
                         </div>
