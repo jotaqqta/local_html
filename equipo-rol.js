@@ -13,12 +13,7 @@ $("#div_header").load("header.htm", function() {
 	$("#div_tit0").html(g_titulo);	
 });
 	
-// SE COLOCAN LOS TITULOS
-$("#div_mod1").html(g_modulo);
-$("#div_tit1").html(g_titulo);
-$("#div_mod2").html(g_modulo);
-$("#div_tit2").html(g_titulo);
-
+$("#div_footer").load("footer.htm");
 // CREACIÓN DEL PARAMQUERY
 var data = [
         { c1: 'RCARVAJAL', c2: 'RAÚL CARVAJAL', c3: 'OPERACIONES COMERCIALES'},
