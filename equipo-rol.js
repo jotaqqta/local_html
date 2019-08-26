@@ -14,6 +14,9 @@ $("#div_header").load("header.htm", function() {
 });
 	
 $("#div_footer").load("footer.htm");
+	
+$("#tx_ing_nic").on("keypress", ValidaSoloNumeros);
+	
 // CREACIÓN DEL PARAMQUERY
 var data = [
         { c1: 'RCARVAJAL', c2: 'RAÚL CARVAJAL', c3: 'OPERACIONES COMERCIALES'},
@@ -88,44 +91,9 @@ $("#co_volver").on("click", function(){
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
- function fn_mensaje(p_mensaje, p_titulo, $p_objeto)
-{
-    $("#lb_mensaje").html(p_mensaje);
-        
-    $( "#dialog-message" ).dialog({
-        title:p_titulo,
-        modal: true,
-        buttons: [{
-			id:"co_menj_ok",
-			text : "Ok",
-            click: function() {
-				$( this ).dialog( "close" );
-				$p_objeto.focus();
-            }
-        }],
-		open: function( event, ui ) {$("#co_menj_ok").focus();}
-    });
-	
-	$("#dialog-message").dialog("open");
+function ValidaSoloNumeros(e) {
+
+    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))
+        return false;
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_mensaje_boostrap(p_mensaje, p_titulo, $p_objeto)
-{
-    $("#lb_mensaje").html(p_mensaje);
-        
-    $( "#dialog-message" ).dialog({
-        title:p_titulo,
-        modal: true,
-        buttons: [{
-			id:"co_menj_ok",
-			text : "Ok",
-            click: function() {
-				$( this ).dialog( "close" );
-				$p_objeto.focus();
-            }
-        }],
-		open: function( event, ui ) {$("#co_menj_ok").focus();}
-    });
-	
-}
