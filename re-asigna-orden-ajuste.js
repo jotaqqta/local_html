@@ -18,50 +18,23 @@ $("#div_mod1").html(g_modulo);
 $("#div_tit1").html(g_titulo);
 $("#div_mod2").html(g_modulo);
 $("#div_tit2").html(g_titulo);
-	
+
+$("#co_reasignar").prop("disabled",true);
 	//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#"));  //sin objeto
 	//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#cb_tipo_doc")); //con objeto
+$("#co_leer").on("click", function(){
+	//Validación de informacion
+	if( $("#tx_orden").val() == ""){
+		fn_mensaje_boostrap("Faltan Datos", g_titulo, $("#tx_orden"));
+		return;
+	}
+	//HAcer la funcionalidad adicional
+	$("#tx_cod_cliente").val("123456");
+	$("#tx_nombre").val("Pepito Perez");
+	$("#tx_rol_actual").val("Maria");
+	$("#co_reasignar").prop("disabled",false);
 });
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
- function fn_mensaje(p_mensaje, p_titulo, $p_objeto)
-{
-    $("#lb_mensaje").html(p_mensaje);
-        
-    $( "#dialog-message" ).dialog({
-        title:p_titulo,
-        modal: true,
-        buttons: [{
-			id:"co_menj_ok",
-			text : "Ok",
-            click: function() {
-				$( this ).dialog( "close" );
-				$p_objeto.focus();
-            }
-        }],
-		open: function( event, ui ) {$("#co_menj_ok").focus();}
-    });
 	
-	$("#dialog-message").dialog("open");
-}
+});
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_mensaje_boostrap(p_mensaje, p_titulo, $p_objeto)
-{
-    $("#lb_mensaje").html(p_mensaje);
-        
-    $( "#dialog-message" ).dialog({
-        title:p_titulo,
-        modal: true,
-        buttons: [{
-			id:"co_menj_ok",
-			text : "Ok",
-            click: function() {
-				$( this ).dialog( "close" );
-				$p_objeto.focus();
-            }
-        }],
-		open: function( event, ui ) {$("#co_menj_ok").focus();}
-    });
-	
-}
