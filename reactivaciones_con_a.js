@@ -41,7 +41,18 @@ $(document).ready(function() {
 	});
     
     $("#div_footer").load("footer.htm");  ///raiz/syn_globales/
+	
+		//CAMPOS DE FECHA
 
+	$(".form_datetime").datetimepicker({
+		format: "mm/yyyy",
+		autoclose: true,
+		todayBtn: false,
+		startDate: "01/2017",
+		minView : 2,
+		language: 'es'
+	});
+	
 // CREACIÓN DEL PARAMQUERY
 var data = [
         ];
@@ -116,7 +127,7 @@ var obj = {
 		obj.dataModel = { data: data };
 
 $grid = $("#div_grid").pqGrid(obj);
-fn_carga_tipo_equipo();
+//fn_carga_tipo_equipo();
 $("#cb_tipo_equipo").focus();
 
 // AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
@@ -197,41 +208,9 @@ $("#co_volver").on("click", function(){
 	 $("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
 	 fn_cancelar2();
 	});
-		
+	
 });
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function HablaServidor(servidor,parametros,tipofile,CallBack)
-{
-    var respuestaJSON="";
-
-    $.ajax({
-        url: servidor,
-        data: parametros,
-        async: false,
-        dataType: tipofile,
-        type: "POST",   
-        cache: false,
-        contentType:"application/x-www-form-urlencoded; charset:ISO-8859-1",
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-            $("#lb_mensaje").html(jqErr.responseText);
-			$( "#dialog-message" ).dialog({title: g_titulo,modal: true,height:300,width:500,
-                buttons: [{
-                   text:"Cerrar",
-					click: function() {
-                    $( this ).dialog( "close" );
-                    }
-                }]
-            });
-        },
-		success: function(DevuelveDatos)
-        {
-            respuestaJSON=DevuelveDatos;
-            return CallBack(respuestaJSON);
-        }
-    });
-}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_valida_datos()	
@@ -501,28 +480,6 @@ function fn_desc_equipo()
 		$("#tx_desc").val("");
 		$("#tx_desc").val($("#cb_equipo").find("option:selected").attr("descrip"));
 	}
-	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
- function fn_mensaje(p_mensaje, p_titulo, $p_objeto)
-{
-    $("#lb_mensaje").html(p_mensaje);
-        
-    $( "#dialog-message" ).dialog({
-        title:p_titulo,
-        modal: true,
-        buttons: [{
-			id:"co_menj_ok",
-			text : "Ok",
-            click: function() {
-				$( this ).dialog( "close" );
-				$p_objeto.focus();
-            }
-        }],
-		open: function( event, ui ) {$("#co_menj_ok").focus();}
-    });
-	
-	$("#dialog-message").dialog("open");
-}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_cancelar()
