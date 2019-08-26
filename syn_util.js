@@ -1,6 +1,6 @@
 $(document).ready(function(){	
 	//$("#div_msg_bts").load("/raiz/syn_globales/bootstrap_msn.htm");  //is deprecated
-	$.get("/raiz/syn_globales/bootstrap_msn.htm", function(htmlexterno){
+	$.get("bootstrap_msn.htm", function(htmlexterno){
 		$("#div_msg_bts").html(htmlexterno);
 	});
 	
