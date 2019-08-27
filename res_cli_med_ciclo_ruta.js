@@ -2,6 +2,9 @@ var g_modulo="Facturación de Clientes";
 var g_tit = "Resumen Historico de Clientes Medidos por Ciclo y Ruta";
 var $grid_principal;
 var $grid_conve;
+var $grid_ruta;
+var tit_grid_2 = "Periodo: 01/01/2017 Centro Operativo: 8000 - Ciclo: 01";
+var tit_grid_3 = "Periodo: 01/01/2017 Centro Operativo: 8000 - Ciclo: 01 - Ruta: 080";
 var g_cliente_selec = "";
 var parameters = {};
 var Filtros = [];
@@ -36,132 +39,48 @@ $(document).ready(function() {
 	});
 	
 	$("#excel_archivo").val("convenios_pendiente_aprobar.xls");
-	/*
+	
 	$("#Rol").val(fn_get_param("Rol"));
 	$("#tx_empresa").val(fn_get_param("Empresa"));
 	$("#tx_rol").val(fn_get_param("Rol"));
 	$("#tx_rolfun").val(fn_get_param("RolFun"));
 	$("#tx_ip").val(fn_get_param("ip"));
-	*/
+	
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
+	//fn_carga_grid_principal();
 	//fn_carga_opcion_conv();
 	//fn_carga_perfil();
-	//fn_grilla_principal();
     
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
     //EVENTO BOTONES
     $("#co_filtro").on("click", fn_Muestra_Filtro);
-    
-	$("#co_aprobar").click(function(){
-        if($.trim($("#co_aprobar").text()) == "Aprobar"){
-			$("#tx_obs_apr").val("");
-			$("#dlg_obs").modal({backdrop: "static",keyboard:false});
-			$("#dlg_obs").on("shown.bs.modal", function () {
-				$("#tx_obs_apr").focus();
-			});	
-		}
-		else{
-			window.open("contratoconv2.asp?par=0&emp="+$("#tx_empresa").val()+"&suministro="+$("#tx_cliente").val(),"_blank","toolbar=no,resizable=yes,menubar=no");
-		}		
-    });
-	
-	$("#co_anular").click(function(){
-		$("#tx_obs_anu").val("");
-		$("#dlg_obs_anu").modal({backdrop: "static",keyboard:false});
-		$("#dlg_obs_anu").on("shown.bs.modal", function () {
-			$("#tx_obs_anu").focus();
-		});	
-    });
-	
-	$("#co_confirmar_anu").click(function(){
-		fn_anular();
-	});
-	
-	$("#co_confirmar").click(function(){
-		fn_aprobar();
-	});
-	
-	$("#co_can_con").click(function(){
-		$("#dlg_obs").modal("hide");
-	});
-	
-	$("#co_can_anu").click(function(){
-		$("#dlg_obs_anu").modal("hide");
-	});
-    
-    $("#co_excel").on("click", function (e) {
-		fn_filtro();
-		e.preventDefault();
-        var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
-		var cabecera = "";
-		for (i=0; i< col_model.length; i++){
-			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-		}
-		$("#excel_cabecera").val(cabecera);
-		var element =$grid_principal.pqGrid("option","dataModel.data");
-		if (element)
-			a= element.length;
-		else 
-			a= 0;
-		if(a>0){
-			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_prim);	
-			$("#frm_Exel").submit();
-			return;
-		}	
-    });
-	
-    $("#co_excel2").on("click", function (e) {
-		e.preventDefault();
-        var col_model=$( "#div_grid_conve" ).pqGrid( "option", "colModel" );
-		var cabecera = "";
-		for (i=0; i< col_model.length; i++){
-			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-		}
-		$("#excel_cabecera").val(cabecera);
-		var element =$grid_conve.pqGrid("option","dataModel.data");
-		if (element)
-			a= element.length;
-		else 
-			a= 0;
-		if(a>0){
-			$("#filtro").val("");
-			$("#tituloexcel").val(g_tit2+" - Cliente N°: "+$("#tx_cliente").val());
-			$("#sql").val(sql_grid_conv);	
-			$("#frm_Exel").submit();
-			return;
-		}	
-    });
     
      $("#co_cerrar").on("click", function (e) {
         window.close(); 
     });    
     
-    $("#co_volver1").on("click", function (e) {
-        if($.trim($("#co_volver1").text()) == "Volver")
-        {
-            $("#div_prim0").slideDown();
-            $("#div_conve").slideUp();
-            $grid_principal.pqGrid( "refreshDataAndView" );
-            $(window).scrollTop(0);
-        }
+    $("#co_volver_2").on("click", function (e) {
+		$("#div_prim0").show();
+		$("#div_ciclo_ruta").hide();
+		$grid_principal.pqGrid( "refreshDataAndView" );
+		$(window).scrollTop(0);
     });
 	
-	$("#co_volver2").on("click", function (e) {
-        if($.trim($("#co_volver2").text()) == "Volver")
-        {
-            $("#div_prim0").slideDown();
-            $("#div_conve").slideUp();
-            $grid_principal.pqGrid( "refreshDataAndView" );
-            $(window).scrollTop(0);
-        }
+	$("#co_volver_3").on("click", function (e) {
+		$("#div_ruta").hide();
+		$("#div_ciclo_ruta").show();
+		$grid_principal.pqGrid( "refreshDataAndView" );
+		$(window).scrollTop(0);
     });
 
 	$("#co_close").on("click", function (e) {
@@ -170,7 +89,7 @@ $(document).ready(function() {
 	
 	$("#co_fil_aceptar").on("click", function (e) {
         $('#div_filtro_bts').modal('hide'); 
-        fn_grilla_principal(); 
+        //fn_grilla_principal(); 
     });
 	
 	$("#co_fil_limpiar").on("click", function (e) {
@@ -184,8 +103,25 @@ $(document).ready(function() {
 				{
 					var dataCell = ui.rowData;
 					g_cliente_selec = dataCell.c2;
-					fn_limpiar();
-                    fn_carga_aprobacion();
+					$("#div_ciclo_ruta").show();
+    				$("#div_prim0").hide();
+					$grid_conve.pqGrid("refreshView");
+					//fn_grilla_ciclo_ruta();
+				}
+			}
+	});
+	
+	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
+    $grid_conve.pqGrid({
+		rowDblClick: function( event, ui ) {
+			if (ui.rowData) 
+				{
+					var dataCell = ui.rowData;
+					g_cliente_selec = dataCell.c2;
+					$("#div_ciclo_ruta").hide();
+    				$("#div_ruta").show();
+					$grid_ruta.pqGrid("refreshView");
+					//fn_grilla_ciclo_ruta();
 				}
 			}
 	});
@@ -205,8 +141,6 @@ $(document).ready(function() {
         language: "es"
 	});
 
-
-	
 	$("#div_filtro_bts").draggable({
         handle: ".modal-header"
     });
@@ -218,6 +152,10 @@ $(document).ready(function() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 {     
+	var data =  [
+		  { c1: '01/12/2017', c2: '8000', c3: '1', c4: 'INASSA', c5:'4322', c6:'02/12/2017',
+		   c7:'04/12/2017', c8:'RGARCIA', c9:'04/12/2017',c10:'12766', c11:'12766', c12:'12766', c13:'0', c14:'0'},
+		 ]
     var obj = {  
 	        height: "100%",
             showTop: true,
@@ -244,7 +182,6 @@ function fn_setea_grid_principal()
            }
         };
 		
-		
 		obj.colModel = [		
             { title: "Periodo"  , width: 100, dataType: "string", dataIndx: "c1" , halign:"center",align:"center"},
             { title: "Regional", width: 100, dataType: "string", dataIndx: "c2" , halign:"center", align:"left"},
@@ -261,12 +198,68 @@ function fn_setea_grid_principal()
             { title: "Total Clientes con Anomalias", width: 160, dataType: "string", dataIndx: "c13", halign:"center", align:"left"},
             { title: "Total Clientes sin Leer", width: 160, dataType: "string", dataIndx: "c14", halign:"center", align:"left"}    
         ];
-		
-
-    $grid_principal = $("#div_grid_principal").pqGrid(obj);
-
+	obj.dataModel = { data: data };	
 	
+    $grid_principal = $("#div_grid_principal").pqGrid(obj);
+	
+	//Setea grid2
+	data =  [
+	  { C1: '01', C2: '01/12/2017', C3: '8000', C4: '8', C5:'80', C6:'233',
+	   C7:'233', C8:'70', C9:'0',C10:'70', C11:'30%'},
+	 ]
     var obj2 = {
+        height: "520",
+        showTop: true,
+        showHeader: true,
+        roundCorners: true,
+        rowBorders: true,
+		fillHandle: "",
+        columnBorders: true,
+        editable:false,
+        selectionModel: { type: "row", mode:"single"},
+        showTitle:true,
+        collapsible:false,
+        numberCell: { show: false },
+        title: tit_grid_2,
+		pageModel: { rPP: 20, type: "local", rPPOptions: [20, 50, 100]},
+        scrollModel:{theme:true},
+        toolbar:
+        {
+            cls: "pq-toolbar-export",
+            items:
+            [
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
+            ]
+        }
+    };
+	
+	obj2.colModel = [
+        { title: "No", width: 40, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
+        { title: "Periodo", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"left"},
+        { title: "Regional", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        { title: "Ciclo", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
+        { title: "Ruta", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"right" },
+        { title: "Clientes por Leer", width: 140, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Reportados por Contratista", width: 140, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
+        { title: "Medidos Por Carga", width: 140, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
+        { title: "Medidos por Captura", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Facturados con Medición", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
+        { title: "Porcentaje Medido", width: 140, dataType: "string", dataIndx: "C11", halign:"center", align:"right" },
+    ];
+	
+	obj2.dataModel = { data: data };
+    $grid_conve = $("#div_grid_ciclo_ruta").pqGrid(obj2);
+	//$grid_conve.pqGrid( "option", "dataModel.data", [] );
+    $grid_conve.pqGrid( "refreshDataAndView" );
+	$grid_conve.pqGrid( "scrollRow", { rowIndxPage: 10 } );
+
+	//Setea grid3
+	data =  [
+	  { C1: '1', C2: '8000', C3: '8', C4: '001-INASSA', C5:'4346', C6:'273363',
+	   C7:'13482586', C8:'AB', C9:'M3',C10:'P', C11:'016-MEDIDOR CON VIDRIO EMPAÑADO', C12:'111-LECTURA PROMEDIADA', C13:'91698', C14:'0'},
+	 ]
+    var obj3 = {
         height: 300,
         showTop: true,
         showHeader: true,
@@ -276,10 +269,10 @@ function fn_setea_grid_principal()
         columnBorders: true,
         editable:false,
         selectionModel: { type: "row", mode:"single"},
-        showTitle:false,
+        showTitle:true,
         collapsible:false,
         numberCell: { show: false },
-        title: g_tit,
+        title: tit_grid_3,
 		pageModel: { rPP: 20, type: "local", rPPOptions: [20, 50, 100]},
         scrollModel:{theme:true},
         toolbar:
@@ -287,35 +280,36 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-default btn-sm"}
+				{ type: "button", label: "Excel", attr:"id=co_excel3", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Volver", attr:"id=co_volver_3", cls:"btn btn-default btn-sm"}
             ]
         }
     };
 	
-	obj2.colModel = [
-        { title: "Opcion", width: 200, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
-        { title: "Estado", width: 140, dataType: "string", dataIndx: "C2", halign:"center", align:"left"},
-        { title: "Creación", width: 120, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
-        { title: "Fecha Fin", width: 120, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
-        { title: "Deuda Inicial", width: 120, dataType: "string", dataIndx: "C5", halign:"center", align:"right" },
-        { title: "Antig. Deuda", width: 80, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
-        { title: "Abono Inicial", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
-        { title: "Valor Cuota", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
-        { title: "Nro. de Cuotas", width: 100, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
-        { title: "Cuotas Fact.", width: 100, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
-        { title: "Deuda Cierre", width: 120, dataType: "string", dataIndx: "C11", halign:"center", align:"right" },
-        { title: "Nro. Atención", width: 120, dataType: "string", dataIndx: "C12", halign:"center", align:"center"},
-        { title: "Creado Por", width: 150, dataType: "string", dataIndx: "C13", halign:"center", align:"center" },
-        { title: "Finalizado Por", width: 150, dataType: "string", dataIndx: "C14", halign:"center", align:"center" }
+	obj3.colModel = [
+        { title: "No", width: 40, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
+        { title: "Regional", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"left"},
+        { title: "Ciclo", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        { title: "Contratista", width: 120, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
+        { title: "Secuencia", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"right" },
+        { title: "Nro Suministro", width: 120, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Nro Medidor", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
+        { title: "Marca Medidor", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
+        { title: "Tipo de Medida", width: 120, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Tipo de Facturación", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
+        { title: "Clave de Terreno", width: 240, dataType: "string", dataIndx: "C11", halign:"center", align:"left" },
+        { title: "Clave de Facturación", width: 240, dataType: "string", dataIndx: "C12", halign:"left", align:"center"},
+        { title: "Lectura 1", width: 100, dataType: "string", dataIndx: "C13", halign:"center", align:"center" },
+        { title: "Lectura 2", width: 100, dataType: "string", dataIndx: "C14", halign:"center", align:"center" }
     ];
 	
-    $grid_conve = $("#div_grid_conve").pqGrid(obj2);
-	$grid_conve.pqGrid( "option", "dataModel.data", [] );
-    $grid_conve.pqGrid( "refreshDataAndView" );
-	$grid_conve.pqGrid( "scrollRow", { rowIndxPage: 10 } );	
-    
+	obj3.dataModel = { data: data };
+    $grid_ruta = $("#div_grid_ruta").pqGrid(obj3);
+	//$grid_conve.pqGrid( "option", "dataModel.data", [] );
+    $grid_ruta.pqGrid( "refreshDataAndView" );
+	$grid_ruta.pqGrid( "scrollRow", { rowIndxPage: 10 } );
+	
 }
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_Muestra_Filtro()
 {
@@ -392,51 +386,39 @@ function fn_grilla_conve()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_grilla_principal()
+function fn_carga_grid_principal()
 {
-	
-	fn_filtro();
-	
-    var dataModel = 
+    
+    parameters = {
+        "func":"fn_dat_grilla_prin",
+        "empresa":$("#Empresa").val(),
+        "periodo":$("#tx_fil_periodo").val(),
+        "cb_regional":$("#cb_fil_regional").val(),
+        "cb_ciclo":$("#cb_fil_ciclo").val()
+    };
+
+    
+    HablaServidor("med_regional_ciclo.json",parameters,"json", function(text) 
     {
-        location: "remote",
-        sorting: "local",
-        dataType: "json",
-        method: "POST",
-        sortDir: ["up", "down"],
-		async:false,
-        url: my_url+"?"+jQuery.param( parameters ),
-        getData: function (dataJSON) 
-        {
-			total_register = $.trim(dataJSON.totalRecords);
-			var data = dataJSON.data;
-			sql_grid_prim = dataJSON.sql;
-			
-			if(total_register>=1)
-			{
-				$("#co_excel").attr("disabled", false);
-			}
-            return { data: dataJSON.data};
-        },
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-			//fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-			setTimeout(function(){ fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") ) }, 0);
-        }
-
-    }
-
-    $grid_principal.pqGrid( "option", "dataModel", dataModel );				
-    $grid_principal.pqGrid( "refreshDataAndView" );
+        $grid_principal.pqGrid( "option", "dataModel.data", text);
+        $grid_principal.pqGrid( "refreshDataAndView" );
+    });
+    
 }
 
-
+function fn_grilla_ciclo_ruta(){
+	
+	var dataModel =  [
+	  { C1: '01/12/2017', C2: '8000', C3: '1', C4: 'INASSA', C5:'4322', C6:'02/12/2017',
+	   C7:'04/12/2017', C8:'RGARCIA', C9:'04/12/2017',C10:'12766', C11:'12766', C12:'12766', C13:'0', C14:'0'},
+	 ]
+	 
+	 $grid_conve.pqGrid( "option", "dataModel", dataModel );
+	 $grid_conve.pqGrid( "refreshView" );
+}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_filtro()
 {
-	
-	
-	
 	parameters = 
     {
 		"func":"fn_grilla_prin",
@@ -483,7 +465,6 @@ function fn_carga_regional()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_opcion_conv()
 {
-	
 	var param= 
     {
         "func":"fn_opc_con",
@@ -496,7 +477,6 @@ function fn_carga_opcion_conv()
     {
         $("#cb_fil_opc_conve").html(text);
     });
-	
 }
 
 
@@ -507,6 +487,3 @@ function fn_limpia_filtro()
 	$("#cb_fil_regional").val("");
 	$("#cb_fil_ciclo").val("");
 }
-
-
-
