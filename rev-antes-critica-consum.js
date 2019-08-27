@@ -92,13 +92,16 @@ $(document).ready(function() {
         
         
        	if( $("#cb_fil_regional").val() == ""){
-			fn_mensaje_boostrap("Debe Seleccionar el rol a Reasignar", g_tit, $("#cb_fil_regional"));
+			fn_mensaje_boostrap("Debe Seleccionar una Regional", g_tit, $("#cb_fil_regional"));
 			return;
 		}
 		if( $("#cb_fil_ciclo").val() == ""){
-			fn_mensaje_boostrap("Debe Seleccionar el rol a Ciclo", g_tit, $("#cb_fil_ciclo"));
+			fn_mensaje_boostrap("Debe Seleccionar un Ciclo", g_tit, $("#cb_fil_ciclo"));
 			return;
 		}
+        $('#div_filtro_bts').modal('hide'); 
+
+      		
         //fn_grilla_principal(); 
     });
 	
@@ -130,6 +133,9 @@ $(document).ready(function() {
 				}
 			}
 	});
+    
+    
+    
     
     // MASCARAS
 	//CAMPOS DE FECHA
@@ -187,21 +193,71 @@ function fn_setea_grid_principal()
         };
 		
 		obj.colModel = [		
-            { title: "Centro Operativo", width: 1
+            { title: "Centro Operativo", width: 100
              , dataType: "string", dataIndx: "c1" , halign:"center",align:"center"},
-            { title: "Ciclo", width: 160, dataType: "string", dataIndx: "c2" , halign:"center", align:"left"},
-			{ title: "Ciclo", width: 160, dataType: "string",   dataIndx: "c3" , halign:"center", align:"left"},
-            { title: "Contratista", width: 160, dataType: "string", dataIndx: "c4" , halign:"center", align:"left"},
+            { title: "Ciclo", width: 100, dataType: "string", dataIndx: "c2" , halign:"center", align:"left"},
+			{ title: "Ciclo", width: 180, dataType: "string",   dataIndx: "c3" , halign:"center", align:"left"},
+            { title: "Contratista", width: 100, dataType: "string", dataIndx: "c4" , halign:"center", align:"left"},
             { title: "Secuencia", width: 140, dataType: "string", dataIndx: "c5" , halign:"center", align:"left"},
-            { title: "Clave de lectura", width: 140, dataType: "string", dataIndx: "c6" , halign:"center", align:"right"},
+            { title: "Clave de lectura", width: 200, dataType: "string", dataIndx: "c6" , halign:"center", align:"right"},
             { title: "Descripcion", width: 140, dataType: "string",  dataIndx: "c7" , halign:"center", align:"center"},
-            { title: "Cantidad", width: 140, dataType: "string",  dataIndx: "c7" , halign:"center", align:"center"}
+            { title: "Cantidad", width: 100, dataType: "string",  dataIndx: "c7" , halign:"center", align:"center"}
           
         ];
 	obj.dataModel = { data: data };	
 	
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
+	data =  [
+	  { C1: '01', C2: '01/12/2017', C3: '8000', C4: '8', C5:'80', C6:'233',
+	   C7:'233', C8:'70', C9:'0',C10:'70', C11:'30%'},
+	 ]
+    var obj2 = {
+        height: "520",
+        showTop: true,
+        showHeader: true,
+        roundCorners: true,
+        rowBorders: true,
+		fillHandle: "",
+        columnBorders: true,
+        editable:false,
+        selectionModel: { type: "row", mode:"single"},
+        showTitle:true,
+        collapsible:false,
+        numberCell: { show: false },
+        title: tit_grid_2,
+		pageModel: { rPP: 20, type: "local", rPPOptions: [20, 50, 100]},
+        scrollModel:{theme:true},
+        toolbar:
+        {
+            cls: "pq-toolbar-export",
+            items:
+            [
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
+            ]
+        }
+    };
 	
+	obj2.colModel = [
+        { title: "Ruta", width: 40, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
+        { title: "Nro Suministro", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"center"},
+        { title: "Unidades Habilitadas", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        { title: "Nro Medidor", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
+        { title: "Marca Medido", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
+        { title: "Tipo de Medida", width: 140, dataType: "string", dataIndx: "C6", halign:"center", align:"right" },
+        { title: "Lectura 1", width: 140, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
+        { title: "Lectura 2", width: 140, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
+        { title: "Anomalias", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"right" },
+        { title: "Tarifa", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"right" }
+  
+    ];
+	
+	obj2.dataModel = { data: data };
+    $grid_conve = $("#div_grid_ciclo_ruta").pqGrid(obj2);
+	//$grid_conve.pqGrid( "option", "dataModel.data", [] );
+    $grid_conve.pqGrid( "refreshDataAndView" );
+	$grid_conve.pqGrid( "scrollRow", { rowIndxPage: 10 } );
+
 
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
