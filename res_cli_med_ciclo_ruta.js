@@ -228,7 +228,7 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
             ]
         }
@@ -260,7 +260,7 @@ function fn_setea_grid_principal()
 	   C7:'13482586', C8:'AB', C9:'M3',C10:'P', C11:'016-MEDIDOR CON VIDRIO EMPAÑADO', C12:'111-LECTURA PROMEDIADA', C13:'91698', C14:'0'},
 	 ]
     var obj3 = {
-        height: 300,
+        height: "520",
         showTop: true,
         showHeader: true,
         roundCorners: true,
@@ -280,7 +280,7 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel3", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Excel", attr:"id=co_excel3", cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver_3", cls:"btn btn-default btn-sm"}
             ]
         }
