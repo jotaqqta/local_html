@@ -184,19 +184,19 @@ function fn_setea_grid_principal()
 		
 		obj.colModel = [		
             { title: "Periodo"  , width: 100, dataType: "string", dataIndx: "c1" , halign:"center",align:"center"},
-            { title: "Regional", width: 100, dataType: "string", dataIndx: "c2" , halign:"center", align:"left"},
-			{ title: "Ciclo", width: 100, dataType: "string",   dataIndx: "c3" , halign:"center", align:"left"},
+            { title: "Regional", width: 100, dataType: "string", dataIndx: "c2" , halign:"center", align:"center"},
+			{ title: "Ciclo", width: 100, dataType: "string",   dataIndx: "c3" , halign:"center", align:"center"},
             { title: "Contratista", width: 140, dataType: "string", dataIndx: "c4" , halign:"center", align:"left"},
-            { title: "Secuencia", width: 140, dataType: "string", dataIndx: "c5" , halign:"center", align:"left"},
-            { title: "Fecha Ingreso", width: 140, dataType: "string", dataIndx: "c6" , halign:"center", align:"right"},
+            { title: "Secuencia", width: 140, dataType: "string", dataIndx: "c5" , halign:"center", align:"center"},
+            { title: "Fecha Ingreso", width: 140, dataType: "string", dataIndx: "c6" , halign:"center", align:"center"},
             { title: "Fecha Aprueba", width: 140, dataType: "string",  dataIndx: "c7" , halign:"center", align:"center"},
-            { title: "Rol Aprueba", width: 140, dataType: "string", dataIndx: "c8" , halign:"center", align:"right"},
-            { title: "Fecha Proceso de Carga", width: 140, dataType: "string", dataIndx: "c9" , halign:"center", align:"right"},
+            { title: "Rol Aprueba", width: 140, dataType: "string", dataIndx: "c8" , halign:"center", align:"center"},
+            { title: "Fecha Proceso de Carga", width: 140, dataType: "string", dataIndx: "c9" , halign:"center", align:"center"},
             { title: "Total Clientes por Leer", width: 160, dataType: "string", dataIndx: "c10" , halign:"center", align:"right"},
             { title: "Total Clientes Leidos", width: 160, dataType: "string",  dataIndx: "c11", halign:"center", align:"right"},
-            { title: "Total Clientes Correctos", width: 160, dataType: "string", dataIndx: "c12", halign:"center", align:"left"},
-            { title: "Total Clientes con Anomalias", width: 160, dataType: "string", dataIndx: "c13", halign:"center", align:"left"},
-            { title: "Total Clientes sin Leer", width: 160, dataType: "string", dataIndx: "c14", halign:"center", align:"left"}    
+            { title: "Total Clientes Correctos", width: 160, dataType: "string", dataIndx: "c12", halign:"center", align:"right"},
+            { title: "Total Clientes con Anomalias", width: 160, dataType: "string", dataIndx: "c13", halign:"center", align:"right"},
+            { title: "Total Clientes sin Leer", width: 160, dataType: "string", dataIndx: "c14", halign:"center", align:"right"}    
         ];
 	obj.dataModel = { data: data };	
 	
@@ -228,7 +228,7 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
             ]
         }
@@ -236,15 +236,15 @@ function fn_setea_grid_principal()
 	
 	obj2.colModel = [
         { title: "No", width: 40, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
-        { title: "Periodo", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"left"},
+        { title: "Periodo", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"center"},
         { title: "Regional", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
         { title: "Ciclo", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
-        { title: "Ruta", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"right" },
-        { title: "Clientes por Leer", width: 140, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Ruta", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
+        { title: "Clientes por Leer", width: 140, dataType: "string", dataIndx: "C6", halign:"center", align:"right" },
         { title: "Reportados por Contratista", width: 140, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
         { title: "Medidos Por Carga", width: 140, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
-        { title: "Medidos por Captura", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
-        { title: "Facturados con Medición", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
+        { title: "Medidos por Captura", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"right" },
+        { title: "Facturados con Medición", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"right" },
         { title: "Porcentaje Medido", width: 140, dataType: "string", dataIndx: "C11", halign:"center", align:"right" },
     ];
 	
@@ -260,7 +260,7 @@ function fn_setea_grid_principal()
 	   C7:'13482586', C8:'AB', C9:'M3',C10:'P', C11:'016-MEDIDOR CON VIDRIO EMPAÑADO', C12:'111-LECTURA PROMEDIADA', C13:'91698', C14:'0'},
 	 ]
     var obj3 = {
-        height: 300,
+        height: "520",
         showTop: true,
         showHeader: true,
         roundCorners: true,
@@ -280,7 +280,7 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel3", cls:"btn btn-default btn-sm"},
+				{ type: "button", label: "Excel", attr:"id=co_excel3", cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver_3", cls:"btn btn-default btn-sm"}
             ]
         }
@@ -288,17 +288,17 @@ function fn_setea_grid_principal()
 	
 	obj3.colModel = [
         { title: "No", width: 40, dataType: "string", dataIndx: "C1", halign:"center", align:"left" },
-        { title: "Regional", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"left"},
+        { title: "Regional", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"center"},
         { title: "Ciclo", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
         { title: "Contratista", width: 120, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
-        { title: "Secuencia", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"right" },
+        { title: "Secuencia", width: 100, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
         { title: "Nro Suministro", width: 120, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
-        { title: "Nro Medidor", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"right"},
-        { title: "Marca Medidor", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"right" },
+        { title: "Nro Medidor", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"center"},
+        { title: "Marca Medidor", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
         { title: "Tipo de Medida", width: 120, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
         { title: "Tipo de Facturación", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
         { title: "Clave de Terreno", width: 240, dataType: "string", dataIndx: "C11", halign:"center", align:"left" },
-        { title: "Clave de Facturación", width: 240, dataType: "string", dataIndx: "C12", halign:"left", align:"center"},
+        { title: "Clave de Facturación", width: 240, dataType: "string", dataIndx: "C12", halign:"center", align:"left"},
         { title: "Lectura 1", width: 100, dataType: "string", dataIndx: "C13", halign:"center", align:"center" },
         { title: "Lectura 2", width: 100, dataType: "string", dataIndx: "C14", halign:"center", align:"center" }
     ];
