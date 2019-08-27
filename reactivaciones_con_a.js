@@ -44,15 +44,86 @@ $(document).ready(function() {
 	
 		//CAMPOS DE FECHA
 
-	$(".form_datetime").datetimepicker({
-		format: "mm/yyyy",
+	/*$(".form_datetime").datetimepicker({
+        
+       //fn_mensaje_bootstrap("Debe digitar el periodo", g_titulo, $("#fec_proc"));
+       
+	});*/
+    
+    //validacion de las fechas
+    $("#fec_proc").click(function(){
+	    
+        //$(".form_datetime").datetimepicker("remove"); //Para resetear el control
+        
+        $(".form_datetime").datetimepicker({
+        
+        			viewMode: "years",
+					format: "mm/yyyy",
+					startDate: "01/2014",
+					useCurrent: false,
+					defaultDate:"",
+					todayBtn: false,
+					minView: 3,  //solo permite seleccionar hasta meses, no días
+					startView: 4,  //iniciar en años
+					endDate: "+0d",  //No habilitar fechas futuras
+					autoclose: true,
+					language: "es"
+		
+         });
+         
+         //$(".form_datetime").datetimepicker("update", new Date()); //Para poner fecha actual default
+
+    });
+            
+    //validaicon de la fecha de cambio de estado
+    
+    $("#fec_est").click(function(){
+	    
+        //$(".form_datetime").datetimepicker("remove"); //Para resetear el control
+        
+        $(".form_datetime").datetimepicker({
+        
+        format: "dd/mm/yyyy",
 		autoclose: true,
 		todayBtn: false,
-		startDate: "01/2017",
+		startDate: "01/01/2017",
 		minView : 2,
 		language: 'es'
+    	
+         });
+        
+        //$(".form_datetime").datetimepicker("update", new Date()); //Para poner fecha actual default
+    
 	});
 	
+    //validacion del boton leer
+    $("#co_leer").on("click", function(){
+	//Validación de informacion
+            if( $("#fec_proc").val() == ""){
+                fn_mensaje_boostrap("Faltan Datos", g_titulo, $("#fec_proc"));
+                return;
+                }
+
+	//HAcer la funcionalidad adicional
+	/*$("#tx_cod_cliente").val("123456");
+	$("#tx_nombre").val("Pepito Perez");
+	$("#tx_rol_actual").val("Maria");
+	$("#co_reasignar").prop("disabled",false);*/
+    });
+    
+    //Evento leer
+    /*$("#co_leer").on("click", function (e) {
+	  if (fn_valida_datos())
+ 	   {
+		fn_leer_equipo();
+		$("#co_cerrar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
+		$("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
+		$("#co_leer").attr("disabled", true);
+	   }
+    });*/
+
+    
+    
 // CREACIÓN DEL PARAMQUERY
 var data = [
         ];
@@ -126,38 +197,31 @@ var obj = {
 		
 		obj.dataModel = { data: data };
 
-$grid = $("#div_grid").pqGrid(obj);
-//fn_carga_tipo_equipo();
-$("#cb_tipo_equipo").focus();
+     $grid = $("#div_grid").pqGrid(obj);
 
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
-	$("#cb_tipo_equipo").on("change", function(evt) 
-	{
-		fn_regional($(this).val(),'');
-	});
+    
+    //fn_carga_regional();
+    $("#cb_regional").focus();
 
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
+
+// AL SELECCIONAR la regional se carga el sector
 	$("#cb_regional").on("change", function(evt) 
 	{
-		fn_equipo($(this).val(),'');
+		fn_sector($(this).val(),'');
 	});
 	
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
-	$("#cb_equipo").on("change", function(evt) 
+// AL SELECCIONAR EL sector se carcgan las tarifas
+	$("#cb_sector").on("change", function(evt) 
+	{
+		fn_tarifa($(this).val(),'');
+	});
+
+    // AL SELECCIONAR las taarifas no se que se carga la verdad
+	$("#cb_tarifa").on("change", function(evt) 
 	{
 		fn_desc_equipo($(this).val(),'');
 	});
 	
-//Evento leer
-$("#co_leer").on("click", function (e) {
-	 if (fn_valida_datos())
-	 {
-		fn_leer_equipo();
-		$("#co_cerrar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
-		$("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
-		$("#co_leer").attr("disabled", true);
-	 }
-});
 
 // EVENTO BOTON CANCELAR - LIMPIA COMBOX
 	$("#co_cerrar").on("click", function(evt) 
@@ -169,7 +233,7 @@ $("#co_leer").on("click", function (e) {
 	});
 
 //EVENTO CLICK PARA AGREGAR ROL AL EQUIPO
-$("#co_rol").on("click", function (e) {
+/*$("#co_rol").on("click", function (e) {
 	 if(agregar == 1)
 	 {
 		 $("#div_prim").slideUp();
@@ -178,10 +242,10 @@ $("#co_rol").on("click", function (e) {
 		 $("#div_eq").text("EQUIPO "+$("#cb_equipo option:selected").html().toUpperCase());
 		 $("#tx_rol_nuevo").focus();
 	 }
-});
+});*/
 
 //evento leer nic de usuario
-$("#co_leer_nic").on("click", function (e) {											
+/*$("#co_leer_nic").on("click", function (e) {											
 	var $co_ref = $(this);
 	
 	if($.trim($(this).text())=="Leer")
@@ -200,9 +264,9 @@ $("#co_leer_nic").on("click", function (e) {
 //evento guardar
 $("#co_guardar").on("click", function (e) {
 	 fn_guardar();
-});
+});*/
 
-$("#co_volver").on("click", function(){	   	
+   $("#co_volver").on("click", function(){	   	
 	 $("#div_prim").slideDown();
 	 $("#div_rol").slideUp();
 	 $("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
@@ -213,7 +277,7 @@ $("#co_volver").on("click", function(){
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_valida_datos()	
+/*function fn_valida_datos()	
 {	
 
 	if($.trim($("#cb_tipo_equipo").val())=="")
@@ -232,7 +296,7 @@ function fn_valida_datos()
 		return false;
 	}
 	return true;
-}
+}*/
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer_equipo()
