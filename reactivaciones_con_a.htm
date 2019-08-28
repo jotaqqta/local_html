@@ -32,10 +32,12 @@
 		<link rel="stylesheet" href="pqgrid/v3.4/themes/bootstrap/pqgrid.css" /> 
 		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">   
 		
-		<link rel="stylesheet" href="header.css">
+        
+        <link rel="stylesheet" href="header.css">
         <script src="syn_util.js"></script>
         
         <script src="reactivaciones_con_a.js"></script>
+		
 		
 		<style>
 		
@@ -88,16 +90,16 @@
 				
 					<div class="form-group " >
                             
-                        <label class="control-label col-sm-2" for="fec_ini">Fecha Proceso:</label>
+                        <label class="control-label col-sm-2" for="fec_proc">Fecha Proceso:</label>
                         <div class="col-sm-4"> 
-                           <div class="input-append date form_datetime" >
-								<input type="text" id="fec_ini" class="form-control inp_dis"  value="" readonly>
-								<span class="add-on"><i class="icon-calendar"></i></span>
-                           </div>
+                        <!--   <div class="input-append date form_datetime" > -->
+								<input id="fec_proc" class="form-control input-normal form_datetime"  placeholder="" value="" >
+								<!--<span class="add-on"><i class="icon-calendar"></i></span>
+                           </div>-->
                         </div>
-                        <label class="control-label col-sm-2" for="fec_fin">Fec Cambio est. conexión:</label>
+                        <label class="control-label col-sm-2" for="fec_est">Fec Cambio est. conexión:</label>
                         <div class="col-sm-4" >
-                          <input name="fec_fin" id="fec_fin" class="form-control input-normal form_datetime" placeholder="dd/mm/yyyy">		
+                          <input  id="fec_est" class="form-control input-normal form_datetime2" value="" placeholder="">		
                         </div>
                     
                     </div>
@@ -109,9 +111,9 @@
 					</div>
 					
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="cb_sector">Sector:</label>
+						<label class="control-label col-sm-2" for="cb_ciclo">Ciclo:</label>
 						<div class="col-sm-10"> 
-							<select class="form-control inp_dis" id="cb_sector"></select>
+							<select class="form-control inp_dis" id="cb_ciclo"></select>
 						</div>
 					</div>
 					
@@ -126,7 +128,7 @@
 						<label class="control-label col-sm-2" for="tx_obs">Ruta:</label>
 						<div class="col-sm-10"> 
 							<!--<textarea class="form-control inp_dis" rows="4" id="tx_desc"></textarea>-->
-                            <input type="text" class="form-control " id="tx_ruta" value="" >
+                            <input type="number" minlength="3" class="form-control " id="tx_ruta" value="" >
 						</div>
 					</div>
 					
@@ -146,7 +148,8 @@
 		</div>
 	</div>
 	
-	
+	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+    
     <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
 	<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
 	<input type="hidden" id="tx_rol" name="tx_rol" value="">

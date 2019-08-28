@@ -29,147 +29,108 @@ $(document).ready(function() {
 	// PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function(){	return false;});
 
-	$("#div_msg_bts").load("syn_globales/bootstrap_msn.htm", function() {  ///raiz/
+	$("#div_msg_bts").load("bootstrap_msn.htm", function() {  ///raiz/syn_globales/
 			$("#div_msg_bts div.modal-header").addClass("rojo_mensaje");
 		});
 
-    //Invocar la cabecera de la pagina
-
+    //INVOCANDO LA CABECERA
     $("#div_header").load("header.htm", function() {  ///raiz/syn_globales/
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
-    
+    //INVOCANDO EL FOOTER
     $("#div_footer").load("footer.htm");  ///raiz/syn_globales/
 	
-		//CAMPOS DE FECHA
+	// INICIA CON EL CURSOR EN EL CAMPO FECHA
+	$("#fec_proc").focus();
+    //CAMPOS DE FECHA
 
-	$(".form_datetime").datetimepicker({
-		format: "mm/yyyy",
+	/*$(".form_datetime").datetimepicker({
+        
+       //fn_mensaje_bootstrap("Debe digitar el periodo", g_titulo, $("#fec_proc"));
+       
+	});*/
+    
+    //validacion de las fechas
+    $(".form_datetime").datetimepicker({
+        
+        			viewMode: "years",
+					format: "mm/yyyy",
+					startDate: "01/2014",
+					useCurrent: false,
+					defaultDate:"",
+					todayBtn: false,
+					minView: 3,  //solo permite seleccionar hasta meses, no días
+					startView: 4,  //iniciar en años
+					endDate: "+0d",  //No habilitar fechas futuras
+					autoclose: true,
+					language: "es"
+		
+         }); 
+    //validaicon de la fecha de cambio de estado
+    
+     $(".form_datetime2").datetimepicker({
+        
+        format: "dd/mm/yyyy",
 		autoclose: true,
 		todayBtn: false,
-		startDate: "01/2017",
+		startDate: "01/01/2017",
 		minView : 2,
 		language: 'es'
-	});
-	
-// CREACIÓN DEL PARAMQUERY
-var data = [
-        ];
-var obj = {
-            width: '100%',
-            height: 360,
-            showTop: true,
-			showBottom:false,
-            showHeader: true,
-            roundCorners: true,
-            rowBorders: true,
-            columnBorders: true,
-			editable:false,
-            selectionModel: { type: 'row', mode: 'single' },
-            numberCell: { show: false },
-            title: "Roles Asignados al Equipo",
-			pageModel: {type:""},
-        	scrollModel:{autoFit:true, theme:true},
-			collapsible: { on: false, collapsed : false,  toggle: false },
-			toolbar:
-           {
-               cls: "pq-toolbar-export",
-               items:
-               [
-                   { type: "button", label: " Agregar Rol", attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
-                   
-               ]
-           },
-		   refresh: function () {
-               $("#div_grid > div.pq-grid-center > div.pq-grid-cont-outer > div > div > table > tbody").find("button.btn.btn-primary.btn-sm").button()
-               .bind("click", function (evt) {
-                   var $tr = $(this).closest("tr");
-                   var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
-                   var rowIndx = obj.rowIndx;
-                   $grid.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
+    	
+         });
+    
 
-					var DM = $grid.pqGrid("option", "dataModel");
-					var datos = DM.data;
-					var row = datos[rowIndx];
+    //validacion del boton leer
+    $("#co_leer").on("click", function(){
+	       //Validación de informacion
+            if( $("#fec_proc").val() == ""){
+                fn_mensaje_boostrap("Faltan Datos", g_titulo, $("#fec_proc"));
+                return;
+            }
+        
+        alert($("#fec_proc").val());
 
-					var parameters = {
-								"func":"fn_borrar",
-								"p_ip":$("#tx_ip").val(),
-								"p_rol":$("#tx_rol").val(),
-								"p_equipo":$("#cb_equipo").val(),
-								"p_rol_equipo":row.C1,
-								"Empresa":$("#tx_empresa").val()
-							};
-							
-					HablaServidor(url, parameters, 'text', function(text) 
-					{
-						$grid.pqGrid("deleteRow", { rowIndx: rowIndx });
-						fn_mensaje("EL ROL FUE ELIMINADO", g_titulo, $(""));
-					});
-					return false;
-
-            });
-           }/////////////
-        };
-		
-		obj.colModel = [
-            { title: "Rol", width: 120, dataType: "string", align: "left", halign: "center", dataIndx: "C1" },
-            { title: "Nombre", width: 230, dataType: "string", align: "left", halign: "center", dataIndx: "C2" },
-            { title: "Área Comercial", width: 250, dataType: "string", align: "left", halign: "center", dataIndx: "C3" },
-            { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
-				render: function (ui) {
-					return "<button name='co_borra' class='btn btn-primary btn-sm'>Eliminar</button>";
-				}
-			}
-        ];
-		
-		obj.dataModel = { data: data };
-
-$grid = $("#div_grid").pqGrid(obj);
-//fn_carga_tipo_equipo();
-$("#cb_tipo_equipo").focus();
-
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
-	$("#cb_tipo_equipo").on("change", function(evt) 
-	{
-		fn_regional($(this).val(),'');
-	});
-
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
-	$("#cb_regional").on("change", function(evt) 
-	{
-		fn_equipo($(this).val(),'');
-	});
-	
-// AL SELECCIONAR EL TIPO DE EQUIPO SE CARGAN LAS REGIONALES
-	$("#cb_equipo").on("change", function(evt) 
-	{
-		fn_desc_equipo($(this).val(),'');
-	});
-	
-//Evento leer
-$("#co_leer").on("click", function (e) {
-	 if (fn_valida_datos())
-	 {
+	//HAcer la funcionalidad adicional
+	/*$("#tx_cod_cliente").val("123456");
+	$("#tx_nombre").val("Pepito Perez");
+	$("#tx_rol_actual").val("Maria");
+	$("#co_reasignar").prop("disabled",false);*/
+    });
+    
+    
+    $("#co_cerrar").on("click", function () {
+        window.close(); 
+    });    
+    
+    //Evento leer
+    /*$("#co_leer").on("click", function (e) {
+	  if (fn_valida_datos())
+ 	   {
 		fn_leer_equipo();
 		$("#co_cerrar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
 		$("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
 		$("#co_leer").attr("disabled", true);
-	 }
-});
+	   }
+    });*/
 
-// EVENTO BOTON CANCELAR - LIMPIA COMBOX
-	$("#co_cerrar").on("click", function(evt) 
+    
+ 
+    //fn_carga_regional();
+    fn_regional();
+    fn_tarifa();
+
+
+// AL SELECCIONAR la regional se carga el sector
+	$("#cb_regional").on("change", function(evt) 
 	{
-		if($.trim($(this).text())=="Cancelar")
-		fn_cancelar();
-		else
-			window.close();
+		fn_ciclo($(this).val());
 	});
+	
+
 
 //EVENTO CLICK PARA AGREGAR ROL AL EQUIPO
-$("#co_rol").on("click", function (e) {
+/*$("#co_rol").on("click", function (e) {
 	 if(agregar == 1)
 	 {
 		 $("#div_prim").slideUp();
@@ -178,10 +139,10 @@ $("#co_rol").on("click", function (e) {
 		 $("#div_eq").text("EQUIPO "+$("#cb_equipo option:selected").html().toUpperCase());
 		 $("#tx_rol_nuevo").focus();
 	 }
-});
+});*/
 
 //evento leer nic de usuario
-$("#co_leer_nic").on("click", function (e) {											
+/*$("#co_leer_nic").on("click", function (e) {											
 	var $co_ref = $(this);
 	
 	if($.trim($(this).text())=="Leer")
@@ -200,9 +161,9 @@ $("#co_leer_nic").on("click", function (e) {
 //evento guardar
 $("#co_guardar").on("click", function (e) {
 	 fn_guardar();
-});
+});*/
 
-$("#co_volver").on("click", function(){	   	
+   $("#co_volver").on("click", function(){	   	
 	 $("#div_prim").slideDown();
 	 $("#div_rol").slideUp();
 	 $("#co_leer_nic").html("<span class='glyphicon glyphicon-search'></span> Leer");
@@ -213,7 +174,7 @@ $("#co_volver").on("click", function(){
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_valida_datos()	
+/*function fn_valida_datos()	
 {	
 
 	if($.trim($("#cb_tipo_equipo").val())=="")
@@ -232,7 +193,7 @@ function fn_valida_datos()
 		return false;
 	}
 	return true;
-}
+}*/
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer_equipo()
@@ -305,9 +266,9 @@ function fn_get_par(variable){
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_carga_tipo_equipo()
+function fn_tarifa()
 	{
-		$("#cb_tipo_equipo").html("");
+		/*$("#cb_tipo_equipo").html("");
 		var param= 
 			{
 				"func":"fn_tipo_equipo",
@@ -319,16 +280,18 @@ function fn_carga_tipo_equipo()
 
 				$("#cb_tipo_equipo").html(text);
 				
-			});
+			});*/
+        $("#cb_tarifa").html("<option value =''>  </option><option value='8100' selected>TARIFA 1</option><option value='1000'  >BOCAS DEL TORO</option><option value='4000'>CHIRIQUÍ</option><option value='2000'>COCLÉ</option><option value='3000'  >COLÓN</option><option value='6000'>HERRERA</option><option value='7000'>LOS SANTOS</option><option value='5000'  >PANAMÁ ESTE Y DARIEN</option><option value='8000'>PANAMÁ METRO</option><option value='8200'>PANAMÁ OESTE</option><option value='9000'>VERAGUAS</option>");
 	}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
 function fn_regional()
 	{
-		$("#cb_regional").html("");
-		$("#cb_equipo").html("");
-		$("#tx_desc").val("");
-		if($.trim($("#cb_tipo_equipo").val())=="")
+		/*$("#cb_regional").html("");
+		$("#cb_seccion").html("");
+		//$("#tx_desc").val("");
+		if($.trim($("#cb_tarifa").val())=="")
 			return false;
 		
 		var param= 
@@ -339,16 +302,18 @@ function fn_regional()
 			};
 		HablaServidor(url, param, "text", function(text) 
 			{
-
-				$("#cb_regional").html(text);
+              if(text != "")
+				 $("#cb_regional").html(text);
 				
-			});
+			});*/
+        
+        $("#cb_regional").html("<option value =''>  </option><option value='8100' selected>ARRAIJÁN</option><option value='1000'  >BOCAS DEL TORO</option><option value='4000'>CHIRIQUÍ</option><option value='2000'>COCLÉ</option><option value='3000'  >COLÓN</option><option value='6000'>HERRERA</option><option value='7000'>LOS SANTOS</option><option value='5000'  >PANAMÁ ESTE Y DARIEN</option><option value='8000'>PANAMÁ METRO</option><option value='8200'>PANAMÁ OESTE</option><option value='9000'>VERAGUAS</option>");
 	}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_equipo()
+function fn_ciclo()
 	{
-		$("#cb_equipo").html("");
+		/*$("#cb_equipo").html("");
 		$("#tx_desc").val("");
 		if($.trim($("#cb_regional").val())=="")
 			return false;
@@ -365,7 +330,8 @@ function fn_equipo()
 
 				$("#cb_equipo").html(text);
 				
-			});
+			});*/
+         $("#cb_ciclo").html("<option value =''>  </option><option value='8100' selected>ARRAIJÁN</option><option value='1000'  >BOCAS DEL TORO</option><option value='4000'>CHIRIQUÍ</option><option value='2000'>COCLÉ</option><option value='3000'  >COLÓN</option><option value='6000'>HERRERA</option><option value='7000'>LOS SANTOS</option><option value='5000'  >PANAMÁ ESTE Y DARIEN</option><option value='8000'>PANAMÁ METRO</option><option value='8200'>PANAMÁ OESTE</option><option value='9000'>VERAGUAS</option>");
 	}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
