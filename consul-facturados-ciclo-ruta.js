@@ -21,20 +21,7 @@ $(document).ready(function() {
 	fn_regional();
     fn_sector();
 
-    //validacion de las fechas
-    $(".form_datetime").datetimepicker({
-		viewMode: "years",
-		format: "mm/yyyy",
-		startDate: "01/2014",
-		useCurrent: false,
-		defaultDate:"",
-		todayBtn: false,
-		minView: 3,  //solo permite seleccionar hasta meses, no días
-		startView: 4,  //iniciar en años
-		endDate: "+0d",  //No habilitar fechas futuras
-		autoclose: true,
-		language: "es"	
-    });    
+    $("._input_selector").inputmask("dd/mm/yyyy");
 
     // EL CAMPO RUTA lo limito a 8 digitos y solo numeros
 	jQuery('#tx_ruta').keypress(function(tecla) {

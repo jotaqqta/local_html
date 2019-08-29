@@ -19,10 +19,12 @@
 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
  		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
 
-	    <script src="bootstrap/v3.3.7/js/bootstrap-datetimepicker.min.js"></script>  <!--/raiz/-->
-        <script src="bootstrap/v3.3.7/js/locales/bootstrap-datetimepicker.es.js"></script>
-        <link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap-datetimepicker.min.css"> 		
-        
+		<script src="jquery/jquery.inputmask.bundle.min.js"></script>
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script>
+		<script src="jquery/inputmask.extensions.min.js"></script>
+		<script src="jquery/inputmask.min.js"></script>
+		<script src="jquery/jquery.inputmask.min.js"></script>
+	        
         <!-- Boostrap -->
 		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="header.css">
@@ -54,11 +56,11 @@
 				<br>
 				<form class="form-horizontal" >				
 					<div class="form-group">
-                        <label class="control-label col-sm-2 col-md-2" for="fec_proc">Fecha Proceso:</label>
-                        <div class="col-sm-4 col-md-4"> 
-							<input id="fec_proc" class="form-control input-normal form_datetime"  placeholder="" value="">
-                        </div>
-
+	                    <label class="control-label col-sm-2 col-md-2" for="fec_proc">Fecha Proceso:</label>
+	                    <div class="col-sm-4 col-md-4"> 
+							<input id="fec_proc" class="form-control input-normal _input_selector"  placeholder="" value="">
+						</div>
+						
 						<label class="control-label col-sm-2 col-md-2" for="cb_regional">Regional:</label>
 						<div class="col-sm-4 col-md-4"> 
 							<select class="form-control" id="cb_regional"></select>
