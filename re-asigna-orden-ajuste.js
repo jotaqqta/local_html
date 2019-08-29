@@ -67,20 +67,8 @@ $(document).ready(function() {
 	});
 
 	$("#co_cancelar").on("click",function(){
-		$("#tx_orden").val("");
-		$("#tx_cod_cliente").val("");
-		$("#tx_nombre").val("");
-		$("#tx_rol_actual").val("");
-		$('#cb_reasigna_nuevo').html('');
-		$("#tx_tarifa").val("");
-		$("#tx_actividad").val("");
-		$("#tx_estado").val("");
-		$("#tx_ruta").val("");
-
-		$("#tx_orden").prop("disabled",false);
-		$("#co_leer").prop("disabled",false);
-		$("#co_reasignar").prop("disabled",true);
-		$("#cb_reasigna_nuevo").prop("disabled",true);
+		
+		fn_cancelar();
 
 		$("#tx_orden").focus();
 		return;
@@ -99,20 +87,7 @@ $(document).ready(function() {
 
 		alert("Se Re-Asigno La Orden Nro. "+var_orden+" Correctamente.");
 
-		$("#tx_orden").val("");
-		$("#tx_cod_cliente").val("");
-		$("#tx_nombre").val("");
-		$("#tx_rol_actual").val("");
-		$('#cb_reasigna_nuevo').html('');
-		$("#tx_tarifa").val("");
-		$("#tx_actividad").val("");
-		$("#tx_estado").val("");
-		$("#tx_ruta").val("");
-
-		$("#tx_orden").prop("disabled",false);
-		$("#co_leer").prop("disabled",false);
-		$("#co_reasignar").prop("disabled",true);
-		$("#cb_reasigna_nuevo").prop("disabled",true);
+		fn_cancelar();
 
 		$("#tx_orden").focus();
 		return;			
@@ -135,4 +110,22 @@ function fn_carga_rol()
     });*/
 	
 	$("#cb_reasigna_nuevo").html("<option value='' selected></option><option value='01'>Nelson</option> <option value='2' >Julian</option> <option value='3'>Jairo</option> <option value='4'>David</option>");
+}
+
+function fn_cancelar()
+{
+	$("#tx_orden").val("");
+	$("#tx_cod_cliente").val("");
+	$("#tx_nombre").val("");
+	$("#tx_rol_actual").val("");
+	$('#cb_reasigna_nuevo').html('');
+	$("#tx_tarifa").val("");
+	$("#tx_actividad").val("");
+	$("#tx_estado").val("");
+	$("#tx_ruta").val("");
+
+	$("#tx_orden").prop("disabled",false);
+	$("#co_leer").prop("disabled",false);
+	$("#co_reasignar").prop("disabled",true);
+	$("#cb_reasigna_nuevo").prop("disabled",true);	
 }

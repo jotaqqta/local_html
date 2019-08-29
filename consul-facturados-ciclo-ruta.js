@@ -1,0 +1,82 @@
+var g_modulo="Facturación Clientes";
+var g_titulo="Consulta de Totales Facturados Por Ciclos y Ruta vs Periodos";
+
+$(document).ready(function() {
+
+	// PARA ELIMINAR EL SUBMIT
+	$("button").on("click", function(){return false;});
+
+	//Invocar la cabecera de la pagina
+	$("#div_header").load("header.htm", function() {
+		$("#div_mod0").html(g_modulo);
+		$("#div_tit0").html(g_titulo);	
+	});
+		
+	// SE COLOCAN LOS TITULOS
+	$("#div_mod1").html(g_modulo);
+	$("#div_tit1").html(g_titulo);
+	$("#div_mod2").html(g_modulo);
+	$("#div_tit2").html(g_titulo);
+
+    //validacion de las fechas
+    $(".form_datetime").datetimepicker({
+		viewMode: "years",
+		format: "mm/yyyy",
+		startDate: "01/2014",
+		useCurrent: false,
+		defaultDate:"",
+		todayBtn: false,
+		minView: 3,  //solo permite seleccionar hasta meses, no días
+		startView: 4,  //iniciar en años
+		endDate: "+0d",  //No habilitar fechas futuras
+		autoclose: true,
+		language: "es"	
+    });    
+
+    fn_regional();
+    fn_sector();
+
+	$("#co_leer").on("click", function(){
+		//Validación de informacion
+		if($("#fec_proc").val() == "" || $("#cb_regional").val() == "" || $("#cb_sector").val() == "" || $("#tx_estado").val() == ""){
+			fn_mensaje_boostrap("Hay campos vacios", g_titulo);
+			return;			
+		};
+
+		alert("Se leyeron los datos.");
+	});    
+});
+
+function fn_regional()
+{
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/
+	
+	$("#cb_regional").html("<option value='' selected></option><option value='8000'>(8000) PANAMÁ METRO</option> <option value='9000' >(9000) PANAMÁ 02</option>");
+}
+
+function fn_sector()
+{
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/
+	
+	$("#cb_sector").html("<option value='' selected></option><option value='1'>01</option> <option value='2' >02</option> <option value='3'>03</option>");
+}
