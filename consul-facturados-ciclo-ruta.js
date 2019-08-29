@@ -18,6 +18,9 @@ $(document).ready(function() {
 	$("#div_mod2").html(g_modulo);
 	$("#div_tit2").html(g_titulo);
 
+	fn_regional();
+    fn_sector();
+
     //validacion de las fechas
     $(".form_datetime").datetimepicker({
 		viewMode: "years",
@@ -33,13 +36,15 @@ $(document).ready(function() {
 		language: "es"	
     });    
 
-    fn_regional();
-    fn_sector();
+    // EL CAMPO RUTA lo limito a 8 digitos y solo numeros
+	jQuery('#tx_ruta').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
-		if($("#fec_proc").val() == "" || $("#cb_regional").val() == "" || $("#cb_sector").val() == "" || $("#tx_estado").val() == ""){
-			fn_mensaje_boostrap("Hay campos vacios", g_titulo);
+		if($("#fec_proc").val() == "" || $("#cb_regional").val() == ""){
+			fn_mensaje_boostrap("La Fecha Proceso y Regional son obligatorios", g_titulo);
 			return;			
 		};
 
