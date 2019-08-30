@@ -18,7 +18,11 @@
 		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
  		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
-
+		<script src="jquery/jquery.inputmask.bundle.min.js"></script>
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script>
+		<script src="jquery/inputmask.extensions.min.js"></script>
+		<script src="jquery/inputmask.min.js"></script>
+		<script src="jquery/jquery.inputmask.min.js"></script>
 	    <script src="bootstrap/v3.3.7/js/bootstrap-datetimepicker.min.js"></script>  <!--/raiz/-->
         <script src="bootstrap/v3.3.7/js/locales/bootstrap-datetimepicker.es.js"></script>
         <link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap-datetimepicker.min.css"> 		
@@ -29,7 +33,7 @@
         <script src="syn_util.js"></script>
 		
 		<script src="anom-lec-encon-terreno.js"></script>
-		
+
 		<style>
 			.inp_dis[readonly]{
 			 background-color: white;
@@ -52,12 +56,13 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<br>
+   
                 
 				<form class="form-horizontal" >				
 				
-                        <label class="control-label col-sm-2 col-md-2" for="fec_periodo">Periodo:</label>
+                        <label class="control-label col-sm-2 col-md-2" for="fec_proc">Fecha de proceso:</label>
                         <div class="col-sm-4 col-md-4"> 
-							<input id="fec_periodo" class="form-control input-normal form_datetime"  placeholder="" value="">
+							<input id="fec_proc" class="form-control input-normal _input_selector"  placeholder="" value="">
                         </div>
 					
                 </form>

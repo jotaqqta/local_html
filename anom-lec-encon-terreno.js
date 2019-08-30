@@ -34,11 +34,11 @@ $(document).ready(function() {
     });    
 
     fn_regional();
-    
+    $("._input_selector").inputmask("dd/mm/yyyy");
 
 	$("#co_generar").on("click", function(){
 		//Validación de informacion
-		if($("#fec_periodo").val() == "" || $("#cb_regional").val() == ""){
+		if($("#fec_proc").val() == "" || $("#cb_regional").val() == ""){
 			fn_mensaje_boostrap("Hay campos vacios", g_titulo);
 			return;	
            // if($("#cb_regional").val() == ""){
@@ -69,3 +69,4 @@ function fn_regional()
 	
 	$("#cb_regional").html("<option value='' selected></option><option value='1'>Opcio 1</option> <option value='2' >Opcion 2</option><option value='3' >Opcion 3</option>");
 }
+
