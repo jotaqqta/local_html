@@ -8,6 +8,10 @@ var Filtros = [];
 var sql_grid_prim = "";
 var sql_grid_dos = "";
 var sql_grid_3 = "";
+var periodo_fil;
+var regional_fil;
+var ciclo_fil;
+var ruta_fil;
 var my_url = "con_lec_reg_cic.asp";
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -48,7 +52,6 @@ $(document).ready(function() {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 	//fn_carga_periodo();
-    $("#div_footer").load("/raiz/syn_globales/footer.htm");
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
@@ -92,7 +95,7 @@ $(document).ready(function() {
 			//fn_carga_grid_principal();
 		}
 		else
-			fn_mensaje_boostrap("Debe seleccionar un periodo!!!", g_tit, $(""));
+			fn_mensaje_boostrap("SELECCIONE UN PERIODO", g_tit, $(""));
 		
     });
 	
@@ -128,7 +131,10 @@ $(document).ready(function() {
 					$("#div_ciclo_ruta").show();
     				$("#div_prim0").hide();
 					$grid_2.pqGrid("refreshView");
-					//fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
+					periodo_fil = dataCell.C1;
+					regional_fil = dataCell.C2;
+					ciclo_fil = dataCell.C3;
+					//fn_grilla_dos();
 				}
 			}
 	});
@@ -139,10 +145,11 @@ $(document).ready(function() {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					
+					g_cliente_selec = dataCell.c2;
 					$("#div_ciclo_ruta").hide();
     				$("#div_ruta").show();
-					//fn_grilla_tres(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C4);
+					ruta_fil = dataCell.C4;
+					//fn_grilla_tres();
 				}
 			}
 	});
@@ -175,6 +182,7 @@ $(document).ready(function() {
 	
     $("#co_excel2").on("click", function (e) {
 		e.preventDefault();
+		fn_filtro_2();
         var col_model=$( "#div_grid_ciclo_ruta" ).pqGrid( "option", "colModel" );
 		var cabecera = "";
 		for (i=0; i< col_model.length; i++){
@@ -196,6 +204,7 @@ $(document).ready(function() {
 	
 	$("#co_excel3").on("click", function (e) {
 		e.preventDefault();
+		fn_filtro_3();
         var col_model=$( "#div_grid_ruta" ).pqGrid( "option", "colModel" );
 		var cabecera = "";
 		for (i=0; i< col_model.length; i++){
@@ -264,19 +273,17 @@ function fn_setea_grid_principal()
             { title: "Fecha Ingreso", width: 140, dataType: "string", dataIndx: "C6" , halign:"center", align:"center"},
             { title: "Fecha Aprueba", width: 140, dataType: "string",  dataIndx: "C7" , halign:"center", align:"center"},
             { title: "Rol Aprueba", width: 140, dataType: "string", dataIndx: "C8" , halign:"center", align:"center"},
-            { title: "Fecha Proceso de Carga", width: 140, dataType: "string", dataIndx: "C9" , halign:"center", align:"center"},
-            { title: "Total Clientes por Leer", width: 160, dataType: "string", dataIndx: "C10" , halign:"center", align:"right"},
-            { title: "Total Clientes Leidos", width: 160, dataType: "string",  dataIndx: "C11", halign:"center", align:"right"},
-            { title: "Total Clientes Correctos", width: 160, dataType: "string", dataIndx: "C12", halign:"center", align:"right"},
-            { title: "Total Clientes con Anomalias", width: 160, dataType: "string", dataIndx: "C13", halign:"center", align:"right"},
-            { title: "Total Clientes sin Leer", width: 160, dataType: "string", dataIndx: "C14", halign:"center", align:"right"}    
+            { title: "Proceso de Carga", width: 140, dataType: "string", dataIndx: "C9" , halign:"center", align:"center"},
+            { title: "Clientes por Leer", width: 160, dataType: "string", dataIndx: "C10" , halign:"center", align:"right"},
+            { title: "Clientes Leidos", width: 160, dataType: "string",  dataIndx: "C11", halign:"center", align:"right"},
+            { title: "Clientes Correctos", width: 160, dataType: "string", dataIndx: "C12", halign:"center", align:"right"},
+            { title: "Clientes con AnomalÍas", width: 160, dataType: "string", dataIndx: "C13", halign:"center", align:"right"},
+            { title: "Clientes sin Leer", width: 160, dataType: "string", dataIndx: "C14", halign:"center", align:"right"}    
         ];
 	obj.dataModel = { data: data };	
 	
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
-	$grid_principal.pqGrid( "refreshDataAndView" );
 	
-	//***************************
 	//Setea grid2
 	data =  [
 	  { C1: '01', C2: '01/12/2017', C3: '8000', C4: '8', C5:'80', C6:'233',
@@ -324,7 +331,9 @@ function fn_setea_grid_principal()
 	
 	obj2.dataModel = { data: data };
     $grid_2 = $("#div_grid_ciclo_ruta").pqGrid(obj2);
+	//$grid_2.pqGrid( "option", "dataModel.data", [] );
     $grid_2.pqGrid( "refreshDataAndView" );
+	//$grid_2.pqGrid( "scrollRow", { rowIndxPage: 10 } );
 
 	//Setea grid3
 	data =  [
@@ -376,7 +385,7 @@ function fn_setea_grid_principal()
 	
 	obj3.dataModel = { data: data };
     $grid_ruta = $("#div_grid_ruta").pqGrid(obj3);
-   // $grid_ruta.pqGrid( "refreshDataAndView" );
+    $grid_ruta.pqGrid( "refreshDataAndView" );
 	
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -392,9 +401,9 @@ function fn_Muestra_Filtro()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_grilla_dos(per, reg, ciclo, sec)
+function fn_grilla_dos()
 {
-    fn_filtro_2(per, reg, ciclo, sec);
+    fn_filtro_2();
 	var total_register;
 	
     var dataModel = 
@@ -425,7 +434,7 @@ function fn_grilla_dos(per, reg, ciclo, sec)
 
 	$grid_2.pqGrid( "option", "dataModel", dataModel );
     $grid_2.pqGrid( "refreshDataAndView" );
-    $grid_2.pqGrid( "option", "title", "Clientes Medidos Agrupados por Ciclo y Ruta - [ Periodo: "+ per +" - Regional: "+ reg +" - Ciclo: "+ ciclo+" )");
+    $grid_2.pqGrid( "option", "title", "Clientes Medidos Agrupados por Ciclo y Ruta - [ Periodo: "+ periodo_fil +" - Regional: "+ regional_fil +" - Ciclo: "+ ciclo_fil+" )");
 
 }
 
@@ -467,9 +476,9 @@ function fn_carga_grid_principal()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_grilla_tres(per, reg, ciclo, ruta)
+function fn_grilla_tres()
 {
-    fn_filtro_3(per, reg, ciclo, ruta);
+    fn_filtro_3();
 	
     var dataModel = 
     {        
@@ -499,13 +508,14 @@ function fn_grilla_tres(per, reg, ciclo, ruta)
 
 	$grid_ruta.pqGrid( "option", "dataModel", dataModel );
     $grid_ruta.pqGrid( "refreshDataAndView" );
-    $grid_ruta.pqGrid( "option", "title", "Clientes Facturados por Ruta - [ Periodo: "+ per +" - Regional: "+ reg +" - Ciclo: "+ ciclo+" - Ruta: "+ruta+" )");
+    $grid_ruta.pqGrid( "option", "title", "Clientes Facturados por Ruta - [ Periodo: "+ periodo_fil +" - Regional: "+ regional_fil +" - Ciclo: "+ ciclo_fil+" - Ruta: "+ruta_fil+" )");
 
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_filtro()
 {
+	$("#filtro").val("");
 	parameters = 
     {
 		"func":"fn_grid_principal",
@@ -526,47 +536,49 @@ function fn_filtro()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_filtro_2(per, reg, ciclo, sec)
+function fn_filtro_2()
 {
+	$("#filtro").val("");
 	parameters = 
     {
 		"func":"fn_grid_dos",
 		"empresa":$("#tx_empresa").val(),
-		"p_periodo":per,
-        "p_cod_regional":reg,
-        "p_ciclo":ciclo
+		"p_periodo":periodo_fil,
+        "p_cod_regional":regional_fil,
+        "p_ciclo":ciclo_fil
 		
     };
 	
 	Filtros = [];
 	
-	Filtros.push('Periodo = '+per);
-	Filtros.push('Regional = '+reg);
-	Filtros.push('Ciclo = '+ciclo);
+	Filtros.push('Periodo = '+periodo_fil);
+	Filtros.push('Regional = '+regional_fil);
+	Filtros.push('Ciclo = '+ciclo_fil);
 	
 	$("#filtro").val(Filtros);
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_filtro_3(per, reg, ciclo, ruta)
+function fn_filtro_3()
 {
+	$("#filtro").val("");
 	parameters = 
     {
 		"func":"fn_grid_tres",
 		"empresa":$("#tx_empresa").val(),
-		"p_periodo":per,
-        "p_cod_regional":reg,
-        "p_ciclo":ciclo,
-		"p_ruta":ruta
+		"p_periodo":periodo_fil,
+        "p_cod_regional":regional_fil,
+        "p_ciclo":ciclo_fil,
+		"p_ruta":ruta_fil
 		
     };
 	
 	Filtros = [];
 	
-	Filtros.push('Periodo = '+per);
-	Filtros.push('Regional = '+reg);
-	Filtros.push('Ciclo = '+ciclo);
-	Filtros.push('Ruta = '+ruta);
+	Filtros.push('Periodo = '+periodo_fil);
+	Filtros.push('Regional = '+regional_fil);
+	Filtros.push('Ciclo = '+ciclo_fil);
+	Filtros.push('Ruta = '+ruta_fil);
 	
 	$("#filtro").val(Filtros);
 }
