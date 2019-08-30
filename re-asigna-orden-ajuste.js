@@ -32,6 +32,10 @@ $(document).ready(function() {
 	$("#tx_nombre").prop("disabled",true);
 	$("#tx_rol_actual").prop("disabled",true);
 	$("#cb_reasigna_nuevo").prop("disabled",true);
+	$("#tx_tarifa").prop("disabled",true);
+	$("#tx_actividad").prop("disabled",true);
+	$("#tx_estado").prop("disabled",true);
+	$("#tx_ruta").prop("disabled",true);
 
 		//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#"));  //sin objeto
 		//fn_mensaje_boostrap("Debe elegir un Tipo de Identidad", g_tit, $("#cb_tipo_doc")); //con objeto
@@ -48,6 +52,10 @@ $(document).ready(function() {
 		$("#tx_cod_cliente").val("123456");
 		$("#tx_nombre").val("Pepito Perez");
 		$("#tx_rol_actual").val("Maria");
+		$("#tx_tarifa").val("1201");
+		$("#tx_actividad").val("Comercial");
+		$("#tx_estado").val("Activo");
+		$("#tx_ruta").val("76-531-01-010-0001");
 		
 		$("#co_leer").prop("disabled",true);
 		$("#tx_orden").prop("disabled",true);
@@ -59,16 +67,8 @@ $(document).ready(function() {
 	});
 
 	$("#co_cancelar").on("click",function(){
-		$("#tx_orden").val("");
-		$("#tx_cod_cliente").val("");
-		$("#tx_nombre").val("");
-		$("#tx_rol_actual").val("");
-		$('#cb_reasigna_nuevo').html('');
-
-		$("#tx_orden").prop("disabled",false);
-		$("#co_leer").prop("disabled",false);
-		$("#co_reasignar").prop("disabled",true);
-		$("#cb_reasigna_nuevo").prop("disabled",true);
+		
+		fn_cancelar();
 
 		$("#tx_orden").focus();
 		return;
@@ -87,16 +87,7 @@ $(document).ready(function() {
 
 		alert("Se Re-Asigno La Orden Nro. "+var_orden+" Correctamente.");
 
-		$("#tx_orden").val("");
-		$("#tx_cod_cliente").val("");
-		$("#tx_nombre").val("");
-		$("#tx_rol_actual").val("");
-		$('#cb_reasigna_nuevo').html('');
-
-		$("#tx_orden").prop("disabled",false);
-		$("#co_leer").prop("disabled",false);
-		$("#co_reasignar").prop("disabled",true);
-		$("#cb_reasigna_nuevo").prop("disabled",true);
+		fn_cancelar();
 
 		$("#tx_orden").focus();
 		return;			
@@ -118,5 +109,23 @@ function fn_carga_rol()
             $("#cb_regional").html(text);
     });*/
 	
-	$("#cb_reasigna_nuevo").html("<option value='' selected>SELECCIONE ROL...</option><option value='01'>Nelson</option> <option value='2' >Julian</option> <option value='3'>Jairo</option> <option value='4'>David</option>");
+	$("#cb_reasigna_nuevo").html("<option value='' selected></option><option value='01'>Nelson</option> <option value='2' >Julian</option> <option value='3'>Jairo</option> <option value='4'>David</option>");
+}
+
+function fn_cancelar()
+{
+	$("#tx_orden").val("");
+	$("#tx_cod_cliente").val("");
+	$("#tx_nombre").val("");
+	$("#tx_rol_actual").val("");
+	$('#cb_reasigna_nuevo').html('');
+	$("#tx_tarifa").val("");
+	$("#tx_actividad").val("");
+	$("#tx_estado").val("");
+	$("#tx_ruta").val("");
+
+	$("#tx_orden").prop("disabled",false);
+	$("#co_leer").prop("disabled",false);
+	$("#co_reasignar").prop("disabled",true);
+	$("#cb_reasigna_nuevo").prop("disabled",true);	
 }
