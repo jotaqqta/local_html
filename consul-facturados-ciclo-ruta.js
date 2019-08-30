@@ -1,5 +1,5 @@
 var g_modulo="Facturación Clientes";
-var g_titulo="Consulta de Totales Facturados Por Ciclos y Ruta vs Periodos";
+var g_titulo="Total Facturado por Ciclo y Ruta vs Periodo";
 
 $(document).ready(function() {
 
