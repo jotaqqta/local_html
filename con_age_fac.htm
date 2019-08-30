@@ -107,81 +107,92 @@
                      
 						<div class="modal-body">
 							<form role="form" class="form-horizontal" id="frm_filtro">
-								<div class="col-sm-6 offset_md-4">
+								<div class="form-group">
+									<div class="col-sm-4 ">
+									        <label for="fec_proc_ini"></label>
+                                    </div>
+                                    <div class="col-sm-4 ">
+									        <label for="fec_proc_ini">Parámetro Inicial</label>
+                                    </div>
+                                    <div class="col-sm-4">
+									        <label for="fec_proc_fin">Parámetro Final</label>
+								    </div>
+                                    
                                 </div>    
-                                <div class="col-sm-6 ">
-                                         <div class="form-group">
-                                            <label for="fec_proc_ini">Parámetro Inicial</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-4 ">
+                                        <label class="control-label " >Fec. Proceso:</label>
 
+                                    </div>
+                                    <div class=" col-sm-4 ">
+                                        <div class="form-group">
 
-                                            <label for="fec_proc_fin">Parámetro Final</label>
+                                            <input id="fec_proc_ini" class="form-control  input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
                                         </div>
-                                </div>    
-                                <br>
-                                <div class="col-sm-4 ">
-									<label class="control-label " >Fec. Proceso:</label>
-									
-								</div>
-								<div class="col-sm-3 offset_md-1">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_proc_ini" class="form-control  input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
                                     </div>
-                                </div>
-                                <div class="col-sm-3 offset_md-1 ">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_proc_fin" class="form-control  input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                    <div class=" col-sm-4 ">
+                                        <div class="form-group">
+
+                                            <input id="fec_proc_fin" class="form-control  input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
-									<label class="control-label " >Fecha Libro:</label>
-									
-								</div>
-								<div class="col-sm-4 offset_md-1">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_libro_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label " >Fecha Libro:</label>
+
                                     </div>
-                                </div>
-                                <div class="col-sm-4 offset_md-1">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_libro_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                    <div class="col-sm-4 ">
+                                        <div class="form-group">
+
+                                            <input id="fec_libro_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
-									<label class="control-label " >Fecha Lectura:</label>
-									
-								</div>
-								<div class="col-sm-3 offset_md-1">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_lec_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                    <div class="col-sm-4 ">
+                                        <div class="form-group">
+
+                                            <input id="fec_libro_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  
+                                            <!--form_datetime-->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="offset_md-1 col-sm-3 ">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_lec_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-									<label class="control-label " >Fecha Facturación:</label>
-									
-								</div>
-								<div class="col-sm-4">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_fact_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                       
-                                        <input id="fec_fact_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
-                                    </div>
-                                </div>
+                                  </div>    
+                                 <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label " >Fecha Lectura:</label>
+
+                                        </div>
+                                        <div class= "col-sm-4 ">
+                                            <div class="form-group">
+
+                                                <input id="fec_lec_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 ">
+                                            <div class="form-group">
+
+                                                <input id="fec_lec_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                            </div>
+                                        </div>
+                                  </div>      
+                                 <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label class="control-label " >Fecha Facturación:</label>
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+
+                                                <input id="fec_fact_ini" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+
+                                                <input id="fec_fact_fin" class="form-control input-normal _input_selector "  placeholder="" value="" >  <!--form_datetime-->
+                                            </div>
+                                        </div>
+                                </div>     
 							</form>
 						</div>
 						
