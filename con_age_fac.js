@@ -44,6 +44,10 @@ $(document).ready(function() {
 	ojo colocar cuando se active el asp --- NO quitar */
     
     
+    // INICIA CON EL CURSOR EN EL CAMPO FECHA
+	$("#fec_proc_ini").focus();
+	$("._input_selector").inputmask("dd/mm/yyyy");
+    
 	$("#form_info").hide();
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
@@ -56,8 +60,8 @@ $(document).ready(function() {
     $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    //$("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
     //EVENTO BOTONES
 	
@@ -67,7 +71,7 @@ $(document).ready(function() {
         window.close(); 
     });    
     
-    $("#co_volver_2").on("click", function (e) {
+    /*$("#co_volver_2").on("click", function (e) {
 		$("#div_prim0").show();
 		$("#div_ciclo_ruta").hide();
 		//$grid_principal.pqGrid( "refreshDataAndView" );
@@ -79,7 +83,7 @@ $(document).ready(function() {
 		$("#div_ciclo_ruta").show();
 		//$grid_principal.pqGrid( "refreshDataAndView" );
 		$(window).scrollTop(0);
-    });
+    });*/
 
 	$("#co_close").on("click", function (e) {
         $('#div_filtro_bts').modal('hide'); 
@@ -87,16 +91,58 @@ $(document).ready(function() {
     });
 	
 	$("#co_fil_aceptar").on("click", function (e) {
-        if($("#tx_fil_periodo").val() != ""){
-			$('#div_filtro_bts').modal('hide');
-			fn_carga_grid_principal();
-		}
-		else
-			fn_mensaje_boostrap("Debe seleccionar un periodo!!!", g_tit, $(""));
+        
+         if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_ini"));
+                return;
+            }
+        if( $("#fec_proc_ini").val() != "" && $("#fec_proc_fin").val() == "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_fin"));
+                return;
+            }
+
+        if( $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_libro_ini"));
+                return;
+            }
+        if( $("#fec_libro_ini").val() != "" && $("#fec_libro_fin").val() == "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_libro_fin"));
+                return;
+            }
+
+        if( $("#fec_lec_ini").val() == "" && $("#fec_lec_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_lec_ini"));
+                return;
+            }
+        if( $("#fec_lec_ini").val() != "" && $("#fec_lec_fin").val() == "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_lec_fin"));
+                return;
+            }
+        
+        if( $("#fec_fac_ini").val() == "" && $("#fec_fac_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_fac_ini"));
+                return;
+            }
+        if( $("#fec_fac_ini").val() != "" && $("#fec_fac_fin").val() == "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_fac_fin"));
+                return;
+            }
+       if( $("#fec_proc_ini").val() == ""  && $("#fec_proc_fin").val() == "" &&
+           $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() == "" &&
+           $("#fec_lec_ini").val() == ""   && $("#fec_lec_fin").val() == "" &&
+           $("#fec_fac_ini").val() == ""   && $("#fec_fac_fin").val() == ""){
+              fn_mensaje_boostrap("Debe seleccionar un rango de fechas !!!", g_tit, $("#fec_proc_ini"));
+		        return;
+            }
+        
+        
+        	//fn_carga_grid_principal();
 		
+		
+        
     });
 	
-	$("#tx_fil_periodo").on("change", function (e){
+	/*$("#tx_fil_periodo").on("change", function (e){
 		if($("#tx_fil_periodo").val() != ""){
 			fn_carga_regional();
 		}
@@ -104,15 +150,15 @@ $(document).ready(function() {
 			$("#cb_fil_regional").html("");
 			$("#cb_fil_ciclo").html("");
 		}
-	});
+	});*/
 	
-	$("#cb_fil_regional").on("change", function (e){
+	/*$("#cb_fil_regional").on("change", function (e){
 		if($("#cb_fil_regional").val() != ""){
 			fn_carga_ciclo();
 		}
 		else
 			$("#cb_fil_ciclo").html("");
-	});
+	});*/
 	
 	$("#co_fil_limpiar").on("click", function (e) {
         fn_limpia_filtro(); 
@@ -134,7 +180,7 @@ $(document).ready(function() {
 	});
 	
 	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    $grid_2.pqGrid({
+    /*$grid_2.pqGrid({
 		rowDblClick: function( event, ui ) {
 			if (ui.rowData) 
 				{
@@ -145,7 +191,7 @@ $(document).ready(function() {
 					fn_grilla_tres(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C4);
 				}
 			}
-	});
+	});*/
 
 	$("#div_filtro_bts").draggable({
         handle: ".modal-header"
@@ -479,9 +525,15 @@ function fn_carga_ciclo()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpia_filtro()
 {
-	$("#tx_fil_periodo").val("");
-	$("#cb_fil_regional").val("");
-	$("#cb_fil_ciclo").val("");
+	$("#fec_proc_ini").val("");
+	$("#fec_proc_fin").val("");
+	$("#fec_libro_ini").val("");
+	$("#fec_libro_fin").val("");
+	$("#fec_lec_ini").val("");
+	$("#fec_lec_fin").val("");
+	$("#fec_fac_ini").val("");
+	$("#fec_fac_fin").val("");
+	
 }
 
 
