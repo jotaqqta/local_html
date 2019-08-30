@@ -328,8 +328,8 @@ function fn_setea_grid_principal()
 
 	//Setea grid3
 	data =  [
-	  { C1: '1', C2: '8000', C3: '8', C4: '001-INASSA', C5:'4346', C6:'273363',
-	   C7:'13482586', C8:'AB', C9:'M3',C10:'P', C11:'016-MEDIDOR CON VIDRIO EMPAÑADO', C12:'111-LECTURA PROMEDIADA', C13:'91698', C14:'0'},
+	  { C1: '8000', C2: '8', C3: '001-INASSA', C4:'4346', C5:'273363',
+	   C6:'13482586', C7:'AB', C8:'M3',C9:'P', C10:'016-MEDIDOR CON VIDRIO EMPAÑADO', C11:'111-LECTURA PROMEDIADA', C12:'91698', C13:'0'},
 	 ]
     var obj3 = {
         height: "100%",
