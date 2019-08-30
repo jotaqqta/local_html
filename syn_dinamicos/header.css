@@ -1,0 +1,37 @@
+.header {
+overflow: hidden;
+background-color: #f1f1f1;
+padding-top: 5px;
+margin-right: auto;
+margin-left: auto;
+}
+.header a {
+float: center;
+color: black;
+text-align: center;
+padding: 6px;
+text-decoration: none;
+font-size: 18px;
+line-height: 25px;
+border-radius: 4px;
+}
+
+.header-right {
+float: right;
+}
+.imagen
+{
+background: white;
+}
+
+#div_mod0{
+padding-top: 10px;
+}
+
+.margenes{
+padding-right: 5px;
+padding-left: 5px;
+}
+input[type=text]::-ms-clear {
+   display: none;
+}

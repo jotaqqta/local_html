@@ -157,8 +157,15 @@ div.pq-grid-summary {
   background: #fff;
   color: #333;
 }
+/*Rojito*/
+/*
 .pq-state-select.ui-state-highlight {
   background:  rgb(249, 195, 191);
+}*/
+
+/*Celestito*/
+.pq-state-select.ui-state-highlight {
+  background:  rgb(230, 244, 255);
 }
 .pq-grid-overlay {
   background: rgba(0, 0, 0, 0.1);
@@ -225,14 +232,14 @@ tr.pq-grid-oddRow.pq-state-select,
 tr.pq-grid-oddRow > .pq-grid-cell-hover,
 tr.pq-grid-oddRow.pq-grid-row-hover {
   /*background: #dbdddf;*/
-  background:   rgb(249, 195, 191);
+  background: rgb(230, 244, 255); /*  rgb(249, 195, 191);*/
 }
 tr.pq-grid-row > td.pq-state-select,
 tr.pq-grid-row.pq-state-select,
 tr.pq-grid-row > .pq-grid-cell-hover,
 tr.pq-grid-row.pq-grid-row-hover {
   /*background: #dbdddf;*/
-  background:   rgb(249, 195, 191);
+  background:  rgb(230, 244, 255);/* rgb(249, 195, 191);*/
 }
 .pq-header-outer .pq-grid-row
 {

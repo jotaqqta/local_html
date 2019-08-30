@@ -10,29 +10,33 @@
 		<meta http-equiv="pragma" content="no-cache">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 		<!-- Jquery -->
-		<script src="jquery/jquery-3.1.1.min.js"></script>
-        <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
-		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
- 		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
-        
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+		<!-- Validaciones con inputmask -->
+		<script src="jquery/jquery.inputmask.bundle.min.js"></script>
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script>
+		<script src="jquery/inputmask.extensions.min.js"></script>
+		<script src="jquery/inputmask.min.js"></script>
+		<script src="jquery/jquery.inputmask.min.js"></script>
+		
 		<!-- Paramquery -->
-		<script src="pqgrid/v3.4/pqgrid.min.js"></script>
-		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.min.css">
-		<link rel="stylesheet" href="pqgrid/v3.4/pqgrid.ui.min.css">
+		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
 		
-        <link rel='stylesheet' href='pqgrid/v3.4/themes/bootstrap/pqgrid.css' />
-		
-        <!-- Boostrap -->
-		
+		<!-- Boostrap -->
 		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
-        
-		<link rel="stylesheet" href="header.css">
-        <script src="syn_util.js"></script>
-		
-		<script src="equipo-rol.js"></script>
+		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Principales -->
+		<script src="syn_util.js"></script>
+		<link rel="stylesheet" href="syn_dinamicos/synergia.css">
+		<script language="JavaScript" src="equipo-rol.js"></script> 
+		<link rel="stylesheet" href="syn_dinamicos/header.css">
 		
 		<style>
 		
@@ -42,6 +46,35 @@
             
             .inp_dis[disabled]{
 			 background-color: white;
+			}
+			.panel-primary {
+				border-color: #cccccc;
+			}
+			.panel-primary>.panel-heading {
+				color:#404040;
+				font-weight:600;
+				background-color: #ffffff;
+				border-color: #cccccc;
+			}
+			.panel-body {
+				padding: 7px 15px;
+			}
+			#grid_consulta_compensa {
+				float: center;
+			}
+			
+			@media screen  and (max-width: 1401px)
+            {
+				#bd_prin{
+					height: calc(100vh - 62px);
+				}
+			}
+			
+            @media screen  and (min-width: 1402px)
+            {
+				#bd_prin{
+					height: calc(100vh - 62px);
+				}
 			}
 		
 		</style>
@@ -54,134 +87,139 @@
 		<div id="div_header" >
 			</div>	
 	</div>
-	
-	<div class="container" id="div_prim">
-		<br>
-		<br>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<br>
-				<form class="form-horizontal">
-				
-				<div class="form-group">
-					<label class="control-label col-sm-2 col-md-2" for="tx_cliente">N° Suministro:</label>
-					<div class="col-sm-4 col-md-4"> 
-						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control inp_dis" style="padding-right:0px; text-align:right;">
-						<input type="hidden" id="tx_ord_ate" name="tx_ord_ate"  >
+	<div class="bootstrap-syn">
+		<div class="container" id="div_prim">
+			<br>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<br>
+					<form class="form-horizontal">
+
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-md-2" for="tx_cliente">N° Suministro:</label>
+						<div class="col-sm-4 col-md-4"> 
+							<input type="text" id="tx_cliente" name="tx_cliente" class="form-control inp_dis" style="padding-right:0px; text-align:right;">
+							<input type="hidden" id="tx_ord_ate" name="tx_ord_ate"  >
+						</div>
+						 <div class="col-sm-6 col-md-6"> 
+							<button type="button" class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span> Leer</button>
+							<button type="button" class="btn btn-default" id="co_cancelar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+						</div>
 					</div>
-					 <div class="col-sm-6 col-md-6"> 
-						<button type="button" class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span> Leer</button>
-						<button type="button" class="btn btn-default" id="co_cancelar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="cb_mot_ins">Tipo de Equipo:</label>
+						<div class="col-sm-10"> 
+							<select class="form-control" id="cb_tipo_equipo"></select>
+						</div>
 					</div>
-				</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="cb_mot_ins">Regional:</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="cb_regional"></select>
+						</div>
+					</div>
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="cb_mot_ins">Equipo:</label>
+					<div class="col-sm-10"> 
+					<select class="form-control" id="cb_equipo"></select>
+					</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
+						<div class="col-sm-10"> 
+							<textarea class="form-control" rows="4" id="tx_desc"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group"> 
+					<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span>  Leer</button>
+					<button class="btn" id="co_cerrar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+					</div>
+					</div>
+
+
+
+					<!-- PARAMQUERY CON LOS ROLES -->
+					<div class="panel-body" id="bd_prin">
+						<!-- PARAMQUERY PRINCIPAL -->
+						<div id="div_grid"> 
+
+						</div>
+					</div>
 					
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_mot_ins">Tipo de Equipo:</label>
-					<div class="col-sm-10"> 
-						<select class="form-control" id="cb_tipo_equipo"></select>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_mot_ins">Regional:</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="cb_regional"></select>
-					</div>
-				</div>
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="cb_mot_ins">Equipo:</label>
-				<div class="col-sm-10"> 
-				<select class="form-control" id="cb_equipo"></select>
-				</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="tx_obs">Descripción:</label>
-					<div class="col-sm-10"> 
-						<textarea class="form-control" rows="4" id="tx_desc"></textarea>
-					</div>
-				</div>
-				
-				<div class="form-group"> 
-				<div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-primary" id="co_leer"><span class="glyphicon glyphicon-search"></span>  Leer</button>
-				<button class="btn" id="co_cerrar"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
-				</div>
-				</div>
-				
-				
-				
-                <!-- PARAMQUERY CON LOS ROLES -->
-				<div id="div_grid"> 
-				</div>
-				
-				</form>
-			</div>   
-		</div>  
-	</div>
-	
-	<div class="container" id="div_rol" style="display: none;">
-		<br>
-		<br>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<br>
-				<form class="form-horizontal">
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_rol">Rol:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="tx_rol" placeholder="Digite el Rol">
-				</div>
-				<div class="col-sm-2">
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Leer</button>
-				</div>
-				</div>
 
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
-					<div class="col-sm-10"> 
-						<input type="text" class="form-control inp_dis" id="tx_nom" readonly>
+					</form>
+				</div>   
+			</div>  
+		</div>
+
+		<div class="container" id="div_rol" style="display: none;">
+			<br>
+			<br>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<br>
+					<form class="form-horizontal">
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="tx_rol">Rol:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="tx_rol" placeholder="Digite el Rol">
 					</div>
-				</div>
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_id">Identificación:</label>
-				<div class="col-sm-10"> 
-				<input type="text" class="form-control inp_dis" id="tx_id" readonly>
-				</div>
-				</div>
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_ruta">Cargo:</label>
-				<div class="col-sm-10"> 
-				<input type="text" class="form-control inp_dis" id="tx_cargo" readonly>
-				</div>
-				</div>
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_nombre">Área:</label>
-				<div class="col-sm-10"> 
-				<input type="text" class="form-control inp_dis" id="tx_area" readonly>
-				</div>
-				</div>
-				
-				<div class="form-group">
-				<label class="control-label col-sm-2" for="tx_obs">Observación:</label>
-				<div class="col-sm-10"> 
-				<textarea class="form-control" rows="4" id="tx_obs" placeholder="Debe digitar observación de al menos 15 caracteres .."></textarea>
-				</div>
-				</div>
+					<div class="col-sm-2">
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Leer</button>
+					</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="tx_nombre">Nombre:</label>
+						<div class="col-sm-10"> 
+							<input type="text" class="form-control inp_dis" id="tx_nom" readonly>
+						</div>
+					</div>
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="tx_id">Identificación:</label>
+					<div class="col-sm-10"> 
+					<input type="text" class="form-control inp_dis" id="tx_id" readonly>
+					</div>
+					</div>
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="tx_ruta">Cargo:</label>
+					<div class="col-sm-10"> 
+					<input type="text" class="form-control inp_dis" id="tx_cargo" readonly>
+					</div>
+					</div>
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="tx_nombre">Área:</label>
+					<div class="col-sm-10"> 
+					<input type="text" class="form-control inp_dis" id="tx_area" readonly>
+					</div>
+					</div>
+
+					<div class="form-group">
+					<label class="control-label col-sm-2" for="tx_obs">Observación:</label>
+					<div class="col-sm-10"> 
+					<textarea class="form-control" rows="4" id="tx_obs" placeholder="Debe digitar observación de al menos 15 caracteres .."></textarea>
+					</div>
+					</div>
 
 
-				<div class="form-group"> 
-				<div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-primary" id="co_guardar"><pan class="glyphicon glyphicon-save"></pan> Agregar</button>
-				<button class="btn" id="co_volver"><pan class="glyphicon glyphicon-chevron-left"></pan> Volver</button>
+					<div class="form-group"> 
+					<div class="col-sm-offset-2 col-sm-10">
+					<button class="btn btn-primary" id="co_guardar"><pan class="glyphicon glyphicon-save"></pan> Agregar</button>
+					<button class="btn" id="co_volver"><pan class="glyphicon glyphicon-chevron-left"></pan> Volver</button>
+					</div>
+					</div>
+					</form>
 				</div>
-				</div>
-				</form>
 			</div>
 		</div>
 	</div>
