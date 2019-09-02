@@ -99,40 +99,89 @@ $(document).ready(function() {
 	$("#co_fil_aceptar").on("click", function (e) {
         
          
+        if($("#fec_proc_ini").val() != ""){
+		if (fn_validar_fecha($("#fec_proc_ini").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_ini") );
+			return false;
+		   }
+	    }
+        if($("#fec_proc_fin").val() != ""){
+		if (fn_validar_fecha($("#fec_proc_fin").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_fin") );
+			return false;
+		   }
+	    }
         
-        if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_ini"));
+        /*if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_proc_ini"));
                 return;
             }
         if( $("#fec_proc_ini").val() != "" && $("#fec_proc_fin").val() == "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_fin"));
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_proc_fin"));
                 return;
             }
-
-        if( $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() != "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_libro_ini"));
+*/
+        if($("#fec_libro_ini").val() != ""){
+		if (fn_validar_fecha($("#fec_libro_ini").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LIBRO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_ini") );
+			return false;
+		   }
+	    }
+        if($("#fec_libro_fin").val() != ""){
+		if (fn_validar_fecha($("#fec_libro_fin").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LIBRO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_fin") );
+			return false;libro
+		   }
+	    }
+        /*if( $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_libro_ini"));
                 return;
             }
         if( $("#fec_libro_ini").val() != "" && $("#fec_libro_fin").val() == "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_libro_fin"));
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_libro_fin"));
                 return;
             }
-
-        if( $("#fec_lec_ini").val() == "" && $("#fec_lec_fin").val() != "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_lec_ini"));
+*/
+         if($("#fec_lec_ini").val() != ""){
+		if (fn_validar_fecha($("#fec_lec_ini").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LECTURA INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_ini") );
+			return false;
+		   }
+	    }
+        if($("#fec_lec_fin").val() != ""){
+		if (fn_validar_fecha($("#fec_lec_fin").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LECTURA FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_fin") );
+			return false;
+		   }
+	    }
+        /*if( $("#fec_lec_ini").val() == "" && $("#fec_lec_fin").val() != "") {
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_lec_ini"));
                 return;
             }
         if( $("#fec_lec_ini").val() != "" && $("#fec_lec_fin").val() == "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_lec_fin"));
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_lec_fin"));
                 return;
-            }
+            }*/
         
+         if($("#fec_fac_ini").val() != ""){
+		if (fn_validar_fecha($("#fec_fac_ini").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE FACTURACIÓN INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_ini") );
+			return false;
+		   }
+	    }
+        if($("#fec_fac_fin").val() != ""){
+		if (fn_validar_fecha($("#fec_fac_fin").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE FACTURACIÓN FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_fin") );
+			return false;
+		   }
+	    }
+        /*
         if( $("#fec_fac_ini").val() == "" && $("#fec_fac_fin").val() != "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_fac_ini"));
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_fac_ini"));
                 return;
             }
         if( $("#fec_fac_ini").val() != "" && $("#fec_fac_fin").val() == "") {
-                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_fac_fin"));
+                fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_fac_fin"));
                 return;
             }
         
@@ -143,7 +192,7 @@ $(document).ready(function() {
               fn_mensaje_boostrap("Debe seleccionar un rango de fechas !!!", g_tit, $("#fec_proc_ini"));
 		        return;
             }
-        
+        */
         
         	//fn_carga_grid_principal();
 		
@@ -218,6 +267,28 @@ $(document).ready(function() {
     
 	
 });
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_validar_fecha(value){
+	var real, info;
+	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+		info = value.split(/\//);
+		var fecha = new Date(info[2], info[1]-1, info[0]);
+		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+			real = fecha.toISOString().substr(0,10).split('-');
+			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+				return true;
+			}			
+			return false;
+		} else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+	
+}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
@@ -459,6 +530,7 @@ function fn_limpia_filtro()
 	$("#fec_lec_fin").val("");
 	$("#fec_fac_ini").val("");
 	$("#fec_fac_fin").val("");
+    $("#cb_tipo_lec").val("");
 	
 }
 
