@@ -48,6 +48,13 @@ $(document).ready(function() {
 	$("#fec_proc_ini").focus();
 	$("._input_selector").inputmask("dd/mm/yyyy");
     
+    //borrar cuando se haga asp - halarlo de la consulta sql
+    $("#fec_proc_fin").val(Date());
+    $("#fec_libro_fin").val(Date());
+    $("#fec_lec_fin").val(Date());
+    $("#fec_fac_fin").val(Date());
+    
+    
 	$("#form_info").hide();
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
@@ -92,7 +99,9 @@ $(document).ready(function() {
 	
 	$("#co_fil_aceptar").on("click", function (e) {
         
-         if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
+         
+        
+        if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_ini"));
                 return;
             }
@@ -416,13 +425,13 @@ function fn_filtro()
 function fn_limpia_filtro() 
 {
 	$("#fec_proc_ini").val("");
-	$("#fec_proc_fin").val("");
+	$("#fec_proc_fin").val(Date());
 	$("#fec_libro_ini").val("");
-	$("#fec_libro_fin").val("");
+	$("#fec_libro_fin").val(Date());
 	$("#fec_lec_ini").val("");
-	$("#fec_lec_fin").val("");
+	$("#fec_lec_fin").val(Date());
 	$("#fec_fac_ini").val("");
-	$("#fec_fac_fin").val("");
+	$("#fec_fac_fin").val(Date());
 	
 }
 
