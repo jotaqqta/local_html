@@ -293,7 +293,14 @@ function fn_validar_fecha(value){
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 {     
-	var data = []
+	var data =  [
+		  { C1: '01/08/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/08/2019', C5:'05/08/2019', C6:'15/08/2019',
+		   C7:'25/08/2019', C8:'25/08/2019', C9:'30/08/2019', C10:'25/08/2019', C11:'30/08/2019'},
+		 { C1: '01/07/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/07/2019', C5:'05/07/2019', C6:'15/07/2019',
+		   C7:'25/07/2019', C8:'25/07/2019', C9:'30/07/2019', C10:'25/07/2019', C11:'30/07/2019'},
+		 { C1: '01/06/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/06/2019', C5:'05/06/2019', C6:'15/06/2019',
+		   C7:'25/06/2019', C8:'25/06/2019', C9:'30/06/2019', C10:'25/06/2019', C11:'30/06/2019'},
+		 ]
     var obj = {  
 	        height: "100%",
             showTop: true,
@@ -323,18 +330,18 @@ function fn_setea_grid_principal()
 		
 		obj.colModel = [		
           { title: "Periodo", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
-        { title: "Regional", width: 100, dataType: "string", dataIndx: "C2", halign:"center", align:"center" },
-        { title: "Ruta", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
-        { title: "Tipo Lectura", width: 80, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
-        { title: "Fecha Libro", width: 90, dataType: "string", dataIndx: "C6", halign:"center", align:"center"},
-        { title: "Fecha Lectura", width: 90, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
-        { title: "Fecha Facturación", width: 90, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
-        { title: "Fecha Reparto", width: 90, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Regional", width: 80, dataType: "string", dataIndx: "C2", halign:"center", align:"center" },
+        //{ title: "Ruta", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
+        { title: "Tipo Lectura", width: 120, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        { title: "Fecha Libro", width: 90, dataType: "string", dataIndx: "C4", halign:"center", align:"center"},
+        { title: "Fecha Lectura", width: 90, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
+        { title: "Fecha Facturación", width: 90, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Fecha Reparto", width: 90, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
         
-        { title: "Vcto. Normal ", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
-        { title: "Corte Normal", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
-        { title: "Vcto. Gubernamental ", width: 140, dataType: "string", dataIndx: "C9", halign:"center", align:"right" },
-        { title: "Corte Gubernamental", width: 140, dataType: "string", dataIndx: "C10", halign:"center", align:"right" }
+        { title: "Vcto. Normal ", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
+        { title: "Corte Normal", width: 120, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Vcto. Gubernamental ", width: 120, dataType: "string", dataIndx: "C10", halign:"center", align:"right" },
+        { title: "Corte Gubernamental", width: 120, dataType: "string", dataIndx: "C11", halign:"center", align:"right" }
         ];
 	obj.dataModel = { data: data };	
 	
