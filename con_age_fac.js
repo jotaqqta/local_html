@@ -48,6 +48,8 @@ $(document).ready(function() {
 	$("#fec_proc_ini").focus();
 	$("._input_selector").inputmask("dd/mm/yyyy");
     
+    
+    
 	$("#form_info").hide();
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
@@ -63,6 +65,9 @@ $(document).ready(function() {
     //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     //$("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
+    
+        //borrar cuando se haga asp - halarlo de la consulta sql
+   
     //EVENTO BOTONES
 	
     $("#co_filtro").on("click", fn_Muestra_Filtro);
@@ -71,6 +76,7 @@ $(document).ready(function() {
         window.close(); 
     });    
     
+    fn_tipolectura();
     /*$("#co_volver_2").on("click", function (e) {
 		$("#div_prim0").show();
 		$("#div_ciclo_ruta").hide();
@@ -92,7 +98,9 @@ $(document).ready(function() {
 	
 	$("#co_fil_aceptar").on("click", function (e) {
         
-         if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
+         
+        
+        if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_proc_ini"));
                 return;
             }
@@ -127,6 +135,7 @@ $(document).ready(function() {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_titulo, $("#fec_fac_fin"));
                 return;
             }
+        
        if( $("#fec_proc_ini").val() == ""  && $("#fec_proc_fin").val() == "" &&
            $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() == "" &&
            $("#fec_lec_ini").val() == ""   && $("#fec_lec_fin").val() == "" &&
@@ -171,7 +180,7 @@ $(document).ready(function() {
 				{
 					var dataCell = ui.rowData;
 					//g_cliente_selec = dataCell.c2;
-					$("#div_ciclo_ruta").show();
+					//$("#div_ciclo_ruta").show();
     				$("#div_prim0").hide();
 					$grid_2.pqGrid("refreshView");
 					//fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
@@ -267,6 +276,11 @@ function fn_setea_grid_principal()
 function fn_Muestra_Filtro()
 {
 	fn_limpia_filtro();
+     $("#fec_proc_fin").val(Date());
+    $("#fec_libro_fin").val(Date());
+    $("#fec_lec_fin").val(Date());
+    $("#fec_fac_fin").val(Date());
+
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
 		$("#div_filtro_bts div.modal-footer button").focus();
@@ -411,6 +425,28 @@ function fn_filtro()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_tipolectura()
+	{
+		/*$("#cb_tipo_lec").html("");
+		//$("#cb_ciclo").html("");
+		//$("#tx_desc").val("");
+		//if($.trim($("#cb_tarifa").val())=="")
+		//	return false;
+		
+		var param= 
+			{
+				"func":"fn_tipolectura",
+				"empresa":$("#tx_empresa").val()  
+			};
+		HablaServidor(url, param, "text", function(text) 
+			{
+              if(text != "")
+				 $("#cb_tipo_lec").html(text);
+				
+			});
+        */
+        $("#cb_tipo_lec").html("<option value =''>  </option><option value='8100' selected>lectura 1</option><option value='1000'  >lactura 2</option><option value='4000'>lectura 3</option><option value='2000'>lectura 4</option><option value='3000'  >lectura 5</option>");
+	}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpia_filtro() 
