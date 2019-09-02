@@ -174,25 +174,12 @@ $(document).ready(function() {
 					$("#div_ciclo_ruta").show();
     				$("#div_prim0").hide();
 					$grid_2.pqGrid("refreshView");
-					fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
+					//fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
 				}
 			}
 	});
 	
-	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    /*$grid_2.pqGrid({
-		rowDblClick: function( event, ui ) {
-			if (ui.rowData) 
-				{
-					var dataCell = ui.rowData;
-					g_cliente_selec = dataCell.c2;
-					$("#div_ciclo_ruta").hide();
-    				$("#div_ruta").show();
-					fn_grilla_tres(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C4);
-				}
-			}
-	});*/
-
+	
 	$("#div_filtro_bts").draggable({
         handle: ".modal-header"
     });
@@ -415,115 +402,18 @@ function fn_filtro()
 	
 	Filtros = [];
 	
-	if ($("#tx_fil_periodo").val()!='') Filtros.push('Periodo = '+$("#tx_fil_periodo").val());
-	if ($("#cb_fil_regional").val()!='') Filtros.push('Regional = '+$("#cb_fil_regional").val());
-	if ($("#cb_fil_ciclo").val()!='') Filtros.push('Ciclo = '+$("#cb_fil_ciclo").val());
+	if ($("#fec_proc_ini").val()!='') Filtros.push('Fecha Proceso = '+$("#fec_proc_ini").val() + ' hasta ' +$("#fec_proc_fin").val());
+	if ($("#fec_libro_ini").val()!='') Filtros.push('Fecha Libro = '+$("#fec_libro_ini").val() + ' hasta ' +$("#fec_libro_fin").val());
+	if ($("#fec_lec_ini").val()!='') Filtros.push('Fecha Lectura = '+$("#fec_lec_ini").val() + ' hasta ' +$("#fec_lec_fin").val());
+	if ($("#fec_fac_ini").val()!='') Filtros.push('Fecha Facturación = '+$("#fec_fac_ini").val() + ' hasta ' +$("#fec_fac_fin").val());
 	
 	$("#filtro").val(Filtros);
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-/*function fn_filtro_2(per, reg, ciclo, sec)
-{
-	parameters = 
-    {
-		"func":"fn_grid_dos",
-		"empresa":$("#tx_empresa").val(),
-		"p_periodo":per,
-        "p_cod_regional":reg,
-        "p_ciclo":ciclo
-		
-    };
-	
-	Filtros = [];
-	
-	Filtros.push('Periodo = '+per);
-	Filtros.push('Regional = '+reg);
-	Filtros.push('Ciclo = '+ciclo);
-	
-	$("#filtro").val(Filtros);
-}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_filtro_3(per, reg, ciclo, ruta)
-{
-	parameters = 
-    {
-		"func":"fn_grid_tres",
-		"empresa":$("#tx_empresa").val(),
-		"p_periodo":per,
-        "p_cod_regional":reg,
-        "p_ciclo":ciclo,
-		"p_ruta":ruta
-		
-    };
-	
-	Filtros = [];
-	
-	Filtros.push('Periodo = '+per);
-	Filtros.push('Regional = '+reg);
-	Filtros.push('Ciclo = '+ciclo);
-	Filtros.push('Ruta = '+ruta);
-	
-	$("#filtro").val(Filtros);
-}*/
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_carga_periodo()
-{
-	var param= 
-    {
-        "func":"fn_periodo",
-        "empresa":$("#tx_empresa").val(),
-    };
-	
-	HablaServidor(my_url, param, "text", function(text) 
-    {
-        $("#tx_fil_periodo").html(text);
-    });
-	
-}
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_carga_regional()
-{
-	
-	var param= 
-    {
-        "func":"fn_regional",
-        "empresa":$("#tx_empresa").val(),
-		"p_periodo": $("#tx_fil_periodo").val()
-    };
-	
-	HablaServidor(my_url, param, "text", function(text) 
-    {
-        $("#cb_fil_regional").html(text);
-    });
-	
-}
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_carga_ciclo()
-{
-	
-	var param= 
-    {
-        "func":"fn_ciclo",
-        "empresa":$("#tx_empresa").val(),
-		"p_periodo": $("#tx_fil_periodo").val(),
-		"p_cod_regional":$("#cb_fil_regional").val()
-    };
-	
-	HablaServidor(my_url, param, "text", function(text) 
-    {
-        $("#cb_fil_ciclo").html(text);
-    });
-	
-}
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_limpia_filtro()
+function fn_limpia_filtro() 
 {
 	$("#fec_proc_ini").val("");
 	$("#fec_proc_fin").val("");
