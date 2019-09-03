@@ -151,7 +151,7 @@ var obj = {
                cls: "pq-toolbar-export",
                items:
                [
-                   { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
+                  // { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
                ]
            }
         };
