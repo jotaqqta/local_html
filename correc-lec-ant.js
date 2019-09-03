@@ -1,5 +1,5 @@
-var g_modulo="Facturación Clientes - Ajustes";
-var g_titulo="Re-Asignar Ordenes de Ajuste";
+var g_modulo="Facturación Clientes - Lecturas y Consumos";
+var g_titulo="Facturación de Clientes";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
 
@@ -127,6 +127,61 @@ $(document).ready(function() {
 		//$("#tx_orden").focus();
 		return;			
 	});	
+    var data = [
+        { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
+    { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
+    ];
+var obj = {
+            width: '100%',
+            height: 360,
+            showTop: true,
+			showBottom:false,
+            showHeader: true,
+            roundCorners: true,
+            rowBorders: true,
+            columnBorders: true,
+			editable:false,
+            selectionModel: { type: 'cell' },
+            numberCell: { show: false },
+            title: "",
+			pageModel: {type:"local"},
+        	scrollModel:{autoFit:true, theme:true},
+			toolbar:
+           {
+               cls: "pq-toolbar-export",
+               items:
+               [
+                  // { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
+               ]
+           }
+        };
+		
+		
+		obj.colModel = [
+            { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
+            { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
+            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
+            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
+            { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
+            { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
+            { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
+            { title: "Periodo Dias Promediados",width: 80, dataType: "number", dataIndx: "c8",halign:"center", align:"right"},
+             { title: "Periodo Dias Normalizados",width: 80, dataType: "number", dataIndx: "c9",halign:"center", align:"right"}
+             
+             //align: "center", editable: false, minWidth: 100, sortable: false,
+				
+             //render: function (ui) {
+				//	return "<button class='btn btn-primary btn-sm'>Eliminar</button>";
+				//}
+			//}
+        ];
+		
+		obj.dataModel = { data: data };
+
+var grid = pq.grid("#div_grid", obj);
+
+    
+    
 });
 
 
@@ -170,6 +225,7 @@ function fn_carga_orden()
     });
 	
 }
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_roles()
