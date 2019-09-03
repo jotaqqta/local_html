@@ -223,7 +223,7 @@ $(document).ready(function() {
     });
     
     //EVENTO DBL_CLICK DE LA GRILLA
-    $grid_principal.pqGrid({
+    /*$grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
 			if (ui.rowData) 
 				{
@@ -235,7 +235,7 @@ $(document).ready(function() {
 					//fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
 				}
 			}
-	});
+	});*/
 	
 	
 	$("#div_filtro_bts").draggable({
@@ -338,10 +338,10 @@ function fn_setea_grid_principal()
         { title: "Fecha Facturación", width: 90, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
         { title: "Fecha Reparto", width: 90, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
         
-        { title: "Vcto. Normal ", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
-        { title: "Corte Normal", width: 120, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
-        { title: "Vcto. Gubernamental ", width: 120, dataType: "string", dataIndx: "C10", halign:"center", align:"right" },
-        { title: "Corte Gubernamental", width: 120, dataType: "string", dataIndx: "C11", halign:"center", align:"right" }
+        { title: "Vcto. Normal ", width: 100, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
+        { title: "Corte Normal", width: 100, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Vcto. Gobierno ", width: 100, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
+        { title: "Corte Gobierno", width: 100, dataType: "string", dataIndx: "C11", halign:"center", align:"center" }
         ];
 	obj.dataModel = { data: data };	
 	
