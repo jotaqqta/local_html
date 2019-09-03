@@ -158,15 +158,15 @@ var obj = {
 		
 		
 		obj.colModel = [
-            { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1" },
-            { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2" },
-            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3" },
-            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4" },
-            { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5" },
-            { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6"},
-            { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7"},
-            { title: "Periodo Dias Promediados",width: 80, dataType: "number", dataIndx: "c8"},
-             { title: "Periodo Dias Normalizados",width: 80, dataType: "number", dataIndx: "c9"}
+            { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
+            { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
+            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
+            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
+            { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
+            { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
+            { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
+            { title: "Periodo Dias Promediados",width: 80, dataType: "number", dataIndx: "c8",halign:"center", align:"right"},
+             { title: "Periodo Dias Normalizados",width: 80, dataType: "number", dataIndx: "c9",halign:"center", align:"right"}
              
              //align: "center", editable: false, minWidth: 100, sortable: false,
 				
