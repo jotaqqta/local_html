@@ -35,15 +35,19 @@
 
 	<style type="text/css">
 
-	input, textarea
-	{
-		text-transform: uppercase;
-	}
-	.container {
-		margin-right: auto;
-		margin-left: auto;
-		max-width: 1024px; 
-	}
+		input, textarea
+		{
+			text-transform: uppercase;
+		}
+		.container {
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 1024px; 
+		}
+		
+		.color_lb{
+			color:blue;
+		}
 	</style>
 		
 	</head>
@@ -174,40 +178,43 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-6 col-xs-3 col-sm-3">
+			<div class="col-6 col-xs-2 col-sm-2">
 				<div class="form-group">
-					<label for="tx_regional">Cons. Propio Inicial</label>
+					<label for="tx_regional" class="color_lb">Cons. Propio Inicial</label>
 					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
 				</div>
 			</div>
-			<div class="col-6 col-xs-3 col-sm-3">
+			
+			<div class="col-6 col-xs-2 col-sm-2">
 				<div class="form-group">
-					<label for="tx_ruta">Cons. Fact Remarcadores</label>
+					<label for="tx_ruta" class="color_lb">Cons. Fact Remarcadores</label>
 					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
 				</div>
 			</div>
-			<div class="col-6 col-xs-3 col-sm-3">
+			
+			<div class="col-6 col-xs-2 col-sm-2">
 				<div class="form-group">
-					<label for="tx_tarifa">Cons. Propiio Final</label>
+					<label for="tx_tarifa" class="color_lb">Cons. Propio Final</label>
 					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
 				</div>
 			</div>
-			<div class="col-6 col-xs-3 col-sm-3">
+			
+			<div class="col-6 col-xs-2 col-sm-2">
 				<div class="form-group">
-					<label for="tx_tarifa">Consumo a Facturar</label>
+					<label for="tx_tarifa" class="color_lb">Consumo a Facturar</label>
 					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
 				</div>
 			</div>
 		</div>
 	</form>
-	<div id="div_prim0">
-		<div class="panel-body" id="bd_prin">
-			<!-- PARAMQUERY PRINCIPAL -->
-			<div id="div_grid_principal"> 
+	
+	<br>
+	<!-- PARAMQUERY PRINCIPAL -->
+	<div id="div_grid_principal"> 
 
-			</div>
-		</div>
 	</div>
+
+	
 	
 </div>
 <div class="container" id="div_footer"></div>
