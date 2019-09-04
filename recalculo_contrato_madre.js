@@ -123,7 +123,7 @@
 				collapsible:true,
 				editable:false,
 				selectionModel: { type: 'row',mode:'single'},
-				numberCell: { show: true },
+				numberCell: { show: false },
 				pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
 				scrollModel:{theme:true},
 				toolbar:
