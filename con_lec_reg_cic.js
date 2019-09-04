@@ -247,7 +247,7 @@ function fn_setea_grid_principal()
             rowBorders: true,
             columnBorders: true,
             collapsible:true,
-			editable:false,
+			editable:true,
             selectionModel: { type: 'row',mode:'single'},
             numberCell: { show: true },
 			pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
@@ -265,7 +265,7 @@ function fn_setea_grid_principal()
         };
 		
 		obj.colModel = [		
-            { title: "Periodo"  , width: 100, dataType: "string", dataIndx: "C1" , halign:"center",align:"center"},
+            { title: "Periodo"  , width: 100, dataType: "string", dataIndx: "C1" , halign:"center",align:"center", editable:false},
             { title: "Regional", width: 100, dataType: "string", dataIndx: "C2" , halign:"center", align:"center"},
 			{ title: "Ciclo", width: 100, dataType: "string",   dataIndx: "C3" , halign:"center", align:"center"},
             { title: "Contratista", width: 140, dataType: "string", dataIndx: "C4" , halign:"center", align:"left"},
@@ -273,7 +273,7 @@ function fn_setea_grid_principal()
             { title: "Fecha Ingreso", width: 140, dataType: "string", dataIndx: "C6" , halign:"center", align:"center"},
             { title: "Fecha Aprueba", width: 140, dataType: "string",  dataIndx: "C7" , halign:"center", align:"center"},
             { title: "Rol Aprueba", width: 140, dataType: "string", dataIndx: "C8" , halign:"center", align:"center"},
-            { title: "Proceso de Carga", width: 140, dataType: "string", dataIndx: "C9" , halign:"center", align:"center"},
+            { title: "Proceso de Carga", width: 140, dataType: "string", dataIndx: "C9" , halign:"center", align:"center", editable:false},
             { title: "Clientes por Leer", width: 160, dataType: "string", dataIndx: "C10" , halign:"center", align:"right"},
             { title: "Clientes Leidos", width: 160, dataType: "string",  dataIndx: "C11", halign:"center", align:"right"},
             { title: "Clientes Correctos", width: 160, dataType: "string", dataIndx: "C12", halign:"center", align:"right"},
