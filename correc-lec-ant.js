@@ -134,7 +134,7 @@ $(document).ready(function() {
     ];
 var obj = {
             width: '100%',
-            height: 360,
+            height: 200,
             showTop: true,
 			showBottom:false,
             showHeader: true,
