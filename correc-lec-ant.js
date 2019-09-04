@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Facturación de Clientes";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
-
+var $grid_conve;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -76,6 +76,12 @@ $(document).ready(function() {
 	$("#tx_actividad").prop("disabled",true);
 	$("#tx_estado").prop("disabled",true);
 	$("#tx_ruta").prop("disabled",true);
+    
+    
+    //DIBUJA LOS ICONOS DE LOS BOTONES     
+    
+    
+    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
@@ -121,11 +127,18 @@ $(document).ready(function() {
 		if ($.trim($("#co_auditar").text())=="Auditar"){
 			$("#div_grid_dos").show();
 			$("#div_grid").hide();
+            $("#div_grid_dos").pqGrid("refreshView");
 		}
 		else
 			window.close();
 	});
-
+ 
+    $("#co_volver_2").on("click", function (e) {
+		$("#div_grid").show();
+		$("#div_grid_dos").hide();
+		$("#div-grid").pqGrid( "refreshDataAndView" );
+		$(window).scrollTop(0);
+    });
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -218,13 +231,14 @@ var obj = {
 			pageModel: {type:"local"},
         	scrollModel:{autoFit:true, theme:true},
 			toolbar:
-           {
-               cls: "pq-toolbar-export",
-               items:
-               [
-                  // { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
-               ]
-           }
+         {
+            cls: "pq-toolbar-export",
+            items:
+            [
+			
+				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
+            ]
+        }
         };
 		
 		
