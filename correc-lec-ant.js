@@ -165,7 +165,6 @@ $(document).ready(function() {
 	
         }
     });
-	
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -185,13 +184,11 @@ $(document).ready(function() {
 		//$("#tx_orden").focus();
 		return;			
 	});	
-	
     var data = [
         { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
     { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
     ];
-	
-	var obj = {
+var obj = {
             width: '100%',
             height: 200,
             showTop: true,
