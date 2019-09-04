@@ -76,8 +76,9 @@ $(document).ready(function() {
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE ORDEN", g_titulo, $("#tx_orden"));
 				return;
 			}
+			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			fn_carga_orden();
+			//fn_carga_orden();
 		}
 		else{
 			
