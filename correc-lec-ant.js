@@ -139,6 +139,7 @@ $(document).ready(function() {
 		$("#div-grid").pqGrid( "refreshDataAndView" );
 		$(window).scrollTop(0);
     });
+	
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -158,11 +159,13 @@ $(document).ready(function() {
 		//$("#tx_orden").focus();
 		return;			
 	});	
+	
     var data = [
         { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
     { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
     ];
-var obj = {
+	
+	var obj = {
             width: '100%',
             height: 200,
             showTop: true,
@@ -192,7 +195,7 @@ var obj = {
             { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
             { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
             { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
-            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
+            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right", editable:true },
             { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
             { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
             { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
