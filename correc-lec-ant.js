@@ -77,7 +77,8 @@ $(document).ready(function() {
 	$("#tx_estado").prop("disabled",true);
 	$("#tx_ruta").prop("disabled",true);
     
-    
+     //DEFINE LA GRILLA PRINCIPAL
+    fn_setea_grid_principal();
   //DIBUJA LOS ICONOS DE LOS BOTONES     
     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
@@ -172,6 +173,10 @@ $(document).ready(function() {
 		//$("#tx_orden").focus();
 		return;			
 	});	
+    
+  //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_setea_grid_principal()
+{ 
     var data = [
         { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
     { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
@@ -278,7 +283,8 @@ var obj = {
 		obj.dataModel = { data: data };
 
 var grid = pq.grid("#div_grid_dos", obj);
-
+}
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     
 });
 
