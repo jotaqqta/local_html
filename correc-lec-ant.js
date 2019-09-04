@@ -76,17 +76,12 @@ $(document).ready(function() {
 	$("#tx_actividad").prop("disabled",true);
 	$("#tx_estado").prop("disabled",true);
 	$("#tx_ruta").prop("disabled",true);
+    
+    
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
-   // $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-   //$("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-   //$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
-   //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-   //$("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
     
-   
+    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
@@ -118,27 +113,7 @@ $(document).ready(function() {
 			return;	
 		}
 	});
-	$("#co_excel").on("click", function (e) {
-		fn_filtro();
-		e.preventDefault();
-        var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
-		var cabecera = "";
-		for (i=0; i< col_model.length; i++){
-			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-		}
-		$("#excel_cabecera").val(cabecera);
-		var element =$grid_principal.pqGrid("option","dataModel.data");
-		if (element)
-			a= element.length;
-		else 
-			a= 0;
-		if(a>0){
-			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_prim);	
-			$("#frm_Exel").submit();
-			return;
-		}	
-    });
+
 	$("#co_cancelar").on("click",function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
 			fn_limpiar();
@@ -149,21 +124,20 @@ $(document).ready(function() {
 	});
     
     	$("#co_auditar").on("click",function(){
-		if ($.trim($("#co_auditar").text())=="Ver Auditoria"){
-			$("#grilla_uno").hide();
-            $("#grilla_dos").show();
+		if ($.trim($("#co_auditar").text())=="Auditar"){
+			$("#div_grid_dos").show();
+			$("#div_grid").hide();
             $("#div_grid_dos").pqGrid("refreshView");
 		}
-		
+		else
+			window.close();
 	});
  
     $("#co_volver_2").on("click", function (e) {
-		if ($.trim($("#co_volver_2").text())=="Volver"){
-        $("#div_grid").show();
+		$("#div_grid").show();
 		$("#div_grid_dos").hide();
-		$("#div_grid").pqGrid("refreshDataAndView");
-	
-        }
+		$("#div-grid").pqGrid( "refreshDataAndView" );
+		$(window).scrollTop(0);
     });
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
@@ -197,7 +171,7 @@ var obj = {
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
-			editable:true,
+			editable:false,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
             title: "",
@@ -215,16 +189,15 @@ var obj = {
 		
 		
 		obj.colModel = [
-            { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right",editable:false },
-            { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right",editable:false },
-            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right",editable:false },
-            { title: "Lectura Anterior", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right"},
-            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right",editable:false,editable:false },
-            { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right",editable:false },
-            { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right",editable:false },
-            { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right",editable:false },
-            { title: "Periodo Dias Promediados",width: 80, dataType: "number", dataIndx: "c8",halign:"center", align:"right",editable:false },
-             { title: "Periodo Dias Normalizados",width: 80, dataType: "number", dataIndx: "c9",halign:"center", align:"right",editable:false }
+            { title: "Numero medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
+            { title: "Enteros Decimales", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
+            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
+            { title: "Lectura Actual", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
+            { title: "Consumo", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
+            { title: "CONSUMO A FACTURAR GLS",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
+            { title: "Factor Conversión Consumo",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
+            { title: "Periodo Dias Promediados",width: 80, dataType: "number", dataIndx: "c8",halign:"center", align:"right"},
+             { title: "Periodo Dias Normalizados",width: 80, dataType: "number", dataIndx: "c9",halign:"center", align:"right"}
              
              //align: "center", editable: false, minWidth: 100, sortable: false,
 				
@@ -258,11 +231,11 @@ var obj = {
 			pageModel: {type:"local"},
         	scrollModel:{autoFit:true, theme:true},
 			toolbar:
-       {
+         {
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+			
 				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
             ]
         }

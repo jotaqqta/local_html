@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-   <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta http-equiv="X-UA-Compatible" content="IE=10">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <meta http-equiv="cache-control" content="max-age=0">
         <meta http-equiv="cache-control" content="no-cache">
@@ -23,12 +23,15 @@
 		<script src="jquery/inputmask.min.js"></script>
 		<script src="jquery/jquery.inputmask.min.js"></script>
 		
-		<!-- Paramquery -->
-		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
-		<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
-		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
-		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
-		
+                                  
+        <!-- Paramquery -->
+        <script src="pqgrid/v3.4/pqgrid.min.js"></script>
+        <link rel="stylesheet" href="pqgrid/v3.4/pqgrid.min.css">
+  
+        <link rel='stylesheet' href='pqgrid/v3.4/themes/bootstrap/pqgrid.css'>
+        
+        
+        
 		<!-- Boostrap -->
 		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
 		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
@@ -38,7 +41,6 @@
 		<link rel="stylesheet" href="syn_dinamicos/synergia.css">
 		<script language="JavaScript" src="correc-lec-ant.js"></script> 
 		<link rel="stylesheet" href="syn_dinamicos/header.css">
-		
 		
 		<!-- Archivos importantes -->
 
@@ -81,9 +83,8 @@
 					<label for=""></label>
 						<div>
 							<button type="button" class="btn btn-primary" id="co_leer" style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span> Leer</button>
-                              <button id="co_auditar" class="btn btn-basic" style="width:125px;"><span class="glyphicon glyphicon-list-alt" style="padding-right:5px;"></span>Ver Auditoria</button>	
 							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	
-                          
+                            <button id="co_auditar" class="btn btn-basic" style="width:115px;">Auditar</button>	
                             
                             
 						</div>
@@ -155,15 +156,16 @@
 			</div> 
            <br>
       
-         <!-- PARAMQUERY-->
-           <div class="container" id="grilla_uno">
-            <div id="div_grid"> 
-            </div>    
+				    <!-- PARAMQUERY-->
+				<div class="container">
+           <div id="div_grid"> 
+                    </div>    
            </div>
-             	<!-- PARAMQUERY SECUNDARIO -->
-           <div class="container" id="grilla_dos" style="display: none">
-             <div id="div_grid_dos"> 
-             </div>
+           <div class="container">
+      	<!-- PARAMQUERY SECUNDARIO -->
+				<div id="div_grid_dos" style="display: none"> 
+
+				</div>
         </div>
 		</div>	
 		<div class="container">
