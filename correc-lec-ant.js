@@ -14,6 +14,14 @@ $(document).keydown(function(e) {
 	}
 });
 
+
+
+
+
+
+
+
+
 $(document).ready(function() {
     
     // PARA ELIMINAR EL SUBMIT
@@ -108,6 +116,15 @@ $(document).ready(function() {
 		else
 			window.close();
 	});
+    
+    	$("#co_auditar").on("click",function(){
+		if ($.trim($("#co_auditar").text())=="Auditar"){
+			$("#div_grid_dos").show();
+			$("#div_grid").hide();
+		}
+		else
+			window.close();
+	});
 
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
@@ -181,7 +198,58 @@ var obj = {
 
 var grid = pq.grid("#div_grid", obj);
 
-    
+    var data = [
+        { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
+    { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
+    ];
+var obj = {
+            width: '100%',
+            height: 200,
+            showTop: true,
+			showBottom:false,
+            showHeader: true,
+            roundCorners: true,
+            rowBorders: true,
+            columnBorders: true,
+			editable:false,
+            selectionModel: { type: 'cell' },
+            numberCell: { show: false },
+            title: "",
+			pageModel: {type:"local"},
+        	scrollModel:{autoFit:true, theme:true},
+			toolbar:
+           {
+               cls: "pq-toolbar-export",
+               items:
+               [
+                  // { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
+               ]
+           }
+        };
+		
+		
+		obj.colModel = [
+            { title: "Rol",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
+            { title: "Cliente", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
+            { title: "Fecha Modificación", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
+            { title: "Tipo Modificación", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
+            { title: "Dato Anterior", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
+            { title: "Dato Actual",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
+            { title: "Observación",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
+           
+             
+             //align: "center", editable: false, minWidth: 100, sortable: false,
+				
+             //render: function (ui) {
+				//	return "<button class='btn btn-primary btn-sm'>Eliminar</button>";
+				//}
+			//}
+        ];
+		
+		obj.dataModel = { data: data };
+
+var grid = pq.grid("#div_grid_dos", obj);
+
     
 });
 
