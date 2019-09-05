@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=10">
+       <meta http-equiv="X-UA-Compatible" content="IE=10">
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <meta http-equiv="cache-control" content="max-age=0">
         <meta http-equiv="cache-control" content="no-cache">
@@ -22,6 +22,12 @@
 		<script src="jquery/inputmask.extensions.min.js"></script>
 		<script src="jquery/inputmask.min.js"></script>
 		<script src="jquery/jquery.inputmask.min.js"></script>
+		
+		<!-- Paramquery -->
+		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
 		
 		<!-- Boostrap -->
 		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
@@ -67,14 +73,15 @@
 				<br>
 				<div class="row menus">				
 					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-						<label for="tx_orden">N° de Orden</label>
+						<label for="tx_orden">N° de Suministro</label>
 						<input type="text" id="tx_orden" name="tx_orden" class="form-control" style="margin-top: 3px;">
 					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
+					<div class="col-8 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
 					<label for=""></label>
 						<div>
 							<button type="button" class="btn btn-primary" id="co_leer" style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span> Leer</button>
-							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	
+                            <button id="co_auditar" class="btn btn-basic" style="width:125px;"><span class="glyphicon glyphicon-list-alt" style="padding-right:5px;"></span>Ver Auditoria</button>	
+							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	                           
 						</div>
 					</div>
 				</div>
@@ -133,17 +140,35 @@
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="cb_reasigna_nuevo">Actividad</label>
-							<select class="form-control inp_dis" id="cb_reasigna_nuevo" name="cb_reasigna_nuevo"></select>
+							<label for="tx_actividad">Actividad</label>
+							<input id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis" readonly>
 							
 						</div>
 					</div>
 				</div>
 				
-				<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>
-			</div>   
 				
+			</div> 
+           <br>
+            <!-- PARAMQUERY-->
+            <div class="container">
+            <div id="div_grid"> 
+            </div>    
+            </div>
+            <div class="container">
+      	<!-- PARAMQUERY SECUNDARIO -->
+            <div id="div_grid_dos" style="display: none"> 
+            </div>
+        </div>
 		</div>	
+		<div class="container">
+			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
+		</div>
+        
+         
+          				
+                
+       
 		
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		

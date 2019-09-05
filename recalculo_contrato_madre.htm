@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=10;IE=9; IE=8; IE=7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Jquery -->    
+    <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script src="jquery/jquery-3.1.1.min.js"></script>
+	<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+
+	<!-- Paramquery -->
+	<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+	<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+	<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+	<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+	
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+    <script src="/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+	
+    <script src="/syn_globales/syn_util.js"></script>
+    
+	<script language="JavaScript" src="recalculo_contrato_madre.js"></script> 
+	<link rel="stylesheet" href="/syn_dinamicos/header.css">
+	<link rel="stylesheet" href="/syn_dinamicos/synergia.css">
+    <!-- Archivos importantes -->
+
+	<style type="text/css">
+
+		input, textarea
+		{
+			text-transform: uppercase;
+		}
+		.container {
+			margin-right: auto;
+			margin-left: auto;
+			max-width: 1024px; 
+		}
+		
+	</style>
+		
+	</head>
+<body id="bodytmp">
+<div class="bootstrap-syn" > 
+<div class="container" id="div_prim">
+		<div id="div_header">
+		</div>
+	<br>
+
+	<div class="row menus">				
+		<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
+			<label for="tx_cliente">N° de Cliente</label>
+			<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;height:28px;">
+		</div>
+		<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
+		<label for=""></label>
+			<div>
+				<button type="button" class="btn btn-sm btn-default" id="co_leer" style="padding: 6px 20px;"><span class="glyphicon glyphicon-search"></span> Leer</button>
+				<button id="co_cancelar" class="btn btn-sm btn-default" style="padding: 6px 20px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="container" id="div_prin">
+	<form id="frm_div_dat_ubicacion1" name="frm_div_dat_ubicacion1" method="post" action="" target="_blank">
+		<div class="row">
+			<div class="col-12 col-xs-12 col-sm-12">
+				<div class="form-group">
+					<label for="tx_nombre">Nombre</label>
+					<input id="tx_nombre" name="tx_nombre" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-xs-12 col-sm-12">
+				<div class="form-group">
+					<label for="tx_direccion">Dirección</label>
+					<input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_regional">Regional</label>
+					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_ruta">Ruta</label>
+					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_tarifa">Tarifa</label>
+					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_regional">Fecha Proceso</label>
+					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_ruta">Fecha Lectura</label>
+					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_tarifa">Cons Mínimo</label>
+					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_regional">Medidor</label>
+					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_ruta">Unidad de Medida</label>
+					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_tarifa">Es Dudoso</label>
+					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_regional">Unidades Hab.</label>
+					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_ruta">Unidades Hab x Leg.</label>
+					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-6 col-xs-4 col-sm-4">
+				<div class="form-group">
+					<label for="tx_tarifa">Clave Lect/Fact</label>
+					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>		
+		
+		<div class="row">
+			<div class="col-6 col-xs-3 col-sm-3">
+				<div class="form-group">
+					<label for="tx_cons_prop_ini">Cons. Propio Inicial</label>
+					<input id="tx_cons_prop_ini" name="tx_cons_prop_ini" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			
+			
+			
+			<div class="col-6 col-xs-3 col-sm-3">
+				<div class="form-group">
+					<label for="tx_cons_fact_rema">Cons. Fact Remarcadores</label>
+					<input id="tx_cons_fact_rema" name="tx_cons_fact_rema" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			
+			<div class="col-6 col-xs-3 col-sm-3">
+				<div class="form-group">
+					<label for="tx_cons_prop_fin">Cons. Propio Final</label>
+					<input id="tx_cons_prop_fin" name="tx_cons_prop_fin" type="text" class="form-control" readonly>
+				</div>
+			</div>
+			
+			<div class="col-6 col-xs-3 col-sm-3">
+				<div class="form-group">
+					<label for="tx_cons_fact">Consumo a Facturar</label>
+					<input id="tx_cons_fact" name="tx_cons_fact" type="text" class="form-control" readonly>
+				</div>
+			</div>
+		</div>
+		
+	</form>
+	
+	<br>
+	<!-- PARAMQUERY PRINCIPAL -->
+	<div id="div_grid_principal"> 
+
+	</div>
+
+	
+	
+</div>
+<div class="container" id="div_footer"></div>
+<br>
+<br>
+
+    <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+    
+	</div>
+	<div id="dlg_confirma" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" id="mod_alto">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+				</div>
+				<div class="modal-body" style="padding:10px 15px 5px 15px;">
+					<form role="form">
+						<div class="form-group">
+							<div class="form-control-label">EL SUMINISTRO ESTÁ EN PROCESO DE FACTURACIÓN, LOS CAMBIOS QUE SE REALICEN SE HARÁN EFECTIVOS PARA EL SIGUIENTE PERIODO.<BR><BR>DESEA CONTINUAR?</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" id="co_confirma_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+					<button type="button" class="btn" id="co_confirma_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dlg_confirma2" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" id="mod_alto">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+				</div>
+				<div class="modal-body" style="padding:10px 15px 5px 15px;">
+					<form role="form">
+						<div class="form-group">
+							<div class="form-control-label">CLIENTE TIENE SERVICIOS ASOCIADOS, <BR> DESEA CONTINUAR ?.<BR><BR>DESEA CONTINUAR?</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" id="co_confirma_si2" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+					<button type="button" class="btn" id="co_confirma_no2" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dlg_confirma3" class="modal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" id="mod_alto">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+				</div>
+				<div class="modal-body" style="padding:10px 15px 5px 15px;">
+					<form role="form">
+						<div class="form-group">
+							<div class="form-control-label">ESTE CLIENTE NO CUENTA CON LA EDAD SUFICIENTE PARA APLICAR AL DESCUENTO POR JUBILACIÓN. ESTE CAMBIO SERÁ AUDITADO.<BR><BR>DESEA CONTINUAR?</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" id="co_confirma_si3" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+					<button type="button" class="btn" id="co_confirma_no3" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<textarea id="cadenaant" name="cadenaant" cols=90 rows=2 style="font-size: 9pt; display:none"></textarea>
+	<textarea id="cadenaact" name="cadenaact" cols=90 rows=2 style="font-size: 9pt; display:none"></textarea>
+	<input type="hidden" id="tx_empresa" name="tx_empresa">
+	<input type="hidden" id="tx_numsum" name="tx_numsum">
+	<input type="hidden" id="tituloexcel" name="tituloexcel">
+	<input type="hidden" id="tx_rol" name="tx_rol">
+	<input type="hidden" id="tx_ip" name="tx_ip">
+	<input type="hidden" id="tx_rolfun" name="tx_rolfun">
+	<input type="hidden" name="tx_tipoidentidad" id="tx_tipoidentidad">
+	<input type="hidden" name="tx_pnroidentidad" id="tx_pnroidentidad">
+	<input type="hidden" id="tmpvalor" name="tmpvalor">
+	<input type="hidden" id="txt_xlegalizar" name="txt_xlegalizar">
+	<input type="hidden" id="tx_dat1" name="tx_dat1">
+	<input type="hidden" id="tx_dat2" name="tx_dat2">
+	<input type="hidden" id="tx_dat3" name="tx_dat3">
+	<input type="hidden" id="tx_dat4" name="tx_dat4">
+	<input type="hidden" id="tx_dat5" name="tx_dat5">
+	<input type="hidden" id="tx_dat6" name="tx_dat6">
+	<input type="hidden" id="tx_dat7" name="tx_dat7">
+	<input type="hidden" id="tx_dat8" name="tx_dat8">
+	<input type="hidden" id="tx_dat9" name="tx_dat9">
+	<input type="hidden" id="tx_dat10" name="tx_dat10">
+	<input type="hidden" id="tx_dat11" name="tx_dat11">
+	<input type="hidden" id="tx_dat12" name="tx_dat12">
+	<input type="hidden" id="tx_dat13" name="tx_dat13">
+</body>
+</html>
