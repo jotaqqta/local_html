@@ -12,39 +12,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
 		<!-- Jquery /raiz/ -->
-		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
-		<script src="jquery/jquery-3.1.1.min.js"></script>
-		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+		<script src="/raiz/jquery/jquery-3.1.1.min.js"></script>
+		<script src="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
 		<!-- Validaciones con inputmask -->
 		  
-        <script src="jquery/jquery.inputmask.bundle.min.js"></script>      <!--/inputmask4x/-->
-		<script src="jquery/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
-		<script src="jquery/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
-		<script src="jquery/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
-		<script src="jquery/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
+        <script src="/raiz/jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>      <!--/inputmask4x/-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
+		<script src="/raiz/jquery/inputmask4x/inputmask/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
 		
 		<!-- Paramquery -->
-		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
-		<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
-		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
-		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+		<link rel="stylesheet" href="/raiz/pqgrid/v5.6/pqgrid.min.css">
+		<link rel="stylesheet" href="/raiz/pqgrid/v5.6/themes/steelblue/pqgrid.css">
+		<script src="/raiz/pqgrid/v5.6/pqgrid.min.js"></script>
+		<script src="/raiz/pqgrid/v5.6/localize/pq-localize-es.js"></script>
 		
 		<!-- Boostrap -->
-		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
-		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/raiz/bootstrap/v3.3.7/css/bootstrap.min.css">
+		<script src="/raiz/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
 
 		<!-- Principales -->
-		<script src="syn_globales/syn_util.js"></script>   <!--/raiz/-->
-		<link rel="stylesheet" href="syn_dinamicos/synergia.css">  <!--/raiz/-->
-		<script language="JavaScript" src="con_age_fac.js"></script> 
-		<link rel="stylesheet" href="syn_dinamicos/header.css">  <!--/raiz/syn_dinamicos/-->
+		<script src="/raiz/syn_globales/syn_util.js"></script>   <!--/raiz/-->
+		<link rel="stylesheet" href="/raiz/syn_dinamicos/synergia.css">  <!--/raiz/-->
+		<link rel="stylesheet" href="/raiz/syn_dinamicos/header.css">  <!--/raiz/syn_dinamicos/-->
+		
+		<script language="JavaScript" src="con_agenda_fac.js"></script> 
 		
 		<!-- Archivos importantes -->
-		<!-- ojo colocar de nuevo con el asp
-        <script language="JavaScript" src="/Raiz/SYN_Dinamicos/file.js"></script>
+		<!--
+		<script language="JavaScript" src="/Raiz/SYN_Dinamicos/file.js"></script>
 		<script language="JavaScript" src="/raiz/Syn_Conexion/conexion.js"></script>
-		<script language="JavaScript" src="/raiz/Syn_Globales/Seguridad.js"></script>  -->
+		<script language="JavaScript" src="/raiz/Syn_Globales/Seguridad.js"></script>  
+-->
+		
 		<style>
 			.panel-primary {
 				border-color: #cccccc;
@@ -102,7 +105,7 @@
 					<div class="modal-content">
 						<div class="modal-header" >
 							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-							<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la b√∫squeda</h4>
+							<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la b˙squeda</h4>
 						</div>
                      
 						<div class="modal-body">
@@ -112,10 +115,10 @@
 									        <label for="fec_proc_ini"></label>
                                     </div>
                                     <div class="col-sm-4 ">
-									        <label for="fec_proc_ini">Par√°metro Inicial</label>
+									        <label for="fec_proc_ini">Par·metro Inicial</label>
                                     </div>
                                     <div class="col-sm-4">
-									        <label for="fec_proc_fin">Par√°metro Final</label>
+									        <label for="fec_proc_fin">Par·metro Final</label>
 								    </div>
                                     
                                 </div>    
@@ -157,7 +160,7 @@
                                   </div>      
                                  <div class="form-group">    
                                        <div class="col-sm-4">
-                                            <label class="control-label " >Fecha Facturaci√≥n:</label>
+                                            <label class="control-label " >Fecha FacturaciÛn:</label>
 
                                         </div>
                                         <div class="col-sm-4">
@@ -181,7 +184,7 @@
 						</div>
 						
 						<div class="modal-footer">
-							<button type="button" class="btn-left btn btn-primary" id="co_fil_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
+							<button type="button" class="pull-left btn btn-primary" id="co_fil_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
 							<button type="button" class="btn-left btn btn-primary" id="co_fil_aceptar"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
 							<button type="button"  data-dismiss="modal" class="btn btn-default" id="co_close"><span class="glyphicon glyphicon-off"></span> Cancelar</button>
 						</div>
@@ -203,8 +206,12 @@
 			<input type="hidden" id="excel_archivo" name="excel_archivo">
 			<input type="hidden" id="filtro" name="filtro">
 			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+			<input type="hidden" id="tx_pietotal" name="tx_pietotal">	
+			<input type="hidden" id="align_vertical_titulo" name="align_vertical_titulo" value="left">
+			
 		</form>    
 	   <input type="hidden" id="nom_rol" name="nom_rol">
+	   <input type="hidden" id="tx_fec_sevidor" name="tx_fec_servidor">
          
     </body>
     

@@ -16,7 +16,7 @@ vRuta   = Request ("p_ruta")
 vTarifa = Request("p_tarifa")
 vParametro = Request("p_parametro")
 
-'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* 
+'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*' 
 Sub Exec_SQL(p_bandera, p_mysql)
 
     depura2("SQL: " & p_bandera & vbCrLf & p_mysql)
@@ -24,7 +24,7 @@ Sub Exec_SQL(p_bandera, p_mysql)
     
 End Sub
 
-'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* 
+'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* '
 function fn_combo(p_sql)
 	
 	depura2("fn_combo: "&p_sql)
@@ -51,10 +51,10 @@ function fn_combo(p_sql)
 
 end function
 
-'#####################################################################################
+'#####################################################################################'
 select case Request("func")	
-'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	case "fn_regional"
+
+ 	case "fn_regional"
 
 	SQL = " select nuc11.codigo, nuc11.descripcion "
 	SQL = SQL & "from nucssb0011 nuc11 "
@@ -71,8 +71,9 @@ select case Request("func")
 	response.ContentType = "text/plain;"
 	response.write(resp)	
 
-'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	case  "fn_ciclo"
+    '~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    '
+     case  "fn_ciclo"
 
 	SQL = " SELECT TRIM(COD_ATRIBUTO_INI) , TRIM(COD_ATRIBUTO_FIN)  "
 	SQL = SQL & "FROM NUCSSB0014  "
@@ -89,7 +90,8 @@ select case Request("func")
 
 
 	'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	case  "fn_tarifa"
+	'
+    case  "fn_tarifa"
 
 	
 	SQL = "SELECT id_relacion, nemotecnico"
@@ -106,7 +108,8 @@ select case Request("func")
 	response.write(resp)
 
 	'~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-	case "fn_excel"
+	'
+    case "fn_excel"
 
 	Response.ContentType = "application/json;"	
 	
