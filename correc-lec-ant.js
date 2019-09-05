@@ -1,5 +1,5 @@
 var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Facturación de Clientes";
+var g_titulo="Correción de Lectura Anterior";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
 var $grid_conve;
