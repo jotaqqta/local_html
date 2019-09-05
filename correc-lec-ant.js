@@ -14,14 +14,6 @@ $(document).keydown(function(e) {
 	}
 });
 
-
-
-
-
-
-
-
-
 $(document).ready(function() {
     
     // PARA ELIMINAR EL SUBMIT
@@ -193,7 +185,7 @@ var obj = {
 			editable:true,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
-            title: "",
+            title: "Auditoria de Modificaciones",
 			pageModel: {type:"local"},
         	scrollModel:{autoFit:true, theme:true},
             toolbar:
@@ -233,8 +225,7 @@ var obj = {
 var grid = pq.grid("#div_grid", obj);
 
     var data = [
-        { c1:8000, c2:2000, c3: 'MCUB', c4:2014, c5:97985,c6:1000, c7: 0,c8:89,c9:30},
-    { c1:0, c2:0, c3: '', c4:0, c5:0,c6:0, c7: 0,c8:0,c9:0},
+        { c1:'RCARVAJAL', c2:'23455', c3: '01/03/2019', c4:'CORECCION', c5:97985,c6:7985, c7: 'SE CAMBIA LECTURA'},
     ];
 var obj = {
             width: '100%',
@@ -248,7 +239,7 @@ var obj = {
 			editable:false,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
-            title: "",
+            title: "Auditoria de Modificaciones",
 			pageModel: {type:"local"},
         	scrollModel:{autoFit:true, theme:true},
 			toolbar:

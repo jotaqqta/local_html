@@ -164,6 +164,11 @@
 			{
 				$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Recálculo");
 				$("#co_cancelar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
+				
+				$("#tx_cons_prop_ini").val("2197");
+				$("#tx_cons_fact_rema").val("-134902");
+				$("#tx_cons_prop_fin").val("-132705");
+				$("#tx_cons_fact").val("8000");
 			}
 	}
 	
