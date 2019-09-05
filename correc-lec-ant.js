@@ -38,6 +38,7 @@ $(document).ready(function() {
 	//fn_carga_roles();
 	// INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
 	$("#tx_orden").focus();
+   
 
 	// EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
 	
@@ -59,15 +60,46 @@ $(document).ready(function() {
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
 	// SE INHABILITAN LOS IMPUT
-	$("#co_reasignar").prop("disabled",true);
-	$("#tx_cod_cliente").prop("disabled",true);
-	$("#tx_nombre").prop("disabled",true);
-	$("#tx_rol_actual").prop("disabled",true);
-	$("#cb_reasigna_nuevo").prop("disabled",true);
-	$("#tx_tarifa").prop("disabled",true);
+
 	$("#tx_actividad").prop("disabled",true);
 	$("#tx_estado").prop("disabled",true);
 	$("#tx_ruta").prop("disabled",true);
+    $("#tx_orden").prop("disabled",false);
+	$("#tx_cod_cliente").prop("disabled",true);
+	$("#tx_dir").prop("disabled",true);
+	$("#tx_est_client").prop("disabled",true);
+	$('#tx_est_conex').prop("disabled",true);
+	$("#tx_reg").prop("disabled",true);
+	$("#tx_ruta").prop("disabled",true);
+	$("#tx_tarif").prop("disabled",true);
+	$("#tx_actividad").prop("disabled",true);
+    $("#tx_num_medidor").prop("disabled",true);          
+    $("#tx_ent-decim").prop("disabled",true);
+    $("#tx_tipo_med").prop("disabled",true);
+    $("#tx_lec-ant").prop("disabled",false);
+    $("#tx_lec-actu").prop("disabled",true);
+    $("#tx_consum").prop("disabled",true);
+    $("#tx_num_medidor2").prop("disabled",true);          
+    $("#tx_ent-decim2").prop("disabled",true);
+    $("#tx_tipo_med2").prop("disabled",true);
+    $("#tx_lec-ant2").prop("disabled",false);
+    $("#tx_lec-actu2").prop("disabled",true);
+    $("#tx_consum2").prop("disabled",true);
+    $("#tx_regional").prop("disabled",true);
+    $("#tx_ruta").prop("disabled",true);
+    $("#tx_tarifa").prop("disabled",true); 
+    $("#tx_regional").prop("disabled",true); 
+    $("#tx_ruta").prop("disabled",true); 
+    $("#tx_tarifa").prop("disabled",true); 
+    $("#tx_fac_conv_consum").prop("disabled",true); 
+    $("#tx_consum_fact_gls").prop("disabled",true); 
+    $("#tx_peri_dia_prom").prop("disabled",true);
+    $("#tx_peri_dia_norm").prop("disabled",true);
+   
+
+
+
+
     
      //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
@@ -80,46 +112,58 @@ $(document).ready(function() {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
-   
-      $("#co_volver_2").on("click", function (e) {
-		$("#grilla_dos").show();
-		$("#grilla_uno").hide();
-		//$grid_principal.pqGrid( "refreshDataAndView" );
-		$(window).scrollTop(0);
-    });
+
+    
     
   
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
+     
+         
 		if ($.trim($("#co_leer").text())=="Leer"){
 			if( $("#tx_orden").val() == ""){
-				fn_mensaje_boostrap("DIGITE EL NÚMERO DE ORDEN", g_titulo, $("#tx_orden"));
+				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
 				return;
-			}
+                
+			}else{
+                   fn_leer()
+                
+            }
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			//fn_carga_orden();
+			 fn_carga_orden();
+          
+           
 		}
-		else{
+			////else{
 			
-			if( $("#cb_reasigna_nuevo").val() == ""){
-				fn_mensaje_boostrap("SELECCIONE EL USUARIO PARA REALIZAR LA ASIGNACIÓN", g_titulo, $("#cb_reasigna_nuevo"));
-				return;
-			}
-
-			if($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val())
-			{
-				fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
-				return;
-			}
+				////if( $("#cb_reasigna_nuevo").val() == ""){
+				////	fn_mensaje_boostrap("SELECCIONE EL USUARIO PARA REALIZAR LA ASIGNACIÓN", g_titulo, $("#cb_reasigna_nuevo"));
+					////return;
+				////}
+	////
+				////if($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val())
+				////{
+				////	fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
+					////return;
+			////	}
 			//////////////////////////////////////////////////////////////
 			/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
 			//////////////////////////////////////////////////////////////
-			fn_act_orden();
-			return;	
-		}
+				////fn_act_orden();
+				////return;	
+			////}
 	});
+    
+    
+		$("#tx_orden").bind("keydown",function(e){
+			if(e.keyCode == 13){
+				tab = true;
+				fn_leer();
+				return false;
+			}
+		 });
 
 	$("#co_cancelar").on("click",function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
@@ -130,22 +174,8 @@ $(document).ready(function() {
 			window.close();
 	});
     
-    	$("#co_auditar").on("click",function(){
-		if ($.trim($("#co_auditar").text())=="Ver Auditoria"){
-            $("#div_grid").hide();
-            $("#div_grid_dos").show();
-            $("#div_grid_dos").pqGrid("refreshView");
-		}
-		else
-			window.close();
-	});
+   
  
-    $("#co_volver_2").on("click", function (e) {
-		$("#div_grid").show();
-		$("#div_grid_dos").hide();
-		$("#div-grid").pqGrid( "refreshDataAndView" );
-		$(window).scrollTop(0);
-    });
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -247,8 +277,8 @@ var obj = {
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
-				{ type: "button", label: "Volver", attr:"id=co_volver_2", cls:"btn btn-default btn-sm"}
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
+				
             ]
         }
         };
@@ -311,7 +341,7 @@ function fn_carga_orden()
 		}
 		if(dato_ori[0] == "F"){
 			$("#co_leer").prop("disabled",true);
-			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo, $(""));
+			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo,$(""));
 			return;
 		}
 		
@@ -324,6 +354,61 @@ function fn_carga_orden()
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_leer(){
+		if ($.trim($("#co_leer").text()) == "Leer")
+			{
+				
+			$("#tx_orden").val("");
+	$("#tx_cod_cliente").val("45223");
+	$("#tx_dir").val("Maria");
+	$("#tx_est_client").val("Rol-1");
+	$('#tx_est_conex').val("Si");
+	$("#tx_reg").val("3000");
+	$("#tx_ruta").val("Si");
+	$("#tx_tarif").val("Activo");
+	$("#tx_actividad").val("1");
+    $("#tx_num_medidor").val("23");            
+    $("#tx_ent-decim").val("23"); 
+    $("#tx_tipo_med").val("Tipo_1");  
+    $("#tx_lec-ant").val("23444"); 
+ 
+    $("#tx_lec-actu").val("5552");  
+    $("#tx_consum").val("23000"); 
+    $("#tx_regional").val("Region");  
+    $("#tx_ruta").val("23");  
+    $("#tx_tarifa").val("");  
+    $("#tx_regional").val("");  
+    $("#tx_ruta").val("23");  
+    $("#tx_tarifa").val("");  
+    $("#tx_fac_conv_consum").val("10002");  
+    $("#tx_consum_fact_gls").val("1000");  
+    $("#tx_peri_dia_prom").val("2"); 
+    $("#tx_peri_dia_norm ").val("2"); 
+    $("#tx_num_medidor2").val("");         
+    $("#tx_ent-decim2").val(""); 
+    $("#tx_tipo_med2").val(""); 
+    $("#tx_lec-ant2").val(""); 
+    $("#tx_lec-actu2").val(""); 
+    $("#tx_consum2").val(""); 
+
+
+
+
+
+
+
+
+
+
+
+
+          
+			}
+	}
+
+
+
+
 function fn_carga_roles()
 {
     var param= 
