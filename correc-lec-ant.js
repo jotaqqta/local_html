@@ -61,40 +61,7 @@ $(document).ready(function() {
 	$("#div_footer").load("/syn_globales/footer.htm");
 	// SE INHABILITAN LOS IMPUT
 
-	$("#tx_actividad").prop("disabled",true);
-	$("#tx_estado").prop("disabled",true);
-	$("#tx_ruta").prop("disabled",true);
-    $("#tx_orden").prop("disabled",false);
-	$("#tx_cod_cliente").prop("disabled",true);
-	$("#tx_dir").prop("disabled",true);
-	$("#tx_est_client").prop("disabled",true);
-	$('#tx_est_conex').prop("disabled",true);
-	$("#tx_reg").prop("disabled",true);
-	$("#tx_ruta").prop("disabled",true);
-	$("#tx_tarif").prop("disabled",true);
-	$("#tx_actividad").prop("disabled",true);
-    $("#tx_num_medidor").prop("disabled",true);          
-    $("#tx_ent-decim").prop("disabled",true);
-    $("#tx_tipo_med").prop("disabled",true);
-    $("#tx_lec-ant").prop("disabled",false);
-    $("#tx_lec-actu").prop("disabled",true);
-    $("#tx_consum").prop("disabled",true);
-    $("#tx_num_medidor2").prop("disabled",true);          
-    $("#tx_ent-decim2").prop("disabled",true);
-    $("#tx_tipo_med2").prop("disabled",true);
-    $("#tx_lec-ant2").prop("disabled",false);
-    $("#tx_lec-actu2").prop("disabled",true);
-    $("#tx_consum2").prop("disabled",true);
-    $("#tx_regional").prop("disabled",true);
-    $("#tx_ruta").prop("disabled",true);
-    $("#tx_tarifa").prop("disabled",true); 
-    $("#tx_regional").prop("disabled",true); 
-    $("#tx_ruta").prop("disabled",true); 
-    $("#tx_tarifa").prop("disabled",true); 
-    $("#tx_fac_conv_consum").prop("disabled",true); 
-    $("#tx_consum_fact_gls").prop("disabled",true); 
-    $("#tx_peri_dia_prom").prop("disabled",true);
-    $("#tx_peri_dia_norm").prop("disabled",true);
+	$("#tx_lec_ant").prop("disabled", true);
    
 
 
@@ -115,7 +82,9 @@ $(document).ready(function() {
 
     
     
-  
+  	jQuery('#tx_lec_ant').keypress(function(tecla) {
+		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+	});
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
@@ -127,12 +96,12 @@ $(document).ready(function() {
 				return;
                 
 			}else{
-                   fn_leer()
+                 fn_leer()
                 
             }
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			 fn_carga_orden();
+			//fn_carga_orden();
           
            
 		}
@@ -355,58 +324,46 @@ function fn_carga_orden()
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer(){
-		if ($.trim($("#co_leer").text()) == "Leer")
-			{
+	if ($.trim($("#co_leer").text()) == "Leer")
+	{
 				
-			$("#tx_orden").val("");
-	$("#tx_cod_cliente").val("45223");
-	$("#tx_dir").val("Maria");
-	$("#tx_est_client").val("Rol-1");
-	$('#tx_est_conex').val("Si");
-	$("#tx_reg").val("3000");
-	$("#tx_ruta").val("Si");
-	$("#tx_tarif").val("Activo");
-	$("#tx_actividad").val("1");
-    $("#tx_num_medidor").val("23");            
-    $("#tx_ent-decim").val("23"); 
-    $("#tx_tipo_med").val("Tipo_1");  
-    $("#tx_lec-ant").val("23444"); 
- 
-    $("#tx_lec-actu").val("5552");  
-    $("#tx_consum").val("23000"); 
-    $("#tx_regional").val("Region");  
-    $("#tx_ruta").val("23");  
-    $("#tx_tarifa").val("");  
-    $("#tx_regional").val("");  
-    $("#tx_ruta").val("23");  
-    $("#tx_tarifa").val("");  
-    $("#tx_fac_conv_consum").val("10002");  
-    $("#tx_consum_fact_gls").val("1000");  
-    $("#tx_peri_dia_prom").val("2"); 
-    $("#tx_peri_dia_norm ").val("2"); 
-    $("#tx_num_medidor2").val("");         
-    $("#tx_ent-decim2").val(""); 
-    $("#tx_tipo_med2").val(""); 
-    $("#tx_lec-ant2").val(""); 
-    $("#tx_lec-actu2").val(""); 
-    $("#tx_consum2").val(""); 
+		$("#tx_orden").val("");
+		$("#tx_cod_cliente").val("45223");
+		$("#tx_dir").val("Maria");
+		$("#tx_est_client").val("Rol-1");
+		$('#tx_est_conex').val("Si");
+		$("#tx_reg").val("3000");
+		$("#tx_ruta").val("Si");
+		$("#tx_tarif").val("Activo");
+		$("#tx_actividad").val("1");
+		$("#tx_num_medidor").val("23");            
+		$("#tx_ent-decim").val("23"); 
+		$("#tx_tipo_med").val("Tipo_1");  
+		$("#tx_lec_ant").val("23444"); 
 
+		$("#tx_lec-actu").val("5552");  
+		$("#tx_consum").val("23000"); 
+		$("#tx_regional").val("Region");  
+		$("#tx_ruta").val("23");  
+		$("#tx_tarifa").val("");  
+		$("#tx_regional").val("");  
+		$("#tx_ruta").val("23");  
+		$("#tx_tarifa").val("");  
+		$("#tx_fac_conv_consum").val("10002");  
+		$("#tx_consum_fact_gls").val("1000");  
+		$("#tx_peri_dia_prom").val("2"); 
+		$("#tx_peri_dia_norm ").val("2"); 
+		$("#tx_num_medidor2").val("");         
+		$("#tx_ent-decim2").val(""); 
+		$("#tx_tipo_med2").val(""); 
+		$("#tx_lec-ant2").val(""); 
+		$("#tx_lec-actu2").val(""); 
+		$("#tx_consum2").val(""); 
+		
+		$("#tx_lec_ant").prop("disabled", false);  //Para habilitar
 
-
-
-
-
-
-
-
-
-
-
-          
-			}
 	}
-
-
+}
 
 
 function fn_carga_roles()
