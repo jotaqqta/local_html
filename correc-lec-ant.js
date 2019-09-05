@@ -196,14 +196,15 @@ var obj = {
             title: "",
 			pageModel: {type:"local"},
         	scrollModel:{autoFit:true, theme:true},
-			toolbar:
-           {
-               cls: "pq-toolbar-export",
-               items:
-               [
-                  // { type: "button", label: " Agregar Rol",  attr:"id=co_rol", cls:"btn btn-primary btn-sm glyphicon glyphicon-plus"},
-               ]
-           }
+            toolbar:
+        {
+            cls: "pq-toolbar-export",
+            items:
+            [
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+				
+            ]
+        }
         };
 		
 		
