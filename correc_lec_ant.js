@@ -35,12 +35,8 @@ $(document).ready(function() {
 	$("#tx_ip").val(SYNSegIP);
 	$("#tx_rolfun").val(SYNSegRolFuncion);
 	*/
-	//fn_carga_roles();
-	// INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
-	$("#tx_orden").focus();
-   
 
-	// EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
+	$("#tx_orden").focus();
 	
 	jQuery('#tx_orden').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
@@ -66,7 +62,7 @@ $(document).ready(function() {
    
      //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
-  //DIBUJA LOS ICONOS DE LOS BOTONES     
+    //DIBUJA LOS ICONOS DE LOS BOTONES     
     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -76,8 +72,6 @@ $(document).ready(function() {
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
-    
-    
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
@@ -86,9 +80,7 @@ $(document).ready(function() {
 	});
 
 	$("#co_leer").on("click", function(){
-		//Validación de informacion
-     
-         
+		//Validación de informacion  
 		if ($.trim($("#co_leer").text())=="Leer"){
 			if( $("#tx_orden").val() == ""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
@@ -102,20 +94,17 @@ $(document).ready(function() {
             }
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			//fn_carga_orden();
           
-           
 		}
 	});
     
-    
-		$("#tx_orden").bind("keydown",function(e){
-			if(e.keyCode == 13){
-				tab = true;
-				fn_leer();
-				return false;
-			}
-		 });
+	$("#tx_orden").bind("keydown",function(e){
+		if(e.keyCode == 13){
+			tab = true;
+			fn_leer();
+			return false;
+		}
+	 });
 
 	$("#co_cancelar").on("click",function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
@@ -128,8 +117,6 @@ $(document).ready(function() {
 			window.close();
 	});
     
-   
- 
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -146,7 +133,6 @@ $(document).ready(function() {
 		//////////////////////////////////////////////////////////////
 		fn_act_orden();
 
-		//$("#tx_orden").focus();
 		return;			
 	});	
     
@@ -158,7 +144,7 @@ function fn_setea_grid_principal()
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 400,
             showTop: true,
 			showBottom:false,
             showHeader: true,
