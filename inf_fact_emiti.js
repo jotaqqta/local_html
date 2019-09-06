@@ -1,5 +1,5 @@
 var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Correción de Lectura Anterior";
+var g_titulo="Informe de Facturas Emitidas";
 var parameters={};
 var my_url="reasigna_ajuste.asp";
 var $grid_conve;
@@ -15,7 +15,7 @@ $(document).keydown(function(e) {
 });
 
 $(document).ready(function() {
-    
+
     // PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function(){return false;});
     //INGRESA LOS TITULOS
@@ -58,13 +58,11 @@ $(document).ready(function() {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
-
     
+
+      $("#co_filtro").on("click", fn_Muestra_Filtro);
     
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
-		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_lec_ant2').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 
@@ -74,38 +72,24 @@ $(document).ready(function() {
 			if( $("#tx_orden").val() == ""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
 				return;
-                
-			}else{
-
-            	fn_leer()
-            	$("#tx_orden").prop("disabled",true);
-            	$("#tx_lec_ant").focus();                
-            }
+            }else{
+                 fn_leer()
+                }
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
+			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Limpiar");
 			//fn_carga_orden();
           }
 	});
     
-    
-		$("#tx_orden").bind("keydown",function(e){
-			if(e.keyCode == 13){
-				tab = true;
-				fn_leer();
-				return false;
-			}
-		 });
-
-	$("#co_cancelar").on("click",function(){
-		if ($.trim($("#co_cancelar").text())=="Cancelar"){
-			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");			     
-			fn_limpiar();    
+    $("#co_cancelar").on("click",function(){
+		if ($.trim($("#co_cancelar").text())=="Limpiar"){
+			fn_limpiar();
 			return;
 		}
 		else
 			window.close();
 	});
+     $("._input_selector").inputmask("dd/mm/yyyy");
     
    
  
@@ -127,17 +111,24 @@ $(document).ready(function() {
 
 		//$("#tx_orden").focus();
 		return;			
-	});	
+	});
+    
+    
+ 
     
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 { 
     var data = [
-    { C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
+    { C1:'30000', C2: '29', C3:'316', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:7},
+         { C1:'30000', C2: '29', C3:'317', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:4},
+         { C1:'30000', C2: '29', C3:'318', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:6},
+         { C1:'30000', C2: '29', C3:'321', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:3},
+         { C1:'30000', C2: '29', C3:'328', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:2}
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 400,
             showTop: true,
 			showBottom:false,
             showHeader: true,
@@ -154,19 +145,21 @@ function fn_setea_grid_principal()
         {
             cls: "pq-toolbar-export",
             items:
-            [
+            [  { type: "button", label: " Filtros",attr:"id=co_filtro", cls:"btn btn-primary"},
 				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
 				
             ]
         }
         };
-		obj.colModel = [
-            { title: "Funcionario",  resizable: false, width: 80, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
-            { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
-            { title: "Tipo", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
-            { title: "Dato Anterior", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Dato Actual",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
-            { title: "Observación",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
+		obj.colModel = [     
+            { title: "Region",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"center" },
+            { title: "Ciclo", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { title: "Ruta", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"center" },
+            { title: "Est.Cliente", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"center" },
+            { title: "Est.Suministro",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"center"},
+            { title: "Tipo Reparto",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"center"},
+            { title: "Cantidad",width: 80, dataType: "number", dataIndx: "C7",halign:"center", align:"center"}
+           
            
              
            
@@ -222,48 +215,29 @@ function fn_carga_orden()
 	
 }
 
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_Muestra_Filtro()
+{
+    $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
+	$("#div_filtro_bts").on("shown.bs.modal", function () {
+		$("#div_filtro_bts div.modal-footer button").focus();
+			
+	});
+    
 
+}
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer(){
 	if ($.trim($("#co_leer").text()) == "Leer")
 	{
-				
-		
-		$("#tx_cod_cliente").val("45223");
-		$("#tx_dir").val("Maria");
-		$("#tx_est_client").val("Activo");
-		$('#tx_est_conex').val("Si");
-		$("#tx_reg").val("Panamá Metro");
-		$("#tx_ruta").val("8000-01-244");
-		$("#tx_tarif").val("Residencial");
-		$("#tx_actividad").val("Residencial");
-		$("#tx_num_medidor").val("23234345");            
-		$("#tx_ent_decim").val("5/1"); 
-		$("#tx_tipo_med").val("MCUB");  
-		$("#tx_lec_ant").val("2344");
-		$("#tx_lec_actu").val("152");  
-		$("#tx_consum").val("23000"); 
-		$("#tx_fac_conv_consum").val("10002");  
-		$("#tx_consum_fact_gls").val("1000");  
-		$("#tx_peri_dia_prom").val("2"); 
-		$("#tx_peri_dia_norm ").val("2"); 
-		$("#tx_num_medidor2").val("");         
-		$("#tx_ent_decim2").val(""); 
-		$("#tx_tipo_med2").val(""); 
-        $("#tx_lec_actu2").val(""); 
-		$("#tx_consum2").val(""); 
-
-		if($("#tx_lec_ant").val() > $("#tx_lec_actu").val()){
-			fn_mensaje_boostrap("La lectura anterior 1 ("+$("#tx_lec_ant").val()+") es superior a la lectura actual 1 ("+$("#tx_lec_actu").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant"));
-		}
-
-		if($("#tx_lec_ant2").val() > $("#tx_lec_actu2").val()){
-			fn_mensaje_boostrap("La lectura anterior 2 ("+$("#tx_lec_ant2").val()+") es superior a la lectura actual 2 ("+$("#tx_lec_actu2").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant2"));
-		}
-		
-		$("#tx_lec_ant").prop("disabled", false);
-        $("#tx_lec_ant2").prop("disabled", false); //Para habilitar
-
+        $("#tx_fil_periodo").val("");
+		$("#cb_fil_regional").val("");
+		$("#cb_fil_ciclo").val("");
+		$('#tx_ruta').val("");
+	
+	
 	}
 }
 
@@ -306,41 +280,12 @@ function fn_act_orden(){
 
 function fn_limpiar(){
 	
-	$("#tx_cod_cliente").val("");
-	$("#tx_dir").val("");
-	$("#tx_est_client").val("");
-	$('#tx_est_conex').val("");
-	$("#tx_reg").val("");
-	$("#tx_ruta").val("");
-	$("#tx_tarif").val("");
-	$("#tx_actividad").val("");
-	$("#tx_num_medidor").val("");            
-	$("#tx_ent_decim").val(""); 
-	$("#tx_tipo_med").val("");  
-	$("#tx_lec_ant").val(""); 
-	$("#tx_lec_ant2").val(""); 
-
-	$("#tx_lec-actu").val("");  
-	$("#tx_consum").val(""); 
-	$("#tx_regional").val("");  
-	$("#tx_ruta").val("");  
-	$("#tx_tarifa").val("");  
-	$("#tx_regional").val("");  
-	$("#tx_ruta").val("");  
-	$("#tx_tarifa").val("");  
-	$("#tx_fac_conv_consum").val("");  
-	$("#tx_consum_fact_gls").val("");  
-	$("#tx_peri_dia_prom").val(""); 
-	$("#tx_peri_dia_norm ").val(""); 
-	$("#tx_num_medidor2").val("");         
-	$("#tx_ent_decim2").val(""); 
-	$("#tx_tipo_med2").val(""); 
-	$("#tx_lec_actu").val("");  
-	$("#tx_lec_actu2").val(""); 
-	$("#tx_consum2").val(""); 
+		$("#tx_fil_periodo").val("");
+		$("#cb_fil_regional").val("");
+		$("#cb_fil_ciclo").val("");
+		$('#tx_est_conex').val("");
+		$("#tx_reg").val("");
+		$("#tx_ruta").val("");
 	
-	$("#tx_orden").val("");
-	$("#tx_orden").prop("disabled",false);
-	$("#tx_orden").focus();
 }
 	
