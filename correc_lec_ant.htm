@@ -57,6 +57,9 @@
 			#bd_prin{
 				height: calc(100vh - 167px);
 			}
+			.input_ver{
+				margin-top: 8px;
+			}
 
         </style>
 
@@ -152,13 +155,15 @@
 					<label for="tx_num_medidor">Número Medidor
                     </label>
 					<input id="tx_num_medidor" name="tx_num_medidor" type="text" class="form-control" readonly>
-				</div>
+					<input id="tx_num_medidor2" name="tx_num_medidor2" type="text" class="form-control input_ver" readonly>
+				</div> 
 			</div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 				<div class="form-group">
 					<label for="tx_ent_decim">Enteros Decimales
                     </label>
 					<input id="tx_ent_decim" name="tx_ent_decim" type="text" class="form-control" readonly>
+					<input id="tx_ent_decim2" name="tx_ent_decim2" type="text" class="form-control input_ver" readonly>
 				</div>
 			</div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -166,6 +171,7 @@
 					<label for="tx_tipo_med">Tipo Medida
                          </label>
 					<input id="tx_tipo_med" name="tx_tipo_med" type="text" class="form-control" readonly>
+					<input id="tx_tipo_med2" name="tx_tipo_med2" type="text" class="form-control input_ver" readonly>
 				</div>
 			</div>
                     	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -173,6 +179,7 @@
 					<label for="tx_lec_ant">Lectura Anterior
                     </label>
 					<input id="tx_lec_ant" name="tx_lec_ant" type="text" class="form-control" >
+					<input id="tx_lec_ant2" name="tx_lec_ant2" type="text" class="form-control input_ver" >
 				</div>
 			</div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -180,6 +187,7 @@
 					<label for="tx_lec_actu">Lectura Actual
                     </label>
 					<input id="tx_lec_actu" name="tx_lec_actu" type="text" class="form-control" readonly>
+					<input id="tx_lec_actu2" name="tx_lec_actu2" type="text" class="form-control input_ver" readonly>
 				</div>
 			</div>
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -187,48 +195,13 @@
 					<label for="tx_consum">Consumo
                     </label>
 					<input id="tx_consum" name="tx_consum" type="text" class="form-control" readonly>
+					<input id="tx_consum2" name="tx_consum2" type="text" class="form-control input_ver" readonly>
 				</div>
 			</div>
 		</div>
-                	<div class="row">
-			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_num_medidor2"></label>
-					<input id="tx_num_medidor2" name="tx_num_medidor2" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_ent_decim2"></label>
-					<input id="tx_ent_decim2" name="tx_ent-decim2" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_tipo_med2"></label>
-					<input id="tx_tipo_med2" name="tx_tipo_med2" type="text" class="form-control" readonly>
-				</div>
-			</div>
-                    	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_lec_ant2">
-                    </label>
-					<input id="tx_lec_ant2" name="tx_lec_ant2" type="text" class="form-control">
-				</div>
-			</div>
-			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_lec_actu2"></label>
-					<input id="tx_lec_actu2" name="tx_lec_actu2" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-				<div class="form-group">
-					<label for="tx_consum2"></label>
-					<input id="tx_consum" name="tx_consum2" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div><div class="row">
+        
+		
+		<div class="row">
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_fac_conv_consum">Factor Conversión Consumo
@@ -266,15 +239,9 @@
 						</div>
 					</div>
                 </div>
-                
-                
-					
-				
-             
-				
+	
 			</div> 
-           <br>
-            
+           <br>   
            
             <div class="container">
       	<!-- PARAMQUERY SECUNDARIO -->
@@ -285,11 +252,6 @@
 		<div class="container">
 			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
-        
-         
-          				
-                
-       
 		
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		
