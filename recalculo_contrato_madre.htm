@@ -49,247 +49,175 @@
 		
 	</head>
 <body id="bodytmp">
-<div class="bootstrap-syn" > 
-<div class="container" id="div_prim">
-		<div id="div_header">
-		</div>
-	<br>
+	<div class="bootstrap-syn" > 
+		<div class="container" id="div_prim">
+				<div id="div_header">
+				</div>
+			<br>
 
-	<div class="row menus">				
-		<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-			<label for="tx_cliente">N° de Cliente</label>
-			<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;height:28px;">
-		</div>
-		<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
-		<label for=""></label>
-			<div>
-				<button type="button" class="btn btn-sm btn-default" id="co_leer" style="padding: 6px 20px;"><span class="glyphicon glyphicon-search"></span> Leer</button>
-				<button id="co_cancelar" class="btn btn-sm btn-default" style="padding: 6px 20px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	
-			</div>
-		</div>
-	</div>
-
-</div>
-
-<div class="container" id="div_prin">
-	<form id="frm_div_dat_ubicacion1" name="frm_div_dat_ubicacion1" method="post" action="" target="_blank">
-		<div class="row">
-			<div class="col-12 col-xs-12 col-sm-12">
-				<div class="form-group">
-					<label for="tx_nombre">Nombre</label>
-					<input id="tx_nombre" name="tx_nombre" type="text" class="form-control" readonly>
+			<div class="row menus">				
+				<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
+					<label for="tx_cliente">N° de Cliente</label>
+					<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;height:28px;">
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
+				<label for=""></label>
+					<div>
+						<button type="button" class="btn btn-sm btn-default" id="co_leer" style="padding: 6px 20px;"><span class="glyphicon glyphicon-search"></span> Leer</button>
+						<button id="co_cancelar" class="btn btn-sm btn-default" style="padding: 6px 20px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-12 col-xs-12 col-sm-12">
-				<div class="form-group">
-					<label for="tx_direccion">Dirección</label>
-					<input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
-				</div>
-			</div>
+
 		</div>
 
-		<div class="row">
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_regional">Regional</label>
-					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_ruta">Ruta</label>
-					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_tarifa">Tarifa</label>
-					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_regional">Fecha Proceso</label>
-					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_ruta">Fecha Lectura</label>
-					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_tarifa">Cons Mínimo</label>
-					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_regional">Medidor</label>
-					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_ruta">Unidad de Medida</label>
-					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_tarifa">Es Dudoso</label>
-					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_regional">Unidades Hab.</label>
-					<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_ruta">Unidades Hab x Leg.</label>
-					<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			<div class="col-6 col-xs-4 col-sm-4">
-				<div class="form-group">
-					<label for="tx_tarifa">Clave Lect/Fact</label>
-					<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div>		
-		
-		<div class="row">
-			<div class="col-6 col-xs-3 col-sm-3">
-				<div class="form-group">
-					<label for="tx_cons_prop_ini">Cons. Propio Inicial</label>
-					<input id="tx_cons_prop_ini" name="tx_cons_prop_ini" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			
-			
-			
-			<div class="col-6 col-xs-3 col-sm-3">
-				<div class="form-group">
-					<label for="tx_cons_fact_rema">Cons. Fact Remarcadores</label>
-					<input id="tx_cons_fact_rema" name="tx_cons_fact_rema" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			
-			<div class="col-6 col-xs-3 col-sm-3">
-				<div class="form-group">
-					<label for="tx_cons_prop_fin">Cons. Propio Final</label>
-					<input id="tx_cons_prop_fin" name="tx_cons_prop_fin" type="text" class="form-control" readonly>
-				</div>
-			</div>
-			
-			<div class="col-6 col-xs-3 col-sm-3">
-				<div class="form-group">
-					<label for="tx_cons_fact">Consumo a Facturar</label>
-					<input id="tx_cons_fact" name="tx_cons_fact" type="text" class="form-control" readonly>
-				</div>
-			</div>
-		</div>
-		
-	</form>
-	
-	<br>
-	<!-- PARAMQUERY PRINCIPAL -->
-	<div id="div_grid_principal"> 
-
-	</div>
-
-	
-	
-</div>
-<div class="container" id="div_footer"></div>
-<br>
-<br>
-
-    <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
-    
-	</div>
-	<div id="dlg_confirma" class="modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content" id="mod_alto">
-				<div class="modal-header">
-					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-				</div>
-				<div class="modal-body" style="padding:10px 15px 5px 15px;">
-					<form role="form">
+		<div class="container" id="div_prin">
+			<form id="frm_div_dat_ubicacion1" name="frm_div_dat_ubicacion1" method="post" action="" target="_blank">
+				<div class="row">
+					<div class="col-12 col-xs-12 col-sm-12">
 						<div class="form-group">
-							<div class="form-control-label">EL SUMINISTRO ESTÁ EN PROCESO DE FACTURACIÓN, LOS CAMBIOS QUE SE REALICEN SE HARÁN EFECTIVOS PARA EL SIGUIENTE PERIODO.<BR><BR>DESEA CONTINUAR?</div>
+							<label for="tx_nombre">Nombre</label>
+							<input id="tx_nombre" name="tx_nombre" type="text" class="form-control" readonly>
 						</div>
-					</form>
+					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn" id="co_confirma_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-					<button type="button" class="btn" id="co_confirma_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="dlg_confirma2" class="modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content" id="mod_alto">
-				<div class="modal-header">
-					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-				</div>
-				<div class="modal-body" style="padding:10px 15px 5px 15px;">
-					<form role="form">
+				<div class="row">
+					<div class="col-12 col-xs-12 col-sm-12">
 						<div class="form-group">
-							<div class="form-control-label">CLIENTE TIENE SERVICIOS ASOCIADOS, <BR> DESEA CONTINUAR ?.<BR><BR>DESEA CONTINUAR?</div>
+							<label for="tx_direccion">Dirección</label>
+							<input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
 						</div>
-					</form>
+					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn" id="co_confirma_si2" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-					<button type="button" class="btn" id="co_confirma_no2" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="dlg_confirma3" class="modal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content" id="mod_alto">
-				<div class="modal-header">
-					<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-					<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-				</div>
-				<div class="modal-body" style="padding:10px 15px 5px 15px;">
-					<form role="form">
+
+				<div class="row">
+					<div class="col-6 col-xs-4 col-sm-4">
 						<div class="form-group">
-							<div class="form-control-label">ESTE CLIENTE NO CUENTA CON LA EDAD SUFICIENTE PARA APLICAR AL DESCUENTO POR JUBILACIÓN. ESTE CAMBIO SERÁ AUDITADO.<BR><BR>DESEA CONTINUAR?</div>
+							<label for="tx_regional">Regional</label>
+							<input id="tx_regional" name="tx_regional" type="text" class="form-control" readonly>
 						</div>
-					</form>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_ruta">Ruta</label>
+							<input id="tx_ruta" name="tx_ruta" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_tarifa">Tarifa</label>
+							<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control" readonly>
+						</div>
+					</div>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn" id="co_confirma_si3" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-					<button type="button" class="btn" id="co_confirma_no3" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+
+				<div class="row">
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_fec_procesp">Fecha Proceso</label>
+							<input id="tx_fec_procesp" name="tx_fec_procesp" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_fec_lectura">Fecha Lectura</label>
+							<input id="tx_fec_lectura" name="tx_fec_lectura" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_cons_min">Cons Mínimo</label>
+							<input id="tx_cons_min" name="tx_cons_min" type="text" class="form-control" readonly>
+						</div>
+					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_medidor">Medidor</label>
+							<input id="tx_medidor" name="tx_medidor" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_unid_med">Unidad de Medida</label>
+							<input id="tx_unid_med" name="tx_unid_med" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_dudoso">Es Dudoso</label>
+							<input id="tx_dudoso" name="tx_dudoso" type="text" class="form-control" readonly>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_uni_hab">Unidades Hab.</label>
+							<input id="tx_uni_hab" name="tx_uni_hab" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_uni_hab_leg">Unidades Hab x Leg.</label>
+							<input id="tx_uni_hab_leg" name="tx_uni_hab_leg" type="text" class="form-control" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-xs-4 col-sm-4">
+						<div class="form-group">
+							<label for="tx_clave_lec">Clave Lect/Fact</label>
+							<input id="tx_clave_lec" name="tx_clave_lec" type="text" class="form-control" readonly>
+						</div>
+					</div>
+				</div>		
+
+				<div class="row">
+					<div class="col-6 col-xs-3 col-sm-3">
+						<div class="form-group">
+							<label for="tx_cons_prop_ini">Cons. Propio Inicial</label>
+							<input id="tx_cons_prop_ini" name="tx_cons_prop_ini" type="text" class="form-control" readonly>
+						</div>
+					</div>
+
+
+
+					<div class="col-6 col-xs-3 col-sm-3">
+						<div class="form-group">
+							<label for="tx_cons_fact_rema">Cons. Fact Remarcadores</label>
+							<input id="tx_cons_fact_rema" name="tx_cons_fact_rema" type="text" class="form-control" readonly>
+						</div>
+					</div>
+
+					<div class="col-6 col-xs-3 col-sm-3">
+						<div class="form-group">
+							<label for="tx_cons_prop_fin">Cons. Propio Final</label>
+							<input id="tx_cons_prop_fin" name="tx_cons_prop_fin" type="text" class="form-control" readonly>
+						</div>
+					</div>
+
+					<div class="col-6 col-xs-3 col-sm-3">
+						<div class="form-group">
+							<label for="tx_cons_fact">Consumo a Facturar</label>
+							<input id="tx_cons_fact" name="tx_cons_fact" type="text" class="form-control" readonly>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<br>
+			<!-- PARAMQUERY PRINCIPAL -->
+			<div id="div_grid_principal"> 
+
 			</div>
 		</div>
+
+
 	</div>
+	<div class="container" id="div_footer"></div>
+
 	<textarea id="cadenaant" name="cadenaant" cols=90 rows=2 style="font-size: 9pt; display:none"></textarea>
 	<textarea id="cadenaact" name="cadenaact" cols=90 rows=2 style="font-size: 9pt; display:none"></textarea>
 	<input type="hidden" id="tx_empresa" name="tx_empresa">
@@ -298,22 +226,5 @@
 	<input type="hidden" id="tx_rol" name="tx_rol">
 	<input type="hidden" id="tx_ip" name="tx_ip">
 	<input type="hidden" id="tx_rolfun" name="tx_rolfun">
-	<input type="hidden" name="tx_tipoidentidad" id="tx_tipoidentidad">
-	<input type="hidden" name="tx_pnroidentidad" id="tx_pnroidentidad">
-	<input type="hidden" id="tmpvalor" name="tmpvalor">
-	<input type="hidden" id="txt_xlegalizar" name="txt_xlegalizar">
-	<input type="hidden" id="tx_dat1" name="tx_dat1">
-	<input type="hidden" id="tx_dat2" name="tx_dat2">
-	<input type="hidden" id="tx_dat3" name="tx_dat3">
-	<input type="hidden" id="tx_dat4" name="tx_dat4">
-	<input type="hidden" id="tx_dat5" name="tx_dat5">
-	<input type="hidden" id="tx_dat6" name="tx_dat6">
-	<input type="hidden" id="tx_dat7" name="tx_dat7">
-	<input type="hidden" id="tx_dat8" name="tx_dat8">
-	<input type="hidden" id="tx_dat9" name="tx_dat9">
-	<input type="hidden" id="tx_dat10" name="tx_dat10">
-	<input type="hidden" id="tx_dat11" name="tx_dat11">
-	<input type="hidden" id="tx_dat12" name="tx_dat12">
-	<input type="hidden" id="tx_dat13" name="tx_dat13">
 </body>
 </html>

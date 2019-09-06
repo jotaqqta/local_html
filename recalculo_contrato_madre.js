@@ -115,8 +115,8 @@
 				width: "100%",
 				showTop: true,
 				showBottom:true,
-				showTitle : false,
-				title: "Resumen Historico de Clientes Medidos por Ciclo y Ruta",
+				showTitle : true,
+				title: "Clientes Asociados a Contrato Madre",
 				roundCorners: true,
 				rowBorders: true,
 				columnBorders: true,
@@ -125,15 +125,7 @@
 				selectionModel: { type: 'row',mode:'single'},
 				numberCell: { show: false },
 				pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-				scrollModel:{theme:true},
-				toolbar:
-			   {
-				   cls: "pq-toolbar-export",
-				   items:
-				   [
-					   { type: "button", label: " Excel"        ,  attr:"id=co_excel"       , cls:"btn btn-primary"},
-				   ]
-			   }
+				scrollModel:{theme:true}
 			};
 
 			obj.colModel = [		
