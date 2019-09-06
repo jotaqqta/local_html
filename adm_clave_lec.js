@@ -205,7 +205,9 @@ $(document).ready(function() {
                     g_desc_select = dataCell.C2;
 					//$("#div_ciclo_ruta").show();
     				//$("#div_prim0").hide();
-					
+                    
+                    $("#tx_codigo").val(g_cod_select);
+					$("#tx_desc").val(g_desc_select);
                     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
                     $("#div_filtro_bts").on("shown.bs.modal", function () {
                     $("#div_filtro_bts div.modal-footer button").focus();
