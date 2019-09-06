@@ -109,8 +109,23 @@
 						</div>
                      
 						<div class="modal-body">
-							<form role="form" class="form-horizontal" id="frm_filtro">
-								<div class="form-group">
+							 
+                            
+                            <form role="form" class="form-horizontal" id="frm_filtro">
+							
+                                <div class="form-group" id="divcodigo">
+                            	<label class="control-label col-sm-2 col-md-2" for="tx_codigo">Código:</label>
+								<div class="col-sm-2 col-md-2"> 
+									<input type="text" id="tx_codigo" name="tx_codigo" class="form-control inp_dis" style="text-transform: uppercase;" maxlength="20">
+								</div>
+							    
+                                <div class="col-sm-8 col-md-8"> 
+									<input type="text" id="tx_codigo" name="tx_codigo" class="form-control inp_dis" style="text-transform: uppercase;" maxlength="20">
+								</div>
+							    </div>
+                            
+                                
+                                <div class="form-group">
                                     <div class="well well-sm">Aviso Solicitado</div>
                                     <div class="form-check col-sm-3">
                                       <input class="form-check-input" type="checkbox" value="" id="chk_modif">
@@ -146,11 +161,11 @@
                                         Clave Especial
                                       </label>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label for="cb_tipo_lec">Tipo de Lectura</label>
                                         
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
                                         <select class="form-control inp_dis" id="cb_tipo_lec"></select>
                                     </div>
                                     
@@ -199,8 +214,8 @@
 						
 						<div class="modal-footer">
 							<button type="button" class="pull-left btn btn-primary" id="co_fil_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
-							<button type="button" class="btn-left btn btn-primary" id="co_fil_aceptar"><span class="glyphicon glyphicon-floppy-disk"></span> Ingresar</button>
-                            <button type="button" class="btn-left btn btn-primary" id="co_fil_activar"><span class="glyphicon glyphicon-floppy-disk"></span> Desactivar</button>
+							<button type="button" class="btn-left btn btn-primary" id="co_fil_aceptar"><span class="glyphicon glyphicon-pencil"></span> Modificar</button>
+                            <button type="button" class="btn-left btn btn-primary" id="co_fil_activar"><span class="glyphicon glyphicon-remove"></span> Desactivar</button>
 							<button type="button"  data-dismiss="modal" class="btn btn-default" id="co_close"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
 						</div>
 					</div>
