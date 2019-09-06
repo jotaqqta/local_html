@@ -81,6 +81,9 @@ $(document).ready(function() {
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
+	jQuery('#tx_lec_ant2').keypress(function(tecla) {
+		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+	});
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
@@ -92,11 +95,13 @@ $(document).ready(function() {
 				return;
                 
 			}else{
-                 fn_leer()
-                
+
+            	fn_leer()
+            	$("#tx_orden").prop("disabled",true);
+            	$("#tx_lec_ant").focus();                
             }
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Limpiar");
+			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
 			//fn_carga_orden();
           
            
@@ -113,8 +118,10 @@ $(document).ready(function() {
 		 });
 
 	$("#co_cancelar").on("click",function(){
-		if ($.trim($("#co_cancelar").text())=="Limpiar"){
-			fn_limpiar();
+		if ($.trim($("#co_cancelar").text())=="Cancelar"){
+			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");			     
+			fn_limpiar();    
 			return;
 		}
 		else
@@ -262,7 +269,7 @@ function fn_leer(){
 		$("#tx_ent_decim").val("5/1"); 
 		$("#tx_tipo_med").val("MCUB");  
 		$("#tx_lec_ant").val("2344");
-		$("#tx_lec-actu").val("5552");  
+		$("#tx_lec_actu").val("152");  
 		$("#tx_consum").val("23000"); 
 		$("#tx_fac_conv_consum").val("10002");  
 		$("#tx_consum_fact_gls").val("1000");  
@@ -274,6 +281,14 @@ function fn_leer(){
 		
 		$("#tx_lec_actu2").val(""); 
 		$("#tx_consum2").val(""); 
+
+		if($("#tx_lec_ant").val() > $("#tx_lec_actu").val()){
+			fn_mensaje_boostrap("La lectura anterior 1 ("+$("#tx_lec_ant").val()+") es superior a la lectura actual 1 ("+$("#tx_lec_actu").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant"));
+		}
+
+		if($("#tx_lec_ant2").val() > $("#tx_lec_actu2").val()){
+			fn_mensaje_boostrap("La lectura anterior 2 ("+$("#tx_lec_ant2").val()+") es superior a la lectura actual 2 ("+$("#tx_lec_actu2").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant2"));
+		}
 		
 		$("#tx_lec_ant").prop("disabled", false);
         $("#tx_lec_ant2").prop("disabled", false); //Para habilitar
@@ -320,41 +335,41 @@ function fn_act_orden(){
 
 function fn_limpiar(){
 	
-		$("#tx_cod_cliente").val("");
-		$("#tx_dir").val("");
-		$("#tx_est_client").val("");
-		$('#tx_est_conex').val("");
-		$("#tx_reg").val("");
-		$("#tx_ruta").val("");
-		$("#tx_tarif").val("");
-		$("#tx_actividad").val("");
-		$("#tx_num_medidor").val("");            
-		$("#tx_ent_decim").val(""); 
-		$("#tx_tipo_med").val("");  
-		$("#tx_lec_ant").val(""); 
+	$("#tx_cod_cliente").val("");
+	$("#tx_dir").val("");
+	$("#tx_est_client").val("");
+	$('#tx_est_conex').val("");
+	$("#tx_reg").val("");
+	$("#tx_ruta").val("");
+	$("#tx_tarif").val("");
+	$("#tx_actividad").val("");
+	$("#tx_num_medidor").val("");            
+	$("#tx_ent_decim").val(""); 
+	$("#tx_tipo_med").val("");  
+	$("#tx_lec_ant").val(""); 
+	$("#tx_lec_ant2").val(""); 
 
-		$("#tx_lec-actu").val("");  
-		$("#tx_consum").val(""); 
-		$("#tx_regional").val("");  
-		$("#tx_ruta").val("");  
-		$("#tx_tarifa").val("");  
-		$("#tx_regional").val("");  
-		$("#tx_ruta").val("");  
-		$("#tx_tarifa").val("");  
-		$("#tx_fac_conv_consum").val("");  
-		$("#tx_consum_fact_gls").val("");  
-		$("#tx_peri_dia_prom").val(""); 
-		$("#tx_peri_dia_norm ").val(""); 
-		$("#tx_num_medidor2").val("");         
-		$("#tx_ent_decim2").val(""); 
-		$("#tx_tipo_med2").val(""); 
-		
-		$("#tx_lec_actu2").val(""); 
-		$("#tx_consum2").val(""); 
-		
-		$("#tx_lec_ant").prop("disabled", false);
-        $("#tx_lec_ant2").prop("disabled", false); //Para habilitar
-$("#tx_orden").val("");
+	$("#tx_lec-actu").val("");  
+	$("#tx_consum").val(""); 
+	$("#tx_regional").val("");  
+	$("#tx_ruta").val("");  
+	$("#tx_tarifa").val("");  
+	$("#tx_regional").val("");  
+	$("#tx_ruta").val("");  
+	$("#tx_tarifa").val("");  
+	$("#tx_fac_conv_consum").val("");  
+	$("#tx_consum_fact_gls").val("");  
+	$("#tx_peri_dia_prom").val(""); 
+	$("#tx_peri_dia_norm ").val(""); 
+	$("#tx_num_medidor2").val("");         
+	$("#tx_ent_decim2").val(""); 
+	$("#tx_tipo_med2").val(""); 
+	$("#tx_lec_actu").val("");  
+	$("#tx_lec_actu2").val(""); 
+	$("#tx_consum2").val(""); 
+	
+	$("#tx_orden").val("");
+	$("#tx_orden").prop("disabled",false);
 	$("#tx_orden").focus();
 }
 	
