@@ -62,12 +62,8 @@ $(document).ready(function() {
 	// SE INHABILITAN LOS IMPUT
 
 	$("#tx_lec_ant").prop("disabled", true);
+	$("#tx_lec_ant2").prop("disabled", true);
    
-
-
-
-
-    
      //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
   //DIBUJA LOS ICONOS DE LOS BOTONES     
@@ -151,7 +147,7 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 { 
     var data = [
-    { c1:'RCARVAJAL', c2:'23455', c3: '01/03/2019', c4:'CORECCION', c5:97985,c6:7985, c7: 'SE CAMBIA LECTURA'},
+    { C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
     ];
     var obj = {
             width: '100%',
@@ -181,13 +177,12 @@ function fn_setea_grid_principal()
 		
 		
 		obj.colModel = [
-            { title: "Rol",  resizable: false, width: 80, dataType: "number", dataIndx: "c1",halign:"center", align:"right" },
-            { title: "Cliente", width: 80, dataType: "number", dataIndx: "c2",halign:"center", align:"right" },
-            { title: "Fecha Modificación", width: 80, dataType: "string", dataIndx: "c3",halign:"center", align:"right" },
-            { title: "Tipo Modificación", width: 80, dataType: "number", dataIndx: "c4",halign:"center", align:"right" },
-            { title: "Dato Anterior", width: 80, dataType: "number", dataIndx: "c5",halign:"center", align:"right" },
-            { title: "Dato Actual",width: 80, dataType: "number", dataIndx: "c6",halign:"center", align:"right"},
-            { title: "Observación",width: 80, dataType: "number", dataIndx: "c7",halign:"center", align:"right"},
+            { title: "Funcionario",  resizable: false, width: 80, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
+            { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
+            { title: "Tipo", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
+            { title: "Dato Anterior", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
+            { title: "Dato Actual",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Observación",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
            
              
              //align: "center", editable: false, minWidth: 100, sortable: false,
@@ -257,25 +252,18 @@ function fn_leer(){
 		
 		$("#tx_cod_cliente").val("45223");
 		$("#tx_dir").val("Maria");
-		$("#tx_est_client").val("Rol-1");
+		$("#tx_est_client").val("Activo");
 		$('#tx_est_conex').val("Si");
-		$("#tx_reg").val("3000");
-		$("#tx_ruta").val("Si");
-		$("#tx_tarif").val("Activo");
-		$("#tx_actividad").val("1");
-		$("#tx_num_medidor").val("23");            
-		$("#tx_ent_decim").val("23"); 
-		$("#tx_tipo_med").val("Tipo_1");  
-		$("#tx_lec_ant").val("23444"); 
-
+		$("#tx_reg").val("Panamá Metro");
+		$("#tx_ruta").val("8000-01-244");
+		$("#tx_tarif").val("Residencial");
+		$("#tx_actividad").val("Residencial");
+		$("#tx_num_medidor").val("23234345");            
+		$("#tx_ent_decim").val("5/1"); 
+		$("#tx_tipo_med").val("MCUB");  
+		$("#tx_lec_ant").val("2344");
 		$("#tx_lec-actu").val("5552");  
 		$("#tx_consum").val("23000"); 
-		$("#tx_regional").val("Region");  
-		$("#tx_ruta").val("23");  
-		$("#tx_tarifa").val("");  
-		$("#tx_regional").val("");  
-		$("#tx_ruta").val("23");  
-		$("#tx_tarifa").val("");  
 		$("#tx_fac_conv_consum").val("10002");  
 		$("#tx_consum_fact_gls").val("1000");  
 		$("#tx_peri_dia_prom").val("2"); 
