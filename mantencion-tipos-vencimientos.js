@@ -45,7 +45,7 @@ $(document).ready(function() {
     fn_setea_grid_principal();
 
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
+    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
     //EVENTO BOTONES    
     $("#co_cerrar").on("click", function (e) {
@@ -87,6 +87,7 @@ $(document).ready(function() {
 
 	//ACTIVA O DESACTIVA REGISTRO
 	$("#co_activar").on("click", function (e) {
+
 		if($("#tx_descripcion").val() == ""){
 			alert("Debe digitar la descripcion");
 			$("#tx_descripcion").focus();
@@ -110,7 +111,13 @@ $(document).ready(function() {
 			$("#tx_dias_notifi").focus();
 			return;
 		}
-		alert("Se activo el registro.");
+
+		if($("#tx_cod_estado").val() == "A"){
+			alert("Se desactivo el registro.");
+		}else{
+			alert("Se activo el registro.");
+		}  		
+		
 		$('#div_filtro_bts').modal('hide');
     });      
 
@@ -142,6 +149,8 @@ $(document).ready(function() {
 					$("#tx_dias_plazo").val(dataCell.C3);
 					$("#tx_dias_corte").val(dataCell.C4);
 					$("#tx_dias_notifi").val(dataCell.C5);
+					$("#tx_estado").val(dataCell.C8);
+					$("#tx_cod_estado").val(dataCell.C9);
 
 					if(var_domin == "SI"){
 						$("#ch_domingos").prop("checked", true);	
@@ -154,6 +163,12 @@ $(document).ready(function() {
 					}else{
 						$("#ch_sabados").prop("checked", false);
 					}
+
+					if(dataCell.C9 == "A"){
+						$("#co_activar").html("<span class='glyphicon glyphicon-remove'></span> Desactivar");  
+					}else{
+						$("#co_activar").html("<span class='glyphicon glyphicon-ok'></span> Activar");  
+					}    					
 				}
 			}
 	});
@@ -187,8 +202,8 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 {     
 	var data =  [
-		  { C1: 'NORMAL', C2: 'DECRIPCIÓN NORMAL', C3: '1', C4: '5', C5:'3', C6:'SI', C7:'NO'},
-		 { C1: 'URGENTE', C2: 'DESCRIPCION SEGUNDA', C3: '4', C4: '2', C5:'0', C6:'NO', C7:'SI'},
+		  { C1: '1', C2: 'NORMAL', C3: '1', C4: '5', C5:'3', C6:'SI', C7:'NO', C8:'ACTIVO', C9:'A'},
+		 { C1: '2', C2: 'GUBERNAMENTAL', C3: '4', C4: '2', C5:'0', C6:'NO', C7:'SI', C8:'INACTIVO', C9:'I'},
 		 ]
     var obj = {  
 	        height: "100%",
@@ -217,13 +232,15 @@ function fn_setea_grid_principal()
         };
 		
 		obj.colModel = [		
-            { title: "Tipo Vencimiento"  , width: 200, dataType: "string", dataIndx: "C1" , halign:"center",align:"center"},
-            { title: "Descripción", width: 380, dataType: "string", dataIndx: "C2" , halign:"center", align:"center"},
-			{ title: "Días Plazo", width: 130, dataType: "string",   dataIndx: "C3" , halign:"center", align:"center"},
-            { title: "Días Para Corte", width: 130, dataType: "string", dataIndx: "C4" , halign:"center", align:"center"},
-            { title: "Días Para Notificación", width: 150, dataType: "string", dataIndx: "C5" , halign:"center", align:"center"},
+            { title: "Tipo Vencimiento"  , width: 140, dataType: "string", dataIndx: "C1" , halign:"center",align:"center"},
+            { title: "Descripción", width: 280, dataType: "string", dataIndx: "C2" , halign:"center", align:"left"},
+			{ title: "Días Plazo", width: 120, dataType: "string",   dataIndx: "C3" , halign:"center", align:"center"},
+            { title: "Días Para Corte", width: 140, dataType: "string", dataIndx: "C4" , halign:"center", align:"center"},
+            { title: "Días Para Notificación", width: 190, dataType: "string", dataIndx: "C5" , halign:"center", align:"center"},
             { title: "Domingos y Festivos", width: 150, dataType: "string", dataIndx: "C6" , halign:"center", align:"center"},
-            { title: "Sabados y Festivos", width: 150, dataType: "string",  dataIndx: "C7" , halign:"center", align:"center"}
+            { title: "Sabados y Festivos", width: 150, dataType: "string",  dataIndx: "C7" , halign:"center", align:"center"},
+            { title: "Estado", width: 110, dataType: "string",  dataIndx: "C8" , halign:"center", align:"center"},
+            { title: "COD_ESTADO", width: 110, dataType: "string",  dataIndx: "C9" , halign:"center", align:"center", hidden:true}
         ];
 	obj.dataModel = { data: data };	
 	
@@ -232,10 +249,12 @@ function fn_setea_grid_principal()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_Muestra_modal()
 {
+
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
 		$("#div_filtro_bts div.modal-footer button").focus();
 		//Aplicar trabajo cuando esta visible el objeto	
+
 	});
 
 }
