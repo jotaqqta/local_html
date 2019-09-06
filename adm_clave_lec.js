@@ -114,8 +114,8 @@ $(document).ready(function() {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					g_cod_select = dataCell.c1;
-                    g_desc_selec = dataCell.c2;
+					g_cod_select = dataCell.C1;
+                    g_desc_select = dataCell.C2;
 					//$("#div_ciclo_ruta").show();
     				//$("#div_prim0").hide();
 
@@ -252,7 +252,7 @@ function fn_setea_grid_principal()
 function fn_nuevo()
 {
 	fn_limpia();
-   
+    fn_tipolectura();
        /*var parameters = {
 				"func":"fn_fechaservidor"
 				
