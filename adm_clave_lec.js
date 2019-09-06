@@ -1,4 +1,4 @@
-var g_modulo="Facturación de Clientes - Lecturas y Consumos";
+var g_modulo="FacturaciÃ³n de Clientes - Lecturas y Consumos";
 var g_tit = "Administrador de Claves de Lectura";
 var $grid_principal;
 //var $grid_2;
@@ -89,13 +89,13 @@ $(document).ready(function() {
          
         /*if($("#fec_proc_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_proc_ini").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_ini") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE PROCESO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_ini") );
 			return false;
 		   }
 	    }
         if($("#fec_proc_fin").val() != ""){
 		if (fn_validar_fecha($("#fec_proc_fin").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_fin") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE PROCESO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_fin") );
 			return false;
 		   }
 	    }
@@ -111,13 +111,13 @@ $(document).ready(function() {
 
         /*if($("#fec_libro_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_libro_ini").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LIBRO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_ini") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE LIBRO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_ini") );
 			return false;
 		   }
 	    }
         if($("#fec_libro_fin").val() != ""){
 		if (fn_validar_fecha($("#fec_libro_fin").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LIBRO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_fin") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE LIBRO FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_fin") );
 			return false;libro
 		   }
 	    }
@@ -132,13 +132,13 @@ $(document).ready(function() {
 */
          /*if($("#fec_lec_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_lec_ini").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LECTURA INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_ini") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE LECTURA INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_ini") );
 			return false;
 		   }
 	    }
         if($("#fec_lec_fin").val() != ""){
 		if (fn_validar_fecha($("#fec_lec_fin").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LECTURA FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_fin") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE LECTURA FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_fin") );
 			return false;
 		   }
 	    }
@@ -153,13 +153,13 @@ $(document).ready(function() {
         
          /*if($("#fec_fac_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_fac_ini").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE FACTURACIÓN INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_ini") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE FACTURACIï¿½N INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_ini") );
 			return false;
 		   }
 	    }
         if($("#fec_fac_fin").val() != ""){
 		if (fn_validar_fecha($("#fec_fac_fin").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE FACTURACIÓN FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_fin") );
+			fn_mensaje_boostrap("INFORMACIï¿½N INCORRECTA EN EL CAMPO FECHA DE FACTURACIï¿½N FINAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_fin") );
 			return false;
 		   }
 	    }
@@ -201,10 +201,13 @@ $(document).ready(function() {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					//g_cliente_selec = dataCell.c2;
+					g_cod_select = dataCell.C1;
+                    g_desc_select = dataCell.C2;
 					//$("#div_ciclo_ruta").show();
     				//$("#div_prim0").hide();
-					
+                    
+                    $("#tx_codigo").val(g_cod_select);
+					$("#tx_desc").val(g_desc_select);
                     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
                     $("#div_filtro_bts").on("shown.bs.modal", function () {
                     $("#div_filtro_bts div.modal-footer button").focus();
@@ -309,12 +312,12 @@ function fn_setea_grid_principal()
         };
 		
 		obj.colModel = [		
-          { title: "Código", width: 150, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
-        { title: "Descripción", width: 250, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
+          { title: "Cï¿½digo", width: 150, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
+        { title: "Descripciï¿½n", width: 250, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
         { title: "Estado", width: 150, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
         /*{ title: "Fecha Libro", width: 120, dataType: "string", dataIndx: "C4", halign:"center", align:"center"},
         { title: "Fecha Lectura", width: 120, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
-        { title: "Fecha Facturación", width: 125, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Fecha Facturaciï¿½n", width: 125, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
         { title: "Fecha Reparto", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
         
         { title: "Vcto. Normal ", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
@@ -332,8 +335,8 @@ function fn_setea_grid_principal()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_nuevo()
 {
-	fn_limpia_filtro();
-   
+	fn_limpia();
+    fn_tipolectura();
        /*var parameters = {
 				"func":"fn_fechaservidor"
 				
@@ -424,7 +427,7 @@ function fn_filtro()
 	if ($("#fec_proc_ini").val()!='') Filtros.push('Fecha Proceso = '+$("#fec_proc_ini").val() + ' hasta ' +$("#fec_proc_fin").val());
 	if ($("#fec_libro_ini").val()!='') Filtros.push('Fecha Libro = '+$("#fec_libro_ini").val() + ' hasta ' +$("#fec_libro_fin").val());
 	if ($("#fec_lec_ini").val()!='') Filtros.push('Fecha Lectura = '+$("#fec_lec_ini").val() + ' hasta ' +$("#fec_lec_fin").val());
-	if ($("#fec_fac_ini").val()!='') Filtros.push('Fecha Facturación = '+$("#fec_fac_ini").val() + ' hasta ' +$("#fec_fac_fin").val());
+	if ($("#fec_fac_ini").val()!='') Filtros.push('Fecha Facturaciï¿½n = '+$("#fec_fac_ini").val() + ' hasta ' +$("#fec_fac_fin").val());
 	if ($("#cb_tipo_lec").val()!='') Filtros.push('Tipo Lectura = '+$("#cb_tipo_lec").val() );
 	
 	$("#filtro").val(Filtros);
