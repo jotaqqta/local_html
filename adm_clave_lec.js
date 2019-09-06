@@ -1,14 +1,14 @@
 var g_modulo="Facturación de Clientes - Lecturas y Consumos";
-var g_tit = "Consulta Agenda de Facturación";
+var g_tit = "Administrador de Claves de Lectura";
 var $grid_principal;
-var $grid_2;
-var $grid_ruta;
+//var $grid_2;
+//var $grid_ruta;
 var parameters = {};
 var Filtros = [];
 var sql_grid_prim = "";
-var sql_grid_dos = "";
-var sql_grid_3 = "";
-//var my_url = "con_age_fac.asp";
+//var sql_grid_dos = "";
+//var sql_grid_3 = "";
+//var url = "adm_clave_lec.asp";
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
@@ -30,22 +30,22 @@ $(document).ready(function() {
     document.title = g_tit ;
 	document.body.scroll = "yes";
     
-	$("#div_header").load("header.htm", function() {  ///raiz/syn_globales/
+	$("#div_header").load("syn_globales/header.htm", function() {  //  /raiz/
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_tit);	
 	}); 
-	$("#excel_archivo").val("Adenda_facturacion.xls");
+	$("#excel_archivo").val("Agenda_facturacion.xls");
 	
 	//Se cargan las variables que vienen desde el server
 	/*$("#tx_empresa").val(SYNSegCodEmpresa);
 	$("#tx_rol").val(SYNSegRol);
 	$("#tx_ip").val(SYNSegIP);
 	$("#tx_rolfun").val(SYNSegRolFuncion);
-	ojo colocar cuando se active el asp --- NO quitar */
-    
-    
+	  */  
+    $("#tx_empresa").val("1");
+	  
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
-	$("#fec_proc_ini").focus();
+	//$("#fec_proc_ini").focus();
 	$("._input_selector").inputmask("dd/mm/yyyy");
     
     
@@ -54,13 +54,13 @@ $(document).ready(function() {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 	//fn_carga_periodo();
-    $("#div_footer").load("footer.htm"); ///raiz/syn_globales/
+    $("#div_footer").load("syn_globales/footer.htm");  //  /raiz/ 
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    //$("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    //$("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
     //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     //$("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -70,27 +70,15 @@ $(document).ready(function() {
    
     //EVENTO BOTONES
 	
-    $("#co_filtro").on("click", fn_Muestra_Filtro);
+    $("#co_nuevo").on("click", fn_nuevo);
     
      $("#co_cerrar").on("click", function (e) {
         window.close(); 
     });    
     
-    fn_tipolectura();
-    /*$("#co_volver_2").on("click", function (e) {
-		$("#div_prim0").show();
-		$("#div_ciclo_ruta").hide();
-		//$grid_principal.pqGrid( "refreshDataAndView" );
-		$(window).scrollTop(0);
-    });
+    //fn_tipolectura();
 	
-	$("#co_volver_3").on("click", function (e) {
-		$("#div_ruta").hide();
-		$("#div_ciclo_ruta").show();
-		//$grid_principal.pqGrid( "refreshDataAndView" );
-		$(window).scrollTop(0);
-    });*/
-
+	
 	$("#co_close").on("click", function (e) {
         $('#div_filtro_bts').modal('hide'); 
 		fn_limpia_filtro();
@@ -99,7 +87,7 @@ $(document).ready(function() {
 	$("#co_fil_aceptar").on("click", function (e) {
         
          
-        if($("#fec_proc_ini").val() != ""){
+        /*if($("#fec_proc_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_proc_ini").val()) == false){
 			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc_ini") );
 			return false;
@@ -112,16 +100,16 @@ $(document).ready(function() {
 		   }
 	    }
         
-        /*if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
+        if( $("#fec_proc_ini").val() == "" && $("#fec_proc_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_proc_ini"));
                 return;
             }
-        if( $("#fec_proc_ini").val() != "" && $("#fec_proc_fin").val() == "") {
+        /*if( $("#fec_proc_ini").val() != "" && $("#fec_proc_fin").val() == "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_proc_fin"));
                 return;
-            }
-*/
-        if($("#fec_libro_ini").val() != ""){
+            }*/
+
+        /*if($("#fec_libro_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_libro_ini").val()) == false){
 			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LIBRO INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_libro_ini") );
 			return false;
@@ -133,16 +121,16 @@ $(document).ready(function() {
 			return false;libro
 		   }
 	    }
-        /*if( $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() != "") {
+        if( $("#fec_libro_ini").val() == "" && $("#fec_libro_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_libro_ini"));
                 return;
-            }
-        if( $("#fec_libro_ini").val() != "" && $("#fec_libro_fin").val() == "") {
+           }
+       /*  if( $("#fec_libro_ini").val() != "" && $("#fec_libro_fin").val() == "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_libro_fin"));
                 return;
             }
 */
-         if($("#fec_lec_ini").val() != ""){
+         /*if($("#fec_lec_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_lec_ini").val()) == false){
 			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE LECTURA INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lec_ini") );
 			return false;
@@ -154,16 +142,16 @@ $(document).ready(function() {
 			return false;
 		   }
 	    }
-        /*if( $("#fec_lec_ini").val() == "" && $("#fec_lec_fin").val() != "") {
+        if( $("#fec_lec_ini").val() == "" && $("#fec_lec_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_lec_ini"));
                 return;
             }
-        if( $("#fec_lec_ini").val() != "" && $("#fec_lec_fin").val() == "") {
+/*if( $("#fec_lec_ini").val() != "" && $("#fec_lec_fin").val() == "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_lec_fin"));
                 return;
             }*/
         
-         if($("#fec_fac_ini").val() != ""){
+         /*if($("#fec_fac_ini").val() != ""){
 		if (fn_validar_fecha($("#fec_fac_ini").val()) == false){
 			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE FACTURACIÓN INICIAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_fac_ini") );
 			return false;
@@ -175,12 +163,12 @@ $(document).ready(function() {
 			return false;
 		   }
 	    }
-        /*
+        
         if( $("#fec_fac_ini").val() == "" && $("#fec_fac_fin").val() != "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_fac_ini"));
                 return;
             }
-        if( $("#fec_fac_ini").val() != "" && $("#fec_fac_fin").val() == "") {
+       /* if( $("#fec_fac_ini").val() != "" && $("#fec_fac_fin").val() == "") {
                 fn_mensaje_boostrap("Debe diligenciar las dos fechas", g_tit, $("#fec_fac_fin"));
                 return;
             }
@@ -194,55 +182,48 @@ $(document).ready(function() {
             }
         */
         
-        	//fn_carga_grid_principal();
+        fn_carga_grid_principal();
+		
+		$('#div_filtro_bts').modal('hide'); //cerrar modal
 		
 		
         
     });
 	
-	/*$("#tx_fil_periodo").on("change", function (e){
-		if($("#tx_fil_periodo").val() != ""){
-			fn_carga_regional();
-		}
-		else{
-			$("#cb_fil_regional").html("");
-			$("#cb_fil_ciclo").html("");
-		}
-	});*/
-	
-	/*$("#cb_fil_regional").on("change", function (e){
-		if($("#cb_fil_regional").val() != ""){
-			fn_carga_ciclo();
-		}
-		else
-			$("#cb_fil_ciclo").html("");
-	});*/
 	
 	$("#co_fil_limpiar").on("click", function (e) {
         fn_limpia_filtro(); 
     });
     
     //EVENTO DBL_CLICK DE LA GRILLA
-    /*$grid_principal.pqGrid({
+    $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
 					//g_cliente_selec = dataCell.c2;
 					//$("#div_ciclo_ruta").show();
-    				$("#div_prim0").hide();
-					$grid_2.pqGrid("refreshView");
+    				//$("#div_prim0").hide();
+					
+                    $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
+                    $("#div_filtro_bts").on("shown.bs.modal", function () {
+                    $("#div_filtro_bts div.modal-footer button").focus();
+                    });
+                    //$grid_2.pqGrid("refreshView");
 					//fn_grilla_dos(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C5);
 				}
 			}
-	});*/
+	});
 	
 	
 	$("#div_filtro_bts").draggable({
         handle: ".modal-header"
     });
-	    
+	
+    Filtros = [];
+    
 	$("#co_excel").on("click", function (e) {
+		
 		fn_filtro();
 		e.preventDefault();
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
@@ -258,7 +239,8 @@ $(document).ready(function() {
 			a= 0;
 		if(a>0){
 			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_prim);	
+			$("#sql").val(sql_grid_prim);
+            //$("filtro").val(Filtros);		 --lo coloque por si las pero no funciono	
 			$("#frm_Exel").submit();
 			return;
 		}	
@@ -294,19 +276,17 @@ function fn_validar_fecha(value){
 function fn_setea_grid_principal()
 {     
 	var data =  [
-		  { C1: '01/08/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/08/2019', C5:'05/08/2019', C6:'15/08/2019',
-		   C7:'25/08/2019', C8:'25/08/2019', C9:'30/08/2019', C10:'25/08/2019', C11:'30/08/2019'},
-		 { C1: '01/07/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/07/2019', C5:'05/07/2019', C6:'15/07/2019',
-		   C7:'25/07/2019', C8:'25/07/2019', C9:'30/07/2019', C10:'25/07/2019', C11:'30/07/2019'},
-		 { C1: '01/06/2019', C2: '04', C3: 'PANAMA METRO', C4: '04/06/2019', C5:'05/06/2019', C6:'15/06/2019',
-		   C7:'25/06/2019', C8:'25/06/2019', C9:'30/06/2019', C10:'25/06/2019', C11:'30/06/2019'},
-		 ]
+        { C1: '000', C2: 'LECTURA SIN NOVEDAD',   C3: 'ACTIVO' }, 
+        { C1: '004', C2: 'MEDIDOR REGISTRO ROTO', C3:'ACTIVO' },
+        { C1: '005', C2: 'MEDIDOR REGISTRO PARADO', C3:'ACTIVO'}, 
+        { C1: '009', C2: 'TAPA NO ABRE',            C3:'ACTIVO' },	 
+    ]  
     var obj = {  
 	        height: "100%",
             showTop: true,
 			showBottom:true,
             showTitle : false,
-			title: "Consulta de Agenda de Facturación",
+			title: "Administrador de Claves de Lectura",
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
@@ -321,27 +301,26 @@ function fn_setea_grid_principal()
                cls: "pq-toolbar-export",
                items:
                [
-                   { type: "button", label: " Filtros"      ,  attr:"id=co_filtro", cls:"btn btn-primary"},
+                   { type: "button", label: " Nuevo"        ,  attr:"id=co_nuevo"       , cls:"btn btn-primary"},
                    { type: "button", label: " Excel"        ,  attr:"id=co_excel"       , cls:"btn btn-primary"},
-                   { type: "button", label: " Cerrar"       ,  attr:"id=co_cerrar"      , cls:"btn btn-default"},
+                   { type: "button", label: " Cerrar"       ,  attr:"id=co_cerrar"      , cls:"btn btn-secondary"},
                ]
            }
         };
 		
 		obj.colModel = [		
-          { title: "Periodo", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
-        { title: "Ciclo", width: 80, dataType: "string", dataIndx: "C2", halign:"center", align:"center" },
-        //{ title: "Ruta", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center" },
-        { title: "Tipo Lectura", width: 140, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
-        { title: "Fecha Libro", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"center"},
-        { title: "Fecha Lectura", width: 140, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
-        { title: "Fecha Facturación", width: 130, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
-        { title: "Fecha Reparto", width: 130, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
+          { title: "Código", width: 150, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
+        { title: "Descripción", width: 250, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
+        { title: "Estado", width: 150, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        /*{ title: "Fecha Libro", width: 120, dataType: "string", dataIndx: "C4", halign:"center", align:"center"},
+        { title: "Fecha Lectura", width: 120, dataType: "string", dataIndx: "C5", halign:"center", align:"center" },
+        { title: "Fecha Facturación", width: 125, dataType: "string", dataIndx: "C6", halign:"center", align:"center" },
+        { title: "Fecha Reparto", width: 120, dataType: "string", dataIndx: "C7", halign:"center", align:"center" },
         
-        { title: "Vcto. Normal ", width: 100, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
-        { title: "Corte Normal", width: 100, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
+        { title: "Vcto. Normal ", width: 120, dataType: "string", dataIndx: "C8", halign:"center", align:"center" },
+        { title: "Corte Normal", width: 120, dataType: "string", dataIndx: "C9", halign:"center", align:"center" },
         { title: "Vcto. Gobierno ", width: 120, dataType: "string", dataIndx: "C10", halign:"center", align:"center" },
-        { title: "Corte Gobierno", width: 130, dataType: "string", dataIndx: "C11", halign:"center", align:"center" }
+        { title: "Corte Gobierno", width: 130, dataType: "string", dataIndx: "C11", halign:"center", align:"center" }*/
         ];
 	obj.dataModel = { data: data };	
 	
@@ -351,66 +330,44 @@ function fn_setea_grid_principal()
 	
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_Muestra_Filtro()
+function fn_nuevo()
 {
 	fn_limpia_filtro();
-     $("#fec_proc_fin").val(Date());
-    $("#fec_libro_fin").val(Date());
-    $("#fec_lec_fin").val(Date());
-    $("#fec_fac_fin").val(Date());
+   
+       /*var parameters = {
+				"func":"fn_fechaservidor"
+				
+                };
 
+		HablaServidor(url,parameters,"text", function(text) 
+		{
+			var param = text.split("|");
+			$("#fec_proc_fin").val(param[0]);
+    		 $("#fec_libro_fin").val(param[0]);
+			$("#fec_lec_fin").val(param[0]);
+			$("#fec_fac_fin").val(param[0]);
+
+		});		
+      */
+   
+   
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
 		$("#div_filtro_bts div.modal-footer button").focus();
 		//Aplicar trabajo cuando esta visible el objeto	
+		
 	});
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-/*function fn_grilla_dos(per, reg, ciclo, sec)
-{
-    fn_filtro_2(per, reg, ciclo, sec);
-	var total_register;
-	
-    var dataModel = 
-    {        
-        location: "remote",
-        sorting: "local",
-        dataType: "json",
-        method: "POST",
-        sortDir: ["up", "down"],
-		async:false,
-        url: my_url+"?"+jQuery.param( parameters ),
-        getData: function (dataJSON) 
-        {
-			total_register = $.trim(dataJSON.totalRecords);
-			var data = dataJSON.data;
-			sql_grid_dos=dataJSON.sql;
-			if(total_register>=1)
-			{
-				$("#co_excel2").attr("disabled", false);
-			}
-            return { data: dataJSON.data};
-        },
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-			fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-        }        
-    }
-
-	$grid_2.pqGrid( "option", "dataModel", dataModel );
-    $grid_2.pqGrid( "refreshDataAndView" );
-    $grid_2.pqGrid( "option", "title", "Clientes Medidos Agrupados por Ciclo y Ruta - [ Periodo: "+ per +" - Regional: "+ reg +" - Ciclo: "+ ciclo+" )");
-
-}*/
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_grid_principal()
 {
 	fn_filtro();
 	var total_register;
-   var dataModel = 
+   
+    var dataModel = 
     {
         location: "remote",
         sorting: "local",
@@ -418,7 +375,7 @@ function fn_carga_grid_principal()
         method: "POST",
         sortDir: ["up", "down"],
 		async:false,
-        url: my_url+"?"+jQuery.param( parameters ),
+        url: url+"?"+jQuery.param( parameters ),
         getData: function (dataJSON) 
         {
 			total_register = $.trim(dataJSON.totalRecords);
@@ -442,42 +399,6 @@ function fn_carga_grid_principal()
 	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-/*function fn_grilla_tres(per, reg, ciclo, ruta)
-{
-    fn_filtro_3(per, reg, ciclo, ruta);
-	
-    var dataModel = 
-    {        
-        location: "remote",
-        sorting: "local",
-        dataType: "json",
-        method: "POST",
-        sortDir: ["up", "down"],
-		async:false,
-        url: my_url+"?"+jQuery.param( parameters ),
-        getData: function (dataJSON) 
-        {
-			total_register = $.trim(dataJSON.totalRecords);
-			var data = dataJSON.data;
-			sql_grid_3=dataJSON.sql;
-			if(total_register>=1)
-			{
-				$("#co_excel2").attr("disabled", false);
-			}
-            return { data: dataJSON.data};
-        },
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-			fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-        }        
-    }
-
-	$grid_ruta.pqGrid( "option", "dataModel", dataModel );
-    $grid_ruta.pqGrid( "refreshDataAndView" );
-    $grid_ruta.pqGrid( "option", "title", "Clientes Facturados por Ruta - [ Periodo: "+ per +" - Regional: "+ reg +" - Ciclo: "+ ciclo+" - Ruta: "+ruta+" )");
-
-}*/
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_filtro()
@@ -486,10 +407,16 @@ function fn_filtro()
     {
 		"func":"fn_grid_principal",
 		"empresa":$("#tx_empresa").val(),
-		"p_periodo":$("#tx_fil_periodo").val(),
-        "p_cod_regional":$("#cb_fil_regional").val(),
-        "p_ciclo":$("#cb_fil_ciclo").val()
-		
+		"p_fec_proc_ini":$("#fec_proc_ini").val(),
+        "p_fec_proc_fin":$("#fec_proc_fin").val(),
+        "p_fec_libro_ini":$("#fec_libro_ini").val(),
+        "p_fec_libro_fin":$("#fec_libro_fin").val(),
+        "p_fec_lec_ini":$("#fec_lec_ini").val(),
+        "p_fec_lec_fin":$("#fec_lec_fin").val(),
+        "p_fec_fac_ini":$("#fec_fac_ini").val(),
+        "p_fec_fac_fin":$("#fec_fac_fin").val(),
+		"p_cb_tipo_lec":$("#cb_tipo_lec").val(),
+        
     };
 	
 	Filtros = [];
@@ -498,6 +425,7 @@ function fn_filtro()
 	if ($("#fec_libro_ini").val()!='') Filtros.push('Fecha Libro = '+$("#fec_libro_ini").val() + ' hasta ' +$("#fec_libro_fin").val());
 	if ($("#fec_lec_ini").val()!='') Filtros.push('Fecha Lectura = '+$("#fec_lec_ini").val() + ' hasta ' +$("#fec_lec_fin").val());
 	if ($("#fec_fac_ini").val()!='') Filtros.push('Fecha Facturación = '+$("#fec_fac_ini").val() + ' hasta ' +$("#fec_fac_fin").val());
+	if ($("#cb_tipo_lec").val()!='') Filtros.push('Tipo Lectura = '+$("#cb_tipo_lec").val() );
 	
 	$("#filtro").val(Filtros);
 }
@@ -505,11 +433,7 @@ function fn_filtro()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_tipolectura()
 	{
-		/*$("#cb_tipo_lec").html("");
-		//$("#cb_ciclo").html("");
-		//$("#tx_desc").val("");
-		//if($.trim($("#cb_tarifa").val())=="")
-		//	return false;
+		$("#cb_tipo_lec").html("");
 		
 		var param= 
 			{
@@ -522,8 +446,8 @@ function fn_tipolectura()
 				 $("#cb_tipo_lec").html(text);
 				
 			});
-        */
-        $("#cb_tipo_lec").html("<option value =''>  </option><option value='8100' selected>lectura 1</option><option value='1000'  >lactura 2</option><option value='4000'>lectura 3</option><option value='2000'>lectura 4</option><option value='3000'  >lectura 5</option>");
+       
+        //$("#cb_tipo_lec").html("<option value =''>  </option><option value='8100' selected>lectura 1</option><option value='1000'  >lactura 2</option><option value='4000'>lectura 3</option><option value='2000'>lectura 4</option><option value='3000'  >lectura 5</option>");
 	}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
