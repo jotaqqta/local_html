@@ -99,6 +99,7 @@ $(document).ready(function() {
     	fn_limpia_modal();
     });     
 
+	/*
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
@@ -117,6 +118,7 @@ $(document).ready(function() {
 				}
 			}
 	});
+	*/
 
 	$("#div_filtro_bts").draggable({
         handle: ".modal-header"
@@ -183,7 +185,7 @@ function fn_setea_grid_principal()
             { title: "Regional"  , width: 150, dataType: "string", dataIndx: "C1" , halign:"center",align:"center"},
             { title: "Ciclo", width: 150, dataType: "string", dataIndx: "C2" , halign:"center", align:"center"},
 			{ title: "Ruta", width: 150, dataType: "string",   dataIndx: "C3" , halign:"center", align:"center"},
-            { title: "Cantidad Factuas", width: 150, dataType: "string", dataIndx: "C4" , halign:"center", align:"center"}
+            { title: "Cantidad Facturas", width: 150, dataType: "string", dataIndx: "C4" , halign:"center", align:"center"}
         ];
 	obj.dataModel = { data: data };	
 	
@@ -195,9 +197,9 @@ function fn_Muestra_modal()
 
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
-		$("#fec_proc").focus();	
-		//$("#div_filtro_bts div.modal-footer button").focus();
-		//Aplicar trabajo cuando esta visible el objeto	
+	$("#fec_proc").focus();	
+	//$("#div_filtro_bts div.modal-footer button").focus();
+	//Aplicar trabajo cuando esta visible el objeto	
 
 	});
 
