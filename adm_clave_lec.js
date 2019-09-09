@@ -82,7 +82,7 @@ $(document).ready(function() {
 		fn_limpia();
     });
 	
-	$("#co_fil_aceptar").on("click", function (e) {
+	$("#co_aceptar").on("click", function (e) {
         
          
       
@@ -96,7 +96,7 @@ $(document).ready(function() {
     });
 	
 	
-	$("#co_fil_limpiar").on("click", function (e) {
+	$("#co_limpiar").on("click", function (e) {
         fn_limpia(); 
     });
     
@@ -112,7 +112,9 @@ $(document).ready(function() {
     				//$("#div_prim0").hide();
                     
                     $("#tx_codigo").val(g_cod_select);
+                    $("#tx_codigo").attr("readonly", true);
 					$("#tx_desc").val(g_desc_select);
+                    $("#tx_desc").attr("readonly", true);
                     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
                     $("#div_filtro_bts").on("shown.bs.modal", function () {
                     $("#div_filtro_bts div.modal-footer button").focus();
@@ -259,7 +261,17 @@ function fn_nuevo()
 
 		});		
       */
-   
+    $("#tx_codigo").attr("readonly", false);	
+    $("#tx_desc").attr("readonly", false);	
+    
+    //$("#tx_obs").val("");
+    $("#co_aceptar").text("Adicionar");
+	$("#co_elimina").hide();
+	//$("#co_aceptar").show();
+    //$("#div_modificar").dialog("open");
+	$("#tx_codigo").focus(); 
+
+    
    
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
