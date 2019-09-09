@@ -32,22 +32,12 @@ $(document).ready(function() {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 	
-	$("#tx_orden").on("keydown", function(event) {
-        var tecla =  event.which || event.keyCode;
-        if(tecla==13)
-        {
-			if(!$("#tx_cliente").prop("readonly"))  //Readonly se deshabilita el enter
-			{	
-				$("#co_leer").trigger( "click" );
-				return false;
-			}
-        }
-    });
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
   // SE INHABILITAN LOS IMPUT
-    $("#tx_lec_ant").prop("disabled", true);
-	$("#tx_lec_ant2").prop("disabled", true);
+    $("#cb_fil_periodo").prop("disabled", true);
+	$("#cb_fil_ciclo").prop("disabled", true);
+    $("#cb_fil_regional").prop("disabled", true);
   //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
   //DIBUJA LOS ICONOS DE LOS BOTONES     
@@ -66,23 +56,28 @@ $(document).ready(function() {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 
-	$("#co_leer").on("click", function(){
+	$("#co_aceptar").on("click", function(){
 		//Validación de informacion
-     if ($.trim($("#co_leer").text())=="Leer"){
-			if( $("#tx_orden").val() == ""){
-				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
+     if ($.trim($("#co_aceptar").text())=="Aceptar"){
+			if( $("#tx_fil_proceso").val() == ""){
+				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#tx_fil_proceso"));
 				return;
             }else{
-                 fn_leer()
+           fn_carga_opc_conve
                 }
-			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Limpiar");
 			//fn_carga_orden();
           }
 	});
-    
-    $("#co_cancelar").on("click",function(){
-		if ($.trim($("#co_cancelar").text())=="Limpiar"){
+        $("#co_limpiar").on("click",function(){
+		if ($.trim($("#co_limpiar").text())=="Limpiar"){
+			fn_limpiar();
+			return;
+		}
+		else
+			window.close();
+	});
+    $("#co_close").on("click",function(){
+		if ($.trim($("#co_close").text())=="Cancelar"){
 			fn_limpiar();
 			return;
 		}
@@ -90,31 +85,6 @@ $(document).ready(function() {
 			window.close();
 	});
      $("._input_selector").inputmask("dd/mm/yyyy");
-    
-   
- 
-	$("#co_reasignar").on("click",function(){
-		if( $("#cb_reasigna_nuevo").val() == ""){
-			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
-
-		if($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val())
-		{
-			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
-		//////////////////////////////////////////////////////////////
-		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
-		//////////////////////////////////////////////////////////////
-		fn_act_orden();
-
-		//$("#tx_orden").focus();
-		return;			
-	});
-    
-    
- 
     
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
@@ -229,19 +199,6 @@ function fn_Muestra_Filtro()
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_leer(){
-	if ($.trim($("#co_leer").text()) == "Leer")
-	{
-        $("#tx_fil_periodo").val("");
-		$("#cb_fil_regional").val("");
-		$("#cb_fil_ciclo").val("");
-		$('#tx_ruta').val("");
-	
-	
-	}
-}
-
-
 function fn_carga_roles()
 {
     var param= 
@@ -283,9 +240,27 @@ function fn_limpiar(){
 		$("#tx_fil_periodo").val("");
 		$("#cb_fil_regional").val("");
 		$("#cb_fil_ciclo").val("");
-		$('#tx_est_conex').val("");
-		$("#tx_reg").val("");
-		$("#tx_ruta").val("");
+        $("#tx_fil_proceso").val("");
+        $("#tx_fil_proceso").focus();
+
+    
+	
 	
 }
+function fn_carga_opc_conve(){
+$("#tx_fil_periodo").html("<option value ='10'></option>");
+		$("#cb_fil_regional").val("<option value ='10'></option>");
+		$("#cb_fil_ciclo").val("<option value ='10'></option>");
+    
+}
+
+
+$("#cb_tipo_conve").on("change", function(evt)
+{
+       if($(this).val() ==""){
+           fn_limpiar2(); //se limpian los combos inferiores
+       }else{
+fn_carga_opc_conve(); //Se carga el combo siguiente
+       }
+});  
 	

@@ -72,59 +72,50 @@
             
         <!-- Modal -->
         <div id="div_filtro_bts" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="width: 350px;">
                 <div class="modal-content">
                     <div class="modal-header" >
 						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
 						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la busqueda</h4>
                     </div>
         <div class="modal-body">
-                    <div class="container">
-            
-                   <div class="row">
-			<div class="col-lg-2 col-mg-2">
-				<div class="form-group">
-					<label class="control-label" for="tx_fil_periodo">Fecha Proceso:</label>
-					<input id="tx_fil_periodo" class="form-control input-normal _input_selector"placeholder="" value="">
-				</div>
-			</div>
-                </div>
-                        
-            <div class="row">
-			<div class="col-lg-5 col-mg-2">
-				<div class="form-group">
-					<label class="control-label" for="cb_fil_regional">Regional:</label>
-					<select class="form-control" id="cb_fil_regional"></select>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-5 col-mg-2">
-				<div class="form-group">
-					<label class="control-label" for="cb_fil_ciclo">Ciclo:</label>
-					<select class="form-control" id="cb_fil_ciclo"></select>
-				</div>
-			</div>
-                        </div>
-            	<div class="row">
-			<div class="col-lg-2 col-mg-2">
-				<div class="form-group">
-					<label class="control-label" for="tx_ruta">Ruta:</label>
-					<input type="text" maxlength="4" id="tx_ruta" name="tx_ruta" class="form-control inp_dis">
-				</div>
-			</div>
-		</div>
-                     
-                        </div>
+                <form role="form" class="form-horizontal">
+                <div class="form-group">
+                <label class="control-label col-sm-3" for="tx_fil_proceso">Fecha Proceso:</label>
+                <div class="col-sm-9">
+                    <input id="tx_fil_proceso" class="form-control inp_normal _input_selector" name="tx_fil_proceso"
+                       placeholder="" value="">
+                    </div>
+              </div>
+                <div class="form-group">
+									<label class="control-label col-sm-3" for="cb_fil_periodo" >Periodo:</label>
+									<div class="col-sm-9">
+										<select class="form-control inp_dis" id="cb_fil_periodo" name="cb_fil_periodo"></select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3" for="cb_fil_regional">Regional:</label>
+									<div class="col-sm-9">
+										<select class="form-control inp_dis" id="cb_fil_regional" name="cb_fil_opc_conve"></select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-3" for="cb_fil_ciclo">Ciclo:</label>
+									<div class="col-sm-9">
+										<select class="form-control inp_dis" id="cb_fil_ciclo" name="cb_fil_opc_conve"></select>
+									</div>
+								</div>
+								   
+							</form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-left btn btn-primary" id="co_fil_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
-                        <button type="button" class="btn-left btn btn-primary" id="co_fil_aceptar"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+                        <button type="button" class="btn-left btn btn-primary" id="co_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
+                        <button type="button" class="btn-left btn btn-primary" id="co_aceptar"><span class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
                         <button type="button"  data-dismiss="modal" class="btn btn-default" id="co_close"><span class="glyphicon glyphicon-off"></span> Cancelar</button>
                     </div>
                 </div>
             </div>
+            	
         </div>
         
         <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
