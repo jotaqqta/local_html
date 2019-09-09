@@ -1,7 +1,7 @@
 var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Correción de Lectura Anterior";
-var parameters = {};
-var my_url = "reasigna_ajuste.asp";
+var parameters={};
+var my_url="reasigna_ajuste.asp";
 var $grid_conve;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
@@ -18,12 +18,10 @@ $(document).ready(function() {
     
     // PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function(){return false;});
-
     //INGRESA LOS TITULOS
     document.title = g_titulo ;
 	document.body.scroll = "yes";
-    
-	$("#div_header").load("/syn_globales/header.htm", function() {
+    $("#div_header").load("/syn_globales/header.htm", function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
@@ -35,13 +33,12 @@ $(document).ready(function() {
 	$("#tx_ip").val(SYNSegIP);
 	$("#tx_rolfun").val(SYNSegRolFuncion);
 	*/
-	//fn_carga_roles();
-	// INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
-	$("#tx_orden").focus();
-   
 
-	// EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
+	$("#tx_orden").focus();
 	
+    // INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
+	$("#tx_orden").focus();
+   // EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
 	jQuery('#tx_orden').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
@@ -59,15 +56,14 @@ $(document).ready(function() {
     });
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
-	// SE INHABILITAN LOS IMPUT
-
-	$("#tx_lec_ant").prop("disabled", true);
+  // SE INHABILITAN LOS IMPUT
+    $("#tx_lec_ant").prop("disabled", true);
 	$("#tx_lec_ant2").prop("disabled", true);
-   
-     //DEFINE LA GRILLA PRINCIPAL
+  //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
-  //DIBUJA LOS ICONOS DE LOS BOTONES     
+    //DIBUJA LOS ICONOS DE LOS BOTONES     
     
+  //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
@@ -76,8 +72,6 @@ $(document).ready(function() {
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
-    
-    
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
@@ -87,9 +81,7 @@ $(document).ready(function() {
 
 	$("#co_leer").on("click", function(){
 		//Validación de informacion
-     
-         
-		if ($.trim($("#co_leer").text())=="Leer"){
+     if ($.trim($("#co_leer").text())=="Leer"){
 			if( $("#tx_orden").val() == ""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
 				return;
@@ -103,19 +95,16 @@ $(document).ready(function() {
 			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
 			//fn_carga_orden();
-          
-           
-		}
+          }
 	});
     
-    
-		$("#tx_orden").bind("keydown",function(e){
-			if(e.keyCode == 13){
-				tab = true;
-				fn_leer();
-				return false;
-			}
-		 });
+	$("#tx_orden").bind("keydown",function(e){
+		if(e.keyCode == 13){
+			tab = true;
+			fn_leer();
+			return false;
+		}
+	 });
 
 	$("#co_cancelar").on("click",function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
@@ -128,8 +117,6 @@ $(document).ready(function() {
 			window.close();
 	});
     
-   
- 
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -144,9 +131,7 @@ $(document).ready(function() {
 		//////////////////////////////////////////////////////////////
 		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
 		//////////////////////////////////////////////////////////////
-		fn_act_orden();
 
-		//$("#tx_orden").focus();
 		return;			
 	});	
     
@@ -158,7 +143,7 @@ function fn_setea_grid_principal()
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 400,
             showTop: true,
 			showBottom:false,
             showHeader: true,
@@ -181,8 +166,6 @@ function fn_setea_grid_principal()
             ]
         }
         };
-		
-		
 		obj.colModel = [
             { title: "Funcionario",  resizable: false, width: 80, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
             { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
@@ -192,19 +175,14 @@ function fn_setea_grid_principal()
             { title: "Observación",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
            
              
-             //align: "center", editable: false, minWidth: 100, sortable: false,
-				
-             //render: function (ui) {
-				//	return "<button class='btn btn-primary btn-sm'>Eliminar</button>";
-				//}
-			//}
+           
         ];
 		
 		obj.dataModel = { data: data };
 
 var grid = pq.grid("#div_grid_dos", obj);
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
     
 });
 
@@ -278,8 +256,7 @@ function fn_leer(){
 		$("#tx_num_medidor2").val("");         
 		$("#tx_ent_decim2").val(""); 
 		$("#tx_tipo_med2").val(""); 
-		
-		$("#tx_lec_actu2").val(""); 
+        $("#tx_lec_actu2").val(""); 
 		$("#tx_consum2").val(""); 
 
 		if($("#tx_lec_ant").val() > $("#tx_lec_actu").val()){
