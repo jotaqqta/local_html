@@ -49,10 +49,10 @@ $(document).ready(function() {
         
     $("#cb_tipo_conve").on("change", function(evt) 
 	{
-        fn_carga_opc_conve();
         if($(this).val() =="")
-            fn_limpiar2();
-        //fn_carga_opc($("#cb_opc_conve").val());
+            fn_limpiar2(); //se limpian los combos inferiores
+		else
+			fn_carga_opc_conve(); //Se carga el combo siguiente
 	});
     
     $("#cb_opc_conve").on("change", function(evt) 

@@ -25,6 +25,17 @@ $(document).ready(function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
+		
+	//Se cargan las variables que vienen desde el server
+	/*
+	$("#tx_empresa").val(SYNSegCodEmpresa);
+	$("#tx_rol").val(SYNSegRol);
+	$("#tx_ip").val(SYNSegIP);
+	$("#tx_rolfun").val(SYNSegRolFuncion);
+	*/
+
+	$("#tx_orden").focus();
+	
     // INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
 	$("#tx_orden").focus();
    // EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
@@ -50,6 +61,8 @@ $(document).ready(function() {
 	$("#tx_lec_ant2").prop("disabled", true);
   //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
+    //DIBUJA LOS ICONOS DE LOS BOTONES     
+    
   //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -59,8 +72,6 @@ $(document).ready(function() {
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
 
-    
-    
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
@@ -87,14 +98,13 @@ $(document).ready(function() {
           }
 	});
     
-    
-		$("#tx_orden").bind("keydown",function(e){
-			if(e.keyCode == 13){
-				tab = true;
-				fn_leer();
-				return false;
-			}
-		 });
+	$("#tx_orden").bind("keydown",function(e){
+		if(e.keyCode == 13){
+			tab = true;
+			fn_leer();
+			return false;
+		}
+	 });
 
 	$("#co_cancelar").on("click",function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
@@ -107,8 +117,6 @@ $(document).ready(function() {
 			window.close();
 	});
     
-   
- 
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -123,9 +131,7 @@ $(document).ready(function() {
 		//////////////////////////////////////////////////////////////
 		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
 		//////////////////////////////////////////////////////////////
-		fn_act_orden();
 
-		//$("#tx_orden").focus();
 		return;			
 	});	
     
@@ -137,7 +143,7 @@ function fn_setea_grid_principal()
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 400,
             showTop: true,
 			showBottom:false,
             showHeader: true,
