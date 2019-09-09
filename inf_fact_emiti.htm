@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -79,34 +80,49 @@
 						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la busqueda</h4>
                     </div>
         <div class="modal-body">
-                <form role="form" class="form-horizontal">
-                <div class="form-group">
-                <label class="control-label col-sm-3" for="tx_fil_proceso">Fecha Proceso:</label>
+     
+            <!--div class="form-group">
+                <label class="control-label " for="tx_fil_proceso">Fecha Proceso:</label>
                 <div class="col-sm-9">
                     <input id="tx_fil_proceso" class="form-control inp_normal _input_selector" name="tx_fil_proceso"
                        placeholder="" value="">
                     </div>
-              </div>
-                <div class="form-group">
-									<label class="control-label col-sm-3" for="cb_fil_periodo" >Periodo:</label>
-									<div class="col-sm-9">
-										<select class="form-control inp_dis" id="cb_fil_periodo" name="cb_fil_periodo"></select>
+              </div>-->
+            <div class="row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-12">
+										<div class="form-group">
+										<label class="control-label" for="fec_proc">Fecha Proceso:</label>
+										<input id="fec_proc" class="form-control input-normal _input_selector"  placeholder="" value="" name="fec_proc">
+										</div>
+									</div>	
+               </div>
+                <div class="row">
+                       <div class="col-4 col-sm-4 col-md-4 col-lg-12">
+										<div class="form-group">
+										<label class="control-label" for="cb_period">Periodo:</label>
+								<select class="form-control inp_dis" id="cb_period" name="cb_period">
+                                        
+                                             </select>
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-3" for="cb_fil_regional">Regional:</label>
-									<div class="col-sm-9">
-										<select class="form-control inp_dis" id="cb_fil_regional" name="cb_fil_opc_conve"></select>
+            </div>
+                <div class="row">
+                       <div class="col-4 col-sm-4 col-md-4 col-lg-12">
+										<div class="form-group">
+										<label class="control-label" for="cb_ciclo">Ciclo:</label>
+                                            
+<select class="form-control inp_dis" id="cb_ciclo" name="cb_ciclo"></select>
+										</div>
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-3" for="cb_fil_ciclo">Ciclo:</label>
-									<div class="col-sm-9">
-										<select class="form-control inp_dis" id="cb_fil_ciclo" name="cb_fil_opc_conve"></select>
-									</div>
-								</div>
-								   
-							</form>
+            </div>
+                <div class="row">
+                       <div class="col-4 col-sm-4 col-md-4 col-lg-12">
+										<div class="form-group">
+										<label class="control-label" for="cb_ruta">Ruta:</label>
+								<select class="form-control inp_dis" id="cb_ruta" name="cb_ruta"></select>
+										</div>
+									</div>	
+            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-left btn btn-primary" id="co_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>

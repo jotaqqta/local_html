@@ -34,10 +34,6 @@ $(document).ready(function() {
 	
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
-  // SE INHABILITAN LOS IMPUT
-    $("#cb_fil_periodo").prop("disabled", true);
-	$("#cb_fil_ciclo").prop("disabled", true);
-    $("#cb_fil_regional").prop("disabled", true);
   //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
   //DIBUJA LOS ICONOS DE LOS BOTONES     
@@ -50,7 +46,17 @@ $(document).ready(function() {
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
     
 
-      $("#co_filtro").on("click", fn_Muestra_Filtro);
+    
+    
+    $("#co_filtro").on("click", function (e) {
+		$("#cb_ciclo").prop("disabled",true);
+		$("#cb_ruta").prop("disabled",true);
+		fn_Muestra_Filtro();
+        fn_period();
+
+    });
+
+      $("._input_selector").inputmask("dd/mm/yyyy");
     
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
@@ -59,8 +65,8 @@ $(document).ready(function() {
 	$("#co_aceptar").on("click", function(){
 		//Validación de informacion
      if ($.trim($("#co_aceptar").text())=="Aceptar"){
-			if( $("#tx_fil_proceso").val() == ""){
-				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#tx_fil_proceso"));
+			if( $("#fec_proc").val() == ""){
+				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#fec_proc"));
 				return;
             }else{
            fn_carga_opc_conve
@@ -79,13 +85,41 @@ $(document).ready(function() {
     $("#co_close").on("click",function(){
 		if ($.trim($("#co_close").text())=="Cancelar"){
 			fn_limpiar();
+            
 			return;
 		}
 		else
 			window.close();
 	});
-     $("._input_selector").inputmask("dd/mm/yyyy");
-    
+    $("#cb_period").on("change", function(evt){
+        if($(this).val() ==""){
+				//$("#cb_ruta").prop("disabled",true);
+		 fn_lim_period(); 
+        }
+			else{
+                fn_ciclo();
+				$("#cb_ciclo").prop("disabled",false);
+				$("#cb_ruta").prop("disabled",true);
+				$("#cb_ciclo").focus();	
+            }
+    });
+
+        $("#cb_ciclo").on("change", function(evt){
+        if($(this).val() ==""){
+				//$("#cb_ruta").prop("disabled",true);
+				fn_lim_ciclo();
+            
+            $("#cb_ruta").prop("disabled",true);
+        }
+			else{
+			fn_ruta();
+				$("#cb_ruta").prop("disabled",false);
+				$("#cb_ruta").focus();
+            }
+    });
+   	
+  	});   
+
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 { 
@@ -122,7 +156,7 @@ function fn_setea_grid_principal()
         }
         };
 		obj.colModel = [     
-            { title: "Region",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"center" },
+            { title: "Regional",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"center" },
             { title: "Ciclo", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
             { title: "Ruta", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"center" },
             { title: "Est.Cliente", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"center" },
@@ -141,7 +175,7 @@ var grid = pq.grid("#div_grid_dos", obj);
 }
 
     
-});
+
 
 
 function fn_carga_orden()
@@ -196,8 +230,6 @@ function fn_Muestra_Filtro()
     
 
 }
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_roles()
 {
@@ -237,30 +269,80 @@ function fn_act_orden(){
 
 function fn_limpiar(){
 	
-		$("#tx_fil_periodo").val("");
-		$("#cb_fil_regional").val("");
-		$("#cb_fil_ciclo").val("");
-        $("#tx_fil_proceso").val("");
-        $("#tx_fil_proceso").focus();
-
-    
-	
-	
+		$("#fec_proc").val("");
+		$("#cb_period").val("");
+		$("#cb_ciclo").val("");
+        $("#cb_ruta").val("");
+        $("#fec_proc").focus();
 }
 function fn_carga_opc_conve(){
-$("#tx_fil_periodo").html("<option value ='10'></option>");
-		$("#cb_fil_regional").val("<option value ='10'></option>");
-		$("#cb_fil_ciclo").val("<option value ='10'></option>");
-    
+var options='<option value="1"selected="selected">--- CHOOSE CITY --- </option>';    
+$("#tx_fil_ciclo").html(options);
+}
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+//FUNCIONES MODAL
+
+function fn_period(){
+
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/    
+
+$("#cb_period").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+function fn_ciclo(){
+
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/    
+
+$("#cb_ciclo").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
+}
+
+function fn_ruta(){
+
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/    
+
+$("#cb_ruta").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
+}
+//FUNCIONES LIMPIAR-MODAL
+function fn_lim_period(){
+  $("#cb_ciclo").val("");
+  $("#cb_ruta").val("");
+  $("#cb_ciclo").prop("disabled",true);
+  $("#cb_ruta").prop("disabled",true);
 }
 
 
-$("#cb_tipo_conve").on("change", function(evt)
-{
-       if($(this).val() ==""){
-           fn_limpiar2(); //se limpian los combos inferiores
-       }else{
-fn_carga_opc_conve(); //Se carga el combo siguiente
-       }
-});  
-	
+function fn_lim_ciclo(){
+$("#cb_ruta").val("");
+$("#cb_ruta").prpr("disabled",true);
+}
+
+
