@@ -54,44 +54,40 @@ $(document).ready(function() {
         window.close(); 
     });    
 
-
 	$("#co_close").on("click", function (e) {
         $('#div_filtro_bts').modal('hide'); 		
     });	
 
-
+	fn_regional();
+	
 	$("#co_filtro").on("click", function (e) {
-
 		$("#cb_ciclo").prop("disabled",true);
 		$("#cb_ruta").prop("disabled",true);
 		fn_Muestra_modal();
-		fn_regional();
-
-		$("#cb_regional").on("change", function(evt)
-		{
-			if($(this).val() =="")
-				//$("#cb_ruta").prop("disabled",true);
-				limpia_regional(); //se limpian los combos inferiores
-			else
-				$("#cb_ciclo").prop("disabled",false);
-				$("#cb_ruta").prop("disabled",true);
-				fn_ciclo();	
-				fn_ruta();
-				$("#cb_ciclo").focus();	
-		});  	
-
-		$("#cb_ciclo").on("change", function(evt)
-		{
-			
-			if($(this).val() =="")
-				limpia_ciclo(); //se limpian los combos inferiores
-			else
-				$("#cb_ruta").prop("disabled",false);
-				fn_ruta();	
-				$("#cb_ruta").focus();	
-		}); 			
     });
 
+	$("#cb_regional").on("change", function(evt)
+	{
+		if($(this).val() =="")
+			//$("#cb_ruta").prop("disabled",true);
+			limpia_regional(); //se limpian los combos inferiores
+		else
+			$("#cb_ciclo").prop("disabled",false);
+			$("#cb_ruta").prop("disabled",true);
+			fn_ciclo();
+			$("#cb_ciclo").focus();
+	});
+
+	$("#cb_ciclo").on("change", function(evt)
+	{
+		if($(this).val() =="")
+			limpia_ciclo(); //se limpian los combos inferiores
+		else
+			$("#cb_ruta").prop("disabled",false);
+			fn_ruta();	
+			$("#cb_ruta").focus();	
+	});
+	
 	$("#co_leer").on("click", function (e) {
     	if( $("#fec_proc").val() == ""){
     		fn_mensaje_boostrap("DEBE INGRESAR LA FECHA DE PROCESO", g_tit, $("#fec_proc"));
