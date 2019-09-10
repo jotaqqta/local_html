@@ -72,13 +72,16 @@ $(document).ready(function() {
                     fn_carga_grilla();
                     
                     }else{
-                      fn_mensaje_boostrap("POR FAVOR DIGITE LA FECHA EN FORMATO DD/MM/YY.", g_titulo, $("#fec_proc"));
+                      fn_mensaje_boostrap("POR FAVOR DIGITE LA FECHA EN FORMATO DD/MM/YYYY.", g_titulo, $("#fec_proc"));
 				        return;
                     
                     }
                 }
-			
-          }
+			if((fn_validar_fecha($("#fec_proc").val()))){
+                 /*&& $("#cb_period").val())) && (($("#cb_ciclo").val())&&($("#cb_ruta").val())))*/
+           $('#div_filtro_bts').modal('hide'); 
+        fn_limpiar();}
+     }
 	});
         $("#co_limpiar").on("click",function(){
 		if ($.trim($("#co_limpiar").text())=="Limpiar"){
@@ -88,15 +91,10 @@ $(document).ready(function() {
 		else
 			window.close();
 	});
-    $("#co_close").on("click",function(){
-		if ($.trim($("#co_close").text())=="Cancelar"){
-			fn_limpiar();
-            
-			return;
-		}
-		else
-			window.close();
-	});
+ 
+	$("#co_close").on("click", function (e) {
+        $('#div_filtro_bts').modal('hide'); 		
+    });	
     $("#co_excel").on("click", function (e) {
 		e.preventDefault();
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
