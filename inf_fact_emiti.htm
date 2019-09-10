@@ -55,8 +55,18 @@
 			#grid_consulta_compensa {
 				float: center;
 			}
-			#bd_prin{
-				height: calc(100vh - 167px);
+			@media screen  and (max-width: 1401px)
+            {
+				#bd_prin{
+					height: calc(100vh - 82px);
+				}
+			}
+			
+            @media screen  and (min-width: 1402px)
+            {
+				#bd_prin{
+					height: calc(100vh - 82px);
+				}
 			}
 			.input_ver{
 				margin-top: 8px;

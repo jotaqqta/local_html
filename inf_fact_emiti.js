@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Informe de Facturas Emitidas";
 var parameters={};
 var my_url="reasigna_ajuste.asp";
-var $grid_conve;
+var $grid;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -156,10 +156,9 @@ function fn_setea_grid_principal()
          { C1:'30000', C2: '29', C3:'328', C4:"ACTIVO", C5:"CON SUMINISTRO", C6:"001-SUMINISTRO", C7:2}
     ];
     var obj = {
-            width: '100%',
-            height: 800,
+            height: 540,
             showTop: true,
-			showBottom:false,
+			showBottom:true,
             showHeader: true,
             roundCorners: true,
             rowBorders: true,
@@ -187,21 +186,13 @@ function fn_setea_grid_principal()
             { title: "Est.Cliente", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"center" },
             { title: "Est.Suministro",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"center"},
             { title: "Tipo Reparto",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"center"},
-            { title: "Cantidad",width: 80, dataType: "number", dataIndx: "C7",halign:"center", align:"center"}
-           
-           
-             
-           
+            { title: "Cantidad",width: 80, dataType: "number", dataIndx: "C7",halign:"center", align:"center"}  
         ];
 		
 		obj.dataModel = { data: data };
-
-var grid = pq.grid("#div_grid_dos", obj);
+		$grid = $("#div_grid_dos").pqGrid(obj);
+		$grid.pqGrid( "refreshDataAndView" );
 }
-
-    
-
-
 
 function fn_carga_orden()
 {
