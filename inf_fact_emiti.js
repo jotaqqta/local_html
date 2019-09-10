@@ -81,6 +81,7 @@ $(document).ready(function() {
                  /*&& $("#cb_period").val())) && (($("#cb_ciclo").val())&&($("#cb_ruta").val())))*/
            $('#div_filtro_bts').modal('hide'); 
         fn_limpiar();}
+          fn_carga_grilla();
      }
 	});
         $("#co_limpiar").on("click",function(){
