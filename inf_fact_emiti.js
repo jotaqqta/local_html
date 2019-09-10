@@ -157,7 +157,7 @@ function fn_setea_grid_principal()
     ];
     var obj = {
             width: '100%',
-            height: 400,
+            height: 800,
             showTop: true,
 			showBottom:false,
             showHeader: true,
