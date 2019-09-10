@@ -75,6 +75,7 @@ $(document).ready(function() {
 			$("#cb_ciclo").prop("disabled",false);
 			$("#cb_ruta").prop("disabled",true);
 			fn_ciclo();
+			fn_ruta();	
 			$("#cb_ciclo").focus();
 	});
 
@@ -93,6 +94,12 @@ $(document).ready(function() {
     		fn_mensaje_boostrap("DEBE INGRESAR LA FECHA DE PROCESO", g_tit, $("#fec_proc"));
     		return;
     	}
+
+		if (fn_validar_fecha($("#fec_proc").val()) == false){
+			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_proc") );
+			return false;
+		}
+
     });     
 
 	$("#co_limpiar").on("click", function (e) {
@@ -322,4 +329,25 @@ function limpia_ciclo()
 	$("#cb_ruta").val("");	
 	$("#cb_ciclo").prop("disabled",false);
 	$("#cb_ruta").prop("disabled",true);
+}
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_validar_fecha(value){
+	var real, info;
+
+	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+		info = value.split(/\//);
+		var fecha = new Date(info[2], info[1]-1, info[0]);
+		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+			real = fecha.toISOString().substr(0,10).split('-');
+			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+				return true;
+			}
+			return false;
+		}else{
+		return false;
+		}
+	}
+	else {
+	return false;
+	}
 }
