@@ -42,8 +42,7 @@ $(document).ready(function() {
     $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
+   
     
 
     
@@ -69,9 +68,16 @@ $(document).ready(function() {
 				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#fec_proc"));
 				return;
             }else{
-           fn_carga_opc_conve
+                   if(fn_validar_fecha($("#fec_proc").val())){
+                    fn_carga_grilla();
+                    
+                    }else{
+                      fn_mensaje_boostrap("POR FAVOR DIGITE LA FECHA EN FORMATO DD/MM/YY.", g_titulo, $("#fec_proc"));
+				        return;
+                    
+                    }
                 }
-			//fn_carga_orden();
+			
           }
 	});
         $("#co_limpiar").on("click",function(){
@@ -91,6 +97,26 @@ $(document).ready(function() {
 		else
 			window.close();
 	});
+    $("#co_excel").on("click", function (e) {
+		e.preventDefault();
+        var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
+		var cabecera = "";
+		for (i=0; i< col_model.length; i++){
+			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+		}
+		$("#excel_cabecera").val(cabecera);
+		var element =$grid_principal.pqGrid("option","dataModel.data");
+		if (element)
+			a= element.length;
+		else 
+			a= 0;
+		if(a>0){
+			$("#tituloexcel").val(g_tit);
+			$("#sql").val(sql_grid_prim);	
+			$("#frm_Exel").submit();
+			return;
+		}	
+    });
     $("#cb_period").on("change", function(evt){
         if($(this).val() ==""){
 				//$("#cb_ruta").prop("disabled",true);
@@ -150,7 +176,7 @@ function fn_setea_grid_principal()
             cls: "pq-toolbar-export",
             items:
             [  { type: "button", label: " Filtros",attr:"id=co_filtro", cls:"btn btn-primary"},
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
+				{ type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"}
 				
             ]
         }
@@ -279,6 +305,9 @@ function fn_carga_opc_conve(){
 var options='<option value="1"selected="selected">--- CHOOSE CITY --- </option>';    
 $("#tx_fil_ciclo").html(options);
 }
+function fn_carga_grilla(){
+    
+}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 //FUNCIONES MODAL
 
@@ -343,6 +372,27 @@ function fn_lim_period(){
 function fn_lim_ciclo(){
 $("#cb_ruta").val("");
 $("#cb_ruta").prpr("disabled",true);
+}
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+function fn_validar_fecha(value){
+	var real, info;
+
+	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+		info = value.split(/\//);
+		var fecha = new Date(info[2], info[1]-1, info[0]);
+		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+			real = fecha.toISOString().substr(0,10).split('-');
+			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+				return true;
+			}
+			return false;
+		}else{
+		return false;
+		}
+	}
+	else {
+	return false;
+	}
 }
 
 
