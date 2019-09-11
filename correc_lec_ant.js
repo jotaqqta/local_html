@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Correción de Lectura Anterior";
 var parameters={};
 var my_url="reasigna_ajuste.asp";
-var $grid_conve;
+var $grid;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -142,20 +142,21 @@ function fn_setea_grid_principal()
     { C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
     ];
     var obj = {
-            width: '100%',
-            height: 400,
+            height: 540,
+			width: "100%",
             showTop: true,
-			showBottom:false,
-            showHeader: true,
+			showBottom:true,
+            showTitle : false,
+			title: "Resumen Historico de Clientes Medidos por Ciclo y Ruta",
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
+            collapsible:true,
 			editable:false,
-            selectionModel: { type: 'cell' },
-            numberCell: { show: false },
-            title: "Auditoria de Modificaciones",
-			pageModel: {type:"local"},
-        	scrollModel:{autoFit:true, theme:true},
+            selectionModel: { type: 'row',mode:'single'},
+            numberCell: { show: true },
+			pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
+        	scrollModel:{theme:true},
 			toolbar:
         {
             cls: "pq-toolbar-export",
@@ -167,20 +168,16 @@ function fn_setea_grid_principal()
         }
         };
 		obj.colModel = [
-            { title: "Funcionario",  resizable: false, width: 80, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
-            { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
-            { title: "Tipo", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
-            { title: "Dato Anterior", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Dato Actual",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
-            { title: "Observación",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
-           
-             
-           
+            { title: "Funcionario",  resizable: false, width: 140, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
+            { title: "Fecha", width: 160, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
+            { title: "Tipo", width: 240, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
+            { title: "Dato Anterior", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
+            { title: "Dato Actual",width: 120, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Observación",width: 500, dataType: "number", dataIndx: "C6",halign:"center", align:"right"}, 
         ];
 		
 		obj.dataModel = { data: data };
-
-var grid = pq.grid("#div_grid_dos", obj);
+		$grid = $("#div_grid_dos").pqGrid(obj);
 }
 
     
