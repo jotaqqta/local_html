@@ -42,6 +42,7 @@ $(document).ready(function () {
 	$("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	$("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+    $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Leer");
 	$("#co_act").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
     //FUNCIONES DE CAMPOS
@@ -213,10 +214,10 @@ function fn_setea_grid_principal() {
 		columnBorders: true,
 		editable: false,
 		selectionModel: { type: 'cell' },
-		numberCell: { show: false },
+		numberCell: { show: true},
 		title: "Ingreso de lecturas tomadas en terreno",
 		pageModel: { type: "local" },
-		scrollModel: { autoFit: true, theme: true },
+		scrollModel: { theme: true },
 		toolbar:
 		{
 			cls: "pq-toolbar-export",
@@ -224,22 +225,21 @@ function fn_setea_grid_principal() {
 				[{ type: "button", label: " Filtros", attr: "id=co_filtro", cls: "btn btn-primary" },
 				{ type: "button", label: "Leer", attr: "id=co_leer", cls: "btn btn-primary" },
 				{ type: "button", label: "Actualizar", attr: "id=co_act", cls: "btn btn-primary" },
-				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" }
-
+				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
 				]
 		}
 	};
 	obj.colModel = [
-		{ title: "Nro", resizable: false, width: 5, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "NIC", width: 80, dataType: "number", dataIndx: "C2", halign: "center", align: "center" },
-		{ title: "Medidor", width: 70, dataType: "number", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center" },
+		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center" },
 		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Nombre Cliente", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Dirección", width: 80, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
-		{ title: "Sec. Ruta", width: 80, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-		{ title: "T. Med", width: 10, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+		{ title: "Nombre Cliente", width: 120, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "Dirección", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
+		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
 		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
-		{ title: "Lectura tomada", width: 10, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
+		{ title: "Lectura tomada", width: 60, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
 	];
 
 	obj.dataModel = { data: data };
