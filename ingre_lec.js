@@ -43,18 +43,26 @@ $(document).ready(function () {
 	$("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Leer");
+	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Lectura");
 	$("#co_act").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
-    fn_cent();
+    fn_regional();
+    fn_ciclo();
+    fn_ruta();
+    fn_lect();
  
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	$("#co_filtro").on("click", function (e) {
 		fn_Muestra_Filtro();
 
 
 	});
+    $("#co_cerrar_t").on("click", function (e) {
+        window.close(); 
+    }); 
+ 
 	$("#co_leer").on("click", function (e) {
 		fn_Muestra_Lectura();
 
@@ -64,90 +72,39 @@ $(document).ready(function () {
 		fn_Muestra_Actualizar();
 
 	});
+    $("#ok_lec").on("click", function (e) {
+	$('#div_msg_bts_lec').modal('hide');
 
-	$("._input_selector").inputmask("dd/mm/yyyy");
 
-	jQuery('#tx_lec_ant').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-    //BOTONES
-    //BOTONES-FILTRO
-	$("#co_aceptar").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
-			if ($("#cb_cent_opt").val() ==""){
-				fn_mensaje_boostrap("CAMPOS DE CENTRO OPERATIVO SON OBLIGATORIOS", g_titulo, $("#co_cent_opt"));
-				return;
-			}else{
-             if ($("#cb_cent_opt_dos").val()==""){
-				fn_mensaje_boostrap("CAMPOS DE CENTRO OPERATIVO SON OBLIGATORIOS", g_titulo, $("#cb_cent_opt_dos"));
-				return;
-			}
-          if ($("#cb_ciclo").val()==""){
-				fn_mensaje_boostrap("SELECCIONE CICLO", g_titulo, $("#cb_ciclo"));
-				return;
-			}
-             if ($("#cb_ruta").val()==""){
-				fn_mensaje_boostrap("DIGITE RUTA", g_titulo, $("#cb_ruta"));
-				return;
-			}else{
-                fn_carga_grilla();
-                $('#div_filtro_bts').modal('hide');
-                fn_lim_filtro(); 
-                
-            }
-            
-        }
-            
-        }
-	});
-     //BOTONES-LECTURA
-    	$("#co_aceptar_lec").on("click", function (){
-		//Validación de informacion
-		if ($.trim($("#co_aceptar_lec").text()) == "Aceptar"){
-			if ($("#cb_lector").val() == "" || $("#cb_lector_dos").val() == ""){
-				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#cb_lector"));
-				return;
-			}
-		}
-	});
-    	$("#co_aceptar_act").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
-			if ($("#fec_proc").val() == "") {
-				fn_mensaje_boostrap("DIGITE LA FECHA DE PROCESO", g_titulo, $("#fec_proc"));
-				return;
-			} else {
-				if (fn_validar_fecha($("#fec_proc").val())) {
-					fn_carga_grilla();
+    $("#ok_act").on("click", function (e) {
+	$('#div_msg_bts_act').modal('hide');
 
-				} else {
-					fn_mensaje_boostrap("POR FAVOR DIGITE LA FECHA EN FORMATO DD/MM/YYYY.", g_titulo, $("#fec_proc"));
-					return;
 
-				}
-			}
-			if ((fn_validar_fecha($("#fec_proc").val()))) {
-				/*&& $("#cb_period").val())) && (($("#cb_ciclo").val())&&($("#cb_ruta").val())))*/
-				$('#div_filtro_bts').modal('hide');
-				fn_limpiar();
-			}
-			fn_carga_grilla();
-		}
 	});
-	$("#co_limpiar").on("click", function () {
-		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		fn_lim_filtro();
-			return;
-		}
-		else
-			window.close();
-	});
-
-	$("#co_close").on("click", function (e) {
+    co_close_act
+    $("#cls_lec").on("click", function (e) {
+	$('#div_msg_bts_lec').modal('hide');
+    });
+    
+     $("#cls_act").on("click", function (e) {
+	$('#div_msg_bts_act').modal('hide');
+      });  
+    
+  
+         
+    $("#co_close").on("click", function (e) {
 		$('#div_filtro_bts').modal('hide');
 	});
-	$("#co_excel").on("click", function (e) {
+         
+     $("#co_close_lec").on("click", function (e) {
+		$('#div_lec_bts').modal('hide');
+	});
+     $("#co_close_act").on("click", function (e) {
+		$('#div_act_bts').modal('hide');
+	});
+         
+    $("#co_excel").on("click", function (e) {
 		e.preventDefault();
 		var col_model = $("#div_grid_principal").pqGrid("option", "colModel");
 		var cabecera = "";
@@ -167,35 +124,95 @@ $(document).ready(function () {
 			return;
 		}
 	});
-	$("#cb_period").on("change", function (evt) {
-		if ($(this).val() == "") {
-			//$("#cb_ruta").prop("disabled",true);
-			fn_lim_period();
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+	$("._input_selector").inputmask("dd/mm/yyyy");
+
+	jQuery('#tx_lec_ant').keypress(function (tecla) {
+		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+	});
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+    //BOTONES
+    
+    //BOTONES-FILTRO
+	$("#co_aceptar").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
+			if ($("#cb_regional").val() ==""){
+				fn_mensaje_boostrap("CAMPOS DE REGIONAL SON OBLIGATORIOS", g_titulo, $("#cb_regional"));
+				return;
+			}else{
+            if ($("#cb_ciclo").val()==""){
+				fn_mensaje_boostrap("SELECCIONE CICLO", g_titulo, $("#cb_ciclo"));
+				return;
+			}
+             if ($("#cb_ruta").val()==""){
+				fn_mensaje_boostrap("DIGITE RUTA", g_titulo, $("#cb_ruta"));
+				return;
+			}else{
+                fn_carga_grilla();
+                $('#div_filtro_bts').modal('hide');
+                fn_lim_filtro(); 
+                
+            }
+            
+        
+            }
+        }
+	});
+    	$("#co_limpiar").on("click", function () {
+		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+		fn_limpiar_filtro();
+			return;
 		}
-		else {
-			fn_ciclo();
-			$("#cb_ciclo").prop("disabled", false);
-			$("#cb_ruta").prop("disabled", true);
-			$("#cb_ciclo").focus();
+		else
+			window.close();
+	});
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+     //BOTONES-LECTURA
+    	$("#co_aceptar_lec").on("click", function (){
+		//Validación de informacion
+		if ($.trim($("#co_aceptar_lec").text()) == "Aceptar"){
+			if ($("#cb_lector").val() == ""){
+               fn_mensaje_bootstrap_lec();
+				return;
+             
+			}else{
+            
+                $('#div_lec_bts').modal('hide');
+                fn_limpiar_lec();
+                fn_carga_grilla();
+            }
+		}
+	});
+ //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+    //BOTONES_ACT
+   $("#co_aceptar_act").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_aceptar_act").text()) == "Aceptar") {
+			if ($("#cb_lector_terr").val() == "") {
+				 fn_mensaje_bootstrap_act();
+				return;
+			} else {
+				if (fn_validar_fecha($("#cb_lector_terr").val())) {
+					fn_carga_grilla();
+
+				} 
+			}
+			if ((fn_validar_fecha($("#cb_lector_terr").val()))) {
+				/*&& $("#cb_period").val())) && (($("#cb_ciclo").val())&&($("#cb_ruta").val())))*/
+				$('#div_act_bts').modal('hide');
+				fn_limpiar_act();
+			}
+			fn_carga_grilla();
 		}
 	});
 
-	$("#cb_ciclo").on("change", function (evt) {
-		if ($(this).val() == "") {
-			//$("#cb_ruta").prop("disabled",true);
-			fn_lim_ciclo();
 
-			$("#cb_ruta").prop("disabled", true);
-		}
-		else {
-			fn_ruta();
-			$("#cb_ruta").prop("disabled", false);
-			$("#cb_ruta").focus();
-		}
-	});
+
+
 
 });
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal() {
 	var data = [
@@ -223,7 +240,7 @@ function fn_setea_grid_principal() {
 			cls: "pq-toolbar-export",
 			items:
 				[{ type: "button", label: " Filtros", attr: "id=co_filtro", cls: "btn btn-primary" },
-				{ type: "button", label: "Leer", attr: "id=co_leer", cls: "btn btn-primary" },
+				{ type: "button", label: "Lectura", attr: "id=co_leer", cls: "btn btn-primary" },
 				{ type: "button", label: "Actualizar", attr: "id=co_act", cls: "btn btn-primary" },
 				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
@@ -234,12 +251,12 @@ function fn_setea_grid_principal() {
 		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center" },
 		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center" },
 		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Nombre Cliente", width: 120, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Dirección", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
+		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
 		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
 		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
 		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
-		{ title: "Lectura tomada", width: 60, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
+		{ title: "Lectura tomada", width:110, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
 	];
 
 	obj.dataModel = { data: data };
@@ -348,14 +365,20 @@ function fn_act_orden() {
 			fn_mensaje_boostrap(text, g_tit, $(""));
 	});
 }
-
-function fn_limpiar() {
-
-	$("#fec_proc").val("");
-	$("#cb_period").val("");
+function fn_limpiar_filtro() {
+    $("#cb_regional").val("");
 	$("#cb_ciclo").val("");
 	$("#cb_ruta").val("");
-	$("#fec_proc").focus();
+	
+}
+function fn_limpiar_lec() {
+
+$("#cb_lector").val("");
+	
+}
+function fn_limpiar_act(){
+    $("#cb_lector_terr").val("");
+	
 }
 function fn_carga_opc_conve() {
 	var options = '<option value="1"selected="selected">--- CHOOSE CITY --- </option>';
@@ -364,10 +387,28 @@ function fn_carga_opc_conve() {
 function fn_carga_grilla() {
 
 }
+function fn_mensaje_bootstrap_lec(){
+    $("#div_msg_bts_lec").modal({ backdrop: "static", keyboard: false });
+	$("#div_msg_bts_lec").on("shown.bs.modal", function () {
+		$("#div_msg_bts_lec div.modal-footer button").focus();
+
+	});
+    
+
+}
+function fn_mensaje_bootstrap_act(){
+    $("#div_msg_bts_act").modal({ backdrop: "static", keyboard: false });
+	$("#div_msg_bts_act").on("shown.bs.modal", function () {
+		$("#div_msg_bts_act div.modal-footer button").focus();
+
+	});
+    
+
+}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 //FUNCIONES MODAL
 
-function fn_cent() {
+function fn_regional() {
 
     /*parameters = 
     {
@@ -381,7 +422,7 @@ function fn_cent() {
             $("#cb_regional").html(text);
     });*/
 
-	$("#cb_cent_opt_dos").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_regional").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_ciclo() {
 
@@ -416,10 +457,26 @@ function fn_ruta() {
 
 	$("#cb_ruta").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
 }
+function fn_lect() {
+
+    /*parameters = 
+    {
+		"func":"fn_regional",
+		"empresa":$("#tx_empresa").val(),
+		"rol":$("#tx_rol").val()
+    };
+    HablaServidor(my_url,parameters,'text', function(text) 
+    {
+        if(text != "")
+            $("#cb_regional").html(text);
+    });*/
+
+	$("#cb_lector").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
+}
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //FUNCIONES LIMPIAR-MODAL
 function fn_lim_filtro() {
-	$("#cb_cent_opt").val("");
-	$("#cb_cent_opt_dos").val("");
+	$("#cb_regional").val("");
 	$("#cb_ciclo").val("");
 	$("#cb_ruta").val("");
 }
@@ -431,9 +488,7 @@ function fn_lim_ciclo() {
 }
 function fn_lim_lec() {
 	$("#cb_ciclo").val("");
-	$("#cb_ruta").val("");
-	$("#cb_ciclo").prop("disabled", true);
-	$("#cb_ruta").prop("disabled", true);
+	
 }
 
 
@@ -443,4 +498,24 @@ function fn_lim_act() {
 }
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
+function fn_validar_fecha(value){
+	var real, info;
+
+	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+		info = value.split(/\//);
+		var fecha = new Date(info[2], info[1]-1, info[0]);
+		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+			real = fecha.toISOString().substr(0,10).split('-');
+			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+				return true;
+			}
+			return false;
+		}else{
+		return false;
+		}
+	}
+	else {
+	return false;
+	}
+}
 
