@@ -115,6 +115,8 @@ $(document).ready(function() {
                     $("#tx_codigo").attr("readonly", true);
 					$("#tx_desc").val(g_desc_select);
                     $("#tx_desc").attr("readonly", true);
+                    $("#co_aceptar").text("Modificar");
+                    
                     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
                     $("#div_filtro_bts").on("shown.bs.modal", function () {
                     $("#div_filtro_bts div.modal-footer button").focus();
@@ -236,7 +238,14 @@ function fn_setea_grid_principal()
 	
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
 	
-
+    /*$grid_principal.pqGrid({
+        rowDblClick: function( event, ui ) {
+            if (ui.rowData) {
+                var dataCell = ui.rowData;
+                fn_abrir_modif(dataCell.C1, dataCell.C2, dataCell.C3, dataCell.C4, dataCell.C5, dataCell.C6);
+            }
+        }
+    });*/
 	
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -286,7 +295,7 @@ function fn_nuevo()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_grid_principal()
 {
-	fn_filtro();
+	//fn_filtro();
 	var total_register;
    
     var dataModel = 
