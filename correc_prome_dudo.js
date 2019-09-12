@@ -1,8 +1,8 @@
 var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Correción de Lectura Anterior";
+var g_titulo="Correción de Promedios Dudosos";
 var parameters={};
-var my_url="reasigna_ajuste.asp";
-var $grid;
+var my_url="correc_prome_dudo.asp";
+var $grid_conve;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -139,45 +139,56 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 { 
     var data = [
-    { C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
+    //{ C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
+	//{ C1:'RCARVAJAL', C2: '01/03/2019', C3:'CORECCION', C4:97985, C5:7985, C6: 'SE CAMBIA LECTURA'},
     ];
     var obj = {
-            height: 540,
-			width: "100%",
+            width: '100%',
+            height: 145,
             showTop: true,
 			showBottom:true,
-            showTitle : false,
-			title: "Resumen Historico de Clientes Medidos por Ciclo y Ruta",
+            showHeader: true,
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
-            collapsible:true,
 			editable:false,
-            selectionModel: { type: 'row',mode:'single'},
-            numberCell: { show: true },
-			pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-        	scrollModel:{theme:true},
-			toolbar:
-        {
-            cls: "pq-toolbar-export",
-            items:
-            [
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
+            selectionModel: { type: 'cell' },
+            numberCell: { show: false },
+            title: "Promedio en GLS",
+			pageModel: {type:"local"},
+        	scrollModel:{autoFit:true, theme:true},
+			//toolbar:
+        //{
+           // cls: "pq-toolbar-export",
+           // items:
+           // [
+				//{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
 				
-            ]
-        }
+            //]
+        //}
         };
 		obj.colModel = [
-            { title: "Funcionario",  resizable: false, width: 140, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
-            { title: "Fecha", width: 160, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
-            { title: "Tipo", width: 240, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
-            { title: "Dato Anterior", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Dato Actual",width: 120, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
-            { title: "Observación",width: 500, dataType: "number", dataIndx: "C6",halign:"center", align:"right"}, 
+            { title: "Numero Medidor",  resizable: false, width: 80, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
+            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"right" },
+            { title: "Consumo Base 6", width: 80, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
+            { title: "Consumo Base 5", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
+            { title: "Consumo Base 4",width: 80, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Consumo Base 3",width: 80, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
+            { title: "Consumo Base 2",width: 80, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
+            { title: "Consumo Base 1",width: 80, dataType: "number", dataIndx: "C8",halign:"center", align:"right"},
+            { title: "Consumo Promedio",width: 80, dataType: "number", dataIndx: "C9",halign:"center", align:"right"},
+            { title: "Consumo Prom/Area",width: 80, dataType: "number", dataIndx: "C9",halign:"center", align:"right"},
+            { title: "Consumo Facturar",width: 80, dataType: "number", dataIndx: "C9",halign:"center", align:"right"},
+            { title: "Consumo Promedio en G",width: 80, dataType: "number", dataIndx: "C10",halign:"center", align:"right"},
+            { title: "Tipo Lectura",width: 80, dataType: "number", dataIndx: "C11",halign:"center", align:"right"},
+            { title: "Cliente Dudoso",width: 80, dataType: "number", dataIndx: "C12",halign:"center", align:"right"}, 
+            { title: "Est. Sumin.",width: 80, dataType: "number", dataIndx: "C13",halign:"center", align:"right"}, 
+            { title: "Ult. Fact.",width: 80, dataType: "number", dataIndx: "C14",halign:"center", align:"right"}, 
         ];
 		
 		obj.dataModel = { data: data };
-		$grid = $("#div_grid_dos").pqGrid(obj);
+
+var grid = pq.grid("#div_grid_dos", obj);
 }
 
     
