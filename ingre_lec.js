@@ -44,7 +44,7 @@ $(document).ready(function () {
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Lectura");
-	$("#co_act").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+	$("#co_act").html("<span class='glyphicon glyphicon-check'></span> Actualizar");
     $("#co_rut_no_lei").html("<span class='glyphicon glyphicon glyphicon-remove'></span> Marcar ruta como no leida");
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -222,7 +222,7 @@ function fn_setea_grid_principal() {
 				[{ type: "button", label: " Filtros", attr: "id=co_filtro", cls: "btn btn-primary" },
 				{ type: "button", label: "Lectura", attr: "id=co_leer", cls: "btn btn-primary" },
 				{ type: "button", label: "Actualizar", attr: "id=co_act", cls: "btn btn-primary" },
-                  { type: "button", label: "Marcar ruta como no leida", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Marcar ruta como no leida", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
 				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
                  
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
