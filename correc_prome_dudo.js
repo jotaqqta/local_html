@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Correción de Promedios Dudosos";
 var parameters={};
 var my_url="correc_prome_dudo.asp";
-var $grid_conve;
+var $grid;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -81,7 +81,15 @@ $(document).ready(function() {
 		}
 		else
 			window.close();
-	});    
+	});  
+	
+	//Esto dentro del evento del checkbox
+	var valor = "5000";  //Valor que deseamos colocar en la grilla
+	$grid.pqGrid( {editable:true} );
+	$grid.pqGrid("updateRow", { 'rowIndx': 1 , row: { 'C11': valor } });
+	$grid.pqGrid( {editable:false} );
+	//$grid.pqGrid( "refreshView" );
+	
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -128,7 +136,10 @@ function fn_setea_grid_principal()
 		
 		obj.dataModel = { data: data };
 
-var grid = pq.grid("#div_grid_dos", obj);
+		
+		$grid = $("#div_grid_dos").pqGrid(obj);
+		$grid.pqGrid( "refreshDataAndView" );
+
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
