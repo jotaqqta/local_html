@@ -34,14 +34,15 @@ $(document).ready(function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_tit);	
 	}); 
-	$("#excel_archivo").val("Adenda_facturacion.xls");
+	
+    $("#excel_archivo").val("Agenda_facturacion.xls");
 	
 	//Se cargan las variables que vienen desde el server
-	/*$("#tx_empresa").val(SYNSegCodEmpresa);
+	$("#tx_empresa").val(SYNSegCodEmpresa);
 	$("#tx_rol").val(SYNSegRol);
 	$("#tx_ip").val(SYNSegIP);
 	$("#tx_rolfun").val(SYNSegRolFuncion);
-	ojo colocar cuando se active el asp --- NO quitar */
+	//ojo colocar cuando se active el asp --- NO quitar */
     
     
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
