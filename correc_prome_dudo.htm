@@ -74,13 +74,13 @@
 				<br>
 				<div class="row menus">				
 					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-						<label for="tx_orden">Cliente</label>
-						<input type="text" id="tx_orden" name="tx_orden" class="form-control" style="margin-top: 3px;">
+						<label for="tx_cliente">N° de Suministro</label>
+						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;">
 					</div>
 					<div class="col-8 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
 					<label for=""></label>
 						<div>												
-							<button type="button" class="btn btn-primary" id="co_leer" style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-ok-sign"></span> Leer</button>
+							<button type="button" class="btn btn-primary" id="co_leer" style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span> Leer</button>
                         	
 							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	                           
 						</div>
@@ -93,18 +93,31 @@
 				<div class="row">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="tx_cod_cliente">Nombre</label>
-							<input disabled id="tx_cod_cliente" name="tx_cod_cliente" type="text" class="form-control inp_dis" readonly>
+							<label for="tx_nombre">Nombre</label>
+							<input disabled id="tx_nombre" name="tx_nombre" type="text" class="form-control inp_dis" readonly>
 						</div>
 					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="tx_dir">Dirección</label>
+							<input disabled id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_est_client">Estado cliente</label>
 							<input disabled id="tx_est_client" name="tx_est_client" type="text" class="form-control inp_dis" readonly>
 						</div>
 					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="tx_est_conex">Estado conexión</label>
+							<input disabled id="tx_est_conex" name="tx_est_conex" type="text" class="form-control inp_dis" readonly>
+						</div>
+					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
@@ -114,8 +127,22 @@
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="tx_ruta">Ciclo</label>
+							<label for="tx_ruta">Ruta</label>
 							<input disabled id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="tx_tarif">Tarifa</label>
+							<input disabled id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis" readonly>
+						</div>
+					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="form-group">
+							<label for="tx_actividad">Actividad</label>
+							<input disabled id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis" readonly>
 						</div>
 					</div>
 				</div>
@@ -123,56 +150,17 @@
 				<div class="row">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="tx_tarif">Ruta Lectura</label>
-							<input disabled id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis" readonly>
+							<label for="tx_unid">Unidades Habitacionales</label>
+							<input disabled id="tx_unid" name="tx_unid" type="text" class="form-control" >
 						</div>
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
-							<label for="tx_actividad">Actividad Economica</label>
-							<input disabled id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis" readonly>
+							<label for="tx_x_leg">X Leg.</label>
+							<input disabled id="tx_x_leg" name="tx_x_leg" type="text" class="form-control" readonly>
 						</div>
 					</div>
-				</div>		
-				
-				<div class="row">
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_num_medidor">Ruta</label>
-							<input disabled id="tx_num_medidor" name="tx_num_medidor" type="text" class="form-control" readonly>
-						</div> 
-					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_ent_decim">Correlativo</label>
-							<input disabled id="tx_ent_decim" name="tx_ent_decim" type="text" class="form-control" readonly>
-						</div>
-					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_tipo_med">Tarifa Fact.</label>
-							<input disabled id="tx_tipo_med" name="tx_tipo_med" type="text" class="form-control" readonly>
-						</div>
-					</div>
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_lec_ant">Unid. Hab.</label>
-							<input id="tx_lec_ant" name="tx_lec_ant" type="text" class="form-control" >
-						</div>
-					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_lec_actu">X Leg.</label>
-							<input disabled id="tx_lec_actu" name="tx_lec_actu" type="text" class="form-control" readonly>
-						</div>
-					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<div class="form-group">
-							<label for="tx_consum">Estado Factura</label>
-							<input disabled id="tx_consum" name="tx_consum" type="text" class="form-control" readonly>
-						</div>
-					</div>
-				</div>
+				</div>						
 				<br>
 			</div> 
            
@@ -182,71 +170,71 @@
 			</div>
 			<br>
 
-<div class="container">
-	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 6
-		    </label>  				    
-	  	</div>
-	  	
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 3
-		    </label>  				    
-	  	</div>
-	</div>
+			<div class="container">
+				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="6">Consumo 6
+					    </label>  				    
+				  	</div>
+				  	
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="3">Consumo 3
+					    </label>  				    
+				  	</div>
+				</div>
 
-	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 5
-		    </label>  				    
-	  	</div>
-	  	
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 2
-		    </label>  				    
-	  	</div>
-	</div>	
+				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="5">Consumo 5
+					    </label>  				    
+				  	</div>
+				  	
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="2">Consumo 2
+					    </label>  				    
+				  	</div>
+				</div>	
 
-	<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 4
-		    </label>  				    
-	  	</div>
-	  	
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Consumo 1
-		    </label>  				    
-	  	</div>
-	</div>	
+				<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="4">Consumo 4
+					    </label>  				    
+				  	</div>
+				  	
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="1">Consumo 1
+					    </label>  				    
+				  	</div>
+				</div>	
 
-	<div class="col-3 col-sm-3 col-md-3 col-lg-3">
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Promedio Area/Actividad
-		    </label>  				    
-	  	</div>
-	  	
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Ultimo Consumo Facturado
-		    </label>  				    
-	  	</div>
-	</div>	
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3">
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="7">Promedio Area/Actividad
+					    </label>  				    
+				  	</div>
+				  	
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="8">Ultimo Consumo Facturado
+					    </label>  				    
+				  	</div>
+				</div>	
 
-	<div class="col-3 col-sm-3 col-md-3 col-lg-3">
-	  	<div>
-		    <label class="radio-inline">
-		      <input type="radio" name="optradio">Promedio Propio
-		    </label>  				    
-	  	</div>
-	</div>			
-</div>		
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3">
+				  	<div>
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" value="9">Promedio Propio
+					    </label>  				    
+				  	</div>
+				</div>			
+			</div>		
 
 		</div>	
 
