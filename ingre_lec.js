@@ -45,6 +45,8 @@ $(document).ready(function () {
     $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Lectura");
 	$("#co_act").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+    $("#co_rut_no_lei").html("<span class='glyphicon glyphicon glyphicon-remove'></span> Marcar ruta como no leida");
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
     fn_regional();
@@ -69,8 +71,10 @@ $(document).ready(function () {
 
 	});
 	$("#co_act").on("click", function (e) {
-		fn_Muestra_Actualizar();
-
+		fn_actualizar();
+	});
+    $("#co_rut_no_lei").on("click", function (e) {
+		fn_marcar();
 	});
     $("#ok_lec").on("click", function (e) {
 	$('#div_msg_bts_lec').modal('hide');
@@ -82,7 +86,7 @@ $(document).ready(function () {
 
 
 	});
-    co_close_act
+  
     $("#cls_lec").on("click", function (e) {
 	$('#div_msg_bts_lec').modal('hide');
     });
@@ -185,34 +189,10 @@ $(document).ready(function () {
             }
 		}
 	});
- //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    //BOTONES_ACT
-   $("#co_aceptar_act").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_aceptar_act").text()) == "Aceptar") {
-			if ($("#cb_lector_terr").val() == "") {
-				 fn_mensaje_bootstrap_act();
-				return;
-			} else {
-				if (fn_validar_fecha($("#cb_lector_terr").val())) {
-					fn_carga_grilla();
-
-				} 
-			}
-			if ((fn_validar_fecha($("#cb_lector_terr").val()))) {
-				/*&& $("#cb_period").val())) && (($("#cb_ciclo").val())&&($("#cb_ruta").val())))*/
-				$('#div_act_bts').modal('hide');
-				fn_limpiar_act();
-			}
-			fn_carga_grilla();
-		}
-	});
-
-
-
-
-
+ 
+   
 });
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal() {
 	var data = [
@@ -243,7 +223,9 @@ function fn_setea_grid_principal() {
 				{ type: "button", label: "Lectura", attr: "id=co_leer", cls: "btn btn-primary" },
 				{ type: "button", label: "Actualizar", attr: "id=co_act", cls: "btn btn-primary" },
 				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
+                  { type: "button", label: "Marcar ruta como no leida", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
+               
 				]
 		}
 	};
@@ -322,15 +304,7 @@ function fn_Muestra_Lectura() {
 
 
 }
-function fn_Muestra_Actualizar() {
-	$("#div_act_bts").modal({ backdrop: "static", keyboard: false });
-	$("#div_act_bts").on("shown.bs.modal", function () {
-		$("#div_act_bts div.modal-footer button").focus();
 
-	});
-
-
-}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_roles() {
@@ -396,15 +370,7 @@ function fn_mensaje_bootstrap_lec(){
     
 
 }
-function fn_mensaje_bootstrap_act(){
-    $("#div_msg_bts_act").modal({ backdrop: "static", keyboard: false });
-	$("#div_msg_bts_act").on("shown.bs.modal", function () {
-		$("#div_msg_bts_act div.modal-footer button").focus();
 
-	});
-    
-
-}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 //FUNCIONES MODAL
 
@@ -473,6 +439,12 @@ function fn_lect() {
 
 	$("#cb_lector").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
 }
+function fn_actualizar(){
+    alert('Se actualizo.');
+}
+function fn_marcar(){
+     alert('Se marco como no leida.');
+}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //FUNCIONES LIMPIAR-MODAL
 function fn_lim_filtro() {
@@ -491,11 +463,6 @@ function fn_lim_lec() {
 	
 }
 
-
-function fn_lim_act() {
-	$("#cb_ruta").val("");
-	$("#cb_ruta").prpr("disabled", true);
-}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_validar_fecha(value){
