@@ -205,7 +205,7 @@ $(document).ready(function () {
 					return;}
 					else{
 						if(fn_validar_fecha($("#fec_lect").val()) == false){
-							fn_mensaje_boostrap("Pruebaa", g_titulo, $("#fec_lect"));
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_lect"));
 							//fn_mensaje_bootstrap_fecv();
 							return false;
 					}
