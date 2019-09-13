@@ -1,5 +1,5 @@
 var g_modulo = "Facturación Clientes - Lecturas y Consumos";
-var g_titulo = "Ingreso de lecturas tomadas en terreno.";
+var g_titulo = "Ingreso de lecturas dudosas tomadas en terreno.";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
 var $grid;
@@ -242,7 +242,7 @@ function fn_setea_grid_principal() {
 		editable: false,
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Ingreso de lecturas tomadas en terreno",
+		title: "Ingreso de lecturas dudosas tomadas en terreno",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
