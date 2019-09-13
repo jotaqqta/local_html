@@ -4,6 +4,7 @@ var parameters = {};
 var my_url = "reasigna_ajuste.asp";
 var $grid;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
 	if (e.keyCode === 8) {
@@ -39,8 +40,6 @@ $(document).ready(function () {
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
 	$("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-	$("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-	$("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Lectura");
@@ -76,42 +75,6 @@ $(document).ready(function () {
     $("#co_rut_no_lei").on("click", function (e) {
 		fn_marcar();
 	});
-    $("#ok_lec").on("click", function (e) {
-	$('#div_msg_bts_lec').modal('hide');
-
-
-	});
-    $("#ok_act").on("click", function (e) {
-	$('#div_msg_bts_act').modal('hide');
-
-
-	});
-  
-    $("#ok_fec").on("click", function (e) {
-	$('#div_msg_bts_fec').modal('hide');
-
-
-	});
-     $("#ok_fecv").on("click", function (e) {
-	$('#div_msg_bts_fecv').modal('hide');
-
-
-	});
-    $("#cls_lec").on("click", function (e) {
-	$('#div_msg_bts_lec').modal('hide');
-    });
-    $("#cls_fec").on("click", function (e) {
-	$('#div_msg_bts_fec').modal('hide');
-    });
-     $("#cls_act").on("click", function (e) {
-	$('#div_msg_bts_act').modal('hide');
-      });  
-       $("#cls_fecv").on("click", function (e) {
-	$('#div_msg_bts_fecv').modal('hide');
-      });
-    
-  
-         
     $("#co_close").on("click", function (e) {
 		$('#div_filtro_bts').modal('hide');
 	});
@@ -180,7 +143,7 @@ $(document).ready(function () {
 	});
     	$("#co_limpiar").on("click", function () {
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		fn_limpiar_filtro();
+		fn_lim_filtro();
 			return;
 		}
 		else
@@ -193,29 +156,33 @@ $(document).ready(function () {
 		//Validación de informacion
 		if ($.trim($("#co_aceptar_lec").text()) == "Aceptar"){
 			if ($("#cb_lector").val() == ""){
-               fn_mensaje_bootstrap_lec();
+               fn_mensaje_boostrap("DIGITE LECTOR", g_titulo, $("#cb_lector"));
+				
 				return;
              
 			}else{
-            /*if (fn_validar_fecha($("#fec_lect").val()) == false){
-			fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lect") );
-			return false;*/
-            if ($("#fec_lect").val() == ""){
-            fn_mensaje_bootstrap_fec();
-                return;}
-                else{
-                    if(fn_validar_fecha($("#fec_lect").val()) == false){
-		fn_mensaje_bootstrap_fecv();
-			return false;
-                }
-                
-		}    
-                $('#div_lec_bts').modal('hide');
-                fn_limpiar_lec();
-                fn_carga_grilla();
+				/*if (fn_validar_fecha($("#fec_lect").val()) == false){
+				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lect") );
+				return false;*/
+				if ($("#fec_lect").val() == ""){
+					fn_mensaje_boostrap("DIGITE LA FECHA", g_titulo, $("#fec_lect"));
+				
+				return;
+					return;}
+					else{
+						if(fn_validar_fecha($("#fec_lect").val()) == false){
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_lect"));
+							//fn_mensaje_bootstrap_fecv();
+							return false;
+					}
+
+				}    
+					$('#div_lec_bts').modal('hide');
+					fn_lim_lec();
+					fn_carga_grilla();
                     
 			
-                }
+             }
             
         }
 	});
@@ -370,21 +337,7 @@ function fn_act_orden() {
 			fn_mensaje_boostrap(text, g_tit, $(""));
 	});
 }
-function fn_limpiar_filtro() {
-    $("#cb_regional").val("");
-	$("#cb_ciclo").val("");
-	$("#cb_ruta").val("");
-	
-}
-function fn_limpiar_lec() {
 
-$("#cb_lector").val("");
-	
-}
-function fn_limpiar_act(){
-    $("#cb_lector_terr").val("");
-	
-}
 function fn_carga_opc_conve() {
 	var options = '<option value="1"selected="selected">--- CHOOSE CITY --- </option>';
 	$("#tx_fil_ciclo").html(options);
