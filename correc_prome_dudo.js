@@ -64,6 +64,9 @@ $(document).ready(function() {
 			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
 			//////////////////////////////////////////////////////////////////////////////
 			fn_mensaje_boostrap("SE ACTUALIZO EL REGISTRO", g_titulo, $("#tx_cliente"));
+		
+			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");	
 			fn_limpiar();    
 			return;			
 		}
@@ -82,13 +85,18 @@ $(document).ready(function() {
 		else
 			window.close();
 	});  
+
+    $("input[name=optradio]").click(function () {   
+ 		
+ 		var valor_new = fn_valor_grilla();
+		
+		$grid.pqGrid( {editable:true} );
+		$grid.pqGrid("updateRow", { 'rowIndx': 0 , row: { 'C11': valor_new } });
+		$grid.pqGrid( {editable:false} );
+		//$grid.pqGrid( "refreshView" );        
+    });	
 	
-	//Esto dentro del evento del checkbox
-	var valor = "5000";  //Valor que deseamos colocar en la grilla
-	$grid.pqGrid( {editable:true} );
-	$grid.pqGrid("updateRow", { 'rowIndx': 1 , row: { 'C11': valor } });
-	$grid.pqGrid( {editable:false} );
-	//$grid.pqGrid( "refreshView" );
+
 	
 });
 
@@ -96,8 +104,8 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 { 
     var data = [
-		{ C1:'14762494', C2: 'M', C3:'718000 ', C4:'718000 ', C5:'718000', C6:'718000 ', C7:'718000 ', C8:'718000 ', C9:'718000 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
-		{ C1:'14762494', C2: 'M', C3:'718000 ', C4:'718000 ', C5:'718000', C6:'718000 ', C7:'718000 ', C8:'718000 ', C9:'718000 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
+		{ C1:'14762494', C2: 'M', C3:'58000 ', C4:'2000 ', C5:'41000', C6:'356000 ', C7:'198000 ', C8:'718000 ', C9:'66700 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
+		//{ C1:'14762494', C2: 'M', C3:'718000 ', C4:'718000 ', C5:'718000', C6:'718000 ', C7:'718000 ', C8:'718000 ', C9:'718000 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
     ];
     var obj = {
             width: '100%',
@@ -221,4 +229,41 @@ function fn_limpiar(){
 	$("#tx_cliente").val("");
 	$("#tx_cliente").prop("disabled", false);	
 	$("#tx_cliente").focus();	 
+}
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
+function fn_valor_grilla(){
+	var value_check =  $('input:radio[name=optradio]:checked').val();
+
+	if(value_check == '1'){
+		var valor = "100";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '2'){
+		var valor = "200";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '3'){
+		var valor = "300";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '4'){
+		var valor = "400";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '5'){
+		var valor = "500";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '6'){
+		var valor = "600";  //Valor que deseamos colocar en la grilla	
+	}		
+
+	if(value_check == '7'){
+		var valor = "700";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '8'){
+		var valor = "800";  //Valor que deseamos colocar en la grilla	
+	}
+	if(value_check == '9'){
+		var valor = "900";  //Valor que deseamos colocar en la grilla	
+	}	
+
+	return valor;
 }
