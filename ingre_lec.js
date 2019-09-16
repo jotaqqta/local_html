@@ -110,13 +110,7 @@ $(document).ready(function () {
 	});
 	
 	$grid.pqGrid({
-    editorBlur: function( event, ui ) {
-		//var $tr = $(this).closest("tr");
-	   	//var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
-	   	//var rowIndx = obj.rowIndx;
-		//alert(ui.rowIndx);
-		//var fila = ui.rowIndx;
-	   	//$grid.pqGrid("addClass", { rowIndx: ui.rowIndx });
+    	editorBlur: function( event, ui ) {
 		var DM = $grid.pqGrid("option", "dataModel");
 		var datos = DM.data;
 		var row = datos[ui.rowIndx];
