@@ -120,6 +120,7 @@ $(document).ready(function () {
 		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
 			if ($("#cb_regional").val() ==""){
 				fn_mensaje_boostrap("CAMPOS DE REGIONAL SON OBLIGATORIOS", g_titulo, $("#cb_regional"));
+                fn_lim_fil_fil();
 				return;
 			}else{
             if ($("#cb_ciclo").val()==""){
@@ -467,6 +468,12 @@ function fn_lim_lec() {
     $("#fec_lect").val("");
 	
 }
+function fn_lim_fil_fil() {
+	$("#cb_ciclo").val("");
+    $("#cb_ruta").val("");
+	
+}
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
