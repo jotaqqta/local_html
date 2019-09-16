@@ -57,6 +57,7 @@ $(document).ready(function () {
     //BOTONES-EVENTOS
 	$("#co_filtro").on("click", function (e) {
 		fn_Muestra_Filtro();
+        fn_lim_filtro();
 
 
 	});
@@ -66,6 +67,7 @@ $(document).ready(function () {
  
 	$("#co_leer").on("click", function (e) {
 		fn_Muestra_Lectura();
+        fn_lim_lec();
 
 
 	});
@@ -114,6 +116,32 @@ $(document).ready(function () {
 	});
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
+       $("#cb_regional").on("change", function(evt){
+        if($(this).val() == ""){
+				//$("#cb_ruta").prop("disabled",true);
+		 fn_vaciar_fil(); 
+            // $("#cb_ciclo").prop("disabled",true);
+            //  $("#cb_ruta").prop("disabled",true);
+        }
+			else{
+                fn_ciclo();
+				//$("#cb_ciclo").prop("disabled",false);
+				//$("#cb_ruta").prop("disabled",true);
+				$("#cb_ciclo").focus();	
+            }
+    });
+     $("#cb_ciclo").on("change", function(evt){
+		if($(this).val() ==""){
+			//$("#cb_ruta").prop("disabled",true);
+			fn_lim_ciclo();
+			//$("#cb_ruta").prop("disabled",true);
+		}
+		else{
+			fn_ruta();
+			//$("#cb_ruta").prop("disabled",false);
+		$("#cb_ruta").focus();
+		}
+   });
     
     //BOTONES-FILTRO
 	$("#co_aceptar").on("click", function () {
@@ -145,16 +173,24 @@ $(document).ready(function () {
             }
         }
 	});
-    	$("#co_limpiar").on("click", function () {
-		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		fn_lim_filtro();
-			return;
-		}
-		else
-			window.close();
-	});
+    	
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+         $("#cb_lector").on("change", function(evt){
+        if($(this).val() == ""){
+				//$("#cb_ruta").prop("disabled",true);
+		fn_vaciar_lec();
+        //$("#fec_lect").prop("disabled",true);
+        }
+			else{
+                
+				
+				//$("#fec_lect").prop("disabled",false);
+				$("#fec_lect").focus();	
+            }
+    });
+    
+    
      //BOTONES-LECTURA
     	$("#co_aceptar_lec").on("click", function (){
 		//Validación de informacion
@@ -460,14 +496,25 @@ function fn_lim_filtro() {
 	$("#cb_ciclo").val("");
 	$("#cb_ruta").val("");
 }
+function fn_vaciar_fil() {
+	
+	$("#cb_ciclo").val("");
+	$("#cb_ruta").val("");
+   
+}
 
 
 function fn_lim_ciclo() {
 	$("#cb_ruta").val("");
-	$("#cb_ruta").prpr("disabled", true);
+
 }
 function fn_lim_lec() {
 	$("#cb_lector").val("");
+    $("#fec_lect").val("");
+	
+}
+function fn_vaciar_lec() {
+
     $("#fec_lect").val("");
 	
 }
@@ -480,6 +527,7 @@ function fn_lim_fil_ci() {
     $("#cb_ruta").val("");
 	
 }
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
