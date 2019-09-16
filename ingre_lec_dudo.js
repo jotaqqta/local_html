@@ -128,7 +128,8 @@ $(document).ready(function () {
 			}else{
             if ($("#cb_ciclo").val()==""){
 				fn_mensaje_boostrap("SELECCIONE CICLO", g_titulo, $("#cb_ciclo"));
-				return;
+                 fn_lim_fil_ci();
+                 return;
 			}
              if ($("#cb_ruta").val()==""){
 				fn_mensaje_boostrap("DIGITE RUTA", g_titulo, $("#cb_ruta"));
@@ -472,6 +473,10 @@ function fn_lim_lec() {
 }
 function fn_lim_fil_fil() {
 	$("#cb_ciclo").val("");
+    $("#cb_ruta").val("");
+	
+}
+function fn_lim_fil_ci() {
     $("#cb_ruta").val("");
 	
 }

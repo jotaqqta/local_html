@@ -125,6 +125,7 @@ $(document).ready(function () {
 			}else{
             if ($("#cb_ciclo").val()==""){
 				fn_mensaje_boostrap("SELECCIONE CICLO", g_titulo, $("#cb_ciclo"));
+                fn_lim_fil_ci(); 
 				return;
 			}
              if ($("#cb_ruta").val()==""){
@@ -141,6 +142,8 @@ $(document).ready(function () {
             }
         }
 	});
+   
+    
     	$("#co_limpiar").on("click", function () {
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
 		fn_lim_filtro();
@@ -473,6 +476,12 @@ function fn_lim_fil_fil() {
     $("#cb_ruta").val("");
 	
 }
+function fn_lim_fil_ci() {
+    $("#cb_ruta").val("");
+	
+}
+
+
 
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
