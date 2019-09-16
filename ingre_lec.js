@@ -118,13 +118,13 @@ $(document).ready(function () {
         if($(this).val() == ""){
 				//$("#cb_ruta").prop("disabled",true);
 		 fn_vaciar_fil(); 
-             $("#cb_ciclo").prop("disabled",true);
-              $("#cb_ruta").prop("disabled",true);
+            // $("#cb_ciclo").prop("disabled",true);
+              //$("#cb_ruta").prop("disabled",true);
         }
 			else{
                 fn_ciclo();
-				$("#cb_ciclo").prop("disabled",false);
-				$("#cb_ruta").prop("disabled",true);
+				//$("#cb_ciclo").prop("disabled",false);
+				//$("#cb_ruta").prop("disabled",true);
 				$("#cb_ciclo").focus();	
             }
     });
@@ -132,11 +132,11 @@ $(document).ready(function () {
 		if($(this).val() ==""){
 			//$("#cb_ruta").prop("disabled",true);
 			fn_lim_ciclo();
-			$("#cb_ruta").prop("disabled",true);
+			//$("#cb_ruta").prop("disabled",true);
 		}
 		else{
 			fn_ruta();
-			$("#cb_ruta").prop("disabled",false);
+			//$("#cb_ruta").prop("disabled",false);
 		$("#cb_ruta").focus();
 		}
    });
@@ -178,13 +178,13 @@ $(document).ready(function () {
         if($(this).val() == ""){
 				//$("#cb_ruta").prop("disabled",true);
 		fn_vaciar_lec();
-        $("#fec_lect").prop("disabled",true);
+       // $("#fec_lect").prop("disabled",true);
         }
 			else{
                 
 				
-				$("#fec_lect").prop("disabled",false);
-				$("#fec_lect").focus();	
+				//$("#fec_lect").prop("disabled",false);
+				//$("#fec_lect").focus();	
             }
     });
     
