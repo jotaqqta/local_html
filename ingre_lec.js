@@ -459,10 +459,11 @@ function fn_lim_filtro() {
 
 function fn_lim_ciclo() {
 	$("#cb_ruta").val("");
+    
 	$("#cb_ruta").prpr("disabled", true);
 }
 function fn_lim_lec() {
-	$("#cb_ciclo").val("");
+	$("#cb_lector").val("");
     $("#fec_lect").val("");
 	
 }
