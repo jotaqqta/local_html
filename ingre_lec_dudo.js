@@ -210,7 +210,7 @@ function fn_setea_grid_principal() {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
-		editable: false,
+		editable: true,
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
 		title: "Ingreso de lecturas dudosas tomadas en terreno",
@@ -232,13 +232,13 @@ function fn_setea_grid_principal() {
 		}
 	};
 	obj.colModel = [
-		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center" },
-		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
-		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center", editable:false },
+		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center", editable:false  },
+		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center", editable:false  },
+		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center", editable:false  },
+		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center", editable:false  },
+		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center", editable:false  },
+		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center", editable:false },
 		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
 		{ title: "Lectura tomada", width:110, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
 	];
