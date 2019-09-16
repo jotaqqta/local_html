@@ -3,7 +3,6 @@ var g_titulo = "Ingreso de lecturas tomadas en terreno.";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
 var $grid;
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
 	if (e.keyCode === 8) {
@@ -21,7 +20,7 @@ $(document).ready(function () {
 	//INGRESA LOS TITULOS
 	document.title = g_titulo;
 	document.body.scroll = "yes";
-	$("#div_header").load("/syn_globales/header.htm", function () {
+	$("#div_header").load("syn_globales/header.htm", function () {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);
 	});
@@ -56,6 +55,7 @@ $(document).ready(function () {
     //BOTONES-EVENTOS
 	$("#co_filtro").on("click", function (e) {
 		fn_Muestra_Filtro();
+        fn_lim_filtro();
 
 
 	});
@@ -65,6 +65,7 @@ $(document).ready(function () {
  
 	$("#co_leer").on("click", function (e) {
 		fn_Muestra_Lectura();
+        fn_lim_lec();
 
 
 	});
@@ -113,6 +114,32 @@ $(document).ready(function () {
 	});
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
+       $("#cb_regional").on("change", function(evt){
+        if($(this).val() == ""){
+				//$("#cb_ruta").prop("disabled",true);
+		 fn_vaciar_fil(); 
+             $("#cb_ciclo").prop("disabled",true);
+              $("#cb_ruta").prop("disabled",true);
+        }
+			else{
+                fn_ciclo();
+				$("#cb_ciclo").prop("disabled",false);
+				$("#cb_ruta").prop("disabled",true);
+				$("#cb_ciclo").focus();	
+            }
+    });
+     $("#cb_ciclo").on("change", function(evt){
+		if($(this).val() ==""){
+			//$("#cb_ruta").prop("disabled",true);
+			fn_lim_ciclo();
+			$("#cb_ruta").prop("disabled",true);
+		}
+		else{
+			fn_ruta();
+			$("#cb_ruta").prop("disabled",false);
+		$("#cb_ruta").focus();
+		}
+   });
     
     //BOTONES-FILTRO
 	$("#co_aceptar").on("click", function () {
@@ -120,13 +147,15 @@ $(document).ready(function () {
 		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
 			if ($("#cb_regional").val() ==""){
 				fn_mensaje_boostrap("CAMPOS DE REGIONAL SON OBLIGATORIOS", g_titulo, $("#cb_regional"));
-                fn_lim_fil_fil();
-				return;
+				fn_lim_fil_fil();
+				
+                return;
+                
 			}else{
             if ($("#cb_ciclo").val()==""){
 				fn_mensaje_boostrap("SELECCIONE CICLO", g_titulo, $("#cb_ciclo"));
-                fn_lim_fil_ci(); 
-				return;
+                 fn_lim_fil_ci();
+                 return;
 			}
              if ($("#cb_ruta").val()==""){
 				fn_mensaje_boostrap("DIGITE RUTA", g_titulo, $("#cb_ruta"));
@@ -142,18 +171,24 @@ $(document).ready(function () {
             }
         }
 	});
-   
-    
-    	$("#co_limpiar").on("click", function () {
-		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		fn_lim_filtro();
-			return;
-		}
-		else
-			window.close();
-	});
+    	
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+         $("#cb_lector").on("change", function(evt){
+        if($(this).val() == ""){
+				//$("#cb_ruta").prop("disabled",true);
+		fn_vaciar_lec();
+        $("#fec_lect").prop("disabled",true);
+        }
+			else{
+                
+				
+				$("#fec_lect").prop("disabled",false);
+				$("#fec_lect").focus();	
+            }
+    });
+    
+    
      //BOTONES-LECTURA
     	$("#co_aceptar_lec").on("click", function (){
 		//Validación de informacion
@@ -209,7 +244,7 @@ function fn_setea_grid_principal() {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
-		editable: false,
+		editable: true,
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
 		title: "Ingreso de lecturas tomadas en terreno",
@@ -231,13 +266,13 @@ function fn_setea_grid_principal() {
 		}
 	};
 	obj.colModel = [
-		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center" },
-		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
-		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center", editable:false },
+		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center", editable:false  },
+		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center", editable:false  },
+		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center", editable:false  },
+		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center", editable:false  },
+		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center", editable:false  },
+		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center", editable:false },
 		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
 		{ title: "Lectura tomada", width:110, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
 	];
@@ -459,15 +494,25 @@ function fn_lim_filtro() {
 	$("#cb_ciclo").val("");
 	$("#cb_ruta").val("");
 }
+function fn_vaciar_fil() {
+	
+	$("#cb_ciclo").val("");
+	$("#cb_ruta").val("");
+   
+}
 
 
 function fn_lim_ciclo() {
 	$("#cb_ruta").val("");
-    
-	$("#cb_ruta").prpr("disabled", true);
+
 }
 function fn_lim_lec() {
 	$("#cb_lector").val("");
+    $("#fec_lect").val("");
+	
+}
+function fn_vaciar_lec() {
+
     $("#fec_lect").val("");
 	
 }
@@ -480,8 +525,6 @@ function fn_lim_fil_ci() {
     $("#cb_ruta").val("");
 	
 }
-
-
 
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
