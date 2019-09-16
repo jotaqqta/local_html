@@ -111,15 +111,16 @@ $(document).ready(function () {
 	
 	$grid.pqGrid({
     editorBlur: function( event, ui ) {
-		var $tr = $(this).closest("tr");
-	   	var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
-	   	var rowIndx = obj.rowIndx;
-		alert(fila_g);
-	   	$grid.pqGrid("addClass", { rowIndx: rowIndx });
+		//var $tr = $(this).closest("tr");
+	   	//var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
+	   	//var rowIndx = obj.rowIndx;
+		//alert(ui.rowIndx);
+		//var fila = ui.rowIndx;
+	   	//$grid.pqGrid("addClass", { rowIndx: ui.rowIndx });
 		var DM = $grid.pqGrid("option", "dataModel");
 		var datos = DM.data;
-		var row = datos[rowIndx];
-		//alert(row.C3);
+		var row = datos[ui.rowIndx];
+		alert(row.C5);
 	}
 });
 
@@ -284,13 +285,6 @@ function fn_setea_grid_principal() {
 		}
 	};
 	obj.colModel = [
-		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center", editable: false },
-		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center", editable: false },
-		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center", editable: false },
-		{ title: "Nombre Cliente", width: 200, dataType: "string", dataIndx: "C5", halign: "center", align: "center", editable: false },
-		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center", editable: false },
-		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center", editable: false },
-		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center", editable: false },
 		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center", editable:false },
 		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center", editable:false  },
 		{ title: "N.D", width: 5, dataType: "number", dataIndx: "C4", halign: "center", align: "center", editable:false  },
@@ -301,18 +295,6 @@ function fn_setea_grid_principal() {
 		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
 		{ title: "Lectura tomada", width:110, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }
 	];
-
-	obj.selectChange = function (evt, ui) {
-		console.log('selectChange', ui);
-		var selected = [],
-			rows = ui.rows;
-		if (rows && rows.length) {
-			for (var i = 0; i < rows.length; i++) {
-				selected.push(rows[i].rowData.id);
-			}
-		}
-		fila_g = selected;
-	}	
 	
 	obj.dataModel = { data: data };
 	$grid = $("#div_grid_dos").pqGrid(obj);
