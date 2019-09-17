@@ -259,7 +259,7 @@ function fn_setea_grid_principal() {
 				[{ type: "button", label: " Filtros", attr: "id=co_filtro", cls: "btn btn-primary" },
 				{ type: "button", label: "Lectura", attr: "id=co_leer", cls: "btn btn-primary" },
 				{ type: "button", label: "Actualizar", attr: "id=co_act", cls: "btn btn-primary" },
-                { type: "button", label: "Marcar ruta como no leida", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Marcar ruta como no leída", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
 				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
                  
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
