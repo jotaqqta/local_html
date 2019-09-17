@@ -110,13 +110,23 @@ $(document).ready(function () {
 	});
 	
 	$grid.pqGrid({
-    	editorBlur: function( event, ui ) {
+    	/*  Evento funcional para el blur
+		editorBlur: function( event, ui ) {
 		var DM = $grid.pqGrid("option", "dataModel");
 		var datos = DM.data;
 		var row = datos[ui.rowIndx];
-		alert(row.C5);
-	}
-});
+		alert(row.C9);	
+	 	//*********Validar la clave*****++
+	 	},
+		*/
+		editorEnd: function( event, ui ) {
+			//alert(ui.dataIndx);
+			if(ui.dataIndx == "C9")
+				alert(ui.dataIndx);
+			//$grid.pqGrid( "setSelection", {rowIndx: 2, dataIndx: "C9"} );
+		}
+		
+    });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	$("._input_selector").inputmask("dd/mm/yyyy");
