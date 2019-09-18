@@ -106,20 +106,14 @@
 						</div>
                      
 						<div class="modal-body">
-							<form role="form" class="form-horizontal" id="frm_filtro">
+							<form role="form" class="form-horizontal">
 								<div class="form-group">
 									<div class="col-xs-12 col-sm-12 ">
-										<label for="fec_proc_ini">Fecha de Proceso</label>
+										<label>Fecha de Proceso</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 ">
-										<input id="fec_proc_ini" class="form-control  input-normal _input_selector "  placeholder="" value="" >
+										<input id="tx_fec_proceso" class="form-control input-normal _input_selector"  value="" >
                                     </div>
-									<div class="col-xs-12 col-sm-12 ">
-										<label for="fec_proc_ini">Fecha de Lectura</label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12">
-										<input id="fec_proc_ini" class="form-control  input-normal _input_selector "  placeholder="" value="" > 
-								    </div>
                                     
                                 </div>        
 							</form>
@@ -139,16 +133,17 @@
 					<div class="modal-content">
 						<div class="modal-header" >
 							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-							<h4 class="modal-title" data-dismiss="modal">Agenda de Facturación</h4>
+							<h4 id="titulo_det_age" class="modal-title" data-dismiss="modal"></h4>
 						</div>
                      
 						<div class="modal-body row">
 							<div class="col-xs-12">
 								<div class="form-group">
 									<label>Ciclo</label>
-									<input disabled id="tx_ciclo" name="tx_tarif" type="text" class="form-control">
+									<input disabled id="tx_ciclo" name="tx_ciclo" type="text" class="form-control">
 								</div>
 							</div>
+							
 							<div class="col-xs-6">
 								<div class="form-group">
 									<label>Fecha libro:</label>
@@ -163,7 +158,7 @@
 							</div>
 							<div class="col-xs-6">
 								<div class="form-group">
-									<label>Fecha facturación:</label>
+									<label>Fecha facturaci�n:</label>
 									<input id="tx_fec_fact" class="form-control  input-normal _input_selector">            
 								</div> 
 							</div>
