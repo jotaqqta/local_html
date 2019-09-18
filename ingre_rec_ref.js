@@ -63,7 +63,7 @@ $(document).ready(function() {
 			//////////////////////////////////////////////////////////////////////////////
 			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
 			//////////////////////////////////////////////////////////////////////////////
-		    fn_Muestra_Lectura();	
+		   fn_Muestra_ingre();	
 			fn_limpiar();    
 			return;			
 		}
@@ -106,7 +106,7 @@ function fn_setea_grid_principal()
     ];
     var obj = {
             width: '100%',
-            height: 185,
+            height: 200,
             showTop: true,
 			showBottom:false,
             showHeader: true,
@@ -227,7 +227,7 @@ function fn_limpiar(){
 	$("#tx_cliente").prop("disabled", false);	
 	$("#tx_cliente").focus();	 
 }
-function fn_Muestra_Lectura() {
+function fn_Muestra_ingre() {
 	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
 	$("#div_ing_bts").on("shown.bs.modal", function () {
 		$("#div_ing_bts div.modal-footer button").focus();
