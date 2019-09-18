@@ -46,16 +46,16 @@ $(document).ready(function() {
 	
 
     fn_setea_grid_principal();
-
-	$("#co_leer").on("click", function(){
+ 
+	$("#co_enviar").on("click", function(){
 		
-		if ($.trim($("#co_leer").text())=="Leer"){
+		if ($.trim($("#co_enviar").text())=="Enviar"){
 			if( $("#tx_cliente").val() == ""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
 				return;
 			}
 
-			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+			$("#co_enviar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
 
 			fn_leer();
@@ -63,10 +63,7 @@ $(document).ready(function() {
 			//////////////////////////////////////////////////////////////////////////////
 			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
 			//////////////////////////////////////////////////////////////////////////////
-			fn_mensaje_boostrap("SE ACTUALIZO EL REGISTRO", g_titulo, $("#tx_cliente"));
-		
-			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");	
+		    fn_Muestra_Lectura();	
 			fn_limpiar();    
 			return;			
 		}
@@ -230,7 +227,15 @@ function fn_limpiar(){
 	$("#tx_cliente").prop("disabled", false);	
 	$("#tx_cliente").focus();	 
 }
+function fn_Muestra_Lectura() {
+	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
+	$("#div_ing_bts").on("shown.bs.modal", function () {
+		$("#div_ing_bts div.modal-footer button").focus();
 
+	});
+
+
+}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
 function fn_valor_grilla(){
