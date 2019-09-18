@@ -118,27 +118,25 @@ $(document).ready(function () {
     //BOTONES
        $("#cb_regional").on("change", function(evt){
         if($(this).val() == ""){
-				//$("#cb_ruta").prop("disabled",true);
+		
 		 fn_vaciar_fil(); 
-            // $("#cb_ciclo").prop("disabled",true);
-            //  $("#cb_ruta").prop("disabled",true);
+          
         }
 			else{
                 fn_ciclo();
-				//$("#cb_ciclo").prop("disabled",false);
-				//$("#cb_ruta").prop("disabled",true);
+				
 				$("#cb_ciclo").focus();	
             }
     });
      $("#cb_ciclo").on("change", function(evt){
 		if($(this).val() ==""){
-			//$("#cb_ruta").prop("disabled",true);
+			
 			fn_lim_ciclo();
-			//$("#cb_ruta").prop("disabled",true);
+			
 		}
 		else{
 			fn_ruta();
-			//$("#cb_ruta").prop("disabled",false);
+			
 		$("#cb_ruta").focus();
 		}
    });
@@ -178,14 +176,14 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
          $("#cb_lector").on("change", function(evt){
         if($(this).val() == ""){
-				//$("#cb_ruta").prop("disabled",true);
+				
 		fn_vaciar_lec();
-        //$("#fec_lect").prop("disabled",true);
+       
         }
 			else{
                 
 				
-				//$("#fec_lect").prop("disabled",false);
+				
 				$("#fec_lect").focus();	
             }
     });
@@ -201,9 +199,7 @@ $(document).ready(function () {
 				return;
              
 			}else{
-				/*if (fn_validar_fecha($("#fec_lect").val()) == false){
-				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#fec_lect") );
-				return false;*/
+				
 				if ($("#fec_lect").val() == ""){
 					fn_mensaje_boostrap("DIGITE LA FECHA", g_titulo, $("#fec_lect"));
 				
@@ -316,7 +312,7 @@ function fn_carga_orden() {
 			return;
 		}
 
-		//$("#co_reasignar").prop("disabled",false);
+		
 		$("#cb_reasigna_nuevo").prop("disabled", false);
 
 	});
@@ -420,66 +416,21 @@ function fn_mensaje_bootstrap_fecv(){
 
 function fn_regional() {
 
-    /*parameters = 
-    {
-		"func":"fn_regional",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val()
-    };
-    HablaServidor(my_url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_regional").html(text);
-    });*/
 
 	$("#cb_regional").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_ciclo() {
-
-    /*parameters = 
-    {
-		"func":"fn_regional",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val()
-    };
-    HablaServidor(my_url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_regional").html(text);
-    });*/
-
+    
 	$("#cb_ciclo").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
 }
 
 function fn_ruta() {
 
-    /*parameters = 
-    {
-		"func":"fn_regional",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val()
-    };
-    HablaServidor(my_url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_regional").html(text);
-    });*/
 
 	$("#cb_ruta").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
 }
 function fn_lect() {
 
-    /*parameters = 
-    {
-		"func":"fn_regional",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val()
-    };
-    HablaServidor(my_url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_regional").html(text);
-    });*/
 
 	$("#cb_lector").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
 }
