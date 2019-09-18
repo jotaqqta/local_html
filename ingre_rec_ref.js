@@ -21,13 +21,13 @@ $(document).ready(function() {
     document.title = g_titulo ;
 	document.body.scroll = "yes";
 
-    $("#div_header").load("/syn_globales/header.htm", function() {
+    $("#div_header").load("syn_globales/header.htm", function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
 
 	//Footer
-	$("#div_footer").load("/syn_globales/footer.htm");	
+	$("#div_footer").load("syn_globales/footer.htm");	
 		
 	//Se cargan las variables que vienen desde el server
 	/*
