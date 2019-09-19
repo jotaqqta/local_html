@@ -19,9 +19,9 @@ $(document).ready(function() {
     $("#co_obs").prop("disabled", true);
 
 	$("#cb_motiv").prop("disabled",true);
-	$("#cb_origen").prop("disabled",true);    
     
     fn_tip_ajust();
+    fn_origen();
 	
     $("button").on("click", function(){return false;});
 
@@ -121,28 +121,15 @@ $(document).ready(function() {
 
 
 
-	$("#cb_tip_ajust").on("change", function(evt)
-	{
+	$("#cb_tip_ajust").on("change", function(evt){
 		if($(this).val() =="")
 			//$("#cb_ruta").prop("disabled",true);
 			limpia_ajus(); //se limpian los combos inferiores
 		else
 			$("#cb_motiv").prop("disabled",false);
-			$("#cb_origen").prop("disabled",true);
 			fn_motiv();
-			fn_origen();	
 			$("#cb_motiv").focus();
 	});
-
-	$("#cb_motiv").on("change", function(evt)
-	{
-		if($(this).val() =="")
-			limpia_motiv(); //se limpian los combos inferiores
-		else
-			$("#cb_origen").prop("disabled",false);
-			fn_origen();	
-			$("#cb_origen").focus();	
-	});	        
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -280,7 +267,6 @@ function fn_anular(){
 	$("#cb_motiv").val("");
 	$("#cb_origen").val("");    	
 	$("#cb_motiv").prop("disabled",true);
-	$("#cb_origen").prop("disabled",true);	
 	$("#cb_tip_ajust").focus();
 }
 
@@ -288,16 +274,5 @@ function fn_anular(){
 function limpia_ajus()
 {	
 	$("#cb_motiv").val("");
-	$("#cb_origen").val("");	
 	$("#cb_motiv").prop("disabled",true);
-	$("#cb_origen").prop("disabled",true);
-}
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function limpia_motiv()
-{
-	$("#cb_motiv").val("");
-	$("#cb_origen").val("");	
-	$("#cb_motiv").prop("disabled",false);
-	$("#cb_origen").prop("disabled",true);
 }
