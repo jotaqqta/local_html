@@ -132,13 +132,13 @@ $(document).ready(function() {
 	});  
 
     $("input[name=optradio]").click(function () {   
+ 		/*
  		
- 		var valor_new = fn_valor_grilla();
 		
 		$grid.pqGrid( {editable:true} );
 		$grid.pqGrid("updateRow", { 'rowIndx': 0 , row: { 'C11': valor_new } });
 		$grid.pqGrid( {editable:false} );
-		      
+		 */     
     });	
 	
 
@@ -149,7 +149,7 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 { 
     var data = [
-		{ C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No refacturado', C6:'No', C7:'No', C8:'03-2018'},
+		{ C10:false, C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No refacturado', C6:'No', C7:'No', C8:'03-2018'},
         	{ C1:'69334507', C2: "14/02/2018", C3:'FA', C4:'15.2', C5:'No refacturado', C6:'No', C7:'No', C8:'02-2018'},
         	{ C1:'68848888', C2: "15/01/2018", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'01-2018'},
         	{ C1:'68929696', C2: "14/12/2017", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'12-2018'}
@@ -164,7 +164,7 @@ function fn_setea_grid_principal()
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
-			editable:false,
+			editable:true,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
             title: "Titulo",
@@ -174,9 +174,10 @@ function fn_setea_grid_principal()
         };
 		obj.colModel = [
             
-            { type: 'checkbox',title: "", width: 5, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { type: 'checkbox',title: "", width: 5, dataType: "string", dataIndx: "C10",halign:"center", align:"center" },
             { title: "Documento",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center",          align:"right"},
             { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { title: "valor_chk", width: 80, dataType: "string", dataIndx: "C10",halign:"center", align:"center", hidden:true },
             { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
             { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
             { title: "Refacturado",width: 90, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
@@ -236,46 +237,10 @@ function fn_Muestra_ingre() {
 	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
 	$("#div_ing_bts").on("shown.bs.modal", function () {
     $("#div_ing_bts div.modal-footer button").focus();
-
+		$grid.pqGrid( "refreshDataAndView" );
 	});
 
 
-}
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
-function fn_valor_grilla(){
-	var value_check =  $('input:radio[name=optradio]:checked').val();
-
-	if(value_check == '1'){
-		var valor = "100";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '2'){
-		var valor = "200";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '3'){
-		var valor = "300";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '4'){
-		var valor = "400";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '5'){
-		var valor = "500";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '6'){
-		var valor = "600";  //Valor que deseamos colocar en la grilla	
-	}		
-
-	if(value_check == '7'){
-		var valor = "700";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '8'){
-		var valor = "800";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '9'){
-		var valor = "900";  //Valor que deseamos colocar en la grilla	
-	}	
-
-	return valor;
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
