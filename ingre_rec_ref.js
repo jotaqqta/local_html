@@ -16,7 +16,11 @@ $(document).keydown(function(e) {
 
 $(document).ready(function() {
     
-	$("button").on("click", function(){return false;});
+    fn_tip_ajust();
+    fn_origen();
+    fn_motiv();
+	
+    $("button").on("click", function(){return false;});
 
     document.title = g_titulo ;
 	document.body.scroll = "yes";
@@ -29,14 +33,6 @@ $(document).ready(function() {
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");	
 		
-	//Se cargan las variables que vienen desde el server
-	/*
-	$("#tx_empresa").val(SYNSegCodEmpresa);
-	$("#tx_rol").val(SYNSegRol);
-	$("#tx_ip").val(SYNSegIP);
-	$("#tx_rolfun").val(SYNSegRolFuncion);
-	*/
-	
 	$("#tx_cliente").focus();
 	$('input[name="optradio"]').prop('disabled', true);
    
@@ -47,30 +43,82 @@ $(document).ready(function() {
 
     fn_setea_grid_principal();
  
-	$("#co_enviar").on("click", function(){
-		
-		if ($.trim($("#co_enviar").text())=="Enviar"){
-			if( $("#tx_cliente").val() == ""){
+	
+  	/*$("#co_leer").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_leer").text()) == "Leer") {
+			if ($("#tx_cliente").val() ==""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
-				return;
+                return;
+                }else{
+            if ($("#tx_obs").val()==""){
+				fn_mensaje_boostrap("DIGITE LAS OBSERVACIONES", g_titulo, $("#tx_obs"));
+               
+                 return;
 			}
-
-			$("#co_enviar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+            
+			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
 
 			fn_leer();
-		}else{
+            
+        
+            }
+        }else{
 			//////////////////////////////////////////////////////////////////////////////
 			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
 			//////////////////////////////////////////////////////////////////////////////
-		   fn_Muestra_ingre();	
+		    fn_Muestra_ingre();	
 			fn_limpiar();    
 			return;			
 		}
+	});*/
+    $("#co_leer").on("click", function () {
+      	if ($.trim($("#co_leer").text()) == "Leer") {
+			if ($("#tx_cliente").val() =="" || $("#co_obs").val()=="" ){
+				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#tx_cliente"));
+                return;
+                }else{
+             
+            
+                }
+        }  
+        
+    });
+    $("#co_aceptar").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
+			if ($("#cb_tip_ajust").val() ==""){
+				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#cb_tip_ajust"));
+                return;
+                }else{
+                     if ($("#cb_motiv").val()==""){
+				fn_mensaje_boostrap("SELECCIONE MOTIVO", g_titulo, $("#cb_motiv"));
+               
+                 return;
+			}
+             if ($("#cb_origen").val()==""){
+				fn_mensaje_boostrap("SELECCIONE ORIGEN", g_titulo, $("#cb_origen"));
+                return;    
+            }
+                }
+        }
 	});
     
-
-	$("#co_cancelar").on("click",function(){
+    
+    
+    
+    $("#co_aceptar").on("click",function(e){
+      
+        
+        });
+    $("#co_anular").on("click",function(e){
+        fn_limpiar();
+	    });
+    $("#co_close").on("click", function (e) {
+      $('#div_ing_bts').modal('hide');
+        }); 
+    $("#co_cancelar").on("click",function(){
 
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
 			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
@@ -90,7 +138,7 @@ $(document).ready(function() {
 		$grid.pqGrid( {editable:true} );
 		$grid.pqGrid("updateRow", { 'rowIndx': 0 , row: { 'C11': valor_new } });
 		$grid.pqGrid( {editable:false} );
-		//$grid.pqGrid( "refreshView" );        
+		      
     });	
 	
 
@@ -101,12 +149,15 @@ $(document).ready(function() {
 function fn_setea_grid_principal()
 { 
     var data = [
-		{ C1:'14762494', C2: 'M', C3:'58000 ', C4:'2000 ', C5:'41000', C6:'356000 ', C7:'198000 ', C8:'718000 ', C9:'66700 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
-		//{ C1:'14762494', C2: 'M', C3:'718000 ', C4:'718000 ', C5:'718000', C6:'718000 ', C7:'718000 ', C8:'718000 ', C9:'718000 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
+		{ C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No refacturado', C6:'No', C7:'No', C8:'03-2018'},
+        	{ C1:'69334507', C2: "14/02/2018", C3:'FA', C4:'15.2', C5:'No refacturado', C6:'No', C7:'No', C8:'02-2018'},
+        	{ C1:'68848888', C2: "15/01/2018", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'01-2018'},
+        	{ C1:'68929696', C2: "14/12/2017", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'12-2018'}
+	
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 400,
             showTop: true,
 			showBottom:false,
             showHeader: true,
@@ -116,29 +167,23 @@ function fn_setea_grid_principal()
 			editable:false,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
-            title: "Promedio en GLS",
+            title: "Titulo",
 			pageModel: {type:"local"},
         	scrollModel:{theme:true},
+        
         };
 		obj.colModel = [
-            { title: "Numero Medidor",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
-            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
-            { title: "Consumo Base 6", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
-            { title: "Consumo Base 5", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Consumo Base 4",width: 90, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
-            { title: "Consumo Base 3",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
-            { title: "Consumo Base 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
-            { title: "Consumo Base 1",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"},
-            { title: "Consumo Promedio",width: 90, dataType: "number", dataIndx: "C9",halign:"center", align:"right"},
-            { title: "Consumo Prom/Area",width: 90, dataType: "number", dataIndx: "C10",halign:"center", align:"right"},
-            { title: "Consumo Facturar",width: 90, dataType: "number", dataIndx: "C11",halign:"center", align:"right"},
-            { title: "Consumo Promedio en G",width: 110, dataType: "number", dataIndx: "C12",halign:"center", align:"right"},
-            { title: "Tipo Lectura",width: 80, dataType: "number", dataIndx: "C13",halign:"center", align:"center"},
-            { title: "Cliente Dudoso",width: 90, dataType: "number", dataIndx: "C14",halign:"center", align:"center"}, 
-            { title: "Est. Sumin.",width: 80, dataType: "number", dataIndx: "C15",halign:"center", align:"center"}, 
-            { title: "Ult. Fact.",width: 80, dataType: "number", dataIndx: "C16",halign:"center", align:"right"}, 
-        ];
-		
+            
+            { type: 'checkbox',title: "", width: 5, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { title: "Documento",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center",          align:"right"},
+            { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
+            { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
+            { title: "Refacturado",width: 90, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Campo 1",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
+            { title: "Campo 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
+            { title: "Periodo",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"}
+];		
 		obj.dataModel = { data: data };
 
 		
@@ -147,54 +192,9 @@ function fn_setea_grid_principal()
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-/*
-function fn_carga_orden()
-{
-	dato_ori = [];
-    parameters = 
-    {
-		"func":"fn_lee_orden",
-		"empresa":$("#tx_empresa").val(),
-		"p_orden":$("#tx_orden").val()
-    };
-    
-    HablaServidor(my_url,parameters,'text', function(text){
-        if(text != ""){
-			$("#co_leer").html("<span class='glyphicon glyphicon-user'></span> Reasignar");
-			dato_ori = text.split("|");
-			//$("#co_leer").prop("disabled",true);
-			$("#tx_orden").prop("disabled",true);
-			$("#tx_cod_cliente").val(dato_ori[1]);
-			$("#tx_rol_actual").val(dato_ori[3]);
-			$("#tx_nombre").val(dato_ori[4]);
-			$("#tx_estado").val(dato_ori[5]);
-			$("#tx_ruta").val(dato_ori[6]);
-			$("#tx_tarifa").val(dato_ori[7]);
-			$("#tx_actividad").val(dato_ori[8]);
-		}
-		else{
-			fn_mensaje_boostrap("No se encontro la orden indicada!!!", g_titulo, $(""));
-			return;
-		}
-		if(dato_ori[0] == "F"){
-			$("#co_leer").prop("disabled",true);
-			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo,$(""));
-			return;
-		}
-		
-		$("#cb_reasigna_nuevo").prop("disabled",false);
-	         
-    });
-	
-}
-*/
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer(){
 	$("#tx_cliente").prop("disabled", true);
-	$('input[name="optradio"]').prop('disabled', false);
-
-	$("#tx_nombre").val("PH BBVA");
+    $("#tx_nombre").val("PH BBVA");
 	$("#tx_dir").val("PANAMA CENTRO");
 	$("#tx_est_client").val("ACTIVO");
 	$('#tx_est_conex').val("CON SUMINISTRO");
@@ -204,6 +204,7 @@ function fn_leer(){
 	$("#tx_actividad").val("BANCOS PRIVADOS");
 	$("#tx_unid").val("1");            
 	$("#tx_x_leg").val("0"); 
+ 
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -219,18 +220,22 @@ function fn_limpiar(){
 	$("#tx_actividad").val("");
 	$("#tx_unid").val("");
 	$("#tx_x_leg").val("");
+    $("#tx_obs").val("");
 
 	$('input[name="optradio"]').prop('checked', false);
 	$('input[name="optradio"]').prop('disabled', true);
 
 	$("#tx_cliente").val("");
 	$("#tx_cliente").prop("disabled", false);	
-	$("#tx_cliente").focus();	 
+	$("#tx_cliente").focus();
+    $("#cb_tip_ajust").val("");
+    $("#cb_motiv").val("");
+    $("#cb_origen").val("");
 }
 function fn_Muestra_ingre() {
 	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
 	$("#div_ing_bts").on("shown.bs.modal", function () {
-		$("#div_ing_bts div.modal-footer button").focus();
+    $("#div_ing_bts div.modal-footer button").focus();
 
 	});
 
@@ -271,4 +276,35 @@ function fn_valor_grilla(){
 	}	
 
 	return valor;
+}
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+//FUNCIONES MODAL
+
+function fn_tip_ajust() {
+
+
+	$("#cb_tip_ajust").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+function fn_motiv() {
+    
+	$("#cb_motiv").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
+}
+
+function fn_origen() {
+
+	$("#cb_origen").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
+}
+
+function fn_actualizar(){
+    alert('Se actualizo.');
+}
+function fn_marcar(){
+     alert('Se marco como no leida.');
+}
+function fn_anular(){
+    $("#cb_tip_ajust").value("");
+     $("#cb_motiv").value("");
+     $("#cb_origen").value("");
+    
 }

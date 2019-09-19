@@ -77,10 +77,11 @@
 						<label for="tx_cliente">N° de Suministro</label>
 						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;">
 					</div>
-					<div class="col-8 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
+					<div class="col-8 col-sm-6 col-md-6 col-lg-6" id="botones_margenes"> 
 					<label for=""></label>
 						<div>												
-							<button type="button" class="btn btn-primary" id="co_enviar" style="padding: 6px 20px;width:115px "><span class="glyphicon glyphicon-check"></span> Enviar</button>
+							<button type="button" class="btn btn-primary" id="co_leer" name="co_leer" style="padding: 6px 20px;width:115px "><span class="glyphicon glyphicon-check"></span> Leer</button>
+                            
                         	
 							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	                           
 						</div>
@@ -146,6 +147,21 @@
 						</div>
 					</div>
 				</div>
+                <div class="row">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="form-group">
+							<label for="tx_tarif">Campo</label>
+							<input disabled id="tx_cam" name="tx_cam" type="text" class="form-control inp_dis" readonly>
+						</div>
+					</div>
+                </div>
+                
+                  <div class="form-group">
+                      <label class="control-label" for="co_obs">Observaciones:</label>
+                      <br>
+                  <textarea id="co_obs" name="co_obs" cols="40" type="text" style="font-size: 20px;" class="form-control inp_dis">
+                  </textarea>  
+                  </div>
 
 									
 				
@@ -153,44 +169,36 @@
            
 
 			
-            <div class="container">
-                  <div class="form-group">
-                      <label class="control-label" for="tx_obs">Observaciones:</label>
-                      <br>
-                      
-             <textarea id="tx_obs" name="tx_obs" rows="4" cols="60" style="font-size: 20px; text-transform: uppercase;" class="form-control texto2 inp_dis">
-                            </textarea>  
-                      </div>
-                  </div> 
+                
             </div>
 		
 
-		<div class="container">
-			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
-		</div>
+		     <div class="container">
+			 <div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
+		     </div>
         
-		<!-- Modal Lectura-->
-        <div id="div_ing_bts" class="modal fade" role="dialog">
+		 <!-- Modal Lectura-->
+         <div id="div_ing_bts" class="modal fade" role="dialog">
             <div class="modal-dialog" style="width: 900px ;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la busqueda</h4>
+						<h4 class="modal-title" data-dismiss="modal">Ingreso de refacturación</h4>
 					</div>
 					<div class="modal-body"  style="height:500px;">
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="form-group">
 									<label class="control-label" for="co_tip_ajust">Tipo de ajuste:</label>
-							    <input type="text" id="co_tip_ajust" name="co_tip_ajust" class="form-control" style="margin-top: 3px;">
-                                    
+							    
+                                    <select class="form-control inp_dis" id="cb_tip_ajust" name="cb_tip_ajust"></select>
 								</div>
 							</div>	
                     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="form-group">
 									<label class="control-label" for="co_mot">Motivo:</label>
-							    <input type="text" id="co_mot" name="co_mot" class="form-control" style="margin-top: 3px;">
-                                    
+							    
+                                 <select class="form-control inp_dis" id="cb_motiv" name="cb_motiv"></select>   
 								</div>
 							</div>	
 				     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
@@ -211,9 +219,11 @@
 					</div>
                     
 					<div class="modal-footer">
-						<button type="button" class="btn-left btn btn-primary" id="co_aceptar_lec"><span
+						<button type="button" class="btn-left btn btn-primary" id="co_aceptar" name="co_aceptar"><span
 								class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
-						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_close_lec" name="co_close_lec"><span
+                        	<button type="button" class="btn-left btn btn-primary" id="co_anular" name="co_anular"><span
+								class="glyphicon glyphicon-floppy-remove"></span> Anular</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_close" name="co_close"><span
 								class="glyphicon glyphicon-off"></span> Cancelar</button>
 					</div>
 				</div>
