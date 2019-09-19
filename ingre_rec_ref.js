@@ -44,7 +44,7 @@ $(document).ready(function() {
     fn_setea_grid_principal();
  
 	
-  	/*$("#co_leer").on("click", function () {
+  	$("#co_leer").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_leer").text()) == "Leer") {
 			if ($("#tx_cliente").val() ==""){
@@ -72,7 +72,7 @@ $(document).ready(function() {
 			fn_limpiar();    
 			return;			
 		}
-	});*/
+	});
     $("#co_leer").on("click", function () {
       	if ($.trim($("#co_leer").text()) == "Leer") {
 			if ($("#tx_cliente").val() =="" || $("#co_obs").val()=="" ){
