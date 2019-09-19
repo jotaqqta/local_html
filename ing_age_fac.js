@@ -81,9 +81,9 @@ $(document).ready(function() {
     });
 	
 	$("#co_aceptar").on("click", function (e) {
-        if(valida_datos()){
+        if(fn_valida_datos(1)){
 			if($.trim($("#co_aceptar").text()) == "Modificar")
-				$('#div_det_age').modal('hide'); 
+				$("#div_det_age").modal('hide');
 			else
 				fn_limpia_filtro();
 			//fn_carga_grid_principal();
@@ -343,10 +343,14 @@ function fn_filtro()
 	$("#filtro").val(Filtros);
 }
 
-function fn_valida_datos(){
-	if($("#tx_ciclo").val() == ""){
-		fn_mensaje_boostrap("DEBE DIGITAR UN CILO!!!", g_tit, $("#tx_ciclo") );
-		return false;
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_valida_datos(bandera){
+	
+	if(bandera == 1){
+	   if($("#tx_ciclo").val() == ""){
+			fn_mensaje_boostrap("DEBE DIGITAR UN CILO!!!", g_tit, $("#tx_ciclo") );
+			return false;
+		}
 	}
 	
 	if($("#tx_fec_libro").val() != ""){
@@ -389,6 +393,52 @@ function fn_valida_datos(){
 		fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA DE REPARTO!!!", g_tit, $("#tx_fec_reparto") );
 		return false;
 	}
+	
+	if($("#tx_fec_vto_nor").val() != ""){
+		if (fn_validar_fecha($("#tx_fec_vto_nor").val()) == false){
+			fn_mensaje_boostrap("VERIFICAR LA FECHA DE VENCIMIENTO NORMAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#tx_fec_vto_nor") );
+			return false;
+	   }
+	}
+	else{
+		fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA DE VENCIMIENTO NORMAL!!!", g_tit, $("#tx_fec_vto_nor") );
+		return false;
+	}
+	
+	if($("#tx_fec_corte_nor").val() != ""){
+		if (fn_validar_fecha($("#tx_fec_corte_nor").val()) == false){
+			fn_mensaje_boostrap("VERIFICAR LA FECHA DE CORTE NORMAL. EL FORMATO ES DD/MM/YYYY", g_tit, $("#tx_fec_corte_nor") );
+			return false;
+	   }
+	}
+	else{
+		fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA DE CORTE NORMAL!!!", g_tit, $("#tx_fec_corte_nor") );
+		return false;
+	}
+	
+	if($("#tx_fec_vto_gob").val() != ""){
+		if (fn_validar_fecha($("#tx_fec_vto_gob").val()) == false){
+			fn_mensaje_boostrap("VERIFICAR LA FECHA DE VENCIMIENTO GOBIERNO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#tx_fec_vto_gob") );
+			return false;
+	   }
+	}
+	else{
+		fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA DE VENCIMIENTO GOBIERNO!!!", g_tit, $("#tx_fec_vto_gob") );
+		return false;
+	}
+	
+	if($("#tx_fec_corte_gob").val() != ""){
+		if (fn_validar_fecha($("#tx_fec_corte_gob").val()) == false){
+			fn_mensaje_boostrap("VERIFICAR LA FECHA DE CORTE GOBIERNO. EL FORMATO ES DD/MM/YYYY", g_tit, $("#tx_fec_corte_gob") );
+			return false;
+	   }
+	}
+	else{
+		fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA DE CORTE GOBIERNO!!!", g_tit, $("#tx_fec_corte_gob") );
+		return false;
+	}
+	
+	return true;
 	
 }
 
