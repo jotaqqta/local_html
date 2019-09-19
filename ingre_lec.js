@@ -103,15 +103,28 @@ $(document).ready(function () {
 	$grid.pqGrid({
 		editorEnd: function( event, ui ){
 			if(ui.dataIndx == "C9"){
-				alert(ui.dataIndx);
+				//alert(ui.dataIndx);
 				//Debe validar la clave
 				//si clave es valida hace flag = 1; sino flag = 0
 				flag = 1;
+				
 			}
 			else{
 				//Valida que lectura sea un numero valido
 				//metodo que actualiza la lectura
 				//Una vez actualiza flag = 0;
+				//var C9 = ui.dataIndx;
+				var $select_col = $(".select-column");
+				var fila_grid =  parseInt(ui.rowIndx)+1;
+				//$select_col.append("<option>" + ui.dataIndx + "</option>");
+				$select_col.append("<option value'C9'>C9</option>");
+				$("#div_grid_dos").pqGrid("setSelection", null);
+                $("#div_grid_dos").pqGrid("setSelection", { rowIndx: fila_grid, dataIndx: ui.dataIndx });
+                //$("#div_grid_dos").pqGrid("setSelection", { rowIndx: 2, dataIndx: C9});
+				
+				$grid.pqGrid("setSelection", null);
+                //$grid.pqGrid("setSelection", { rowIndx: 1, dataIndx: ui.dataIndx });
+                $grid.pqGrid("setSelection", { rowIndx: fila_grid, dataIndx: $select_col });
 				flag = 0;
 			}
 			
@@ -227,17 +240,11 @@ function fn_setea_grid_principal() {
 		rowBorders: true,
 		columnBorders: true,
 		editable: true,
-		selectionModel: { type: 'cell' },
+		//selectionModel: { type: 'cell' },
 		numberCell: { show: true},
 		title: "Ingreso de lecturas tomadas en terreno",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
-		selectChange: function (evt, ui) {
-                console.log('selectChange', ui);
-                var address = ui.selection.address();
-                $("#select_change_div").html( JSON.stringify( address ) );
-            },
-		
 		toolbar:
 		{
 			cls: "pq-toolbar-export",
