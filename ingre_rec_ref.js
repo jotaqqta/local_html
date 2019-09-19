@@ -44,7 +44,7 @@ $(document).ready(function() {
     fn_setea_grid_principal();
  
 	
-  	$("#co_leer").on("click", function () {
+  	/*$("#co_leer").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_leer").text()) == "Leer") {
 			if ($("#tx_cliente").val() ==""){
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 }else{
             if ($("#tx_obs").val()==""){
 				fn_mensaje_boostrap("DIGITE LAS OBSERVACIONES", g_titulo, $("#tx_obs"));
-                 fn_lim_fil_ci();
+               
                  return;
 			}
             
@@ -72,14 +72,48 @@ $(document).ready(function() {
 			fn_limpiar();    
 			return;			
 		}
+	});*/
+    $("#co_leer").on("click", function () {
+      	if ($.trim($("#co_leer").text()) == "Leer") {
+			if ($("#tx_cliente").val() =="" || $("#co_obs").val()=="" ){
+				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#tx_cliente"));
+                return;
+                }else{
+             
+            
+                }
+        }  
+        
+    });
+    $("#co_aceptar").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
+			if ($("#cb_tip_ajust").val() ==""){
+				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#cb_tip_ajust"));
+                return;
+                }else{
+                     if ($("#cb_motiv").val()==""){
+				fn_mensaje_boostrap("SELECCIONE MOTIVO", g_titulo, $("#cb_motiv"));
+               
+                 return;
+			}
+             if ($("#cb_origen").val()==""){
+				fn_mensaje_boostrap("SELECCIONE ORIGEN", g_titulo, $("#cb_origen"));
+                return;    
+            }
+                }
+        }
 	});
+    
+    
+    
     
     $("#co_aceptar").on("click",function(e){
       
         
         });
     $("#co_anular").on("click",function(e){
-        fn_actualizar();
+        fn_limpiar();
 	    });
     $("#co_close").on("click", function (e) {
       $('#div_ing_bts').modal('hide');
@@ -133,14 +167,15 @@ function fn_setea_grid_principal()
 			editable:false,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
-            title: "Promedio en GLS",
+            title: "Titulo",
 			pageModel: {type:"local"},
         	scrollModel:{theme:true},
         
         };
 		obj.colModel = [
+            
             { type: 'checkbox',title: "", width: 5, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
-            { title: "Documento",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center", align:"right"},
+            { title: "Documento",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center",          align:"right"},
             { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
             { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
             { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
@@ -266,4 +301,10 @@ function fn_actualizar(){
 }
 function fn_marcar(){
      alert('Se marco como no leida.');
+}
+function fn_anular(){
+    $("#cb_tip_ajust").value("");
+     $("#cb_motiv").value("");
+     $("#cb_origen").value("");
+    
 }
