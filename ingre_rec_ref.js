@@ -73,18 +73,7 @@ $(document).ready(function() {
 			return;			
 		}
 	});
-    $("#co_leer").on("click", function () {
-      	if ($.trim($("#co_leer").text()) == "Leer") {
-			if ($("#tx_cliente").val() =="" || ($("#co_obs").val()=="") ){
-				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#tx_cliente"));
-                return;
-                }else{
-             
-            
-                }
-        }  
-        
-    });
+
     $("#co_aceptar").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
