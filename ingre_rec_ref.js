@@ -15,10 +15,13 @@ $(document).keydown(function(e) {
 });
 
 $(document).ready(function() {
+    $("#tx_refe").prop("disabled", true);
+    $("#co_obs").prop("disabled", true);
+
+	$("#cb_motiv").prop("disabled",true);
+	$("#cb_origen").prop("disabled",true);    
     
     fn_tip_ajust();
-    fn_origen();
-    fn_motiv();
 	
     $("button").on("click", function(){return false;});
 
@@ -34,57 +37,46 @@ $(document).ready(function() {
 	$("#div_footer").load("syn_globales/footer.htm");	
 		
 	$("#tx_cliente").focus();
-	$('input[name="optradio"]').prop('disabled', true);
    
 	jQuery('#tx_cliente').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 	
-
     fn_setea_grid_principal();
+
+    //AL PRESIONAR LA TECLA ENTER RETORNE LA INFORMACION
+    $("#tx_cliente").keypress(function(e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code==13){
+			if ($("#tx_cliente").val() ==""){
+				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
+                return;
+            }
+			fn_leer();  
+        }
+    });	    
  
-	
   	$("#co_leer").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_leer").text()) == "Leer") {
 			if ($("#tx_cliente").val() ==""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
                 return;
-                }else{
-            if ($("#tx_obs").val()==""){
-				fn_mensaje_boostrap("DIGITE LAS OBSERVACIONES", g_titulo, $("#tx_obs"));
-               
-                 return;
-			}
-            
-			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-
-			fn_leer();
-            
-        
             }
+			fn_leer();      
         }else{
-			//////////////////////////////////////////////////////////////////////////////
-			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
-			//////////////////////////////////////////////////////////////////////////////
-		    fn_Muestra_ingre();	
-			fn_limpiar();    
-			return;			
+
+            if ($("#tx_refe").val()==""){
+				fn_mensaje_boostrap("DEBE DIGITAR LA REFERENCIA", g_titulo, $("#tx_refe"));
+                return;
+			}else{
+			   	fn_Muestra_ingre();	
+				//fn_limpiar();    
+				return;			
+			}			
 		}
 	});
-    $("#co_leer").on("click", function () {
-      	if ($.trim($("#co_leer").text()) == "Leer") {
-			if ($("#tx_cliente").val() =="" || ($("#co_obs").val()=="") ){
-				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#tx_cliente"));
-                return;
-                }else{
-             
-            
-                }
-        }  
-        
-    });
+
     $("#co_aceptar").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
@@ -104,20 +96,7 @@ $(document).ready(function() {
                 }
         }
 	});
-    
-    
-    
-    
-    $("#co_aceptar").on("click",function(e){
-      
-        
-        });
-    $("#co_anular").on("click",function(e){
-        fn_limpiar();
-	    });
-    $("#co_close").on("click", function (e) {
-      $('#div_ing_bts').modal('hide');
-        }); 
+
     $("#co_cancelar").on("click",function(){
 
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
@@ -126,33 +105,54 @@ $(document).ready(function() {
     
 			fn_limpiar();    
 			return;
-		}
-		else
+		}else{
+
 			window.close();
-	});  
+		}
+	});  	
+    
+    $("#co_anular").on("click",function(e){
+    	fn_anular();
+	});
 
-    $("input[name=optradio]").click(function () {   
- 		/*
- 		
-		
-		$grid.pqGrid( {editable:true} );
-		$grid.pqGrid("updateRow", { 'rowIndx': 0 , row: { 'C11': valor_new } });
-		$grid.pqGrid( {editable:false} );
-		 */     
-    });	
-	
+    $("#co_close").on("click", function (e) {
+    	$('#div_ing_bts').modal('hide');
+    }); 	
 
-	
+
+
+	$("#cb_tip_ajust").on("change", function(evt)
+	{
+		if($(this).val() =="")
+			//$("#cb_ruta").prop("disabled",true);
+			limpia_ajus(); //se limpian los combos inferiores
+		else
+			$("#cb_motiv").prop("disabled",false);
+			$("#cb_origen").prop("disabled",true);
+			fn_motiv();
+			fn_origen();	
+			$("#cb_motiv").focus();
+	});
+
+	$("#cb_motiv").on("change", function(evt)
+	{
+		if($(this).val() =="")
+			limpia_motiv(); //se limpian los combos inferiores
+		else
+			$("#cb_origen").prop("disabled",false);
+			fn_origen();	
+			$("#cb_origen").focus();	
+	});	        
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 { 
     var data = [
-		{ C10:false, C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No refacturado', C6:'No', C7:'No', C8:'03-2018'},
-        	{ C1:'69334507', C2: "14/02/2018", C3:'FA', C4:'15.2', C5:'No refacturado', C6:'No', C7:'No', C8:'02-2018'},
-        	{ C1:'68848888', C2: "15/01/2018", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'01-2018'},
-        	{ C1:'68929696', C2: "14/12/2017", C3:'FA', C4:'7.36', C5:'No refacturado', C6:'No', C7:'No', C8:'12-2018'}
+		{ C10:false, C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No Refacturado', C6:'No', C7:'No', C8:'03-2018'},
+        	{ C1:'69334507', C2: "14/02/2018", C3:'FA', C4:'15.2', C5:'No Refacturado', C6:'No', C7:'No', C8:'02-2018'},
+        	{ C1:'68848888', C2: "15/01/2018", C3:'FA', C4:'7.36', C5:'No Refacturado', C6:'No', C7:'No', C8:'01-2018'},
+        	{ C1:'68929696', C2: "14/12/2017", C3:'FA', C4:'7.36', C5:'No Refacturado', C6:'No', C7:'No', C8:'12-2018'}
 	
     ];
     var obj = {
@@ -175,12 +175,12 @@ function fn_setea_grid_principal()
 		obj.colModel = [
             
             { type: 'checkbox',title: "", width: 5, dataType: "string", dataIndx: "C10",halign:"center", align:"center" },
-            { title: "Documento",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center",          align:"right"},
-            { title: "Fecha", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            { title: "Documento",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"right"},
+            { title: "Fecha", width: 100, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
             { title: "valor_chk", width: 80, dataType: "string", dataIndx: "C10",halign:"center", align:"center", hidden:true },
             { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
             { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Refacturado",width: 90, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Refacturado",width: 140, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
             { title: "Campo 1",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
             { title: "Campo 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
             { title: "Periodo",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"}
@@ -194,7 +194,11 @@ function fn_setea_grid_principal()
 }
 
 function fn_leer(){
+	var f = new Date();
+	var fec = (f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
 	$("#tx_cliente").prop("disabled", true);
+	$("#tx_orden").val("1395209");
+	$("#tx_fecha").val(fec);
     $("#tx_nombre").val("PH BBVA");
 	$("#tx_dir").val("PANAMA CENTRO");
 	$("#tx_est_client").val("ACTIVO");
@@ -205,13 +209,21 @@ function fn_leer(){
 	$("#tx_actividad").val("BANCOS PRIVADOS");
 	$("#tx_unid").val("1");            
 	$("#tx_x_leg").val("0"); 
- 
+
+	$("#co_leer").html("<span class='glyphicon glyphicon-share-alt'></span> Enviar");
+	$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");	
+
+	$("#tx_refe").prop("disabled", false);
+	$("#co_obs").prop("disabled", false);
+	$("#tx_refe").focus();	 
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpiar(){
 
 	$("#tx_nombre").val("");
+	$("#tx_orden").val("");
+	$("#tx_fecha").val("");	
 	$("#tx_dir").val("");
 	$("#tx_est_client").val("");
 	$('#tx_est_conex').val("");
@@ -219,12 +231,8 @@ function fn_limpiar(){
 	$("#tx_ruta").val("");
 	$("#tx_tarif").val("");
 	$("#tx_actividad").val("");
-	$("#tx_unid").val("");
-	$("#tx_x_leg").val("");
-    $("#tx_obs").val("");
-
-	$('input[name="optradio"]').prop('checked', false);
-	$('input[name="optradio"]').prop('disabled', true);
+    $("#tx_refe").val("");
+    $("#co_obs").val("");
 
 	$("#tx_cliente").val("");
 	$("#tx_cliente").prop("disabled", false);	
@@ -232,44 +240,64 @@ function fn_limpiar(){
     $("#cb_tip_ajust").val("");
     $("#cb_motiv").val("");
     $("#cb_origen").val("");
-}
-function fn_Muestra_ingre() {
-	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
-	$("#div_ing_bts").on("shown.bs.modal", function () {
-    $("#div_ing_bts div.modal-footer button").focus();
-		$grid.pqGrid( "refreshDataAndView" );
-	});
 
-
+    $("#tx_refe").prop("disabled", true);
+	$("#co_obs").prop("disabled", true);
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-//FUNCIONES MODAL
+function fn_Muestra_ingre() {
+	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
+	$("#div_ing_bts").on("shown.bs.modal", function () {
+    //$("#div_ing_bts div.modal-footer button").focus();
+		$grid.pqGrid( "refreshDataAndView" );
+	});
+}
 
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+/////////////////////////////////FUNCIONES MODAL///////////////////////////////////////////
 function fn_tip_ajust() {
 
 
 	$("#cb_tip_ajust").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_motiv() {
     
 	$("#cb_motiv").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
 }
 
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_origen() {
 
 	$("#cb_origen").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
 }
 
-function fn_actualizar(){
-    alert('Se actualizo.');
-}
-function fn_marcar(){
-     alert('Se marco como no leida.');
-}
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_anular(){
-    $("#cb_tip_ajust").value("");
-     $("#cb_motiv").value("");
-     $("#cb_origen").value("");
-    
+	$("#cb_tip_ajust").val("");
+	$("#cb_motiv").val("");
+	$("#cb_origen").val("");    	
+	$("#cb_motiv").prop("disabled",true);
+	$("#cb_origen").prop("disabled",true);	
+	$("#cb_tip_ajust").focus();
+}
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function limpia_ajus()
+{	
+	$("#cb_motiv").val("");
+	$("#cb_origen").val("");	
+	$("#cb_motiv").prop("disabled",true);
+	$("#cb_origen").prop("disabled",true);
+}
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function limpia_motiv()
+{
+	$("#cb_motiv").val("");
+	$("#cb_origen").val("");	
+	$("#cb_motiv").prop("disabled",false);
+	$("#cb_origen").prop("disabled",true);
 }
