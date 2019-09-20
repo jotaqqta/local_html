@@ -29,7 +29,6 @@ $(document).ready(function () {
 	});
 
 	//Footer
-	$("#div_footer").load("/syn_globales/footer.htm");
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
@@ -100,7 +99,8 @@ $(document).ready(function () {
 		}
 	});
 	
-	$grid.pqGrid({
+	
+	/*$grid.pqGrid({
 		editorEnd: function( event, ui ){
 			if(ui.dataIndx == "C9"){
 				//alert(ui.dataIndx);
@@ -130,7 +130,7 @@ $(document).ready(function () {
 			
 		}
 		
-    });
+    });*/
 	
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -226,10 +226,9 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal() {
 	var data = [
-		{ C1: 1, C2: 295264, C3: 141139947, C4: 5, C5: "SERVE E INV DIAMOND SA", C6: "UMB MARCASA CALLE VIA JO", C7: "16-050-0160", C8: "MCUB", C9: 030, C10: 0, C11: 0 },
-		{ C1: 1, C2: 295264, C3: 141139947, C4: 5, C5: "KEYTLING GISELLE TREJOS VAR", C6: "RES-COL-LOS.ALAMOS.APTO", C7: "16-050-0160", C8: "MCUB", C9: 030, C10: 0, C11: 0 },
-		{ C1: 1, C2: 295264, C3: 141139947, C4: 5, C5: "REYNA P Y OTROS R", C6: "LA FLORIDA 00026", C7: "16-050-0160", C8: "MCUB", C9: 030, C10: 0, C11: 0 },
-
+		{ C1: "1", C2: "295264", C3: "141139947", C4: "5", C5: "SERVE E INV DIAMOND SA", C6: "UMB MARCASA CALLE VIA JO", C7: "16-050-0160", C8: "MCUB", C9: "030", C10: "0", C11: "0" },
+		{ C1: "1", C2: "295264", C3: "141139947", C4: "5", C5: "KEYTLING GISELLE TREJOS VAR", C6: "RES-COL-LOS.ALAMOS.APTO", C7: "16-050-0160", C8: "MCUB", C9: "030", C10: "0", C11: "0" },
+		{ C1: "1", C2: "295264", C3: "141139947", C4: "5", C5: "REYNA P Y OTROS R", C6: "LA FLORIDA 00026", C7: "16-050-0160", C8: "MCUB", C9: "030", C10: "0", C11: "0" }
 	];
 	var obj = {
 		height: 540,
@@ -239,11 +238,11 @@ function fn_setea_grid_principal() {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
-		editable: true,
-		//selectionModel: { type: 'cell' },
+		autoRow: false,
+		trackModel: { on: true },
+		editor: { type: "textbox", select: true, style: "outline:none;" },
 		numberCell: { show: true},
 		title: "Ingreso de lecturas tomadas en terreno",
-		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
 		{
@@ -252,13 +251,34 @@ function fn_setea_grid_principal() {
 				[{ type: "button", label: " Filtros", attr: "id=co_filtro", cls: "btn btn-primary" },
 				{ type: "button", label: "Lectura", attr: "id=co_leer", cls: "btn btn-primary" },
                 { type: "button", label: "Marcar ruta como no leida", attr: "id=co_rut_no_lei", cls: "btn btn-primary btn-sm" },
-				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
-                 
+				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },                 
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-secondary btn-sm" }
                
 				]
+		},
+        editModel: {
+            clicksToEdit: 1,
+            keyUpDown: true,
+            pressToEdit: true,
+            cellBorderWidth: 0
+        },
+	 editorKeyDown: function( event, ui ) {
+		var x = event.which || event.keyCode;
+		var grid = this;
+		if(x==13)
+		{
+			if(ui.dataIndx=="C10" || flag == 0)
+			{
+				setTimeout(function(){
+						$("#div_grid_dos").pqGrid( "setSelection", {rowIndx: (ui.rowIndx+1),colIndx: 7, focus:true} );
+
+				}, 100);		   
+			}
 		}
+	},
+	dataModel:{ data: data }
 	};
+	
 	obj.colModel = [
 		{ title: "NIC", width: 20, dataType: "number", dataIndx: "C2", halign: "center", align: "center", editable:false },
 		{ title: "Medidor", width: 90, dataType: "number", dataIndx: "C3", halign: "center", align: "center", editable:false  },
@@ -267,15 +287,14 @@ function fn_setea_grid_principal() {
 		{ title: "Dirección", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "center", editable:false  },
 		{ title: "Sec. Ruta", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "center", editable:false  },
 		{ title: "T. Med", width: 20, dataType: "string", dataIndx: "C8", halign: "center", align: "center", editable:false },
-		{ title: "Clave", width: 10, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
-		{ title: "Lectura tomada", width:110, dataType: "number", dataIndx: "C10", halign: "center", align: "center", editable: function(ui){
-			return (flag === 1);
-		}}
+		{ title: "Clave", width: 10, dataType: "string", dataIndx: "C9", halign: "center", align: "center", editor: {type: "textbox" } },
+		{ title: "Lectura tomada", width:110, dataType: "string", dataIndx: "C10", halign: "center", align: "center", editor: {type: "textbox" }}
 	];
+
+	$grid = $("#div_grid_dos").pqGrid(obj);	
 	
-	obj.dataModel = { data: data };
-	$grid = $("#div_grid_dos").pqGrid(obj);
 	$grid.pqGrid("refreshDataAndView");
+	
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -398,29 +417,6 @@ function fn_ruta() {
  
 	$("#cb_ruta").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
     }
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_lect() {
-	/*
-	$("#cb_regional").html("");
-	$("#cb_ciclo").html("");
-	$("#cb_ruta").html("");
-
-	parameters = 
-	{
-		"func":"fn_regional",
-		"empresa":$("#tx_empresa").val()
-	};
-
-	HablaServidor(url,parameters,'text', function(text) 
-	{
-		if(text != "")
-			$("#cb_regional").html(text);
-	});
-	*/
-	
-	$(".select-row").html("<option value='0' selected>0</option><option value='1'>1</option> <option value='2' >2</option> <option value='3'>3</option>");
-}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_actualizar(){
