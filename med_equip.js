@@ -34,9 +34,9 @@ $(document).ready(function() {
 	fn_diametro();
     fn_tarifa();
     fn_provincia();
-    fn_distrito();
-    fn_corregimiento()
-    fn_barrio();
+    //fn_distrito();
+    //fn_corregimiento()
+    //fn_barrio();
     fn_bloq_provin();
     
     $("._input_selector").inputmask("dd/mm/yyyy");
@@ -53,6 +53,22 @@ $(document).ready(function() {
         window.close(); 
     }); 
 
+	
+	$("#cb_prov").on("change", function (){
+		if($("#cb_prov").val()!=""){
+			$("#cb_dist").prop("disabled", false);
+			fn_distrito();
+		}
+		else{
+			$("#cb_dist").val("");
+			$("#cb_corre").val("");
+			$("#cb_barrio").val("");
+			$("#cb_dist").prop("disabled", true);
+			$("#cb_corre").prop("disabled", true);
+			$("#cb_barrio").prop("disabled", true);
+		}
+	});
+	
     $("#co_gen").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_gen").text()) == "Generar") {
