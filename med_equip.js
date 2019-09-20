@@ -37,7 +37,7 @@ $(document).ready(function() {
     
    
 
-    fn_bloq_provin();
+
     
     $("._input_selector").inputmask("dd/mm/yyyy");
     $('input[name="optradio"]').prop('disabled', false);
@@ -94,8 +94,8 @@ $(document).ready(function() {
     
     $("#co_gen").on("click", function () {
 		//Validación de informacion
-		if ($.trim($("#co_gen").text()) == "Generar") {
-       if ($("#fec_sum_in").val() == ""){
+		if ($.trim($("#co_gen").text()) == "Generar"){
+        if ($("#fec_sum_in").val() == ""){
 					fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO.", g_titulo, $("#fec_sum_in"));
 				
 				return;
