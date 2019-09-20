@@ -188,16 +188,7 @@ function fn_carga_grilla(){
 function fn_gen(){
      alert('Se genero.');
 }
-function fn_bloq_provin(){
-    $("#cb_dist").prop("disabled", true);
-    $("#cb_corre").prop("disabled", true);
-    $("#cb_barrio").prop("disabled", true);
-}
-function fn_des_bloq_provin(){
-    $("#cb_dist").prop("disabled", false);
-    $("#cb_corre").prop("disabled", false);
-    $("#cb_barrio").prop("disabled", false);
-}
+
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_limpiar(){
