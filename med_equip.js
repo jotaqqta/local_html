@@ -34,8 +34,8 @@ $(document).ready(function() {
 	fn_diametro();
     fn_tarifa();
     fn_provincia();
-    fn_distrito();
-    fn_corregimiento()
+    
+   
     fn_barrio();
     fn_bloq_provin();
     
@@ -52,86 +52,82 @@ $(document).ready(function() {
 	 $("#co_cancelar").on("click", function (e) {
         window.close(); 
     }); 
-
+     $("#cb_prov").on("change", function(evt){
+        if($(this).val()!= ""){
+		 $("#cb_dist").prop("disabled", false);
+         fn_distrito();
+    }
+	  
+       else{ 
+           $("#cb_dist").val("");
+           $("#cb_corre").val("");
+           $("#cb_barrio").val("");
+           $("#cb_dist").prop("disabled", true);
+           $("#cb_corre").prop("disabled", true);
+           $("#cb_barrio").prop("disabled", true);
+               }
+    });
+       $("#cb_dist").on("change", function(evt){
+        if($(this).val()!= ""){
+		 $("#cb_corre").prop("disabled", false);
+          fn_corregimiento();
+    }
+	  
+       else{ 
+           $("#cb_corre").val("");
+           $("#cb_barrio").val("");
+           $("#cb_corre").prop("disabled", true);
+           $("#cb_barrio").prop("disabled", true);  
+       }
+    });
+      $("#cb_corre").on("change", function(evt){
+        if($(this).val()!= ""){
+		 $("#cb_barrio").prop("disabled", false);
+         fn_barrio();
+    }
+	  
+       else{ 
+          $("#cb_barrio").val("");
+           $("#cb_barrio").prop("disabled", true);  
+       }
+    });
+    
     $("#co_gen").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_gen").text()) == "Generar") {
-       if ($("#fec_sum").val() == ""){
-					fn_mensaje_boostrap("DIGITE LA FECHA", g_titulo, $("#fec_sum"));
+       if ($("#fec_sum_in").val() == ""){
+					fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO.", g_titulo, $("#fec_sum_in"));
 				
 				return;
 					return;}
 					else{
-						if(fn_validar_fecha($("#fec_sum").val()) == false){
-							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum"));
+						if(fn_validar_fecha($("#fec_sum_in").val()) == false){
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_in"));
 							//fn_mensaje_bootstrap_fecv();
 							return false;
 					}
-
-				}  
-            
-           if($("#num_cli").val()==""){
-                   fn_mensaje_boostrap("DIGITE NUMERO DE CLIENTE", g_titulo, $("#num_cli"));
-               
-				return; 
-            }
-            if($("#rut_com").val()==""){
-                   fn_mensaje_boostrap("DIGITE RUTA COMERCIAL", g_titulo, $("#rut_com"));
-				return; 
                 }
-            if($("#num_med").val()==""){
-                   fn_mensaje_boostrap("DIGITE NUMERO DE MEDICIÓN", g_titulo, $("#num_med"));
-				return; 
-                }
-            if($("#mar_inp").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE MARCA", g_titulo, $("#mar_inp"));
-				return; 
-                }
-            if($("#diam_inp").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE DIAMETRO", g_titulo, $("#diam_inp"));
-				return; 
-                }
-            if($("#tar_inp").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE TARIFA", g_titulo, $("#tar_inf"));
-				return; 
-                }
-            if($("#cb_prov").val()==""){
-                
-                   fn_mensaje_boostrap("SELECCIONE PROVINCIA", g_titulo, $("#cb_prov"));
-              
-				return; 
-                }else{
-                  
-                   fn_des_bloq_provin();  
-                }
-            if($("#cb_dist").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE DISTRITO", g_titulo, $("#cb_dist"));
-				return; 
-                }
-            if($("#cb_corre").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE CORREGIMIENTO", g_titulo, $("#cb_corre"));
-				return; 
-                }
-            if($("#cb_barrio").val()==""){
-                   fn_mensaje_boostrap("SELECCIONE BARRIO", g_titulo, $("#cb_barrio"));
-				return; 
-                }
-                
-            
-                
-        }
-            
-       
-        
-    
-                    
-            
+               if ($("#fec_sum_fin").val() == ""){
+					fn_mensaje_boostrap("DIGITE LA FECHA FINAL.", g_titulo, $("#fec_sum_fin"));
+				
+				return;
+					return;}
+					else{
+						if(fn_validar_fecha($("#fec_sum_fin").val()) == false){
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_fin"));
+							//fn_mensaje_bootstrap_fecv();
+							return false;
+					}
+                } 
+           
+           }
            fn_mensaje_boostrap("Se genero", g_titulo, $("#co_gen"));
            fn_carga_grilla(); 
            fn_limpiar();
         
    
     });
+    
 
     $("#co_lim").on("click", function () {
 		//Validación de informacion
