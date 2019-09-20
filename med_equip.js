@@ -37,6 +37,7 @@ $(document).ready(function() {
     fn_distrito();
     fn_corregimiento()
     fn_barrio();
+    fn_bloq_provin();
     
     $("._input_selector").inputmask("dd/mm/yyyy");
     $('input[name="optradio"]').prop('disabled', false);
@@ -95,8 +96,13 @@ $(document).ready(function() {
 				return; 
                 }
             if($("#cb_prov").val()==""){
+                
                    fn_mensaje_boostrap("SELECCIONE PROVINCIA", g_titulo, $("#cb_prov"));
+              
 				return; 
+                }else{
+                  
+                   fn_des_bloq_provin();  
                 }
             if($("#cb_dist").val()==""){
                    fn_mensaje_boostrap("SELECCIONE DISTRITO", g_titulo, $("#cb_dist"));
@@ -186,7 +192,16 @@ function fn_carga_grilla(){
 function fn_gen(){
      alert('Se genero.');
 }
-
+function fn_bloq_provin(){
+    $("#cb_dist").prop("disabled", true);
+    $("#cb_corre").prop("disabled", true);
+    $("#cb_barrio").prop("disabled", true);
+}
+function fn_des_bloq_provin(){
+    $("#cb_dist").prop("disabled", false);
+    $("#cb_corre").prop("disabled", false);
+    $("#cb_barrio").prop("disabled", false);
+}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_limpiar(){
