@@ -36,7 +36,7 @@ $(document).ready(function() {
     fn_provincia();
     
    
-    fn_barrio();
+
     fn_bloq_provin();
     
     $("._input_selector").inputmask("dd/mm/yyyy");
