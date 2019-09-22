@@ -12,36 +12,43 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Jquery -->
-	<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
-	<script src="jquery/jquery-3.1.1.min.js"></script>
-	<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<!-- Jquery   /raiz/-->  
+	<link rel="stylesheet" href="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script src="/raiz/jquery/jquery-3.1.1.min.js"></script>
+	<script src="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
 	<!-- Validaciones con inputmask -->
-	<script src="jquery/jquery.inputmask.bundle.min.js"></script>
-	<script src="jquery/inputmask.numeric.extensions.min.js"></script>
-	<script src="jquery/inputmask.extensions.min.js"></script>
-	<script src="jquery/inputmask.min.js"></script>
-	<script src="jquery/jquery.inputmask.min.js"></script>
-
+		  
+        <script src="/raiz/jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>      <!--/raiz/   /inputmask4x/-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
+		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
+		<script src="/raiz/jquery/inputmask4x/inputmask/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
+		
 	<!-- Paramquery -->
-	<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
-	<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
-	<script src="pqgrid/v5.6/pqgrid.min.js"></script>
-	<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+	<link rel="stylesheet" href="/raiz/pqgrid/v5.6/pqgrid.min.css">
+	<link rel="stylesheet" href="/raiz/pqgrid/v5.6/themes/steelblue/pqgrid.css">
+	<script src="/raiz/pqgrid/v5.6/pqgrid.min.js"></script>
+	<script src="/raiz/pqgrid/v5.6/localize/pq-localize-es.js"></script>
 
 	<!-- Boostrap -->
-	<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
-	<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/raiz/bootstrap/v3.3.7/css/bootstrap.min.css">
+	<script src="/raiz/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Principales -->
-	<script src="syn_globales/syn_util.js"></script>
-	<link rel="stylesheet" href="syn_dinamicos/synergia.css">
+	<script src="/raiz/syn_globales/syn_util.js"></script>
+	<link rel="stylesheet" href="/raiz/syn_dinamicos/header.css">	
+	<link rel="stylesheet" href="/raiz/syn_dinamicos/synergia.css">
+	
+
 	<script language="JavaScript" src="ingre_lec_dudo.js"></script>
-	<link rel="stylesheet" href="syn_dinamicos/header.css">
-
-	<!-- Archivos importantes -->
-
+	
+	<!-- Archivos importantes  -->
+		
+		<script language="JavaScript" src="/raiz/SYN_Dinamicos/file.js"></script>
+		<script language="JavaScript" src="/raiz/Syn_Conexion/conexion.js"></script>
+		<script language="JavaScript" src="/raiz/Syn_Globales/Seguridad.js"></script>  
+    
 	<style>
 		.panel-primary {
 			border-color: #cccccc;
@@ -84,8 +91,8 @@
 	<div class="bootstrap-syn">
 		<br>
 		<div class="container">
-			<!-- PARAMQUERY SECUNDARIO -->
-			<div id="div_grid_dos">
+			<!-- PARAMQUERY principal -->
+			<div id="div_grid_principal">
 			</div>
 		</div>
 		
@@ -95,7 +102,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la bÃºsqueda</h4>
+						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la búsqueda</h4>
 					</div>
 					<div class="modal-body">
                         <div class="row">
@@ -144,7 +151,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la bÃºsqueda</h4>
+						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la búsqueda</h4>
 					</div>
 					<div class="modal-body">
 						<div class="row">
@@ -182,20 +189,46 @@
 	
 	<!--Modal de mensajes-->
 	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
-
-	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
-		<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
-		<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
-		<input type="hidden" id="tx_rol" name="tx_rol" value="">
-		<input type="hidden" id="tx_ip" name="tx_ip" value="">
-		<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
-		<input type="hidden" id="sql" name="sql" value="">
-		<input type="hidden" id="Rol" name="Rol" value="">
-		<input type="hidden" id="tituloexcel" name="tituloexcel">
-		<input type="hidden" id="excel_archivo" name="excel_archivo">
-		<input type="hidden" id="filtro" name="filtro">
-		<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+    
+	<div id="dlg_confirmamod" class="modal" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content" id="mod_alto">
+						<div class="modal-header">
+							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+							<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+						</div>
+						<div class="modal-body" style="padding:10px 15px 5px 15px;">
+							<form role="form">
+								<div class="form-group">
+									<div class="form-control-label">DESEA ACTUALIZAR EL REGISTRO CON CLAVE DE RUTA NO LEIDA?</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn" id="co_confirmamod_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+							<button type="button" class="btn" id="co_confirmamod_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+						</div>
+					</div>
+				</div>
+	</div>
+	
+	<form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte_v2.asp" target="_blank">
+			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+			<input type="hidden" id="tx_rol" name="tx_rol" value="">
+			<input type="hidden" id="tx_ip" name="tx_ip" value="">
+			<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+			<input type="hidden" id="sql" name="sql" value="">
+			<input type="hidden" id="Rol" name="Rol" value="">
+			<input type="hidden" id="tituloexcel" name="tituloexcel">
+			<input type="hidden" id="excel_archivo" name="excel_archivo">
+			<input type="hidden" id="filtro" name="filtro">
+			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+			<input type="hidden" id="tx_pietotal" name="tx_pietotal">	
+			<input type="hidden" id="align_vertical_titulo" name="align_vertical_titulo" value="left">		
 	</form>
+	
 	<input type="hidden" id="nom_rol" name="nom_rol">
 
 </body>
