@@ -60,6 +60,10 @@
 			.input_ver{
 				margin-top: 8px;
 			}
+			
+			#grid_secundaria{
+				text-align: -webkit-center;
+			}
         </style>
     </head>
     
@@ -68,162 +72,248 @@
 			<div id="div_header"></div>	
 		</div>	
 
-		<div class="bootstrap-syn">
-			
+		<div class="bootstrap-syn" id="principal">			
 			<div class="container" id="div_prim">
 				<br>
 				<div class="row menus">				
-					<div class="col-2 col-sm-1 col-md-2 col-lg-2"> 
-						<label for="tx_cliente">N° de Suministro</label>
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
+						<label for="tx_cliente">Nro. Suministro</label>
 						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;">
 					</div>
-					<div class="col-8 col-sm-6 col-md-6 col-lg-6" id="botones_margenes" > 
-					<label for=""></label>
+
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
+						<label for="tx_orden">Orden</label>
+						<input disabled type="text" id="tx_orden" name="tx_orden" class="form-control" style="margin-top: 3px;">
+					</div>
+
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
+						<label for="tx_fecha">Fecha</label>
+						<input disabled type="text" id="tx_fecha" name="tx_fecha" class="form-control" style="margin-top: 3px;">
+					</div>					
+
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
+						<label for=""></label>
 						<div>												
-							<button type="button" class="btn btn-primary" id="co_enviar" style="padding: 6px 20px;width:115px "><span class="glyphicon glyphicon-check"></span> Enviar</button>
-                        	
+							<button type="button" class="btn btn-primary" id="co_leer" name="co_leer" style="padding: 6px 20px;width:115px "><span class="glyphicon glyphicon-search"></span> Leer</button>
+
 							<button id="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span>Cerrar</button>	                           
 						</div>
 					</div>
 				</div>
 			</div>
-				
-			<div class="container" id="div_prin">
-				
+			<br>	
+			<div class="container" id="div_prin">				
 				<div class="row">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="nombre">
 						<div class="form-group">
 							<label for="tx_nombre">Nombre</label>
-							<input disabled id="tx_nombre" name="tx_nombre" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_nombre" name="tx_nombre" type="text" class="form-control inp_dis">
 						</div>
 					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="direccion">
 						<div class="form-group">
 							<label for="tx_dir">Dirección</label>
-							<input disabled id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis">
 						</div>
 					</div>
+
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="comuna">
+						<div class="form-group">
+							<label for="tx_comuna">Comuna</label>
+							<input disabled id="tx_comuna" name="tx_comuna" type="text" class="form-control inp_dis">
+						</div>
+					</div>					
 				</div>
-				<div class="row">
+
+
+				<!--CAMPOS DE LA ULTIMA VENTANA-->
+				<div class="row" id="new_file">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="tx_clave">CLAVE MOVIMIENTO</label>
+							<input disabled id="tx_clave" name="tx_clave" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="tx_ajuste">AJUSTE DEBITO</label>
+							<input disabled id="tx_ajuste" name="tx_ajuste" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="tx_origen">ORIGEN</label>
+							<input disabled id="tx_origen" name="tx_origen" type="text" class="form-control inp_dis">
+						</div>
+					</div>					
+				</div>
+				<!--FIN CAMPOS DE LA ULTIMA VENTANA-->
+
+
+				<div class="row" id="fila3">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_est_client">Estado cliente</label>
-							<input disabled id="tx_est_client" name="tx_est_client" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_est_client" name="tx_est_client" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_est_conex">Estado conexión</label>
-							<input disabled id="tx_est_conex" name="tx_est_conex" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_est_conex" name="tx_est_conex" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 				</div>
-				<div class="row">
+
+				<div class="row" id="fila4">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_reg">Regional</label>
-							<input disabled id="tx_reg" name="tx_reg" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_reg" name="tx_reg" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_ruta">Ruta</label>
-							<input disabled id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 				</div>
-				<div class="row">
+
+				<div class="row" id="fila5">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_tarif">Tarifa</label>
-							<input disabled id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="tx_actividad">Actividad</label>
-							<input disabled id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis" readonly>
+							<input disabled id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 				</div>
 
-									
-				
-			</div> 
-           
+                <div class="row" id="fila6">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="form-group">
+							<label for="tx_refe">Referencia</label>
+							<input style="text-transform:uppercase;" id="tx_refe" name="tx_refe" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+                </div>
 
-			
-            <div class="container">
-                  <div class="form-group">
-                      <label class="control-label" for="tx_obs">Observaciones:</label>
-                      <br>
-                      
-             <textarea id="tx_obs" name="tx_obs" rows="4" cols="60" style="font-size: 20px; text-transform: uppercase;" class="form-control texto2 inp_dis">
-                            </textarea>  
-                      </div>
-                  </div> 
-            </div>
-		
+                <br>
+				<div class="form-group" id="fila7">
+					<label class="control-label" for="co_obs">Observacion</label>
+					<textarea style="text-transform:uppercase;" class="form-control" rows="3" id="co_obs" maxlength="200" style="font-size: 18px;"></textarea>
+				</div>
+
+				<!--GRILLA PRINCIPAL, GRILLAS PAREJAS Y BOTONES DE LA ULTIMA VENTANA-->
+				<div class="row" id="grid_secundaria">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+						<!-- PARAMQUERY SECUNDARIO -->
+						<div id="div_grid_secun"></div>
+					</div>
+				</div> 
+				<br>
+
+				<div class="panel panel-default" id="panel_tarifas" >
+				    <div class="panel-heading">
+
+				    </div>
+				    <div class="panel-body">
+				        <div class="col-sm-5">
+				            <div id="grid_tar_izq"></div>
+				        </div>
+				        <div class="col-sm-2 text-center" style="height:140px">
+				            <button type="button" class="btn btn-xs" id="co_tar_izq"  style="margin-top:40px" title="Para quitar Tarifa"><span class="glyphicon glyphicon-chevron-left"></span></button><br><br>
+				            <button type="button" class="btn btn-xs" id="co_tar_der" title="Para agregar Tarifa"><span class="glyphicon glyphicon-chevron-right"></span></button>
+				            <br><br>
+				        </div>
+				        <div class="col-sm-5">
+				            <div id="grid_tar_der"></div>
+				        </div>
+				    </div>
+				</div>	
+
+				<div class="row" id="boton_secun"> 
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<button style="padding: 6px 20px;width:115px " type="button" class="btn btn-primary" id="co_grabar" name="co_grabar"><span class="glyphicon glyphicon-floppy-saved"></span> Grabar</button>
+
+						<button style="padding: 6px 20px;width:115px " id="co_aprobar" class="btn btn-basic" ><span class="glyphicon glyphicon-ok"></span> Aprobar</button>
+
+						<button style="padding: 6px 20px;width:115px " type="button" class="btn btn-basic" id="co_anular2" name="co_anular2"><span class="glyphicon glyphicon-floppy-remove"></span> Anular</button>
+
+						<button style="padding: 6px 20px;width:115px " id="co_cerrar" class="btn btn-basic" ><span class="glyphicon glyphicon-off"></span> Cerrar</button>							                           
+					</div>
+				</div>					
+				<!-- FIN GRILLA PRINCIPAL, GRILLAS PAREJAS Y BOTONES DE LA ULTIMA VENTANA-->
+			</div> 			
+        </div>		
 
 		<div class="container">
-			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
+		<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
         
+
 		<!-- Modal Lectura-->
         <div id="div_ing_bts" class="modal fade" role="dialog">
-            <div class="modal-dialog" style="width: 900px ;">
+            <div class="modal-dialog" style="width: 700px ;">
 				<div class="modal-content">
 					<div class="modal-header">
 						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la busqueda</h4>
+						<h4 class="modal-title" data-dismiss="modal">Ingreso de refacturación</h4>
 					</div>
-					<div class="modal-body"  style="height:500px;">
+					<div class="modal-body"  style="height:350px;">
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="form-group">
-									<label class="control-label" for="co_tip_ajust">Tipo de ajuste:</label>
-							    <input type="text" id="co_tip_ajust" name="co_tip_ajust" class="form-control" style="margin-top: 3px;">
-                                    
+									<label class="control-label" for="cb_tip_ajust">Tipo de ajuste:</label>
+                                    <select class="form-control inp_dis" id="cb_tip_ajust" name="cb_tip_ajust"></select>
 								</div>
 							</div>	
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="form-group">
-									<label class="control-label" for="co_mot">Motivo:</label>
-							    <input type="text" id="co_mot" name="co_mot" class="form-control" style="margin-top: 3px;">
-                                    
+									<label class="control-label" for="cb_motiv">Motivo:</label>
+							     	<select class="form-control inp_dis" id="cb_motiv" name="cb_motiv"></select>   
 								</div>
 							</div>	
-				     <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<div class="form-group">
 									<label class="control-label" for="cb_origen">Origen:</label>
-							
-                                    	<select class="form-control inp_dis" id="cb_origen" name="cb_origen"></select>
-                                </div>
+									<select class="form-control inp_dis" id="cb_origen" name="cb_origen"></select>
+						        </div>
 							</div>
-				        </div>
-                        <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <!-- PARAMQUERY SECUNDARIO -->
-				<div id="div_grid_dos"> 
-                            </div>
-                        </div>
-                        </div>    
+						</div>
+						
+						<div class="row">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- PARAMQUERY SECUNDARIO -->
+								<div id="div_grid_dos"></div>
+							</div>
+						</div>    
 					</div>
                     
 					<div class="modal-footer">
-						<button type="button" class="btn-left btn btn-primary" id="co_aceptar_lec"><span
-								class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
-						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_close_lec" name="co_close_lec"><span
-								class="glyphicon glyphicon-off"></span> Cancelar</button>
+						<button type="button" class="btn-left btn btn-primary" id="co_aceptar" name="co_aceptar">
+							<span class="glyphicon glyphicon-floppy-saved"></span> Aceptar</button>
+                        
+                        <button type="button" class="btn-left btn btn-primary" id="co_anular" name="co_anular">
+                        	<span class="glyphicon glyphicon-floppy-remove"></span> Anular</button>
+						
+						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_close" name="co_close">
+							<span class="glyphicon glyphicon-off"></span> Cancelar</button>
 					</div>
 				</div>
 			</div>
         </div>
-			
-        
-       
-	
-		
+        	
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		
 		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">

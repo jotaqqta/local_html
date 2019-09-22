@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Ingreso Requerimientos Refacturados.";
 var parameters={};
 var my_url="correc_prome_dudo.asp";
-var $grid;
+var $grid, $grid_tar_izq;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -15,62 +15,108 @@ $(document).keydown(function(e) {
 });
 
 $(document).ready(function() {
-    
-	$("button").on("click", function(){return false;});
+    $("#tx_refe").prop("disabled", true);
+    $("#co_obs").prop("disabled", true);
+
+	$("#cb_motiv").prop("disabled",true);
+	$("#comuna").hide();
+	$("#new_file").hide();
+	$("#panel_tarifas").hide();
+	$("#grid_secundaria").hide();
+    $("#boton_secun").hide();
+
+    fn_tip_ajust();
+    fn_origen();
+	
+    $("button").on("click", function(){return false;});
 
     document.title = g_titulo ;
 	document.body.scroll = "yes";
 
-    $("#div_header").load("/syn_globales/header.htm", function() {
+    $("#div_header").load("syn_globales/header.htm", function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
 
 	//Footer
-	$("#div_footer").load("/syn_globales/footer.htm");	
+	$("#div_footer").load("syn_globales/footer.htm");	
 		
-	//Se cargan las variables que vienen desde el server
-	/*
-	$("#tx_empresa").val(SYNSegCodEmpresa);
-	$("#tx_rol").val(SYNSegRol);
-	$("#tx_ip").val(SYNSegIP);
-	$("#tx_rolfun").val(SYNSegRolFuncion);
-	*/
-	
 	$("#tx_cliente").focus();
-	$('input[name="optradio"]').prop('disabled', true);
    
 	jQuery('#tx_cliente').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 	
-
     fn_setea_grid_principal();
- 
-	$("#co_enviar").on("click", function(){
-		
-		if ($.trim($("#co_enviar").text())=="Enviar"){
-			if( $("#tx_cliente").val() == ""){
+
+    //AL PRESIONAR LA TECLA ENTER RETORNE LA INFORMACION
+    $("#tx_cliente").keypress(function(e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code==13){
+			if ($("#tx_cliente").val() ==""){
 				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
-				return;
-			}
+                return;
+            }
+			fn_leer();  
+        }
+    });	    
+ 
+  	$("#co_leer").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_leer").text()) == "Leer") {
+			if ($("#tx_cliente").val() ==""){
+				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_cliente"));
+                return;
+            }
+			fn_leer();      
+        }else{
 
-			$("#co_enviar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-
-			fn_leer();
-		}else{
-			//////////////////////////////////////////////////////////////////////////////
-			///////////////// ACA VA LA FUNCION DE ACTUALIZAR EL REGISTRO ////////////////
-			//////////////////////////////////////////////////////////////////////////////
-		   fn_Muestra_ingre();	
-			fn_limpiar();    
-			return;			
+            if ($("#tx_refe").val()==""){
+				fn_mensaje_boostrap("DEBE DIGITAR LA REFERENCIA", g_titulo, $("#tx_refe"));
+                return;
+			}else{
+			   	fn_Muestra_ingre();	
+				//fn_limpiar();    
+				return;			
+			}			
 		}
 	});
-    
 
-	$("#co_cancelar").on("click",function(){
+    $("#co_aceptar").on("click", function () {
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//===========================OJO SE DEBE QUITAR ESTE COMENTARIO=========================//
+		//=============================SE HIZO PARA HACER LAS PRUEBAS===========================//
+		//////////////////////////////////////////////////////////////////////////////////////////
+		
+		if ($.trim($("#co_aceptar").text()) == "Aceptar") {
+
+			if ($("#cb_tip_ajust").val() ==""){
+				fn_mensaje_boostrap("SELECCIONE TIPO DE AJUSTE", g_titulo, $("#cb_tip_ajust"));
+                return;
+                }else{
+                     if ($("#cb_motiv").val()==""){
+				fn_mensaje_boostrap("SELECCIONE MOTIVO", g_titulo, $("#cb_motiv"));
+               
+                 return;
+			}
+             if ($("#cb_origen").val()==""){
+				fn_mensaje_boostrap("SELECCIONE ORIGEN", g_titulo, $("#cb_origen"));
+                return;    
+            }
+                }
+        }      
+    	
+        var vOrigen = $("#cb_origen").val();
+		
+		$("#tx_comuna").val("PEDREGAL(PMA)");
+		$("#tx_clave").val("01");
+		$("#tx_ajuste").val("002");
+		$("#tx_origen").val(vOrigen);
+
+        fn_ventana_final();
+	});
+
+    $("#co_cancelar").on("click",function(){
 
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
 			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
@@ -78,67 +124,82 @@ $(document).ready(function() {
     
 			fn_limpiar();    
 			return;
-		}
-		else
+		}else{
+
 			window.close();
-	});  
+		}
+	});  	
+    
+    $("#co_anular").on("click",function(e){
+    	fn_anular();
+	});
 
-    $("input[name=optradio]").click(function () {   
- 		
- 		var valor_new = fn_valor_grilla();
-		
-		$grid.pqGrid( {editable:true} );
-		$grid.pqGrid("updateRow", { 'rowIndx': 0 , row: { 'C11': valor_new } });
-		$grid.pqGrid( {editable:false} );
-		//$grid.pqGrid( "refreshView" );        
-    });	
-	
+    $("#co_close").on("click", function (e) {
+    	$('#div_ing_bts').modal('hide');
+    }); 	
 
-	
+
+
+	$("#cb_tip_ajust").on("change", function(evt){
+		if($(this).val() =="")
+			//$("#cb_ruta").prop("disabled",true);
+			limpia_ajus(); //se limpian los combos inferiores
+		else
+			$("#cb_motiv").prop("disabled",false);
+			fn_motiv();
+			$("#cb_motiv").focus();
+	});
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 { 
     var data = [
-		{ C1:'14762494', C2: 'M', C3:'58000 ', C4:'2000 ', C5:'41000', C6:'356000 ', C7:'198000 ', C8:'718000 ', C9:'66700 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
-		//{ C1:'14762494', C2: 'M', C3:'718000 ', C4:'718000 ', C5:'718000', C6:'718000 ', C7:'718000 ', C8:'718000 ', C9:'718000 ', C10:'20000', C11:'718000 ', C12:'718000 ', C13:'P', C14:'N', C15:'0', C16:'718000 '},
+		{ C1:'69792375', C2: "14/03/2078", C3:'FA', C4:'16.2', C5:'No Refacturado', C6:'No', C7:'No', C8:'03-2018'},
+        	{ C1:'69334507', C2: "14/02/2018", C3:'FA', C4:'15.2', C5:'No Refacturado', C6:'No', C7:'No', C8:'02-2018'},
+        	{ C1:'68848888', C2: "15/01/2018", C3:'FA', C4:'7.36', C5:'No Refacturado', C6:'No', C7:'No', C8:'01-2018'},
+        	{ C1:'68929696', C2: "14/12/2017", C3:'FA', C4:'7.36', C5:'No Refacturado', C6:'No', C7:'No', C8:'12-2018'}
+	
     ];
     var obj = {
             width: '100%',
-            height: 200,
+            height: 250,
             showTop: true,
 			showBottom:false,
             showHeader: true,
             roundCorners: true,
             rowBorders: true,
             columnBorders: true,
-			editable:false,
+			editable:true,
             selectionModel: { type: 'cell' },
             numberCell: { show: false },
-            title: "Promedio en GLS",
+            title: "Titulo",
 			pageModel: {type:"local"},
         	scrollModel:{theme:true},
+        
         };
 		obj.colModel = [
-            { title: "Numero Medidor",  resizable: false, width: 90, dataType: "number", dataIndx: "C1",halign:"center", align:"right" },
-            { title: "Tipo Medida", width: 80, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
-            { title: "Consumo Base 6", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
-            { title: "Consumo Base 5", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
-            { title: "Consumo Base 4",width: 90, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
-            { title: "Consumo Base 3",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
-            { title: "Consumo Base 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
-            { title: "Consumo Base 1",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"},
-            { title: "Consumo Promedio",width: 90, dataType: "number", dataIndx: "C9",halign:"center", align:"right"},
-            { title: "Consumo Prom/Area",width: 90, dataType: "number", dataIndx: "C10",halign:"center", align:"right"},
-            { title: "Consumo Facturar",width: 90, dataType: "number", dataIndx: "C11",halign:"center", align:"right"},
-            { title: "Consumo Promedio en G",width: 110, dataType: "number", dataIndx: "C12",halign:"center", align:"right"},
-            { title: "Tipo Lectura",width: 80, dataType: "number", dataIndx: "C13",halign:"center", align:"center"},
-            { title: "Cliente Dudoso",width: 90, dataType: "number", dataIndx: "C14",halign:"center", align:"center"}, 
-            { title: "Est. Sumin.",width: 80, dataType: "number", dataIndx: "C15",halign:"center", align:"center"}, 
-            { title: "Ult. Fact.",width: 80, dataType: "number", dataIndx: "C16",halign:"center", align:"right"}, 
-        ];
-		
+            
+            { dataIndx: "", width: "10%", align: "center", resizable: false,
+                type: "checkbox", cls: "ui-state-default", sortable: false, editor: false, editable: true,
+                dataType: "bool",
+                cb: {
+                    all: false,
+                    header: true,
+                    select: true,
+                    all: true
+                }
+            },
+            { title: "Documento",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"right"},
+            { title: "Fecha", width: 100, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
+            //{ title: "valor_chk", width: 80, dataType: "string", dataIndx: "C10",halign:"center", align:"center", hidden:true },
+            { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
+            { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
+            { title: "Refacturado",width: 140, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
+            { title: "Campo 1",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
+            { title: "Campo 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
+            { title: "Periodo",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"}
+];		
 		obj.dataModel = { data: data };
 
 		
@@ -148,53 +209,138 @@ function fn_setea_grid_principal()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-/*
-function fn_carga_orden()
-{
-	dato_ori = [];
-    parameters = 
-    {
-		"func":"fn_lee_orden",
-		"empresa":$("#tx_empresa").val(),
-		"p_orden":$("#tx_orden").val()
+function fn_setea_grid_secundaria()
+{ 
+    var data = [
+		{C1:'69792375', C2: "FA", C3:'03-2018', C4:'16.2', C5:'ES. PMÁ - COLON ALCANTARILLADO', C6:'No', C7:'No', C8:'03-2018'}	
+    ];
+    var obj = {
+            width: '75%',
+            height: 170,
+            showTop: true,
+			showBottom:false,
+            showHeader: true,
+            roundCorners: true,
+            rowBorders: true,
+            columnBorders: true,
+			editable:true,
+            selectionModel: { type: 'cell' },
+            numberCell: { show: false },
+            title: "Titulo",
+			pageModel: {type:"local"},
+        	scrollModel:{theme:true},
+        
     };
-    
-    HablaServidor(my_url,parameters,'text', function(text){
-        if(text != ""){
-			$("#co_leer").html("<span class='glyphicon glyphicon-user'></span> Reasignar");
-			dato_ori = text.split("|");
-			//$("#co_leer").prop("disabled",true);
-			$("#tx_orden").prop("disabled",true);
-			$("#tx_cod_cliente").val(dato_ori[1]);
-			$("#tx_rol_actual").val(dato_ori[3]);
-			$("#tx_nombre").val(dato_ori[4]);
-			$("#tx_estado").val(dato_ori[5]);
-			$("#tx_ruta").val(dato_ori[6]);
-			$("#tx_tarifa").val(dato_ori[7]);
-			$("#tx_actividad").val(dato_ori[8]);
-		}
-		else{
-			fn_mensaje_boostrap("No se encontro la orden indicada!!!", g_titulo, $(""));
-			return;
-		}
-		if(dato_ori[0] == "F"){
-			$("#co_leer").prop("disabled",true);
-			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo,$(""));
-			return;
-		}
-		
-		$("#cb_reasigna_nuevo").prop("disabled",false);
-	         
-    });
-	
-}
-*/
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_leer(){
-	$("#tx_cliente").prop("disabled", true);
-	$('input[name="optradio"]').prop('disabled', false);
+	obj.colModel = [
+        
+        { title: "Documento",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"right"},
+        { title: "Tipo", width: 80, dataType: "number", dataIndx: "C2",halign:"center", align:"center" },
+        { title: "Fecha", width: 100, dataType: "string", dataIndx: "C3",halign:"center", align:"center" },
+        { title: "Valor", width: 80, dataType: "number", dataIndx: "C4",halign:"center", align:"center" },
+        { title: "Tarifa", width: 403, dataType: "string", dataIndx: "C5",halign:"center", align:"left" },
+        { title: "Ajustado", width: 90, dataType: "string", dataIndx: "C6",halign:"center", align:"center" }
+	];
 
-	$("#tx_nombre").val("PH BBVA");
+	obj.dataModel = { data: data };
+
+	$grid = $("#div_grid_secun").pqGrid(obj);
+	$grid.pqGrid( "refreshDataAndView" );
+}
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_setea_grid_tarifa()
+{    	
+    var obj_tar_izq = {
+        width:"100%",
+		minWidth:10,
+        height:250,
+        rowBorders:true,
+		fillHandle: "",
+        numberCell: { show: false },
+        collapsible: { on : false,toggle:false },
+        stripeRows : true,
+        pasteModel: { on: false },
+        showBottom: false,
+        showTop: false,
+        swipeModel: { on: false },
+        colModel:
+        [
+            { dataIndx: "", width: "10%", align: "center", resizable: false,
+                //type: "checkbox", 
+                cls: "ui-state-default", sortable: false, editor: false, editable: true,
+                dataType: "bool",
+                cb: {
+                    all: false,
+                    header: true,
+                    select: true,
+                    all: true
+                }
+            },
+            { title: "Codigo", width: 0, align: "center", dataIndx:"C1",hidden:true },
+            { title: "CARGOS ORIGINALES", width: "87%", align: "left", dataIndx:"C2", halign:"center", align:"left", editable: false,
+				filter: { type: "textbox", condition: "contain", listeners: ["keyup"]}}
+        ],
+        selectionModel: { type: "row" }
+    };	
+
+    $grid_tar_izq = $("#grid_tar_izq").pqGrid(obj_tar_izq);
+    $grid_tar_izq.pqGrid( "option", "dataModel.data", [] );
+
+    var obj_tar_der = {
+        width:"100%",
+        height:250,
+		minWidth:10,
+        rowBorders:true,
+		fillHandle: "",
+        numberCell: { show: false },
+        collapsible: { on : false,toggle:false },
+        stripeRows : true,
+        pasteModel: { on: false },
+        showBottom: false,
+        showTop: false,
+        swipeModel: { on: false },
+        colModel:
+        [
+            { dataIndx: "", width: "10%", align: "center", resizable: false,
+                //type: "checkbox", 
+                cls: "ui-state-default", sortable: false, editor: false, editable: true,
+                dataType: "bool",
+                cb: {
+                    all: false,
+                    header: true,
+                    select: true,
+                    all: true
+                }
+            },
+            { title: "Codigo", width: 0, dataIndx:"C1", hidden:true},
+            { title: "CARGOS NUEVOS", width: "87%", dataIndx:"C2", halign:"center", align:"left", editable: false,
+                render: function (ui) {
+                    var rowData = ui.rowData;
+
+                    var farorojo = tarifa_regis.indexOf(rowData.C1);
+
+                    if(farorojo==-1)
+                    {
+                        tarifa_regis.push(rowData.C1);
+                    }
+                } 
+            }
+        ],
+        selectionModel: { type: "row" }
+    };	
+		
+    $grid_tar_der = $("#grid_tar_der").pqGrid(obj_tar_der);
+    $grid_tar_der.pqGrid( "option", "dataModel.data", [] );	
+}
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
+function fn_leer(){
+	var f = new Date();
+	var fec = (f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+	$("#tx_cliente").prop("disabled", true);
+	$("#tx_orden").val("1395209");
+	$("#tx_fecha").val(fec);
+    $("#tx_nombre").val("PH BBVA");
 	$("#tx_dir").val("PANAMA CENTRO");
 	$("#tx_est_client").val("ACTIVO");
 	$('#tx_est_conex').val("CON SUMINISTRO");
@@ -204,12 +350,21 @@ function fn_leer(){
 	$("#tx_actividad").val("BANCOS PRIVADOS");
 	$("#tx_unid").val("1");            
 	$("#tx_x_leg").val("0"); 
+
+	$("#co_leer").html("<span class='glyphicon glyphicon-share-alt'></span> Enviar");
+	$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");	
+
+	$("#tx_refe").prop("disabled", false);
+	$("#co_obs").prop("disabled", false);
+	$("#tx_refe").focus();	 
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpiar(){
 
 	$("#tx_nombre").val("");
+	$("#tx_orden").val("");
+	$("#tx_fecha").val("");	
 	$("#tx_dir").val("");
 	$("#tx_est_client").val("");
 	$('#tx_est_conex').val("");
@@ -217,58 +372,88 @@ function fn_limpiar(){
 	$("#tx_ruta").val("");
 	$("#tx_tarif").val("");
 	$("#tx_actividad").val("");
-	$("#tx_unid").val("");
-	$("#tx_x_leg").val("");
-
-	$('input[name="optradio"]').prop('checked', false);
-	$('input[name="optradio"]').prop('disabled', true);
+    $("#tx_refe").val("");
+    $("#co_obs").val("");
+    $("#tx_comuna").val("");
+	$("#tx_clave").val("");
+	$("#tx_ajuste").val("");
+	$("#tx_origen").val("");    
 
 	$("#tx_cliente").val("");
 	$("#tx_cliente").prop("disabled", false);	
-	$("#tx_cliente").focus();	 
+	$("#tx_cliente").focus();
+    $("#cb_tip_ajust").val("");
+    $("#cb_motiv").val("");
+    $("#cb_origen").val("");
+
+    $("#tx_refe").prop("disabled", true);
+	$("#co_obs").prop("disabled", true);
 }
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_Muestra_ingre() {
 	$("#div_ing_bts").modal({ backdrop: "static", keyboard: false });
 	$("#div_ing_bts").on("shown.bs.modal", function () {
-		$("#div_ing_bts div.modal-footer button").focus();
-
+    //$("#div_ing_bts div.modal-footer button").focus();
+		$grid.pqGrid( "refreshDataAndView" );
 	});
+}
 
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_ventana_final(){
+	$('#div_ing_bts').modal('hide');
+	$("#co_leer").hide();
+	$("#co_cancelar").hide();
+	$("#direccion").hide();
+	$("#comuna").show();
+	$("#fila3").hide();
+	$("#fila4").hide();
+	$("#fila5").hide();
+	$("#fila6").hide();
+	$("#fila7").hide();
+	$("#new_file").show();
+	
+	$("#panel_tarifas").show();
+	$("#grid_secundaria").show();
+	$("#boton_secun").show();
+	
+	$("#co_aprobar").prop("disabled", true);
+	fn_setea_grid_secundaria();
+	fn_setea_grid_tarifa();
 
 }
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+/////////////////////////////////FUNCIONES MODAL///////////////////////////////////////////
+function fn_tip_ajust() {
+
+
+	$("#cb_tip_ajust").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+function fn_motiv() {
+    
+	$("#cb_motiv").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
+}
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+function fn_origen() {
+
+	$("#cb_origen").html("<option value='' selected></option><option value='005'>005</option> <option value='010' >010</option> <option value='015'>015</option>");
+}
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+function fn_anular(){
+	$("#cb_tip_ajust").val("");
+	$("#cb_motiv").val("");
+	$("#cb_origen").val("");    	
+	$("#cb_motiv").prop("disabled",true);
+	$("#cb_tip_ajust").focus();
+}
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
-function fn_valor_grilla(){
-	var value_check =  $('input:radio[name=optradio]:checked').val();
-
-	if(value_check == '1'){
-		var valor = "100";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '2'){
-		var valor = "200";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '3'){
-		var valor = "300";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '4'){
-		var valor = "400";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '5'){
-		var valor = "500";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '6'){
-		var valor = "600";  //Valor que deseamos colocar en la grilla	
-	}		
-
-	if(value_check == '7'){
-		var valor = "700";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '8'){
-		var valor = "800";  //Valor que deseamos colocar en la grilla	
-	}
-	if(value_check == '9'){
-		var valor = "900";  //Valor que deseamos colocar en la grilla	
-	}	
-
-	return valor;
+function limpia_ajus()
+{	
+	$("#cb_motiv").val("");
+	$("#cb_motiv").prop("disabled",true);
 }
