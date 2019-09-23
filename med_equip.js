@@ -207,6 +207,9 @@ function fn_limpiar(){
     	$("#cb_barrio").val("");
     	$('input[name="optradio"]').prop('checked', false);
 	    $('input[name="optradio"]').prop('checked', false);
+        $("#cb_dist").prop("disabled", true);
+        $("#cb_corre").prop("disabled", true);
+        $("#cb_barrio").prop("disabled", true);
 
     
   
