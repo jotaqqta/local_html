@@ -121,7 +121,7 @@ $(document).ready(function () {
 	$("#co_close").on("click", function (e) {
 		$('#div_modal').modal('hide');
 		 
-		fn_limpia_filtro();
+		fn_limpia_modal();
 	});
          
      $("#co_close_lec").on("click", function (e) {
@@ -184,9 +184,8 @@ $(document).ready(function () {
 	});
     
 	$("#co_limpiar").on("click", function () {
-		
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		    fn_lim_filtro();
+		    fn_limpia_modal();
 			return;
 		}
 		else

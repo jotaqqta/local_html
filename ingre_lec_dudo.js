@@ -286,7 +286,7 @@ $(document).ready(function () {
 			
     //////////////////////////////////////////////////////////////////////
  	//BOTONES DE ACEPTAR SI ACEPTA LA CONFIRMACION DE MODIFICACION
-	/*
+	
 	$("#co_confirmamod_si").on("click", function(e){
 		$("#dlg_confirmamod").modal("hide");
 	
@@ -296,7 +296,7 @@ $(document).ready(function () {
 	    $grid_principal.pqGrid( "refreshDataAndView" );
 		//fn_carga_grilla();
 	});
-	*/
+	
 				
 					
 	$("#co_confirmamod_no").on("click", function (e){
