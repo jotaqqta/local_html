@@ -1,19 +1,22 @@
 var g_modulo = "Administración Central - Configuración Base del Sistema";
 var g_tit = "Administrador de Tablas Generales";
+
 var $grid_principal;
+var $grid_2;
+var $grid_3;
+
+var sql_grid_prim = "";
+var sql_grid_2    = "";
+//var sql_grid_3    = "";
+
 
 var parameters = {};
 var Filtros = [];
-var sql_grid_prim = "";
-//var g_act = "0";
 
-var glector = "";
-var gfechat = "";
 			
 //var url = "adm_tablas_gen.asp";
 
 var dataReg = [];
-var flag = 0;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -46,7 +49,7 @@ $(document).ready(function () {
 	$("#div_footer").load("syn_globales/footer.htm");
 	
 	
-	$("#excel_archivo").val("lectura_dudosa.xls");
+	$("#excel_archivo").val("tablas_generales.xls");
 	
 	// INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
 	$("#tx_orden").focus();
@@ -72,20 +75,27 @@ $(document).ready(function () {
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
-	$("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
+	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
+	$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
+
+    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     
-	$("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-	$("#co_leer").html("<span class='glyphicon glyphicon-book'></span> Lectura");
-	//$("#co_act").html("<span class='glyphicon glyphicon-check'></span> Actualizar");
-    
-	$("#co_rut_no_lei").html("<span class='glyphicon glyphicon glyphicon-remove'></span> Marcar ruta como no leida");
+	$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+	$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
+	$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
+    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    
+    
+	//$("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
-    fn_regional();
-    fn_lect();
+    //fn_regional();
+    //fn_lect();
  
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
@@ -105,7 +115,7 @@ $(document).ready(function () {
 		fn_actualizar();
 	});*/
 	
-    $("#co_rut_no_lei").on("click", function (e) {
+    $("#co_eliminar").on("click", function (e) {
 		 
 		//alert(dataReg.C1 +  "-" +  dataReg.C2);
 		
@@ -132,12 +142,12 @@ $(document).ready(function () {
     
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
-	// COMBO REGIONAL - AL SELECCIONAR la regional se carga el sector
-	$("#cb_regional").on("change", function(evt) 
-	{
-		fn_ciclo($(this).val());
-	});
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+    $("#co_volver2").on("click", function (e) {
+		$("#div_prin").show();
+		$("#div_tabla").hide();
+		//$grid_principal.pqGrid( "refreshDataAndView" );
+		$(window).scrollTop(0);
+    });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
 	// COMBO CICLO - AL SELECCIONAR la regional se carga el sector
 	$("#cb_ciclo").on("change", function(evt) 
@@ -288,28 +298,32 @@ $(document).ready(function () {
 		}	
     });
 			
-    //////////////////////////////////////////////////////////////////////
- 	//BOTONES DE ACEPTAR SI ACEPTA LA CONFIRMACION DE MODIFICACION
-	/*
-	$("#co_confirmamod_si").on("click", function(e){
-		$("#dlg_confirmamod").modal("hide");
-	
+    
+        $("#co_excel2").on("click", function (e) {
+		e.preventDefault();
+		fn_filtro_2();
+        var col_model=$( "#div_grid_sec" ).pqGrid( "option", "colModel" );
+		var cabecera = "";
+		for (i=0; i< col_model.length; i++){
+			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+		}
+		$("#excel_cabecera").val(cabecera);
+		var element =$grid_2.pqGrid("option","dataModel.data");
+		if (element)
+			a= element.length;
+		else 
+			a= 0;
+		if(a>0){
+			$("#tituloexcel").val(g_tit);
+			$("#sql").val(sql_grid_dos);	
+			$("#frm_Exel").submit();
+			return;
+		}	
+    });
 
-	    fn_actualiza_datos('030','0',dataReg.C1,dataReg.C2,dataReg.C7,dataReg.C13,dataReg.C14,dataReg.C10,dataReg.C11);
-				
-	    $grid_principal.pqGrid( "refreshDataAndView" );
-		//fn_carga_grilla();
-	});
-	*/
-				
 					
-	$("#co_confirmamod_no").on("click", function (e){
-			$("#dlg_confirmamod").modal("hide");
-			
-	});
-			
 	//////////////////////////////////////////////////////////////////////
-	$grid_principal.pqGrid({
+	/*$grid_principal.pqGrid({
     cellClick: function( event, ui ) { 
         
 		dataReg = ui.rowData;
@@ -317,56 +331,42 @@ $(document).ready(function () {
 			
 	}
 	
-	});		
+	});*/		
 			
-	//evento cuando se  editar la grilla
-	$grid_principal.pqGrid({
-    	editorEnd: function( event, ui ) {
-			//alert(ui.dataIndx);
-			
-			var glector = $("#cb_lector").val();
-			var gfechat = $("#fec_lect").val();
-			var rowIndx =  ui.rowIndx  
-			var dataCell = ui.rowData;
-			
-			
-			if($.trim(dataCell.C9) == ""){
-			   $grid_principal.pqGrid("updateRow", { 'rowIndx': ui.rowIndx  , row: { 'C9': dataCell.C11 } });
-			   fn_mensaje_boostrap("VALOR NO VALIDO", g_tit, $(""))    
-		       return false;
-			
-			}
-			
-			
-			
-			if (ui.dataIndx == "C8")  {
-				if (fn_valida_clave(dataCell.C8,dataCell.C10, ui.rowIndx )){
-					//$grid_principal.pqGrid("updateRow", { 'rowIndx': ui.rowIndx  , row: { 'C8': dataCell.C10 } });
+    //EVENTO DBL_CLICK DE LA GRILLA
+    $grid_principal.pqGrid({
+		rowDblClick: function( event, ui ) {
+			if (ui.rowData) 
+				{
+					var dataCell = ui.rowData;
+					//g_cliente_selec = dataCell.c2;
+					$("#div_prin").hide();
+                    $("#div_tabla").show();
+    				
+					$grid_2.pqGrid("refreshView");
+					//periodo_fil = dataCell.C1;
+					//regional_fil = dataCell.C2;
+					//ciclo_fil = dataCell.C3;
+					//fn_grilla_dos();
 				}
-				else{
-					$grid_principal.pqGrid("updateRow", { 'rowIndx': ui.rowIndx  , row: { 'C8': dataCell.C10 } });
-					setTimeout(function(){
-						$("#div_grid_principal").pqGrid( "setSelection", {rowIndx: (ui.rowIndx+1),colIndx: 7, focus:true} );
-					}, 100);
-				}	
 			}
-			
-			if (ui.dataIndx == "C9")
-			{
-				//Validar nuevamente la clave
-				if(dataCell.C9 != ""){
-					if (fn_valida_clave(dataCell.C8,dataCell.C10, ui.rowIndx )){
-						fn_actualiza_datos(dataCell.C8,dataCell.C9,dataCell.C1,dataCell.C2,dataCell.C7,dataCell.C13,dataCell.C14,dataCell.C10,dataCell.C11 );
-						setTimeout(function(){
-							$("#div_grid_principal").pqGrid( "setSelection", {rowIndx: (ui.rowIndx+1),colIndx: 7, focus:true} );
-						}, 100);
-					}	
+	});
+	
+	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
+    /*$grid_2.pqGrid({
+		rowDblClick: function( event, ui ) {
+			if (ui.rowData) 
+				{
+					var dataCell = ui.rowData;
+					g_cliente_selec = dataCell.c2;
+					$("#div_tabla").hide();
+    				$("#div_ter").show();
+					ruta_fil = dataCell.C4;
+					//fn_grilla_tres();
 				}
-         	}
-			
-       	}	
+			}
+	});*/
 
-     });
 	    	 
 	 
 });
@@ -432,6 +432,66 @@ function fn_setea_grid_principal() {
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
+    
+    /*GRILLA 2*/
+    
+    //Setea grid2
+	data =  [
+	  { C1: '01', C2: 'PARAMETRO TABLA 1', C3: 'D', C4: '8', C5:'80'},
+      { C1: '02', C2: 'PARAMETRO TABLA 2', C3: 'A', C4: '18', C5:'80'},
+      { C1: '03', C2: 'PARAMETRO TABLA 3', C3: 'A', C4: '28', C5:'80'},
+      { C1: '04', C2: 'PARAMETRO TABLA 4', C3: 'A', C4: '38', C5:'80'},
+      { C1: '05', C2: 'PARAMETRO TABLA 5', C3: 'A', C4: '48', C5:'80'},
+	 ]
+    var obj2 = {
+        height: "100%",
+        showTop: true,
+        showHeader: true,
+        roundCorners: true,
+        rowBorders: true,
+		fillHandle: "",
+        columnBorders: true,
+        editable:false,
+        selectionModel: { type: "row", mode:"single"},
+        showTitle:true,
+        collapsible:false,
+        numberCell: { show: false },
+        title: "Detalle",
+		pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
+        scrollModel:{theme:true},
+        toolbar:
+        {
+            cls: "pq-toolbar-export",
+            items:
+            [
+				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo2",  cls: "btn btn-primary" },
+				{ type: "button", label: "Modificar",attr: "id=co_editar2", cls: "btn btn-primary" },
+                { type: "button", label: "Eliminar", attr: "id=co_borrar2", cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+				{ type: "button", label: "Volver", attr:"id=co_volver2", cls:"btn btn-default btn-sm"}
+            ]
+        }
+    };
+	
+	obj2.colModel = [
+        { title: "Código", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
+        { title: "Descricpión", width: 300, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
+        { title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
+        { title: "Valor 1", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"left" },
+        { title: "Valor 2", width: 140, dataType: "number", dataIndx: "C5", halign:"center", align:"right" },
+        
+    ];
+	
+	obj2.dataModel = { data: data };
+    $grid_2 = $("#div_grid_sec").pqGrid(obj2);
+	//$grid_2.pqGrid( "option", "dataModel.data", [] );
+    $grid_2.pqGrid( "refreshDataAndView" );
+	//$grid_2.pqGrid( "scrollRow", { rowIndxPage: 10 } );
+
+    
+    
+    
+    
 }
 
 //************************************************************
