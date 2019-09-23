@@ -229,11 +229,13 @@
 				        <div class="col-sm-5">
 				            <div id="grid_tar_izq"></div>
 				        </div>
-				        <div class="col-sm-2 text-center" style="height:140px">
+				    <!--    
+				    	<div class="col-sm-2 text-center" style="height:140px">
 				            <button type="button" class="btn btn-xs" id="co_tar_izq"  style="margin-top:40px" title="Para quitar Tarifa"><span class="glyphicon glyphicon-chevron-left"></span></button><br><br>
 				            <button type="button" class="btn btn-xs" id="co_tar_der" title="Para agregar Tarifa"><span class="glyphicon glyphicon-chevron-right"></span></button>
 				            <br><br>
 				        </div>
+				    -->
 				        <div class="col-sm-5">
 				            <div id="grid_tar_der"></div>
 				        </div>
@@ -313,6 +315,56 @@
 				</div>
 			</div>
         </div>
+
+
+		<!-- INICIO MODAL -->
+		<div id="div_filtro_bts" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm" style="width: 400px;">
+				<div class="modal-content">
+					<div class="modal-header" >
+						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+						<h4 class="modal-title" data-dismiss="modal">Mantención Tipo de Vencimientos</h4>
+					</div>
+
+				   	<div class="bootstrap-syn">				
+						<div class="container">	
+							<div class="row" id="dv_desc">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group">
+										<label class="control-label" for="cb_decrip">Tipo de ajuste:</label>
+	                                    <select class="form-control inp_dis" id="cb_decrip" name="cb_decrip"></select>
+									</div>
+								</div>
+							</div>
+
+							<div class="row" id="dv_descrip">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group">
+										<label for="tx_descripcion">Descripcion</label>
+										<input id="tx_descripcion" name="tx_descripcion" type="text" class="form-control inp_dis">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<div class="form-group">
+										<label for="tx_tot_aju">Total a Ajustar</label>
+										<input id="tx_tot_aju" name="tx_tot_aju" type="text" class="form-control inp_dis">
+									</div>
+								</div>						
+							</div>																			
+						</div>
+					</div>	
+					<br>
+					<div class="modal-footer">
+						<button type="button" class="btn-left btn btn-sm btn-primary" id="co_modificar"><span class="glyphicon glyphicon-edit"></span> Ajustar</button>
+						<button type="button"  data-dismiss="modal" class="btn btn-sm btn-default" id="co_cance_modal"><span class="glyphicon glyphicon-off"></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--FIN MODAL-->        
         	
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		
@@ -328,6 +380,7 @@
 			<input type="hidden" id="excel_archivo" name="excel_archivo">
 			<input type="hidden" id="filtro" name="filtro">
 			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+			<input type="hidden" id="vr_new_ajus" name="vr_new_ajus">
 		</form>    
 	   <input type="hidden" id="nom_rol" name="nom_rol">
          
