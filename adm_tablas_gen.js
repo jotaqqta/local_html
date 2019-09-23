@@ -7,16 +7,16 @@ var $grid_3;
 
 var sql_grid_prim = "";
 var sql_grid_2    = "";
-//var sql_grid_3    = "";
+var sql_grid_3    = "";
 
 
 var parameters = {};
-var Filtros = [];
+//var Filtros = [];
+//var dataReg = [];
 
-			
+
 //var url = "adm_tablas_gen.asp";
 
-var dataReg = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -30,8 +30,8 @@ $(document).keydown(function (e) {
 	}
 });
 
-
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).ready(function () {
 
 	// PARA ELIMINAR EL SUBMIT
@@ -48,15 +48,7 @@ $(document).ready(function () {
 	//Footer  ///raiz/
 	$("#div_footer").load("syn_globales/footer.htm");
 	
-	
 	$("#excel_archivo").val("tablas_generales.xls");
-	
-	// INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
-	$("#tx_orden").focus();
-	// EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
-	jQuery('#tx_orden').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
 	
 	//Se cargan las variables que vienen desde el server
 	/*$("#tx_empresa").val(SYNSegCodEmpresa);
@@ -94,13 +86,13 @@ $(document).ready(function () {
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
-    //fn_regional();
+    fn_sistema();
     //fn_lect();
  
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_filtro").on("click", fn_Muestra_Filtro);
+    $("#co_nuevo").on("click", fn_modal);
 
 	
     $("#co_cerrar_t").on("click", function (e) {
@@ -127,7 +119,7 @@ $(document).ready(function () {
 	});
     
 	$("#co_close").on("click", function (e) {
-		$('#div_filtro_bts').modal('hide');
+		$('#div_modal').modal('hide');
 		 
 		fn_limpia_filtro();
 	});
@@ -149,12 +141,7 @@ $(document).ready(function () {
 		$(window).scrollTop(0);
     });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
-	// COMBO CICLO - AL SELECCIONAR la regional se carga el sector
-	$("#cb_ciclo").on("change", function(evt) 
-	{
-		fn_ruta($(this).val());
-	});
-
+	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	$("._input_selector").inputmask("dd/mm/yyyy");
 
@@ -189,7 +176,7 @@ $(document).ready(function () {
 			}
 			
             fn_carga_grilla();
-            $('#div_filtro_bts').modal('hide');
+            $('#div_modal').modal('hide');
             //fn_lim_filtro(); 
                 
             
@@ -267,11 +254,11 @@ $(document).ready(function () {
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	
-	$("#div_filtro_bts").draggable({
+	$("#div_modal").draggable({
         handle: ".modal-header"
     });
 	
-    Filtros = [];
+    //Filtros = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -299,7 +286,7 @@ $(document).ready(function () {
     });
 			
     
-        $("#co_excel2").on("click", function (e) {
+    $("#co_excel2").on("click", function (e) {
 		e.preventDefault();
 		fn_filtro_2();
         var col_model=$( "#div_grid_sec" ).pqGrid( "option", "colModel" );
@@ -318,21 +305,9 @@ $(document).ready(function () {
 			$("#sql").val(sql_grid_dos);	
 			$("#frm_Exel").submit();
 			return;
-		}	
+	    }	
     });
 
-					
-	//////////////////////////////////////////////////////////////////////
-	/*$grid_principal.pqGrid({
-    cellClick: function( event, ui ) { 
-        
-		dataReg = ui.rowData;
-		//		alert(ui.dataIndx);
-			
-	}
-	
-	});*/		
-			
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
@@ -353,19 +328,19 @@ $(document).ready(function () {
 	});
 	
 	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    /*$grid_2.pqGrid({
+    $grid_2.pqGrid({
 		rowDblClick: function( event, ui ) {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
 					g_cliente_selec = dataCell.c2;
-					$("#div_tabla").hide();
-    				$("#div_ter").show();
+					//$("#div_tabla").hide();
+    				//$("#div_ter").show();
 					ruta_fil = dataCell.C4;
 					//fn_grilla_tres();
 				}
 			}
-	});*/
+	});
 
 	    	 
 	 
@@ -395,8 +370,7 @@ function fn_setea_grid_principal() {
 			items:[
 				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" },
 				{ type: "button", label: "Modificar",attr: "id=co_editar", cls: "btn btn-primary" },
-                { type: "button", label: "Eliminar", attr: "id=co_borrar", cls: "btn btn-primary btn-sm" },
-				{ type: "button", label: "Imprimir", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
+                { type: "button", label: "Imprimir", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
                 { type: "button", label: "Excel",    attr: "id=co_excel",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
@@ -427,13 +401,18 @@ function fn_setea_grid_principal() {
 		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"  },
 		{ title: "Modificable", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
 		{ title: "Cantidad", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right"  },
-		    
+        { title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
+					render: function (ui) {
+						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
+						return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
+					}
+				}  
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
     
-    /*GRILLA 2*/
+    /*GRILLA 2*************************************************************/
     
     //Setea grid2
 	data =  [
@@ -465,9 +444,7 @@ function fn_setea_grid_principal() {
             items:
             [
 				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo2",  cls: "btn btn-primary" },
-				{ type: "button", label: "Modificar",attr: "id=co_editar2", cls: "btn btn-primary" },
-                { type: "button", label: "Eliminar", attr: "id=co_borrar2", cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver2", cls:"btn btn-default btn-sm"}
             ]
         }
@@ -479,7 +456,12 @@ function fn_setea_grid_principal() {
         { title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
         { title: "Valor 1", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"left" },
         { title: "Valor 2", width: 140, dataType: "number", dataIndx: "C5", halign:"center", align:"right" },
-        
+        { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
+					render: function (ui) {
+						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
+						return "<button name='co_borra2' class='btn btn-primary btn-sm'>Eliminar</button>";
+					}
+				}
     ];
 	
 	obj2.dataModel = { data: data };
@@ -488,50 +470,7 @@ function fn_setea_grid_principal() {
     $grid_2.pqGrid( "refreshDataAndView" );
 	//$grid_2.pqGrid( "scrollRow", { rowIndxPage: 10 } );
 
-    
-    
-    
-    
 }
-
-//************************************************************
-
-function fn_valida_clave(clave1,  clave2, fila){
-	//lectura1, , lectura2
-	flag = 0;
-	
-	if ( $("#cb_lector").val() == "") {
-		fn_mensaje_boostrap("DEBE DILIGENCIAR LOS DATOS DEL LECTOR Y LA FECHA DE TERRENO", g_tit, $("#co_leer"));
-		//g_act = "1";
-		return false;
-	}    
-	
-	parameters = 
-	 {
-		 "func"       : "fn_valida_clave",
-		 "empresa"    : $("#tx_empresa").val(),
-		 "p_clavelec" : clave1 ,      
-		 //"p_lecterr"  : lectura1,
-	 };
-   
-	 HablaServidor(url,parameters,'text', function(text) 
-	 {
-		resp = text;
-		//$grid_principal.pqGrid("updateRow", { 'rowIndx': fila , row: { 'C15': 1 } });
-	 });
-	
-	 if(resp == 0){
-		fn_mensaje_boostrap("CLAVE DE LECTURA NO EXISTE!!!", g_tit, $(""));
-		//g_act = "1";  
-		return false;
-	 }
-	 else
-		flag = 1;
-
-	return true;
-	   
-}
-
 
 //***********************************************************
 function fn_actualiza_datos(clave1, lectura1, cliente, medidor, tipomed, marca, modelo, clave2, lectura2){
@@ -589,82 +528,42 @@ function fn_filtro()
     {
 		"func":"fn_grid_principal",
 		"empresa":$("#tx_empresa").val(),
-		"p_regional":$("#cb_regional").val(),
+		/*"p_sistema":$("#cb_regional").val(),
         "p_ciclo":$("#cb_ciclo").val(),
         "p_ruta":$("#cb_ruta").val(),
         "p_lector":$("#cb_lector").val(),
-        "p_fecha":$("#fec_lect").val(),
+        "p_fecha":$("#fec_lect").val(),*/
         
     };
-	
-	Filtros = [];
-	
-	if ($("#cb_regional").val()!='' ) {
-		Filtros.push('Regional = '+$("#cb_regional :selected").text());  
-		}
-	
-	
-	if ($("#cb_ciclo").val()!='' ) {
-		Filtros.push('Ciclo = '+$("#cb_ciclo:selected").text());  
-		}
-	
-	
-	if ($("#cb_ruta").val()!='' ) {
-		Filtros.push('Ruta = '+$("#cb_ruta:selected").text());  
-		}
-	
-	if ($("#cb_lector").val()!='' ) {
-		Filtros.push('Lector = '+$("#cb_lector:selected").text());  
-		}
-				
-	
-	if ($("#fec_lect").val()!=''  ) {
-	      Filtros.push('Fecha Lectura Terreno = '+$("#fec_lect").val() );
-		
-	}
-	
-	//alert('datos ' + $("#cb_regional").val() + ' /' + $("#cb_ciclo").val() + '/ ' + $("#cb_ruta").val());
-	
-	$("#filtro").val(Filtros);
+	/*Filtros = [];
+	if ($("#cb_regional").val()!='' ) {Filtros.push('Regional = '+$("#cb_regional :selected").text()); }
+	if ($("#cb_ciclo").val()!='' ) {Filtros.push('Ciclo = '+$("#cb_ciclo:selected").text());  }
+	if ($("#cb_ruta").val()!='' ) {	Filtros.push('Ruta = '+$("#cb_ruta:selected").text());  }
+	if ($("#cb_lector").val()!='' ) {Filtros.push('Lector = '+$("#cb_lector:selected").text());}
+	if ($("#fec_lect").val()!=''  ) {Filtros.push('Fecha Lectura Terreno = '+$("#fec_lect").val() );}
+	$("#filtro").val(Filtros);*/
 }
 
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_Muestra_Filtro() {
-	fn_limpia_filtro();
-   
+function fn_modal() {
+	fn_limpia_modal();
 	
-	$("#div_filtro_bts").modal({ backdrop: "static", keyboard: false });
-	$("#div_filtro_bts").on("shown.bs.modal", function () {
-		$("#div_filtro_bts div.modal-footer button").focus();
+	$("#div_modal").modal({ backdrop: "static", keyboard: false });
+	$("#div_modal").on("shown.bs.modal", function () {
+		$("#div_modal div.modal-footer button").focus();
 
 	});
-
-
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_limpia_filtro() 
+function fn_limpia_modal() 
 {
-	$("#cb_regional").val("");
-	$("#cb_ciclo").val("");
-	$("#cb_ruta").val("");
-	$("#cb_lector").val("");
-	$("#fec_lect").val("");
-	}
+	$("#cb_sistema").val("");
+	$("#tx_nomtabla").val("");
+	$("#tx_desc").val("");
+	$("#cb_modif").val("");	
+}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	
-function fn_Muestra_Lectura() {
-	$("#div_lec_bts").modal({ backdrop: "static", keyboard: false });
-	$("#div_lec_bts").on("shown.bs.modal", function () {
-		$("#div_lec_bts div.modal-footer button").focus();
-
-	});
-
-
-}
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_grilla() {
 	
@@ -703,12 +602,8 @@ function fn_carga_grilla() {
 	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
-
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-//FUNCIONES MODAL -  combos
-function fn_regional() {
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
+function fn_sistema() {
       /*
     	$("#cb_regional").html("");
 		$("#cb_ciclo").html("");
@@ -727,106 +622,7 @@ function fn_regional() {
 					$("#cb_regional").html(text);
 			});
 */
-	$("#cb_regional").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-function fn_ciclo() {
-
-   /* $("#cb_ciclo").html("");
-	$("#cb_ruta").html("");
-	
-	
-	//alert($("#cb_regional").val()); 
-	
-	parameters = 
-    {
-		"func":"fn_ciclo",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val(),
-		"p_regional":$("#cb_regional").val()
-		
-    };
-    HablaServidor(url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_ciclo").html(text);
-    });*/
-
-	//$("#cb_ciclo").html("<option value='' selected></option><option value='1'>10</option> <option value='2' >20</option> <option value='3'>30</option>");
-}
-
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-function fn_ruta() {
-
-	$("#cb_ruta").html("");
-/*
-    parameters = 
-    {
-		"func":"fn_ruta",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val(),
-		"p_regional":$("#cb_regional").val(),
-		"p_ciclo":$("#cb_ciclo").val()
-    };
-	
-    HablaServidor(url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_ruta").html(text);
-    });
-	*/
-	//$("#cb_ruta").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
-}
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-function fn_lect() {
-
-    $("#cb_lector").html("");
-
-	/*
-	parameters = 
-    
-	{
-		"func":"fn_lector",
-		"empresa":$("#tx_empresa").val(),
-		"rol":$("#tx_rol").val()
-    };
-    HablaServidor(url,parameters,'text', function(text) 
-    {
-        if(text != "")
-            $("#cb_lector").html(text);
-    });
-*/
-	//$("#cb_lector").html("<option value='' selected></option><option value='1'>005</option> <option value='2' >010</option> <option value='3'>015</option>");
-}
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-
-/*function fn_actualizar(){
-    alert('Se actualizo.');
-}*/
-
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//FUNCIONES LIMPIAR-MODAL
-function fn_lim_filtro() {
-	$("#cb_regional").val("");
-	$("#cb_ciclo").val("");
-	$("#cb_ruta").val("");
-}
-
-
-
-function fn_lim_fil_reg() {
-	$("#cb_ciclo").val("");
-    $("#cb_ruta").val("");
-	
-}
-function fn_lim_fil_ci() {
-    $("#cb_ruta").val("");
-	
+	$("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
