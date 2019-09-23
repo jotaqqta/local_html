@@ -2,7 +2,7 @@ var g_modulo="Facturación Clientes - Lecturas y Consumos";
 var g_titulo="Ingreso Requerimientos Refacturados.";
 var parameters={};
 var my_url="correc_prome_dudo.asp";
-var $grid, $grid_secun, $grid_tar_izq, grid_tar_der;
+var $grid, $grid_secun, $grid_tar_izq, $grid_tar_der;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e) {
 
@@ -369,7 +369,6 @@ function fn_setea_grid_tarifa()
         rowBorders:true,
         fillHandle: "",
         editable:false,
-        del: true,
         selectionModel: { type: "row", mode:"single"},        
         numberCell: { show: false },
         collapsible: { on : false,toggle:false },
@@ -390,11 +389,11 @@ function fn_setea_grid_tarifa()
        },
         
         colModel: [         
-            { title: "Descripción",  resizable: false, width: "45%", dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
+            { title: "Descripción",  resizable: false, width: "35%", dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
             { title: "Valor", width: "15%", dataType: "number", dataIndx: "C2",halign:"center", align:"center" },
-            { title: "Vr. Ajuste", width: "17%", dataType: "string", dataIndx: "C3",halign:"center", align:"center" },
-            { title: "Documento", width: "22%", dataType: "string", dataIndx: "C3",halign:"center", align:"center" },
-            { title: "Eliminar",width: "20%", dataType: "string", align: "center", editable: false,  sortable: false,
+            { title: "Vr. Ajuste", width: "15%", dataType: "string", dataIndx: "C3",halign:"center", align:"center" },
+            { title: "Documento", width: "20%", dataType: "string", dataIndx: "C3",halign:"center", align:"center" },
+            { title: "Eliminar",width: "15%", dataType: "string", align: "center", editable: false,  sortable: false,
             render: function (ui) {
                 return "<button class='btn btn-default btn-sm'><span class='glyphicon glyphicon-trash'></span> </button>";
             }
@@ -509,6 +508,8 @@ function fn_ventana_final(){
     $("#co_aprobar").prop("disabled", true);
 
     $grid_secun.pqGrid( "refreshView" );
+	$grid_tar_izq.pqGrid( "refreshView" );
+	$grid_tar_der.pqGrid( "refreshView" );
     
 }
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
