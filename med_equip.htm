@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=10">
+    <head>
+   <meta http-equiv="X-UA-Compatible" content="IE=10">
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<meta http-equiv="cache-control" content="max-age=0">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -41,187 +40,191 @@
 	<link rel="stylesheet" href="syn_dinamicos/header.css">
 
 	<!-- Archivos importantes -->
-	<!-- Archivos importantes -->
+		<!-- Archivos importantes -->
 
-	<style>
-		.panel-primary {
-			border-color: #cccccc;
-		}
+		<style>
+			.panel-primary {
+				border-color: #cccccc;
+			}
+			.panel-primary>.panel-heading {
+				color:#404040;
+				font-weight:600;
+				background-color: #ffffff;
+				border-color: #cccccc;
+			}
+			#grid_consulta_compensa {
+				float: center;
+			}
+			#bd_prin{
+				height: calc(100vh - 167px);
+			}
+			.input_ver{
+				margin-top: 8px;
+			}
+        </style>
+    </head>
+    
+	<body>
+		<div id="header" class="container">
+			<div id="div_header"></div>	
+		</div>	
 
-		.panel-primary>.panel-heading {
-			color: #404040;
-			font-weight: 600;
-			background-color: #ffffff;
-			border-color: #cccccc;
-		}
+		<div class="bootstrap-syn">
+			
+			<div class="container" id="div_prim">
+				<br>
+				<div class="row menus">				
+					<div class="col-3 col-sm-3 col-md-2 col-lg-3"> 
+					
+	                               	<label class="control-label" for="fec_sum_in">Fecha inicio</label>
+									<input id="fec_sum_in" class="form-control input-normal _input_selector" value="" name="fec_sum_in">
+                        
+					</div>
+                    <div class="col-3 col-sm-3 col-md-2 col-lg-3"> 
+					
+	                               	<label class="control-label" for="fec_sum_fin">Fecha final</label>
+									<input id="fec_sum_fin" class="form-control input-normal _input_selector" value="" name="fec_sum_fin">
+                        
+					</div>
 
-		#grid_consulta_compensa {
-			float: center;
-		}
+				
+				</div>
+			</div>
+				
+			<div class="container" id="div_prin">				
+				<div class="row">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="num_cli">Número cliente</label>
+							<input  id="num_cli" name="num_cli" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="rut_com">Ruta Comercial</label>
+							<input  id="rut_com" name="rut_com" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="num_med">Número Medidor</label>
+							<input  id="num_med" name="num_med" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+				</div>
+                			<div class="row">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="mar_inp">Marca</label>
+                            <select  id="mar_inp" name="mar_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="diam_inp">Diametro</label>
+                            <select id="diam_inp" name="diam_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="tar_inp">Tarifa</label>
+                            <select  id="tar_inp" name="tar_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+				</div>
+                <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_prov">Provincia</label>
+							     	<select class="form-control inp_dis" id="cb_prov" name="cb_prov"></select>   
+								</div>
+							</div>	
 
-		#bd_prin {
-			height: calc(100vh - 167px);
-		}
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_dist">Distrito</label>
+									<select class="form-control inp_dis" id="cb_dist" name="cb_dist"></select>
+						        </div>
+							</div>
+                </div>
+                    <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_corre">Corregimiento</label>
+							     	<select class="form-control inp_dis" id="cb_corre" name="cb_corre"></select>   
+								</div>
+							</div>	
 
-		.input_ver {
-			margin-top: 8px;
-		}
-	</style>
-</head>
-
-<body>
-	<div id="header" class="container">
-		<div id="div_header"></div>
-	</div>
-
-	<div class="bootstrap-syn">
-
-		<div class="container" id="div_prim">
-			<br>
-
-			<form role="form" class="form-horizontal" id="frm_filtro">
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="fec_sum_in">Fecha inicio</label>
-					<div class="col-sm-7">
-						<input id="fec_sum_in" class="form-control input-normal _input_selector" value=""
-							name="fec_sum_in">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_barrio">Barrio</label>
+									<select class="form-control inp_dis" id="cb_barrio" name="cb_barrio"></select>
+						        </div>
+							</div>
+                </div>
+                
+               
+                <div class="row">
+					<div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                   <label></label>    
+				   <div class="">
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" name="optradio" value="2">Primera instalación
+					    </label>  				    
+				  	</div>
+				  	</div>
+                    	<div class="col-1 col-sm-1 col-md-2 col-lg-1">
+                   <label></label>    
+				   <div class="">
+					    <label class="radio-inline">
+					      <input type="radio" name="optradio" id="optradio" name="optradio" value="1">Ultima instalación
+					    </label>  				    
+				  	</div>
+				  	</div>
+                </div>
+                <br>
+				<div class="flex-wrap"> 
+				
+						<div>												
+							<button type="button" class="btn btn-primary" id="co_gen" name="co_gen"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span>
+                            Generar</button>
+                        	<button type="button" class="btn btn-basic" id="co_lim" name="co_lim"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-remove"></span>
+                                Limpiar</button>
+                            <button type="button" class="btn btn-basic" id="co_basic" name="co_basic"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-off"></span>
+                                Cerrar</button>
+						                          
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="fec_sum_fin">Fecha final</label>
-					<div class="col-sm-7">
-						<input id="fec_sum_fin" class="form-control input-normal _input_selector" value=""
-							name="fec_sum_fin">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="num_cli">Número cliente</label>
-					<div class="col-sm-7">
-						<input id="num_cli" name="num_cli" type="text" class="form-control inp_dis">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="num_cli">Ruta Comercial</label>
-					<div class="col-sm-7">
-						<input id="rut_com" name="rut_com" type="text" class="form-control inp_dis">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="num_med">Número Medidor</label>
-					<div class="col-sm-7">
-						<input id="num_med" name="num_med" type="text" class="form-control inp_dis">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="mar_inp">Marca</label>
-					<div class="col-sm-7">
-						<select id="mar_inp" name="mar_inp" type="text" class="form-control inp_dis"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="diam_inp">Diametro</label>
-					<div class="col-sm-7">
-						<select id="diam_inp" name="diam_inp" type="text" class="form-control inp_dis"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="tar_inp">Tarifa</label>
-					<div class="col-sm-7">
-						<select id="tar_inp" name="tar_inp" type="text" class="form-control inp_dis"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_prov">Provincia</label>
-					<div class="col-sm-7">
-						<select class="form-control inp_dis" id="cb_prov" name="cb_prov"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_dist">Distrito</label>
-					<div class="col-sm-7">
-						<select class="form-control inp_dis" id="cb_dist" name="cb_dist"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_corre">Corregimiento</label>
-					<div class="col-sm-7">
-						<select class="form-control inp_dis" id="cb_corre" name="cb_corre"></select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="cb_barrio">Barrio</label>
-					<div class="col-sm-7">
-						<select class="form-control inp_dis" id="cb_barrio" name="cb_barrio"></select>
-					</div>
-				</div>
-
-			</form>
+			</div> 
         </div>
-            <div class="container" id="div_prim">
-			<div class="row">
-				<div class="col-1 col-sm-1 col-md-2 col-lg-1">
-					<label></label>
-					<div class="">
-						<label class="radio-inline">
-							<input type="radio" name="optradio" id="optradio" name="optradio" value="2">Primera
-							instalación
-						</label>
-					</div>
-				</div>
-				<div class="col-1 col-sm-1 col-md-2 col-lg-1">
-					<label></label>
-					<div class="">
-						<label class="radio-inline">
-							<input type="radio" name="optradio" id="optradio" name="optradio" value="1">Ultima
-							instalación
-						</label>
-					</div>
-				</div>
-			</div>
-			<br>
-			<div class="flex-wrap">
+		
 
-				<div>
-					<button type="button" class="btn btn-primary" id="co_gen" name="co_gen"
-						style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span>
-						Generar</button>
-					<button type="button" class="btn btn-basic" id="co_lim" name="co_lim"
-						style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-remove"></span>
-						Limpiar</button>
-					<button type="button" class="btn btn-basic" id="co_basic" name="co_basic"
-						style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-off"></span>
-						Cerrar</button>
-
-				</div>
-			</div>
+		<div class="container">
+		<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
-	</div>
+        
 
-
-	<div class="container">
-		<div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
-	</div>
-
-
-
-
-	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
-
-	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
-		<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
-		<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
-		<input type="hidden" id="tx_rol" name="tx_rol" value="">
-		<input type="hidden" id="tx_ip" name="tx_ip" value="">
-		<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
-		<input type="hidden" id="sql" name="sql" value="">
-		<input type="hidden" id="Rol" name="Rol" value="">
-		<input type="hidden" id="tituloexcel" name="tituloexcel">
-		<input type="hidden" id="excel_archivo" name="excel_archivo">
-		<input type="hidden" id="filtro" name="filtro">
-		<input type="hidden" id="excel_cabecera" name="excel_cabecera">
-	</form>
-	<input type="hidden" id="nom_rol" name="nom_rol">
-
-</body>
-
+			
+        	
+		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
+		
+		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
+			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+			<input type="hidden" id="tx_rol" name="tx_rol" value="">
+			<input type="hidden" id="tx_ip" name="tx_ip" value="">
+			<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+			<input type="hidden" id="sql" name="sql" value="">
+			<input type="hidden" id="Rol" name="Rol" value="">
+			<input type="hidden" id="tituloexcel" name="tituloexcel">
+			<input type="hidden" id="excel_archivo" name="excel_archivo">
+			<input type="hidden" id="filtro" name="filtro">
+			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+		</form>    
+	   <input type="hidden" id="nom_rol" name="nom_rol">
+         
+	</body>
 </html>
