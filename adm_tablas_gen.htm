@@ -13,42 +13,42 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Jquery   /raiz/-->  
-	<link rel="stylesheet" href="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
-	<script src="/raiz/jquery/jquery-3.1.1.min.js"></script>
-	<script src="/raiz/jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script src="jquery/jquery-3.1.1.min.js"></script>
+	<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
 	<!-- Validaciones con inputmask -->
 		  
-        <script src="/raiz/jquery/inputmask4x/jquery.inputmask.bundle.min.js"></script>      <!--/raiz/   /inputmask4x/-->
-		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
-		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
-		<script src="/raiz/jquery/inputmask4x/inputmask/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
-		<script src="/raiz/jquery/inputmask4x/inputmask/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
+        <script src="jquery/jquery.inputmask.bundle.min.js"></script>      <!--/raiz/   /inputmask4x/-->
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
+		<script src="jquery/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
+		<script src="jquery/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
+		<script src="jquery/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
 		
 	<!-- Paramquery -->
-	<link rel="stylesheet" href="/raiz/pqgrid/v5.6/pqgrid.min.css">
-	<link rel="stylesheet" href="/raiz/pqgrid/v5.6/themes/steelblue/pqgrid.css">
-	<script src="/raiz/pqgrid/v5.6/pqgrid.min.js"></script>
-	<script src="/raiz/pqgrid/v5.6/localize/pq-localize-es.js"></script>
+	<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+	<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+	<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+	<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
 
 	<!-- Boostrap -->
-	<link rel="stylesheet" href="/raiz/bootstrap/v3.3.7/css/bootstrap.min.css">
-	<script src="/raiz/bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+	<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Principales -->
-	<script src="/raiz/syn_globales/syn_util.js"></script>
-	<link rel="stylesheet" href="/raiz/syn_dinamicos/header.css">	
-	<link rel="stylesheet" href="/raiz/syn_dinamicos/synergia.css">
+	<script src="syn_globales/syn_util.js"></script>
+	<link rel="stylesheet" href="syn_dinamicos/header.css">	
+	<link rel="stylesheet" href="syn_dinamicos/synergia.css">
 	
 
-	<script language="JavaScript" src="ingre_lec_dudo.js"></script>
+	<script language="JavaScript" src="adm_tablas_gen.js"></script>
 	
-	<!-- Archivos importantes  -->
+	<!-- Archivos importantes  
 		
-		<script language="JavaScript" src="/raiz/SYN_Dinamicos/file.js"></script>
-		<script language="JavaScript" src="/raiz/Syn_Conexion/conexion.js"></script>
-		<script language="JavaScript" src="/raiz/Syn_Globales/Seguridad.js"></script>  
-    
+		<script language="JavaScript" src="SYN_Dinamicos/file.js"></script>
+		<script language="JavaScript" src="Syn_Conexion/conexion.js"></script>
+		<script language="JavaScript" src="Syn_Globales/Seguridad.js"></script>  
+    -->
 	<style>
 		.panel-primary {
 			border-color: #cccccc;
@@ -91,9 +91,37 @@
 	<div class="bootstrap-syn">
 		<br>
 		<div class="container">
-			<!-- PARAMQUERY principal -->
-			<div id="div_grid_principal">
+			
+            
+            <div id="div_prin">
+				<div class="panel-body" id="bd_prin">
+					<!-- PARAMQUERY PRINCIPAL -->
+					<div id="div_grid_principal"> 
+
+					</div>
+				</div>
 			</div>
+			
+			<div id="div_tabla" style="display: none">
+				<div class="panel-body" id="bd_prin">
+					<!-- PARAMQUERY SECUNDARIO -->
+					<div id="div_grid_sec"> 
+
+					</div>
+				</div>
+			</div>
+			
+			<div id="div_ter" style="display: none">
+				<div class="panel-body" id="bd_prin">
+					<!-- PARAMQUERY TERCIARIO -->
+					<div id="div_grid_ter"> 
+
+					</div>
+				</div>
+			</div>
+			
+            
+            
 		</div>
 		
 		<!-- Modal filtro -->
@@ -213,7 +241,7 @@
 				</div>
 	</div>
 	
-	<form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte_v2.asp" target="_blank">
+	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
 			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
 			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
 			<input type="hidden" id="tx_rol" name="tx_rol" value="">

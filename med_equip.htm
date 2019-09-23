@@ -76,10 +76,95 @@
 				<div class="row menus">				
 					<div class="col-3 col-sm-3 col-md-2 col-lg-3"> 
 					
-	                               	<label class="control-label" for="fec_sum">Fecha:</label>
-									<input id="fec_sum" class="form-control input-normal _input_selector" value="" name="fec_sum">
+	                               	<label class="control-label" for="fec_sum_in">Fecha inicio</label>
+									<input id="fec_sum_in" class="form-control input-normal _input_selector" value="" name="fec_sum_in">
+                        
+					</div>
+                    <div class="col-3 col-sm-3 col-md-2 col-lg-3"> 
+					
+	                               	<label class="control-label" for="fec_sum_fin">Fecha final</label>
+									<input id="fec_sum_fin" class="form-control input-normal _input_selector" value="" name="fec_sum_fin">
+                        
 					</div>
 
+				
+				</div>
+			</div>
+				
+			<div class="container" id="div_prin">				
+				<div class="row">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="num_cli">Número cliente</label>
+							<input  id="num_cli" name="num_cli" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="rut_com">Ruta Comercial</label>
+							<input  id="rut_com" name="rut_com" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="num_med">Número Medidor</label>
+							<input  id="num_med" name="num_med" type="text" class="form-control inp_dis">
+						</div>
+					</div>
+				</div>
+                			<div class="row">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="mar_inp">Marca</label>
+                            <select  id="mar_inp" name="mar_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="diam_inp">Diametro</label>
+                            <select id="diam_inp" name="diam_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<div class="form-group">
+							<label for="tar_inp">Tarifa</label>
+                            <select  id="tar_inp" name="tar_inp" type="text" class="form-control inp_dis"></select>
+						</div>
+					</div>
+				</div>
+                <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_prov">Provincia</label>
+							     	<select class="form-control inp_dis" id="cb_prov" name="cb_prov"></select>   
+								</div>
+							</div>	
+
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_dist">Distrito</label>
+									<select class="form-control inp_dis" id="cb_dist" name="cb_dist"></select>
+						        </div>
+							</div>
+                </div>
+                    <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_corre">Corregimiento</label>
+							     	<select class="form-control inp_dis" id="cb_corre" name="cb_corre"></select>   
+								</div>
+							</div>	
+
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="cb_barrio">Barrio</label>
+									<select class="form-control inp_dis" id="cb_barrio" name="cb_barrio"></select>
+						        </div>
+							</div>
+                </div>
+                
+               
+                <div class="row">
 					<div class="col-1 col-sm-1 col-md-2 col-lg-1">
                    <label></label>    
 				   <div class="">
@@ -96,90 +181,21 @@
 					    </label>  				    
 				  	</div>
 				  	</div>
-				
-				</div>
-			</div>
-				
-			<div class="container" id="div_prin">				
-				<div class="row">
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="num_cli">Número cliente:</label>
-							<input  id="num_cli" name="num_cli" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="rut_com">Ruta Comercial:</label>
-							<input  id="rut_com" name="rut_com" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="num_med">Número Medidor:</label>
-							<input  id="num_med" name="num_med" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-				</div>
-                			<div class="row">
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="mar_inp">Marca:</label>
-                            <select  id="mar_inp" name="mar_inp" type="text" class="form-control inp_dis"></select>
-						</div>
-					</div>
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="diam_inp">Diametro:</label>
-                            <select id="diam_inp" name="diam_inp" type="text" class="form-control inp_dis"></select>
-						</div>
-					</div>
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						<div class="form-group">
-							<label for="tar_inp">Tarifa:</label>
-                            <select  id="tar_inp" name="tar_inp" type="text" class="form-control inp_dis"></select>
-						</div>
-					</div>
-				</div>
-                <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="cb_prov">Provincia:</label>
-							     	<select class="form-control inp_dis" id="cb_prov" name="cb_prov"></select>   
-								</div>
-							</div>	
-
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="cb_dist">Distrito:</label>
-									<select class="form-control inp_dis" id="cb_dist" name="cb_dist"></select>
-						        </div>
-							</div>
                 </div>
-                    <div class="row">
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="cb_corre">Corregimiento:</label>
-							     	<select class="form-control inp_dis" id="cb_corre" name="cb_corre"></select>   
-								</div>
-							</div>	
-
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="cb_barrio">Barrio:</label>
-									<select class="form-control inp_dis" id="cb_barrio" name="cb_barrio"></select>
-						        </div>
-							</div>
-                </div>
-                
                 <br>
-				<div class="text-left col-6 col-sm-6 col-md-6 col-lg-6"> 
-						<label for=""></label>
+				<div class="flex-wrap"> 
+				
 						<div>												
-							<button type="button" class="btn btn-primary " id="co_gen" name="co_gen" style="padding: 6px 20px; width:115px "><span class="glyphicon glyphicon-search"></span> Generar</button>
-                            	<button type="button" class="btn btn-basic" id="co_lim" name="co_lim" style="padding: 6px 20px;width:115px "><span class="glyphicon glyphicon-remove"></span> Limpiar</button>
-
-							<button id="co_cancelar" name="co_cancelar" class="btn btn-basic" style="width:115px;"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span> Cerrar</button>	                           
+							<button type="button" class="btn btn-primary" id="co_gen" name="co_gen"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-search"></span>
+                            Generar</button>
+                        	<button type="button" class="btn btn-basic" id="co_lim" name="co_lim"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-remove"></span>
+                                Limpiar</button>
+                            <button type="button" class="btn btn-basic" id="co_basic" name="co_basic"
+                                    style="padding: 6px 20px;width:115px"><span class="glyphicon glyphicon-off"></span>
+                                Cerrar</button>
+						                          
 						</div>
 					</div>
 			</div> 
