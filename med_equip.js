@@ -192,7 +192,8 @@ function fn_gen(){
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_limpiar(){
-	
+        $("#fec_sum_in").val(""); 
+        $("#fec_sum_fin").val(""); 	
     	$("#num_cli").val("");
     	$("#rut_com").val("");
     	$("#num_med").val("");
@@ -204,8 +205,11 @@ function fn_limpiar(){
     	$("#cb_dist").val("");
     	$("#cb_corre").val("");
     	$("#cb_barrio").val("");
-    	$('input[name="cb_pri_ins"]').prop('checked', false);
-	    $('input[name="cb_ult_ins"]').prop('disabled', true);
+    	$('input[name="optradio"]').prop('checked', false);
+	    $('input[name="optradio"]').prop('checked', false);
+        $("#cb_dist").prop("disabled", true);
+        $("#cb_corre").prop("disabled", true);
+        $("#cb_barrio").prop("disabled", true);
 
     
   
