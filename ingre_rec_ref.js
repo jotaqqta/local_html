@@ -166,13 +166,13 @@ $(document).ready(function() {
 
     $("#co_modificar").on("click", function (e) {
         
-        if($("#tx_tot_aju").val() != $("#vr_new_ajus").val()){
-            $('#div_filtro_bts').modal('hide');    
-            $grid_tar_der.pqGrid( "refreshView" );
-        }else{
-            fn_mensaje_boostrap("DEBE DIGITAR UN VALOR DIFERENTE", g_titulo, $("#tx_tot_aju"));
+        if($("#tx_tot_aju").val() == "0" || $("#tx_tot_aju").val() == ""){
+            fn_mensaje_boostrap("DEBE DIGITAR UN VALOR.", g_titulo, $("#tx_tot_aju"));
             $("#tx_tot_aju").focus();
-            return;            
+            return;   
+        }else{
+            $('#div_filtro_bts').modal('hide');    
+            $grid_tar_der.pqGrid( "refreshView" );         
         }        
     }); 
 
@@ -262,13 +262,13 @@ function fn_setea_grid_principal()
             },
             { title: "Documento",  resizable: false, width: 100, dataType: "number", dataIndx: "C1",halign:"center", align:"right"},
             { title: "Fecha", width: 100, dataType: "string", dataIndx: "C2",halign:"center", align:"center" },
-            //{ title: "valor_chk", width: 80, dataType: "string", dataIndx: "C10",halign:"center", align:"center", hidden:true },
             { title: "Tipo", width: 90, dataType: "number", dataIndx: "C3",halign:"center", align:"right" },
             { title: "Valor", width: 90, dataType: "number", dataIndx: "C4",halign:"center", align:"right" },
             { title: "Refacturado",width: 140, dataType: "number", dataIndx: "C5",halign:"center", align:"right"},
             { title: "Campo 1",width: 90, dataType: "number", dataIndx: "C6",halign:"center", align:"right"},
             { title: "Campo 2",width: 90, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
-            { title: "Periodo",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"}
+            { title: "Periodo",width: 90, dataType: "number", dataIndx: "C8",halign:"center", align:"right"},
+            //{ title: "valor_chk", width: 80, dataType: "string", dataIndx: "C9",halign:"center", align:"center", hidden:true },
 ];      
         obj.dataModel = { data: data };
 
