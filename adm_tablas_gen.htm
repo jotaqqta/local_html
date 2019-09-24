@@ -189,6 +189,85 @@
          </div>
        </div>
 		
+        
+        <!-- Modal2  -->
+		<div id="div_modal2" class="modal fade" role="dialog">
+			<div class="modal-dialog" style="width: 550px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+						<h4 class="modal-title" data-dismiss="modal">Datos Generales</h4>
+					</div>
+					<div class="modal-body">
+                        <div class="row">
+							
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="tx_codigo">Código:</label>
+									<input id="tx_codigo" class="form-control input-normal" name="tx_codigo">
+								</div>
+							</div>
+                            
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                            	    <label class="control-label" for="tx_descod">Descripción:</label>
+                                    <input id="tx_descod" class="form-control input-normal" name="tx_descod">
+                                </div>
+                        	</div>
+                        </div>        
+                            
+                        <div class="row">
+							
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="tx_val1">Valor 1:</label>
+									<input id="tx_val1" class="form-control input-normal" name="tx_val1">
+								</div>
+							</div>
+                            
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                            	    <label class="control-label" for="tx_val2">Valor 2:</label>
+                                    <input id="tx_val2" class="form-control input-normal" name="tx_val2">
+                                </div>
+                        	</div>
+                        </div>
+                        <div class="row">
+							
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<div class="form-group">
+									<label class="control-label" for="tx_fecing">Fecha Ingreso:</label>
+									<input id="tx_fecing" class="form-control input-normal" _input_selector name="tx_fecing">
+								    
+                                </div>
+							</div>
+                            
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                            	    <label class="control-label" for="tx_fecmod">Fecha Modificación:</label>
+                                    <input id="tx_fecmod" class="form-control input-normal" _input_selector name="tx_fecmod">
+                                </div>
+                        	</div>
+                        </div>
+                </div>    
+				<div class="modal-footer">
+						<button type="button" class="pull-left btn btn-primary" id="co_limpiar"><span
+								class="glyphicon glyphicon-grain"></span> Limpiar</button>
+						
+                        <button type="button" class="btn-left btn btn-primary" id="co_aceptar"><span
+								class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
+						<button type="button" class="btn-left btn btn-primary" id="co_estado"><span
+								class="glyphicon glyphicon-ok"></span> Activar</button>
+						
+                        <button type="button" data-dismiss="modal" class="btn btn-default" id="co_close"><span
+								class="glyphicon glyphicon-off"></span> Cancelar</button>
+				</div>
+				
+			</div>
+         </div>
+       </div>
+		
+        
 	</div>
 	
 	<!--Modal de mensajes-->
@@ -202,10 +281,10 @@
 							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
 							<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
 						</div>
-						<div class="modal-body" style="padding:10px 15px 5px 15px;">
+						<div class="modal-body" style=" padding:10px 15px 5px 15px;">
 							<form role="form">
 								<div class="form-group">
-									<div class="form-control-label">DESEA ACTUALIZAR EL REGISTRO CON CLAVE DE RUTA NO LEIDA?</div>
+									<div class="form-control-label">DESEA ELIMINAR LA TABLA LOGICA?</div>
 								</div>
 							</form>
 						</div>
@@ -217,6 +296,30 @@
 				</div>
 	</div>
 	
+    <div id="dlg_confirmamod2" class="modal" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content" id="mod_alto">
+						<div class="modal-header">
+							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+							<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+						</div>
+						<div class="modal-body" style="padding:10px 15px 5px 15px;">
+							<form role="form">
+								<div class="form-group">
+									<div class="form-control-label">DESEA ELIMINAR EL REGISTRO DE LA TABLA LOGICA?</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn" id="co_confirmamod2_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+							<button type="button" class="btn" id="co_confirmamod2_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+						</div>
+					</div>
+				</div>
+	</div>
+	
+    
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
 			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
 			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
@@ -235,6 +338,7 @@
 	
 	<input type="hidden" id="nom_rol" name="nom_rol">
     <input type="hidden" id="tx_nuevo" name="tx_nuevo" />
+    <input type="hidden" id="tx_nuevo2" name="tx_nuevo2" />
 </body>
 
 </html>

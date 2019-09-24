@@ -69,14 +69,14 @@ $(document).ready(function () {
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
 	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-	$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
+	//$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     
 	$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-	$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
+	//$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
+	//$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
@@ -92,21 +92,29 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_nuevo").on("click", fn_modal);
-
+    $("#co_nuevo").on("click", function (e) {
+		fn_modal(1);
+	});
 	
+    $("#co_editar").on("click", function (e) {
+		fn_modal(2);
+	});
+	
+    $("#co_nuevo2").on("click", function (e) {
+		fn_modal2(1);
+	});
+	
+    
+    
     $("#co_cerrar_t").on("click", function (e) {
         window.close(); 
     }); 
  
-	$("#co_leer").on("click", function (e) {
-		fn_Muestra_Lectura();
-	});
 	
 	/*$("#co_act").on("click", function (e) {
 		fn_actualizar();
 	});*/
-	
+	//BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function (e) {
 		 
 		//alert(dataReg.C1 +  "-" +  dataReg.C2);
@@ -118,18 +126,30 @@ $(document).ready(function () {
     	
 	});
     
-	$("#co_close").on("click", function (e) {
-		$('#div_modal').modal('hide');
+    $("#co_eliminar2").on("click", function (e) {
 		 
+		//alert(dataReg.C1 +  "-" +  dataReg.C2);
+		
+		$("#dlg_confirmamod2").modal({backdrop: "static",keyboard:false});					
+		$("#dlg_confirmamod2").on("shown.bs.modal", function () {
+			$("#co_confirmamod2_no").focus();
+				});
+    	
+	});
+    
+    
+	//BOTONES CERRAR DE LOS MODALES
+    $("#co_close").on("click", function (e) {
+		$('#div_modal').modal('hide');
 		fn_limpia_modal();
 	});
-         
-     $("#co_close_lec").on("click", function (e) {
-		$('#div_lec_bts').modal('hide');
+    
+    $("#co_close2").on("click", function (e) {
+		$('#div_modal2').modal('hide');
+		fn_limpia_modal2();
 	});
-     $("#co_close_act").on("click", function (e) {
-		$('#div_act_bts').modal('hide');
-	});
+    
+
          
     
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -332,14 +352,25 @@ $(document).ready(function () {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					g_cliente_selec = dataCell.c2;
-					//$("#div_tabla").hide();
+					//g_cliente_selec = dataCell.c2;
+					$("#tx_codigo").val(dataCell.c1);
+                    $("#tx_descod").val(dataCell.c2);
+                    $("#tx_val1").val(dataCell.c3);
+                    $("#tx_val2").val(dataCell.c4);
+                    $("#tx_fecing").val(dataCell.c5);
+                    $("#tx_fecmod").val(dataCell.c6);
+                    //$("#div_tabla").hide();
     				//$("#div_ter").show();
-					ruta_fil = dataCell.C4;
-					//fn_grilla_tres();
-				}
-			}
-	});
+					//ruta_fil = dataCell.C4;
+                    //fn_grilla_tres();
+                    $("#div_modal2").modal({ backdrop: "static", keyboard: false });
+                    $("#div_modal2").on("shown.bs.modal", function () {
+                        $("#div_modal2 div.modal-footer button").focus();
+
+				      });
+                }
+        }
+    });
 
 	    	 
 	 
@@ -415,11 +446,11 @@ function fn_setea_grid_principal() {
     
     //Setea grid2
 	data =  [
-	  { C1: '01', C2: 'PARAMETRO TABLA 1', C3: 'D', C4: '8', C5:'80'},
-      { C1: '02', C2: 'PARAMETRO TABLA 2', C3: 'A', C4: '18', C5:'80'},
-      { C1: '03', C2: 'PARAMETRO TABLA 3', C3: 'A', C4: '28', C5:'80'},
-      { C1: '04', C2: 'PARAMETRO TABLA 4', C3: 'A', C4: '38', C5:'80'},
-      { C1: '05', C2: 'PARAMETRO TABLA 5', C3: 'A', C4: '48', C5:'80'},
+	  { c1: '01', c2: 'PARAMETRO TABLA 1', c3: 'D', c4: '8', c5:'80'},
+      { c1: '02', c2: 'PARAMETRO TABLA 2', c3: 'A', c4: '18', c5:'80'},
+      { c1: '03', c2: 'PARAMETRO TABLA 3', c3: 'A', c4: '28', c5:'80'},
+      { c1: '04', c2: 'PARAMETRO TABLA 4', c3: 'A', c4: '38', c5:'80'},
+      { c1: '05', c2: 'PARAMETRO TABLA 5', c3: 'A', c4: '48', c5:'80'},
 	 ]
     var obj2 = {
         height: "100%",
@@ -450,11 +481,11 @@ function fn_setea_grid_principal() {
     };
 	
 	obj2.colModel = [
-        { title: "Código", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
-        { title: "Descricpión", width: 300, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
-        { title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign:"center", align:"center" },
-        { title: "Valor 1", width: 100, dataType: "string", dataIndx: "C4", halign:"center", align:"left" },
-        { title: "Valor 2", width: 140, dataType: "number", dataIndx: "C5", halign:"center", align:"right" },
+        { title: "Código", width: 100, dataType: "string", dataIndx: "c1", halign:"center", align:"center"},
+        { title: "Descricpión", width: 300, dataType: "string", dataIndx: "c2", halign:"center", align:"left" },
+        { title: "Estado", width: 100, dataType: "string", dataIndx: "c3", halign:"center", align:"center" },
+        { title: "Valor 1", width: 100, dataType: "string", dataIndx: "c4", halign:"center", align:"left" },
+        { title: "Valor 2", width: 140, dataType: "number", dataIndx: "c5", halign:"center", align:"right" },
         { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
 					render: function (ui) {
 						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
@@ -544,8 +575,11 @@ function fn_filtro()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_modal() {
-	fn_limpia_modal();
+function fn_modal(num) {
+	
+    $("#tx_nuevo").val(num);
+    
+    fn_limpia_modal();
 	
 	$("#div_modal").modal({ backdrop: "static", keyboard: false });
 	$("#div_modal").on("shown.bs.modal", function () {
@@ -553,6 +587,21 @@ function fn_modal() {
 
 	});
 }
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_modal2(num) {
+	
+    $("#tx_nuevo2").val(num);
+    
+    fn_limpia_modal2();
+	
+	$("#div_modal2").modal({ backdrop: "static", keyboard: false });
+	$("#div_modal2").on("shown.bs.modal", function () {
+		$("#div_modal2 div.modal-footer button").focus();
+
+	});
+}
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpia_modal() 
 {
@@ -562,6 +611,16 @@ function fn_limpia_modal()
 	$("#cb_modif").val("");	
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+function fn_limpia_modal2() 
+{
+	$("#tx_val1").val("");
+	$("#tx_val1").val("");
+	$("#tx_descod").val("");
+	$("#tx_codigo").val("");
+    $("#tx_fecing").val("");
+	$("#tx_fecmod").val("");
+}
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_grilla() {
