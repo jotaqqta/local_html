@@ -63,12 +63,8 @@ $(document).ready(function(){
                 
                 return;
             }else{
-
-         
-                  fn_leer();
-             
-                 
-            }
+                    fn_leer();
+             }
         }
     });
 
