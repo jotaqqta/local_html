@@ -60,12 +60,12 @@ $(document).ready(function(){
             if ($("#num_sum").val() == ""){
                 fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#num_sum"));
                 $("#cb_est").prop("disabled", true);
-                
                 return;
             }else{
              
              fn_leer();  
-            }  if ($("#cb_est").val() == "0"){
+             
+            if ($("#cb_est").val() == "0"){
                 fn_mensaje_boostrap("SELECCIONE ESTADO", g_titulo, $("#cb_est"));
                  return;
             }
@@ -73,6 +73,8 @@ $(document).ready(function(){
                 fn_mensaje_boostrap("SE DEBE ANOTAR OBSERVACION", g_titulo, $("#co_obs"));
                  return;
             }
+        }
+        fn_cambio_buttom();
             
         }
         $("#co_leer").on("click", function(){
@@ -113,9 +115,10 @@ function fn_leer(){
     $("#tx_dir").val("PANAMA CENTRO");
     $("#tx_ruta").val("8000-01-140-0010");
     $("#cb_est").prop("disabled",false);
+}
+function fn_cambio_buttom(){
     $("#co_leer").html("<span class='glyphicon glyphicon-ok'></span> Activar");
     $("#co_close").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
-    
 }
 function fn_carga_limpio(){
     $("#num_sum").focus();
@@ -125,9 +128,8 @@ function fn_carga_limpio(){
     $("#tx_ruta").val("");
     $("#cb_est").val("");
     $("#cb_est").prop("disabled",true);
-    $("#co_leer").html("<span class='glyphicon glyphicon-ok'></span> Leer");
-    $("#cb_est").prop("disabled", true);
-    $("#co_close").html("<span class='glyphicon glyphicon-remove'></span> Cerrar");
+    $("#co_leer").html("<span class='glyphicon glyphicon-ok'></span>Leer");
+    $("#co_close").html("<span class='glyphicon glyphicon-remove'></span>Cerrar");
     $("#co_obs").val(""); 
 }
 
