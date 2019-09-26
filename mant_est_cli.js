@@ -56,25 +56,45 @@ $(document).ready(function(){
         }
     });
     $("#co_leer").on("click", function(){
-        if ($.trim($("#co_leer").text()) == "Leer") {
+        if ($.trim($("#co_leer").text()) == "Leer"){
             if ($("#num_sum").val() == ""){
                 fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#num_sum"));
                 $("#cb_est").prop("disabled", true);
                 
                 return;
             }else{
-                    fn_leer();
-             }
+             
+             fn_leer();  
+            }  if ($("#cb_est").val() == "0"){
+                fn_mensaje_boostrap("SELECCIONE ESTADO", g_titulo, $("#cb_est"));
+                 return;
+            }
+            if ($("#co_obs").val() == ""){
+                fn_mensaje_boostrap("SE DEBE ANOTAR OBSERVACION", g_titulo, $("#co_obs"));
+                 return;
+            }
+            
         }
-    });
+        $("#co_leer").on("click", function(){
+            if ($.trim($("#co_leer").text()) == "Activar"){
+                fn_mensaje_boostrap("SE ACTIVO.", g_titulo, $("#co_leer"));
+                fn_carga_limpio();
+                return;
+                }
+
+
+             }); 
 
 
 
-    $("#co_cerrar").on("click", function(){
-        if ($.trim($("#co_cerrar").text())=="Cerrar") {
+          });
+       
+    $("#co_close").on("click", function(){
+        if ($.trim($("#co_close").text())=="Cancelar") {
             
 
             fn_limpiar();
+            fn_carga_limpio();
             return;
         } else {
              window.close();
@@ -86,7 +106,7 @@ $(document).ready(function(){
 });
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*  
 
-function fn_leer() {
+function fn_leer(){
     $("#num_sum").focus();
     $("#tx_nombre").val("PH BBVA");
     $("#cb_est").prop("disabled", false);
@@ -97,17 +117,30 @@ function fn_leer() {
     $("#co_close").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
     
 }
+function fn_carga_limpio(){
+    $("#num_sum").focus();
+    $("#num_sum").val("");
+    $("#tx_nombre").val("");
+    $("#tx_dir").val("");
+    $("#tx_ruta").val("");
+    $("#cb_est").val("");
+    $("#cb_est").prop("disabled",true);
+    $("#co_leer").html("<span class='glyphicon glyphicon-ok'></span> Leer");
+    $("#cb_est").prop("disabled", true);
+    $("#co_close").html("<span class='glyphicon glyphicon-remove'></span> Cerrar");
+    $("#co_obs").val(""); 
+}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*  
 function fn_limpiar() {
     $("#num_sum").val("");
     $("#tx_nombre").val("");
-    $("#cb_est").val("");
     $("#tx_dir").val("");
     $("#tx_ruta").val("");
+    $("#cb_est").val("");
     $("#cb_est").prop("disabled", true);
+    $("#co_obs").val("");    
 }
-
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_inactivar() {
     alert("Se inactivo usuario.");
@@ -116,7 +149,7 @@ function fn_inactivar() {
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_estado() {
-   $("#cb_est").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+   $("#cb_est").html("<option value='0' selected></option><option value='1'>ACTIVO</option> <option value='2' >INACTIVO</option>");
 }
 
 
