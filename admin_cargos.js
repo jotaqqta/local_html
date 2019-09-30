@@ -380,7 +380,7 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 	
 	var obj = {
-		height: 540,
+		height: 400,
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
@@ -398,10 +398,10 @@ function fn_setea_grid_principal() {
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" },
-				{ type: "button", label: "Modificar",attr: "id=co_editar", cls: "btn btn-primary" },
-                { type: "button", label: "Imprimir", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
-                { type: "button", label: "Excel",    attr: "id=co_excel",  cls: "btn btn-primary btn-sm" },       
+				{ type: "button", label: "Leer",    attr: "id=co_nuevo",  cls: "btn btn-primary" },
+				{ type: "button", label: "Anterior",attr: "id=co_editar", cls: "btn btn-primary" },
+                { type: "button", label: "Siguiente", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
+                { type: "button", label: "Seleccionar",    attr: "id=co_excel",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
 		},
@@ -412,31 +412,40 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' }, 
-             { C1: 'ABOCOMP', C2: 'AIC',   C3: 'ROL COMPROBANTES ABONO', C4: 'A', C5: 'S', C6: '10' },
-             { C1: 'ACCARE', C2: 'MEDI',   C3: 'ACCIONES DE CAMBIO A REALIZAR', C4: 'A', C5: 'S', C6: '10'}, 
-             { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },	 
-            { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },
-            { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },
-            { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },
-            { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },
-            { C1: 'ABASTAP', C2: 'PERD',   C3: 'ABASTECIMIENTO (HURTO)', C4: 'A', C5: 'S', C6: '10' },
+             { C1: '0001', C2: 'CONSUMO DE AGUA'}, 
+             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO'},
+             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL'}, 
+             { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL'},	 
+            { C1: '0005', C2: 'MATERIALES AGUA'},
+            { C1: '0006', C2: 'MANO DE OBRA - AGUA '},
+            { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO'},
+            { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA'},
+            { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE'},
+             { C1: '00010', C2: 'DESCUENTO DE EMPLEADO'},
+              { C1: '00011', C2: 'DESCUENTO DE JUBILADO'}, 
+             { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA'},
+             { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ'}, 
+             { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ'},	 
+            { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS'},
+            { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO'},
+            { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO'},
+            { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO'},
+            { C1: '00019', C2: 'COSTOS LEGALES'},
+             { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO'},
+              { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA'}, 
+             { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO'}
         ] }
 	};
 	
     obj.colModel = [
-		{ title: "Tabla",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Sistema", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },
-		{ title: "Descripcion", width: 350, dataType: "string", dataIndx: "C3", halign: "center",  align:"center"},
-		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"  },
-		{ title: "Modificable", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Cantidad", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right"  },
-        { title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
+		{ title: "Codigo",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  }, 
+        /*{ title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
 					render: function (ui) {
 						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
 						return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
 					}
-				}  
+				}*/  
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
