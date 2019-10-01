@@ -341,7 +341,7 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 	
 	var obj = {
-		height: 400,
+		height: "100%",
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
