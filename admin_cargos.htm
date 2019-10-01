@@ -12,19 +12,24 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Jquery   /raiz/-->  
+	<!-- Jquery   /raiz/-->
 	<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
 	<script src="jquery/jquery-3.1.1.min.js"></script>
 	<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
 	<!-- Validaciones con inputmask -->
-		  
-        <script src="jquery/jquery.inputmask.bundle.min.js"></script>      <!--/raiz/   /inputmask4x/-->
-		<script src="jquery/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
-		<script src="jquery/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
-		<script src="jquery/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
-		<script src="jquery/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
-		
+
+	<script src="jquery/jquery.inputmask.bundle.min.js"></script>
+	<!--/raiz/   /inputmask4x/-->
+	<script src="jquery/inputmask.numeric.extensions.min.js"></script>
+	<!--/inputmask4x/inputmask-->
+	<script src="jquery/inputmask.extensions.min.js"></script>
+	<!--/inputmask4x/inputmask-->
+	<script src="jquery/inputmask.min.js"></script>
+	<!--/inputmask4x/inputmask -->
+	<script src="jquery/jquery.inputmask.min.js"></script>
+	<!--/inputmask4x/inputmask-->
+
 	<!-- Paramquery -->
 	<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
 	<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
@@ -37,12 +42,12 @@
 
 	<!-- Principales -->
 	<script src="syn_globales/syn_util.js"></script>
-	<link rel="stylesheet" href="syn_dinamicos/header.css">	
+	<link rel="stylesheet" href="syn_dinamicos/header.css">
 	<link rel="stylesheet" href="syn_dinamicos/synergia.css">
-	
+
 
 	<script language="JavaScript" src="admin_cargos.js"></script>
-	
+
 	<!-- Archivos importantes  
 		
 		<script language="JavaScript" src="SYN_Dinamicos/file.js"></script>
@@ -91,43 +96,32 @@
 	<div class="bootstrap-syn">
 		<br>
 		<div class="container">
-			
-            
-            <div id="div_prin">
+
+
+			<div id="div_prin">
 				<div class="panel-body" id="bd_prin">
 					<!-- PARAMQUERY PRINCIPAL -->
-					<div id="div_grid_principal"> 
+					<div id="div_grid_principal">
 
 					</div>
 				</div>
 			</div>
-			
-			<div id="div_tabla" style="display: none">
-				<div class="panel-body" id="bd_prin">
-					<!-- PARAMQUERY SECUNDARIO -->
-					<div id="div_grid_sec"> 
+        </div>
 
-					</div>
-				</div>
-			</div>
-			
-		
-            
-            
-		</div>
-		
-	<!-- Div de Filtros de búsqueda -->
+		<!-- Div de Filtros de búsqueda -->
 		<div id="div_filtros" style="display: none">
+            <div class="container">
 			<div class="container">
-                <h4>Administrador de cargos</h4>
+				<h4>Administrador de cargos</h4>
 			</div>
-			
-			<div class="container"><!-- Row 1 -->
+
+			<div class="container">
+				<!-- Row 1 -->
 				<div class="col-sm-2" id="userFormColumn1">
 					<div class="form-group">
 						<label for="inp_cargo">Cargo</label>
 						<input name="inp_cargo" id="inp_cargo" class="form-control input-normal">
-					</div>  
+					</div>
 				</div>
 				<div class="col-sm-6 " id="userFormColumn2">
 					<div class="form-group">
@@ -137,7 +131,8 @@
 				</div>
 			</div>
 
-			<div class="container"><!-- Row 2 -->
+			<div class="container">
+				<!-- Row 2 -->
 				<div class="col-sm-6" id="userFormColumn1">
 					<div class="form-group">
 						<label for="inp_uni_med">Unidad de medida</label>
@@ -145,7 +140,7 @@
 							<option value="0"></option>
 							<option value="0"></option>
 						</select>
-					</div>  
+					</div>
 				</div>
 				<div class="col-sm-3" id="userFormColumn2">
 					<div class="form-group">
@@ -154,25 +149,27 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="container"><!-- Row 7 -->
+
+			<div class="container">
+				<!-- Row 7 -->
 				<div class="col-sm-6" id="userFormColumn1">
 					<div class="form-group">
 						<label for="inp_glosa">Glosa en documento</label>
-				<input name="inp_glosa" id="inp_glosa" class="form-control input-normal">
-						
-					</div>  
+						<input name="inp_glosa" id="inp_glosa" class="form-control input-normal">
+
+					</div>
 				</div>
 				<div class="col-sm-3" id="userFormColumn2">
 					<div class="form-group">
 						<label for="inp_niv_imp">Nivel de impresión</label>
-				       <input name="inp_niv_imp" id="inp_niv_imp" class="form-control input-normal">
-						
+						<input name="inp_niv_imp" id="inp_niv_imp" class="form-control input-normal">
+
 					</div>
 				</div>
 			</div>
-			
-			<div class="container"><!-- Row 3 -->
+
+			<div class="container">
+				<!-- Row 3 -->
 				<div class="col-sm-6" id="userFormColumn1">
 					<div class="form-group">
 						<label for="inp_car_aut">Cargo automatico</label>
@@ -180,125 +177,128 @@
 							<option value=""></option>
 							<option value=""></option>
 						</select>
-					</div>  
+					</div>
 				</div>
 				<div class="col-sm-3" id="userFormColumn2">
 					<div class="form-group">
 						<label for="inp_niv_pre">Nivel presentación</label>
-				<input name="inp_niv_pre" id="inp_niv_pre" class="form-control input-normal">
-						
+						<input name="inp_niv_pre" id="inp_niv_pre" class="form-control input-normal">
+
 					</div>
 				</div>
 			</div>
-			
-			<div class="container"><!-- Row 4 -->
+
+			<div class="container">
+				<!-- Row 4 -->
 				<div class="col-sm-6" id="userFormColumn1">
 					<div class="form-group">
 						<label for="inp_fec_act">Fecha activación</label>
 						<input name="inp_fec_ant" id="inp_fec_ant" class="form-control input-normal">
-						
-					</div>  
-				</div>
-                <div class="col-sm-3" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_ord_imp">Orden de impresión</label>
-						<input name="inp_ord_inp" id="inp_ord_inp" class="form-control input-normal">
-						
-					</div>  
-				</div>
-				
-			</div>
-			
-			<div class="container"><!-- Row 5 -->
-				  <div class="col-sm-6" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_fec_des">Fecha Desactivación</label>
-						<input name="inp_fec_des" id="inp_fec_des" class="form-control input-normal">
-						
-					</div>  
-				</div>
-			
-			</div>
-			<br>
-			<div class="container"><!-- Row 6 -->
-			<label class="control-label col-sm-3"></label>
-					<div class="col-3 col-sm-3 col-md-3 col-lg-3">
-					<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenible
-					</div>
-					<label class="control-label col-sm-1"></label>
-			        <div class="col-4 col-sm-4 col-md-4 col-lg-4"> 
-			        <input type="radio" name="optradio" id="optradio" name="optradio" value="1"> No convenible
-					</div>
-			</div>
-            	<div class="container"><!-- Row 6 -->
-	
-	               <div class="col-sm-6" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_uni_med">Unidad de medida</label>
-						<select id="inp_uni_med" class="form-control input-normal inp_dis">
-							<option value="0"></option>
-							<option value="0"></option>
-						</select>
-					</div>  
-				  </div>
-                      <div class="col-sm-6" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_uni_med">Unidad de medida</label>
-						<select id="inp_uni_med" class="form-control input-normal inp_dis">
-							<option value="0"></option>
-							<option value="0"></option>
-						</select>
-					</div>  
-				  </div>
-			</div>
-			
-			<br>
-            	<!-- PARAMQUERY SECUNDARIO -->
-				<div class="panel-body" id="bd_prin">
-					<!-- PARAMQUERY SECUNDARIO -->
-					<div id="div_grid_sec"> 
 
 					</div>
 				</div>
-            
-			<div class="container"><!-- Row botones -->
+				<div class="col-sm-3" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_ord_imp">Orden de impresión</label>
+						<input name="inp_ord_inp" id="inp_ord_inp" class="form-control input-normal">
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="container">
+				<!-- Row 5 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_fec_des">Fecha Desactivación</label>
+						<input name="inp_fec_des" id="inp_fec_des" class="form-control input-normal">
+
+					</div>
+				</div>
+
+			</div>
+			<br>
+			<div class="container">
+				<!-- Row 6 -->
+				<label class="control-label col-sm-3"></label>
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3">
+					<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenible
+				</div>
+				<label class="control-label col-sm-1"></label>
+				<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+					<input type="radio" name="optradio" id="optradio" name="optradio" value="1"> No convenible
+				</div>
+			</div>
+			<div class="container">
+				<!-- Row 6 -->
+
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_agrup">Agrupación</label>
+						<select id="inp_agrup" class="form-control input-normal inp_dis">
+							<option value="0"></option>
+							<option value="0"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_tip_acc">Tipo acción</label>
+						<select id="inp_tip_acc" class="form-control input-normal inp_dis">
+							<option value="0"></option>
+							<option value="0"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<!-- PARAMQUERY SECUNDARIO -->
+            <div class="container">
+			<div class="panel-body">
+				<!-- PARAMQUERY SECUNDARIO -->
+				<div id="div_grid_sec">
+
+				</div>
+			</div>
+            </div>
+            <div class="container">
+				<!-- Row botones -->
 				<div class="col-md-12" id="userFormColumn1">
 					<div class="form-group">
-						<button class="btn btn-primary" id="co_filtrar"><span class="glyphicon glyphicon-search"></span> Buscar</button>				
-						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+						<button class="btn btn-primary" id="co_filtrar"><span class="glyphicon glyphicon-search"></span>
+							Buscar</button>
+						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span>
+							Cancelar</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-        
-
-		
-        
+        </div>
+          </div>
+      <div class="container">
+		<div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
 	</div>
-	
-
-	
-    
-	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
-			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
-			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
-			<input type="hidden" id="tx_rol" name="tx_rol" value="">
-			<input type="hidden" id="tx_ip" name="tx_ip" value="">
-			<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
-			<input type="hidden" id="sql" name="sql" value="">
-			<input type="hidden" id="Rol" name="Rol" value="">
-			<input type="hidden" id="tituloexcel" name="tituloexcel">
-			<input type="hidden" id="excel_archivo" name="excel_archivo">
-			<input type="hidden" id="filtro" name="filtro">
-			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
-			<input type="hidden" id="tx_pietotal" name="tx_pietotal">	
-			<input type="hidden" id="align_vertical_titulo" name="align_vertical_titulo" value="left">		
+   <form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
+		<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+		<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+		<input type="hidden" id="tx_rol" name="tx_rol" value="">
+		<input type="hidden" id="tx_ip" name="tx_ip" value="">
+		<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+		<input type="hidden" id="sql" name="sql" value="">
+		<input type="hidden" id="Rol" name="Rol" value="">
+		<input type="hidden" id="tituloexcel" name="tituloexcel">
+		<input type="hidden" id="excel_archivo" name="excel_archivo">
+		<input type="hidden" id="filtro" name="filtro">
+		<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+		<input type="hidden" id="tx_pietotal" name="tx_pietotal">
+		<input type="hidden" id="align_vertical_titulo" name="align_vertical_titulo" value="left">
 	</form>
-	
+
 	<input type="hidden" id="nom_rol" name="nom_rol">
-    <input type="hidden" id="tx_nuevo" name="tx_nuevo" />
-    <input type="hidden" id="tx_nuevo2" name="tx_nuevo2" />
+	<input type="hidden" id="tx_nuevo" name="tx_nuevo" />
+	<input type="hidden" id="tx_nuevo2" name="tx_nuevo2" />
 </body>
 
 </html>

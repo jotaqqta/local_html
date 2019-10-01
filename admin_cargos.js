@@ -49,13 +49,6 @@ $(document).ready(function () {
 	$("#div_footer").load("syn_globales/footer.htm");
 	
 	$("#excel_archivo").val("tablas_generales.xls");
-	
-	//Se cargan las variables que vienen desde el server
-	/*$("#tx_empresa").val(SYNSegCodEmpresa);
-	$("#tx_rol").val(SYNSegRol);
-	$("#tx_ip").val(SYNSegIP);
-	$("#tx_rolfun").val(SYNSegRolFuncion);
-	*/
     $("#tx_empresa").val("1");
 	$("#tx_rol").val("SYNERGIA");
 	$("#tx_ip").val("127.0.0.1");
@@ -69,33 +62,18 @@ $(document).ready(function () {
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
 	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
-	//$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
-
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
 	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-
-	//$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	//$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-	//$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
-
-    //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    //$("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    
-    
-	//$("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
-    fn_sistema();
-    //fn_lect();
- 
+
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
    $("#co_leer").on("click", fn_Muestra_Filtro);	
-   // $("#co_leer").on("click", function (e) {
-//		fn_muestra_filtro();
-//	});
+
 	
     $("#co_editar").on("click", function (e) {
 		fn_modal(2);
@@ -104,23 +82,14 @@ $(document).ready(function () {
     $("#co_nuevo2").on("click", function (e) {
 		fn_modal2(1);
 	});
-	
-    
-    
-    $("#co_cerrar_t").on("click", function (e) {
+	$("#co_cerrar_t").on("click", function (e) {
         window.close(); 
     }); 
  
-	
-	/*$("#co_act").on("click", function (e) {
-		fn_actualizar();
-	});*/
 	//BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function (e) {
 		 
-		//alert(dataReg.C1 +  "-" +  dataReg.C2);
-		
-		$("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
+        $("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
 		$("#dlg_confirmamod").on("shown.bs.modal", function () {
 			$("#co_confirmamod_no").focus();
 				});
@@ -129,9 +98,7 @@ $(document).ready(function () {
     
     $("#co_eliminar2").on("click", function (e) {
 		 
-		//alert(dataReg.C1 +  "-" +  dataReg.C2);
-		
-		$("#dlg_confirmamod2").modal({backdrop: "static",keyboard:false});					
+        $("#dlg_confirmamod2").modal({backdrop: "static",keyboard:false});					
 		$("#dlg_confirmamod2").on("shown.bs.modal", function () {
 			$("#co_confirmamod2_no").focus();
 				});
@@ -142,7 +109,6 @@ $(document).ready(function () {
         
             $("#div_prin").slideDown();
             $("#div_filtros").slideUp();
-            //$grid_principal.pqGrid( "refreshDataAndView" );
             $(window).scrollTop(0);
         
     });
@@ -166,17 +132,14 @@ $(document).ready(function () {
     $("#co_volver2").on("click", function (e) {
 		$("#div_prin").show();
 		$("#div_tabla").hide();
-		//$grid_principal.pqGrid( "refreshDataAndView" );
-		$(window).scrollTop(0);
+        $(window).scrollTop(0);
     });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	$("._input_selector").inputmask("dd/mm/yyyy");
 
-	/*jQuery('#tx_lec_ant').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});*/
+	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
     
@@ -206,10 +169,7 @@ $(document).ready(function () {
 			
             fn_carga_grilla();
             $('#div_modal').modal('hide');
-            //fn_lim_filtro(); 
-                
-            
-        //}
+       
 	});
     
 	$("#co_limpiar").on("click", function () {
@@ -236,7 +196,6 @@ $(document).ready(function () {
 							return false;
 			}	
 			
-			//Validar la fecha cuando se ingrese unicamente
 			if ( $("#fec_lect").val() != "" ) {
 					
 						var parameters = {
@@ -286,7 +245,7 @@ $(document).ready(function () {
         handle: ".modal-header"
     });
 	
-    //Filtros = [];
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -342,15 +301,12 @@ $(document).ready(function () {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					//g_cliente_selec = dataCell.c2;
+			
 					$("#div_prin").hide();
                     $("#div_tabla").show();
     				
 					$grid_2.pqGrid("refreshView");
-					//periodo_fil = dataCell.C1;
-					//regional_fil = dataCell.C2;
-					//ciclo_fil = dataCell.C3;
-					//fn_grilla_dos();
+					
 				}
 			}
 	});
@@ -361,17 +317,13 @@ $(document).ready(function () {
 			if (ui.rowData) 
 				{
 					var dataCell = ui.rowData;
-					//g_cliente_selec = dataCell.c2;
+
 					$("#tx_codigo").val(dataCell.c1);
                     $("#tx_descod").val(dataCell.c2);
                     $("#tx_val1").val(dataCell.c3);
                     $("#tx_val2").val(dataCell.c4);
                     $("#tx_fecing").val(dataCell.c5);
                     $("#tx_fecmod").val(dataCell.c6);
-                    //$("#div_tabla").hide();
-    				//$("#div_ter").show();
-					//ruta_fil = dataCell.C4;
-                    //fn_grilla_tres();
                     $("#div_modal2").modal({ backdrop: "static", keyboard: false });
                     $("#div_modal2").on("shown.bs.modal", function () {
                         $("#div_modal2 div.modal-footer button").focus();
@@ -448,13 +400,7 @@ function fn_setea_grid_principal() {
 	
     obj.colModel = [
 		{ title: "Codigo",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  }, 
-        /*{ title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
-					render: function (ui) {
-						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
-						return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
-					}
-				}*/  
+		{ title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },   
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -471,7 +417,7 @@ function fn_setea_grid_principal() {
       { c1: '05', c2: 'PARAMETRO TABLA 5', c3: 'A', c4: '48', c5:'80'},
 	 ]
     var obj2 = {
-        height: "100%",
+        height: 400,
         showTop: true,
         showHeader: true,
         roundCorners: true,
@@ -499,14 +445,11 @@ function fn_setea_grid_principal() {
     };
 	
 	obj2.colModel = [
-        { title: "Código", width: 100, dataType: "string", dataIndx: "c1", halign:"center", align:"center"},
-        { title: "Descricpión", width: 300, dataType: "string", dataIndx: "c2", halign:"center", align:"left" },
-        { title: "Estado", width: 100, dataType: "string", dataIndx: "c3", halign:"center", align:"center" },
-        { title: "Valor 1", width: 100, dataType: "string", dataIndx: "c4", halign:"center", align:"left" },
-        { title: "Valor 2", width: 140, dataType: "number", dataIndx: "c5", halign:"center", align:"right" },
+        { title: "Agrupación", width: 100, dataType: "string", dataIndx: "c1", halign:"center", align:"center"},
+        { title: "Tipo Acción", width: 300, dataType: "string", dataIndx: "c2", halign:"center", align:"left" },
         { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
 					render: function (ui) {
-						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
+					
 						return "<button name='co_borra2' class='btn btn-primary btn-sm'>Eliminar</button>";
 					}
 				}
@@ -514,60 +457,9 @@ function fn_setea_grid_principal() {
 	
 	obj2.dataModel = { data: data };
     $grid_2 = $("#div_grid_sec").pqGrid(obj2);
-	//$grid_2.pqGrid( "option", "dataModel.data", [] );
-    $grid_2.pqGrid( "refreshDataAndView" );
-	//$grid_2.pqGrid( "scrollRow", { rowIndxPage: 10 } );
+	$grid_2.pqGrid("refreshDataAndView");
 
 }
-
-//***********************************************************
-function fn_actualiza_datos(clave1, lectura1, cliente, medidor, tipomed, marca, modelo, clave2, lectura2){
-	
-		//alert(clave1+'||'+ lectura1+'||'+ cliente+'||'+ medidor+'||'+ tipomed+'||'+ marca+'||'+ modelo)
-	flag = 0;
-	parameters = 
-    {
-		"func"       :"fn_actualiza_datos",
-		"empresa"    :$("#tx_empresa").val(),
-		"RolFun"     :$("#tx_rolfun").val(),
-		"rol"        :$("#tx_rol").val(),
-		"ip"         :$("#tx_ip").val(),
-				
-				
-		"p_clavelec" : clave1,
-        "p_lecterr"  : lectura1,
-		"p_clavelec2" : clave2,
-        "p_lecterr2"  : lectura2,
-		
-		"p_cliente"  : cliente,
-        "p_medidor"  : medidor,
-        
-		"p_tipomed"  : tipomed,
-		"p_marca"    : marca,
-		"p_modelo"   : modelo,
-        
-		"p_lector"   : $("#cb_lector").val(),
-        "p_fecha"    : $("#fec_lect").val(),
-        
-    };
-	
-	
-	HablaServidor(url,parameters,"text", function(text) 
-	{
-		if(text == ""){
-			//fn_mensaje_boostrap("ACCIN REALIZADA", g_titulo, $(""));
-			//$grid_principal.pqGrid( "refreshDataAndView" );
-						
-		}
-		else
-			fn_mensaje_boostrap(text, g_tit, $(""));
-
-	});
-
-    
-		  
-}
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_filtro()
