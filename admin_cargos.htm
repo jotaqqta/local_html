@@ -111,213 +111,173 @@
 				</div>
 			</div>
 			
-			<div id="div_ter" style="display: none">
-				<div class="panel-body" id="bd_prin">
-					<!-- PARAMQUERY TERCIARIO -->
-					<div id="div_grid_ter"> 
-
-					</div>
-				</div>
-			</div>
-			
+		
             
             
 		</div>
 		
-		<!-- Modal  -->
-		<div id="div_modal" class="modal fade" role="dialog">
-			<div class="modal-dialog" style="width: 550px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Tablas Generales</h4>
+	<!-- Div de Filtros de búsqueda -->
+		<div id="div_filtros" style="display: none">
+			<div class="container">
+                <h4>Administrador de cargos</h4>
+			</div>
+			
+			<div class="container"><!-- Row 1 -->
+				<div class="col-sm-2" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_cargo">Cargo</label>
+						<input name="inp_cargo" id="inp_cargo" class="form-control input-normal">
+					</div>  
+				</div>
+				<div class="col-sm-6 " id="userFormColumn2">
+					<div class="form-group">
+						<label for="inp_cargo_l"></label>
+						<input name="inp_cargo_l" id="inp_cargo_l" class="form-control input-normal">
 					</div>
-					<div class="modal-body">
-                        <div class="row">
-							
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="tx_nomtabla">Nombre Tabla:</label>
-									<input id="tx_nomtabla" class="form-control input-normal" name="tx_nomtabla">
-								</div>
-							</div>
-                            
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                            	    <label class="control-label" for="cb_sistema">Sistema:</label>
-                                    <select type="text" class="form-control inp_dis" id="cb_sistema" name="cb_regional">
-                                    </select>
-                                </div>
-                        	</div>
-                        </div>        
-                            
-                        <div class="row">
-							
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="tx_desc">Descripci�n:</label>
-									<input id="tx_desc" class="form-control input-normal" name="tx_desc">
-								</div>
-							</div>
-                            
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                            	    <label class="control-label" for="cb_modif">Modificable:</label>
-                                    <select type="text" class="form-control inp_dis" id="cb_modif" name="cb_modif">
-                                         <option value="S">S�</option> 
-                                         <option value="N" selected>No</option>
- 
-                                    </select>
-                                </div>
-                        	</div>
-                        </div>        
-                </div>    
-				<div class="modal-footer">
-						<button type="button" class="pull-left btn btn-primary" id="co_limpiar"><span
-								class="glyphicon glyphicon-grain"></span> Limpiar</button>
+				</div>
+			</div>
+
+			<div class="container"><!-- Row 2 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_uni_med">Unidad de medida</label>
+						<select id="inp_uni_med" class="form-control input-normal inp_dis">
+							<option value="0"></option>
+							<option value="0"></option>
+						</select>
+					</div>  
+				</div>
+				<div class="col-sm-3" id="userFormColumn2">
+					<div class="form-group">
+						<label for="inp_amort">Nivel de amortización</label>
+						<input name="inp_amort" id="inp_amort" class="form-control input-normal">
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 7 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_glosa">Glosa en documento</label>
+				<input name="inp_glosa" id="inp_glosa" class="form-control input-normal">
 						
-                        <button type="button" class="btn-left btn btn-primary" id="co_aceptar"><span
-								class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
-						<button type="button" class="btn-left btn btn-primary" id="co_estado"><span
-								class="glyphicon glyphicon-ok"></span> Activar</button>
+					</div>  
+				</div>
+				<div class="col-sm-3" id="userFormColumn2">
+					<div class="form-group">
+						<label for="inp_niv_imp">Nivel de impresión</label>
+				       <input name="inp_niv_imp" id="inp_niv_imp" class="form-control input-normal">
 						
-                        <button type="button" data-dismiss="modal" class="btn btn-default" id="co_close"><span
-								class="glyphicon glyphicon-off"></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 3 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_car_aut">Cargo automatico</label>
+						<select id="inp_car_aut" class="form-control input-normal inp_dis">
+							<option value=""></option>
+							<option value=""></option>
+						</select>
+					</div>  
+				</div>
+				<div class="col-sm-3" id="userFormColumn2">
+					<div class="form-group">
+						<label for="inp_niv_pre">Nivel presentación</label>
+				<input name="inp_niv_pre" id="inp_niv_pre" class="form-control input-normal">
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="container"><!-- Row 4 -->
+				<div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_fec_act">Fecha activación</label>
+						<input name="inp_fec_ant" id="inp_fec_ant" class="form-control input-normal">
+						
+					</div>  
+				</div>
+                <div class="col-sm-3" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_ord_imp">Orden de impresión</label>
+						<input name="inp_ord_inp" id="inp_ord_inp" class="form-control input-normal">
+						
+					</div>  
 				</div>
 				
 			</div>
-         </div>
-       </div>
+			
+			<div class="container"><!-- Row 5 -->
+				  <div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_fec_des">Fecha Desactivación</label>
+						<input name="inp_fec_des" id="inp_fec_des" class="form-control input-normal">
+						
+					</div>  
+				</div>
+			
+			</div>
+			<br>
+			<div class="container"><!-- Row 6 -->
+			<label class="control-label col-sm-3"></label>
+					<div class="col-3 col-sm-3 col-md-3 col-lg-3">
+					<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenible
+					</div>
+					<label class="control-label col-sm-1"></label>
+			        <div class="col-4 col-sm-4 col-md-4 col-lg-4"> 
+			        <input type="radio" name="optradio" id="optradio" name="optradio" value="1"> No convenible
+					</div>
+			</div>
+            	<div class="container"><!-- Row 6 -->
+	
+	               <div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_uni_med">Unidad de medida</label>
+						<select id="inp_uni_med" class="form-control input-normal inp_dis">
+							<option value="0"></option>
+							<option value="0"></option>
+						</select>
+					</div>  
+				  </div>
+                      <div class="col-sm-6" id="userFormColumn1">
+					<div class="form-group">
+						<label for="inp_uni_med">Unidad de medida</label>
+						<select id="inp_uni_med" class="form-control input-normal inp_dis">
+							<option value="0"></option>
+							<option value="0"></option>
+						</select>
+					</div>  
+				  </div>
+			</div>
+			
+			<br>
+            	<!-- PARAMQUERY SECUNDARIO -->
+				<div class="panel-body" id="bd_prin">
+					<!-- PARAMQUERY SECUNDARIO -->
+					<div id="div_grid_sec"> 
+
+					</div>
+				</div>
+            
+			<div class="container"><!-- Row botones -->
+				<div class="col-md-12" id="userFormColumn1">
+					<div class="form-group">
+						<button class="btn btn-primary" id="co_filtrar"><span class="glyphicon glyphicon-search"></span> Buscar</button>				
+						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		
         
-        <!-- Modal2  -->
-		<div id="div_modal2" class="modal fade" role="dialog">
-			<div class="modal-dialog" style="width: 550px;">
-				<div class="modal-content">
-					<div class="modal-header">
-						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Datos Generales</h4>
-					</div>
-					<div class="modal-body">
-                        <div class="row">
-							
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="tx_codigo">C�digo:</label>
-									<input id="tx_codigo" class="form-control input-normal" name="tx_codigo">
-								</div>
-							</div>
-                            
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                            	    <label class="control-label" for="tx_descod">Descripci�n:</label>
-                                    <input id="tx_descod" class="form-control input-normal" name="tx_descod">
-                                </div>
-                        	</div>
-                        </div>        
-                            
-                        <div class="row">
-							
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="tx_val1">Valor 1:</label>
-									<input id="tx_val1" class="form-control input-normal" name="tx_val1">
-								</div>
-							</div>
-                            
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                            	    <label class="control-label" for="tx_val2">Valor 2:</label>
-                                    <input id="tx_val2" class="form-control input-normal" name="tx_val2">
-                                </div>
-                        	</div>
-                        </div>
-                        <div class="row">
-							
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="form-group">
-									<label class="control-label" for="tx_fecing">Fecha Ingreso:</label>
-									<input id="tx_fecing" class="form-control input-normal" _input_selector name="tx_fecing">
-								    
-                                </div>
-							</div>
-                            
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <div class="form-group">
-                            	    <label class="control-label" for="tx_fecmod">Fecha Modificaci�n:</label>
-                                    <input id="tx_fecmod" class="form-control input-normal" _input_selector name="tx_fecmod">
-                                </div>
-                        	</div>
-                        </div>
-                </div>    
-				<div class="modal-footer">
-						<button type="button" class="pull-left btn btn-primary" id="co_limpiar"><span
-								class="glyphicon glyphicon-grain"></span> Limpiar</button>
-						
-                        <button type="button" class="btn-left btn btn-primary" id="co_aceptar"><span
-								class="glyphicon glyphicon-floppy-disk"></span> Aceptar</button>
-						<button type="button" class="btn-left btn btn-primary" id="co_estado"><span
-								class="glyphicon glyphicon-ok"></span> Activar</button>
-						
-                        <button type="button" data-dismiss="modal" class="btn btn-default" id="co_close"><span
-								class="glyphicon glyphicon-off"></span> Cancelar</button>
-				</div>
-				
-			</div>
-         </div>
-       </div>
+
 		
         
 	</div>
 	
-	<!--Modal de mensajes-->
-	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
-    
-	<div id="dlg_confirmamod" class="modal" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content" id="mod_alto">
-						<div class="modal-header">
-							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-							<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-						</div>
-						<div class="modal-body" style=" padding:10px 15px 5px 15px;">
-							<form role="form">
-								<div class="form-group">
-									<div class="form-control-label">DESEA ELIMINAR LA TABLA LOGICA?</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn" id="co_confirmamod_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-							<button type="button" class="btn" id="co_confirmamod_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
-						</div>
-					</div>
-				</div>
-	</div>
-	
-    <div id="dlg_confirmamod2" class="modal" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content" id="mod_alto">
-						<div class="modal-header">
-							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-							<h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-						</div>
-						<div class="modal-body" style="padding:10px 15px 5px 15px;">
-							<form role="form">
-								<div class="form-group">
-									<div class="form-control-label">DESEA ELIMINAR EL REGISTRO DE LA TABLA LOGICA?</div>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn" id="co_confirmamod2_si" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-							<button type="button" class="btn" id="co_confirmamod2_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
-						</div>
-					</div>
-				</div>
-	</div>
+
 	
     
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">

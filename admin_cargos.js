@@ -1,5 +1,5 @@
 var g_modulo = "Administración Central - Configuración Base del Sistema";
-var g_tit = "Facturacion de clientes";
+var g_tit = "Consulta de cargos";
 
 var $grid_principal;
 var $grid_2;
@@ -67,19 +67,20 @@ $(document).ready(function () {
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
+	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
 	//$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-    
-	$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
+	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
+    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+
+	//$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
 	//$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
 	//$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    //$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    //$("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     
     
 	//$("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
@@ -91,10 +92,10 @@ $(document).ready(function () {
  
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
-	
-    $("#co_nuevo").on("click", function (e) {
-		fn_modal(1);
-	});
+   $("#co_leer").on("click", fn_Muestra_Filtro);	
+   // $("#co_leer").on("click", function (e) {
+//		fn_muestra_filtro();
+//	});
 	
     $("#co_editar").on("click", function (e) {
 		fn_modal(2);
@@ -137,6 +138,14 @@ $(document).ready(function () {
     	
 	});
     
+    $("#co_volver_fil").on("click", function (e) {
+        
+            $("#div_prin").slideDown();
+            $("#div_filtros").slideUp();
+            //$grid_principal.pqGrid( "refreshDataAndView" );
+            $(window).scrollTop(0);
+        
+    });
     
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_close").on("click", function (e) {
@@ -398,10 +407,10 @@ function fn_setea_grid_principal() {
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Leer",    attr: "id=co_nuevo",  cls: "btn btn-primary" },
-				{ type: "button", label: "Anterior",attr: "id=co_editar", cls: "btn btn-primary" },
-                { type: "button", label: "Siguiente", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
-                { type: "button", label: "Seleccionar",    attr: "id=co_excel",  cls: "btn btn-primary btn-sm" },       
+				{ type: "button", label: "Leer",    attr: "id=co_leer",  cls: "btn btn-primary" },
+				{ type: "button", label: "Anterior",attr: "id=co_ant", cls: "btn btn-primary" },
+                { type: "button", label: "Siguiente", attr: "id=co_sig",cls: "btn btn-primary btn-sm" }, 
+                { type: "button", label: "Seleccionar",    attr: "id=co_selec",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
 		},
@@ -691,6 +700,16 @@ function fn_sistema() {
 */
 	$("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
+function fn_Muestra_Filtro()
+{
+	$("#div_prin").slideUp();
+	$("#div_filtros").slideDown();
+	//$grid_principal.pqGrid( "refreshDataAndView" );
+
+	$(window).scrollTop(0);
+
+}
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
