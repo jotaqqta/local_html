@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="cache-control" content="max-age=0">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">       
+		<!-- Jquery /raiz/ -->
+		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+		<!-- Validaciones con inputmask -->
+		  
+        <script src="jquery/jquery.inputmask.bundle.min.js"></script>      <!--/raiz/   /inputmask4x/-->
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script> <!--/inputmask4x/inputmask-->
+		<script src="jquery/inputmask.extensions.min.js"></script>         <!--/inputmask4x/inputmask-->
+		<script src="jquery/inputmask.min.js"></script>                    <!--/inputmask4x/inputmask -->
+		<script src="jquery/jquery.inputmask.min.js"></script>             <!--/inputmask4x/inputmask-->
+		
+		<!-- Paramquery -->
+		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v5.6/themes/bootstrap/pqgrid.css">
+		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+		
+		<!-- Boostrap -->
+		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Principales -->
+		<script src="syn_globales/syn_util.js"></script>   <!--/raiz/-->
+		<link rel="stylesheet" href="syn_dinamicos/synergia.css">  <!--/raiz/-->
+		<link rel="stylesheet" href="syn_dinamicos/header.css">  <!--/raiz/syn_dinamicos/-->
+		
+		<script language="JavaScript" src="ventana_nueva.js"></script> 
+		
+		<!-- Archivos importantes -->
+		<!--
+		<script language="JavaScript" src="/Raiz/SYN_Dinamicos/file.js"></script>
+		<script language="JavaScript" src="/raiz/Syn_Conexion/conexion.js"></script>
+		<script language="JavaScript" src="/raiz/Syn_Globales/Seguridad.js"></script>  
+-->
+		
+		<style>
+			.panel-primary {
+				border-color: #cccccc;
+			}
+			.panel-primary>.panel-heading {
+				color:#404040;
+				font-weight:600;
+				background-color: #ffffff;
+				border-color: #cccccc;
+			}
+			.panel-body {
+				padding: 7px 15px;
+			}
+			#grid_consulta_compensa {
+				float: center;
+			}
+			
+			@media screen  and (max-width: 1401px)
+            {
+				#bd_prin{
+					height: calc(100vh - 82px);
+				}
+			}
+			
+            @media screen  and (min-width: 1402px)
+            {
+				#bd_prin{
+					height: calc(100vh - 82px);
+				}
+			}
+
+        </style>
+
+    </head>
+    
+       <body>
+	   <div id="header" class="panel-body" style="padding-top: 0px">
+			<div id="div_header" >
+				</div>	
+		</div>	
+	   <div class="bootstrap-syn">
+
+			<div id="div_prim0">
+				<div class="panel-body" id="bd_prin">
+					<!-- PARAMQUERY PRINCIPAL -->
+					<div id="div_grid_principal"> 
+
+					</div>
+				</div>
+			</div>
+			
+			<!-- Modal -->
+			<div id="div_filtro_bts" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" >
+							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+							<h4 class="modal-title" data-dismiss="modal">Administrador de Claves de Lecturaaa</h4>
+						</div>
+                     
+						<div class="modal-body">
+							 
+                            
+                            <form role="form" class="form-horizontal" id="frm_filtro">
+							
+                                <div class="form-group" id="divcodigo">
+                                    <label class="control-label col-sm-2 col-md-2" for="tx_codigo">Código:</label>
+                                    <div class="col-sm-2 col-md-2"> 
+                                        <input type="text" id="tx_codigo" name="tx_codigo" class="form-control inp_dis" style="text-transform: uppercase;" maxlength="6">
+                                    </div>
+
+                                    <div class="col-sm-8 col-md-8"> 
+                                        <input type="text" id="tx_desc" name="tx_desc" class="form-control inp_dis" style="text-transform: uppercase;" maxlength="50">
+                                    </div>
+							    </div>
+                            
+                                
+                                <div class="form-group">
+                                    <div class="well well-sm">Aviso Solicitado</div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_modif">
+                                      <label class="form-check-label" for="chk_modif">
+                                        Modificación
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_verif" >
+                                      <label class="form-check-label" for="chk_verif">
+                                        Verificación
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_inspec" >
+                                      <label class="form-check-label" for="chk_inspec">
+                                        Inspección
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_corte" >
+                                      <label class="form-check-label" for="chk_corte">
+                                        Corte
+                                      </label>
+                                    </div>
+                                     
+                                </div>	  
+                                <div class="form-group">
+                                     <div class="well well-sm">Grandes Clientes</div> 
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_clave" >
+                                      <label class="form-check-label" for="chk_clave">
+                                        Clave Especial
+                                      </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="cb_tipo_lec">Tipo de Lectura</label>
+                                        
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-control inp_dis" id="cb_tipo_lec"></select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                 <div class="well well-sm">Característica</div> 
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_inglec">
+                                      <label class="form-check-label" for="chk_inglec">
+                                        Ingresa Lectura
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_promhis" >
+                                      <label class="form-check-label" for="chk_promhis">
+                                        Prom. Historia
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_promarea" >
+                                      <label class="form-check-label" for="chk_promarea">
+                                        Prom. Área
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-sm-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_susfac" >
+                                      <label class="form-check-label" for="chk_susfac">
+                                        Suspende Fac
+                                      </label>
+                                    </div>
+                                        
+                                </div>
+                                <div class="form-group">
+                                 <div class="well well-sm">Verificación de Lectura</div> 
+                                    <div class="form-check col-sm-4">
+                                      <input class="form-check-input" type="checkbox" value="" id="chk_modif">
+                                      <label class="form-check-label" for="chk_modif">
+                                        Indica ReLectura
+                                      </label>
+                                    </div>
+                                    
+                                       
+                                </div>
+							</form>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="pull-left btn btn-primary" id="co_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
+							<button type="button" class="btn-left btn btn-primary" id="co_aceptar"><span class="glyphicon glyphicon-pencil"></span> Modificar</button>
+                            <button type="button" class="btn-left btn btn-primary" id="co_activar"><span class="glyphicon glyphicon-remove"></span> Desactivar</button>
+							<button type="button"  data-dismiss="modal" class="btn btn-default" id="co_close"><span class="glyphicon glyphicon-off"></span> Cerrar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		   
+		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+		
+		<form id="frm_Exel" name="frm_Exel" method="post" action="/raiz/syn_globales/excel_reporte_v2.asp" target="_blank">
+			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+			<input type="hidden" id="tx_rol" name="tx_rol" value="">
+			<input type="hidden" id="tx_ip" name="tx_ip" value="">
+			<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+			<input type="hidden" id="sql" name="sql" value="">
+			<input type="hidden" id="Rol" name="Rol" value="">
+			<input type="hidden" id="tituloexcel" name="tituloexcel">
+			<input type="hidden" id="excel_archivo" name="excel_archivo">
+			<input type="hidden" id="filtro" name="filtro">
+			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+			<input type="hidden" id="tx_pietotal" name="tx_pietotal">	
+			<input type="hidden" id="align_vertical_titulo" name="align_vertical_titulo" value="left">
+			
+		</form>    
+	   <!--<input type="hidden" id="nom_rol" name="nom_rol">
+	   <input type="hidden" id="tx_fec_sevidor" name="tx_fec_servidor"> -->
+       <input type="hidden" id="tx_nuevo" name="tx_nuevo" />     
+    </body>
+    
+</html>
