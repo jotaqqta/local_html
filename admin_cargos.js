@@ -47,6 +47,10 @@ $(document).ready(function () {
     
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
+    fn_uni_med();
+    fn_car_aut();
+    fn_inp_group();
+    fn_inp_tip_acc();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
     $("#co_nuevo").html("<span class='glyphicon '></span> Nuevo");
@@ -535,7 +539,7 @@ function fn_carga_grilla() {
 
 }
 
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
+//FUNCIONES MODAL*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* 
 function fn_sistema() {
      
 	$("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
@@ -549,6 +553,27 @@ function fn_Muestra_Filtro()
 }
 
 
+/////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
+function fn_uni_med(){ 
+   $("#inp_uni_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+function fn_car_aut() {
+  $("#inp_car_aut").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+function fn_inp_group() {
+   $("#inp_agrup").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+function fn_inp_tip_acc() {
+  $("#inp_tip_acc").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+
+function fn_carga_grilla(){
+    
+    
+}
+function fn_gen(){
+     alert('Se genero.');
+}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_validar_fecha(value){
 	var real, info;
