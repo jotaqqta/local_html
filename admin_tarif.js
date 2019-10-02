@@ -1,5 +1,5 @@
 var g_modulo = "Administración Central - Configuración Base del Sistema";
-var g_tit = "Consulta de cargos";
+var g_tit = "Administrador de tarifa";
 var $grid_principal;
 var $grid_2;
 var sql_grid_prim = "";
