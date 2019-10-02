@@ -49,6 +49,7 @@ $(document).ready(function () {
 	fn_setea_grid_principal();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+    $("#co_nuevo").html("<span class='glyphicon '></span> Nuevo");
 	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
 	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
@@ -56,11 +57,42 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
     
-   $("#co_leer").on("click", fn_Muestra_Filtro);
+    $("#co_leer").on("click", fn_Muestra_Filtro);
     
-   $("#co_cerrar_t").on("click", function (e) {
+    $("#co_cerrar_t").on("click", function (e) {
         window.close(); 
-    }); 
+    });
+    $("#co_aceptar").on("click", function(){
+		//Validación de informacion
+     if ($.trim($("#co_aceptar").text())=="Aceptar"){
+		if( $("#inp_agrup").val() == ""){
+			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_titulo, $("#inp_agrup"));
+			return;
+		}
+		else{
+           if( $("#inp_tip_acc").val() == ""){
+			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_titulo, $("#inp_tip_acc"));
+			return;
+		  }
+        }
+         alert("Aceptado.");
+     }
+	});
+    $("#co_limpiar").on("click",function(){
+		if ($.trim($("#co_limpiar").text())=="Limpiar"){
+			fn_limpiar();
+			return;
+		}
+		else
+			window.close();
+	});
+	$("#co_cancelar").on("click", function (e) {
+        $('#div_filtro_bts').modal('hide');	
+    });
+	
+	$("#co_cancelar").on("click", function (e) {
+       window.close();
+    });
  
 //BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function(e){
@@ -71,6 +103,10 @@ $(document).ready(function () {
 				});
     	
 	});
+ 
+    $("#co_nuevo").on("click", function(e){
+ 		fn_nuevo();            
+    }); 
     
     $("#co_eliminar2").on("click", function(e){
 		 
@@ -404,7 +440,6 @@ function fn_setea_grid_principal() {
         editable:false,
         selectionModel: { type: "row", mode:"single"},
         showTitle:true,
-        filterModel: { mode: 'OR' },
         collapsible:false,
         numberCell: { show: false },
         title: "Detalle",
@@ -412,77 +447,12 @@ function fn_setea_grid_principal() {
         scrollModel:{theme:true},
                  toolbar: {
                      
-                cls: "pq-toolbar-search",
+                cls: "pq-toolbar-export",
                 items: [
-                    { type: "<span style='margin:5px;'>Filtro</span>" },
-                    { type: 'textbox', attr: 'placeholder="Ingrese criterio de busqueda"', cls: "filterValue", listeners: [{ 'change': filterhandler}] },
-                    { type: 'select', cls: "filterColumn",
-                        listeners: [{ 'change': filterhandler}],
-                        options: function (ui) {
-                            var CM = ui.colModel;
-                            var opts = [{ '': '[ Buscar en todo]'}];
-                            for (var i = 0; i < CM.length; i++) {
-                                var column = CM[i];
-                                var obj = {};
-                                obj[column.dataIndx] = column.title;
-                                opts.push(obj);
-                            }
-                            return opts;
-                        }
-                    },
-                    { type: 'select', style: "margin:0px 5px;", cls: "filterCondition",
-                        listeners: [{ 'change': filterhandler}],
-                        options: [
-                        { "begin": "Buscar con:" },
-                        { "contain": "Contenido" },
-                        { "end": "Terminado en:" },
-                        { "notcontain": "Que no contenga:" },
-                        { "equal": "Igual a:" },
-                        { "notequal": "Que no sea igual a:" },
-                        { "empty": "Vacio:" },
-                        { "notempty": "No vacio:" },
-                        { "less": "Menos que:" },
-                        { "great": "Mas que:" }    
-                        ]
-                    }
-                ]
-            },
-               toolbar: {
-                     
-                cls: "pq-toolbar-search",
-                items: [
-                    { type: "<span style='margin:5px;'>Filtro</span>" },
-                    { type: 'textbox', attr: 'placeholder="Ingrese criterio de busqueda"', cls: "filterValue", listeners: [{ 'change': filterhandler}] },
-                    { type: 'select', cls: "filterColumn",
-                        listeners: [{ 'change': filterhandler}],
-                        options: function (ui) {
-                            var CM = ui.colModel;
-                            var opts = [{ '': '[ Buscar en todo]'}];
-                            for (var i = 0; i < CM.length; i++) {
-                                var column = CM[i];
-                                var obj = {};
-                                obj[column.dataIndx] = column.title;
-                                opts.push(obj);
-                            }
-                            return opts;
-                        }
-                    },
-                    { type: 'select', style: "margin:0px 5px;", cls: "filterCondition",
-                        listeners: [{ 'change': filterhandler}],
-                        options: [
-                        { "begin": "Buscar con:" },
-                        { "contain": "Contenido" },
-                        { "end": "Terminado en:" },
-                        { "notcontain": "Que no contenga:" },
-                        { "equal": "Igual a:" },
-                        { "notequal": "Que no sea igual a:" },
-                        { "empty": "Vacio:" },
-                        { "notempty": "No vacio:" },
-                        { "less": "Menos que:" },
-                        { "great": "Mas que:" }    
-                        ]
-                    }
-                ]
+                    { type: "button", label: "Nuevo",attr:"id=co_nuevo", cls:"btn btn-primary"},
+				    { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
+			 	    { type: "button", label: "Cerrar", attr:"id=co_cerrar_t", cls:"btn btn-default btn-sm"},
+                    ]
             }
       
     };
@@ -493,19 +463,24 @@ function fn_setea_grid_principal() {
         { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
 					render: function (ui) {
 					
-						return "<button name='co_borra2' class='btn btn-primary btn-sm'>Eliminar</button>";
+						return "<button name='co_elim' id='co_elim' class='btn btn-primary btn-sm'>Eliminar</button>";
 					}
 				}
     ];
 	
 	obj2.dataModel = { data: data };
     $grid_2=$("#div_grid_sec").pqGrid(obj2);
-    $grid_2.pqGrid( "refreshDataAndView" );
-	$grid_2.pqGrid("refreshDataAndView");
+    $grid_2.pqGrid("refreshDataAndView");
 
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_limpiar(){
+	
+		$("#inp_agrup").val("");
+		$("#inp_tip_acc").val("");
+		$("#inp_agrup").focus();
+}
 function fn_filtro()
 {
 	parameters = 
@@ -515,7 +490,13 @@ function fn_filtro()
     };
 	
 }
-
+function fn_nuevo(){
+     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
+	$("#div_filtro_bts").on("shown.bs.modal", function () {
+		$("#div_filtro_bts div.modal-footer button").focus();
+			
+	});
+}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_modal(num) {
 	
@@ -551,39 +532,7 @@ function fn_limpia_modal2()
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_carga_grilla() {
 	
-	fn_filtro();
-	var total_register;
-   
-    var dataModel = 
-    {
-        location: "remote",
-        sorting: "local",
-        dataType: "json",
-        method: "POST",
-        sortDir: ["up", "down"],
-		async:false,
-        url: url+"?"+jQuery.param( parameters ),
-        getData: function (dataJSON) 
-        {
-			total_register = $.trim(dataJSON.totalRecords);
-			var data = dataJSON.data;
-			sql_grid_prim = dataJSON.sql;
-			
-			if(total_register>=1)
-			{
-				$("#co_excel").attr("disabled", false);
-			}
-            return { data: dataJSON.data};
-        },
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-			fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-        }
-    }
-	
-	$grid_principal.pqGrid( "option", "dataModel", dataModel );				
-    $grid_principal.pqGrid( "refreshDataAndView" );
-	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
+
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
@@ -598,31 +547,7 @@ function fn_Muestra_Filtro()
 	$(window).scrollTop(0);
 
 }
-function filterhandler(evt, ui){
 
-            var $toolbar = $grid.find('.pq-toolbar-search'),
-                $value = $toolbar.find(".filterValue"),
-                value = $value.val(),
-                condition = $toolbar.find(".filterCondition").val(),
-                dataIndx = $toolbar.find(".filterColumn").val(),
-                filterObject;
-
-            if (dataIndx == "") {
-                filterObject = [];
-                var CM = $grid.pqGrid("getColModel");
-                for (var i = 0, len = CM.length; i < len; i++) {
-                    var dataIndx = CM[i].dataIndx;
-                    filterObject.push({ dataIndx: dataIndx, condition: condition, value: value });
-                }
-            }
-            else {
-                filterObject = [{ dataIndx: dataIndx, condition: condition, value: value}];
-            }
-            $grid.pqGrid("filter", {
-                oper: 'replace',
-                data: filterObject
-            });
-        }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_validar_fecha(value){
