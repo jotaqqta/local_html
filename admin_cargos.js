@@ -77,9 +77,12 @@ $(document).ready(function () {
            if( $("#inp_tip_acc").val() == ""){
 			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_titulo, $("#inp_tip_acc"));
 			return;
-		  }
+		  }else{
+            alert("Aceptado.");
+              
+          }
         }
-         alert("Aceptado.");
+         
      }
 	});
     $("#co_limpiar").on("click",function(){
@@ -90,11 +93,11 @@ $(document).ready(function () {
 		else
 			window.close();
 	});
-	$("#co_cancelar").on("click", function (e) {
+	$("#co_cancelar").on("click", function(e){
         $('#div_filtro_bts').modal('hide');	
     });
 	
-	$("#co_cancelar").on("click", function (e) {
+	$("#co_cancelar").on("click", function(e){
        window.close();
     });
  
@@ -120,7 +123,7 @@ $(document).ready(function () {
 				});
     });
     
-    $("#co_volver_fil").on("click", function (e) {
+    $("#co_volver_fil").on("click", function(e){
         
             $("#div_prin").slideDown();
             $("#div_filtros").slideUp();
@@ -132,11 +135,6 @@ $(document).ready(function () {
     $("#co_close").on("click", function (e) {
 		$('#div_modal').modal('hide');
 		fn_limpia_modal();
-	});
-    
-    $("#co_close2").on("click", function (e) {
-		$('#div_modal2').modal('hide');
-		fn_limpia_modal2();
 	});
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
     
@@ -186,59 +184,6 @@ $("#co_volver2").on("click", function (e){
 		}
 		else
 			window.close();
-	});
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-     //BOTONES-LECTURA
-    $("#co_aceptar_lec").on("click", function(){
-			if ($("#cb_lector").val() == ""){
-                    fn_mensaje_boostrap("DIGITE LECTOR", g_tit, $("#cb_lector"));
-                    return false;
-             }	
-			 if (fn_validar_fecha($("#fec_lect").val()) == false) {
-							fn_mensaje_boostrap("DEBE DILIGENCIAR EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#fec_lect"));
-							return false;
-			 }	
-			 if ( $("#fec_lect").val() != "" ){
-					
-						var parameters = {
-							"func"       : "fn_validafecha",
-							"empresa"    : $("#tx_empresa").val(),
-							"RolFun"     : $("#tx_rolfun").val(),
-							"rol"        : $("#tx_rol").val(),
-							"ip"         : $("#tx_ip").val(),	
-							"p_fecha"    : $("#fec_lect").val(),
-							"p_ciclo"    : $("#cb_ciclo").val(),	
-						};
-
-						HablaServidor(url,parameters,"text", function(text) 
-						{
-						   if(text == ""){
-							  fn_mensaje_boostrap("NO EXISTEN DATOS DE LECTURA PARA EL CICLO: " + $("#cb_ciclo").val(), g_tit, $(""));
-							  $grid_principal.pqGrid( "refreshDataAndView" );
-							  g_act = "1";
-							  return false;	
-						   }
-						   else
-						   {
-								var param    = text.split("|");
-								var fechalec = param[0];
-								var fechafac = param[1];
-								var verifica = param[2];
-								
-								if (verifica == "N"){
-									fn_mensaje_boostrap("VERIFIQUE LA FECHA DE TERRENO. RANGO SUGERIDO ENTRE:" + fechalec + " Y " + fechafac, g_tit, $(""));
-									$grid_principal.pqGrid( "refreshDataAndView" );
-									g_act = "1";
-									return false;
-								}
-							}
-						});	
-			}
-
-			
-			$('#div_lec_bts').modal('hide');
-			    
 	});
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -538,10 +483,10 @@ function fn_car_aut() {
   $("#inp_car_aut").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_inp_group() {
-   $("#inp_agrup").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+   $("#inp_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_inp_tip_acc() {
-  $("#inp_tip_acc").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+  $("#inp_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 
 function fn_carga_grilla(){

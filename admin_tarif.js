@@ -62,20 +62,20 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
     
-    $("#co_leer").on("click", fn_Muestra_Filtro);
+    $("#co_leer").on("click", fn_nuevo);
     
-    $("#co_cerrar_t").on("click", function (e) {
+    $("#co_cerrar_t").on("click", function(e){
         window.close(); 
     });
     $("#co_aceptar").on("click", function(){
 		//Validación de informacion
      if ($.trim($("#co_aceptar").text())=="Aceptar"){
-		if( $("#inp_agrup").val() == ""){
+		if( $("#inp_agrup").val() == "0"){
 			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_titulo, $("#inp_agrup"));
 			return;
 		}
 		else{
-           if( $("#inp_tip_acc").val() == ""){
+           if( $("#inp_tip_acc").val() == "0"){
 			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_titulo, $("#inp_tip_acc"));
 			return;
 		  }
@@ -314,27 +314,8 @@ $("#co_volver2").on("click", function (e){
 			}
 	});
 	
-	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    $grid_2.pqGrid({
-		rowDblClick: function( event, ui ){
-			if (ui.rowData) 
-				{
-					var dataCell = ui.rowData;
 
-					$("#tx_codigo").val(dataCell.c1);
-                    $("#tx_descod").val(dataCell.c2);
-                    $("#tx_val1").val(dataCell.c3);
-                    $("#tx_val2").val(dataCell.c4);
-                    $("#tx_fecing").val(dataCell.c5);
-                    $("#tx_fecmod").val(dataCell.c6);
-                    $("#div_modal2").modal({ backdrop: "static", keyboard: false });
-                    $("#div_modal2").on("shown.bs.modal", function () {
-                        $("#div_modal2 div.modal-footer button").focus();
 
-				      });
-                }
-        }
-    });
 
 	    	 
 	 
@@ -406,79 +387,7 @@ function fn_setea_grid_principal() {
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
-    
-//*************************************************************
-    
-    //Setea grid2
-	data =  [
-	    { C1: '0001', C2: 'CONSUMO DE AGUA'}, 
-             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO'},
-             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL'}, 
-             { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL'},	 
-            { C1: '0005', C2: 'MATERIALES AGUA'},
-            { C1: '0006', C2: 'MANO DE OBRA - AGUA '},
-            { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO'},
-            { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA'},
-            { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE'},
-             { C1: '00010', C2: 'DESCUENTO DE EMPLEADO'},
-              { C1: '00011', C2: 'DESCUENTO DE JUBILADO'}, 
-             { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA'},
-             { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ'}, 
-             { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ'},	 
-            { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS'},
-            { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO'},
-            { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO'},
-            { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO'},
-            { C1: '00019', C2: 'COSTOS LEGALES'},
-             { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO'},
-              { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA'}, 
-             { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO'}
-	 ]
-    var obj2 = {
-        height: 500,
-        showTop: true,
-        showHeader: true,
-        roundCorners: true,
-        rowBorders: true,
-		fillHandle: "",
-        columnBorders: true,
-        editable:false,
-        selectionModel: { type: "row", mode:"single"},
-        showTitle:true,
-        collapsible:false,
-        numberCell: { show: false },
-        title: "Detalle",
-		pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-        scrollModel:{theme:true},
-                 toolbar: {
-                     
-                cls: "pq-toolbar-export",
-                items: [
-                    { type: "button", label: "Nuevo",attr:"id=co_nuevo", cls:"btn btn-primary"},
-				    { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
-			 	    { type: "button", label: "Cerrar", attr:"id=co_cerrar_t", cls:"btn btn-default btn-sm"},
-                    ]
-            }
-      
-    };
-	
-	obj2.colModel = [
-        { title: "Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
-        { title: "Tipo Acción", width: 300, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
-        { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
-					render: function (ui) {
-					
-						return "<button name='co_elim' id='co_elim' class='btn btn-primary btn-sm'>Eliminar</button>";
-					}
-				}
-    ];
-	
-	obj2.dataModel = { data: data };
-    $grid_2=$("#div_grid_sec").pqGrid(obj2);
-    $grid_2.pqGrid("refreshDataAndView");
-
 }
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar(){
 	
