@@ -91,11 +91,11 @@ $(document).ready(function () {
 		else
 			window.close();
 	});
-	$("#co_cancelar").on("click", function (e) {
+	$("#co_cancelar").on("click", function (e){
         $('#div_filtro_bts').modal('hide');	
     });
 	
-	$("#co_cancelar").on("click", function (e) {
+	$("#co_cancelar").on("click", function (e){
        window.close();
     });
  
@@ -191,7 +191,7 @@ $("#co_volver2").on("click", function (e){
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
      //BOTONES-LECTURA
-    $("#co_aceptar_lec").on("click", function(){
+    $("#co_aceptar_lec").on("click", function() {
 			if ($("#cb_lector").val() == ""){
                     fn_mensaje_boostrap("DIGITE LECTOR", g_tit, $("#cb_lector"));
                     return false;
@@ -485,6 +485,17 @@ function fn_carga_grilla(){
 }
 function fn_gen(){
      alert('Se genero.');
+}
+function fn_limpiar(){
+    $("#inp_uni_hab").val("");
+    $("#inp_jub").val("");
+    $("#inp_subs").val("");
+    $("#inp_prom").val("");
+    $("#inp_comp").val("");
+    $("#inp_cod").val("");
+    $("#inp_cons").val("");
+    $("#inp_desc").val("");
+
 }
 
 
