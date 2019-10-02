@@ -63,7 +63,7 @@ $(document).ready(function () {
     
     $("#co_leer").on("click", fn_Muestra_Filtro);
     
-    $("#co_cerrar_t").on("click", function (e) {
+    $("#co_cerrar_t").on("click", function (e){
         window.close(); 
     });
     $("#co_aceptar").on("click", function(){
@@ -274,29 +274,6 @@ $("#co_volver2").on("click", function (e){
 		}	
     });
 			
-    
-    $("#co_excel2").on("click", function (e) {
-		e.preventDefault();
-		fn_filtro_2();
-        var col_model=$( "#div_grid_sec" ).pqGrid( "option", "colModel" );
-		var cabecera = "";
-		for (i=0; i< col_model.length; i++){
-			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-		}
-		$("#excel_cabecera").val(cabecera);
-		var element =$grid_2.pqGrid("option","dataModel.data");
-		if (element)
-			a= element.length;
-		else 
-			a= 0;
-		if(a>0){
-			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_dos);	
-			$("#frm_Exel").submit();
-			return;
-	    }	
-    });
-
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {

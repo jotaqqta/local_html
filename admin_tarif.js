@@ -577,25 +577,5 @@ function fn_carga_grilla(){
 function fn_gen(){
      alert('Se genero.');
 }
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_validar_fecha(value){
-	var real, info;
 
-	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
-		info = value.split(/\//);
-		var fecha = new Date(info[2], info[1]-1, info[0]);
-		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
-			real = fecha.toISOString().substr(0,10).split('-');
-			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-				return true;
-			}
-			return false;
-		}else{
-		return false;
-		}
-	}
-	else {
-	return false;
-	}
-}
 
