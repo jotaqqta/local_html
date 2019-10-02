@@ -382,7 +382,13 @@ function fn_setea_grid_principal() {
 	
     obj.colModel = [
 		{ title: "Codigo",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },   
+		{ title: "Descripcion", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
+        { title: "Unidad de habitad",width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Consumo minimo", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
+        { title: "Subsidio",width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Jubilado", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
+        { title: "Promedio area",width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Es compensable", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"} 
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
