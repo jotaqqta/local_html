@@ -11,14 +11,8 @@ var sql_grid_3    = "";
 
 
 var parameters = {};
-//var Filtros = [];
-//var dataReg = [];
 
 
-//var url = "adm_tablas_gen.asp";
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
@@ -31,7 +25,7 @@ $(document).keydown(function (e) {
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+
 $(document).ready(function () {
 
 	// PARA ELIMINAR EL SUBMIT
@@ -66,12 +60,12 @@ $(document).ready(function () {
 	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    //FUNCIONES DE CAMPOS
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//FUNCIONES DE CAMPOS
 
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    //BOTONES-EVENTOS
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//BOTONES-EVENTOS
    $("#co_leer").on("click", fn_Muestra_Filtro);	
 
 	
@@ -86,7 +80,7 @@ $(document).ready(function () {
         window.close(); 
     }); 
  
-	//BOTONES ELIMINAR DE LAS GRILLAS
+//BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function (e) {
 		 
         $("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
@@ -113,7 +107,7 @@ $(document).ready(function () {
         
     });
     
-	//BOTONES CERRAR DE LOS MODALES
+//BOTONES CERRAR DE LOS MODALES
     $("#co_close").on("click", function (e) {
 		$('#div_modal').modal('hide');
 		fn_limpia_modal();
@@ -127,13 +121,13 @@ $(document).ready(function () {
 
          
     
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
-    $("#co_volver2").on("click", function (e) {
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    
+$("#co_volver2").on("click", function (e) {
 		$("#div_prin").show();
 		$("#div_tabla").hide();
         $(window).scrollTop(0);
-    });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+    });	
 
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -145,10 +139,7 @@ $(document).ready(function () {
     
     //BOTONES-FILTRO
 	$("#co_aceptar").on("click", function () {
-		//Validacin de informacion
-		//if ($.trim($("#co_aceptar").text()) == "Aceptar") {
-			
-			if ($("#cb_regional").val() ==""){
+		if ($("#cb_regional").val() ==""){
 				fn_mensaje_boostrap("CAMPO REGIONAL OBLIGATORIOS", g_tit, $("#cb_regional"));
 				fn_lim_fil_reg();
 				
@@ -359,9 +350,7 @@ function fn_setea_grid_principal() {
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Leer",    attr: "id=co_leer",  cls: "btn btn-primary" },
-				{ type: "button", label: "Anterior",attr: "id=co_ant", cls: "btn btn-primary" },
-                { type: "button", label: "Siguiente", attr: "id=co_sig",cls: "btn btn-primary btn-sm" }, 
+				{ type: "button", label: "Leer",    attr: "id=co_leer",  cls: "btn btn-primary" }, 
                 { type: "button", label: "Seleccionar",    attr: "id=co_selec",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
@@ -410,14 +399,31 @@ function fn_setea_grid_principal() {
     
     //Setea grid2
 	data =  [
-	  { c1: '01', c2: 'PARAMETRO TABLA 1', c3: 'D', c4: '8', c5:'80'},
-      { c1: '02', c2: 'PARAMETRO TABLA 2', c3: 'A', c4: '18', c5:'80'},
-      { c1: '03', c2: 'PARAMETRO TABLA 3', c3: 'A', c4: '28', c5:'80'},
-      { c1: '04', c2: 'PARAMETRO TABLA 4', c3: 'A', c4: '38', c5:'80'},
-      { c1: '05', c2: 'PARAMETRO TABLA 5', c3: 'A', c4: '48', c5:'80'},
+	    { C1: '0001', C2: 'CONSUMO DE AGUA'}, 
+             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO'},
+             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL'}, 
+             { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL'},	 
+            { C1: '0005', C2: 'MATERIALES AGUA'},
+            { C1: '0006', C2: 'MANO DE OBRA - AGUA '},
+            { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO'},
+            { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA'},
+            { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE'},
+             { C1: '00010', C2: 'DESCUENTO DE EMPLEADO'},
+              { C1: '00011', C2: 'DESCUENTO DE JUBILADO'}, 
+             { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA'},
+             { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ'}, 
+             { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ'},	 
+            { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS'},
+            { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO'},
+            { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO'},
+            { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO'},
+            { C1: '00019', C2: 'COSTOS LEGALES'},
+             { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO'},
+              { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA'}, 
+             { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO'}
 	 ]
     var obj2 = {
-        height: 400,
+        height: 500,
         showTop: true,
         showHeader: true,
         roundCorners: true,
@@ -431,22 +437,13 @@ function fn_setea_grid_principal() {
         numberCell: { show: false },
         title: "Detalle",
 		pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-        scrollModel:{theme:true},
-        toolbar:
-        {
-            cls: "pq-toolbar-export",
-            items:
-            [
-				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo2",  cls: "btn btn-primary" },
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
-				{ type: "button", label: "Volver", attr:"id=co_volver2", cls:"btn btn-default btn-sm"}
-            ]
-        }
+        scrollModel:{theme:true}
+      
     };
 	
 	obj2.colModel = [
-        { title: "Agrupación", width: 100, dataType: "string", dataIndx: "c1", halign:"center", align:"center"},
-        { title: "Tipo Acción", width: 300, dataType: "string", dataIndx: "c2", halign:"center", align:"left" },
+        { title: "Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign:"center", align:"center"},
+        { title: "Tipo Acción", width: 300, dataType: "string", dataIndx: "C2", halign:"center", align:"left" },
         { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
 					render: function (ui) {
 					
@@ -461,30 +458,18 @@ function fn_setea_grid_principal() {
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_filtro()
 {
 	parameters = 
     {
 		"func":"fn_grid_principal",
 		"empresa":$("#tx_empresa").val(),
-		/*"p_sistema":$("#cb_regional").val(),
-        "p_ciclo":$("#cb_ciclo").val(),
-        "p_ruta":$("#cb_ruta").val(),
-        "p_lector":$("#cb_lector").val(),
-        "p_fecha":$("#fec_lect").val(),*/
-        
     };
-	/*Filtros = [];
-	if ($("#cb_regional").val()!='' ) {Filtros.push('Regional = '+$("#cb_regional :selected").text()); }
-	if ($("#cb_ciclo").val()!='' ) {Filtros.push('Ciclo = '+$("#cb_ciclo:selected").text());  }
-	if ($("#cb_ruta").val()!='' ) {	Filtros.push('Ruta = '+$("#cb_ruta:selected").text());  }
-	if ($("#cb_lector").val()!='' ) {Filtros.push('Lector = '+$("#cb_lector:selected").text());}
-	if ($("#fec_lect").val()!=''  ) {Filtros.push('Fecha Lectura Terreno = '+$("#fec_lect").val() );}
-	$("#filtro").val(Filtros);*/
+	
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_modal(num) {
 	
     $("#tx_nuevo").val(num);
@@ -498,7 +483,7 @@ function fn_modal(num) {
 	});
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_modal2(num) {
 	
     $("#tx_nuevo2").val(num);
@@ -512,7 +497,7 @@ function fn_modal2(num) {
 	});
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_limpia_modal() 
 {
 	$("#cb_sistema").val("");
@@ -520,8 +505,7 @@ function fn_limpia_modal()
 	$("#tx_desc").val("");
 	$("#cb_modif").val("");	
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpia_modal2() 
 {
 	$("#tx_val1").val("");
@@ -532,7 +516,7 @@ function fn_limpia_modal2()
 	$("#tx_fecmod").val("");
 }
 	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_carga_grilla() {
 	
 	fn_filtro();
@@ -570,41 +554,21 @@ function fn_carga_grilla() {
 	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
 }
 
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
 function fn_sistema() {
-      /*
-    	$("#cb_regional").html("");
-		$("#cb_ciclo").html("");
-	    $("#cb_ruta").html("");
-	
-		parameters = 
-			{
-				"func":"fn_regional",
-				"empresa":$("#tx_empresa").val(),
-				//"rol":$("#tx_rol").val()
-			};
-		
-		HablaServidor(url,parameters,'text', function(text) 
-			{
-				if(text != "")
-					$("#cb_regional").html(text);
-			});
-*/
+     
 	$("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
 function fn_Muestra_Filtro()
 {
 	$("#div_prin").slideUp();
 	$("#div_filtros").slideDown();
-	//$grid_principal.pqGrid( "refreshDataAndView" );
-
 	$(window).scrollTop(0);
 
 }
 
 
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_validar_fecha(value){
 	var real, info;
 
