@@ -46,7 +46,7 @@
 	<link rel="stylesheet" href="syn_dinamicos/synergia.css">
 
 
-	<script language="JavaScript" src="admin_cargos.js"></script>
+	<script language="JavaScript" src="admin_tarif.js"></script>
 
 	<!-- Archivos importantes  
 		
@@ -108,139 +108,6 @@
 			</div>
         </div>
 
-		<!-- Div de Filtros de búsqueda -->
-		<div id="div_filtros" style="display: none">
-            <div class="container">
-			<div class="container">
-				<h4>Administrador de cargos</h4>
-			</div>
-
-			<div class="container">
-				<!-- Row 1 -->
-				<div class="col-sm-2" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_cargo">Nombre</label>
-						<input name="inp_cargo" id="inp_cargo" class="form-control input-normal">
-					</div>
-				</div>
-				<div class="col-sm-6 " id="userFormColumn2">
-					<div class="form-group">
-						<label for="inp_cargo_l"></label>
-						<input name="inp_cargo_l" id="inp_cargo_l" class="form-control input-normal">
-					</div>
-				</div>
-			</div>
-
-			<div class="container">
-				<!-- Row 2 -->
-				<div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_uni_med">Unidad de medida</label>
-						<select id="inp_uni_med" class="form-control input-normal inp_dis">
-				        </select>
-					</div>
-				</div>
-                	<div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_glosa">Glosa en documento</label>
-						<input name="inp_glosa" id="inp_glosa" class="form-control input-normal">
-
-					</div>
-				</div>
-                <div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_car_aut">Cargo automatico</label>
-						<select id="inp_car_aut" class="form-control input-normal inp_dis">
-					    </select>
-					</div>
-				</div>
-				
-			</div>
-            <div class="container">
-				<!-- Row 4 -->
-				<div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_fec_act">Fecha activación</label>
-						<input name="inp_fec_ant" id="inp_fec_ant" class="form-control input-normal _input_selector">
-
-					</div>
-				</div>
-                <div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_fec_des">Fecha Desactivación</label>
-						<input name="inp_fec_des" id="inp_fec_des" class="form-control input-normal _input_selector">
-
-					</div>
-				</div>
-				<div class="col-sm-4" id="userFormColumn1">
-					<div class="form-group">
-						<label for="inp_ord_imp">Orden de impresión</label>
-						<input name="inp_ord_inp" id="inp_ord_inp" class="form-control input-normal">
-
-					</div>
-				</div>
-
-			</div>
-            	<div class="container">
-				<!-- Row 7 -->
-                <div class="col-sm-4" id="userFormColumn2">
-					<div class="form-group">
-						<label for="inp_amort">Nivel de amortización</label>
-						<input name="inp_amort" id="inp_amort" class="form-control input-normal">
-					</div>
-				</div>
-			
-				<div class="col-sm-4" id="userFormColumn2">
-					<div class="form-group">
-						<label for="inp_niv_imp">Nivel de impresión</label>
-						<input name="inp_niv_imp" id="inp_niv_imp" class="form-control input-normal">
-
-					</div>
-				</div>
-                	<div class="col-sm-4" id="userFormColumn2">
-					<div class="form-group">
-						<label for="inp_niv_pre">Nivel presentación</label>
-						<input name="inp_niv_pre" id="inp_niv_pre" class="form-control input-normal">
-
-					</div>
-				</div>
-			</div>    
-			<br>
-			<div class="container">
-				<!-- Row 6 -->
-				<label class="control-label col-sm-3"></label>
-				<div class="col-3 col-sm-3 col-md-3 col-lg-3">
-					<input type="radio" name="optradio1" id="optradio1" name="optradio1" value="1"> Convenible
-				</div>
-				<label class="control-label col-sm-1"></label>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-					<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> No convenible
-				</div>
-			</div>
-	
-
-			<br>
-			<!-- PARAMQUERY SECUNDARIO -->
-            <div class="container">
-			<div class="panel-body">
-				<!-- PARAMQUERY SECUNDARIO -->
-				<div id="div_grid_sec">
-         
-				</div>
-			</div>
-            </div>
-            <div class="container">
-				<!-- Row botones -->
-				<div class="col-md-12" id="userFormColumn1">
-					<div class="form-group">
-						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span>
-							Cancelar</button>
-					</div>
-				</div>
-			</div>
-            <br>
-		</div>
-        </div>
                 <!-- Modal -->
         <div id="div_filtro_bts" class="modal fade" role="dialog">
             <div class="modal-dialog" style="width: 350px;">
@@ -250,20 +117,62 @@
 						<h4 class="modal-title" data-dismiss="modal">Favor indique los criterios para la busqueda</h4>
                     </div>
         			<div class="modal-body">
-						<div class="row">
-							<div class="col-xs-12">
-							<label for="inp_agrup">Agrupación</label>
-						<select id="inp_agrup" class="form-control input-normal inp_dis">
-						</select>
-							</div>	
-						  </div>
-                		<div class="row">
-                       		<div class="col-xs-12">
-								<label for="inp_tip_acc">Tipo acción</label>
-						<select id="inp_tip_acc" class="form-control input-normal inp_dis">
-						</select>
-							</div>
-            			</div>
+	                
+                        <div class="row">
+				        <div class="col-xs-12">
+				        <label for="inp_cod">Codigo</label>
+						<input name="inp_cod" id="inp_cod" class="form-control input-normal">
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+				        <label for="inp_desc">Descripción</label>
+						<input name="inp_desc" id="inp_desc" class="form-control input-normal">
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_uni_hab">Unidad de habitad</label>
+						<select id="inp_uni_hab" class="form-control input-normal inp_dis">
+				        </select>
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_cons">Consumo minimo</label>
+						<input name="inp_cons" id="inp_cons" class="form-control input-normal">
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_subs">Subsidio</label>
+						<select id="inp_subs" class="form-control input-normal inp_dis">
+				        </select>
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_jub">Jubilado</label>
+						<select id="inp_jub" class="form-control input-normal inp_dis">
+					    </select>
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_prom">Promedio area</label>
+						<select id="inp_prom" class="form-control input-normal inp_dis">
+				        </select>
+				        </div>	
+				        </div>
+                        <div class="row">
+				        <div class="col-xs-12">
+			            <label for="inp_comp">Es compensable</label>
+						<select id="inp_comp" class="form-control input-normal inp_dis">
+					    </select>
+				        </div>	
+                        </div>
+			         <br>
+		
                 	
                     </div>
                     <div class="modal-footer">
