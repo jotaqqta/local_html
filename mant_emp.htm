@@ -72,84 +72,121 @@
 
 		<div class="container" id="div_prim">
 			<br>
-			<div class="container" id="div_prim">
-                <div class="row">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_emp">Empresa</label>
-					<input id="tx_emp" name="tx_emp" type="text" class="form-control inp_dis">
-					</div>
-				    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_nomemp">Nombre</label>
-					<input id="tx_nomemp" name="tx_nomemp" type="text" class="form-control inp_dis">
-					</div>
-                </div>
-		
-				<div class="row">
-			        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label  for="tx_rut">RUT</label>
-					<input id="tx_rut" name="tx_rut" type="text" class="form-control inp_dis" value="">
-					</div>
-	                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label  for="tx_dir">Dirección</label>
-					<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="">
-			        </div>
-				</div>
-			
-				<div class="row">
-	                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label  for="tx_corre">Correo</label>
-					<input id="tx_corre" name="tx_corre" type="text" class="form-control inp_dis">
-					</div>
-			        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_int">Dirección Internet </label>
-					<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
-					</div>
-				</div>
-				
-                <div class="row">
-				    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label  for="tx_email">Email</label>
-					<input id="tx_email" name="tx_email" type="text" class="form-control inp_dis">
-					</div>
-			        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label  for="cb_giro">Código Giro</label>
-					<select id="cb_giro" name="cb_giro" type="text" class="form-control inp_dis"></select>
-					</div>
-				</div>
-			
-			   <div class="row">
-			        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_tel">Teléfono</label>
-					<input class="form-control inp_dis" id="tx_tel" name="tx_tel">
-					</div>
-		            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_fax">Fax</label>
-					<input class="form-control inp_dis" id="tx_fax" name="tx_fax">
-					</div>
-			    </div>
-			
-                <div class="row">			      
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="tx_repre">Representante Legal</label>
-					<input class="form-control inp_dis" id="tx_repre" name="tx_repre">
-					</div>
-			        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label class="" for="cb_local">Localidad</label>
-					<select id="cb_local" name="cb_local" type="text" class="form-control inp_dis"></select>
-					</div>
-		        </div>
-                
-                <div class="row">			      
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-					<label for="cb_estado">Estado</label>
-					<select class="form-control inp_dis" id="cb_estado" name="cb_estado"></select>
-					</div>
-    
-				</div>
-            </div>
-		<br>
-		  <br>
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab"  href="#Principal">Mantenedor Empresa</a></li>
+				<li><a data-toggle="tab" href="#param">Instalación Parámetros</a></li>
+				<li><a data-toggle="tab" href="#generales">Otros Datos Generales</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="Principal" class="tab-pane fade in active">
+				  	<div class="container">
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_emp">Empresa</label>
+								<input id="tx_emp" name="tx_emp" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_nomemp">Nombre</label>
+								<input id="tx_nomemp" name="tx_nomemp" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+					  	<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_rut">RUT</label>
+								<input id="tx_rut" name="tx_rut" type="text" class="form-control inp_dis" value="">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_dir">Dirección</label>
+								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="">
+							</div>
+						</div>
 
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_corre">Correo</label>
+								<input id="tx_corre" name="tx_corre" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_int">Dirección Internet </label>
+								<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_email">Email</label>
+								<input id="tx_email" name="tx_email" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="cb_giro">Código Giro</label>
+								<select id="cb_giro" name="cb_giro" type="text" class="form-control inp_dis"></select>
+							</div>
+						</div>
+
+					   <div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_tel">Teléfono</label>
+								<input class="form-control inp_dis" id="tx_tel" name="tx_tel">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_fax">Fax</label>
+								<input class="form-control inp_dis" id="tx_fax" name="tx_fax">
+							</div>
+						</div>
+
+						<div class="row">			      
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_repre">Representante Legal</label>
+								<input class="form-control inp_dis" id="tx_repre" name="tx_repre">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label class="" for="cb_local">Localidad</label>
+								<select id="cb_local" name="cb_local" type="text" class="form-control inp_dis"></select>
+							</div>
+						</div>
+
+						<div class="row">			      
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="cb_estado">Estado</label>
+								<select class="form-control inp_dis" id="cb_estado" name="cb_estado"></select>
+							</div>
+						</div>
+					</div>
+				</div>  
+				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
+				<div id="param" class="tab-pane fade">
+				  	<div class="container">
+						<!-- INFORMACION DEL SEGUNDO FORMULARIO -->
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label >Prueba</label>
+								<input id="tx_prueba" name="tx_prueba" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label>Prueba2</label>
+								<input id="tx_prueba2" name="tx_prueba2" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
+				<div id="generales" class="tab-pane fade">
+				  	<div class="container">
+						<!-- INFORMACIÓN DEL TERCER FORMULARIO -->
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label >Prueba3</label>
+								<input id="tx_prueba3" name="tx_prueba3" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label>Prueba4</label>
+								<input id="tx_prueba4" name="tx_prueba4" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<br>
 		<div class="container" id="div_prim">
 			<div class="form-horizontal flex-wrap">
 				<label class="col-sm-4"></label>
