@@ -22,7 +22,7 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#inp_cargo').keypress(function(tecla) {
+    jQuery('#tx_cargo').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 	// PARA ELIMINAR EL SUBMIT
@@ -57,20 +57,24 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
     
-    $("#co_leer").on("click", fn_Muestra_Filtro);
-    
+  
+    $("#co_leer").on("click", function(){
+        
+         fn_limpiar_fi();
+         fn_Muestra_Filtro();
+    });
     $("#co_cerrar_t").on("click", function (e){
         window.close(); 
     });
     $("#co_aceptar").on("click", function(){
 		//Validación de informacion
      if ($.trim($("#co_aceptar").text())=="Aceptar"){
-		if($("#inp_agrup").val() == "0"){
-			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_tit, $("#inp_agrup"));
+		if($("#cb_agrup").val() == "0"){
+			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_tit, $("#cb_agrup"));
 			return;
 		}
-	    if($("#inp_tip_acc").val() == "0"){
-			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_tit, $("#inp_tip_acc"));
+	    if($("#cb_tip_acc").val() == "0"){
+			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_tit, $("#cb_tip_acc"));
 			return;
           }else{
            fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
@@ -119,7 +123,7 @@ $(document).ready(function () {
     });
     $("#co_close-m").on("click", function (e) {
 		$('#div_modal').modal('hide');
-		fn_limpia_modal();
+		
 	});
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
     
@@ -139,87 +143,77 @@ $("#co_volver2").on("click", function (e){
    $("#co_guardar").on("click", function(){
 		//Validación de informacion
 		if ($.trim($("#co_guardar").text()) == "Guardar"){
-            if ($("#inp_cargo").val() == ""){
-					fn_mensaje_boostrap("DIGITE CODIGO.", g_tit, $("#inp_cargo"));
+            if ($("#tx_cargo").val() == ""){
+					fn_mensaje_boostrap("DIGITE CODIGO.", g_tit, $("#tx_cargo"));
 				
 				return;
 					}
-               if ($("#inp_nom").val() == ""){
-					fn_mensaje_boostrap("DIGITE NOMBRE.", g_tit, $("#inp_nom"));
+               if ($("#tx_nom").val() == ""){
+					fn_mensaje_boostrap("DIGITE NOMBRE.", g_tit, $("#tx_nom"));
 				
 				return;
 				    }
-             if ($("#inp_uni_med").val() == ""){
-					fn_mensaje_boostrap("SELECCIONE UNIDAD DE MEDIDA.", g_tit, $("#inp_uni_med"));
+             if ($("#cb_uni_med").val() == "0"){
+					fn_mensaje_boostrap("SELECCIONE UNIDAD DE MEDIDA.", g_tit, $("#tx_uni_med"));
 				
 				return;
 				    }
-             if ($("#inp_glosa").val() == ""){
-					fn_mensaje_boostrap("DIGITE GLOSA DE DOCUMENTO", g_tit, $("#inp_glosa"));
+             if ($("#tx_glosa").val() == ""){
+					fn_mensaje_boostrap("DIGITE GLOSA DE DOCUMENTO", g_tit, $("#tx_glosa"));
 				
 				return;
 				    }
-            if ($("#inp_car_aut").val() == ""){
-					fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit, $("#inp_car_aut"));
+            if ($("#cb_car_aut").val() == "0"){
+					fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit, $("#cb_car_aut"));
 				
 				return;
 				    }
-            if ($("#inp_fec_ant").val() == ""){
-					fn_mensaje_boostrap("DIGITE LA FECHA DE ACTIVACIÓN.", g_tit, $("#inp_fec_ant"));
-				
-				return;
-					return;}
-					else{
-						if(fn_validar_fecha($("#inp_fec_ant").val()) == false){
-							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE ACTIVACIÓN. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#inp_fec_ant"));
-							//fn_mensaje_bootstrap_fecv();
-							return false;
-					}
-                }
-               if ($("#inp_fec_des").val() == ""){
-					fn_mensaje_boostrap("DIGITE LA FECHA DESACTIVACIÓN.", g_tit, $("#inp_fec_des"));
-				
-				return;
-					return;}
-					else{
-						if(fn_validar_fecha($("#inp_fec_des").val()) == false){
-							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#inp_fec_des"));
-							//fn_mensaje_bootstrap_fecv();
-							return false;
-					}
-                }
-            if ($("#inp_ord_imp").val() == ""){
-					fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#inp_ord_imp"));
+      
+            if ($("#tx_ord_imp").val() == ""){
+					fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#tx_ord_imp"));
 				
 				return;
 				    }
-            if ($("#inp_amort").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE AMORTIZACIÓN", g_tit, $("#inp_amort"));
+            if ($("#tx_amort").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE AMORTIZACIÓN", g_tit, $("#tx_amort"));
 				
 				return;
 				    }
-            if ($("#inp_niv_imp").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE IMPRESIÓN", g_tit, $("#inp_niv_imp"));
+            if ($("#tx_niv_imp").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE IMPRESIÓN", g_tit, $("#tx_niv_imp"));
 				
 				return;
 				    }
-            if ($("#inp_niv_pre").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+            if ($("#tx_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
 				
 				return;
 				    }
-            if ($("#inp_niv_pre").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+            if ($("#tx_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
 				
 				return;
 				    }
-            if ($("#inp_niv_pre").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+            if ($("#tx_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
 				
 				return;
 				    }
+            if ($("#chk_comb").prop("checked", false));{
+					fn_mensaje_boostrap("SELECCIONE SI ES COMBENIBLE", g_tit, $("#v"));
+				
+				return;
+				    }
+        if ( $("#chk_amort").prop("checked", false));{
+					fn_mensaje_boostrap("SELECCIONE SI ES AMORTIZABLE", g_tit, $("#chk_amort"));
+				
+				return;
+				    }
+            
+          
            fn_mensaje_boostrap("Se genero", g_tit, $("#co_gen"));
            fn_carga_grilla(); 
+            fn_limpiar_fi();
             
         }
            });
@@ -227,7 +221,7 @@ $("#co_volver2").on("click", function (e){
     
 	$("#co_limpiar").on("click", function(){
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		    fn_limpia_modal();
+		
 			return;
 		}
 		else
@@ -237,7 +231,36 @@ $("#co_volver2").on("click", function (e){
         handle: ".modal-header"
     });
 	
-
+      $grid_principal.pqGrid({
+		rowDblClick: function fn_sss( event, ui ) {
+			if (ui.rowData) 
+				{
+					var dataCell = ui.rowData;
+                     $("#div_prin").slideUp();
+	                 $("#div_filtros").slideDown();
+	                 $(window).scrollTop(0);
+                     $grid_2.pqGrid("refreshView");
+                     $("#tx_cargo").val(dataCell.C1);
+                     $("#tx_nom").val(dataCell.C2);
+                     $("#cb_uni_med").val("2");
+                     $("#tx_glosa").val(dataCell.C4);
+                     $("#cb_car_aut").val("1");
+                     $("#tx_ord_imp").val(dataCell.C8);
+                     $("#tx_amort").val(dataCell.C5);
+                     $("#tx_niv_imp").val(dataCell.C9);
+                     $("#tx_niv_pre").val(dataCell.C10);
+                     $("#chk_comb").prop("checked", true);
+                     $("#chk_mort").prop("checked", true);   
+                     $("#inp_fec_ant").prop("disabled",true);
+                     $("#inp_fec_des").prop("disabled",true);
+                     $("#inp_fec_ant").val(dataCell.C6);
+                     $("#inp_fec_des").val(dataCell.C7);
+                }
+                     
+                   
+			}
+	});
+	
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -299,34 +322,45 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: '0001', C2: 'CONSUMO DE AGUA'}, 
-             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO'},
-             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL'}, 
-             { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL'},	 
-            { C1: '0005', C2: 'MATERIALES AGUA'},
-            { C1: '0006', C2: 'MANO DE OBRA - AGUA '},
-            { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO'},
-            { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA'},
-            { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE'},
-             { C1: '00010', C2: 'DESCUENTO DE EMPLEADO'},
-              { C1: '00011', C2: 'DESCUENTO DE JUBILADO'}, 
-             { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA'},
-             { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ'}, 
-             { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ'},	 
-            { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS'},
-            { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO'},
-            { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO'},
-            { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO'},
-            { C1: '00019', C2: 'COSTOS LEGALES'},
-             { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO'},
-              { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA'}, 
-             { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO'}
+             { C1: '0001', C2: 'CONSUMO DE AGUA', C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:110419,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},	 
+            { C1: '0005', C2: 'MATERIALES AGUA',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '0006', C2: 'MANO DE OBRA - AGUA ',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+             { C1: '00010', C2: 'DESCUENTO DE EMPLEADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+              { C1: '00011', C2: 'DESCUENTO DE JUBILADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+             { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},	 
+            { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+            { C1: '00019', C2: 'COSTOS LEGALES',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+             { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
+              { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}
+            
         ] }
 	};
 	
     obj.colModel = [
-		{ title: "Codigo",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },   
+		{ title: "Codigo",width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Descripcion", width: 400, dataType: "string", dataIndx:"C2", halign: "center", align: "center"  },
+        { title: "Unidad de medida",width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: true },
+		{ title: "Glosa en documento", width: 400, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: true  }, 
+        { title: "Cargo automatico",width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center",  hidden: true },
+		{ title: "Fecha activación",width: 400, dataType: "string", dataIndx: "C6", halign: "center", align: "center",  hidden: true  }, 
+        { title: "Fecha desactivación",width: 100, dataType: "string", dataIndx: "C7", halign: "center", align: "center", hidden: true },
+		{ title: "Orden de impresión",width: 400, dataType: "string", dataIndx: "C8", halign: "center", align: "center", hidden: true  }, 
+        { title: "Nivel de amortización",width: 100, dataType: "string", dataIndx: "C9", halign: "center", align: "center",  hidden: true },
+		{ title: "Nivel de impresión",width: 400, dataType: "string", dataIndx: "C10", halign: "center", align: "center", hidden: true  },
+        { title: "Nivel de amortización",width: 100, dataType: "string", dataIndx: "C11", halign: "center", align: "center", hidden: true },
+		{ title: "Nivel de presentación",width: 400, dataType: "string", dataIndx: "C11", halign: "center", align: "center",  hidden: true  }
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -404,28 +438,26 @@ function fn_setea_grid_principal() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar(){
 	
-		$("#inp_agrup").val("");
-		$("#inp_tip_acc").val("");
-        $("#inp_nom").val("");
-		$("#inp_cargo").val("");
-        $("#inp_uni_med").val("");
-		$("#inp_cargo").val("");
-       
-		$("#inp_agrup").focus();
+		$("#cb_agrup").val("0");
+		$("#cb_tip_acc").val("0");
+        $("#cb_agrup").focus();
 }
   
 function fn_limpiar_fi(){
 	
-    $("#inp_cargo").val("");
-    $("#inp_nom").val("");
-    $("#inp_uni_med").val("");
-    $("#inp_glosa").val("");
-    $("#inp_car_aut").val("");
-    $("#inp_ord_imp").val("");
-    $("#inp_amort").val("");
-    $("#inp_niv_imp").val("");
-    $("#inp_niv_pre").val("");
-    $("#inp_cargo").focus("");
+    $("#tx_cargo").val("");
+    $("#tx_nom").val("");
+    $("#cb_uni_med").val("");
+    $("#tx_glosa").val("");
+    $("#cb_car_aut").val("");
+    $("#tx_ord_imp").val("");
+    $("#tx_amort").val("");
+    $("#tx_niv_imp").val("");
+    $("#tx_niv_pre").val("");
+    $("#tx_cargo").focus("");    
+    $("#tx_cargo").focus(""); 
+    $("#chk_comb").prop("checked", false);
+    $("#chk_mort").prop("checked", false);
 }
 
 
@@ -439,26 +471,14 @@ function fn_filtro()
 	
 }
 function fn_nuevo(){
+    
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
 	$("#div_filtro_bts").on("shown.bs.modal", function () {
     $("#div_filtro_bts div.modal-footer button").focus();
-    $("#inp_fec_ant").prop("disabled",true);
-    $("#inp_fec_des").prop("disabled",true);		
+      
 	});
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_modal(num) {
-	
-    $("#tx_nuevo").val(num);
-    
-    fn_limpia_modal();
-	
-	$("#div_modal").modal({ backdrop: "static", keyboard: false });
-	$("#div_modal").on("shown.bs.modal", function () {
-		$("#div_modal div.modal-footer button").focus();
 
-	});
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_carga_grilla() {
 	
@@ -476,23 +496,28 @@ function fn_Muestra_Filtro()
 	$("#div_filtros").slideDown();
 	$(window).scrollTop(0);
     $grid_2.pqGrid("refreshView");
+    $("#inp_fec_ant").prop("disabled",false);
+    $("#inp_fec_des").prop("disabled",false);
+
+    
 
 }
+
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 function fn_uni_med(){ 
-   $("#inp_uni_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+   $("#cb_uni_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_car_aut() {
-  $("#inp_car_aut").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+  $("#cb_car_aut").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_inp_group() {
-   $("#inp_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+   $("#cb_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_inp_tip_acc() {
-  $("#inp_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+  $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 
 function fn_carga_grilla(){

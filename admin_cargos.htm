@@ -119,14 +119,14 @@
 				<!-- Row 1 -->
 				<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_cargo">Codigo</label>
-						<input name="inp_cargo" id="inp_cargo" class="form-control input-normal">
+						<label for="tx_cargo">Codigo</label>
+						<input name="tx_cargo" id="tx_cargo" class="form-control input-normal">
 					</div>
 				</div>
 				<div class="col-sm-4" id="userFormColumn2">
 					<div class="form-group">
-						<label for="inp_nom">Nombre</label>
-						<input name="inp_nom" id="inp_nom" class="form-control input-normal">
+						<label for="tx_nom">Nombre</label>
+						<input name="tx_nom" id="tx_nom" class="form-control input-normal">
 					</div>
 				</div>
                 <br> 
@@ -149,22 +149,22 @@
 				<!-- Row 2 -->
 				<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_uni_med">Unidad de medida</label>
-						<select id="inp_uni_med" class="form-control input-normal inp_dis">
+						<label for="cb_uni_med">Unidad de medida</label>
+						<select id="cb_uni_med" class="form-control input-normal inp_dis">
 				        </select>
 					</div>
 				</div>
                 	<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_glosa">Glosa en documento</label>
-						<input name="inp_glosa" id="inp_glosa" class="form-control input-normal">
+						<label for="tx_glosa">Glosa en documento</label>
+						<input name="tx_glosa" id="tx_glosa" class="form-control input-normal">
 
 					</div>
 				</div>
                 <div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_car_aut">Cargo automatico</label>
-						<select id="inp_car_aut" class="form-control input-normal inp_dis">
+						<label for="cb_car_aut">Cargo automatico</label>
+						<select id="cb_car_aut" class="form-control input-normal inp_dis">
 					    </select>
 					</div>
 				</div>
@@ -174,24 +174,22 @@
 				<!-- Row 4 -->
 				<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_fec_act">Fecha activación</label>
-						<input name="inp_fec_ant" id="inp_fec_ant" class="form-control input-normal _input_selector">
+						<label for="tx_fec_act">Fecha activación</label>
+						<input name="tx_fec_ant" id="tx_fec_ant" class="form-control input-normal _input_selector">
 
 					</div>
 				</div>
                 <div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_fec_des">Fecha Desactivación</label>
-						<input name="inp_fec_des" id="inp_fec_des" class="form-control input-normal _input_selector">
+						<label for="tx_fec_des">Fecha Desactivación</label>
+						<input name="tx_fec_des" id="tx_fec_des" class="form-control input-normal _input_selector">
 
 					</div>
 				</div>
 				<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_ord_imp">Orden de impresión</label>
-						<input name="inp_ord_inp" id="inp_ord_inp" class="form-control input-normal">
-
-					</div>
+						<label for="tx_ord_imp">Orden de impresión</label>
+						<input name="tx_ord_inp" id="tx_ord_inp" class="form-control input-normal" </div>
 				</div>
 
 			</div>
@@ -199,22 +197,22 @@
 				<!-- Row 7 -->
                 <div class="col-sm-4" id="userFormColumn2">
 					<div class="form-group">
-						<label for="inp_amort">Nivel de amortización</label>
-						<input name="inp_amort" id="inp_amort" class="form-control input-normal">
+						<label for="tx_amort">Nivel de amortización</label>
+						<input name="tx_amort" id="tx_amort" class="form-control input-normal">
 					</div>
 				</div>
 			
 				<div class="col-sm-4" id="userFormColumn2">
 					<div class="form-group">
-						<label for="inp_niv_imp">Nivel de impresión</label>
-						<input name="inp_niv_imp" id="inp_niv_imp" class="form-control input-normal">
+						<label for="tx_niv_imp">Nivel de impresión</label>
+						<input name="tx_niv_imp" id="tx_niv_imp" class="form-control input-normal">
 
 					</div>
 				</div>
                 	<div class="col-sm-4" id="userFormColumn2">
 					<div class="form-group">
-						<label for="inp_niv_pre">Nivel presentación</label>
-						<input name="inp_niv_pre" id="inp_niv_pre" class="form-control input-normal">
+						<label for="tx_niv_pre">Nivel presentación</label>
+						<input name="tx_niv_pre" id="tx_niv_pre" class="form-control input-normal">
 
 					</div>
 				</div>
@@ -224,13 +222,13 @@
 				<div class="checkbox">
                 <label class="control-label col-sm-3"></label>
                 <div class="col-3 col-sm-3 col-md-3 col-lg-3">    
-                <input type="checkbox" id="c_comp" name="c_comp" value="">Es compenible
+                <input type="checkbox" id="chk_comb" name="chk_comb" value="">Es combenible
                 </div>
                 </div>
                 <div class="checkbox">
                 <label class="control-label col-sm-2"></label>
                 <div class="col-3 col-sm-3 col-md-3 col-lg-3">    
-                <input type="checkbox" id="c_amort" name="c_amort" value="">Amortizable parcial
+                <input type="checkbox" id="chk_amort" name="chk_amort" value="">Amortizable parcial
                 </div>
             </div>
             </div>    
@@ -257,15 +255,15 @@
         			<div class="modal-body">
 						<div class="row">
 							<div class="col-xs-12">
-							<label for="inp_agrup">Agrupación</label>
-						<select id="inp_agrup" class="form-control input-normal inp_dis">
+							<label for="cb_agrup">Agrupación</label>
+						<select id="cb_agrup" class="form-control input-normal inp_dis">
 						</select>
 							</div>	
 						  </div>
                 		<div class="row">
                        		<div class="col-xs-12">
-								<label for="inp_tip_acc">Tipo acción</label>
-						<select id="inp_tip_acc" class="form-control input-normal inp_dis">
+								<label for="cb_tip_acc">Tipo acción</label>
+						<select id="cb_tip_acc" class="form-control input-normal inp_dis">
 						</select>
 							</div>
             			</div>
