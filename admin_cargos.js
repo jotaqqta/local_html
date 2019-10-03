@@ -75,6 +75,8 @@ $(document).ready(function () {
           }else{
            fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
            fn_carga_grilla(); 
+           $('#div_filtro_bts').modal('hide');
+		   fn_limpiar();
         }
       }
 	});
@@ -123,9 +125,7 @@ $(document).ready(function () {
             $(window).scrollTop(0);
         
     });
-    
-//BOTONES CERRAR DE LOS MODALES
-    $("#co_close").on("click", function (e) {
+    $("#co_close-m").on("click", function (e) {
 		$('#div_modal').modal('hide');
 		fn_limpia_modal();
 	});
@@ -231,10 +231,7 @@ $("#co_volver2").on("click", function (e){
 		else
 			window.close();
 	});
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	
-	$("#div_modal").draggable({
+    $("#div_modal").draggable({
         handle: ".modal-header"
     });
 	
@@ -267,7 +264,7 @@ $("#co_volver2").on("click", function (e){
 	
 });
            
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_setea_grid_principal() {
 	
 	var obj = {
@@ -334,10 +331,8 @@ function fn_setea_grid_principal() {
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
     
-//*************************************************************
-    
-    //Setea grid2
-	data =  [
+//***********************************************************************************************
+    data =  [
 	    { C1: '0001', C2: 'CONSUMO DE AGUA'}, 
              { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO'},
              { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL'}, 
@@ -466,7 +461,7 @@ function fn_carga_grilla() {
 
 }
 
-//FUNCIONES MODAL*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~* 
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_sistema() {
      
 	$("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
@@ -481,7 +476,8 @@ function fn_Muestra_Filtro()
 }
 
 
-/////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
+//FUNCIONES COMBOS
 function fn_uni_med(){ 
    $("#inp_uni_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
