@@ -22,7 +22,9 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-
+    jQuery('#inp_cargo').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
 	// PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function () { return false; });
 	//INGRESA LOS TITULOS
@@ -34,12 +36,6 @@ $(document).ready(function () {
 		$("#div_tit0").html(g_tit);
 	});
 	
-	//Footer  ///raiz/
-	$("#div_footer").load("syn_globales/footer.htm");
-	$("#excel_archivo").val("tablas_generales.xls");
-    $("#tx_empresa").val("1");
-	$("#tx_rol").val("SYNERGIA");
-	$("#tx_ip").val("127.0.0.1");
 	
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
 	
@@ -52,7 +48,7 @@ $(document).ready(function () {
     fn_inp_group();
     fn_inp_tip_acc();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Nuevo");
     $("#co_nuevo").html("<span class='glyphicon '></span> Nuevo");
 	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
@@ -69,21 +65,18 @@ $(document).ready(function () {
     $("#co_aceptar").on("click", function(){
 		//Validación de informacion
      if ($.trim($("#co_aceptar").text())=="Aceptar"){
-		if( $("#inp_agrup").val() == ""){
-			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_titulo, $("#inp_agrup"));
+		if($("#inp_agrup").val() == "0"){
+			fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_tit, $("#inp_agrup"));
 			return;
 		}
-		else{
-           if( $("#inp_tip_acc").val() == ""){
-			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_titulo, $("#inp_tip_acc"));
+	    if($("#inp_tip_acc").val() == "0"){
+			fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_tit, $("#inp_tip_acc"));
 			return;
-		  }else{
-            alert("Aceptado.");
-              
-          }
+          }else{
+           fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
+           fn_carga_grilla(); 
         }
-         
-     }
+      }
 	});
     $("#co_limpiar").on("click",function(){
 		if ($.trim($("#co_limpiar").text())=="Limpiar"){
@@ -151,31 +144,84 @@ $("#co_volver2").on("click", function (e){
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
-    
-    //BOTONES-FILTRO
-	$("#co_aceptar").on("click", function(){
-		if ($("#cb_regional").val() ==""){
-				fn_mensaje_boostrap("CAMPO REGIONAL OBLIGATORIOS", g_tit, $("#cb_regional"));
-				fn_lim_fil_reg();
+    $("#co_guardar").on("click", function(){
+		//Validación de informacion
+		if ($.trim($("#co_guardar").text()) == "Guardar"){
+            if ($("#inp_cargo").val() == ""){
+					fn_mensaje_boostrap("DIGITE CODIGO.", g_tit, $("#inp_cargo"));
 				
-                return false;
-                };
-			
-                if ($("#cb_ciclo").val()==""){
-				fn_mensaje_boostrap("CAMPO CICLO OBLIGATORIO", g_tit, $("#cb_ciclo"));
-                 fn_lim_fil_ci();
-                 return false;
-                };
+				return;
+					}
+               if ($("#inp_nom").val() == ""){
+					fn_mensaje_boostrap("DIGITE NOMBRE.", g_tit, $("#inp_nom"));
+				
+				return;
+				    }
+             if ($("#inp_uni_med").val() == ""){
+					fn_mensaje_boostrap("SELECCIONE UNIDAD DE MEDIDA.", g_tit, $("#inp_uni_med"));
+				
+				return;
+				    }
+             if ($("#inp_glosa").val() == ""){
+					fn_mensaje_boostrap("DIGITE GLOSA DE DOCUMENTO", g_tit, $("#inp_glosa"));
+				
+				return;
+				    }
+            if ($("#inp_car_aut").val() == ""){
+					fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit, $("#inp_car_aut"));
+				
+				return;
+				    }
+            if ($("#inp_fec_ant").val() == ""){
+					fn_mensaje_boostrap("DIGITE LA FECHA DE ACTIVACIÓN.", g_tit, $("#inp_fec_ant"));
+				
+				return;
+					return;}
+					else{
+						if(fn_validar_fecha($("#inp_fec_ant").val()) == false){
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE ACTIVACIÓN. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#inp_fec_ant"));
+							//fn_mensaje_bootstrap_fecv();
+							return false;
+					}
+                }
+               if ($("#inp_fec_des").val() == ""){
+					fn_mensaje_boostrap("DIGITE LA FECHA DESACTIVACIÓN.", g_tit, $("#inp_fec_des"));
+				
+				return;
+					return;}
+					else{
+						if(fn_validar_fecha($("#inp_fec_des").val()) == false){
+							fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#inp_fec_des"));
+							//fn_mensaje_bootstrap_fecv();
+							return false;
+					}
+                }
+            if ($("#inp_ord_imp").val() == ""){
+					fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#inp_ord_imp"));
+				
+				return;
+				    }
+            if ($("#inp_amort").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE AMORTIZACIÓN", g_tit, $("#inp_amort"));
+				
+				return;
+				    }
+            if ($("#inp_niv_imp").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE IMPRESIÓN", g_tit, $("#inp_niv_imp"));
+				
+				return;
+				    }
+            if ($("#inp_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+				
+				return;
+				    }
+           fn_mensaje_boostrap("Se genero", g_tit, $("#co_gen"));
+           fn_carga_grilla(); 
             
-			    if ($("#cb_ruta").val()==""){
-				fn_mensaje_boostrap("CAMPO RUTA OBLIGATORIO", g_tit, $("#cb_ruta"));
-				return false;
-			    }
-			
-                fn_carga_grilla();
-                $('#div_modal').modal('hide');
-       
-	});
+        }
+           });
+    
     
 	$("#co_limpiar").on("click", function(){
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
@@ -218,47 +264,7 @@ $("#co_volver2").on("click", function (e){
 			return;
 		}	
     });
-			
-    //EVENTO DBL_CLICK DE LA GRILLA
-    $grid_principal.pqGrid({
-		rowDblClick: function( event, ui ) {
-			if (ui.rowData) 
-				{
-					var dataCell = ui.rowData;
-			
-					$("#div_prin").hide();
-                    $("#div_tabla").show();
-    				
-					$grid_2.pqGrid("refreshView");
-					
-				}
-			}
-	});
 	
-	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    $grid_2.pqGrid({
-		rowDblClick: function( event, ui ){
-			if (ui.rowData) 
-				{
-					var dataCell = ui.rowData;
-
-					$("#tx_codigo").val(dataCell.c1);
-                    $("#tx_descod").val(dataCell.c2);
-                    $("#tx_val1").val(dataCell.c3);
-                    $("#tx_val2").val(dataCell.c4);
-                    $("#tx_fecing").val(dataCell.c5);
-                    $("#tx_fecmod").val(dataCell.c6);
-                    $("#div_modal2").modal({ backdrop: "static", keyboard: false });
-                    $("#div_modal2").on("shown.bs.modal", function () {
-                        $("#div_modal2 div.modal-footer button").focus();
-
-				      });
-                }
-        }
-    });
-
-	    	 
-	 
 });
            
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -283,7 +289,7 @@ function fn_setea_grid_principal() {
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Leer",    attr: "id=co_leer",  cls: "btn btn-primary" }, 
+				{ type: "button", label: "Nuevo",    attr: "id=co_leer",  cls: "btn btn-primary" }, 
                 { type: "button", label: "Seleccionar",    attr: "id=co_selec",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
@@ -395,9 +401,8 @@ function fn_setea_grid_principal() {
     ];
 	
 	obj2.dataModel = { data: data };
+    
     $grid_2=$("#div_grid_sec").pqGrid(obj2);
-    $grid_2.pqGrid("refreshDataAndView");
-
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -471,6 +476,7 @@ function fn_Muestra_Filtro()
 	$("#div_prin").slideUp();
 	$("#div_filtros").slideDown();
 	$(window).scrollTop(0);
+    $grid_2.pqGrid("refreshView");
 
 }
 

@@ -117,18 +117,32 @@
 
 			<div class="container">
 				<!-- Row 1 -->
-				<div class="col-sm-2" id="userFormColumn1">
+				<div class="col-sm-4" id="userFormColumn1">
 					<div class="form-group">
-						<label for="inp_cargo">Nombre</label>
+						<label for="inp_cargo">Codigo</label>
 						<input name="inp_cargo" id="inp_cargo" class="form-control input-normal">
 					</div>
 				</div>
-				<div class="col-sm-6 " id="userFormColumn2">
+				<div class="col-sm-4" id="userFormColumn2">
 					<div class="form-group">
-						<label for="inp_cargo_l"></label>
-						<input name="inp_cargo_l" id="inp_cargo_l" class="form-control input-normal">
+						<label for="inp_nom">Nombre</label>
+						<input name="inp_nom" id="inp_nom" class="form-control input-normal">
 					</div>
 				</div>
+                <br> 
+				<div class="col-sm-4 form-horizontal flex-wrap">
+                        
+                <div class="mx-auto flex-wrap">
+					<button type="button" class="btn btn-primary" id="co_guardar" name="co_guardar"
+						style="padding: 2px 8px;width:100px;height:24px;"><span class="glyphicon glyphicon-remove"></span>
+						Guardar</button>
+                   <button type="button" class="btn btn-basic" id="co_volver_fil" name="co_volver_fil"
+						style="padding: 2px 8px;width:100px;height:24px;"><span class="glyphicon glyphicon-remove"></span>
+						Cancelar</button>
+				</div>
+                    
+				</div>
+			
 			</div>
 
 			<div class="container">
@@ -204,22 +218,22 @@
 
 					</div>
 				</div>
+                    <br>
 			</div>    
-			<br>
 			<div class="container">
-				<!-- Row 6 -->
-				<label class="control-label col-sm-3"></label>
-				<div class="col-3 col-sm-3 col-md-3 col-lg-3">
-					<input type="radio" name="optradio1" id="optradio1" name="optradio1" value="1"> Convenible
-				</div>
-				<label class="control-label col-sm-1"></label>
-				<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-					<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> No convenible
-				</div>
-			</div>
-	
-
-			<br>
+				<div class="checkbox">
+                <label class="control-label col-sm-3"></label>
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">    
+                <input type="checkbox" value="">Es compenible
+                </div>
+                </div>
+                <div class="checkbox">
+                <label class="control-label col-sm-2"></label>
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">    
+                <input type="checkbox" value="">Armotizable parcial
+                </div>
+            </div>
+            </div>    
 			<!-- PARAMQUERY SECUNDARIO -->
             <div class="container">
 			<div class="panel-body">
@@ -229,16 +243,7 @@
 				</div>
 			</div>
             </div>
-            <div class="container">
-				<!-- Row botones -->
-				<div class="col-md-12" id="userFormColumn1">
-					<div class="form-group">
-						<button class="btn" id="co_volver_fil"><span class="glyphicon glyphicon-remove"></span>
-							Cancelar</button>
-					</div>
-				</div>
-			</div>
-            <br>
+             <br>
 		</div>
         </div>
                 <!-- Modal -->
@@ -264,7 +269,6 @@
 						</select>
 							</div>
             			</div>
-                	
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-left btn-sm btn-primary pull-left" id="co_limpiar"><span class="glyphicon glyphicon-grain"></span> Limpiar</button>
