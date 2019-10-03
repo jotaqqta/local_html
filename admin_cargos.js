@@ -184,32 +184,24 @@ $("#co_volver2").on("click", function (e){
 				
 				return;
 				    }
+          
             if ($("#tx_niv_pre").val() == ""){
 					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
 				
 				return;
 				    }
-            if ($("#tx_niv_pre").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
+        
+            if ($("#chk_comb").prop("checked",false)){
+					fn_mensaje_boostrap("SELECCIONE SI ES COMBENIBLE", g_tit, $("#chk_comb"));
 				
 				return;
-				    }
-            if ($("#tx_niv_pre").val() == ""){
-					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
-				
-				return;
-				    }
-            if ($("#chk_comb").prop("checked", false));{
-					fn_mensaje_boostrap("SELECCIONE SI ES COMBENIBLE", g_tit, $("#v"));
-				
-				return;
-				    }
-        if ( $("#chk_amort").prop("checked", false));{
+				    }else{
+            if($("#chk_amort").prop("checked", false)){
 					fn_mensaje_boostrap("SELECCIONE SI ES AMORTIZABLE", g_tit, $("#chk_amort"));
 				
 				return;
 				    }
-            
+                    }
           
            fn_mensaje_boostrap("Se genero", g_tit, $("#co_gen"));
            fn_carga_grilla(); 
@@ -221,7 +213,7 @@ $("#co_volver2").on("click", function (e){
     
 	$("#co_limpiar").on("click", function(){
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		
+		fn_limpiar();
 			return;
 		}
 		else
@@ -239,7 +231,8 @@ $("#co_volver2").on("click", function (e){
                      $("#div_prin").slideUp();
 	                 $("#div_filtros").slideDown();
 	                 $(window).scrollTop(0);
-                     $grid_2.pqGrid("refreshView");
+                     
+                    
                      $("#tx_cargo").val(dataCell.C1);
                      $("#tx_nom").val(dataCell.C2);
                      $("#cb_uni_med").val("2");
@@ -249,13 +242,15 @@ $("#co_volver2").on("click", function (e){
                      $("#tx_amort").val(dataCell.C5);
                      $("#tx_niv_imp").val(dataCell.C9);
                      $("#tx_niv_pre").val(dataCell.C10);
-                     $("#chk_comb").prop("checked", true);
-                     $("#chk_mort").prop("checked", true);   
+                     $("#chk_comb").prop("checked", false);
+                     $("#chk_mort").prop("checked", false);   
                      $("#inp_fec_ant").prop("disabled",true);
                      $("#inp_fec_des").prop("disabled",true);
                      $("#inp_fec_ant").val(dataCell.C6);
                      $("#inp_fec_des").val(dataCell.C7);
+                    
                 }
+            fn_carga_grilla();
                      
                    
 			}
