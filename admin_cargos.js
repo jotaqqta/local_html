@@ -48,8 +48,8 @@ $(document).ready(function () {
     fn_inp_group();
     fn_inp_tip_acc();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Nuevo");
-    $("#co_nuevo").html("<span class='glyphicon '></span> Nuevo");
+	$("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
 	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
 	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
@@ -208,6 +208,16 @@ $("#co_volver2").on("click", function (e){
 				
 				return;
 				    }
+            if ($("#inp_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+				
+				return;
+				    }
+            if ($("#inp_niv_pre").val() == ""){
+					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#inp_niv_pre"));
+				
+				return;
+				    }
            fn_mensaje_boostrap("Se genero", g_tit, $("#co_gen"));
            fn_carga_grilla(); 
             
@@ -278,8 +288,7 @@ function fn_setea_grid_principal() {
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Nuevo",    attr: "id=co_leer",  cls: "btn btn-primary" }, 
-                { type: "button", label: "Seleccionar",    attr: "id=co_selec",  cls: "btn btn-primary btn-sm" },       
+				{ type: "button", label: "Nuevo",    attr: "id=co_leer",  cls: "btn btn-primary" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
 		},
