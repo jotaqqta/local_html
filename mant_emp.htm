@@ -160,10 +160,9 @@
                  <div id="param" class="tab-pane fade">
 				  	<div class="container">
 						<!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
-                        <div class="container">
-                            <div class="well well-sm">Datos Generales</div>
-                        </div>                      
-						
+                            <div class="container">
+                                <div class="well well-sm">Datos Generales</div>
+                            </div>
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_cant">Cantidad de Sectores</label>
@@ -218,11 +217,9 @@
 								<input id="tx_bolse" name="tx_bolse" type="text" class="form-control inp_dis">
 							</div>
 						</div>
-                    <br> 
-                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                            <label for="tx_limgen">Límites Generales</label>
-                        </div>
-                    <br>                     
+                        <div class="container">
+                                <div class="well well-sm">Límites Generales</div>
+                            </div>                     
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_limin30">Límite Mínimo 30</label>
@@ -247,11 +244,9 @@
 								<input id="tx_limax60" name="tx_limax60" type="text" class="form-control inp_dis">
 							</div>
                         </div>
-				    <br> 
-                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                            <label for="tx_histo">Números Históricos</label>
-                        </div>
-                    <br>                     
+                        	<div class="container">
+								<div class="well well-sm">Números Históricos</div>
+							</div>                      
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_fact">Facturación</label>
@@ -275,12 +270,10 @@
 								<label for="tx_pagos">Pagos</label>
 								<input id="tx_pagos" name="tx_pagos" type="text" class="form-control inp_dis">
 							</div>
-                        </div>
-                    <br> 
-                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                            <label for="tx_irreg">Irregularidades</label>
-                        </div>
-                    <br>                     
+                        </div>               
+	                        <div class="container">
+								<div class="well well-sm">Irregularidades</div>
+							</div>                    
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_consup">Consumo Superior</label>
@@ -315,11 +308,9 @@
 								<input id="tx_facsup" name="tx_facsup" type="text" class="form-control inp_dis">
 							</div>
                         </div>
-                    <br> 
-                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                            <label for="tx_decima">Decimales</label>
-                        </div>
-                    <br>                     
+                            <div class="container">
+                                <div class="well well-sm">Decimales</div>
+                            </div>                     
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_desfis">Despliegue Físico</label>
@@ -348,11 +339,9 @@
 								<input id="tx_caltasa" name="tx_caltasa" type="text" class="form-control inp_dis">
 							</div>
                         </div>
-                    	<br>
-                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                            <label for="tx_decima">Días</label>                           
-                        </div>
-                    	<br>
+                            <div class="container">
+                                <div class="well well-sm">Días</div>
+                            </div>
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_dialib">Días Libro</label>
@@ -374,17 +363,69 @@
                  <div id="generales" class="tab-pane fade">
 				  	<div class="container">
                         <!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
-                        <div class="container">
-                            <div class="well well-sm">Base</div>
+                            <div class="container">
+                                <div class="well well-sm">Base</div>
 							<div class="row">
-								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-									<label for="tx_cant">Interés NC</label>
-									<input id="tx_cant" name="tx_cant" type="text" class="form-control inp_dis">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_int">Interés NC</label>
+									<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_intnd">Interés ND</label>
+								    <input id="tx_intnd" name="tx_intnd" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                            <div class="container">
+                                <div class="well well-sm">Formato Fecha</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_externo">Externo</label>
+									<input id="tx_externo" name="tx_externo" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_interno">Interno</label>
+								    <input id="tx_interno" name="tx_interno" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                        <div class="container">
+                                <div class="well well-sm">Iconos</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_patharb">Path Árbol</label>
+									<input id="tx_patharb" name="tx_patharb" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_pathapl">Path Aplicación</label>
+								    <input id="tx_pathapl" name="tx_pathapl" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                        <div class="container">
+                                <div class="well well-sm">Otros</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_entereg">Ente Regulador</label>
+									<input id="tx_entereg" name="tx_entereg" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_modoref">Modo Refacturación</label>
+								    <input id="tx_modoref" name="tx_modoref" type="text" class="form-control inp_dis">
+								</div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_facres">Factura Resumen</label>
+								    <input id="tx_facres" name="tx_facres" type="text" class="form-control inp_dis">
+								</div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="cb_canrefac">Cantidad Mótivos de Refacturación</label>
+                                    <select id="cb_canrefac" name="cb_canrefac" type="text" class="form-control inp_dis"></select>
 								</div>
                         	</div>                   
 				    	</div>
     				</div>
             	</div>
+            <br>
 			<div class="container" id="div_prim">
 				<div class="form-horizontal flex-wrap">
 					<label class="col-sm-4"></label>
