@@ -236,7 +236,7 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Administrador de cargos",
+		title: "Administrador de tarifas",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
