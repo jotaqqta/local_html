@@ -22,10 +22,10 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-	jQuery('#tx_cod').keypress(function (tecla) {
+	jQuery('#tx_cod').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-    jQuery('#tx_cons').keypress(function (tecla) {
+    jQuery('#tx_cons').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 	
@@ -59,11 +59,9 @@ $(document).ready(function () {
     fn_cb_subs();
     fn_cb_unid_hab();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
-    $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
-	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
+
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
@@ -73,7 +71,7 @@ $(document).ready(function () {
     $("#co_cerrar_t").on("click", function(e){
         window.close(); 
     });
-    $("#co_guardar").on("click", function () {
+    $("#co_guardar").on("click", function() {
 		
         if ($.trim($("#co_guardar").text()) == "Guardar") {
             if ($("#tx_desc").val() == "") {
@@ -117,8 +115,9 @@ $(document).ready(function () {
             fn_carga_grilla();
             fn_limpiar();
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-        
+			$("#div_filtro_bts").slideUp();
+			$('#div_filtro_bts').modal('hide');	
+            $(window).scrollTop(0);
 
         }
     });
@@ -141,14 +140,7 @@ $(document).ready(function () {
     });
  
 //BOTONES ELIMINAR DE LAS GRILLAS
-    $("#co_eliminar").on("click", function(e){
-		 
-        $("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
-		$("#dlg_confirmamod").on("shown.bs.modal", function () {
-			$("#co_confirmamod_no").focus();
-				});
-    	
-	});
+ 
  
     $("#co_nuevo").on("click", function(e){
  		fn_nuevo();            
@@ -169,9 +161,7 @@ $(document).ready(function () {
 	});
 
 	
-	$("#div_modal").draggable({
-        handle: ".modal-header"
-    });
+	
 	
 
 
@@ -314,23 +304,8 @@ function fn_nuevo(){
 			
 	});
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_limpia_modal2() 
-{
-	$("#tx_val1").val("");
-	$("#tx_val1").val("");
-	$("#tx_descod").val("");
-	$("#tx_codigo").val("");
-    $("#tx_fecing").val("");
-	$("#tx_fecmod").val("");
-}
-function fn_Muestra_Filtro()
-{
-	$("#div_prin").slideUp();
-	$("#div_filtros").slideDown();
-	$(window).scrollTop(0);
 
-}
+
  
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
