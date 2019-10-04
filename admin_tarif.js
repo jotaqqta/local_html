@@ -311,19 +311,19 @@ function fn_nuevo(){
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 function fn_cb_unid_hab() {
-    $("#cb_unid_hab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>");
+    $("#cb_unid_hab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_subs() {
-    $("#cb_subs").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>");
+    $("#cb_subs").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_jub() {
-    $("#cb_jub").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>");
+    $("#cb_jub").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_prom() {
-    $("#cb_prom").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>");
+    $("#cb_prom").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_compe() {
-    $("#cb_compe").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>");
+    $("#cb_compe").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
 function fn_carga_grilla() {
