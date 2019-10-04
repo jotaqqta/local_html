@@ -154,22 +154,8 @@
 							</div>
 						</div>
 				    <br>
-		<div class="container" id="div_prim">
-			<div class="form-horizontal flex-wrap">
-				<label class="col-sm-4"></label>
-
-				<div class="mx-auto flex-wrap">
-					<button type="button" class="btn btn-basic" id="co_modif" name="co_modif"
-						style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
-						Modificar</button>
-					<button type="button" class="btn btn-basic" id="co_cerrar" name="co_cerrar"
-						style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-off"></span>
-						Cerrar</button>
-				</div>
+    			</div>
 			</div>
-		</div>
-    </div>
-</div>
 				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
                  <div id="param" class="tab-pane fade">
 				  	<div class="container">
@@ -177,9 +163,7 @@
                         <div class="container">
                             <div class="well well-sm">Datos Generales</div>
                         </div>                      
-						<div class="tab-content">
-				  <div id="param" class="tab-pane fade in active">
-				  	<div class="container">
+						
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_cant">Cantidad de Sectores</label>
@@ -193,7 +177,7 @@
 								<label for="tx_valdia">Valor Días </label>
 								<input id="tx_valdia" name="tx_valdia" type="text" class="form-control inp_dis">
 						  </div>
-                      </div>
+                      	</div>
 					  	<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label  for="tx_permin">Periodo Mínimo de Facturación</label>
@@ -364,11 +348,11 @@
 								<input id="tx_caltasa" name="tx_caltasa" type="text" class="form-control inp_dis">
 							</div>
                         </div>
-                    <br>
+                    	<br>
                         <div class="col-4 col-sm-4 col-md-4 col-lg-4">
                             <label for="tx_decima">Días</label>                           
                         </div>
-                    <br>
+                    	<br>
 					   <div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_dialib">Días Libro</label>
@@ -385,31 +369,42 @@
 						</div>                                            
 					</div>
 				</div>  
-            </div>
-        </div>                          
+                          
 				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
-                        <div id="generales" class="tab-pane fade">
+                 <div id="generales" class="tab-pane fade">
 				  	<div class="container">
                         <!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
                         <div class="container">
                             <div class="well well-sm">Base</div>
-                            <div class="tab-content">
-				  <div id="param" class="tab-pane fade in active">
-				  	<div class="container">
-						<div class="row">
-							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-								<label for="tx_cant">Interés NC</label>
-								<input id="tx_cant" name="tx_cant" type="text" class="form-control inp_dis">
-							</div>
-                        </div>                   
-				    </div>
-    			</div>
-            </div>
-       </div>
+							<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<label for="tx_cant">Interés NC</label>
+									<input id="tx_cant" name="tx_cant" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+    				</div>
+            	</div>
+			<div class="container" id="div_prim">
+				<div class="form-horizontal flex-wrap">
+					<label class="col-sm-4"></label>
+
+					<div class="mx-auto flex-wrap">
+						<button type="button" class="btn btn-basic" id="co_modif" name="co_modif"
+							style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
+							Modificar</button>
+						<button type="button" class="btn btn-basic" id="co_cerrar" name="co_cerrar"
+							style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-off"></span>
+							Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
-		
+		</div>
+		</div>
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		
 		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
