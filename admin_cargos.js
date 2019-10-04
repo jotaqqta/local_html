@@ -164,13 +164,13 @@ $("#co_volver2").on("click", function (e){
 				return;
 				    }
             if ($("#cb_car_aut").val() == "0"){
-					fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit, $("#cb_car_aut"));
+					fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit,$("#cb_car_aut"));
 				
 				return;
 				    }
       
-            if ($("#tx_ord_imp").val() == ""){
-					fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#tx_ord_imp"));
+            if ($("#tx_ord_i").val() == ""){
+					fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#tx_ord_i"));
 				
 				return;
 				    }
@@ -189,23 +189,22 @@ $("#co_volver2").on("click", function (e){
 					fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
 				
 				return;
-				    }
-        
-            if ($("#chk_comb").prop("checked",false)){
-					fn_mensaje_boostrap("SELECCIONE SI ES COMBENIBLE", g_tit, $("#chk_comb"));
-				
-				return;
-				    }else{
-            if($("#chk_amort").prop("checked", false)){
+            }
+            if($("#chk_amort").prop("checked",false)){
 					fn_mensaje_boostrap("SELECCIONE SI ES AMORTIZABLE", g_tit, $("#chk_amort"));
 				
 				return;
 				    }
-                    }
+              if ($("#chk_comb").prop("checked",false)){
+					fn_mensaje_boostrap("SELECCIONE SI ES COMBENIBLE", g_tit, $("#chk_comb"));
+				
+				return;
+				    }
+                
           
-           fn_mensaje_boostrap("Se genero", g_tit, $("#co_gen"));
+           fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
            fn_carga_grilla(); 
-            fn_limpiar_fi();
+        
             
         }
            });
@@ -231,23 +230,23 @@ $("#co_volver2").on("click", function (e){
                      $("#div_prin").slideUp();
 	                 $("#div_filtros").slideDown();
 	                 $(window).scrollTop(0);
-                     
+                     $grid_2.pqGrid("refreshView");
                     
                      $("#tx_cargo").val(dataCell.C1);
                      $("#tx_nom").val(dataCell.C2);
                      $("#cb_uni_med").val("2");
                      $("#tx_glosa").val(dataCell.C4);
                      $("#cb_car_aut").val("1");
-                     $("#tx_ord_imp").val(dataCell.C8);
+                     $("#tx_ord_i").val(dataCell.C8);
                      $("#tx_amort").val(dataCell.C5);
                      $("#tx_niv_imp").val(dataCell.C9);
                      $("#tx_niv_pre").val(dataCell.C10);
-                     $("#chk_comb").prop("checked", false);
-                     $("#chk_mort").prop("checked", false);   
-                     $("#inp_fec_ant").prop("disabled",true);
-                     $("#inp_fec_des").prop("disabled",true);
-                     $("#inp_fec_ant").val(dataCell.C6);
-                     $("#inp_fec_des").val(dataCell.C7);
+                     $("#chk_comb").prop("checked", true);
+                     $("#chk_amort").prop("checked", true);   
+                     $("#tx_fec_ant").prop("disabled",true);
+                     $("#tx_fec_des").prop("disabled",true);
+                     $("#tx_fec_ant").val(dataCell.C6);
+                     $("#tx_fec_des").val(dataCell.C7);
                     
                 }
             fn_carga_grilla();
@@ -317,7 +316,7 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: '0001', C2: 'CONSUMO DE AGUA', C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:110419,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
+             { C1: '0001', C2: 'CONSUMO DE AGUA', C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
              { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},
              { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'}, 
              { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL',C3:'UNIDAD',C4:'GEP-003-TX',C5:'10000',C6:11042019,C7:12042019,C8:'122-222-22',C9:'1',C10:'2',C10:'3'},	 
@@ -349,8 +348,8 @@ function fn_setea_grid_principal() {
         { title: "Unidad de medida",width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: true },
 		{ title: "Glosa en documento", width: 400, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: true  }, 
         { title: "Cargo automatico",width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center",  hidden: true },
-		{ title: "Fecha activación",width: 400, dataType: "string", dataIndx: "C6", halign: "center", align: "center",  hidden: true  }, 
-        { title: "Fecha desactivación",width: 100, dataType: "string", dataIndx: "C7", halign: "center", align: "center", hidden: true },
+		{ title: "Fecha activación",width: 400, dataType: "number", dataIndx: "C6", halign: "center", align: "center",  hidden: true  }, 
+        { title: "Fecha desactivación",width: 100, dataType: "number", dataIndx: "C7", halign: "center", align: "center", hidden: true },
 		{ title: "Orden de impresión",width: 400, dataType: "string", dataIndx: "C8", halign: "center", align: "center", hidden: true  }, 
         { title: "Nivel de amortización",width: 100, dataType: "string", dataIndx: "C9", halign: "center", align: "center",  hidden: true },
 		{ title: "Nivel de impresión",width: 400, dataType: "string", dataIndx: "C10", halign: "center", align: "center", hidden: true  },
@@ -445,14 +444,16 @@ function fn_limpiar_fi(){
     $("#cb_uni_med").val("");
     $("#tx_glosa").val("");
     $("#cb_car_aut").val("");
-    $("#tx_ord_imp").val("");
+    $("#tx_ord_i").val("");
     $("#tx_amort").val("");
     $("#tx_niv_imp").val("");
     $("#tx_niv_pre").val("");
     $("#tx_cargo").focus("");    
-    $("#tx_cargo").focus(""); 
+    $("#tx_cargo").focus("");
+    $("#tx_fec_ant").val("");
+    $("#tx_fec_des").val("");
     $("#chk_comb").prop("checked", false);
-    $("#chk_mort").prop("checked", false);
+    $("#chk_amort").prop("checked", false);
 }
 
 
