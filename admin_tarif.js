@@ -61,7 +61,7 @@ $(document).ready(function () {
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-
+	$("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
@@ -244,6 +244,7 @@ function fn_setea_grid_principal() {
 			cls: "pq-toolbar-export",
 			items:[
 				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" }, 
+				{ type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}               
 				]
 		},
