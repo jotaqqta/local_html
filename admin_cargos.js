@@ -69,6 +69,7 @@ $(document).ready(function () {
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
     $("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+    $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 
@@ -356,17 +357,17 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Codigo", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripcion", width: 400, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Descripcion", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
         { title: "Unidad de medida", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: true },
-        { title: "Glosa en documento", width: 400, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: true },
+        { title: "Glosa en documento", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: true },
         { title: "Cargo automatico", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: true },
-        { title: "Fecha activación", width: 400, dataType: "number", dataIndx: "C6", halign: "center", align: "center", hidden: true },
+        { title: "Fecha activación", width: 100, dataType: "number", dataIndx: "C6", halign: "center", align: "center", hidden: true },
         { title: "Fecha desactivación", width: 100, dataType: "number", dataIndx: "C7", halign: "center", align: "center", hidden: true },
-        { title: "Orden de impresión", width: 400, dataType: "string", dataIndx: "C8", halign: "center", align: "center", hidden: true },
+        { title: "Orden de impresión", width: 100, dataType: "string", dataIndx: "C8", halign: "center", align: "center", hidden: true },
         { title: "Nivel de amortización", width: 100, dataType: "number", dataIndx: "C9", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de impresión", width: 400, dataType: "number", dataIndx: "C10", halign: "center", align: "center", hidden: true },
+        { title: "Nivel de impresión", width: 100, dataType: "number", dataIndx: "C10", halign: "center", align: "center", hidden: true },
         { title: "Nivel de amortización", width: 100, dataType: "number", dataIndx: "C11", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de presentación", width: 400, dataType: "number", dataIndx: "C11", halign: "center", align: "center", hidden: true }
+        { title: "Nivel de presentación", width: 100, dataType: "number", dataIndx: "C11", halign: "center", align: "center", hidden: true }
     ];
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
