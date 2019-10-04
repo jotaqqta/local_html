@@ -71,12 +71,14 @@
     <div class="bootstrap-syn">
 
 		<div class="container" id="div_prim">
+            <!-- FORMULARIO DE LA PRIMERA PESTAÑA -->
 			<br>
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab"  href="#Principal">Mantenedor Empresa</a></li>
 				<li><a data-toggle="tab" href="#param">Instalación Parámetros</a></li>
 				<li><a data-toggle="tab" href="#generales">Otros Datos Generales</a></li>
 			</ul>
+            <!-- INFORMACION DEL PRIMER FORMULARIO -->
 			<div class="tab-content">
 				<div id="Principal" class="tab-pane fade in active">
 				  	<div class="container">
@@ -151,24 +153,241 @@
 								<select class="form-control inp_dis" id="cb_estado" name="cb_estado"></select>
 							</div>
 						</div>
-					</div>
-				</div>  
+				    <br>
+		<div class="container" id="div_prim">
+			<div class="form-horizontal flex-wrap">
+				<label class="col-sm-4"></label>
+
+				<div class="mx-auto flex-wrap">
+					<button type="button" class="btn btn-basic" id="co_modif" name="co_modif"
+						style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
+						Modificar</button>
+					<button type="button" class="btn btn-basic" id="co_cerrar" name="co_cerrar"
+						style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-off"></span>
+						Cerrar</button>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
 				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
-				<div id="param" class="tab-pane fade">
+                 <div id="param" class="tab-pane fade">
 				  	<div class="container">
 						<!-- INFORMACION DEL SEGUNDO FORMULARIO -->
+                    <br> 
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_histo">Datos Generales</label>
+                        </div>
+                    <br>  
+						<div class="tab-content">
+				  <div id="Principal" class="tab-pane fade in active">
+				  	<div class="container">
 						<div class="row">
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label >Prueba</label>
-								<input id="tx_prueba" name="tx_prueba" type="text" class="form-control inp_dis">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_cant">Cantidad de Sectores</label>
+								<input id="tx_cant" name="tx_cant" type="text" class="form-control inp_dis">
 							</div>
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label>Prueba2</label>
-								<input id="tx_prueba2" name="tx_prueba2" type="text" class="form-control inp_dis">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_numcuen">Numero Cuenta Corriente</label>
+								<input id="tx_numcuen" name="tx_numcuen" type="text" class="form-control inp_dis">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_valdia">Valor Días </label>
+								<input id="tx_valdia" name="tx_valdia" type="text" class="form-control inp_dis">
+						  </div>
+                      </div>
+					  	<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_permin">Periodo Mínimo de Facturación</label>
+								<input id="tx_permin" name="tx_permin" type="text" class="form-control inp_dis" value="">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_parsen">Parametro Sencillo</label>
+								<input id="tx_parsen" name="tx_parsen" type="text" class="form-control inp_dis" value="">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_fecpag">Fecha Día Proceso Pago</label>
+								<input id="tx_fecpag" name="tx_fecpag" type="text" class="form-control inp_dis" value="">
+							</div>
+                        </div>
+
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="cb_mone">Moneda Local</label>
+								<select id="tx_mone" name="tx_mone" type="text" class="form-control inp_dis"></select>
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_simil">Símbolo Miles</label>
+								<input id="tx_simil" name="tx_simil" type="text" class="form-control inp_dis">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_simde">Símbolo Decimales</label>
+								<input id="tx_simde" name="tx_simde" type="text" class="form-control inp_dis">
 							</div>
 						</div>
+
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_radica">Radica Deuda</label>
+								<select id="tx_radica" name="tx_radica" type="text" class="form-control inp_dis"></select>
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_bolse">Cantidad Bolsa de Sellos</label>
+								<input id="tx_bolse" name="tx_bolse" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+                    <br> 
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_limgen">Límites Generales</label>
+                        </div>
+                    <br>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin30">Límite Mínimo 30</label>
+								<input id="tx_limin30" name="tx_limin30" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin60">Límite Mínimo 60</label>
+								<input id="tx_limin60" name="tx_limin60" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin">Límite Mínimo</label>
+								<input id="tx_limin" name="tx_limin" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limax30">Límite Máximo 30</label>
+								<input id="tx_limax30" name="tx_limax30" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limax60">Límite Máximo 60</label>
+								<input id="tx_limax60" name="tx_limax60" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+				    <br> 
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_histo">Números Históricos</label>
+                        </div>
+                    <br>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_fact">Facturación</label>
+								<input id="tx_fact" name="tx_fact" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_conve">Convenio</label>
+								<input id="tx_conve" name="tx_conve" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_refac">Refacturación</label>
+								<input id="tx_refac" name="tx_refac" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_corte">Corte</label>
+								<input id="tx_corte" name="tx_corte" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_pagos">Pagos</label>
+								<input id="tx_pagos" name="tx_pagos" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                    <br> 
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_irreg">Irregularidades</label>
+                        </div>
+                    <br>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_consup">Consumo Superior</label>
+								<input id="tx_consup" name="tx_consup" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_disup">Diámetro Superior</label>
+								<input id="tx_litx_disupmin60" name="tx_disup" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_consumo">Consumo</label>
+								<input id="tx_consumo" name="tx_consumo" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_porinf">Porcentaje Inferior</label>
+								<input id="tx_porinf" name="tx_porinf" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_porsup">Porcentaje Superior</label>
+								<input id="tx_porsup" name="tx_porsup" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_facinfe">Factor Est inferior</label>
+								<input id="tx_facinfe" name="tx_facinfe" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_facsup">Factor Est Superior</label>
+								<input id="tx_facsup" name="tx_facsup" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                    <br> 
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_decima">Decimales</label>
+                        </div>
+                    <br>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desfis">Despliegue Físico</label>
+								<input id="tx_desfis" name="tx_desfis" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desmon">Despliegue Monetario</label>
+								<input id="tx_desmon" name="tx_desmon" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_destasa">Despliegue Tasas</label>
+								<input id="tx_destasa" name="tx_destasa" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_calfis">Cálculo Físico</label>
+								<input id="tx_calfis" name="tx_calfis" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_calmon">Cálculo Monetario</label>
+								<input id="tx_calmon" name="tx_calmon" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_caltasa">Cálculo Tasas</label>
+								<input id="tx_caltasa" name="tx_caltasa" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                    <br>
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label for="tx_decima">Días</label>
+                        </div>
+                    <br>
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desfis">Días Libro</label>
+								<input id="tx_desfis" name="tx_desfis" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desmon">Días Facturación</label>
+								<input id="tx_desmon" name="tx_desmon" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_destasa">Días Reparto</label>
+								<input id="tx_destasa" name="tx_destasa" type="text" class="form-control inp_dis">
+							</div>
+						</div>                                            
 					</div>
-				</div>
+				</div>  
+				
 				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
 				<div id="generales" class="tab-pane fade">
 				  	<div class="container">
@@ -187,21 +406,6 @@
 				</div>
 			</div>
 		<br>
-		<div class="container" id="div_prim">
-			<div class="form-horizontal flex-wrap">
-				<label class="col-sm-4"></label>
-
-				<div class="mx-auto flex-wrap">
-					<button type="button" class="btn btn-basic" id="co_mod" name="co_mod"
-						style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
-						Modificar</button>
-					<button type="button" class="btn btn-basic" id="co_basic" name="co_basic"
-						style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-off"></span>
-						Cerrar</button>
-
-				</div>
-			</div>
-		</div>
     </div>
 </div>
 
