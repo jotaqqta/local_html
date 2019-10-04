@@ -32,7 +32,7 @@
 
 	<!-- Paramquery -->
 	<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
-	<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+	<link rel="stylesheet" href="pqgrid/v5.6/themes/bootstrap/pqgrid.css">
 	<script src="pqgrid/v5.6/pqgrid.min.js"></script>
 	<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
 
@@ -96,10 +96,8 @@
 	<div class="bootstrap-syn">
 		<br>
 		<div class="container">
-
-
 			<div id="div_prin">
-				<div class="panel-body" id="bd_prin">
+				<div class="" id="bd_prin">
 					<!-- PARAMQUERY PRINCIPAL -->
 					<div id="div_grid_principal">
 
@@ -116,60 +114,49 @@
 						<h4 class="modal-title" data-dismiss="modal">Administrador de tarifas</h4>
 					</div>
 					<div class="modal-body">
-						<form role="form" class="form-horizontal" id="frm_filtro">
-								<div class="row">
-										<div class="col-xs-12">
-										<label for="tx_cod">Codigo</label>
+						<form role="form" class="form-horizontal flex-wrap" id="frm_filtro">
+							<div class="row">
+								<div class="col-xs-6">
+									<label for="tx_cod">Codigo</label>
 									<input id="tx_cod" name="tx_cod" class="form-control input-normal inp_dis">
-										</div>	
-									  </div>
-									<div class="row">
-										   <div class="col-xs-12">
-											<label for="tx_desc">Descripcción</label>
+								</div>
+							<div class="col-xs-6">
+									<label for="tx_desc">Descripcción</label>
 									<input id="tx_desc" name="tx_desc" class="form-control input-normal inp_dis">
-										</div>
 								</div>
-								<div class="row">
-										<div class="col-xs-12">
-										<label for="cb_unid_hab">Unidad Habitacional</label>
-									<select id="cb_unid_hab" name="cb_unid_hab" class="form-control input-normal inp_dis">
-									</select>	
-									</div>	
-									  </div>
-									<div class="row">
-										   <div class="col-xs-12">
-											<label for="tx_cons">Consumo minimo</label>
+							<div class="col-xs-6">
+									<label for="cb_unid_hab">Unidad Habitacional</label>
+									<select id="cb_unid_hab" name="cb_unid_hab"
+										class="form-control input-normal inp_dis">
+									</select>
+								</div>
+						    <div class="col-xs-6">
+									<label for="tx_cons">Consumo minimo</label>
 									<input id="tx_cons" name="tx_cons" class="form-control input-normal inp_dis">
-										</div>
 								</div>
-								<div class="row">
-										<div class="col-xs-12">
-										<label for="cb_subs">Subsidio</label>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<label for="cb_subs">Subsidio</label>
 									<select id="cb_subs" name="cb_subs" class="form-control input-normal inp_dis">
-									</select>	
-									</div>	
-									  </div>
-									<div class="row">
-										   <div class="col-xs-12">
-											<label for="cb_jub">Jubilado</label>
+									</select>
+								</div>
+								<div class="col-xs-6">
+									<label for="cb_jub">Jubilado</label>
 									<select id="cb_jub" name="cb_jub" class="form-control input-normal inp_dis">
-									</select>	
-									</div>
+									</select>
 								</div>
-								<div class="row">
-										<div class="col-xs-12">
-										<label for="cb_prom">Promedio area</label>
+                                <div class="col-xs-6">
+									<label for="cb_prom">Promedio area</label>
 									<select id="cb_prom" name="cb_prom" class="form-control input-normal inp_dis">
-									</select>	
-									</div>	
-									  </div>
-									<div class="row">
-										   <div class="col-xs-12">
-											<label for="cb_compe">Es compensable</label>
-									<select id="cb_compe" name="cb_compe" class="form-control input-normal inp_dis">
-									</select>	
-									</div>
+									</select>
 								</div>
+                                <div class="col-xs-6">
+									<label for="cb_compe">Es compensable</label>
+									<select id="cb_compe" name="cb_compe" class="form-control input-normal inp_dis">
+									</select>
+								</div>
+							</div>
 
 						</form>
 					</div>

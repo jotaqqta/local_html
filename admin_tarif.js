@@ -22,10 +22,10 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-	jQuery('#tx_cod').keypress(function (tecla) {
+	jQuery('#tx_cod').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-    jQuery('#tx_cons').keypress(function (tecla) {
+    jQuery('#tx_cons').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 	
@@ -59,11 +59,9 @@ $(document).ready(function () {
     fn_cb_subs();
     fn_cb_unid_hab();
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	$("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
-    $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
-	$("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
+	$("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //BOTONES-EVENTOS
@@ -73,7 +71,7 @@ $(document).ready(function () {
     $("#co_cerrar_t").on("click", function(e){
         window.close(); 
     });
-    $("#co_guardar").on("click", function () {
+    $("#co_guardar").on("click", function() {
 		
         if ($.trim($("#co_guardar").text()) == "Guardar") {
             if ($("#tx_desc").val() == "") {
@@ -117,8 +115,9 @@ $(document).ready(function () {
             fn_carga_grilla();
             fn_limpiar();
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-        
+			$("#div_filtro_bts").slideUp();
+			$('#div_filtro_bts').modal('hide');	
+            $(window).scrollTop(0);
 
         }
     });
@@ -141,14 +140,7 @@ $(document).ready(function () {
     });
  
 //BOTONES ELIMINAR DE LAS GRILLAS
-    $("#co_eliminar").on("click", function(e){
-		 
-        $("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
-		$("#dlg_confirmamod").on("shown.bs.modal", function () {
-			$("#co_confirmamod_no").focus();
-				});
-    	
-	});
+ 
  
     $("#co_nuevo").on("click", function(e){
  		fn_nuevo();            
@@ -169,9 +161,7 @@ $(document).ready(function () {
 	});
 
 	
-	$("#div_modal").draggable({
-        handle: ".modal-header"
-    });
+	
 	
 
 
@@ -246,7 +236,7 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Administrador de cargos",
+		title: "Administrador de tarifas",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
@@ -254,6 +244,7 @@ function fn_setea_grid_principal() {
 			cls: "pq-toolbar-export",
 			items:[
 				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" }, 
+				{ type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}               
 				]
 		},
@@ -291,14 +282,14 @@ function fn_setea_grid_principal() {
 	};
 	
     obj.colModel = [
-		{ title: "Codigo", width: 100, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripcion", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
-        { title: "Unidad de habitad",width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "Consumo minimo", width: 100, dataType: "number", dataIndx: "C4", halign: "center", align: "center"},
-        { title: "Subsidio",width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Jubilado", width: 100, dataType: "string", dataIndx: "C6", halign: "center", align: "center"},
-        { title: "Promedio area",width: 100, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-		{ title: "Es compensable", width: 100, dataType: "string", dataIndx: "C8", halign: "center", align: "center"} 
+		{ title: "Codigo", width:55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
+        { title: "Unidad de habitad",width: 60, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "Consumo minimo", width: 70, dataType: "number", dataIndx: "C4", halign: "center", align: "center"},
+        { title: "Subsidio",width: 70, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "Jubilado", width: 70, dataType: "string", dataIndx: "C6", halign: "center", align: "center"},
+        { title: "Promedio area",width: 70, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+		{ title: "Es compensable", width: 90, dataType: "string", dataIndx: "C8", halign: "center", align: "center"} 
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -314,41 +305,26 @@ function fn_nuevo(){
 			
 	});
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_limpia_modal2() 
-{
-	$("#tx_val1").val("");
-	$("#tx_val1").val("");
-	$("#tx_descod").val("");
-	$("#tx_codigo").val("");
-    $("#tx_fecing").val("");
-	$("#tx_fecmod").val("");
-}
-function fn_Muestra_Filtro()
-{
-	$("#div_prin").slideUp();
-	$("#div_filtros").slideDown();
-	$(window).scrollTop(0);
 
-}
+
  
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 function fn_cb_unid_hab() {
-    $("#cb_unid_hab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_unid_hab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_subs() {
-    $("#cb_subs").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_subs").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_jub() {
-    $("#cb_jub").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_jub").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_prom() {
-    $("#cb_prom").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_prom").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_cb_compe() {
-    $("#cb_compe").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_compe").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
 function fn_carga_grilla() {
