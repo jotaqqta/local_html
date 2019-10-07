@@ -4,6 +4,7 @@ var parameters={};
 var my_url="reasigna_ajuste.asp";
 var $grid;
 var $grid_2;
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function(e){
 
@@ -73,22 +74,17 @@ $(document).ready(function(){
 
             	fn_leer()
             	$("#tx_num").prop("disabled",true);
-            	$("#tx_num").focus();                
+				$("#tx_num").focus();  
+				$("#co_leer").prop("disabled",true);              
             }
-			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+
+			
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			//fn_carga_orden();
+		
           }
     });
-    $("#co_leer").on("click", function(){
-    if ($.trim($("#co_leer").text())=="Actualizar"){
-    fn_carga_orden();
-    
-	}
-	
-    });
-    
-	$("#tx_num").bind("keydown",function(e){
+  
+    $("#tx_num").bind("keydown",function(e){
 		if(e.keyCode == 13){
 			tab = true;
 			fn_leer();
@@ -100,25 +96,56 @@ $(document).ready(function(){
 		if ($.trim($("#co_cancelar").text())=="Cancelar"){
 			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");			     
-			fn_limpiar();    
+			$("#co_leer").prop("disabled",false);  
+			fn_limpiar();  
+
 			return;
 		}
 		else
 			window.close();
+	});
+	
+
+    $("#co_cancel_2").on("click", function() {
+		$('#div_filtro_bts').modal('hide');
     });
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 $("._input_selector").inputmask("dd/mm/yyyy");
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
+
+$grid.pqGrid({
+	rowDblClick: function fn_sss(event, ui) {
+		if (ui.rowData) {
+		  
+	
+         	$("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
+			$("#div_filtro_bts").on("shown.bs.modal", function () {
+			$("#div_filtro_bts div.modal-footer button").focus();
+			});
+			
+		}
+			
+
+
+
+	}
+});
+
+$("#div_filtro_bts").draggable({
+	handle: ".modal-header"
+});
+
+
 });
 function fn_setea_grid_principal()
 { 
+
 	data= [
 		{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
-		
-
-
 	];
     var obj = {
     title: "Ordenes de cambio",
@@ -129,11 +156,12 @@ function fn_setea_grid_principal()
 	rowBorders: true,
 	columnBorders: true,
 	collapsible:true,
+	editable:false,
 	numberCell: { show: false },
 	pasteModel: { on: false },
 	selectionModel: { type: 'row',mode:'single'},
 	numberCell: { show: true, align: "center" },
-	height: 200,
+	height: 300,
 	width: "100%",
 	toolbar: {
 		items: [
@@ -150,17 +178,7 @@ function fn_setea_grid_principal()
 	pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
 	colModel:
 	[
-		{ dataIndx: "state", maxWidth: 30, minWidth: 30, align: "center", resizable: false,
-			title: "",
-			menuIcon: false,
-		
-			type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
-			dataType: 'bool',
-			cb: {
-				all: false, //checkbox selection in the header affect current page only.
-				header: false //show checkbox in header. 
-			}
-		},
+	
 		{ title: "Correlativo",  resizable: false, width: 78, dataType: "number", dataIndx: "C1",align:"center" },
 		{ title: "Nro Orden", width: 160, dataType: "number", dataIndx: "C2", align:"center" },
 		{ title: "Tipo Cambio", width: 240, dataType: "string", dataIndx: "C3",halign:"center", align:"lefth" },
@@ -173,6 +191,7 @@ function fn_setea_grid_principal()
 		{ title: "Contratista",width: 200, dataType: "string", dataIndx: "C10",halign:"center", align:"center"},
 		{ title: "Inspector Ejecutor",width: 200, dataType: "string", dataIndx: "C11",halign:"center", align:"center"},
 		{ title: "Usuario Creación Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
+		{ title: "Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
 		{ title: "Envio Carta",width: 150, dataType: "string", dataIndx: "C13",halign:"center", align:"center"},  
 		{ title: "Autorización Cliente",width: 200, dataType: "string", dataIndx: "C14",halign:"center", align:"center"},   	
 		{ title: "Motivo",width: 200, dataType: "string", dataIndx: "C15",halign:"center", align:"center"}  	
@@ -182,6 +201,8 @@ function fn_setea_grid_principal()
 	}
 };
 $grid = $("#div_grid_pri").pqGrid(obj);
+
+
 
 data2= [
 	{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
@@ -239,14 +260,9 @@ var obj = {
 	}
 };
 $grid_2 = $("#div_grid_sec").pqGrid(obj);
+$grid_2.pqGrid("refreshView");
+
 }
-
-
-
-
-
-
-
 
 function fn_carga_orden()
 {
@@ -266,8 +282,13 @@ function fn_leer(){
 	    $("#tx_ruta").val("8000-01-244");
 	    $("#tx_tarif").val("Residencial");
 	    $("#tx_fec").val(12042019);
-	
+		$("#chk_cli_gran").prop("checked", true);
+		
 	}
+}
+function fn_carga_grilla(){
+
+	$grid_2.pqGrid("refreshView");
 }
 
 

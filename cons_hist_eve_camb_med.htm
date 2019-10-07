@@ -167,20 +167,35 @@
 				<!-- PARAMQUERY SECUNDARIO -->
 				<div id="div_grid_pri"> </div>
 			</div>
-			<br>
 			<br>    
-            <div class="container">
-				<!-- PARAMQUERY SECUNDARIO -->
-				<div id="div_grid_sec"> </div>
+            <!--Modal-->
+			<div id="div_filtro_bts" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+							<h4 class="modal-title" data-dismiss="modal">Administrador de tarifas</h4>
+						</div>
+						<div class="modal-body">
+					
+						<!-- PARAMQUERY SECUNDARIO -->
+						<div id="div_grid_sec"> </div>
+						
+						</div>
+						<div class="modal-footer">
+					      <button type="button" data-dismiss="modal" class="btn btn-default" id="co_cancel_2" name ="co_cancel_2"><span
+									class="glyphicon glyphicon-off"></span>Cancelar</button>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>	
 
 		<div class="container">
 			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
 		
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
-		
+		</div>
 		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
 			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
 			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
