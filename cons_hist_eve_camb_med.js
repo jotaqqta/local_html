@@ -143,7 +143,7 @@ function fn_setea_grid_principal()
 	editModel: {
 		clicksToEdit: false,
 		keyUpDown: false,
-		pressToEdit: false ,
+		pressToEdit: false,
 		cellBorderWidth: 0
 	},
 	scrollModel:{theme:true},
@@ -212,6 +212,12 @@ var obj = {
 		items: [
 		{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
 	]
+	},
+	editModel: {
+		clicksToEdit: false,
+		keyUpDown: false,
+		pressToEdit: false,
+		cellBorderWidth: 0
 	},
 	scrollModel:{theme:true},
 	pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
