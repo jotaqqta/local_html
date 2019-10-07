@@ -129,7 +129,6 @@ function fn_setea_grid_principal()
 	rowBorders: true,
 	columnBorders: true,
 	collapsible:true,
-	editable:true,
 	numberCell: { show: false },
 	pasteModel: { on: false },
 	selectionModel: { type: 'row',mode:'single'},
@@ -141,6 +140,12 @@ function fn_setea_grid_principal()
 		{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
 	]
 	},
+	editModel: {
+		clicksToEdit: false,
+		keyUpDown: false,
+		pressToEdit: false ,
+		cellBorderWidth: 0
+	},
 	scrollModel:{theme:true},
 	pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
 	colModel:
@@ -148,6 +153,7 @@ function fn_setea_grid_principal()
 		{ dataIndx: "state", maxWidth: 30, minWidth: 30, align: "center", resizable: false,
 			title: "",
 			menuIcon: false,
+		
 			type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
 			dataType: 'bool',
 			cb: {
