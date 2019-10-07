@@ -99,8 +99,8 @@
 					</div>
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tx_cenoper">Cenoper</label>
-                                <input disabled id="tx_cenoper" name="tx_cenoper" type="text" class="form-control inp_dis" readonly>
+                                <label for="tx_regi">Regional</label>
+                                <input disabled id="tx_regi" name="tx_regi" type="text" class="form-control inp_dis" readonly>
                             </div>
                         </div>
 				</div>
@@ -146,12 +146,32 @@
 						</div>
 					</div>
 				</div>
-		      <br>
+			  <br>
+			  <div class="container">
+				<div class="checkbox">
+                <label class="control-label col-sm-3"></label>
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3"> 
+                <input type="checkbox" id="chk_cli_gran" name="chk_cli_gran" value="1">Cliente Grande
+                </div>
+                </div>
+                <div class="checkbox">
+                <label class="control-label col-sm-2"></label>
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">    
+                <input type="checkbox" id="chk_cli_norm" name="chk_cli_norm" value="2">Cliente Normal
+                </div>
+            </div>
+            </div> 
         </div> 
 			<br>   
             <div class="container">
 				<!-- PARAMQUERY SECUNDARIO -->
-				<div id="div_grid_dos"> </div>
+				<div id="div_grid_pri"> </div>
+			</div>
+			<br>
+			<br>    
+            <div class="container">
+				<!-- PARAMQUERY SECUNDARIO -->
+				<div id="div_grid_sec"> </div>
 			</div>
 		</div>	
 
