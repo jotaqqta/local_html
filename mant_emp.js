@@ -30,24 +30,146 @@ $(document).ready(function() {
 		
 	$("#tx_cliente").focus();
    
-    fn_marca();
-	fn_diametro();
-    fn_tarifa();
-    fn_provincia();
+    fn_giro();
+	fn_localidad();
+    fn_monedalocal();
+    fn_radica();
+    fn_estado();
+    fn_resumen();
     
-   
-
-
     
+    
+        
     $("._input_selector").inputmask("dd/mm/yyyy");
     $('input[name="optradio"]').prop('disabled', false);
-      
-	jQuery('#num_cli').keypress(function(tecla) {
+    ///Validación Solo números pestaña "Mantenedor Empresa"/// 
+	jQuery('#tx_rut').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
-    jQuery('#num_med').keypress(function(tecla) {
+    jQuery('#tx_tel').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
+    jQuery('#tx_fax').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Validación Solo números pestaña "Instalación Parámetros"///
+    ///Datos Generales///
+    jQuery('#tx_cantsec').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_numcuen').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_valdia').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_permin').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_parsen').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_bolse').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Limites Generales///
+    jQuery('#tx_limin30').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_limin60').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_limin').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_limax30').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_limax60').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Números Históricos///
+     jQuery('#tx_fact').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_conve').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_refac').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_corte').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_pagos').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Irregularidades///
+    jQuery('#tx_consup').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_disup').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_consumo').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_porinf').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_porsup').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+     jQuery('#tx_facinfe').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_facsup').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Decimales///
+    jQuery('#tx_desfis').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_desmon').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_destasa').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_calfis').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_calmon').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+     jQuery('#tx_caltasa').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Días///
+    jQuery('#tx_dialib').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_difac').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_diarep').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+     ///Validación Solo números pestaña "Otros Datos Generales"///
+    ///Formato Fecha///
+    jQuery('#tx_externo').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    jQuery('#tx_interno').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    ///Otros///
+    jQuery('#cb_canrefac').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+    
+    
+    
      //BOTONES-EVENTOS
 	 $("#co_cancelar").on("click", function (e) {
         window.close(); 
@@ -146,41 +268,37 @@ $(document).ready(function() {
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_marca() {
+function fn_giro() {
 
 
-	$("#mar_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_giro").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_diametro() {
+function fn_localidad() {
 
 
-	$("#diam_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_local").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_tarifa() {
+function fn_monedalocal() {
 
 
-	$("#tar_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_mone").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_provincia() {
+function fn_radica() {
 
 
-	$("#cb_prov").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_radica").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_distrito() {
+function fn_estado() {
 
 
-	$("#cb_dist").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_estado").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_corregimiento() {
+function fn_resumen() {
 
 
-	$("#cb_corre").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_facres").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_barrio() {
 
-
-	$("#cb_barrio").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
 function fn_carga_grilla(){
     
     

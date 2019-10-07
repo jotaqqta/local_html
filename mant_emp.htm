@@ -121,36 +121,36 @@
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="cb_giro">Código Giro</label>
-								<select id="cb_giro" name="cb_giro" type="text" class="form-control inp_dis"></select>
+								<select id="cb_giro" name="cb_giro" class="form-control inp_dis"></select>
 							</div>
 						</div>
 
 					   <div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_tel">Teléfono</label>
-								<input class="form-control inp_dis" id="tx_tel" name="tx_tel">
+								<input id="tx_tel" name="tx_tel" type="text" class="form-control inp_dis">
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_fax">Fax</label>
-								<input class="form-control inp_dis" id="tx_fax" name="tx_fax">
+								<input id="tx_fax" name="tx_fax" type="text" class="form-control inp_dis">
 							</div>
 						</div>
 
 						<div class="row">			      
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_repre">Representante Legal</label>
-								<input class="form-control inp_dis" id="tx_repre" name="tx_repre">
+								<input id="tx_repre" name="tx_repre" type="text" class="form-control inp_dis">
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label class="" for="cb_local">Localidad</label>
-								<select id="cb_local" name="cb_local" type="text" class="form-control inp_dis"></select>
+								<select id="cb_local" name="cb_local" class="form-control inp_dis"></select>
 							</div>
 						</div>
 
 						<div class="row">			      
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="cb_estado">Estado</label>
-								<select class="form-control inp_dis" id="cb_estado" name="cb_estado"></select>
+								<select id="cb_estado" name="cb_estado" class="form-control inp_dis"></select>
 							</div>
 						</div>
 				    <br>
@@ -165,8 +165,8 @@
                             </div>
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-								<label for="tx_cant">Cantidad de Sectores</label>
-								<input id="tx_cant" name="tx_cant" type="text" class="form-control inp_dis">
+								<label for="tx_cantsec">Cantidad de Sectores</label>
+								<input id="tx_cantsec" name="tx_cantsec" type="text" class="form-control inp_dis">
 							</div>
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_numcuen">Numero Cuenta Corriente</label>
@@ -195,7 +195,7 @@
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label  for="cb_mone">Moneda Local</label>
-								<select id="tx_mone" name="tx_mone" type="text" class="form-control inp_dis"></select>
+								<select id="cb_mone" name="cb_mone" class="form-control inp_dis"></select>
 							</div>
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_simil">Símbolo Miles</label>
@@ -209,8 +209,8 @@
 
 						<div class="row">
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-								<label  for="tx_radica">Radica Deuda</label>
-								<select id="tx_radica" name="tx_radica" type="text" class="form-control inp_dis"></select>
+								<label  for="cb_radica">Radica Deuda</label>
+								<select id="cb_radica" name="cb_radica" class="form-control inp_dis"></select>
 							</div>
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label  for="tx_bolse">Cantidad Bolsa de Sellos</label>
@@ -281,7 +281,7 @@
 							</div>
 							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_disup">Diámetro Superior</label>
-								<input id="tx_litx_disupmin60" name="tx_disup" type="text" class="form-control inp_dis">
+								<input id="tx_disup" name="tx_disup" type="text" class="form-control inp_dis">
 							</div>
                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="tx_consumo">Consumo</label>
@@ -361,11 +361,11 @@
                           
 				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
                  <div id="generales" class="tab-pane fade">
-				  	<div class="container">
+				  	        <div class="container">
                         <!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
                             <div class="container">
                                 <div class="well well-sm">Base</div>
-							<div class="row">
+				       <div class="row">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 									<label for="tx_int">Interés NC</label>
 									<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
@@ -389,7 +389,7 @@
 								</div>
                         	</div>                   
 				    	</div>
-                        <div class="container">
+                            <div class="container">
                                 <div class="well well-sm">Iconos</div>
 							<div class="row">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
@@ -402,7 +402,7 @@
 								</div>
                         	</div>                   
 				    	</div>
-                        <div class="container">
+                            <div class="container">
                                 <div class="well well-sm">Otros</div>
 							<div class="row">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
@@ -414,12 +414,12 @@
 								    <input id="tx_modoref" name="tx_modoref" type="text" class="form-control inp_dis">
 								</div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								    <label for="tx_facres">Factura Resumen</label>
-								    <input id="tx_facres" name="tx_facres" type="text" class="form-control inp_dis">
+								    <label for="cb_facres">Factura Resumen</label>
+                                    <select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
 								</div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								    <label for="cb_canrefac">Cantidad Mótivos de Refacturación</label>
-                                    <select id="cb_canrefac" name="cb_canrefac" type="text" class="form-control inp_dis"></select>
+								    <label for="tx_canrefac">Cantidad Mótivos de Refacturación</label>
+                                    <input id="tx_canrefac" name="tx_canrefac" class="form-control inp_dis">
 								</div>
                         	</div>                   
 				    	</div>
