@@ -190,7 +190,7 @@ function fn_setea_grid_principal()
 		{ title: "Acción Realizada",width: 200, dataType: "string", dataIndx: "C9",halign:"center", align:"center"},
 		{ title: "Contratista",width: 200, dataType: "string", dataIndx: "C10",halign:"center", align:"center"},
 		{ title: "Inspector Ejecutor",width: 200, dataType: "string", dataIndx: "C11",halign:"center", align:"center"},
-		{ title: "Usuario Creación Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
+		{ title: "Usuario Creación",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
 		{ title: "Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
 		{ title: "Envio Carta",width: 150, dataType: "string", dataIndx: "C13",halign:"center", align:"center"},  
 		{ title: "Autorización Cliente",width: 200, dataType: "string", dataIndx: "C14",halign:"center", align:"center"},   	
