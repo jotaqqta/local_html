@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta http-equiv="X-UA-Compatible" content="IE=10">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="cache-control" content="max-age=0">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<!-- Jquery -->
+		<link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+		<script src="jquery/jquery-3.1.1.min.js"></script>
+		<script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+		<!-- Validaciones con inputmask -->
+		<script src="jquery/jquery.inputmask.bundle.min.js"></script>
+		<script src="jquery/inputmask.numeric.extensions.min.js"></script>
+		<script src="jquery/inputmask.extensions.min.js"></script>
+		<script src="jquery/inputmask.min.js"></script>
+		<script src="jquery/jquery.inputmask.min.js"></script>
+		
+		<!-- Paramquery -->
+		<link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+		<link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+		<script src="pqgrid/v5.6/pqgrid.min.js"></script>
+		<script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+		
+		<!-- Boostrap -->
+		<link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+		<script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Principales -->
+		<script src="syn_globales/syn_util.js"></script>
+		<link rel="stylesheet" href="syn_dinamicos/synergia.css">
+		<script language="JavaScript" src="mant_emp.js"></script> 
+		<link rel="stylesheet" href="syn_dinamicos/header.css">
+		
+		<!-- Archivos importantes -->
+
+		<style>
+			.panel-primary {
+				border-color: #cccccc;
+			}
+			.panel-primary>.panel-heading {
+				color:#404040;
+				font-weight:600;
+				background-color: #ffffff;
+				border-color: #cccccc;
+			}
+			#grid_consulta_compensa {
+				float: center;
+			}
+			#bd_prin{
+				height: calc(100vh - 167px);
+			}
+			.input_ver{
+				margin-top: 8px;
+			}
+        </style>
+    </head>
+    
+	<body>
+		<div id="header" class="container">
+			<div id="div_header"></div>	
+		</div>	
+        
+    <div class="bootstrap-syn">
+
+		<div class="container" id="div_prim">
+            <!-- FORMULARIO DE LA PRIMERA PESTAÑA -->
+			<br>
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab"  href="#Principal">Mantenedor Empresa</a></li>
+				<li><a data-toggle="tab" href="#param">Instalación Parámetros</a></li>
+				<li><a data-toggle="tab" href="#generales">Otros Datos Generales</a></li>
+			</ul>
+            <!-- INFORMACION DEL PRIMER FORMULARIO -->
+			<div class="tab-content">
+				<div id="Principal" class="tab-pane fade in active">
+				  	<div class="container">
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_emp">Empresa</label>
+								<input id="tx_emp" name="tx_emp" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_nomemp">Nombre</label>
+								<input id="tx_nomemp" name="tx_nomemp" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+					  	<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_rut">RUT</label>
+								<input id="tx_rut" name="tx_rut" type="text" class="form-control inp_dis" value="">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_dir">Dirección</label>
+								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_corre">Correo</label>
+								<input id="tx_corre" name="tx_corre" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_int">Dirección Internet </label>
+								<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="tx_email">Email</label>
+								<input id="tx_email" name="tx_email" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label  for="cb_giro">Código Giro</label>
+								<select id="cb_giro" name="cb_giro" class="form-control inp_dis"></select>
+							</div>
+						</div>
+
+					   <div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_tel">Teléfono</label>
+								<input id="tx_tel" name="tx_tel" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_fax">Fax</label>
+								<input id="tx_fax" name="tx_fax" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+
+						<div class="row">			      
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_repre">Representante Legal</label>
+								<input id="tx_repre" name="tx_repre" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label class="" for="cb_local">Localidad</label>
+								<select id="cb_local" name="cb_local" class="form-control inp_dis"></select>
+							</div>
+						</div>
+
+						<div class="row">			      
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="cb_estado">Estado</label>
+								<select id="cb_estado" name="cb_estado" class="form-control inp_dis"></select>
+							</div>
+						</div>
+				    <br>
+    			</div>
+			</div>
+				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
+                 <div id="param" class="tab-pane fade">
+				  	<div class="container">
+						<!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
+                            <div class="container">
+                                <div class="well well-sm">Datos Generales</div>
+                            </div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_cantsec">Cantidad de Sectores</label>
+								<input id="tx_cantsec" name="tx_cantsec" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_numcuen">Numero Cuenta Corriente</label>
+								<input id="tx_numcuen" name="tx_numcuen" type="text" class="form-control inp_dis">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_valdia">Valor Días </label>
+								<input id="tx_valdia" name="tx_valdia" type="text" class="form-control inp_dis">
+						  </div>
+                      	</div>
+					  	<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_permin">Periodo Mínimo de Facturación</label>
+								<input id="tx_permin" name="tx_permin" type="text" class="form-control inp_dis" value="">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_parsen">Parametro Sencillo</label>
+								<input id="tx_parsen" name="tx_parsen" type="text" class="form-control inp_dis" value="">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_fecpag">Fecha Día Proceso Pago</label>
+								<input id="tx_fecpag" name="tx_fecpag" type="text" class="form-control inp_dis" value="">
+							</div>
+                        </div>
+
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="cb_mone">Moneda Local</label>
+								<select id="cb_mone" name="cb_mone" class="form-control inp_dis"></select>
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_simil">Símbolo Miles</label>
+								<input id="tx_simil" name="tx_simil" type="text" class="form-control inp_dis">
+							</div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_simde">Símbolo Decimales</label>
+								<input id="tx_simde" name="tx_simde" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="cb_radica">Radica Deuda</label>
+								<select id="cb_radica" name="cb_radica" class="form-control inp_dis"></select>
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label  for="tx_bolse">Cantidad Bolsa de Sellos</label>
+								<input id="tx_bolse" name="tx_bolse" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+                        <div class="container">
+                                <div class="well well-sm">Límites Generales</div>
+                            </div>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin30">Límite Mínimo 30</label>
+								<input id="tx_limin30" name="tx_limin30" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin60">Límite Mínimo 60</label>
+								<input id="tx_limin60" name="tx_limin60" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limin">Límite Mínimo</label>
+								<input id="tx_limin" name="tx_limin" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limax30">Límite Máximo 30</label>
+								<input id="tx_limax30" name="tx_limax30" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_limax60">Límite Máximo 60</label>
+								<input id="tx_limax60" name="tx_limax60" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                        	<div class="container">
+								<div class="well well-sm">Números Históricos</div>
+							</div>                      
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_fact">Facturación</label>
+								<input id="tx_fact" name="tx_fact" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_conve">Convenio</label>
+								<input id="tx_conve" name="tx_conve" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_refac">Refacturación</label>
+								<input id="tx_refac" name="tx_refac" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_corte">Corte</label>
+								<input id="tx_corte" name="tx_corte" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_pagos">Pagos</label>
+								<input id="tx_pagos" name="tx_pagos" type="text" class="form-control inp_dis">
+							</div>
+                        </div>               
+	                        <div class="container">
+								<div class="well well-sm">Irregularidades</div>
+							</div>                    
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_consup">Consumo Superior</label>
+								<input id="tx_consup" name="tx_consup" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_disup">Diámetro Superior</label>
+								<input id="tx_disup" name="tx_disup" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_consumo">Consumo</label>
+								<input id="tx_consumo" name="tx_consumo" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_porinf">Porcentaje Inferior</label>
+								<input id="tx_porinf" name="tx_porinf" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_porsup">Porcentaje Superior</label>
+								<input id="tx_porsup" name="tx_porsup" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_facinfe">Factor Est inferior</label>
+								<input id="tx_facinfe" name="tx_facinfe" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_facsup">Factor Est Superior</label>
+								<input id="tx_facsup" name="tx_facsup" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                            <div class="container">
+                                <div class="well well-sm">Decimales</div>
+                            </div>                     
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desfis">Despliegue Físico</label>
+								<input id="tx_desfis" name="tx_desfis" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_desmon">Despliegue Monetario</label>
+								<input id="tx_desmon" name="tx_desmon" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_destasa">Despliegue Tasas</label>
+								<input id="tx_destasa" name="tx_destasa" type="text" class="form-control inp_dis">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_calfis">Cálculo Físico</label>
+								<input id="tx_calfis" name="tx_calfis" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_calmon">Cálculo Monetario</label>
+								<input id="tx_calmon" name="tx_calmon" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_caltasa">Cálculo Tasas</label>
+								<input id="tx_caltasa" name="tx_caltasa" type="text" class="form-control inp_dis">
+							</div>
+                        </div>
+                            <div class="container">
+                                <div class="well well-sm">Días</div>
+                            </div>
+					   <div class="row">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_dialib">Días Libro</label>
+								<input id="tx_dialib" name="tx_dialib" type="text" class="form-control inp_dis">
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_difac">Días Facturación</label>
+								<input id="tx_difac" name="tx_difac" type="text" class="form-control inp_dis">
+							</div>
+                           <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="tx_diarep">Días Reparto</label>
+								<input id="tx_diarep" name="tx_diarep" type="text" class="form-control inp_dis">
+							</div>
+						</div>                                            
+					</div>
+				</div>  
+                          
+				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
+                 <div id="generales" class="tab-pane fade">
+				  	        <div class="container">
+                        <!-- INFORMACION DEL SEGUNDO FORMULARIO -->                    
+                            <div class="container">
+                                <div class="well well-sm">Base</div>
+				       <div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_int">Interés NC</label>
+									<input id="tx_int" name="tx_int" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_intnd">Interés ND</label>
+								    <input id="tx_intnd" name="tx_intnd" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                            <div class="container">
+                                <div class="well well-sm">Formato Fecha</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_externo">Externo</label>
+									<input id="tx_externo" name="tx_externo" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_interno">Interno</label>
+								    <input id="tx_interno" name="tx_interno" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                            <div class="container">
+                                <div class="well well-sm">Iconos</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_patharb">Path Árbol</label>
+									<input id="tx_patharb" name="tx_patharb" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_pathapl">Path Aplicación</label>
+								    <input id="tx_pathapl" name="tx_pathapl" type="text" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+                            <div class="container">
+                                <div class="well well-sm">Otros</div>
+							<div class="row">
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+									<label for="tx_entereg">Ente Regulador</label>
+									<input id="tx_entereg" name="tx_entereg" type="text" class="form-control inp_dis">
+                                    </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_modoref">Modo Refacturación</label>
+								    <input id="tx_modoref" name="tx_modoref" type="text" class="form-control inp_dis">
+								</div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="cb_facres">Factura Resumen</label>
+                                    <select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
+								</div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								    <label for="tx_canrefac">Cantidad Mótivos de Refacturación</label>
+                                    <input id="tx_canrefac" name="tx_canrefac" class="form-control inp_dis">
+								</div>
+                        	</div>                   
+				    	</div>
+    				</div>
+            	</div>
+            <br>
+			<div class="container" id="div_prim">
+				<div class="form-horizontal flex-wrap">
+					<label class="col-sm-4"></label>
+
+					<div class="mx-auto flex-wrap">
+						<button type="button" class="btn btn-basic" id="co_modif" name="co_modif"
+							style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
+							Modificar</button>
+						<button type="button" class="btn btn-basic" id="co_cerrar" name="co_cerrar"
+							style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-off"></span>
+							Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
+		</div>
+		</div>
+		</div>
+		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
+		
+		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
+			<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+			<input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+			<input type="hidden" id="tx_rol" name="tx_rol" value="">
+			<input type="hidden" id="tx_ip" name="tx_ip" value="">
+			<input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+			<input type="hidden" id="sql" name="sql" value="">
+			<input type="hidden" id="Rol" name="Rol" value="">
+			<input type="hidden" id="tituloexcel" name="tituloexcel">
+			<input type="hidden" id="excel_archivo" name="excel_archivo">
+			<input type="hidden" id="filtro" name="filtro">
+			<input type="hidden" id="excel_cabecera" name="excel_cabecera">
+		</form>    
+	   <input type="hidden" id="nom_rol" name="nom_rol">
+         
+	</body>
+</html>
