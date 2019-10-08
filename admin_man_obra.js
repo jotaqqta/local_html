@@ -1,5 +1,5 @@
 var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Administrador lista de Materiales";
+var g_titulo="Administrador mano de obra";
 var parameters={};
 var my_url="reasigna_ajuste.asp";
 var $grid;
@@ -188,7 +188,7 @@ function fn_setea_grid_principal()
 
 	];
     var obj = {
-		title: "Materiales",
+		title: "Mano de obra",
 		showTop: true,
 		showBottom:true,
 		showTitle : true,
