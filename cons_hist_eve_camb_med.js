@@ -59,10 +59,9 @@ $(document).ready(function(){
     $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");  
     
-    
+    $("#chk_cli_gran").prop("disabled", true);
+    $("#chk_cli_norm").prop("disabled", true);
 
-
-    
     $("#co_leer").on("click", function(){
 		//Validación de informacion
      if ($.trim($("#co_leer").text())=="Leer"){
@@ -71,7 +70,6 @@ $(document).ready(function(){
 				return;
                 
 			}else{
-
             	fn_leer()
             	$("#tx_num").prop("disabled",true);
 				$("#tx_num").focus();  
@@ -109,38 +107,28 @@ $(document).ready(function(){
     $("#co_cancel_2").on("click", function() {
 		$('#div_filtro_bts').modal('hide');
     });
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-$("._input_selector").inputmask("dd/mm/yyyy");
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
-
-$grid.pqGrid({
-	rowDblClick: function fn_sss(event, ui) {
-		if (ui.rowData) {
-		  
 	
-         	$("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
-			$("#div_filtro_bts").on("shown.bs.modal", function () {
-			$("#div_filtro_bts div.modal-footer button").focus();
-			});
-			
+	$("._input_selector").inputmask("dd/mm/yyyy");
+
+	$grid.pqGrid({
+		rowDblClick: function fn_sss(event, ui) {
+			if (ui.rowData) {
+				$("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
+				$("#div_filtro_bts").on("shown.bs.modal", function () {
+					//$("#div_filtro_bts div.modal-footer button").focus();
+					$grid_2.pqGrid("refreshView");
+				});
+			}
 		}
-			
+	});
 
-
-
-	}
-});
-
-$("#div_filtro_bts").draggable({
-	handle: ".modal-header"
-});
-
+	$("#div_filtro_bts").draggable({
+		handle: ".modal-header"
+	});
 
 });
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal()
 { 
 
@@ -148,127 +136,108 @@ function fn_setea_grid_principal()
 		{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
 	];
     var obj = {
-    title: "Ordenes de cambio",
-	showTop: true,
-	showBottom:true,
-	showTitle : true,
-	roundCorners: true,
-	rowBorders: true,
-	columnBorders: true,
-	collapsible:true,
-	editable:false,
-	numberCell: { show: false },
-	pasteModel: { on: false },
-	selectionModel: { type: 'row',mode:'single'},
-	numberCell: { show: true, align: "center" },
-	height: 300,
-	width: "100%",
-	toolbar: {
-		items: [
-		{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
-	]
-	},
-	editModel: {
-		clicksToEdit: false,
-		keyUpDown: false,
-		pressToEdit: false,
-		cellBorderWidth: 0
-	},
-	scrollModel:{theme:true},
-	pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-	colModel:
-	[
+		title: "Ordenes de cambio",
+		showTop: true,
+		showBottom:true,
+		showTitle : true,
+		roundCorners: true,
+		rowBorders: true,
+		columnBorders: true,
+		collapsible:true,
+		editable:false,
+		numberCell: { show: false },
+		pasteModel: { on: false },
+		selectionModel: { type: 'row',mode:'single'},
+		numberCell: { show: true, align: "center" },
+		height: 300,
+		width: "100%",
+		toolbar: {
+			items: [
+			{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
+		]
+		},
+		editModel: {
+			clicksToEdit: false,
+			keyUpDown: false,
+			pressToEdit: false,
+			cellBorderWidth: 0
+		},
+		scrollModel:{theme:true},
+		pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
+		colModel:
+		[
+
+			{ title: "Correlativo",  resizable: false, width: 78, dataType: "number", dataIndx: "C1",align:"center" },
+			{ title: "Nro Orden", width: 160, dataType: "number", dataIndx: "C2", align:"center" },
+			{ title: "Tipo Cambio", width: 240, dataType: "string", dataIndx: "C3",halign:"center", align:"lefth" },
+			{ title: "Fecha Creación", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"lefth"},
+			{ title: "Estado",width: 120, dataType: "string", dataIndx: "C5",halign:"center", align:"center"},
+			{ title: "Motivo",width: 200, dataType: "string", dataIndx: "C6",halign:"center", align:"center"}, 
+			{ title: "Clave Lectura Cambio",width: 200, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
+			{ title: "Situación Encontrada",width: 200, dataType: "string", dataIndx: "C8",halign:"center", align:"center"},
+			{ title: "Acción Realizada",width: 200, dataType: "string", dataIndx: "C9",halign:"center", align:"center"},
+			{ title: "Contratista",width: 200, dataType: "string", dataIndx: "C10",halign:"center", align:"center"},
+			{ title: "Inspector Ejecutor",width: 200, dataType: "string", dataIndx: "C11",halign:"center", align:"center"},
+			{ title: "Usuario Creación",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
+			{ title: "Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
+			{ title: "Envio Carta",width: 150, dataType: "string", dataIndx: "C13",halign:"center", align:"center"},  
+			{ title: "Autorización Cliente",width: 200, dataType: "string", dataIndx: "C14",halign:"center", align:"center"},   	
+			{ title: "Motivo",width: 200, dataType: "string", dataIndx: "C15",halign:"center", align:"center"}  	
+		]
+	};
 	
-		{ title: "Correlativo",  resizable: false, width: 78, dataType: "number", dataIndx: "C1",align:"center" },
-		{ title: "Nro Orden", width: 160, dataType: "number", dataIndx: "C2", align:"center" },
-		{ title: "Tipo Cambio", width: 240, dataType: "string", dataIndx: "C3",halign:"center", align:"lefth" },
-		{ title: "Fecha Creación", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"lefth"},
-		{ title: "Estado",width: 120, dataType: "string", dataIndx: "C5",halign:"center", align:"center"},
-		{ title: "Motivo",width: 200, dataType: "string", dataIndx: "C6",halign:"center", align:"center"}, 
-		{ title: "Clave Lectura Cambio",width: 200, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
-		{ title: "Situación Encontrada",width: 200, dataType: "string", dataIndx: "C8",halign:"center", align:"center"},
-		{ title: "Acción Realizada",width: 200, dataType: "string", dataIndx: "C9",halign:"center", align:"center"},
-		{ title: "Contratista",width: 200, dataType: "string", dataIndx: "C10",halign:"center", align:"center"},
-		{ title: "Inspector Ejecutor",width: 200, dataType: "string", dataIndx: "C11",halign:"center", align:"center"},
-		{ title: "Usuario Creación",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
-		{ title: "Oficina Cambio",width: 300, dataType: "string", dataIndx: "C12",halign:"center", align:"center"},
-		{ title: "Envio Carta",width: 150, dataType: "string", dataIndx: "C13",halign:"center", align:"center"},  
-		{ title: "Autorización Cliente",width: 200, dataType: "string", dataIndx: "C14",halign:"center", align:"center"},   	
-		{ title: "Motivo",width: 200, dataType: "string", dataIndx: "C15",halign:"center", align:"center"}  	
-	],
-	dataModel: {
-		data: data
-	}
-};
-$grid = $("#div_grid_pri").pqGrid(obj);
+	obj.dataModel = { data: data };	
+	$grid = $("#div_grid_pri").pqGrid(obj);
+	$grid.pqGrid("refreshView");
 
+	data2= [
+		{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
+		{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
+		{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'}
+	];
 
+	var obj = {
+		title: "Historicos de envios",
+		showTop: true,
+		showBottom:true,
+		showTitle : true,
+		roundCorners: true,
+		rowBorders: true,
+		columnBorders: true,
+		collapsible:true,
+		editable:true,
+		numberCell: { show: false },
+		pasteModel: { on: false },
+		selectionModel: { type: 'row',mode:'single'},
+		numberCell: { show: true, align: "center" },
+		height: 300,
+		width: "100%",
+		toolbar: {
+			items: [
+			{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
+		]
+		},
+		scrollModel:{theme:true},
+		pageModel: { rPP: 10, type: "local", rPPOptions: [10, 20, 50]},
+		colModel:
+		[
+			{ title: "Etapa Origen",  resizable: false, width: 78, dataType: "number", dataIndx: "C1",align:"center" },
+			{ title: "Evento", width: 160, dataType: "number", dataIndx: "C2", align:"center" },
+			{ title: "Etapa destino", width: 240, dataType: "string", dataIndx: "C3",halign:"center", align:"lefth" },
+			{ title: "Emisor", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"lefth"},
+			{ title: "Receptor",width: 120, dataType: "string", dataIndx: "C5",halign:"center", align:"center"},
+			{ title: "Estado",width: 200, dataType: "string", dataIndx: "C6",halign:"center", align:"center"}, 
+			{ title: "Fecha inicio",width: 200, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
+			{ title: "Fecha vencimiento etapa",width: 200, dataType: "string", dataIndx: "C8",halign:"center", align:"center"},
+			{ title: "Fecha termino",width: 200, dataType: "string", dataIndx: "C9",halign:"center", align:"center"}
 
-data2= [
-	{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
-	{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'},
-	{ C1: '1', C2: '19778', C3: 'PREVENTIVO', C4: '10-03-2013 07:02:30', C5:'FINALIZADA', C6: "INSTALACIÓN MASIVA", C7: "", C8: 'ORDEN INSTALACIÓN EJECUTATIVA', C9: 'INSTALACIÓN DE MEDIDOR', C10: 'IDAAN 8000', C10: 'ENERCOM', C11:'ZDIAZ',C12:'PM GT INSTALACIÓN Y RETIRO',C13:'SIN ENVIO',C14:'SIN ENVIO',C15:'AUTORIZACIÓN'}
-	
-
-
-];
-
-var obj = {
-    title: "Historicos de envios",
-	showTop: true,
-	showBottom:true,
-	showTitle : true,
-	roundCorners: true,
-	rowBorders: true,
-	columnBorders: true,
-	collapsible:true,
-	editable:true,
-	numberCell: { show: false },
-	pasteModel: { on: false },
-	selectionModel: { type: 'row',mode:'single'},
-	numberCell: { show: true, align: "center" },
-	height: 300,
-	width: "100%",
-	toolbar: {
-		items: [
-		{	 type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"}
-	]
-	},
-	editModel: {
-		clicksToEdit: false,
-		keyUpDown: false,
-		pressToEdit: false,
-		cellBorderWidth: 0
-	},
-	scrollModel:{theme:true},
-	pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-	colModel:
-	[
-		{ title: "Etapa Origen",  resizable: false, width: 78, dataType: "number", dataIndx: "C1",align:"center" },
-		{ title: "Evento", width: 160, dataType: "number", dataIndx: "C2", align:"center" },
-		{ title: "Etapa destino", width: 240, dataType: "string", dataIndx: "C3",halign:"center", align:"lefth" },
-		{ title: "Emisor", width: 120, dataType: "number", dataIndx: "C4",halign:"center", align:"lefth"},
-		{ title: "Receptor",width: 120, dataType: "string", dataIndx: "C5",halign:"center", align:"center"},
-		{ title: "Estado",width: 200, dataType: "string", dataIndx: "C6",halign:"center", align:"center"}, 
-		{ title: "Fecha inicio",width: 200, dataType: "number", dataIndx: "C7",halign:"center", align:"right"},
-		{ title: "Fecha vencimiento etapa",width: 200, dataType: "string", dataIndx: "C8",halign:"center", align:"center"},
-		{ title: "Fecha termino",width: 200, dataType: "string", dataIndx: "C9",halign:"center", align:"center"}
-  	
-	],
-	dataModel: {
-		data: data2
-	}
-};
-$grid_2 = $("#div_grid_sec").pqGrid(obj);
-$grid_2.pqGrid("refreshView");
+		]
+	};
+	obj.dataModel = { data: data2 };
+	$grid_2 = $("#div_grid_sec").pqGrid(obj);
+	$grid_2.pqGrid("refreshView");
 
 }
-
-function fn_carga_orden()
-{
-	
-}
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_leer(){
@@ -286,14 +255,14 @@ function fn_leer(){
 		
 	}
 }
+
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_grilla(){
 
 	$grid_2.pqGrid("refreshView");
 }
 
-
-
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpiar(){
 	$("#tx_num").val("")
 	$("#tx_nom").val("");
@@ -309,7 +278,11 @@ function fn_limpiar(){
 	$("#chk_cli_gran").prop("checked", false);
 	$("#chk_cli_norm").prop("checked", false);
 	
-
+	$grid.pqGrid( "option", "dataModel.data", [] );
+    $grid.pqGrid( "refreshView" );
+	
+	$grid_2.pqGrid( "option", "dataModel.data", [] );
+    $grid_2.pqGrid( "refreshView" );
 
 }
 	
