@@ -70,46 +70,50 @@ $(document).ready(function(){
 				return;
                 
             }
-            if( $("#cb_est").val() == ""){
+            if( $("#cb_est").val() == "0"){
 				fn_mensaje_boostrap("SELECCIONE ESTADO", g_titulo, $("#cb_est"));
 				return;
                 
             }
-            fn_modificar();
             fn_limpiar();
             $('#div_filtro_bts').modal('hide'); 
+            fn_modificar();
+           
            }
     });
     $("#co_nuevo").on("click", function(){
-		//Validación de informacion
-     if ($.trim($("#co_nuevo").text())=="Nuevo"){
-       
-        fn_carga_nuevo();    
-        if( $("#tx_id").val() == ""){
-				fn_mensaje_boostrap("DIGITE IDENTEFICADOR DE RELACIÓN", g_titulo, $("#tx_id"));
-				return;
-                
-            }
-            if( $("#tx_nem").val() == ""){
-				fn_mensaje_boostrap("DIGITE NEMOTECNICO", g_titulo, $("#tx_nem"));
-				return;
-                
-            }
-            if( $("#tx_val").val() == ""){
-				fn_mensaje_boostrap("DIGITE VALOR", g_titulo, $("#tx_val"));
-				return;
-                
-            }
-            if( $("#cb_est").val() == ""){
-				fn_mensaje_boostrap("SELECCIONE ESTADO", g_titulo, $("#cb_est"));
-				return;
-                
-            }
-            fn_modificar();
-            fn_limpiar();
-            $('#div_filtro_bts').modal('hide'); 
-           }
-    });
+        if ($.trim($("#co_nuevo").text())=="Nuevo"){
+             fn_carga_nuevo();    
+              }
+       });
+    $("#co_nuevo").on("click", function(){
+        if ($.trim($("#co_nuevo").text())=="Nuevo"){
+ 
+           if( $("#tx_id").val() == ""){
+                   fn_mensaje_boostrap("DIGITE IDENTEFICADOR DE RELACIÓN", g_titulo, $("#tx_id"));
+                   return;
+                   
+               }
+               if( $("#tx_nem").val() == ""){
+                   fn_mensaje_boostrap("DIGITE NEMOTECNICO", g_titulo, $("#tx_nem"));
+                   return;
+                   
+               }
+               if( $("#tx_val").val() == ""){
+                   fn_mensaje_boostrap("DIGITE VALOR", g_titulo, $("#tx_val"));
+                   return;
+                   
+               }
+               if( $("#cb_est").val() == "0"){
+                   fn_mensaje_boostrap("SELECCIONE ESTADO", g_titulo, $("#cb_est"));
+                   return;
+                   
+               }
+               fn_modificar();
+               fn_limpiar();
+               $('#div_filtro_bts').modal('hide'); 
+              }
+       });
  
  
 
