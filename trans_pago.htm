@@ -94,114 +94,7 @@
 		</div>
 	</div>
 	<div class="bootstrap-syn">
-		<br>		
-            <div class="tab-content">
-				<div id="Principal" class="tab-pane fade in active">
-				  	<div class="container">
-						<div class="row">                            
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="well well-sm">Tipo de Consulta</div>
-                                <select id="cb_tipocons" name="cb_tipocons" type="text" class="form-control inp_dis"></select>
-							</div>
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<div class="well well-sm">Tipo de Fechas</div>
-                                <select id="cb_tipofech" name="cb_tipofech" type="text" class="form-control inp_dis"></select>
-							</div>
-						</div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-content">
-                <div id="Principal" class="tab-pane fade in active">
-				  	<div class="container">
-						<div class="row">
-                                <div class="well well-sm">Filtros</div>                            
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="cb_agencia">Agencia</label>
-                                <select id="cb_agencia" name="cb_agencia" type="text" class="form-control inp_dis"></select>
-							</div>                            
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-content">
-                <div id="Principal" class="tab-pane fade in active">
-				  	<div class="container">
-						<div class="row">
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="tx_fechaproini">Fecha Proceso Inicial</label>
-                                <input id="tx_fechaproini" name="tx_fechaproini" type="text" class="form-control inp_dis">
-							</div>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="tx_fechaprofin">Fecha Proceso Final</label>
-                                <input id="tx_fechaprofin" name="tx_fechaprofin" type="text" class="form-control inp_dis">
-				        </div>
-                    </div>
-                </div>
-            </div>
-          <!--inicio Modal botón Filtros-->                        
-		  <div id="div_filtro_bts" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-header">
-						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-						<h4 class="modal-title" data-dismiss="modal">Administrador de tarifas</h4>
-					</div>
-					<div class="modal-body">
-						<form role="form" class="form-horizontal flex-wrap" id="frm_filtro">
-							<div class="row">
-								<div class="col-xs-12">
-									<label for="tx_cod">Codigo</label>
-									<input id="tx_cod" name="tx_cod" class="form-control input-normal inp_dis">
-								</div>
-							<div class="col-xs-12">
-									<label for="tx_desc">Descripcción</label>
-									<input id="tx_desc" name="tx_desc" class="form-control input-normal inp_dis">
-								</div>
-							<div class="col-xs-12">
-									<label for="cb_unid_hab">Unidad Habitacional</label>
-									<select id="cb_unid_hab" name="cb_unid_hab" class="form-control input-normal inp_dis">
-									</select>
-								</div>
-						    <div class="col-xs-12">
-									<label for="tx_cons">Consumo minimo</label>
-									<input id="tx_cons" name="tx_cons" class="form-control input-normal inp_dis">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<label for="cb_subs">Subsidio</label>
-									<select id="cb_subs" name="cb_subs" class="form-control input-normal inp_dis">
-									</select>
-								</div>
-								<div class="col-xs-12">
-									<label for="cb_jub">Jubilado</label>
-									<select id="cb_jub" name="cb_jub" class="form-control input-normal inp_dis">
-									</select>
-								</div>
-                                <div class="col-xs-12">
-									<label for="cb_prom">Promedio area</label>
-									<select id="cb_prom" name="cb_prom" class="form-control input-normal inp_dis">
-									</select>
-								</div>
-                                <div class="col-xs-12">
-									<label for="cb_compe">Es compensable</label>
-									<select id="cb_compe" name="cb_compe" class="form-control input-normal inp_dis">
-									</select>
-								</div>
-							</div>
-
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn-left btn btn-primary" id="co_guardar"><span
-								class="glyphicon glyphicon-ok"></span>Guardar</button>
-						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_cancel"><span
-								class="glyphicon glyphicon-off"></span>Cancelar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-    <br>
+		<br>
         <div class="container">
 			<div id="div_prin">
 				<div class="" id="bd_prin">
@@ -212,6 +105,59 @@
 			</div>
 		</div>
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+           							        
+          <!--inicio Modal botón Filtros-->                        
+		  <div id="div_filtro_bts" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+						<h4 class="modal-title" data-dismiss="modal">Cuadre para Transmisión de Pagos</h4>
+					</div>
+					<div class="modal-body">
+						<form role="form" class="form-horizontal flex-wrap" id="frm_filtro">
+							<div class="row">
+								<div class="col-xs-12">
+									<label for="cb_tipocons">Tipo de Consulta</label>
+                                    <select id="cb_tipocons" name="cb_tipocons" class="form-control input-normal inp_dis"></select>
+								</div>
+							<div class="col-xs-12">
+									<label for="cb_tipofech">Tipo de Fechas</label>
+                                <select id="cb_tipofech" name="cb_tipofech" class="form-control input-normal inp_dis"></select>
+								</div>
+							<div class="col-xs-12">
+									<label for="cb_agencia">Agencia</label>
+									<select id="cb_agencia" name="cb_agencia" class="form-control input-normal inp_dis"></select>
+								</div>
+						    <div class="col-xs-12">
+									<label for="tx_fechaproini">Fecha Proceso Inicial</label>
+									<input id="tx_fechaproini" name="tx_fechaproini" class="form-control input-normal inp_dis">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<label for="tx_fechaprofin">Fecha Proceso Final</label>
+									<input id="tx_fechaprofin" name="tx_fechaprofin" class="form-control input-normal inp_dis">					
+								</div>
+								<div class="col-xs-12">
+									<label for="tx_dia">Día</label>
+									<input id="tx_dia" name="tx_dia" class="form-control input-normal inp_dis">									
+								</div>                              
+							</div>
+						</form>
+					</div>
+                    <div id="mensaje_filtro"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn-left btn btn-primary" id="co_consultar"><span
+								class="glyphicon glyphicon-ok"></span>Consultar</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default" id="co_cancel"><span
+								class="glyphicon glyphicon-off"></span>Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+    <br>
+        
 	</div>
 
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">

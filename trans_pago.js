@@ -74,47 +74,44 @@ $(document).ready(function () {
     $("#co_cerrar_t").on("click", function(e){
         window.close(); 
     });
-    $("#co_guardar").on("click", function() {
+    $("#co_consultar").on("click", function() {
 		
-        if ($.trim($("#co_guardar").text()) == "Guardar") {
-            if ($("#tx_desc").val() == "") {
-                fn_mensaje_boostrap("DIGITE DESCRIPCIÓN.", g_tit, $("#tx_desc"));
+        if ($.trim($("#co_consultar").text()) == "Consultar") {
+            if ($("#cb_tipocons").val() == "") {
+                //fn_mensaje_boostrap("SELECCION TIPO DE CONSULTA", g_tit, $("#tx_desc"));
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SELECCION TIPO DE CONSULTA!!!</strong></div>',3000);
+                $("#cb_tipocons").focus();
 
                 return;
             }
-            if ($("#cb_unid_hab").val() == "0"){
-                fn_mensaje_boostrap("SELECCIONE UNIDAD HABIACIÓNAL.", g_tit, $("#cb_unid_hab"));
+            if ($("#cb_tipofech").val() == "0"){
+                fn_mensaje_boostrap("SELECCIONE TIPO DE FECHAS.", g_tit, $("#cb_unid_hab"));
 
                 return;
             }
-            if ($("#tx_cons").val() == "") {
-                fn_mensaje_boostrap("DIGITE CONSUMO MINIMO.", g_tit, $("#tx_cons"));
+            if ($("#cb_agencia").val() == "") {
+                fn_mensaje_boostrap("SELECCIONE AGENCIA", g_tit, $("#tx_cons"));
 
                 return;
             }
-            if ($("#cb_subs").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE SUBSIDIO", g_tit, $("#cb_subs"));
+            if ($("#tx_fechaproini").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE PROCESO INICIAL", g_tit, $("#cb_subs"));
 
                 return;
             }
-            if ($("#cb_jub").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE JUBILADOO", g_tit, $("#cb_jub"));
+            if ($("#tx_fechaprofin").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE PROCESO FINAL", g_tit, $("#cb_jub"));
 
                 return;
             }
 
-            if ($("#cb_prom").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE PROMEDIO AREA", g_tit, $("#cb_prom"));
+            if ($("#tx_dia").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE DIA", g_tit, $("#cb_prom"));
 
                 return;
             }
-            if ($("#cb_compe").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE SI ES COMPENSABLE", g_tit, $("#cb_compe"));
-
-                return;
-			}
-			
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+            			
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             fn_carga_grilla();
             fn_limpiar();
             $("#div_prin").slideDown();
@@ -151,9 +148,7 @@ $(document).ready(function () {
  //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	$("._input_selector").inputmask("dd/mm/yyyy");
 
-	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    //BOTONES
+
     $("#co_limpiar").on("click", function(){
 		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
 		    fn_limpia_modal();
@@ -329,5 +324,10 @@ function fn_limpiar(){
     $("#cb_compe").val("0");
 
 }
-
+function fn_mensaje(id,mensaje,segundos)
+{
+$(id).show();
+$(id).html(mensaje);
+setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+}
 
