@@ -78,36 +78,40 @@ $(document).ready(function () {
 		
         if ($.trim($("#co_consultar").text()) == "Consultar") {
             if ($("#cb_tipocons").val() == "") {
-                //fn_mensaje_boostrap("SELECCION TIPO DE CONSULTA", g_tit, $("#tx_desc"));
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SELECCION TIPO DE CONSULTA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO DE CONSULTA!!!</strong></div>',3000);
                 $("#cb_tipocons").focus();
 
                 return;
             }
-            if ($("#cb_tipofech").val() == "0"){
-                fn_mensaje_boostrap("SELECCIONE TIPO DE FECHAS.", g_tit, $("#cb_unid_hab"));
-
+            if ($("#cb_tipofech").val() == ""){
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO DE FECHAS!!!</strong></div>',3000);
+                $("#cb_tipofech").focus();
+                
                 return;
             }
             if ($("#cb_agencia").val() == "") {
-                fn_mensaje_boostrap("SELECCIONE AGENCIA", g_tit, $("#tx_cons"));
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR AGENCIA!!!</strong></div>',3000);
+                $("#cb_agencia").focus();
 
                 return;
             }
-            if ($("#tx_fechaproini").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE PROCESO INICIAL", g_tit, $("#cb_subs"));
+            if ($("#tx_fechaproini").val() == "") {                
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR PROCESO INICIAL!!!</strong></div>',3000);
+                $("#tx_fechaproini").focus();
+
 
                 return;
             }
-            if ($("#tx_fechaprofin").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE PROCESO FINAL", g_tit, $("#cb_jub"));
+            if ($("#tx_fechaprofin").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR PROCESO FINAL!!!</strong></div>',3000);
+                $("#tx_fechaprofin").focus();
 
                 return;
             }
 
-            if ($("#tx_dia").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE DIA", g_tit, $("#cb_prom"));
-
+            if ($("#tx_dia").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR DIA!!!</strong></div>',3000);
+                $("#tx_dia").focus();
                 return;
             }
             			
