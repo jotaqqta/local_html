@@ -207,7 +207,9 @@ function fn_setea_grid_principal() {
     obj.colModel = [
 		{ title: "Codigo", width:55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
 		{ title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center"},
-        { title: "Constante",width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "Constante",width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "Decimal",width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
