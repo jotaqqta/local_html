@@ -169,7 +169,7 @@ $(document).ready(function () {
 
                 return;
             }
-            if ($("#cb_uni_med").val() == "0") {
+            if ($("#cb_uni_med").val() == "") {
                 fn_mensaje_boostrap("SELECCIONE UNIDAD DE MEDIDA.", g_tit, $("#tx_uni_med"));
 
                 return;
