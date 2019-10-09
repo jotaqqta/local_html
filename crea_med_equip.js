@@ -30,43 +30,29 @@ $(document).ready(function () {
 
 	$("#tx_cli").focus();
 	fn_setea_grid_principal();
-	fn_marca();
+
 	fn_diametro();
-	fn_tarifa();
-	fn_provincia();
-	fn_distrito();
-	fn_corregimiento();
+	fn_modelo();
+	fn_numero_medidor();
+	fn_num_fab();
 	fn_almacen_destino();
 	fn_accion_realizada();
 	fn_estado();
 	fn_condición_medidor();
 	fn_clave_reacondicionamiento();
 	fn_propiedad_medidor();
-	
-	
-
-
-
 
 
 	$("._input_selector").inputmask("dd/mm/yyyy");
 	$('input[name="optradio"]').prop('disabled', false);
 
-	jQuery('#tx_cli').keypress(function (tecla) {
+	jQuery('#tx_num_med').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-	jQuery('#tx_med').keypress(function (tecla) {
+	jQuery('#tx_num_fab').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-	jQuery('#tx_fec_cre').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_anio_reac').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_anio_fab').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
+
 	//BOTONES-EVENTOS
 	$("#co_cancelar").on("click", function (e) {
 		window.close();
@@ -89,7 +75,7 @@ $(document).ready(function () {
 	$("#cb_dist").on("change", function (evt) {
 		if ($(this).val() != "") {
 			$("#cb_corre").prop("disabled", false);
-			fn_corregimiento();
+
 		}
 
 		else {
@@ -111,43 +97,26 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#co_gen").on("click", function () {
+	$("#co_lec").on("click", function () {
 		//Validación de informacion
-		if ($.trim($("#co_gen").text()) == "Generar") {
-			if ($("#fec_sum_in").val() == "") {
-				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO.", g_titulo, $("#fec_sum_in"));
+		if ($.trim($("#co_lec").text()) == "Leer") {
+			
 
-				return;
-				return;
-			}
-			else {
-				if (fn_validar_fecha($("#fec_sum_in").val()) == false) {
-					fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_in"));
-					//fn_mensaje_bootstrap_fecv();
-					return false;
-				}
-			}
-			if ($("#fec_sum_fin").val() == "") {
-				fn_mensaje_boostrap("DIGITE LA FECHA FINAL.", g_titulo, $("#fec_sum_fin"));
-
-				return;
-				return;
-			}
-			else {
-				if (fn_validar_fecha($("#fec_sum_fin").val()) == false) {
-					fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_fin"));
-					//fn_mensaje_bootstrap_fecv();
-					return false;
-				}
-			}
 
 		}
-		fn_mensaje_boostrap("Se genero", g_titulo, $("#co_gen"));
+		fn_cargar_lectura(); 
 		fn_carga_grilla();
 		fn_limpiar();
 
 
 	});
+
+
+
+	$("#co_cancel").on("click", function (e){
+
+		fn_limpiar_fil();
+    });
 
 
 	$("#co_lim").on("click", function () {
@@ -232,6 +201,7 @@ function fn_setea_grid_principal() {
 		{ title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
 		{ title: "Constante", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
 		{ title: "Decimal", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		{ title: "Entero", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
 
 	];
 
@@ -239,23 +209,17 @@ function fn_setea_grid_principal() {
 	$grid_principal.pqGrid("refreshDataAndView");
 }
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_marca() {
-	$("#cb_tar_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
 function fn_diametro() {
 	$("#cb_mar_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_tarifa() {
-	$("#cb_diam_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_modelo() {
+	$("#cb_model").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_provincia() {
-	$("#cb_prov").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_numero_medidor() {
+	$("#tx_num_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_distrito() {
-	$("#cb_dist").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_corregimiento() {
-	$("#cb_corre").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_num_fab() {
+	$("#tx_num_fab").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_almacen_destino() {
 	$("#cb_alm_dest").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
@@ -275,6 +239,21 @@ function fn_clave_reacondicionamiento() {
 function fn_propiedad_medidor() {
 	$("#cb_pro_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+function fn_cargar_lectura() {
+	$('#cb_alm_dest').val("1");
+	$('#cb_acc_real').val("2");
+	$('#cb_est').val("3");
+	$('#cb_cond_med').val("1")
+	$('#tx_diam').val("5/8''");
+	$('#tx_tec').val("MAGNETICA");
+	$('#tx_cls_metro').val("CALSE B");
+	$('#tx_anio_fab').val("2019");
+	$('#tx_prot').prop("checked",true);
+	$('#tx_fec_cre').val(20022019);
+	$('#tx_anio_reac').val("2018");
+	$('#cb_clav_reac').val("2");
+	$('#cb_pro_med').val("3");
+}
 function fn_carga_grilla() {
 
 
@@ -285,25 +264,11 @@ function fn_gen() {
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
-function fn_limpiar() {
-
-	$("#tx_cli").val("");
-	$("#tx_num_med").val("");
-	$("#tx_fec_sum_fin").val("");
-	$("#tx_fec_sum_in").val("");
-	$("#tx_rut_com").val("");
-	$("#cb_tar_inp").val("");
-	$("#cb_mar_inp").val("");
-	$("#cb_diam_inp").val("");
-	$("#cb_prov").val("");
-	$("#cb_dist").val("");
-	$("#cb_corre").val("");
-	$("#cb_barrio").val("");
-	$('input[name="optradio"]').prop('checked', false);
-	$('input[name="optradio"]').prop('checked', false);
-	$("#cb_dist").prop("disabled", true);
-	$("#cb_corre").prop("disabled", true);
-	$("#cb_barrio").prop("disabled", true);
+function fn_limpiar_fil() {
+     $("#cb_mar_inp").val("0");
+	 $("#cb_model").val("0");
+	 $("#tx_num_med").val("");
+	 $("#tx_num_fab").val("");
 
 
 
