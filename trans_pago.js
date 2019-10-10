@@ -33,6 +33,7 @@ $(document).ready(function () {
     fn_tipoconsulta();
     fn_tipofechas();
 	fn_agencia();
+    fn_limpiar();
     
     // PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function () { return false; });
@@ -124,6 +125,14 @@ $(document).ready(function () {
 
         }
     })
+     $("#co_limpiar").on("click", function () {
+        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+            fn_limpiar();
+            return;
+        }
+        else
+            window.close();
+    });
 	
 	
 	$("#co_cancel").on("click", function (e){
@@ -133,7 +142,7 @@ $(document).ready(function () {
 	$("#co_cerrar").on("click", function (e){
        window.close();
     });
- 
+
 //BOTONES ELIMINAR DE LAS GRILLAS
  
  
@@ -259,15 +268,12 @@ function fn_gen(){
      alert('Se genero.');
 }
 function fn_limpiar(){
-    $("#tx_cod").val("");
-    $("#tx_desc").val("");
-    $("#cb_unid_hab").val("0");
-    $("#tx_cons").val("");
-    $("#cb_subs").val("0");
-    $("#cb_jub").val("0");
-    $("#cb_prom").val("0");
-    $("#cb_compe").val("0");
-
+    $("#cb_tipocons").val("");
+    $("#cb_tipofech").val("");
+    $("#cb_agencia").val("");
+    $("#tx_fechaproini").val("");
+    $("#tx_fechaprofin").val("");
+    $("#tx_dia").val("");
 }
 function fn_mensaje(id,mensaje,segundos)
 {
