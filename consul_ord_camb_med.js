@@ -80,9 +80,9 @@ $(document).ready(function () {
 		dato_original = x.split("#");
 		x = dato_original[1];
         if(x == "MedidorRetirado")
-            $grid_sec.pqGrid( "refreshDataAndView" );
+            $grid_sec.pqGrid( "refreshView" );
 		if(x == "MedidorInstalado")
-            $grid_ter.pqGrid( "refreshDataAndView" );  
+            $grid_ter.pqGrid( "refreshView" );  
     });
 
 });
