@@ -3,6 +3,8 @@ var g_titulo = "Consulta de ordenes de cambio de medidor";
 var parameters = {};
 var my_url = "correc_prome_dudo.asp";
 var $grid;
+var $grid_sec;
+var $grid_ter;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
@@ -46,7 +48,7 @@ $(document).ready(function () {
 	$("._input_selector").inputmask("dd/mm/yyyy");
 	$('input[name="optradio"]').prop('disabled', false);
 
-	jQuery('#tx_num_med').keypress(function (tecla) {
+	jQuery('#tx_num_ord').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 	jQuery('#tx_num_fab').keypress(function (tecla) {
@@ -100,29 +102,19 @@ $(document).ready(function () {
 	$("#co_lec").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
-	    if($("#tx_num_fab").val()==""){
-			fn_mensaje_boostrap("DIGITE NUMERO DE FABRICA", g_titulo, $("#tx_num_fab"));
+	    if($("#tx_num_ord").val()==""){
+			fn_mensaje_boostrap("DIGITE NUMERO DE ORDEN", g_titulo, $("#tx_num_ord"));
 
 				return;
 			}
          }
-		$("#co_lec").html("<span class='glyphicon glyphicon-plus'></span> Ingresar");
+        fn_cargar_lectura()
 		fn_carga_fil();
 	
 	});
-	
-	$("#co_lec").on("click", function () {
-		if ($.trim($("#co_lec").text()) == "Ingresar") {
-        fn_cargar_lectura();
-
-		}
-    });
-
-
-
 	$("#co_cancel").on("click", function (e){
 
-		fn_limpiar_fil();
+		fn_limpiar();
 		
     });
 
@@ -133,10 +125,7 @@ $(document).ready(function () {
 			fn_limpiar();
 		}
 	
-	});
-
-
-
+    });
 
 });
 
@@ -165,7 +154,7 @@ function fn_setea_grid_principal() {
 			cls: "pq-toolbar-export",
 			items: [
 
-				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
+			
 
 			]
 		},
@@ -220,7 +209,7 @@ function fn_setea_grid_principal() {
 
 
     //_______________________________________________________________________________________________________
-    var obj2 = {
+    var obj = {
 		height: "80%",
 		showTop: true,
 		showBottom: true,
@@ -239,7 +228,7 @@ function fn_setea_grid_principal() {
 			cls: "pq-toolbar-export",
 			items: [
 
-				{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
+			
 
 			]
 		},
@@ -250,7 +239,7 @@ function fn_setea_grid_principal() {
 			cellBorderWidth: 0
 		},
 		dataModel: {
-			data2: [
+			data: [
 				{ C1: '0001', C2: 'CONSUMO DE AGUA', C3: '1', C4: 1212121, C5: '1', C6: '1', C7: "1", C8: '1' },
 				{ C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: '2', C4: 455455, C5: '2', C6: '2', C7: "2", C8: '2' },
 				{ C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: '3', C4: 421212, C5: '3', C6: '3', C7: "3", C8: '3' },
@@ -278,7 +267,7 @@ function fn_setea_grid_principal() {
 		}
 	};
 
-	obj2.colModel = [
+	obj.colModel = [
 		{ title: "Codigo", width: 55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
 		{ title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
 		{ title: "Lectura", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
@@ -287,11 +276,11 @@ function fn_setea_grid_principal() {
 
 	];
    
-	$grid_sec= $("#div_grid_sec").pqGrid(obj2);
+	$grid_sec= $("#div_grid_sec").pqGrid(obj);
     $grid_sec.pqGrid("refreshDataAndView");
  //--------------------------------------------------------------------------------------------------------------
  
- var obj3 = {
+ var obj = {
     height: "80%",
     showTop: true,
     showBottom: true,
@@ -310,7 +299,7 @@ function fn_setea_grid_principal() {
         cls: "pq-toolbar-export",
         items: [
 
-            { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
+         
 
         ]
     },
@@ -321,7 +310,7 @@ function fn_setea_grid_principal() {
         cellBorderWidth: 0
     },
     dataModel: {
-        data3: [
+        data: [
             { C1: '0001', C2: 'CONSUMO DE AGUA', C3: '1', C4: 1212121, C5: '1', C6: '1', C7: "1", C8: '1' },
             { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: '2', C4: 455455, C5: '2', C6: '2', C7: "2", C8: '2' },
             { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: '3', C4: 421212, C5: '3', C6: '3', C7: "3", C8: '3' },
@@ -349,7 +338,7 @@ function fn_setea_grid_principal() {
     }
 };
 
-obj3.colModel = [
+obj.colModel = [
     { title: "Codigo", width: 55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
     { title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
     { title: "Lectura", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
@@ -358,7 +347,7 @@ obj3.colModel = [
 
 ];
 
-$grid_ter= $("#div_grid_ter").pqGrid(obj2);
+$grid_ter= $("#div_grid_ter").pqGrid(obj);
 $grid_ter.pqGrid("refreshDataAndView");
 
 }
@@ -393,20 +382,38 @@ function fn_clave_reacondicionamiento() {
 function fn_propiedad_medidor() {
 	$("#cb_pro_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_cargar_lectura() {
-	$('#cb_alm_dest').val("1");
-	$('#cb_acc_real').val("2");
-	$('#cb_est').val("3");
-	$('#cb_cond_med').val("1")
-	$('#tx_diam').val("5/8''");
-	$('#tx_tec').val("MAGNETICA");
-	$('#tx_cls_metro').val("CALSE B");
-	$('#tx_anio_fab').val("2019");
-	$('#chk_prot').prop("checked",true);
-	$('#tx_fec_cre').val(20022019);
-	$('#tx_anio_reac').val("2018");
-	$('#cb_clav_reac').val("2");
-	$('#cb_pro_med').val("3");
+function fn_cargar_lectura(){
+    //IDENTIFICACIÓN
+
+	$('#tx_fec_crea').val(11032018);
+	$('#tx_est_ord').val("Finalizada");
+    $('#tx_motiv').val("l_solicitud idaan");
+    $('#tx_tip_ord').val("Preventivo");
+	$('#tx_fec_emi').val(11022017);
+	$('#tx_num_sum').val(380492);
+	$('#tx_nom').val("Hernandez Jose Maria")
+	$('#tx_dir').val("Ave omar t herrera estacion prime");
+	$('#tx_tip_clie').val("Normal");
+	$('#tx_usur').val("MSANCHEZ2");
+	$('#tx_sub_zonal').val("PANAMA METRO")
+    $('#tx_local').val("ANCON");
+	$('#tx_sector').val("CICLO 44");
+	$('#tx_obs').val("CAMBIO DE MEDIDOR POR ORDEN DE JEFATURA SE INSTALO MEDIDOR AMCO 14265184");
+    //INFORMACION DE TERRENO
+    
+	$('#tx_fec_act').val(11032018);
+	$('#tx_situ_enc').val("Finalizada");
+    $('#tx_motiv').val("l_solicitud idaan");
+    $('#tx_inspec').val("Preventivo");
+	$('#tx_usur_ing').val(11022017);
+	$('#tx_acc_real').val(380492);
+	$('#tx_contra').val("Hernandez Jose Maria")
+	$('#tx_fec_terr').val("Ave omar t herrera estacion prime");
+	$('#tx_ofi_cam').val("Normal");
+	$('#chk_env_cart').prop("checked",true);
+	$('#chk_autor_cli').prop("checked",true);
+  
+
 }
 function fn_carga_fil(){
 	$("#cb_mar_inp").val("2");
@@ -431,19 +438,38 @@ function fn_limpiar_fil() {
 	 $("#tx_num_fab").val("");
 }
 function fn_limpiar(){
-	$('#cb_alm_dest').val("0");
-	$('#cb_acc_real').val("0");
-	$('#cb_est').val("0");
-	$('#cb_cond_med').val("0")
-	$('#tx_diam').val("");
-	$('#tx_tec').val("");
-	$('#tx_cls_metro').val("");
-	$('#tx_anio_fab').val("");
-	$('#chk_prot').prop("checked",false);
-	$('#tx_fec_cre').val("");
-	$('#tx_anio_reac').val("");
-	$('#cb_clav_reac').val("0");
-	$('#cb_pro_med').val("0");
+//IDENTIFICACIÓN
+
+$('#tx_fec_crea').val("");
+$('#tx_est_ord').val("");
+$('#tx_motiv').val("");
+$('#tx_tip_ord').val("");
+$('#tx_fec_emi').val("");
+$('#tx_num_sum').val("");
+$('#tx_nom').val("");
+$('#tx_dir').val("");
+$('#tx_tip_clie').val("");
+$('#tx_usur').val("");
+$('#tx_sub_zonal').val("");
+$('#tx_local').val("");
+$('#tx_sector').val("");
+$('#tx_obs').val("");
+//INFORMACION DE TERRENO
+
+$('#tx_fec_act').val("");
+$('#tx_situ_enc').val("");
+$('#tx_motiv').val("");
+$('#tx_inspec').val("");
+$('#tx_usur_ing').val("");
+$('#tx_acc_real').val("");
+$('#tx_contra').val("");
+$('#tx_fec_terr').val("");
+$('#tx_ofi_cam').val("");
+$('#chk_env_cart').prop("checked",false);
+$('#chk_autor_cli').prop("checked",false);
+$("#tx_num_ord").focus();
+$("#tx_num_ord").val("");
+
 
 }
 
