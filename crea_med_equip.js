@@ -100,22 +100,29 @@ $(document).ready(function () {
 	$("#co_lec").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
-			
+	    if($("#tx_num_fab").val()==""){
+			fn_mensaje_boostrap("DIGITE NUMERO DE FABRICA", g_titulo, $("#tx_num_fab"));
 
+				return;
+			}
+         }
+		$("#co_lec").html("<span class='glyphicon glyphicon-plus'></span> Ingresar");
+		fn_carga_fil();
+	
+	});
+	$("#co_lec").on("click", function () {
+		if ($.trim($("#co_lec").text()) == "Ingresar") {
+        fn_cargar_lectura();
 
 		}
-		fn_cargar_lectura(); 
-		fn_carga_grilla();
-		fn_limpiar();
-
-
-	});
+    });
 
 
 
 	$("#co_cancel").on("click", function (e){
 
 		fn_limpiar_fil();
+		
     });
 
 
@@ -124,7 +131,7 @@ $(document).ready(function () {
 		if ($.trim($("#co_lim").text()) == "Limpiar") {
 			fn_limpiar();
 		}
-
+		$("#co_lec").html("<span class='glyphicon glyphicon-search'></span> Ingresar");
 	});
 
 
@@ -210,34 +217,34 @@ function fn_setea_grid_principal() {
 }
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_diametro() {
-	$("#cb_mar_inp").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_mar_inp").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_modelo() {
-	$("#cb_model").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_model").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_numero_medidor() {
-	$("#tx_num_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#tx_num_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_num_fab() {
-	$("#tx_num_fab").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#tx_num_fab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_almacen_destino() {
-	$("#cb_alm_dest").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_alm_dest").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_accion_realizada() {
-	$("#cb_acc_real").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_acc_real").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_estado() {
-	$("#cb_est").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_est").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_condición_medidor() {
-	$("#cb_cond_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_cond_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_clave_reacondicionamiento() {
-	$("#cb_clav_reac").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_clav_reac").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_propiedad_medidor() {
-	$("#cb_pro_med").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+	$("#cb_pro_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 function fn_cargar_lectura() {
 	$('#cb_alm_dest').val("1");
@@ -248,11 +255,17 @@ function fn_cargar_lectura() {
 	$('#tx_tec').val("MAGNETICA");
 	$('#tx_cls_metro').val("CALSE B");
 	$('#tx_anio_fab').val("2019");
-	$('#tx_prot').prop("checked",true);
+	$('#chk_prot').prop("checked",true);
 	$('#tx_fec_cre').val(20022019);
 	$('#tx_anio_reac').val("2018");
 	$('#cb_clav_reac').val("2");
 	$('#cb_pro_med').val("3");
+}
+function fn_carga_fil(){
+	$("#cb_mar_inp").val("2");
+	$("#cb_model").val("1");
+	$("#tx_num_med").val(45454);
+
 }
 function fn_carga_grilla() {
 
@@ -269,10 +282,24 @@ function fn_limpiar_fil() {
 	 $("#cb_model").val("0");
 	 $("#tx_num_med").val("");
 	 $("#tx_num_fab").val("");
-
-
+}
+function fn_limpiar(){
+	$('#cb_alm_dest').val("0");
+	$('#cb_acc_real').val("0");
+	$('#cb_est').val("0");
+	$('#cb_cond_med').val("0")
+	$('#tx_diam').val("");
+	$('#tx_tec').val("");
+	$('#tx_cls_metro').val("");
+	$('#tx_anio_fab').val("");
+	$('#chk_prot').prop("checked",false);
+	$('#tx_fec_cre').val("");
+	$('#tx_anio_reac').val("");
+	$('#cb_clav_reac').val("0");
+	$('#cb_pro_med').val("0");
 
 }
+
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_validar_fecha(value) {

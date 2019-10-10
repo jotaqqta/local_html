@@ -80,25 +80,26 @@
 			<form class="from_horizontal">
 				<div class="row">
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<label for="cb_mar_inp">Marca</label>
-						<select id="cb_mar_inp" name="cb_mar_inp" type="text" class="form-control inp_dis"></select>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<label for="cb_model">Modelo</label>
-						<select id="cb_model" name="cb_model" type="text" class="form-control inp_dis"></select>
-					</div>
-				</div>
-				<div class="row">
-				    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<label for="tx_num_med">Numero medidor</label>
-						<input id="tx_num_med" name="tx_num_med" type="text" class="form-control inp_dis">
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 						<label for="tx_num_fab">Numero fabrica</label>
 						<input id="tx_num_fab" name="tx_num_fab" type="text" class="form-control inp_dis">
 					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<label for="tx_num_med">Numero medidor</label>
+						<input id="tx_num_med" name="tx_num_med" type="text" class="form-control inp_dis re" readonly>
+					</div>
 				</div>
-
+				<div class="row">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<label for="cb_mar_inp">Marca</label>
+						<select id="cb_mar_inp" name="cb_mar_inp" type="text" class="form-control inp_dis"
+							disabled></select>
+					</div>
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+						<label for="cb_model">Modelo</label>
+						<select id="cb_model" name="cb_model" type="text" class="form-control inp_dis"
+							disabled></select>
+					</div>
+				</div>
 			</form>
 			<br>
 			<div class="container" id="div_prim">
@@ -172,8 +173,7 @@
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_anio_fab">Año fabricación</label>
-							<input id="tx_anio_fab" name="tx_anio_fab" type="text"
-								class="form-control inp_dis _input_selector">
+							<input id="tx_anio_fab" name="tx_anio_fab" type="text" class="form-control inp_dis">
 						</div>
 					</div>
 
@@ -184,37 +184,27 @@
 								class="form-control inp_dis _input_selector">
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="tx_anio_reac">Año reacondicionamiento</label>
-								<input id="tx_anio_reac" name="tx_anio_reac" type="text"
-									class="form-control inp_dis _input_selector">
+							<label for="tx_anio_reac">Año reacondicionamiento</label>
+							<input id="tx_anio_reac" name="tx_anio_reac" type="text" class="form-control inp_dis">
 						</div>
 
 					</div>
 
 					<div class="row">
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-							<label for="tx_anio_reac">Año reacondicionamiento</label>
-							<input id="tx_anio_reac" name="tx_anio_reac" type="text"
-								class="form-control inp_dis _input_selector">
+							<label for="cb_clav_reac">Clave reacondicionamiento</label>
+							<select id="cb_clav_reac" name="cb_clav_reac" class="form-control inp_dis"></select>
 						</div>
-					    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="cb_pro_med">Propiedad_medidor</label>
-								<select id="cb_pro_med" name="cb_pro_med" class="form-control inp_dis"></select>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+							<label for="cb_pro_med">Propiedad_medidor</label>
+							<select id="cb_pro_med" name="cb_pro_med" class="form-control inp_dis"></select>
 						</div>
 					</div>
+					<br>
 					<div class="row">
-				    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-					<label></label>			
-					</div>
-					<br>	
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-				  
-					<input type="checkbox" id="chk_prot" name="chk_prot" value="1">Prototipo
-					</div>
-					</div>
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-						
-			        </div>
+						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+							<input type="checkbox" id="chk_prot" name="chk_prot"> Prototipo
+						</div>
 					</div>
 
 					<br>
