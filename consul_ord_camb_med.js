@@ -161,7 +161,7 @@ function fn_setea_grid_principal() {
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
-    $grid_principal.pqGrid("refreshDataAndView");
+
     
 
 }
@@ -236,7 +236,7 @@ function fn_setea_grid_principal() {
 	];
    
 	$grid_sec= $("#div_grid_sec").pqGrid(obj);
-    $grid_sec.pqGrid("refreshDataAndView");
+
 }
  //--------------------------------------------------------------------------------------------------------------
  function fn_setea_grid_ter() {
@@ -308,7 +308,6 @@ obj.colModel = [
 ];
 
 $grid_ter= $("#div_grid_ter").pqGrid(obj);
-$grid_ter.pqGrid("refreshDataAndView");
 
 }
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
