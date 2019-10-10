@@ -157,7 +157,7 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true },
-		title: "Tipo de medición",
+		title: "Lecturas",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
@@ -232,7 +232,6 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true },
-		title: "Tipo de medición",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
@@ -287,7 +286,7 @@ function fn_setea_grid_principal() {
 		{ title: "Entero/Decimal", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
 
 	];
-
+   
 	$grid_sec= $("#div_grid_sec").pqGrid(obj2);
     $grid_sec.pqGrid("refreshDataAndView");
  //--------------------------------------------------------------------------------------------------------------
@@ -304,7 +303,6 @@ function fn_setea_grid_principal() {
     editor: { type: "textbox", select: true, style: "outline:none;" },
     selectionModel: { type: 'cell' },
     numberCell: { show: true },
-    title: "Tipo de medición",
     pageModel: { type: "local" },
     scrollModel: { theme: true },
     toolbar:
@@ -362,6 +360,7 @@ obj3.colModel = [
 
 $grid_ter= $("#div_grid_ter").pqGrid(obj2);
 $grid_ter.pqGrid("refreshDataAndView");
+
 }
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_diametro() {
