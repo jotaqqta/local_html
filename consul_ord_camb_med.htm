@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Jquery -->
+    <link rel="stylesheet" href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <script src="jquery/inputmask.min.js"></script>
+    <script src="jquery/jquery.inputmask.min.js"></script>
+
+    <!-- Paramquery -->
+    <link rel="stylesheet" href="pqgrid/v5.6/pqgrid.min.css">
+    <link rel="stylesheet" href="pqgrid/v5.6/themes/steelblue/pqgrid.css">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="bootstrap/v3.3.7/css/bootstrap.min.css">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link rel="stylesheet" href="syn_dinamicos/synergia.css">
+    <script language="JavaScript" src="consul_ord_camb_med.js"></script>
+    <link rel="stylesheet" href="syn_dinamicos/header.css">
+
+    <!-- Archivos importantes -->
+    <!-- Archivos importantes -->
+
+    <style>
+        .panel-primary {
+            border-color: #cccccc;
+        }
+
+        .panel-primary>.panel-heading {
+            color: #404040;
+            font-weight: 600;
+            background-color: #ffffff;
+            border-color: #cccccc;
+        }
+
+        #grid_consulta_compensa {
+            float: center;
+        }
+
+        #bd_prin {
+            height: calc(100vh - 167px);
+        }
+
+        .input_ver {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header" class="container">
+        <div id="div_header"></div>
+    </div>
+
+    <div class="bootstrap-syn">
+        <div class="container">
+            <br>
+            <div class="well well-sm">Identificación</div>
+            <form class="from_horizontal">
+
+                <div class="row">
+                    <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="tx_num_ord">Nro orden</label>
+                        <input id="tx_num_ord" name="tx_num_ord" class="form-control" style="margin-top: 3px;">
+                    </div>
+
+                    <div class="col-5 col-sm-5 col-md-5 col-lg-5">
+                        <br>
+                        <button type="button" class="btn btn-primary" id="co_leer" name="co_leer"
+                            style="padding: 4px 12px;width:105px;"><span class="glyphicon glyphicon-search"></span>
+                            Leer</button>
+                        <button type="button" class="btn btn-basic" id="co_close" name="co_close"
+                            style="padding: 4px 12px;width:105px;"><span class="glyphicon glyphicon-remove"></span>
+                            Cerrar</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6" id="nombre">
+                        <div class="form-group">
+                            <label for="tx_fec_crea">Fecha creación</label>
+                            <input disabled id="tx_fec_crea" name="tx_fec_crea" class="form-control inp_dis">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_est_ord">Estado orden</label>
+                            <input disabled id="tx_est_ord" name="tx_est_ord" class="form-control inp_dis">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6" id="direccion">
+                        <div class="form-group">
+                            <label for="tx_motiv">Motivo</label>
+                            <input disabled id="tx_motiv" name="tx_motiv" class="form-control inp_dis">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_tip_ord">Tipo de orden</label>
+                            <input class="form-control inp_dis" id="tx_tip_orden" name="tx_tip_orden">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_fec_emi">Fecha de emision</label>
+                            <input class="form-control inp_dis" id="tx_fec_emi" name="tx_fec_emi">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_num_sum">Nro suministro</label>
+                            <input class="form-control inp_dis" id="tx_num_sum" name="tx_num_sum">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_nom">Nombre</label>
+                            <input class="form-control inp_dis" id="tx_nom" name="tx_nom">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_dir">Dirección</label>
+                            <input class="form-control inp_dis" id="tx_dir" name="tx_dir">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_tip_clie">Tipo cliente</label>
+                            <input class="form-control inp_dis" id="tx_tip_cli" name="tx_tip_cli">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_usur">Usuario creación</label>
+                            <input class="form-control inp_dis" id="tx_usur" name="tx_usur">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_sub_zonal">Subgerencia zonal</label>
+                            <input class="form-control inp_dis" id="tx_sub_zonal" name="tx_sub_zonal">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_local">Localidad</label>
+                            <input class="form-control inp_dis" id="tx_local" name="tx_local">
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="tx_sector">Sector</label>
+                            <input class="form-control inp_dis" id="tx_sector" name="tx_sector">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" id="fila7">
+                    <label class="control-label" for="tx_obs">Observacion</label>
+                    <textarea style="text-transform:uppercase;" class="form-control" rows="3" id="tx_obs" name="tx_obs"
+                        maxlength="200" style="font-size: 18px;"></textarea>
+                </div>
+            </form>
+
+            <br>
+            <div class="well well-sm">Información de terreno</div>
+            <form class="from_horizontal">
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_fec_act">Fecha de actualziación</label>
+                        <input id="tx_fec_act" name="tx_fec_act" class="form-control inp_dis">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_situ_enc">Situación encontrada</label>
+                        <input id="tx_situ_enc" name="tx_situ_enc" class="form-control inp_dis" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_inspec">Inspector</label>
+                        <input id="tx_inspec" name="tx_inspec" class="form-control inp_dis">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_usur_ing">Usuario Ingreso</label>
+                        <input id="tx_usur_ing" name="tx_usur_ing" class="form-control inp_dis">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_acc_real">Acción realizada</label>
+                        <input id="tx_acc_real" name="tx_acc_real" class="form-control inp_dis">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_contra">Contratsira</label>
+                        <input id="tx_contra" name="tx_contra" class="form-control inp_dis">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_fec_terr">Fecha terreno</label>
+                        <input id="tx_fec_terr" name="tx_fec_terr" class="form-control inp_dis">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <label for="tx_ofi_cam">Oficina Cambio</label>
+                        <input id="tx_ofi_cam" name="tx_ofi_cam" class="form-control inp_dis">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="checkbox">
+                        <label class="control-label col-sm-3"></label>
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                            <input type="checkbox" id="chk_env_cart" name="chk_env_cart" value="1">Envia carta
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                            <input type="checkbox" id="chk_autor_cli" name="chk_autor_cli" value="2">Autorizado cliente
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="container" id="div_prim">
+                <div class="form-horizontal flex-wrap">
+                    <label class="col-sm-4"></label>
+
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 mx-auto flex-wrap">
+                        <button type="button" class="btn btn-primary" id="co_lec" name="co_lec"><span
+                                class="glyphicon glyphicon-search"></span>
+                            Leer</button>
+                        <button type="button" class="btn btn-basic" id="co_lim" name="co_lim"><span
+                                class="glyphicon glyphicon-remove"></span>
+                            Limpiar</button>
+                        <button type="button" class="btn btn-basic" id="co_cancel" name="co_cancel"><span
+                                class="glyphicon glyphicon-off"></span>
+                            Cancelar</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- FORMULARIO DE LA PRIMERA PESTAÑA -->
+            <br>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#Principal">Medidor Retirado</a></li>
+                <li><a data-toggle="tab" href="#generales">Medidor instalado</a></li>
+            </ul>
+            <!-- INFORMACION DEL PRIMER FORMULARIO -->
+            <div class="tab-content">
+                <div id="Principal" class="tab-pane fade in active">
+
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tx_marc">Marca</label>
+                            <input id="tx_marc" name="tx_marc" class="form-control inp_dis"></select>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tx_num">Numero</label>
+                            <input id="tx_num" name="tx_num" class="form-control inp_dis">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tx_diam">Diametro</label>
+                            <input id="tx_diam" name="tx_diam" class="form-control inp_dis">
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="c">Modelo</label>
+                            <select id="cb_cond_med" name="cb_cond_med" class="form-control inp_dis"></select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tx_prop_equip">Propiedad equipo</label>
+                            <input id="tx_prop_equip" name="tx_prop_equip" type="text" class="form-control inp_dis"
+                                readonly>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tx_anio_fab">Año fabricación</label>
+                            <input id="tx_anio_fab" name="tx_anio_fab" type="text" class="form-control inp_dis"
+                                readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- PARAMQUERY PRINCIPAL -->
+                    <div id="div_grid_principal">
+
+                    </div>
+                    <br>
+                </div>
+                <!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
+                <div id="generales" class="tab-pane fade">
+                    <br>
+                    <div id="div_grid_sec">
+
+                    </div>
+                    <br>
+                    <br>
+                    <div id="div_grid_ter">
+
+                    </div>
+                    <br>
+
+
+                </div>
+                <!-- FORMULARIO DE LA TERCERA PESTAÑA -->
+
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+        </div>
+    </div>
+    <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+    <form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
+        <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
+        <input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
+        <input type="hidden" id="tx_rol" name="tx_rol" value="">
+        <input type="hidden" id="tx_ip" name="tx_ip" value="">
+        <input type="hidden" id="tx_cen_rolfun" name="tx_cen_rolfun" value="">
+        <input type="hidden" id="sql" name="sql" value="">
+        <input type="hidden" id="Rol" name="Rol" value="">
+        <input type="hidden" id="tituloexcel" name="tituloexcel">
+        <input type="hidden" id="excel_archivo" name="excel_archivo">
+        <input type="hidden" id="filtro" name="filtro">
+        <input type="hidden" id="excel_cabecera" name="excel_cabecera">
+    </form>
+    <input type="hidden" id="nom_rol" name="nom_rol">
+</body>
+
+</html>
