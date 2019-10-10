@@ -61,7 +61,7 @@ $(document).ready(function () {
     
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 
-    $("#co_filtro").html("<span class='glyphicon glyphicon-plus'></span> Filtro");
+    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
 	$("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     
@@ -117,26 +117,17 @@ $(document).ready(function () {
             			
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             fn_carga_grilla();
-            fn_limpiar();
             $("#div_prin").slideDown();
 			$("#div_filtro_bts").slideUp();
 			$('#div_filtro_bts').modal('hide');	
             $(window).scrollTop(0);
 
         }
-    });
-
-    $("#co_limpiar").on("click",function(){
-		if ($.trim($("#co_limpiar").text())=="Limpiar"){
-			fn_limpiar();
-			return;
-		}
-		else
-			window.close();
-	});
+    })
+	
+	
 	$("#co_cancel").on("click", function (e){
 		$('#div_filtro_bts').modal('hide');	
-		fn_limpiar();
     });
 	
 	$("#co_cerrar").on("click", function (e){
@@ -151,21 +142,6 @@ $(document).ready(function () {
     }); 
  //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	$("._input_selector").inputmask("dd/mm/yyyy");
-
-
-    $("#co_limpiar").on("click", function(){
-		if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-		    fn_limpia_modal();
-			return;
-		}
-		else
-			window.close();
-	});
-
-	
-	
-	
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -190,37 +166,7 @@ $(document).ready(function () {
 			$("#frm_Exel").submit();
 			return;
 		}	
-    });
-	$grid_principal.pqGrid({
-        rowDblClick: function fn_sss(event, ui) {
-            if (ui.rowData) {
-                var dataCell = ui.rowData;
-				$("#tx_cod").val(dataCell.C1);
-				$("#tx_cod").attr("readonly", true);
-				$("#tx_desc").val(dataCell.C2);
-				$("#cb_unid_hab").val(dataCell.C3);
-				$("#tx_cons").val(dataCell.C4);
-				$("#cb_subs").val(dataCell.C5);
-				$("#cb_jub").val(dataCell.C6);
-				$("#cb_prom").val(dataCell.C7);
-				$("#cb_compe").val(dataCell.C8);
-               
-
-
-				$("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
-				$("#div_filtro_bts").on("shown.bs.modal", function () {
-				$("#div_filtro_bts div.modal-footer button").focus();
-				});
-            }
-            fn_carga_grilla();
-
-
-        }
-    });
-
-
-
-	    	 
+    });    	 
 	 
 });
            
@@ -239,7 +185,8 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Administrador de tarifas",
+		title: "",
+		showTitle: false,
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
@@ -251,12 +198,6 @@ function fn_setea_grid_principal() {
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}               
 				]
 		},
-        editModel: {
-            clicksToEdit: 1,
-            keyUpDown: true,
-            pressToEdit: true,
-            cellBorderWidth: 0
-        },
 		dataModel:{ data: [
 			{ C1: '0001', C2: 'CONSUMO DE AGUA', C3: '1', C4: 1212121, C5: '1', C6: '1', C7: '1', C8: '1', C9: '0'},
 			{ C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO',C3: '2', C4: 455455, C5: '2', C6:'2', C7: "2", C8: '2', C9: '0'},
