@@ -36,6 +36,8 @@ $(document).ready(function () {
 
 	$("#tx_cli").focus();
     fn_setea_grid_principal();
+    fn_setea_grid_sec();
+    fn_setea_grid_ter();
     
     $('input[name="optradio"]').prop('disabled', false);
 
@@ -78,9 +80,9 @@ $(document).ready(function () {
 		dato_original = x.split("#");
 		x = dato_original[1];
         if(x == "MedidorRetirado")
-            $grid_sec.pqGrid( "refreshView" );
+            $grid_sec.pqGrid( "refreshDataAndView" );
 		if(x == "MedidorInstalado")
-            $grid_ter.pqGrid( "refreshView" );  
+            $grid_ter.pqGrid( "refreshDataAndView" );  
     });
 
 });
@@ -162,9 +164,10 @@ function fn_setea_grid_principal() {
     $grid_principal.pqGrid("refreshDataAndView");
     
 
-
+}
 
     //_______________________________________________________________________________________________________
+    function fn_setea_grid_sec() {
     var obj = {
 		height: "80%",
 		showTop: true,
@@ -234,8 +237,9 @@ function fn_setea_grid_principal() {
    
 	$grid_sec= $("#div_grid_sec").pqGrid(obj);
     $grid_sec.pqGrid("refreshDataAndView");
+}
  //--------------------------------------------------------------------------------------------------------------
- 
+ function fn_setea_grid_ter() {
  var obj = {
     height: "80%",
     showTop: true,

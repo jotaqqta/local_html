@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=10">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -62,6 +63,10 @@
             height: calc(100vh - 167px);
         }
 
+        #bd_acc {
+            height: 460px;
+        }
+
         .input_ver {
             margin-top: 8px;
         }
@@ -100,7 +105,8 @@
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6" id="nombre">
                         <div class="form-group">
                             <label for="tx_fec_crea">Fecha creación</label>
-                            <input disabled id="tx_fec_crea" name="tx_fec_crea" class="form-control inp_dis _input_selector" readonly>
+                            <input disabled id="tx_fec_crea" name="tx_fec_crea"
+                                class="form-control inp_dis _input_selector" readonly>
                         </div>
                     </div>
 
@@ -128,7 +134,8 @@
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-group">
                             <label for="tx_fec_emi">Fecha de emision</label>
-                            <input class="form-control inp_dis _input_selector" id="tx_fec_emi" name="tx_fec_emi" readonly>
+                            <input class="form-control inp_dis _input_selector" id="tx_fec_emi" name="tx_fec_emi"
+                                readonly>
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
@@ -225,7 +232,8 @@
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <label for="tx_fec_terr">Fecha terreno</label>
-                        <input id="tx_fec_terr" name="tx_fec_terr" class="form-control inp_dis _input_selector" readonly>
+                        <input id="tx_fec_terr" name="tx_fec_terr" class="form-control inp_dis _input_selector"
+                            readonly>
                     </div>
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <label for="tx_ofi_cam">Oficina Cambio</label>
@@ -242,15 +250,16 @@
                     <div class="checkbox">
                         <label class="control-label col-sm-2"></label>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3">
-                            <input type="checkbox" id="chk_autor_cli" name="chk_autor_cli" value="2" readonly>Autorizado cliente
+                            <input type="checkbox" id="chk_autor_cli" name="chk_autor_cli" value="2" readonly>Autorizado
+                            cliente
                         </div>
                     </div>
                 </div>
             </form>
             <br>
         </div>
-           
-<div class="container">
+
+        <div class="container">
             <!-- FORMULARIO DE LA PRIMERA PESTAÑA -->
             <br>
             <ul class="nav nav-tabs">
@@ -260,7 +269,7 @@
             <!-- INFORMACION DEL PRIMER FORMULARIO -->
             <div class="tab-content">
 
-            
+
                 <div id="Principal" class="tab-pane fade in active">
 
                     <div class="row">
@@ -303,30 +312,27 @@
                     </div>
                     <br>
                 </div>
-       
-          
                 <!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
                 <div id="MedidorInstalado" class="tab-pane fade">
                     <br>
-                    
-                    <div id="div_grid_sec">
+                    <div id="div_grid_sec" id="bd_acc">
                     </div>
-                  
+
                     <br>
-                   
-                    <div id="div_grid_ter">
+
+                    <div id="div_grid_ter" id="bd_acc">
                     </div>
-                  
+
                     <br>
+
                 </div>
-         
                 <!-- FORMULARIO DE LA TERCERA PESTAÑA -->
             </div>
         </div>
     </div>
-        <div class="container">
-            <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
-        </div>
+    <div class="container">
+        <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+    </div>
     </div>
     <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
     <form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
