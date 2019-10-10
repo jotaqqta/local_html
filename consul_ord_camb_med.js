@@ -26,27 +26,18 @@ $(document).ready(function () {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);
 	});
-
+	
+    // INICIA CON EL CURSOR EN EL CAMPO FECHA
+	
+	$("._input_selector").inputmask("dd/mm/yyyy");
+    
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
 
 	$("#tx_cli").focus();
-	fn_setea_grid_principal();
-
-	fn_diametro();
-	fn_modelo();
-	fn_numero_medidor();
-	fn_num_fab();
-	fn_almacen_destino();
-	fn_accion_realizada();
-	fn_estado();
-	fn_condición_medidor();
-	fn_clave_reacondicionamiento();
-	fn_propiedad_medidor();
-
-
-	$("._input_selector").inputmask("dd/mm/yyyy");
-	$('input[name="optradio"]').prop('disabled', false);
+    fn_setea_grid_principal();
+    
+    $('input[name="optradio"]').prop('disabled', false);
 
 	jQuery('#tx_num_ord').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
@@ -59,47 +50,9 @@ $(document).ready(function () {
 	$("#co_cancelar").on("click", function (e) {
 		window.close();
 	});
-	$("#cb_prov").on("change", function (evt) {
-		if ($(this).val() != "") {
-			$("#cb_dist").prop("disabled", false);
-			fn_distrito();
-		}
 
-		else {
-			$("#cb_dist").val("");
-			$("#cb_corre").val("");
-			$("#cb_barrio").val("");
-			$("#cb_dist").prop("disabled", true);
-			$("#cb_corre").prop("disabled", true);
-			$("#cb_barrio").prop("disabled", true);
-		}
-	});
-	$("#cb_dist").on("change", function (evt) {
-		if ($(this).val() != "") {
-			$("#cb_corre").prop("disabled", false);
 
-		}
-
-		else {
-			$("#cb_corre").val("");
-			$("#cb_barrio").val("");
-			$("#cb_corre").prop("disabled", true);
-			$("#cb_barrio").prop("disabled", true);
-		}
-	});
-	$("#cb_corre").on("change", function (evt) {
-		if ($(this).val() != "") {
-			$("#cb_barrio").prop("disabled", false);
-			fn_barrio();
-		}
-
-		else {
-			$("#cb_barrio").val("");
-			$("#cb_barrio").prop("disabled", true);
-		}
-	});
-
-	$("#co_lec").on("click", function () {
+	$("#co_lec").on("click", function(){
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
 	    if($("#tx_num_ord").val()==""){
@@ -109,22 +62,14 @@ $(document).ready(function () {
 			}
          }
         fn_cargar_lectura()
-		fn_carga_fil();
+        fn_carga_fil();
+        fn_carga_grilla();
 	
 	});
 	$("#co_cancel").on("click", function (e){
 
 		fn_limpiar();
 		
-    });
-
-
-	$("#co_lim").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_lim").text()) == "Limpiar") {
-			fn_limpiar();
-		}
-	
     });
 
 });
@@ -352,36 +297,6 @@ $grid_ter.pqGrid("refreshDataAndView");
 
 }
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_diametro() {
-	$("#cb_mar_inp").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_modelo() {
-	$("#cb_model").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_numero_medidor() {
-	$("#tx_num_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_num_fab() {
-	$("#tx_num_fab").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_almacen_destino() {
-	$("#cb_alm_dest").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_accion_realizada() {
-	$("#cb_acc_real").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_estado() {
-	$("#cb_est").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_condición_medidor() {
-	$("#cb_cond_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_clave_reacondicionamiento() {
-	$("#cb_clav_reac").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_propiedad_medidor() {
-	$("#cb_pro_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
 function fn_cargar_lectura(){
     //IDENTIFICACIÓN
 
@@ -408,7 +323,7 @@ function fn_cargar_lectura(){
 	$('#tx_usur_ing').val(11022017);
 	$('#tx_acc_real').val(380492);
 	$('#tx_contra').val("Hernandez Jose Maria")
-	$('#tx_fec_terr').val("Ave omar t herrera estacion prime");
+	$('#tx_fec_terr').val(12212019);
 	$('#tx_ofi_cam').val("Normal");
 	$('#chk_env_cart').prop("checked",true);
 	$('#chk_autor_cli').prop("checked",true);
