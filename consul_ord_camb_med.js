@@ -71,6 +71,17 @@ $(document).ready(function () {
 		fn_limpiar();
 		
     });
+        
+    $(".nav-tabs a").on("shown.bs.tab", function(event){
+        var x = $(event.target).prop("href");  // tab activada
+        var dato_original = [];
+		dato_original = x.split("#");
+		x = dato_original[1];
+        if(x == "MedidorRetirado")
+            $grid_sec.pqGrid( "refreshView" );
+		if(x == "MedidorInstalado")
+            $grid_ter.pqGrid( "refreshView" );  
+    });
 
 });
 
@@ -213,11 +224,11 @@ function fn_setea_grid_principal() {
 	};
 
 	obj.colModel = [
-		{ title: "Codigo", width: 55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-		{ title: "Lectura", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "Constante", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Entero/Decimal", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		{ title: "Numero", width: 55, dataType: "number", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Marca", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+		{ title: "Modelo", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "Propiedad_equipo", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		{ title: "Diametro", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
 
 	];
    
@@ -288,7 +299,7 @@ obj.colModel = [
     { title: "Descripción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
     { title: "Lectura", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
     { title: "Constante", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-    { title: "Entero/Decimal", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+   
 
 ];
 
