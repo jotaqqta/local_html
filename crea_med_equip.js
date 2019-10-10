@@ -110,6 +110,7 @@ $(document).ready(function () {
 		fn_carga_fil();
 	
 	});
+	
 	$("#co_lec").on("click", function () {
 		if ($.trim($("#co_lec").text()) == "Ingresar") {
         fn_cargar_lectura();
@@ -131,7 +132,7 @@ $(document).ready(function () {
 		if ($.trim($("#co_lim").text()) == "Limpiar") {
 			fn_limpiar();
 		}
-		$("#co_lec").html("<span class='glyphicon glyphicon-search'></span> Ingresar");
+	
 	});
 
 

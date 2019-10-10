@@ -147,7 +147,7 @@
 					<div class="row">
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="cb_est">Estado</label>
-							<select id="cb_est" name="cb_est" class="form-control inp_dis"></select>
+							<select id="cb_est" name="cb_est" class="form-control inp_dis" disabled></select>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="cb_cond_med">Condición medidor</label>
@@ -162,14 +162,14 @@
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_tec">Tecnologia</label>
-							<input id="tx_tec" name="tx_tec" type="text" class="form-control inp_dis">
+							<input id="tx_tec" name="tx_tec" type="text" class="form-control inp_dis" readonly>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_cls_metro">Clase metrologica</label>
-							<input id="tx_cls_metro" name="tx_cls_metro" type="text" class="form-control inp_dis">
+							<input id="tx_cls_metro" name="tx_cls_metro" type="text" class="form-control inp_dis" readonly>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_anio_fab">Año fabricación</label>
@@ -203,7 +203,8 @@
 					<br>
 					<div class="row">
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-							<input type="checkbox" id="chk_prot" name="chk_prot"> Prototipo
+							<input type="checkbox" id="chk_prot" name="chk_prot">
+							<label for="chk_prot">Prototipo</label>
 						</div>
 					</div>
 
