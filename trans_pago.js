@@ -185,7 +185,8 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Administrador de tarifas",
+		title: "",
+		showTitle: false,
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
