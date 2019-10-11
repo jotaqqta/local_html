@@ -73,17 +73,22 @@ $(document).ready(function () {
 		fn_limpiar();
 		
     });
-        
-    $(".nav-tabs a").on("shown.bs.tab", function(event){
-        var x = $(event.target).prop("href");  // tab activada
-        var dato_original = [];
-		dato_original = x.split("#");
-		x = dato_original[1];
-        if(x == "MedidorRetirado")
-            $grid_sec.pqGrid( "refreshView" );
-		if(x == "MedidorInstalado")
-            $grid_ter.pqGrid( "refreshView" );  
-    });
+
+
+
+
+$(".nav-tabs a").on("shown.bs.tab", function(event){
+	var x = $(event.target).prop("href");  // tab activada
+	var dato_original = [];
+dato_original = x.split("#");
+x = dato_original[1];
+	if(x == "MedidorRetirado")
+		$grid_principal.pqGrid( "refreshView" );
+if(x == "MedidorInstalado"){
+		$grid_ter.pqGrid( "refreshView" );
+$grid_sec.pqGrid( "refreshView" );
+}
+});
 
 });
 
@@ -93,7 +98,7 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
 	var obj = {
-		height: "80%",
+		height: 340,
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
