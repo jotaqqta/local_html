@@ -84,11 +84,6 @@ $(document).ready(function () {
     $("#co_cerrar_t").on("click", function (e) {
         window.close();
     });
-	
-    $("#co_aceptar").on("click", function () {
-        //Validación de informacion
-       
-	});
 			
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
@@ -142,44 +137,36 @@ $(document).ready(function () {
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
-    $("#co_guardar").on("click", function () {
-        //Validación de informacion
-        if ($.trim($("#co_guardar").text()) == "Guardar") {            
-            if ($("#cb_tip_agru").val() == "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO AGRUPACION!!!</strong></div>',3000);
-                $("#cb_tip_agru").focus();
-                return;
-            }
-             if ($("#cb_nom_agru").val() == "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR NOMBRE AGRUPACION!!!</strong></div>',3000);
-                $("#cb_nom_agru").focus();
-                return;
-                 
-             }
-             if ($("#cb_cod_acc").val() == "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO ACCIÓN!!!</strong></div>',3000);
-                $("#cb_cod_acc").focus();
-                return;
-             }
-             if ($("#cb_amor").val() == "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR AMORTIZADO!!!</strong></div>',3000);
-                $("#cb_amor").focus();
-                return;                				
-             }
-        }
+    $("#co_aceptar").on("click", function () {
+        //Validación de informacion      
+		if ($("#cb_tip_agru").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO AGRUPACION!!!</strong></div>',3000);
+			$("#cb_tip_agru").focus();
+			return;
+		}
+		 if ($("#cb_nom_agru").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR NOMBRE AGRUPACION!!!</strong></div>',3000);
+			$("#cb_nom_agru").focus();
+			return;
 
+		 }
+		 if ($("#cb_cod_acc").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO ACCIÓN!!!</strong></div>',3000);
+			$("#cb_cod_acc").focus();
+			return;
+		 }
+		 if ($("#cb_amor").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR AMORTIZADO!!!</strong></div>',3000);
+			$("#cb_amor").focus();
+			return;                				
+		 }
+		fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+		fn_carga_grilla();
+		fn_limpiar_fi();
+		$("#div_prin").slideDown();
+		$("#div_filtros").slideUp();
+		$(window).scrollTop(0);
 
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
-            fn_carga_grilla();
-            fn_limpiar_fi();
-            $("#div_prin").slideDown();
-            $("#div_filtros").slideUp();
-            $(window).scrollTop(0);
-
-
-
-        }
     });
 
 
