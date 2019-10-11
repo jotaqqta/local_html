@@ -84,9 +84,11 @@ $(document).ready(function () {
         fn_limpiar_fi();
         fn_Muestra_Filtro();
     });
+	
     $("#co_cerrar_t").on("click", function (e) {
         window.close();
     });
+	
     $("#co_aceptar").on("click", function () {
         //Validación de informacion
         if ($.trim($("#co_aceptar").text()) == "Aceptar") {
@@ -97,20 +99,24 @@ $(document).ready(function () {
             if ($("#cb_tip_agru").val() == "0") {
                 fn_mensaje_boostrap("SELECCIONE NOMBRE DE AGRUPACIÓN", g_tit, $("#cb_tip_agru"));
                 return;
-            if ($("#cb_tip_acc").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE CODIGO ACCIÓN", g_tit, $("#cb_tip_acc"));
-                return;
-                if ($("#cb_amor").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE AMORTIZACIÓN", g_tit, $("#cb_amor"));
-                return;
-            } else {
-                fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
-                fn_carga_grilla();
-                $('#div_filtro_bts').modal('hide');
-                fn_limpiar();
-            }
-        }
-    };
+				if ($("#cb_tip_acc").val() == "0") {
+					fn_mensaje_boostrap("SELECCIONE CODIGO ACCIÓN", g_tit, $("#cb_tip_acc"));
+					return;
+					if ($("#cb_amor").val() == "0") {
+						fn_mensaje_boostrap("SELECCIONE AMORTIZACIÓN", g_tit, $("#cb_amor"));
+						return;
+					} 
+					else {
+						fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
+						fn_carga_grilla();
+						$('#div_filtro_bts').modal('hide');
+						fn_limpiar();
+					}
+				}
+    		}
+		}
+	});
+			
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -119,10 +125,10 @@ $(document).ready(function () {
         else
             window.close();
     });
+	
     $("#co_cancelar").on("click", function (e) {
         $('#div_filtro_bts').modal('hide');
     });
-
 
     //BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function (e) {
@@ -138,6 +144,7 @@ $(document).ready(function () {
         fn_nuevo();
         fn_limpiar_fi();
     });
+	
     $("#co_volver_fil").on("click", function (e) {
 
         $("#div_prin").slideDown();
@@ -145,11 +152,11 @@ $(document).ready(function () {
         $(window).scrollTop(0);
 
     });
+	
     $("#co_close-m").on("click", function (e) {
         $('#div_modal').modal('hide');
 
     });
-    //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
     $("#co_volver2").on("click", function (e) {
         $("#div_prin").show();
@@ -157,10 +164,8 @@ $(document).ready(function () {
         $(window).scrollTop(0);
     });
 
-
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     $("._input_selector").inputmask("dd/mm/yyyy");
-
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
@@ -238,6 +243,7 @@ $(document).ready(function () {
         else
             window.close();
     });
+	
     $("#div_modal").draggable({
         handle: ".modal-header"
     });
@@ -269,8 +275,6 @@ $(document).ready(function () {
 
             }
             fn_carga_grilla();
-
-
         }
     });
 
@@ -300,7 +304,7 @@ $(document).ready(function () {
         }
     });
 
-};
+});
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_setea_grid_principal() {
@@ -364,7 +368,7 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Codigo", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripcion Cargo", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Descripcion Cargo", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
               
     ];
 
@@ -513,14 +517,17 @@ function fn_Muestra_Filtro() {
 function fn_agroup() {
     $("#cb_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_tip_acc() {
     $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_tip_acc() {
     $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_amor() {
     $("#cb_amor").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
