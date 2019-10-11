@@ -1,5 +1,5 @@
-var g_modulo = "Administración Central - Configuración Base del Sistema";
-var g_tit = "Consulta de cargos";
+var g_modulo = "Mantenedor de Agrupaciones de Saldo";
+var g_tit = "Mantenedor de Agrupaciones de Saldo";
 var $grid_principal;
 var $grid_2;
 var sql_grid_prim = "";
@@ -10,7 +10,7 @@ var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
-
+    
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
         if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
@@ -58,10 +58,14 @@ $(document).ready(function () {
 
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
-    fn_uni_med();
-    fn_car_aut();
-    fn_inp_group();
-    fn_inp_tip_acc();
+    //fn_uni_med();
+    //fn_car_aut();
+    //fn_inp_group();
+    //fn_inp_tip_acc();
+    fn_agroup();
+    fn_tip_acc();
+    fn_tip_acc();
+    fn_amor();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
@@ -70,6 +74,7 @@ $(document).ready(function () {
     $("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+    $("#co_volver_fil").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 
@@ -86,11 +91,17 @@ $(document).ready(function () {
         //Validación de informacion
         if ($.trim($("#co_aceptar").text()) == "Aceptar") {
             if ($("#cb_agrup").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE AGRUPACIÓN", g_tit, $("#cb_agrup"));
+                fn_mensaje_boostrap("SELECCIONE TIPO AGRUPACIÓN", g_tit, $("#cb_agrup"));
                 return;
             }
+            if ($("#cb_tip_agru").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE NOMBRE DE AGRUPACIÓN", g_tit, $("#cb_tip_agru"));
+                return;
             if ($("#cb_tip_acc").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE TIPO DE ACCIÓN", g_tit, $("#cb_tip_acc"));
+                fn_mensaje_boostrap("SELECCIONE CODIGO ACCIÓN", g_tit, $("#cb_tip_acc"));
+                return;
+                if ($("#cb_amor").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE AMORTIZACIÓN", g_tit, $("#cb_amor"));
                 return;
             } else {
                 fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
@@ -99,7 +110,7 @@ $(document).ready(function () {
                 fn_limpiar();
             }
         }
-    });
+    };
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -112,9 +123,6 @@ $(document).ready(function () {
         $('#div_filtro_bts').modal('hide');
     });
 
-    $("#co_volver_fil").on("click", function (e) {
-        window.close();
-    });
 
     //BOTONES ELIMINAR DE LAS GRILLAS
     $("#co_eliminar").on("click", function (e) {
@@ -292,7 +300,7 @@ $(document).ready(function () {
         }
     });
 
-});
+};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_setea_grid_principal() {
@@ -327,8 +335,7 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
         dataModel: {
-            data: [
-                { C1: '0001', C2: 'CONSUMO DE AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
+            data: [                
                 { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
                 { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
                 { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
@@ -357,17 +364,8 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Codigo", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripcion", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "Unidad de medida", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: true },
-        { title: "Glosa en documento", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: true },
-        { title: "Cargo automatico", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: true },
-        { title: "Fecha activación", width: 100, dataType: "number", dataIndx: "C6", halign: "center", align: "center", hidden: true },
-        { title: "Fecha desactivación", width: 100, dataType: "number", dataIndx: "C7", halign: "center", align: "center", hidden: true },
-        { title: "Orden de impresión", width: 100, dataType: "string", dataIndx: "C8", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de amortización", width: 100, dataType: "number", dataIndx: "C9", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de impresión", width: 100, dataType: "number", dataIndx: "C10", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de amortización", width: 100, dataType: "number", dataIndx: "C11", halign: "center", align: "center", hidden: true },
-        { title: "Nivel de presentación", width: 100, dataType: "number", dataIndx: "C11", halign: "center", align: "center", hidden: true }
+        { title: "Descripcion Cargo", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+              
     ];
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -421,14 +419,17 @@ function fn_setea_grid_principal() {
                 { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-primary" },
                 { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-default btn-sm" },
+                { type: "button", label: "cancelar", attr: "id=co_volver_fil", cls: "btn btn-default btn-sm" },
             ]
         }
 
     };
 
     obj2.colModel = [
-        { title: "Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Tipo Acción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Tipo Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Nombre Agrupación", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Cod. Acción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Amortizado", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
         {
             title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
             render: function (ui) {
@@ -442,7 +443,6 @@ function fn_setea_grid_principal() {
 
     $grid_2 = $("#div_grid_sec").pqGrid(obj2);
 }
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar() {
 
@@ -450,7 +450,7 @@ function fn_limpiar() {
     $("#cb_tip_acc").val("0");
     $("#cb_agrup").focus();
 }
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar_fi() {
 
     $("#tx_cargo").val("");
@@ -469,8 +469,7 @@ function fn_limpiar_fi() {
     $("#chk_comb").prop("checked", false);
     $("#chk_amort").prop("checked", false);
 }
-
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_filtro() {
     parameters =
         {
@@ -479,6 +478,7 @@ function fn_filtro() {
         };
 
 }
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_nuevo() {
 
     $("#div_filtro_bts").modal({ backdrop: "static", keyboard: false });
@@ -487,18 +487,17 @@ function fn_nuevo() {
 
     });
 }
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_carga_grilla() {
 
 
 }
-
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_sistema() {
 
     $("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_Muestra_Filtro() {
     $("#div_prin").slideUp();
     $("#div_filtros").slideDown();
@@ -507,52 +506,24 @@ function fn_Muestra_Filtro() {
     $("#inp_fec_ant").prop("disabled", false);
     $("#inp_fec_des").prop("disabled", false);
 
-
-
 }
-
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
-function fn_uni_med() {
-    $("#cb_uni_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_car_aut() {
-    $("#cb_car_aut").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-function fn_inp_group() {
+
+function fn_agroup() {
     $("#cb_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_inp_tip_acc() {
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
+function fn_tip_acc() {
     $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-
-function fn_carga_grilla() {
-
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_tip_acc() {
+    $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-function fn_gen() {
-    alert('Se genero.');
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_amor() {
+    $("#cb_amor").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_validar_fecha(value) {
-    var real, info;
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
-    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
-        info = value.split(/\//);
-        var fecha = new Date(info[2], info[1] - 1, info[0]);
-        if (Object.prototype.toString.call(fecha) === '[object Date]') {
-            real = fecha.toISOString().substr(0, 10).split('-');
-            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-                return true;
-            }
-            return false;
-        } else {
-            return false;
-        }
-    }
-    else {
-        return false;
-    }
-}
