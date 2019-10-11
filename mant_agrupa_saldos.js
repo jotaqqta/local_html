@@ -64,7 +64,7 @@ $(document).ready(function () {
     fn_amor();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
     $("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
@@ -277,7 +277,7 @@ function fn_setea_grid_principal() {
         {
             cls: "pq-toolbar-export",
             items: [
-                { type: "button", label: "Nuevo", attr: "id=co_leer", cls: "btn btn-primary" },
+                { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary" },
                 { type: "button", label: "Cerrar", attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }
             ]
         },
@@ -464,28 +464,28 @@ function fn_Muestra_Filtro() {
 //FUNCIONES COMBOS
 
 function fn_tip_agru() {
-    $("#cb_tip_agru").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_tip_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 function fn_nom_agru() {
-    $("#cb_nom_agru").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_nom_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_cod_acc() {
-    $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_tip_acc").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_amor() {
-    $("#cb_amor").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+    $("#cb_amor").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_mensaje(id,mensaje,segundos)
 {
-$(id).show();
-$(id).html(mensaje);
-setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+	$(id).show();
+	$(id).html(mensaje);
+	setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
 
