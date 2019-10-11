@@ -57,14 +57,10 @@ $(document).ready(function () {
     $("._input_selector").inputmask("dd/mm/yyyy");
 
     //DEFINE LA GRILLA PRINCIPAL
-    fn_setea_grid_principal();
-    //fn_uni_med();
-    //fn_car_aut();
-    //fn_inp_group();
-    //fn_inp_tip_acc();
-    fn_agroup();
-    fn_tip_acc();
-    fn_tip_acc();
+    fn_setea_grid_principal();    
+    fn_tip_agru();
+    fn_nom_agru();
+    fn_cod_acc();
     fn_amor();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
@@ -92,29 +88,28 @@ $(document).ready(function () {
     $("#co_aceptar").on("click", function () {
         //Validación de informacion
         if ($.trim($("#co_aceptar").text()) == "Aceptar") {
-            if ($("#cb_agrup").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE TIPO AGRUPACIÓN", g_tit, $("#cb_agrup"));
+            if ($("#cb_tip_agru").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO AGRUPACION!!!</strong></div>',3000);
+                $("#cb_tip_agru").focus();
                 return;
             }
-            if ($("#cb_tip_agru").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE NOMBRE DE AGRUPACIÓN", g_tit, $("#cb_tip_agru"));
+             if ($("#cb_nom_agru").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR NOMBRE AGRUPACION!!!</strong></div>',3000);
+                $("#cb_nom_agru").focus();
                 return;
-				if ($("#cb_tip_acc").val() == "0") {
-					fn_mensaje_boostrap("SELECCIONE CODIGO ACCIÓN", g_tit, $("#cb_tip_acc"));
-					return;
-					if ($("#cb_amor").val() == "0") {
-						fn_mensaje_boostrap("SELECCIONE AMORTIZACIÓN", g_tit, $("#cb_amor"));
-						return;
-					} 
-					else {
-						fn_mensaje_boostrap("Se genero", g_tit, $("#co_aceptar"));
-						fn_carga_grilla();
-						$('#div_filtro_bts').modal('hide');
-						fn_limpiar();
-					}
-				}
-    		}
-		}
+                 
+             }
+             if ($("#cb_cod_acc").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO ACCIÓN!!!</strong></div>',3000);
+                $("#cb_cod_acc").focus();
+                return;
+             }
+             if ($("#cb_amor").val() == "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR AMORTIZADO!!!</strong></div>',3000);
+                $("#cb_amor").focus();
+                return;                				
+             }
+        }
 	});
 			
     $("#co_limpiar").on("click", function () {
@@ -172,53 +167,7 @@ $(document).ready(function () {
     $("#co_guardar").on("click", function () {
         //Validación de informacion
         if ($.trim($("#co_guardar").text()) == "Guardar") {
-            if ($("#tx_cargo").val() == "") {
-                fn_mensaje_boostrap("DIGITE CODIGO.", g_tit, $("#tx_cargo"));
-
-                return;
-            }
-            if ($("#tx_nom").val() == "") {
-                fn_mensaje_boostrap("DIGITE NOMBRE.", g_tit, $("#tx_nom"));
-
-                return;
-            }
-            if ($("#cb_uni_med").val() == "") {
-                fn_mensaje_boostrap("SELECCIONE UNIDAD DE MEDIDA.", g_tit, $("#tx_uni_med"));
-
-                return;
-            }
-            if ($("#tx_glosa").val() == "") {
-                fn_mensaje_boostrap("DIGITE GLOSA DE DOCUMENTO", g_tit, $("#tx_glosa"));
-
-                return;
-            }
-            if ($("#cb_car_aut").val() == "0") {
-                fn_mensaje_boostrap("SELECCIONE CARGO DE DOCUMENTO", g_tit, $("#cb_car_aut"));
-
-                return;
-            }
-
-            if ($("#tx_ord_i").val() == "") {
-                fn_mensaje_boostrap("DIGITE ORDEN DE IMPRESIÓN", g_tit, $("#tx_ord_i"));
-
-                return;
-            }
-            if ($("#tx_amort").val() == "") {
-                fn_mensaje_boostrap("DIGITE NIVEL DE AMORTIZACIÓN", g_tit, $("#tx_amort"));
-
-                return;
-            }
-            if ($("#tx_niv_imp").val() == "") {
-                fn_mensaje_boostrap("DIGITE NIVEL DE IMPRESIÓN", g_tit, $("#tx_niv_imp"));
-
-                return;
-            }
-
-            if ($("#tx_niv_pre").val() == "") {
-                fn_mensaje_boostrap("DIGITE NIVEL DE PRESENTACIÓN", g_tit, $("#tx_niv_pre"));
-
-                return;
-            }
+            
 
 
 
@@ -514,17 +463,17 @@ function fn_Muestra_Filtro() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 
-function fn_agroup() {
-    $("#cb_agrup").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_tip_agru() {
+    $("#cb_tip_agru").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-function fn_tip_acc() {
-    $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_nom_agru() {
+    $("#cb_nom_agru").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_tip_acc() {
+function fn_cod_acc() {
     $("#cb_tip_acc").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
@@ -533,4 +482,10 @@ function fn_amor() {
     $("#cb_amor").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_mensaje(id,mensaje,segundos)
+{
+$(id).show();
+$(id).html(mensaje);
+setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+}
 
