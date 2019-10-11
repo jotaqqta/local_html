@@ -58,10 +58,12 @@ $(document).ready(function () {
 
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();    
+    //FUNCIONES  DE LOS COMBOS
     fn_tip_agru();
     fn_nom_agru();
     fn_cod_acc();
     fn_amor();
+    fn_limpiar();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -474,4 +476,11 @@ function fn_mensaje(id,mensaje,segundos)
 	$(id).html(mensaje);
 	setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_limpiar(){
+    $("#cb_tip_agru").val("");
+    $("#cb_nom_agru").val("");
+    $("#cb_cod_acc").val("");
+    $("#cb_amor").val("");
+}
+    
