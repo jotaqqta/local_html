@@ -150,7 +150,7 @@ $(document).ready(function () {
         handle: ".modal-header"
     });
 
-	//evento doble click grilla principal
+	//Evento doble click grilla principal
     $grid_principal.pqGrid({
         rowDblClick: function fn_sss(event, ui) {
             if (ui.rowData) {
@@ -164,7 +164,7 @@ $(document).ready(function () {
         }
     });
 	
-	//evento doble click grilla secundaria
+	//Evento doble click grilla secundaria
 	$grid_2.pqGrid({
         rowDblClick: function fn_sss(event, ui) {
             if (ui.rowData) {
@@ -267,10 +267,8 @@ function fn_setea_grid_principal() {
     //***********************************************************************************************
     data = [
         { C1: 'TOTAL FLEXIBLE', C2: '1', C3: 'SALDO', C4: '1', C5:'S', C6:'N' },
-        { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3:'S', C4:'N' },
-        { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3:'S', C4:'N' },
-        { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL', C3:'S', C4:'N' },
-        { C1: '0005', C2: 'MATERIALES AGUA', C3:'S', C4:'N' }
+        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },
+        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },        
     ]
     var obj2 = {
         height: 500,
