@@ -65,28 +65,23 @@ $(document).ready(function () {
     fn_amor();
     fn_limpiar();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
-    $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
     $("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-    $("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_volver_fil").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 
 
-    $("#co_leer").on("click", function () {
+    $("#co_nuevo").on("click", function () {
 
         fn_limpiar_fi();
         fn_Muestra_Filtro();
     });
-	
-    $("#co_cerrar_t").on("click", function (e) {
-        window.close();
-    });
-			
+				
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -194,22 +189,10 @@ $(document).ready(function () {
                 $(window).scrollTop(0);
                 $grid_2.pqGrid("refreshView");
 
-                $("#tx_cargo").val(dataCell.C1);
-                $("#tx_nom").val(dataCell.C2);
-                $("#cb_uni_med").val("2");
-                $("#tx_glosa").val(dataCell.C4);
-                $("#cb_car_aut").val("1");
-                $("#tx_ord_i").val(dataCell.C8);
-                $("#tx_amort").val(dataCell.C5);
-                $("#tx_niv_imp").val(dataCell.C9);
-                $("#tx_niv_pre").val(dataCell.C10);
-                $("#chk_comb").prop("checked", true);
-                $("#chk_amort").prop("checked", true);
-                $("#tx_fec_ant").prop("disabled", true);
-                $("#tx_fec_des").prop("disabled", true);
-                $("#tx_fec_ant").val(dataCell.C6);
-                $("#tx_fec_des").val(dataCell.C7);
-
+                $("#cb_tip_agru").val("1");
+                $("#cb_nom_agru").val("2");
+                $("#cb_cod_acc").val(dataCell.C3);
+                $("#cb_amor").val(dataCell.C4);                
             }
             fn_carga_grilla();
         }
@@ -359,7 +342,6 @@ function fn_setea_grid_principal() {
             items: [
                 { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-primary" },
                 { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "Cerrar", attr: "id=co_cerrar_t", cls: "btn btn-default btn-sm" },
                 { type: "button", label: "cancelar", attr: "id=co_volver_fil", cls: "btn btn-default btn-sm" },
             ]
         }
