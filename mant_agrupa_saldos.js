@@ -74,21 +74,10 @@ $(document).ready(function () {
     $("#co_volver_fil").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
-
-
-    $("#co_nuevo").on("click", function () {
-
-        fn_limpiar_fi();
-        fn_Muestra_Filtro();
-    });
 				
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-            fn_limpiar();
-            return;
-        }
-        else
-            window.close();
+		fn_limpiar();
+		return;
     });
 	
     $("#co_cancelar").on("click", function (e) {
@@ -106,27 +95,19 @@ $(document).ready(function () {
     });
 
     $("#co_nuevo").on("click", function (e) {
-        fn_nuevo();
-        fn_limpiar_fi();
+        fn_limpiar();
+		fn_nuevo();
     });
 	
     $("#co_volver_fil").on("click", function (e) {
-
         $("#div_prin").slideDown();
         $("#div_filtros").slideUp();
         $(window).scrollTop(0);
-
     });
 	
     $("#co_close-m").on("click", function (e) {
         $('#div_modal').modal('hide');
 
-    });
-
-    $("#co_volver2").on("click", function (e) {
-        $("#div_prin").show();
-        $("#div_tabla").hide();
-        $(window).scrollTop(0);
     });
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -159,27 +140,17 @@ $(document).ready(function () {
 		 }
 		fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
 		fn_carga_grilla();
-		fn_limpiar_fi();
 		$("#div_prin").slideDown();
 		$("#div_filtros").slideUp();
 		$(window).scrollTop(0);
 
     });
 
-
-    $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-            fn_limpiar();
-            return;
-        }
-        else
-            window.close();
-    });
-	
     $("#div_modal").draggable({
         handle: ".modal-header"
     });
 
+	//evento doble click grilla principal
     $grid_principal.pqGrid({
         rowDblClick: function fn_sss(event, ui) {
             if (ui.rowData) {
@@ -187,14 +158,23 @@ $(document).ready(function () {
                 $("#div_prin").slideUp();
                 $("#div_filtros").slideDown();
                 $(window).scrollTop(0);
-                $grid_2.pqGrid("refreshView");
-
-                $("#cb_tip_agru").val("1");
-                $("#cb_nom_agru").val("2");
-                $("#cb_cod_acc").val(dataCell.C3);
-                $("#cb_amor").val(dataCell.C4);                
+                $grid_2.pqGrid("refreshView");           
             }
             fn_carga_grilla();
+        }
+    });
+	
+	//evento doble click grilla secundaria
+	$grid_2.pqGrid({
+        rowDblClick: function fn_sss(event, ui) {
+            if (ui.rowData) {
+                var dataCell = ui.rowData;
+                $("#cb_tip_agru").val(dataCell.C2);
+                $("#cb_nom_agru").val(dataCell.C4);
+                $("#cb_cod_acc").val(dataCell.C5);
+                $("#cb_amor").val(dataCell.C6);
+				fn_nuevo();
+            }
         }
     });
 
@@ -269,18 +249,7 @@ function fn_setea_grid_principal() {
                 { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
                 { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
                 { C1: '00010', C2: 'DESCUENTO DE EMPLEADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00011', C2: 'DESCUENTO DE JUBILADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00019', C2: 'COSTOS LEGALES', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' }
+                { C1: '00011', C2: 'DESCUENTO DE JUBILADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' }
 
             ]
         }
@@ -297,28 +266,11 @@ function fn_setea_grid_principal() {
 
     //***********************************************************************************************
     data = [
-        { C1: '0001', C2: 'CONSUMO DE AGUA' },
-        { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO' },
-        { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL' },
-        { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL' },
-        { C1: '0005', C2: 'MATERIALES AGUA' },
-        { C1: '0006', C2: 'MANO DE OBRA - AGUA ' },
-        { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO' },
-        { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA' },
-        { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE' },
-        { C1: '00010', C2: 'DESCUENTO DE EMPLEADO' },
-        { C1: '00011', C2: 'DESCUENTO DE JUBILADO' },
-        { C1: '00012', C2: 'COMPEM DEFICIENCIA SUMINISTRO AGUA' },
-        { C1: '00013', C2: 'CONSUMO DE AGUA - DITO RELIQ' },
-        { C1: '00014', C2: 'CONSUMO DE AGUA - CREDITO RELIQ' },
-        { C1: '00015', C2: 'DEBITO RELIQ DE SUBSIDIOS' },
-        { C1: '00016', C2: 'CREDITO RELIQ. JUBILADO/ EMPELADO' },
-        { C1: '00017', C2: 'DEBITO RELIQ. JUBILADO/EMPELADO' },
-        { C1: '00018', C2: 'MANEJO DE CHEQUE DEVUELTO' },
-        { C1: '00019', C2: 'COSTOS LEGALES' },
-        { C1: '00020', C2: 'RECARGO POR PAGO ATRASADO' },
-        { C1: '00021', C2: 'ARREGLO DE PAGO - AGUA' },
-        { C1: '00022', C2: 'RECARGOPAGO ATRASADO - HISTORICO' }
+        { C1: 'TOTAL FLEXIBLE', C2: '1', C3: 'SALDO', C4: '1', C5:'S', C6:'N' },
+        { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3:'S', C4:'N' },
+        { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3:'S', C4:'N' },
+        { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL', C3:'S', C4:'N' },
+        { C1: '0005', C2: 'MATERIALES AGUA', C3:'S', C4:'N' }
     ]
     var obj2 = {
         height: 500,
@@ -350,9 +302,11 @@ function fn_setea_grid_principal() {
 
     obj2.colModel = [
         { title: "Tipo Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Nombre Agrupación", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Cod. Acción", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Amortizado", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "codigo_tipo_agrup", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center", hidden: true },
+        { title: "Nombre Agrupación", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
+		{ title: "codigo nombre Agrupación", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "left", hidden: true },
+        { title: "Cod. Acción", width: 300, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
+        { title: "Amortizado", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
         {
             title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
             render: function (ui) {
@@ -373,25 +327,7 @@ function fn_limpiar() {
     $("#cb_tip_acc").val("0");
     $("#cb_agrup").focus();
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_limpiar_fi() {
 
-    $("#tx_cargo").val("");
-    $("#tx_nom").val("");
-    $("#cb_uni_med").val("");
-    $("#tx_glosa").val("");
-    $("#cb_car_aut").val("");
-    $("#tx_ord_i").val("");
-    $("#tx_amort").val("");
-    $("#tx_niv_imp").val("");
-    $("#tx_niv_pre").val("");
-    $("#tx_cargo").focus("");
-    $("#tx_cargo").focus("");
-    $("#tx_fec_ant").val("");
-    $("#tx_fec_des").val("");
-    $("#chk_comb").prop("checked", false);
-    $("#chk_amort").prop("checked", false);
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_filtro() {
     parameters =
@@ -420,16 +356,7 @@ function fn_sistema() {
 
     $("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_Muestra_Filtro() {
-    $("#div_prin").slideUp();
-    $("#div_filtros").slideDown();
-    $(window).scrollTop(0);
-    $grid_2.pqGrid("refreshView");
-    $("#inp_fec_ant").prop("disabled", false);
-    $("#inp_fec_des").prop("disabled", false);
 
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 
