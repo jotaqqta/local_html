@@ -112,7 +112,7 @@ $(document).ready(function () {
         $('#div_filtro_bts').modal('hide');
     });
 
-    $("#co_cancelar").on("click", function (e) {
+    $("#co_volver_fil").on("click", function (e) {
         window.close();
     });
 
