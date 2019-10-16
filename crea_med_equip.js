@@ -1,5 +1,5 @@
-var g_modulo = "Facturación Clientes - Lecturas y Consumos";
-var g_titulo = "Consulta de medidores";
+var g_modulo = "Medidores - Administración de Medidores";
+var g_titulo = "Creación de medidores";
 var parameters = {};
 var my_url = "correc_prome_dudo.asp";
 var $grid;
