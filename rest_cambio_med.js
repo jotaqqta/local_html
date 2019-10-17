@@ -61,7 +61,7 @@ $(document).ready(function() {
     $("#tx_lec_ant").prop("disabled", true);
 	$("#tx_lec_ant2").prop("disabled", true);
   //DEFINE LA GRILLA PRINCIPAL
-    fn_setea_grid_principal();
+    
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
   //DIBUJA LOS ICONOS DE LOS BOTONES     
@@ -135,7 +135,8 @@ $(document).ready(function() {
 
 		return;			
 	});	
-    
+  
+});	
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_orden()
 {
