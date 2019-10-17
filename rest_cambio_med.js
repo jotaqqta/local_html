@@ -1,5 +1,5 @@
-var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Correción de Lectura Anterior";
+var g_modulo="Restricción al Cambio de Medidor";
+var g_titulo="Restricción al Cambio de Medidor";
 var parameters={};
 var my_url="reasigna_ajuste.asp";
 var $grid;
@@ -54,13 +54,18 @@ $(document).ready(function() {
 				return false;
 			}
         }
+        
     });
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
   // SE INHABILITAN LOS IMPUT
     $("#tx_lec_ant").prop("disabled", true);
 	$("#tx_lec_ant2").prop("disabled", true);
-  //DEFINE LA GRILLA PRINCIPAL
+    
+    jQuery('#tx_cliente').keypress(function (tecla) {
+		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+	});
+
     
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
@@ -80,25 +85,7 @@ $(document).ready(function() {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 
-	$("#co_leer").on("click", function(){
-		//Validación de informacion
-     if ($.trim($("#co_leer").text())=="Leer"){
-			if( $("#tx_orden").val() == ""){
-				fn_mensaje_boostrap("DIGITE EL NÚMERO DE SUMINISTRO", g_titulo, $("#tx_orden"));
-				return;
-                
-			}else{
-
-            	fn_leer()
-            	$("#tx_orden").prop("disabled",true);
-            	$("#tx_lec_ant").focus();                
-            }
-			$("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-log-out'></span> Cancelar");
-			//fn_carga_orden();
-          }
-	});
-    
+	
 	$("#tx_orden").bind("keydown",function(e){
 		if(e.keyCode == 13){
 			tab = true;
@@ -134,7 +121,24 @@ $(document).ready(function() {
 		//////////////////////////////////////////////////////////////
 
 		return;			
-	});	
+	});
+    ///EVENTO BOTONES///
+    $("#co_lec").on("click", function(){
+		//Validación de informacion
+		if ($.trim($("#co_lec").text()) == "Leer") {
+	    if($("#tx_cliente").val()==""){
+			fn_mensaje_boostrap("DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
+
+				return;
+			}
+         }      	
+	});
+	$("#co_cancel").on("click", function (e){
+
+		fn_limpiar();
+		
+    });
+
   
 });	
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -262,42 +266,18 @@ function fn_act_orden(){
 }
 
 function fn_limpiar(){
-	
-	$("#tx_cod_cliente").val("");
-	$("#tx_dir").val("");
-	$("#tx_est_client").val("");
-	$('#tx_est_conex').val("");
-	$("#tx_reg").val("");
-	$("#tx_ruta").val("");
-	$("#tx_tarif").val("");
-	$("#tx_actividad").val("");
-	$("#tx_num_medidor").val("");            
-	$("#tx_ent_decim").val(""); 
-	$("#tx_tipo_med").val("");  
-	$("#tx_lec_ant").val(""); 
-	$("#tx_lec_ant2").val(""); 
+//IDENTIFICACIÓN
 
-	$("#tx_lec-actu").val("");  
-	$("#tx_consum").val(""); 
-	$("#tx_regional").val("");  
-	$("#tx_ruta").val("");  
-	$("#tx_tarifa").val("");  
-	$("#tx_regional").val("");  
-	$("#tx_ruta").val("");  
-	$("#tx_tarifa").val("");  
-	$("#tx_fac_conv_consum").val("");  
-	$("#tx_consum_fact_gls").val("");  
-	$("#tx_peri_dia_prom").val(""); 
-	$("#tx_peri_dia_norm ").val(""); 
-	$("#tx_num_medidor2").val("");         
-	$("#tx_ent_decim2").val(""); 
-	$("#tx_tipo_med2").val(""); 
-	$("#tx_lec_actu").val("");  
-	$("#tx_lec_actu2").val(""); 
-	$("#tx_consum2").val(""); 
-	
-	$("#tx_orden").val("");
-	$("#tx_orden").prop("disabled",false);
-	$("#tx_orden").focus();
+$('#tx_cod_cliente').val("");
+$('#tx_ruta').val("");
+$('#tx_cenoper').val("");
+$('#tx_locali').val("");
+$('#tx_dir').val("");
+$('#tx_tarifa').val("");
+$('#cb_motivo').val("");
+$('#chk_env_cart').prop("checked",false);
+$('#chk_autor_cli').prop("checked",false);
+$("#tx_cod_cliente").focus();
+$("#tx_cod_cliente").val("");
 }
 	
