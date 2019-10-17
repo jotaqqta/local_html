@@ -25,7 +25,8 @@ $(document).ready(function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
-		
+    
+    $("._input_selector").inputmask("dd/mm/yyyy");
 	//Se cargan las variables que vienen desde el server
 	/*
 	$("#tx_empresa").val(SYNSegCodEmpresa);
