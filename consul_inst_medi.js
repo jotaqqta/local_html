@@ -131,11 +131,15 @@ $(document).ready(function() {
     $("#co_lec").on("click", function(){
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
-	    /*if($("#tx_cliente").val()==""){
-			fn_mensaje_boostrap("DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
-
+			if( $("#tx_fec_ini").val() == ""){
+				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO", g_titulo, $("#tx_fec_ini"));
 				return;
-			}*/
+			}
+			if( $("#tx_fec_fin").val() == ""){
+				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO", g_titulo, $("#tx_fec_fin"));
+				return;
+			}
+			fn_carga_orden()
          }      	
 	});
 	$("#co_cancel").on("click", function (e){
@@ -149,7 +153,7 @@ $(document).ready(function() {
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_orden()
 {
-
+alert("Se cargo");
 	
 }
 
