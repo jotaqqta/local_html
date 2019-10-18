@@ -127,31 +127,37 @@ function fn_carga_orden()
 	dato_ori = [];
     parameters = 
     {
-		"func":"fn_lee_orden",
-		"empresa":$("#tx_empresa").val(),
-		"p_orden":$("#tx_orden").val()
+		"func":"fn_lee_cliente",
+        "empresa":$("#tx_empresa").val(),
+		"p_cliente":$("#tx_cliente").val()
     };
     HablaServidor(my_url,parameters,'text', function(text) 
     {
         if(text != ""){
-			$("#co_leer").html("<span class='glyphicon glyphicon-user'></span> Reasignar");
+			$("#co_lec").html("<span class='glyphicon glyphicon-user'></span> Reasignar");
 			dato_ori = text.split("|");
 			//$("#co_leer").prop("disabled",true);
-			$("#tx_orden").prop("disabled",true);
+			$("#tx_cliente").prop("disabled",true);
 			$("#tx_cod_cliente").val(dato_ori[1]);
-			$("#tx_rol_actual").val(dato_ori[3]);
-			$("#tx_nombre").val(dato_ori[4]);
-			$("#tx_estado").val(dato_ori[5]);
-			$("#tx_ruta").val(dato_ori[6]);
+			$("#tx_ruta").val(dato_ori[3]);
+			$("#tx_cenoper").val(dato_ori[4]);
+			$("#tx_locali").val(dato_ori[5]);
+			$("#tx_dir").val(dato_ori[6]);
+            $("#chk_grancli").val(dato_ori[8]);
 			$("#tx_tarifa").val(dato_ori[7]);
-			$("#tx_actividad").val(dato_ori[8]);
+			$("#cb_motivo").val(dato_ori[8]);
+            $("#chk_tempo").val(dato_ori[8]);
+            $("#chk_indef").val(dato_ori[8]);
+            $("#tx_fecha_desde").val(dato_ori[7]);
+            $("#tx_fecha_hasta").val(dato_ori[7]);
+            $("#txa_obser").val(dato_ori[7]);
 		}
 		else{
 			fn_mensaje_boostrap("No se encontro la orden indicada!!!", g_titulo, $(""));
 			return;
 		}
 		if(dato_ori[0] == "F"){
-			$("#co_leer").prop("disabled",true);
+			$("#co_lec").prop("disabled",true);
 			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo,$(""));
 			return;
 		}
@@ -161,6 +167,29 @@ function fn_carga_orden()
 	         
     });
 	
+}
+//-------------------------------------------------------------------------------------------
+function fn_leer(){
+	if ($.trim($("#co_lec").text()) == "Leer")
+	{
+				
+		
+		$("#tx_cliente").val("45223");
+		$("#tx_cod_cliente").val("Maria");
+		$("#tx_ruta").val("Activo");
+		$('#tx_cenoper').val("Si");
+		$("#tx_locali").val("Panamá Metro");
+		$("#tx_dir").val("8000-01-244");
+		$("#chk_grancli").val("Residencial");
+		$("#tx_tarifa").val("Residencial");
+		$("#cb_motivo").val("23234345");            
+		$("#chk_tempo").val("5/1"); 
+		$("#chk_indef").val("MCUB");  
+		$("#tx_fecha_desde").val("2344");
+		$("#tx_fecha_hasta").val("152");  
+		$("#txa_obser").val("23000");		
+
+	}
 }
 
 
