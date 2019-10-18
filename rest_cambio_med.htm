@@ -94,13 +94,13 @@
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<div class="form-group">
 								<label for="tx_cod_cliente">Nombre</label>
-								<input id="tx_cod_cliente" name="tx_cod_cliente" type="text" class="form-control inp_dis">
+								<input disabled id="tx_cod_cliente" name="tx_cod_cliente" type="text" class="form-control inp_dis" readonly>
 							</div>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<div class="form-group">
 								<label for="tx_ruta">Ruta Lectura</label>
-								<input id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis">
+								<input disabled id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis" readonly>
 							</div>
 						</div>
 					</div>
@@ -108,13 +108,13 @@
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<div class="form-group">
 								<label for="tx_cenoper">CENOPER</label>
-								<input id="tx_cenoper" name="tx_cenoper" type="text" class="form-control inp_dis">
+								<input disabled id="tx_cenoper" name="tx_cenoper" type="text" class="form-control inp_dis" readonly>
 							</div>
 						</div>
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<div class="form-group">
 								<label for="tx_locali">Localidad</label>
-								<input id="tx_locali" name="tx_locali" type="text" class="form-control inp_dis">
+								<input disabled id="tx_locali" name="tx_locali" type="text" class="form-control inp_dis" readonly>
 							</div>
 						</div>
 					</div>
@@ -122,13 +122,13 @@
 						<div class="col-5 col-sm-5 col-md-5 col-lg-5">
 							<div class="form-group">
 								<label for="tx_dir">Dirección</label>
-								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis">
+								<input disabled id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" readonly>
 							</div>
 						</div>
 						<div class="col-5 col-sm-5 col-md-5 col-lg-5">						
 								<label for="tx_tarifa">Tarifa</label>
-								<input id="tx_tarifa" name="tx_tarifa" type="text" class="form-control inp_dis">
-								<input type="checkbox" name="chk_grancli" value=""> GRAN CLIENTE
+								<input disabled id="tx_tarifa" name="tx_tarifa" type="text" class="form-control inp_dis" readonly>
+								<input disabled type="checkbox" name="chk_grancli" value="" readonly> GRAN CLIENTE
 							</div>
 					</div> 			
 				<div>
@@ -137,7 +137,7 @@
 				<div class="row">
 					<div class="col-4 col-sm-4 col-md-4 col-lg-4">						
 						<label for="cb_motivo">Motivo</label>
-						<select id="cb_motivo" name="cb_motivo" class="form-control inp_dis"></select>			
+						<select disabled id="cb_motivo" name="cb_motivo" class="form-control inp_dis" readonly></select>			
 					</div>
                 </div>
                 <br>
@@ -145,13 +145,13 @@
                     <div class="checkbox">
                         <label class="control-label col-3 col-sm-3"></label>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3">
-                            <input type="checkbox" id="chk_tempo" name="chk_tempo" value="">Temporal
+                            <input disabled type="checkbox" id="chk_tempo" name="chk_tempo" value="" readonly>Temporal
                         </div>
                     </div>
                     <div class="checkbox">
                         <label class="control-label col-3 col-sm-3"></label>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3">
-                            <input type="checkbox" id="chk_indef" name="chk_indef" value="">Indefinida
+                            <input disabled type="checkbox" id="chk_indef" name="chk_indef" value="" readonly>Indefinida
                         </div>
                     </div>
                 </div>
@@ -163,15 +163,15 @@
                     <div class="row">
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3">
 							<label for="tx_fecha_desde">Fecha Desde</label>
-                            <input id="tx_fecha_desde" name="tx_fecha_desde" class="form-control input-normal _input_selector" placeholder="" value="">		
+                            <input disabled id="tx_fecha_desde" name="tx_fecha_desde" class="form-control input-normal _input_selector" placeholder="" value="" readonly>		
 				        </div>
                      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
 							<label for="tx_fecha_hasta">Fecha Hasta</label>
-							<input id="tx_fecha_hasta" name="tx_fecha_hasta" class="form-control input-normal _input_selector" placeholder="" value="">
+							<input disabled id="tx_fecha_hasta" name="tx_fecha_hasta" class="form-control input-normal _input_selector" placeholder="" value="" readonly>
 						</div>
                         <label for="txa_obser">Observación</label><br>
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3">	
-                    <textarea rows="4" cols="70 "></textarea>
+                    <textarea disabled rows="4" cols="70 " readonly></textarea>
                     </div> 
 				</div>
             </div>            
