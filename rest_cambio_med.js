@@ -206,7 +206,7 @@ $('#tx_dir').val("");
 $('#tx_tarifa').val("");
 $('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#txa_obser').html("");
+$('#txa_obser').val("");
 $('#chk_tempo').prop("checked",false);
 $('#chk_indef').prop("checked",false);
 $("#tx_cliente").focus();
