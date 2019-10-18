@@ -128,9 +128,9 @@ $(document).ready(function() {
 		return;			
 	});
     ///EVENTO BOTONES///
-    $("#co_lec").on("click", function(){
+    $("#co_gen").on("click", function(){
 		//Validación de informacion
-		if ($.trim($("#co_lec").text()) == "Leer") {
+		if ($.trim($("#co_gen").text()) == "Generar") {
 			if( $("#tx_fec_ini").val() == ""){
 				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO", g_titulo, $("#tx_fec_ini"));
 				return;
