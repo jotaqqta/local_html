@@ -64,20 +64,10 @@ $(document).ready(function() {
     
     jQuery('#tx_cliente').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
+	});    
 
-    
-    //DIBUJA LOS ICONOS DE LOS BOTONES     
-    
   //DIBUJA LOS ICONOS DE LOS BOTONES     
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
-
+  
   	jQuery('#tx_lec_ant').keypress(function(tecla) {
 		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
@@ -93,18 +83,7 @@ $(document).ready(function() {
 			return false;
 		}
 	 });
-
-	$("#co_cancelar").on("click",function(){
-		if ($.trim($("#co_cancelar").text())=="Cancelar"){
-			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");			     
-			fn_limpiar();    
-			return;
-		}
-		else
-			window.close();
-	});
-    
+	    
 	$("#co_reasignar").on("click",function(){
 		if( $("#cb_reasigna_nuevo").val() == ""){
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
@@ -127,7 +106,7 @@ $(document).ready(function() {
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
 	    if($("#tx_cliente").val()==""){
-			fn_mensaje_boostrap("DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
+			fn_mensaje_boostrap("FAVOR DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
 
 				return;
 			}
@@ -142,6 +121,7 @@ $(document).ready(function() {
   
 });	
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+///FUNCIONES EVENTOS///
 function fn_carga_orden()
 {
 	dato_ori = [];
@@ -185,86 +165,6 @@ function fn_carga_orden()
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_leer(){
-	if ($.trim($("#co_leer").text()) == "Leer")
-	{
-				
-		
-		$("#tx_cod_cliente").val("45223");
-		$("#tx_dir").val("Maria");
-		$("#tx_est_client").val("Activo");
-		$('#tx_est_conex').val("Si");
-		$("#tx_reg").val("Panamá Metro");
-		$("#tx_ruta").val("8000-01-244");
-		$("#tx_tarif").val("Residencial");
-		$("#tx_actividad").val("Residencial");
-		$("#tx_num_medidor").val("23234345");            
-		$("#tx_ent_decim").val("5/1"); 
-		$("#tx_tipo_med").val("MCUB");  
-		$("#tx_lec_ant").val("2344");
-		$("#tx_lec_actu").val("152");  
-		$("#tx_consum").val("23000"); 
-		$("#tx_fac_conv_consum").val("10002");  
-		$("#tx_consum_fact_gls").val("1000");  
-		$("#tx_peri_dia_prom").val("2"); 
-		$("#tx_peri_dia_norm ").val("2"); 
-		$("#tx_num_medidor2").val("");         
-		$("#tx_ent_decim2").val(""); 
-		$("#tx_tipo_med2").val(""); 
-        $("#tx_lec_actu2").val(""); 
-		$("#tx_consum2").val(""); 
-
-		if($("#tx_lec_ant").val() > $("#tx_lec_actu").val()){
-			fn_mensaje_boostrap("La lectura anterior 1 ("+$("#tx_lec_ant").val()+") es superior a la lectura actual 1 ("+$("#tx_lec_actu").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant"));
-		}
-
-		if($("#tx_lec_ant2").val() > $("#tx_lec_actu2").val()){
-			fn_mensaje_boostrap("La lectura anterior 2 ("+$("#tx_lec_ant2").val()+") es superior a la lectura actual 2 ("+$("#tx_lec_actu2").val()+"). Verifique si se ha producido una vuelta del reloj del medidor.", "ADVERTENCIA!!!", $("#tx_lec_ant2"));
-		}
-		
-		$("#tx_lec_ant").prop("disabled", false);
-        $("#tx_lec_ant2").prop("disabled", false); //Para habilitar
-
-	}
-}
-
-
-function fn_carga_roles()
-{
-    var param= 
-    {
-        "func":"fn_roles_ajuste",
-        "empresa":$("#tx_empresa").val()
-    };
-    HablaServidor(my_url, param, "text", function(text) 
-    {
-        $("#cb_reasigna_nuevo").html(text);
-    }); 
-}
-
-function fn_act_orden(){
-	
-	var param= 
-    {
-        "func":"fn_actualiza",
-        "empresa":$("#tx_empresa").val(),
-		"p_orden":$("#tx_orden").val(),
-		"rol":$("#tx_rol").val(),
-		"p_rol_nuevo":$("#cb_reasigna_nuevo").val()
-    };
-    HablaServidor(my_url, param, "text", function(text) 
-    {
-        if(text == ""){
-			$("#cb_reasigna_nuevo").prop("disabled", true);
-			$("#cb_reasigna_nuevo").prop("disabled",true);
-			fn_mensaje_boostrap("ACCIÓN REALIZADA !", g_titulo, $(""));
-			fn_limpiar();
-		}
-		else
-			fn_mensaje_boostrap(text, g_tit, $(""));
-    }); 
-}
-
 function fn_limpiar(){
 //IDENTIFICACIÓN
 
@@ -274,9 +174,11 @@ $('#tx_cenoper').val("");
 $('#tx_locali').val("");
 $('#tx_dir').val("");
 $('#tx_tarifa').val("");
+$('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#chk_env_cart').prop("checked",false);
-$('#chk_autor_cli').prop("checked",false);
+$('#txa_obser').val("");
+$('#chk_tempo').prop("checked",false);
+$('#chk_indef').prop("checked",false);
 $("#tx_cliente").focus();
 $("#tx_cliente").val("");
 }
