@@ -76,7 +76,7 @@ $(document).ready(function() {
 	});
 
 	
-	$("#tx_orden").bind("keydown",function(e){
+	$("#tx_cliente").bind("keydown",function(e){
 		if(e.keyCode == 13){
 			tab = true;
 			fn_leer();
@@ -105,13 +105,14 @@ $(document).ready(function() {
     $("#co_lec").on("click", function(){
 		//Validación de informacion
 		if ($.trim($("#co_lec").text()) == "Leer") {
-	    if($("#tx_cliente").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
-
-				return;
+			if($("#tx_cliente").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
+					return;
 			}
+			fn_leer();
          }      	
 	});
+	
 	$("#co_cancel").on("click", function (e){
 
 		fn_limpiar();
@@ -205,7 +206,7 @@ $('#tx_dir').val("");
 $('#tx_tarifa').val("");
 $('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#txa_obser').val("");
+$('#txa_obser').html("");
 $('#chk_tempo').prop("checked",false);
 $('#chk_indef').prop("checked",false);
 $("#tx_cliente").focus();
