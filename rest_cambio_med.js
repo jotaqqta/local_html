@@ -277,7 +277,7 @@ $('#tx_tarifa').val("");
 $('#cb_motivo').val("");
 $('#chk_env_cart').prop("checked",false);
 $('#chk_autor_cli').prop("checked",false);
-$("#tx_cod_cliente").focus();
-$("#tx_cod_cliente").val("");
+$("#tx_cliente").focus();
+$("#tx_cliente").val("");
 }
 	
