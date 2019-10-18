@@ -206,10 +206,13 @@ $('#tx_dir').val("");
 $('#tx_tarifa').val("");
 $('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#txa_obser').val("");
+$('#txa_obser').text("");
 $('#chk_tempo').prop("checked",false);
 $('#chk_indef').prop("checked",false);
+$('#chk_grancli').prop("checked",false);
 $("#tx_cliente").focus();
 $("#tx_cliente").val("");
+$("#tx_fecha_desde").val("");
+$("#tx_fecha_hasta").val("");
 }
 	
