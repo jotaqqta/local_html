@@ -75,10 +75,8 @@ $(document).ready(function() {
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     
   //DIBUJA LOS ICONOS DE LOS BOTONES     
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtros");
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver_2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    $("#co_volver_3").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+
+
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");    
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -136,7 +134,7 @@ $(document).ready(function() {
 				return;
 			}
 			if( $("#tx_fec_fin").val() == ""){
-				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO", g_titulo, $("#tx_fec_fin"));
+				fn_mensaje_boostrap("DIGITE LA FECHA FINAL", g_titulo, $("#tx_fec_fin"));
 				return;
 			}
 			fn_carga_orden()
