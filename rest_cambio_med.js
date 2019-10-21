@@ -198,7 +198,7 @@ function fn_leer(){
 function fn_limpiar(){
 //IDENTIFICACIÓN
 
-$('#tx_cod_cliente').val("");
+$('#tx_cod_cliente').val("");   
 $('#tx_ruta').val("");
 $('#tx_cenoper').val("");
 $('#tx_locali').val("");
@@ -206,7 +206,7 @@ $('#tx_dir').val("");
 $('#tx_tarifa').val("");
 $('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#txa_obser').text("");
+$('#tx_obs').val("");
 $('#chk_tempo').prop("checked",false);
 $('#chk_indef').prop("checked",false);
 $('#chk_grancli').prop("checked",false);
