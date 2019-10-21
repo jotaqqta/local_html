@@ -212,68 +212,14 @@ $(document).ready(function () {
 			window.close();
 	});
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-     //BOTONES-LECTURA
-    $("#co_aceptar_lec").on("click", function (){
-			if ($("#cb_lector").val() == ""){
-                    fn_mensaje_boostrap("DIGITE LECTOR", g_tit, $("#cb_lector"));
-				
-				    return false;
-             
-			}	
-			
-		    if (fn_validar_fecha($("#fec_lect").val()) == false) {
-							fn_mensaje_boostrap("DEBE DILIGENCIAR EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_tit, $("#fec_lect"));
-							return false;
-			}	
-			
-			//Validar la fecha cuando se ingrese unicamente
-			if ( $("#fec_lect").val() != "" ) {
-					
-						var parameters = {
-							"func"       : "fn_validafecha",
-							"empresa"    : $("#tx_empresa").val(),
-							"RolFun"     : $("#tx_rolfun").val(),
-							"rol"        : $("#tx_rol").val(),
-							"ip"         : $("#tx_ip").val(),	
-							"p_fecha"    : $("#fec_lect").val(),
-							"p_ciclo"    : $("#cb_ciclo").val(),	
-						};
-
-						HablaServidor(url,parameters,"text", function(text) 
-						{
-						 
-						   if(text == ""){
-							  fn_mensaje_boostrap("NO EXISTEN DATOS DE LECTURA PARA EL CICLO: " + $("#cb_ciclo").val(), g_tit, $(""));
-							  $grid_principal.pqGrid( "refreshDataAndView" );
-							  g_act = "1";
-							  return false;	
-						   }
-						   else
-						   {
-								var param    = text.split("|");
-								var fechalec = param[0];
-								var fechafac = param[1];
-								var verifica = param[2];
-								
-								if (verifica == "N"){
-									fn_mensaje_boostrap("VERIFIQUE LA FECHA DE TERRENO. RANGO SUGERIDO ENTRE:" + fechalec + " Y " + fechafac, g_tit, $(""));
-									$grid_principal.pqGrid( "refreshDataAndView" );
-									g_act = "1";
-									return false;
-								}
-							}
-						});	
-			}
-
-			
-			$('#div_lec_bts').modal('hide');
-			    
-	});
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	
 	$("#div_modal").draggable({
+        handle: ".modal-header"
+    });
+	
+    $("#div_modal2").draggable({
         handle: ".modal-header"
     });
 	
@@ -426,12 +372,12 @@ function fn_setea_grid_principal() {
 	
     obj.colModel = [
 		{ title: "Tabla",     width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Sistema", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },
+		{ title: "Sistema",   width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center"  },
 		{ title: "Descripcion", width: 350, dataType: "string", dataIndx: "C3", halign: "center",  align:"center"},
-		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"  },
+		{ title: "Estado",    width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"  },
 		{ title: "Modificable", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Cantidad", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right"  },
-        { title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
+		{ title: "Cantidad",  width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right"  },
+        { title: "Eliminar",  width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
 					render: function (ui) {
 						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
 						return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
@@ -473,8 +419,8 @@ function fn_setea_grid_principal() {
             cls: "pq-toolbar-export",
             items:
             [
-				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo2",  cls: "btn btn-primary" },
-				{ type: "button", label: "Excel", attr:"id=co_excel2", cls:"btn btn-primary btn-sm"},
+				{ type: "button", label: "Nuevo",  attr: "id=co_nuevo2", cls: "btn btn-primary" },
+				{ type: "button", label: "Excel",  attr:"id=co_excel2",  cls:"btn btn-primary btn-sm"},
 				{ type: "button", label: "Volver", attr:"id=co_volver2", cls:"btn btn-default btn-sm"}
             ]
         }
