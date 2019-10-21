@@ -77,18 +77,18 @@ $(document).ready(function () {
 
 
 
-$(".nav-tabs a").on("shown.bs.tab", function(event){
-	var x = $(event.target).prop("href");  // tab activada
-	var dato_original = [];
-dato_original = x.split("#");
-x = dato_original[1];
-	if(x == "MedidorRetirado")
-		$grid_principal.pqGrid( "refreshView" );
-if(x == "MedidorInstalado"){
-		$grid_ter.pqGrid( "refreshView" );
-$grid_sec.pqGrid( "refreshView" );
-}
-});
+	$(".nav-tabs a").on("shown.bs.tab", function(event){
+		var x = $(event.target).prop("href");  // tab activada
+		var dato_original = [];
+		dato_original = x.split("#");
+		x = dato_original[1];
+			if(x == "todos")
+				$grid_principal.pqGrid( "refreshView" );
+		if(x == "cob_tel"){
+			$grid_ter.pqGrid( "refreshView" );
+			$grid_sec.pqGrid( "refreshView" );
+		}
+	});
 
 });
 
@@ -174,7 +174,7 @@ function fn_setea_grid_principal() {
     //_______________________________________________________________________________________________________
     function fn_setea_grid_sec() {
     var obj = {
-		height: "80%",
+		height: 540,
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
@@ -246,7 +246,7 @@ function fn_setea_grid_principal() {
  //--------------------------------------------------------------------------------------------------------------
  function fn_setea_grid_ter() {
  var obj = {
-    height: "80%",
+    height: 540,
     showTop: true,
     showBottom: true,
     showHeader: true,

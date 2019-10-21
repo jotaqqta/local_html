@@ -259,81 +259,80 @@
             <br>
         </div>
 
-        <div class="container">
-            <!-- FORMULARIO DE LA PRIMERA PESTAÑA -->
-            <br>
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#MedidorRetirado">Medidor Retirado</a></li>
-                <li><a data-toggle="tab" href="#MedidorInstalado">Medidor instalado</a></li>
-            </ul>
-            <!-- INFORMACION DEL PRIMER FORMULARIO -->
-            <div class="tab-content">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<b>Acciones de Cobranza</b>
+				</div>
+					<!-- OJO Si cambia el href del tab, tambien cambiarlo en el js -->
+				  <ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab"  href="#todos">Medidor Retirado</a></li>
+					<li><a data-toggle="tab" href="#cob_tel">Medidor instalado</a></li>
+				  </ul>
 
+				  <div class="tab-content">
+						<div id="todos" class="tab-pane fade in active">
+						  <div class="panel-body" id="bd_acc">
+								<!-- PARAMQUERY TODOS -->
+								<div class="row">
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="tx_marc">Marca</label>
+										<input id="tx_marc" name="tx_marc" class="form-control inp_dis">
+									</div>
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="tx_num">Numero</label>
+										<input id="tx_num" name="tx_num" class="form-control inp_dis">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="tx_diam">Diametro</label>
+										<input id="tx_diam" name="tx_diam" class="form-control inp_dis">
+									</div>
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="c">Modelo</label>
+										<select id="cb_cond_med" name="cb_cond_med" class="form-control inp_dis"></select>
+									</div>
+								</div>
 
-                <div id="#MedidorRetirado" class="tab-pane fade in active">
+								<div class="row">
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="tx_prop_equip">Propiedad equipo</label>
+										<input id="tx_prop_equip" name="tx_prop_equip" type="text" class="form-control inp_dis"
+											readonly>
+									</div>
+									<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+										<label for="tx_anio_fab">Año fabricación</label>
+										<input id="tx_anio_fab" name="tx_anio_fab" type="text" class="form-control inp_dis"
+											readonly>
+									</div>
+								</div>
+								<br>
+								<!-- PARAMQUERY PRINCIPAL -->
+								<div id="div_grid_principal">
 
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_marc">Marca</label>
-                            <input id="tx_marc" name="tx_marc" class="form-control inp_dis"></select>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_num">Numero</label>
-                            <input id="tx_num" name="tx_num" class="form-control inp_dis">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_diam">Diametro</label>
-                            <input id="tx_diam" name="tx_diam" class="form-control inp_dis">
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="c">Modelo</label>
-                            <select id="cb_cond_med" name="cb_cond_med" class="form-control inp_dis"></select>
-                        </div>
-                    </div>
+								</div>
+							</div>
+						</div>  
+						<div id="cob_tel" class="tab-pane fade">
+							<div class="panel-body" id="bd_acc">
+								<!-- PARAMQUERY LLAMADAS TELEFONICAS -->
+								<div id="div_grid_sec"> 
+								</div>
+								<br>
 
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_prop_equip">Propiedad equipo</label>
-                            <input id="tx_prop_equip" name="tx_prop_equip" type="text" class="form-control inp_dis"
-                                readonly>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_anio_fab">Año fabricación</label>
-                            <input id="tx_anio_fab" name="tx_anio_fab" type="text" class="form-control inp_dis"
-                                readonly>
-                        </div>
-                    </div>
-                    <br>
-                    <!-- PARAMQUERY PRINCIPAL -->
-                    <div id="div_grid_principal">
-
-                    </div>
-                    <br>
-                </div>
-                <!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
-                <div id="MedidorInstalado" class="tab-pane fade">
-                    <br>
-                    <div id="div_grid_sec" id="bd_acc">
-                    </div>
-
-                    <br>
-
-                    <div id="div_grid_ter" id="bd_acc">
-                    </div>
-
-                    <br>
-
-                </div>
-
-            </div>
-        </div>
+								<div id="div_grid_ter" id="bd_acc">
+								</div>
+							</div>
+						</div>
+				  </div>
+           </div>
+		</div>
     </div>
     <div class="container">
         <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
     </div>
-    </div>
+    
     <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
     <form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
         <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
