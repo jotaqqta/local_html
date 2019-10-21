@@ -234,9 +234,9 @@ function SYNComp_Fechas(SFec_uno, SFec_dos) {
 		return "=";
 	else {
 		if (SFtotal1 * 1 > SFtotal2 * 1)
-			return ">";
+			return "<";
 		else
-		    return "<";
+		    return ">";
 	}
 }
 
