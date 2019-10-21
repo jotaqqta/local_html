@@ -149,8 +149,8 @@ $(document).ready(function () {
 				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_fec_fin"));
 				return false;
 			}
-			if(SYNComp_Fechas($("#tx_fec_ini").val(), $("#tex_fec_fin").val()) == ">") {
-				fn_mensaje_boostrap("Fecha Inicio debe ser menor que Fecha Final.", g_titulo, $("#tex_fec_ini"));
+			if(SYNComp_Fechas($("#tx_fec_ini").val(), $("#tx_fec_fin").val()) ==">") {
+				fn_mensaje_boostrap("Fecha Inicio debe ser menor que Fecha Final.", g_titulo, $("#tx_fec_ini"));
 				return;
 				 }
                fn_carga_orden()
@@ -236,7 +236,7 @@ function SYNComp_Fechas(SFec_uno, SFec_dos) {
 		if (SFtotal1 * 1 > SFtotal2 * 1)
 			return ">";
 		else
-			return "<";
+		    return "<";
 	}
 }
 
