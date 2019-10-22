@@ -110,7 +110,8 @@ $(document).ready(function() {
 					return;
 			}
 			fn_leer();
-         }      	
+         }
+        $("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 	});
 	
 	$("#co_cancel").on("click", function (e){
@@ -118,7 +119,10 @@ $(document).ready(function() {
 		fn_limpiar();
 		
     });
-
+    
+    $("#co_cancelar").on("click", function (e) {
+        $('#div_filtro_bts').modal('hide');
+    })
   
 });	
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -150,8 +154,7 @@ function fn_carga_orden()
             $("#chk_tempo").val(dato_ori[8]);
             $("#chk_indef").val(dato_ori[8]);
             $("#tx_fecha_desde").val(dato_ori[7]);
-            $("#tx_fecha_hasta").val(dato_ori[7]);
-            $("#txa_obser").val(dato_ori[7]);
+            $("#tx_fecha_hasta").val(dato_ori[7]);           
 		}
 		else{
 			fn_mensaje_boostrap("No se encontro la orden indicada!!!", g_titulo, $(""));
@@ -187,12 +190,19 @@ function fn_leer(){
 		$("#chk_tempo").val("5/1"); 
 		$("#chk_indef").val("MCUB");  
 		$("#tx_fecha_desde").val("2344");
-		$("#tx_fecha_hasta").val("152");  
-		$("#txa_obser").val("23000");		
-
+		$("#tx_fecha_hasta").val("152"); 
 	}
 }
 
+//-------------------------------------------------------------------------------------------
+function fn_leer() {
+
+    $("#div_filtro_bts").modal({ backdrop: "static", keyboard: false });
+    $("#div_filtro_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_bts div.modal-footer button").focus();
+
+    });
+}
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_limpiar(){
@@ -206,7 +216,6 @@ $('#tx_dir').val("");
 $('#tx_tarifa').val("");
 $('#chk_grancli').prop("checked",false);
 $('#cb_motivo').val("");
-$('#tx_obs').val("");
 $('#chk_tempo').prop("checked",false);
 $('#chk_indef').prop("checked",false);
 $('#chk_grancli').prop("checked",false);
