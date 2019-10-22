@@ -111,7 +111,8 @@ $(document).ready(function() {
 			}
 			fn_leer();
          }
-        $("#co_leer").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
+		else 
+			fn_abre_modal();
 	});
 	
 	$("#co_cancel").on("click", function (e){
@@ -177,6 +178,7 @@ function fn_leer(){
 	if ($.trim($("#co_lec").text()) == "Leer")
 	{
 				
+		$("#co_lec").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
 		
 		$("#tx_cliente").val("45223");
 		$("#tx_cod_cliente").val("Maria");
@@ -195,7 +197,7 @@ function fn_leer(){
 }
 
 //-------------------------------------------------------------------------------------------
-function fn_leer() {
+function fn_abre_modal() {
 
     $("#div_filtro_bts").modal({ backdrop: "static", keyboard: false });
     $("#div_filtro_bts").on("shown.bs.modal", function () {
@@ -208,20 +210,21 @@ function fn_leer() {
 function fn_limpiar(){
 //IDENTIFICACIÓN
 
-$('#tx_cod_cliente').val("");   
-$('#tx_ruta').val("");
-$('#tx_cenoper').val("");
-$('#tx_locali').val("");
-$('#tx_dir').val("");
-$('#tx_tarifa').val("");
-$('#chk_grancli').prop("checked",false);
-$('#cb_motivo').val("");
-$('#chk_tempo').prop("checked",false);
-$('#chk_indef').prop("checked",false);
-$('#chk_grancli').prop("checked",false);
-$("#tx_cliente").focus();
-$("#tx_cliente").val("");
-$("#tx_fecha_desde").val("");
-$("#tx_fecha_hasta").val("");
+	$("#co_lec").html("<span class='glyphicon glyphicon-search'></span> Leer");
+	$('#tx_cod_cliente').val("");   
+	$('#tx_ruta').val("");
+	$('#tx_cenoper').val("");
+	$('#tx_locali').val("");
+	$('#tx_dir').val("");
+	$('#tx_tarifa').val("");
+	$('#chk_grancli').prop("checked",false);
+	$('#cb_motivo').val("");
+	$('#chk_tempo').prop("checked",false);
+	$('#chk_indef').prop("checked",false);
+	$('#chk_grancli').prop("checked",false);
+	$("#tx_cliente").focus();
+	$("#tx_cliente").val("");
+	$("#tx_fecha_desde").val("");
+	$("#tx_fecha_hasta").val("");
 }
 	
