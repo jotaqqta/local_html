@@ -2,7 +2,9 @@ var g_modulo = "Restricción al Cambio de Medidor";
 var g_titulo = "Consulta de Instalación de Medidores";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
-var $grid;
+
+var SFtotal1;
+var SFtotal2;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
@@ -149,11 +151,11 @@ $(document).ready(function () {
 				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_fec_fin"));
 				return false;
 			}
-			if(SYNComp_Fechas($("#tx_fec_ini").val(), $("#tx_fec_fin").val()) ==">") {
-				fn_mensaje_boostrap("Fecha Inicio debe ser menor que Fecha Final.", g_titulo, $("#tx_fec_ini"));
+			if (SYNComp_Fechas($("#tx_fec_ini").val(), $("#tx_fec_fin").val()) == ">") {
+				fn_mensaje_boostrap("FECHA DE INICIO DEBE SER MENOR QUE LA FECHA FINAL", g_titulo, $("#tx_fec_ini"));
 				return;
-				 }
-               fn_carga_orden()
+			}
+			fn_carga_orden()
 		}
 
 	});
@@ -216,28 +218,40 @@ function fn_limpiar() {
 
 function SYNComp_Fechas(SFec_uno, SFec_dos) {
 
-    SFarr1 = SFec_uno.split("");
+	SFarr1 = SFec_uno.split(" ");
 	p11 = SFarr1[0].split("/");
+
 	if (SFarr1.length > 1)
 		p21 = SFarr1[1].split(":");
 	else
 		p21 = new Array('', '', '');
+
 	SFtotal1 = p11[2] + p11[1] + p11[0] + p21[0] + p21[1] + p21[2];
+
+
+
+	//_____
 	SFarr2 = SFec_dos.split(" ");
 	p12 = SFarr2[0].split("/");
+
 	if (SFarr2.length > 1)
 		p22 = SFarr2[1].split(":");
 	else
 		p22 = new Array('', '', '');
+
 	SFtotal2 = p12[2] + p12[1] + p12[0] + p22[0] + p22[1] + p22[2];
+	console.log(SFtotal1);
+	console.log(SFtotal2);
 	if (SFtotal1 * 1 == SFtotal2 * 1)
 		return "=";
 	else {
-		if (SFtotal1 * 1 > SFtotal2 * 1)
+		if (SFtotal1 * 1 >= SFtotal2 * 1)
 			return ">";
 		else
-		    return "<";
+			return "<";
 	}
+
+
 }
 
 
