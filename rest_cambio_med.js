@@ -59,48 +59,22 @@ $(document).ready(function() {
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
   // SE INHABILITAN LOS IMPUT
-    $("#tx_lec_ant").prop("disabled", true);
-	$("#tx_lec_ant2").prop("disabled", true);
-    
     jQuery('#tx_cliente').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+	if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});    
 
   //DIBUJA LOS ICONOS DE LOS BOTONES     
-  
-  	jQuery('#tx_lec_ant').keypress(function(tecla) {
-		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_lec_ant2').keypress(function(tecla) {
-		if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-
 	
 	$("#tx_cliente").bind("keydown",function(e){
-		if(e.keyCode == 13){
-			tab = true;
+		if(e.keyCode == 13)
+			tab = true;            
+			if($("#tx_cliente").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
+					return;
+			}
 			fn_leer();
-			return false;
-		}
 	 });
-	    
-	$("#co_reasignar").on("click",function(){
-		if( $("#cb_reasigna_nuevo").val() == ""){
-			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
-
-		if($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val())
-		{
-			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
-		//////////////////////////////////////////////////////////////
-		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
-		//////////////////////////////////////////////////////////////
-
-		return;			
-	});
+	    	
     ///EVENTO BOTONES///
     $("#co_lec").on("click", function(){
 		//Validación de informacion
@@ -120,10 +94,16 @@ $(document).ready(function() {
 		fn_limpiar();
 		
     });
-    
+    ///EVENTO BOTONES MODAL///
     $("#co_cancelar").on("click", function (e) {
         $('#div_filtro_bts').modal('hide');
     })
+    $("#co_aceptar").on("click", function () {
+        $('#div_filtro_bts').modal('hide');
+		fn_mensaje_boostrap("Se generó", g_titulo, $("#co_aceptar"));
+		$(window).scrollTop(0);       
+
+    });
   
 });	
   //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
