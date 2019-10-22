@@ -35,45 +35,36 @@ $(document).ready(function() {
 	$("#tx_rolfun").val(SYNSegRolFuncion);
 	*/
 
-	$("#tx_orden").focus();
+	$("#tx_cliente").focus();
 	
-    // INICIA CON EL CURSOR EN EL CAMPO No. ORDEN
-	$("#tx_orden").focus();
-   // EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
-	jQuery('#tx_orden').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-	
-	$("#tx_orden").on("keydown", function(event) {
+	$("#tx_cliente").on("keydown", function(event) {
         var tecla =  event.which || event.keyCode;
         if(tecla==13)
         {
-			if(!$("#tx_cliente").prop("readonly"))  //Readonly se deshabilita el enter
-			{	
-				$("#co_leer").trigger( "click" );
-				return false;
-			}
+			$("#co_lec").trigger( "click" );
         }
         
     });
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
-  // SE INHABILITAN LOS IMPUT
+	
+    // SE INHABILITAN LOS IMPUT
     jQuery('#tx_cliente').keypress(function (tecla) {
 	if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});    
 
   //DIBUJA LOS ICONOS DE LOS BOTONES     
 	
+	/*
 	$("#tx_cliente").bind("keydown",function(e){
-		if(e.keyCode == 13)
-			tab = true;            
+		if(e.keyCode == 13)       
 			if($("#tx_cliente").val()==""){
 				fn_mensaje_boostrap("FAVOR DIGITE NUMERO DE CLIENTE", g_titulo, $("#tx_cliente"));
 					return;
 			}
 			fn_leer();
 	 });
+	*/
 	    	
     ///EVENTO BOTONES///
     $("#co_lec").on("click", function(){
@@ -84,20 +75,20 @@ $(document).ready(function() {
 					return;
 			}
 			fn_leer();
-         }
+        }
 		else 
 			fn_abre_modal();
 	});
 	
 	$("#co_cancel").on("click", function (e){
-
-		fn_limpiar();
-		
+		fn_limpiar();	
     });
+	
     ///EVENTO BOTONES MODAL///
     $("#co_cancelar").on("click", function (e) {
         $('#div_filtro_bts').modal('hide');
     })
+	
     $("#co_aceptar").on("click", function () {
         $('#div_filtro_bts').modal('hide');
 		fn_mensaje_boostrap("Se generó", g_titulo, $("#co_aceptar"));
@@ -106,60 +97,14 @@ $(document).ready(function() {
     });
   
 });	
-  //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-///FUNCIONES EVENTOS///
-function fn_carga_orden()
-{
-	dato_ori = [];
-    parameters = 
-    {
-		"func":"fn_lee_cliente",
-        "empresa":$("#tx_empresa").val(),
-		"p_cliente":$("#tx_cliente").val()
-    };
-    HablaServidor(my_url,parameters,'text', function(text) 
-    {
-        if(text != ""){
-			$("#co_lec").html("<span class='glyphicon glyphicon-user'></span> Reasignar");
-			dato_ori = text.split("|");
-			//$("#co_leer").prop("disabled",true);
-			$("#tx_cliente").prop("disabled",true);
-			$("#tx_cod_cliente").val(dato_ori[1]);
-			$("#tx_ruta").val(dato_ori[3]);
-			$("#tx_cenoper").val(dato_ori[4]);
-			$("#tx_locali").val(dato_ori[5]);
-			$("#tx_dir").val(dato_ori[6]);
-            $("#chk_grancli").val(dato_ori[8]);
-			$("#tx_tarifa").val(dato_ori[7]);
-			$("#cb_motivo").val(dato_ori[8]);
-            $("#chk_tempo").val(dato_ori[8]);
-            $("#chk_indef").val(dato_ori[8]);
-            $("#tx_fecha_desde").val(dato_ori[7]);
-            $("#tx_fecha_hasta").val(dato_ori[7]);           
-		}
-		else{
-			fn_mensaje_boostrap("No se encontro la orden indicada!!!", g_titulo, $(""));
-			return;
-		}
-		if(dato_ori[0] == "F"){
-			$("#co_lec").prop("disabled",true);
-			fn_mensaje_boostrap("ESTA ORDEN YA FUE FINALIZADA, NO PUEDE SER REASIGNADA !", g_titulo,$(""));
-			return;
-		}
-		
-		//$("#co_reasignar").prop("disabled",false);
-		$("#cb_reasigna_nuevo").prop("disabled",false);
-	         
-    });
-	
-}
+
 //-------------------------------------------------------------------------------------------
 function fn_leer(){
 	if ($.trim($("#co_lec").text()) == "Leer")
 	{
 				
 		$("#co_lec").html("<span class='glyphicon glyphicon-floppy-disk'></span> Actualizar");
-		
+		$("#tx_cliente").prop("readonly", true);
 		$("#tx_cliente").val("45223");
 		$("#tx_cod_cliente").val("Maria");
 		$("#tx_ruta").val("Activo");
@@ -191,6 +136,7 @@ function fn_limpiar(){
 //IDENTIFICACIÓN
 
 	$("#co_lec").html("<span class='glyphicon glyphicon-search'></span> Leer");
+	$("#tx_cliente").prop("readonly", false);
 	$('#tx_cod_cliente').val("");   
 	$('#tx_ruta').val("");
 	$('#tx_cenoper').val("");
