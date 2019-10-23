@@ -31,11 +31,9 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
-    // INICIA CON EL CURSOR EN EL CAMPO FECHA
-
-    //DEFINE LA GRILLA PRINCIPAL
+      //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();    
-    //FUNCIONES  DE LOS COMBO
+    //FUNCIONES
     fn_limpiar();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
@@ -60,8 +58,8 @@ $(document).ready(function () {
     //BOTONES
     $("#co_aceptar").on("click", function () {
         //Validación de informacion      
-		if ($("#cb_tip_agru").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO AGRUPACION!!!</strong></div>',3000);
+		if ($("#tx_num_cheque").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NÚMERO DE CHEQUE!!!</strong></div>',3000);
 			$("#cb_tip_agru").focus();
 			return;
 		}
@@ -133,31 +131,26 @@ function fn_setea_grid_principal() {
         },
         dataModel: {
             data: [                
-                { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0005', C2: 'MATERIALES AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0006', C2: 'MANO DE OBRA - AGUA ', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0007', C2: 'CONSUMO DE AGUA HISTORICO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0008', C2: 'DERECHO DE CONEXION - AGUA', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0009', C2: 'REINST. SERVICIO AGUA POTABLE', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00010', C2: 'DESCUENTO DE EMPLEADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '00011', C2: 'DESCUENTO DE JUBILADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' }
-
+                { C1: '4444', C2: '0000665948', C3: '22.07', C4: '261', C5: '016', C6: '222', C7: '1076', C8: '015', C9: '17/05/2010'},
+                { C1: '4444', C2: '0000665948', C3: '22.07', C4: '261', C5: '016', C6: '222', C7: '1076', C8: '015', C9: '17/05/2010'},
+                { C1: '4444', C2: '0000665948', C3: '22.07', C4: '261', C5: '016', C6: '222', C7: '1076', C8: '015', C9: '17/05/2010'},
+                { C1: '4444', C2: '0000665948', C3: '22.07', C4: '261', C5: '016', C6: '222', C7: '1076', C8: '015', C9: '17/05/2010'},
+                { C1: '4444', C2: '0000665948', C3: '22.07', C4: '261', C5: '016', C6: '222', C7: '1076', C8: '015', C9: '17/05/2010'},
+                
             ]
         }
     };
 
     obj.colModel = [
-        { title: "Num. Cheque", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Num Suministro", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Monto", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Num Depósito", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Codigo Caja", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Sesión", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Lote", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Banco", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Fecha Pago", width: 350, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Num. Cheque", width: 120, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Num. Suministro", width: 120, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Monto", width: 120, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
+        { title: "Num Depósito", width: 120, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
+        { title: "Codigo Caja", width: 120, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
+        { title: "Sesión", width: 120, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
+        { title: "Lote", width: 120, dataType: "string", dataIndx: "C7", halign: "center", align: "left" },
+        { title: "Banco", width: 120, dataType: "string", dataIndx: "C8", halign: "center", align: "left" },
+        { title: "Fecha Pago", width: 120, dataType: "string", dataIndx: "C9", halign: "center", align: "left" },
               
     ];
 
@@ -168,9 +161,8 @@ function fn_setea_grid_principal() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar() {
 
-    $("#cb_agrup").val("0");
-    $("#cb_tip_acc").val("0");
-    $("#cb_agrup").focus();
+    $("#tx_num_cheque").val("");
+    $("#tx_num_cheque").focus();
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -190,12 +182,6 @@ function fn_nuevo() {
 
     });
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-function fn_carga_grilla() {
-
-
-}
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_mensaje(id,mensaje,segundos)
 {
