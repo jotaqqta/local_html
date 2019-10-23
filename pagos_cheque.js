@@ -1,10 +1,7 @@
 var g_modulo = "Pagos con Cheque";
 var g_tit = "Pagos con Cheque";
 var $grid_principal;
-var $grid_2;
 var sql_grid_prim = "";
-var sql_grid_2 = "";
-var sql_grid_3 = "";
 var parameters = {};
 
 
@@ -22,24 +19,7 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#tx_cargo').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_amort').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_niv_imp').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_niv_pre').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_ord_i').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
+ 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
     //INGRESA LOS TITULOS
@@ -51,27 +31,20 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
-
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
-
-    $("._input_selector").inputmask("dd/mm/yyyy");
 
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();    
-    //FUNCIONES  DE LOS COMBOS
-    fn_tip_agru();
-    fn_nom_agru();
-    fn_cod_acc();
-    fn_amor();
+    //FUNCIONES  DE LOS COMBO
     fn_limpiar();
     //DIBUJA LOS ICONOS DE LOS BOTONES     
-    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
+    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
     
-    $("#co_filtro").on("click", fn_filtro);
+    $("#co_filtro").on("click", fn_nuevo);
 				
     $("#co_limpiar").on("click", function () {
 		fn_limpiar();
@@ -81,37 +54,7 @@ $(document).ready(function () {
     $("#co_cancelar").on("click", function (e) {
         $('#div_filtro_bts').modal('hide');
     });
-
-    //BOTONES ELIMINAR DE LAS GRILLAS
-    $("#co_eliminar").on("click", function (e) {
-
-        $("#dlg_confirmamod").modal({ backdrop: "static", keyboard: false });
-        $("#dlg_confirmamod").on("shown.bs.modal", function () {
-            $("#co_confirmamod_no").focus();
-        });
-
-    });
-
-    $("#co_nuevo").on("click", function (e) {
-        fn_limpiar();
-		fn_nuevo();
-    });
 	
-    $("#co_volver_fil").on("click", function (e) {
-        $("#div_prin").slideDown();
-        $("#div_filtros").slideUp();
-        $(window).scrollTop(0);
-    });
-	
-    $("#co_close-m").on("click", function (e) {
-        $('#div_modal').modal('hide');
-
-    });
-    $("#co_filtro").on("click", function(e){
- 		fn_filtro();            
-    }); 
-    //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    $("._input_selector").inputmask("dd/mm/yyyy");
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES
@@ -122,62 +65,11 @@ $(document).ready(function () {
 			$("#cb_tip_agru").focus();
 			return;
 		}
-		 if ($("#cb_nom_agru").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR NOMBRE AGRUPACION!!!</strong></div>',3000);
-			$("#cb_nom_agru").focus();
-			return;
-
-		 }
-		 if ($("#cb_cod_acc").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO ACCIÓN!!!</strong></div>',3000);
-			$("#cb_cod_acc").focus();
-			return;
-		 }
-		 if ($("#cb_amor").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR AMORTIZADO!!!</strong></div>',3000);
-			$("#cb_amor").focus();
-			return;                				
-		 }
-		fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+		fn_mensaje_boostrap("Se genero", g_tit, $(""));
 		fn_carga_grilla();
-		$("#div_prin").slideDown();
-		$("#div_filtros").slideUp();
 		$(window).scrollTop(0);
 
     });
-
-    $("#div_modal").draggable({
-        handle: ".modal-header"
-    });
-
-	//Evento doble click grilla principal
-    $grid_principal.pqGrid({
-        rowDblClick: function fn_sss(event, ui) {
-            if (ui.rowData) {
-                var dataCell = ui.rowData;
-                $("#div_prin").slideUp();
-                $("#div_filtros").slideDown();
-                $(window).scrollTop(0);
-                $grid_2.pqGrid("refreshView");           
-            }
-            fn_carga_grilla();
-        }
-    });
-	
-	//Evento doble click grilla secundaria
-	$grid_2.pqGrid({
-        rowDblClick: function fn_sss(event, ui) {
-            if (ui.rowData) {
-                var dataCell = ui.rowData;
-                $("#cb_tip_agru").val(dataCell.C2);
-                $("#cb_nom_agru").val(dataCell.C4);
-                $("#cb_cod_acc").val(dataCell.C5);
-                $("#cb_amor").val(dataCell.C6);
-				fn_nuevo();
-            }
-        }
-    });
-
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //EXCEL    
@@ -228,8 +120,9 @@ function fn_setea_grid_principal() {
         {
             cls: "pq-toolbar-export",
             items: [
+				{ type: "button", label: "Filtro", attr: "id=co_filtro", cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary" },
-                { type: "button", label: "Filtro", attr: "id=co_filtro", cls: "btn btn-secondary btn-sm" }
+                { type: "button", label: "Filtro", attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }
             ]
         },
         editModel: {
@@ -269,61 +162,8 @@ function fn_setea_grid_principal() {
     ];
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
-    $grid_principal.pqGrid("refreshDataAndView");
+    //$grid_principal.pqGrid("refreshDataAndView");
 
-    //***********************************************************************************************
-    data = [
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3: 'SALDO', C4: '1', C5:'S', C6:'N' },
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },        
-    ]
-    var obj2 = {
-        height: 500,
-        showTop: true,
-        showHeader: true,
-        roundCorners: true,
-        rowBorders: true,
-        fillHandle: "",
-        columnBorders: true,
-        editable: false,
-        selectionModel: { type: "row", mode: "single" },
-        showTitle: true,
-        collapsible: false,
-        numberCell: { show: false },
-        title: "Detalle",
-        pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500] },
-        scrollModel: { theme: true },
-        toolbar: {
-
-            cls: "pq-toolbar-export",
-            items: [
-                { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-primary" },
-                { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "cancelar", attr: "id=co_volver_fil", cls: "btn btn-default btn-sm" },
-            ]
-        }
-
-    };
-
-    obj2.colModel = [
-        { title: "Tipo Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "codigo_tipo_agrup", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center", hidden: true },
-        { title: "Nombre Agrupación", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-		{ title: "codigo nombre Agrupación", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "left", hidden: true },
-        { title: "Cod. Acción", width: 300, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
-        { title: "Amortizado", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
-        {
-            title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
-            render: function (ui) {
-
-                return "<button name='co_elim' id='co_elim' class='btn btn-primary btn-sm'>Eliminar</button>";
-            }
-        }
-    ];
-
-    obj2.dataModel = { data: data };
-
-    $grid_2 = $("#div_grid_sec").pqGrid(obj2);
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar() {
@@ -336,11 +176,10 @@ function fn_limpiar() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_filtro() {
     parameters =
-        {
-            "func": "fn_grid_principal",
-            "empresa": $("#tx_num_cheque").val(),
-        };
-
+	{
+		"func": "fn_grid_principal",
+		"empresa": $("#tx_num_cheque").val(),
+	};
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_nuevo() {
@@ -356,33 +195,7 @@ function fn_carga_grilla() {
 
 
 }
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_sistema() {
 
-    $("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
-}
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-//FUNCIONES COMBOS
-
-function fn_tip_agru() {
-    $("#cb_tip_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-function fn_nom_agru() {
-    $("#cb_nom_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_cod_acc() {
-    $("#cb_tip_acc").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_amor() {
-    $("#cb_amor").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_mensaje(id,mensaje,segundos)
 {
@@ -390,11 +203,5 @@ function fn_mensaje(id,mensaje,segundos)
 	$(id).html(mensaje);
 	setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_limpiar(){
-    $("#cb_tip_agru").val("");
-    $("#cb_nom_agru").val("");
-    $("#cb_cod_acc").val("");
-    $("#cb_amor").val("");
-}
+
     
