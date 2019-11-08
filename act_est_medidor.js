@@ -45,7 +45,7 @@ $(document).ready(function () {
     
 
 	fn_setea_grid_principal();
-	fn_setea_grid_medidor();
+
 	
 	/*
     fn_marca();
@@ -224,56 +224,9 @@ $(document).ready(function () {
        } //else
      } //else 
 	});
-    
-	///////////////////////////////////////////////////////////////////////////
-	//BOTONES DE ACEPTAR SI ACEPTA LA CONFIRMACION DEl ingreso del nuevo medidor
-	$("#co_confirmaing_si").on("click", function(e){
-		$("#dlg_confirmaing").modal("hide");
-        //debe dejar seguir   el boton leer = text.ingresar inserta los datos
-        $("#cb_alm_dest").val("1");
-        $("#cb_alm_dest").focus();
-
-        $("#cb_estado").val("D");
-        $("#cb_estado").prop("disabled",true);
-        
-        $("#cb_accion").val("C");
-        $("#cb_condicion").val("N");
-        $("#cb_condicion").prop('disabled', false);
-        $("#tx_anio_fab").prop('disabled', false);
-
-        fn_carga_fechas(); //carga fecha actual del sistema
-        
-        $("#co_leer").html("<span class='glyphicon glyphicon-plus'></span> Ingresar");
-        
-        fn_cargar_lectura($("#tx_empresa").val(),$("#cb_marca").val(),$("#cb_modelo").val());
-        fn_carga_grilla($("#tx_empresa").val(),$("#cb_marca").val(),$("#cb_modelo").val());
-	});						
-
-	$("#co_confirmaing_no").on("click", function (e){
-			$("#dlg_confirmaing").modal("hide");
-			fn_limpiar_fil();
-			fn_limpiar();
-			$("#cb_marca").focus();
-	});
     /////////////////////////////////////////////////////////////
-    //  modal de buscar medidor
-    /////////////////////////////////////////////////////////////
-	 //EVENTO CLICK DE LA GRILLA
-    $grid_med.pqGrid({
-		rowClick: function( event, ui ) {
-			if (ui.rowData) { 
-				var dataCell = ui.rowData;
-				$("#num_unico").val(dataCell.D6);
-				$("#div_medidor").hide();  //div princ. de la primera grilla
-                    //$("#div_tabla").show(); //div princ. de la segunda grilla
-    				//fn_setea_grid_detalle();
-				//$grid_detalle.pqGrid("refreshView");
-				//	fn_carga_grilla2();
-					
-				}
-		}
-	});
 
+	
 	$("#co_seleccionar").on("click", function(e){
 		    
             $("#dlg_medidor").modal("hide");
@@ -637,26 +590,7 @@ function fn_condicion() {
 	//$("#cb_cb_cond_med").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 /////////////////////////////////////////////////////////////////
-function fn_carga_fechas(){
-	var dato_ori = []; 
-    var param2 =  {
-		"md" :"raiz/operacion/ope_medidores/med_mantencion",
-		"fl" :"ing_medidor",
-		"fn" :"fn_fechasys"
-    };
-    
-    HablaServidor(my_url,param2,'text', function(text){
-        if(text != ""){
-			dato_ori = text.split("|");
-			$("#tx_fec_cre").val(dato_ori[0]);
-					
-		}
-		else{
-			fn_mensaje_boostrap("ERROR NO SE PUDO LEER FECHA", g_titulo, $(""));
-			return;
-		}       
-    });
-}
+
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
 
 
@@ -944,26 +878,7 @@ function fn_limpiar(){
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
-function fn_validar_fecha(value) {
-	var real, info;
 
-	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
-		info = value.split(/\//);
-		var fecha = new Date(info[2], info[1] - 1, info[0]);
-		if (Object.prototype.toString.call(fecha) === '[object Date]') {
-			real = fecha.toISOString().substr(0, 10).split('-');
-			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-				return true;
-			}
-			return false;
-		} else {
-			return false;
-		}
-	}
-	else {
-		return false;
-	}
-}
 
 
 
