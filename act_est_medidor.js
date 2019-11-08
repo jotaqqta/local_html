@@ -46,7 +46,8 @@ $(document).ready(function () {
 
 	fn_setea_grid_principal();
 	fn_setea_grid_medidor();
-
+	
+	/*
     fn_marca();
     fn_almacen_destino();
 	fn_clave_reacondicionamiento();
@@ -54,7 +55,7 @@ $(document).ready(function () {
     fn_estado();
 	fn_accion();
 	fn_condicion();
-	
+	*/
 
 
 	$("._input_selector").inputmask("dd/mm/yyyy");
