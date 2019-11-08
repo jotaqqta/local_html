@@ -132,13 +132,13 @@
 			<br>
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#Principal">Datos del Medidor</a></li>
-				<!--<li><a data-toggle="tab" href="#generales">Medidor Instalado en</a></li>
-				<li><a data-toggle="tab" href="#generales">Caracter&iacute;sticas del Modelo</a></li>
-				<li><a data-toggle="tab" href="#generales">Atributos Especiales Medidor</a></li>-->
+				<li><a data-toggle="tab" href="#param">Caracter&iacute;sticas del Modelo</a></li>
+				<li><a data-toggle="tab" href="#generales">Medidor Instalado en </a></li>
 			</ul>
 			<!-- INFORMACION DEL PRIMER FORMULARIO -->
 			<div class="tab-content">
 				<div id="Principal" class="tab-pane fade in active">
+                    <div class="container">
                     <br>
 					<div class="row">
 						<div class="col-4 col-sm-4 col-md-4 col-lg-4">
@@ -153,14 +153,12 @@
 							<label for="cb_estado">Estado</label>
 							<select id="cb_estado" name="cb_estado" class="form-control inp_dis" readonly></select>
 						</div>
-
 					</div>
 					<div class="row">
 						<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 							<label for="cb_condicion">Condici&oacute;n Medidor</label>
 							<select id="cb_condicion" name="cb_condicion" class="form-control inp_dis" readonly></select>
 						</div>
-
 						<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 							<label for="tx_anio_fab">A&ntilde;o Fabricaci&oacute;n</label>
 							<input id="tx_anio_fab" name="tx_anio_fab" type="text" class="form-control inp_dis" readonly>
@@ -169,10 +167,8 @@
 							<label for="tx_fec_cre">Fecha de Creaci&oacute;n</label>
 							<input id="tx_fec_cre" name="tx_fec_cre" type="text"
 								class="form-control inp_dis _input_selector" readonly>
-						</div>
-						
-					</div>
-
+						</div>						
+					</div>             
 					<div class="row">
                         <div class="col-4 col-sm-4 col-md-4 col-lg-4">
 							<label for="tx_anio_reac">A&ntilde;o Reacondicionamiento</label>
@@ -183,17 +179,23 @@
 							<label for="cb_clav_reac">Clave Reacondicionamiento</label>
 							<select id="cb_clav_reac" name="cb_clav_reac" class="form-control inp_dis" readonly></select>
 						</div>
-						<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						  <div class="col-4 col-sm-4 col-md-4 col-lg-4">
 							<label for="cb_pro_med">Propiedad Medidor</label>
 							<select id="cb_pro_med" name="cb_pro_med" class="form-control inp_dis" readonly></select>
-						</div>
-					</div>
+						  </div>
+				    </div>                    
+           			    <br>
+					<!-- PARAMQUERY PRINCIPAL -->
+					   <div id="div_grid_principal">
+					   </div>
+					   <br>
+				    </div>
+                </div>                
+				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
+				<div id="param" class="tab-pane fade">
+                    <div class="container">
                     <br>
-                    
-                    <div class="well well-sm">CARACTERISTICAS DEL MODELO</div> 
-                    <br>
-					<div class="row">
-						
+					<div class="row">						
 						<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 							<label for="tx_diam">Di&aacute;metro</label>
 							<input id="tx_diam" name="tx_diam" type="text" class="form-control inp_dis" readonly>
@@ -207,7 +209,6 @@
 							<input id="tx_cls_metro" name="tx_cls_metro" type="text" class="form-control inp_dis" readonly>
 						</div>
 					</div>
-				    <br>
 					<div class="row">
 						<div class="col-3 col-sm-3 col-md-3 col-lg-3">
 							<label for="tx_anio_vida">Cant. A&ntilde;os Vida</label>
@@ -244,11 +245,13 @@
 						<div class="col-3 col-sm-3 col-md-3 col-lg-3">
 							<input type="checkbox" id="chk_reset" name="chk_reset" readonly>
 							<label for="chk_reset">Es Reseteado</label>
-						</div>
-					</div>    
-                    <br>
-                    
-                    <div class="well well-sm">MEDIDOR INSTALADO EN</div> 
+						  </div>
+					   </div>    
+				    </div>
+                </div>          
+				 <!--FORMULARIO DE LA TERCERA PESTAÑA -->
+				<div id="generales" class="tab-pane fade">
+                     <div class="container">
                     <br>
 					<div class="row">						
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
@@ -260,7 +263,6 @@
 							<input id="tx_tec" name="tx_tec" type="text" class="form-control inp_dis" readonly>
 						</div>  
                     </div>
-                    <br>
                     <div class="row">	
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_cls_metro">Nombre</label>
@@ -271,14 +273,12 @@
 							<input id="tx_anio_vida" name="tx_anio_vida" type="text" class="form-control inp_dis" readonly>
 						</div>
                     </div>                   
-                    <br>
                     <div class="row">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 							<label for="tx_anio_almacen">Dirección</label>
 							<input id="tx_anio_almacen" name="tx_anio_almacen" type="text" class="form-control inp_dis" readonly>
 						</div>
                     </div>
-                    <br>
                     <div class="row">
 						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 							<label for="tx_error_exac">Tarifa</label>
@@ -288,29 +288,9 @@
 							<label for="tx_max_cons">Fecha Instalación</label>
 							<input id="tx_max_cons" name="tx_max_cons" type="text" class="form-control inp_dis" readonly>
 						</div>
-					</div>
-					<br>
-
-					<br>
-					<!-- PARAMQUERY PRINCIPAL -->
-					<div id="div_grid_principal">
-
-					</div>
-					<br>
+					</div>            
 				</div>
-
-				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA 
-				<div id="param" class="tab-pane fade">
-
-				</div>
-
-				 FORMULARIO DE LA TERCERA PESTAÑA 
-				<div id="generales" class="tab-pane fade">
-
-				</div>  -->
-
-			</div>
-		</div>
+            </div>
 		<div class="container">
 			<div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
 		</div>
@@ -339,7 +319,7 @@
 			</div>
 		</div>
     </div>
-
+</div>
 
 	<div id="dlg_confirmaing" class="modal" role="dialog">
 				<div class="modal-dialog">
