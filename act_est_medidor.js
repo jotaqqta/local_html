@@ -432,7 +432,7 @@ function fn_validar_datos(){
 function fn_setea_grid_principal() {
 
 	var obj = {
-		height: "50%",
+		height: "240",
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
