@@ -33,11 +33,14 @@ $(document).ready(function () {
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
     //Se cargan las variables que vienen esde el server
-    $("#tx_empresa").val(SYNSegCodEmpresa); //
+    /*
+	$("#tx_empresa").val(SYNSegCodEmpresa); //
     $("#tx_rol").val(SYNSegRol);
     $("#tx_ip").val(SYNSegIP);
     $("#tx_rolfun").val(SYNSegRolFuncion);
-    
+    */
+	
+	
 	$("#tx_num_med").focus();
 	
     $("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer"); 
@@ -46,7 +49,8 @@ $(document).ready(function () {
 
 	fn_setea_grid_principal();
 	fn_setea_grid_medidor();
-
+	
+	/*
     fn_marca();
     fn_almacen_destino();
 	fn_clave_reacondicionamiento();
@@ -54,7 +58,7 @@ $(document).ready(function () {
     fn_estado();
 	fn_accion();
 	fn_condicion();
-	
+	*/
 
 
 	$("._input_selector").inputmask("dd/mm/yyyy");
