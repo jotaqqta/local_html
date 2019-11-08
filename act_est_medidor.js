@@ -33,10 +33,10 @@ $(document).ready(function () {
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
     //Se cargan las variables que vienen esde el server
-    $("#tx_empresa").val(SYNSegCodEmpresa); //
-    $("#tx_rol").val(SYNSegRol);
-    $("#tx_ip").val(SYNSegIP);
-    $("#tx_rolfun").val(SYNSegRolFuncion);
+    //$("#tx_empresa").val(SYNSegCodEmpresa); //
+    //$("#tx_rol").val(SYNSegRol);
+    //$("#tx_ip").val(SYNSegIP);
+    //$("#tx_rolfun").val(SYNSegRolFuncion);
     
 	$("#tx_num_med").focus();
 	
