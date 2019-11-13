@@ -10,15 +10,7 @@ var $row = 0;//CONTROLA EL INDEX DE LA GRILLA DERECHA
 var $tot_ajus = 0; //CONTROLA EL NETO TOTAL A AJUSTAR
 var $bNcAdm = false;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-$(document).keydown(function(e) {
 
-    if (e.keyCode === 8 ) {
-        var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
-            return false;
-        }
-    }
-});
 
 $(document).ready(function() {
 
@@ -26,19 +18,21 @@ $(document).ready(function() {
     document.body.scroll = "yes";
 
     //Se cargan las variables que vienen desde el server
+	/*
     $("#tx_empresa").val(SYNSegCodEmpresa);
     $("#tx_rol").val(SYNSegRol);
     $("#tx_ip").val(SYNSegIP);
     $("#tx_rolfun").val(SYNSegRolFuncion);    
     $("#tx_cen_ope").val(SYNSegCodCentroOperFun);
+	*/
 
-    $("#div_header").load("/raiz/syn_globales/header.htm", function() {
+    $("#div_header").load("/syn_globales/header.htm", function() {
         $("#div_mod0").html(g_modulo);
         $("#div_tit0").html(g_titulo);  
     });
 
     //Footer
-    $("#div_footer").load("/raiz/syn_globales/footer.htm");           
+    $("#div_footer").load("/syn_globales/footer.htm");           
     $("#tx_cliente").focus();
    
     jQuery('#tx_cliente').keypress(function(tecla) {
