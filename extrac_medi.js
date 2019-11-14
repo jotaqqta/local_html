@@ -1435,10 +1435,9 @@ function fn_carga_grid_secun(empresa, suministro, nro_orden){
 function fn_setea_grid_tarifa()
 {       
     var data = [
-        //{C1:'CONSUMO DE AGUA', C2: "0.00", C3:"12.08"},
-        //{C1:'DESCUENTO DE JUBILADO', C2: "0.00", C3:"-3.02"},        
-        //{C1:'TASA DE ASEO - DIMAUD', C2: "0.00", C3:"6.00"},
-        //{C1:'ALCANTARILLADO', C2: "0.00", C3:"6.07"}     
+        {C1:'CONSUMO DE AGUA', C2: "0.00", C3:"12.08"},
+        {C1:'DESCUENTO DE JUBILADO', C2: "0.00", C3:"-3.02"},        
+        {C1:'TASA DE ASEO - DIMAUD', C2: "0.00", C3:"6.00"}
     ];
     var obj_tar_izq = {
         width:"100%",
@@ -1459,20 +1458,8 @@ function fn_setea_grid_tarifa()
         
         colModel: [         
             { title: "Descripción",  resizable: false, width: "52%", dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Cantidad",width: 10, dataType: "number", dataIndx: "C2",halign:"center", align:"right",  hidden:true},
-            { title: "Unidad",width: 10, dataType: "number", dataIndx: "C3",halign:"center", align:"right",  hidden:true},
-            { title: "Pendiente", width: "24%", dataType: "number", dataIndx: "C4",halign:"center", align:"center" },
-            { title: "Indicador",width: 10, dataType: "number", dataIndx: "C5",halign:"center", align:"right",  hidden:true},
-            { title: "Codigo",width: 10, dataType: "number", dataIndx: "C6",halign:"center", align:"right",  hidden:true},
-            { title: "IdRelacion",width: 10, dataType: "number", dataIndx: "C7",halign:"center", align:"right",  hidden:true},
-            { title: "CodDocOriginal",width: 10, dataType: "number", dataIndx: "C8",halign:"center", align:"right",  hidden:true},
-            { title: "NN1",width: 10, dataType: "number", dataIndx: "C9",halign:"center", align:"right",  hidden:true},
-            { title: "NN2",width: 10, dataType: "number", dataIndx: "C10",halign:"center", align:"right",  hidden:true},
-            { title: "Facturado", width: "24%", dataType: "double", dataIndx: "C11",halign:"center", align:"center" },
-            { title: "I/C",width: 10, dataType: "number", dataIndx: "C12",halign:"center", align:"right",  hidden:true},
-            { title: "MTO_SIN",width: 10, dataType: "number", dataIndx: "C13",halign:"center", align:"right",  hidden:true},
-            { title: "MTO_CON",width: 10, dataType: "number", dataIndx: "C14",halign:"center", align:"right",  hidden:true},
-            { title: "IndAfectaSaldo",width: 10, dataType: "number", dataIndx: "C15",halign:"center", align:"right",  hidden:true},
+            { title: "Cantidad",width: 10, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},
+            { title: "Unidad",width: 10, dataType: "number", dataIndx: "C3",halign:"center", align:"right"}
         ],  
         selectionModel: { type: "row" }  
     };  
@@ -1484,7 +1471,7 @@ function fn_setea_grid_tarifa()
     //$grid_tar_izq.pqGrid( "refreshDataAndView" );
 
     var data = [
-        //{C1:'CONSUMO DE AGUA', C2: "12", C3:"12.08", C4:"1234"}
+        {C1:'CONSUMO DE AGUA', C2: "12", C3:"12.08", C4:"1234"}
     ];
     var obj_tar_der = {
         width:"100%",
@@ -1504,55 +1491,13 @@ function fn_setea_grid_tarifa()
         showBottom: false,
         showTop: true,
         swipeModel: { on: false },
-        toolbar:
-       {
-           cls: "pq-toolbar-export",
-           items:
-           [
-               { type: "button", label: " Agregar Fila"        ,  attr:"id=co_agregar", cls:"btn"},
-               { type: "button", label: " Calculo Automatico"  ,  attr:"id=co_calculo", cls:"btn"},
-           ]
-       },
         
         colModel: [         
             { title: "Row", width: 100, dataType: "integer", dataIndx: "ID", hidden:true },
             { title: "Descripción",  resizable: false, width: "35%", dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
             { title: "Valor", width: "15%", dataType: "double", dataIndx: "C2",halign:"center", align:"center"},
             { title: "Vr. Ajuste", width: "15%", dataType: "double", dataIndx: "C3",halign:"center", align:"center"},
-            { title: "Documento", width: "20%", dataType: "string", dataIndx: "C4",halign:"center", align:"center" },
-            { title: "Codigo",width: 10, dataType: "number", dataIndx: "C5",halign:"center", align:"right",  hidden:true},
-            { title: "IDRELACION",width: 10, dataType: "number", dataIndx: "C6",halign:"center", align:"right",  hidden:true},
-            { title: "CANTIDAD",width: 10, dataType: "number", dataIndx: "C7",halign:"center", align:"right",  hidden:true},
-            { title: "UNIDAD",width: 10, dataType: "number", dataIndx: "C8",halign:"center", align:"right",  hidden:true},
-            { title: "COD_DOC_ORIG",width: 10, dataType: "number", dataIndx: "C9",halign:"center", align:"right",  hidden:true},
-            { title: "Eliminar",width: "15%", dataType: "string", align: "center", editable: false,  sortable: false,
-                render: function (ui) {
-                    return "<button class='delete_btn btn-default btn-sm'><span class='glyphicon glyphicon-trash'></span> </button>";
-                },
-                postRender: function (ui) {
-                    var grid = this,
-                        $cell = grid.getCell(ui);
-                    $cell.find(".delete_btn")
-                        .button({ icons: { primary: 'ui-icon-scissors'} })
-                        .bind("click", function (evt) {
-                            
-                            var datos = ui.rowData;
-                            
-                            //fn_tot_ajus(0,datos.C3);
-                            
-                            alert($tot_ajus+" - "+parseFloat(datos.C3));
-                            $tot_ajus = $tot_ajus - parseFloat(datos.C3);
-                            alert("Nuevo Total = "+$tot_ajus);
-
-                            fn_resta_row();
-                            
-                            alert(" Fila Supuestamente que aliminaria: "+ui.rowIndx);
-                            
-                            $grid_tar_der.pqGrid("deleteRow", { rowIndx: ui.rowIndx });                      
-                            //$grid_tar_der.pqGrid("refreshView");
-                        });
-                }            
-            }
+            { title: "Documento", width: "20%", dataType: "string", dataIndx: "C4",halign:"center", align:"center" }
         ],      
         selectionModel: { type: "row" }
     };  

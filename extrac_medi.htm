@@ -75,24 +75,63 @@
 		<div class="bootstrap-syn" id="principal">			
 			<div class="container" id="div_prim">
 				<br>
-				<div class="row menus">
-                    <div>
-						<div class="well well-sm">Regional</div>
+				<div class="container">                    
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
+				       <div>
+						  <div class="well well-sm">Regional</div>
+					   </div>
+                        <div class="panel-body">
+                                <div class="col-sm-6">
+                                <div id="grid_tar_izq"></div>
+                            </div>
+                        </div>
 					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-						<label for="tx_cliente">Nro. Suministro</label>
-						<input type="text" id="tx_cliente" name="tx_cliente" class="form-control" style="margin-top: 3px;">
+					<div class="col-6 col-sm-6 col-md-6 col-lg-"> 
+						<div class="well well-sm">Modelo de Medidores</div>
 					</div>
-
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-						<label for="tx_orden">Orden</label>
-						<input disabled type="text" id="tx_orden" name="tx_orden" class="form-control" style="margin-top: 3px;">
+                        <div class="panel-body">
+                                <div class="col-sm-6">
+                               <div id="grid_tar_der"></div>
+                        </div>
+                    </div>
+                    
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
+				        <div>
+						  <div class="well well-sm">Marca</div>
+					   </div>                        
 					</div>
-
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2"> 
-						<label for="tx_fecha">Fecha</label>
-						<input disabled type="text" id="tx_fecha" name="tx_fecha" class="form-control" style="margin-top: 3px;">
-					</div>					
+					<div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
+						<div class="well well-sm">Diámetro</div>
+					</div>
+                </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
+						<div class="well well-sm">Aplica Promedio Área?</div>
+                        <br>
+                <div class="container">
+					   <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                  <div>
+                       <label class="radio-inline">
+					     <input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Si
+                       </label>
+                  </div>
+                    </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                        <div>
+                       <label class="radio-inline">
+					     <input type="radio" name="optradio" id="optradio" name="optradio" value="2"> No
+                       </label>
+                  </div>
+                            </div>
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                        <div>
+                       <label class="radio-inline">
+					     <input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Todos
+                       </label>
+                        </div>
+                       </div>
+		          </div>
+		      </div>
+        
 
 					<div class="col-6 col-sm-6 col-md-6 col-lg-6"> 
 						<label for=""></label>
@@ -105,28 +144,7 @@
 				</div>
 			</div>
 			<br>	
-			<div class="container" id="div_prin">				
-				<div class="row">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="nombre">
-						<div class="form-group">
-							<label for="tx_nombre">Nombre</label>
-							<input disabled id="tx_nombre" name="tx_nombre" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="direccion">
-						<div class="form-group">
-							<label for="tx_dir">Dirección</label>
-							<input disabled id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6" id="comuna">
-						<div class="form-group">
-							<label for="tx_comuna">Comuna</label>
-							<input disabled id="tx_comuna" name="tx_comuna" type="text" class="form-control inp_dis">
-						</div>
-					</div>					
-				</div>
+		
 
 
 				<!--CAMPOS DE LA ULTIMA VENTANA-->
@@ -155,65 +173,7 @@
 				<!--FIN CAMPOS DE LA ULTIMA VENTANA-->
 
 
-				<div class="row" id="fila3">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_est_client">Estado cliente</label>
-							<input disabled id="tx_est_client" name="tx_est_client" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_est_conex">Estado conexión</label>
-							<input disabled id="tx_est_conex" name="tx_est_conex" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-				</div>
-
-				<div class="row" id="fila4">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_reg">Regional</label>
-							<input disabled id="tx_reg" name="tx_reg" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_ruta">Ruta</label>
-							<input disabled id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-				</div>
-
-				<div class="row" id="fila5">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_tarif">Tarifa</label>
-							<input disabled id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div class="form-group">
-							<label for="tx_actividad">Actividad</label>
-							<input disabled id="tx_actividad" name="tx_actividad" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-				</div>
-
-                <div class="row" id="fila6">
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-						<div class="form-group">
-							<label for="tx_refe">Referencia</label>
-							<input style="text-transform:uppercase;" id="tx_refe" name="tx_refe" type="text" class="form-control inp_dis">
-						</div>
-					</div>
-                </div>
-
-                <br>
-				<div class="form-group" id="fila7">
-					<label class="control-label" for="co_obs">Observacion</label>
-					<textarea style="text-transform:uppercase;" class="form-control" rows="3" id="co_obs" maxlength="200" style="font-size: 18px;"></textarea>
-				</div>
+				
 
 				<!--GRILLA PRINCIPAL, GRILLAS PAREJAS Y BOTONES DE LA ULTIMA VENTANA-->
 				<div class="row" id="grid_secundaria">
