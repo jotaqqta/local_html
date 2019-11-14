@@ -1,5 +1,5 @@
-var g_modulo="Facturación Clientes - Lecturas y Consumos";
-var g_titulo="Ingreso Requerimientos Refacturados.";
+var g_modulo="Medidores - Consulta Módulo de Medidores";
+var g_titulo="Extractor de Medidores";
 var parameters={};
 var sql_grid_prim = "";
 //var my_url="correc_prome_dudo.asp";//http://192.168.1.39/RAIZ/FACTURACION/FAC_REFACTURACION/REF_INGRESO/ING_AJUSTE.HTM?Sesion=2414374130&SYNParametro=
@@ -57,8 +57,7 @@ function fn_setea_grid_tarifa()
     //////////////////////////////////INICIO GRILLA IZQUIERDA 01//////////////////////////////////
     var data = [
         {C1:'CONSUMO DE AGUA', C2: "0.00", C3:"12.08"},
-        {C1:'DESCUENTO DE JUBILADO', C2: "0.00", C3:"-3.02"},        
-        {C1:'TASA DE ASEO - DIMAUD', C2: "0.00", C3:"6.00"}
+        {C1:'DESCUENTO DE JUBILADO', C2: "0.00", C3:"-3.02"},               
     ];
     var obj_tar_izq = {
         width:"100%",
@@ -78,9 +77,8 @@ function fn_setea_grid_tarifa()
         swipeModel: { on: false },
         
         colModel: [         
-            { title: "Descripción IZQ 1",  resizable: false, width: 250, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Cantidad",width: 100, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},
-            { title: "Unidad",width: 100, dataType: "number", dataIndx: "C3",halign:"center", align:"right"}
+            { title: "Regional",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
+            { title: "Descripción",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
         ],  
         selectionModel: { type: "row" }  
     };  
@@ -93,9 +91,8 @@ function fn_setea_grid_tarifa()
 
     ////////////////////////////////// INICIO GRILLA IZQUIERDA 02 //////////////////////////////////
     var data = [
-        {C1:'CONSUMO DE AGUA', C2: "0.00", C3:"12.08"},
-        {C1:'DESCUENTO DE JUBILADO', C2: "0.00", C3:"-3.02"},        
-        {C1:'TASA DE ASEO - DIMAUD', C2: "0.00", C3:"6.00"}
+        {C1:'CONSUMO DE AGUA', C2: "0.00"},
+        {C1:'DESCUENTO DE JUBILADO', C2: "0.00"},               
     ];
     var obj_tar_izq2 = {
         width:"100%",
@@ -115,9 +112,8 @@ function fn_setea_grid_tarifa()
         swipeModel: { on: false },
         
         colModel: [         
-            { title: "Descripción IZQ 2",  resizable: false, width: 250, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Cantidad",width: 100, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},
-            { title: "Unidad",width: 100, dataType: "number", dataIndx: "C3",halign:"center", align:"right"}
+            { title: "Código",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
+            { title: "Nombre",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
         ],  
         selectionModel: { type: "row" }  
     };  
@@ -130,7 +126,7 @@ function fn_setea_grid_tarifa()
 
     //********************************* INICIO GRILLA DERECHA 01 *********************************//
     var data = [
-        {C1:'CONSUMO DE AGUA', C2: "12", C3:"12.08", C4:"1234"}
+        {C1:'CONSUMO DE AGUA', C2: "12"}
     ];
     var obj_tar_der = {
         width:"100%",
@@ -152,10 +148,8 @@ function fn_setea_grid_tarifa()
         swipeModel: { on: false },
         
         colModel: [         
-            { title: "Descripción DER 1",  resizable: false, width: 200, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Valor", width: 90, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},
-            { title: "Vr. Ajuste", width: 90, dataType: "double", dataIndx: "C3",halign:"center", align:"center"},
-            { title: "Documento", width: 90, dataType: "string", dataIndx: "C4",halign:"center", align:"center" }
+            { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
+            { title: "Marca", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
         ],      
         selectionModel: { type: "row" }
     };  
@@ -168,7 +162,7 @@ function fn_setea_grid_tarifa()
 
     //********************************* INICIO GRILLA DERECHA 02 *********************************//
     var data = [
-        {C1:'CONSUMO DE AGUA', C2: "12", C3:"12.08", C4:"1234"}
+        {C1:'CONSUMO DE AGUA', C2: "12"}
     ];
     var obj_tar_der2 = {
         width:"100%",
@@ -190,10 +184,8 @@ function fn_setea_grid_tarifa()
         swipeModel: { on: false },
         
         colModel: [         
-            { title: "Descripción DER 2",  resizable: false, width: 200, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Valor", width: 90, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},
-            { title: "Vr. Ajuste", width: 90, dataType: "double", dataIndx: "C3",halign:"center", align:"center"},
-            { title: "Documento", width: 90, dataType: "string", dataIndx: "C4",halign:"center", align:"center" }
+            { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
+            { title: "Nombre", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
         ],      
         selectionModel: { type: "row" }
     };  
