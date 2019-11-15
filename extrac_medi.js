@@ -65,20 +65,21 @@ function fn_setea_grid_tarifa()
         height:250,
         rowBorders:true,
         //fillHandle: "",
-        editable:false,
+        editable:true,
         selectionModel: { type: "row", mode:"single"},        
         numberCell: { show: false },
         collapsible: { on : false,toggle:false },
         stripeRows : true,
         pasteModel: { on: false },
-        //title: "CARGOS ORIGINALES",
+        title: "Regional",
         showBottom: false,
         showTop: true,
         swipeModel: { on: false },
-        
-        colModel: [         
-            { title: "Regional",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Descripción",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
+       
+        colModel: [  
+        { title: "", width: 50, type: 'checkBoxSelection',dataType: "bool",dataIndx: "C3",align:"center", editor: false, cb: {select: true} },       
+        { title: "Regional",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
+        { title: "Descripción",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
         ],  
         selectionModel: { type: "row" }  
     };  
@@ -100,20 +101,21 @@ function fn_setea_grid_tarifa()
         height:250,
         rowBorders:true,
         //fillHandle: "",
-        editable:false,
+        editable:true,
         selectionModel: { type: "row", mode:"single"},        
         numberCell: { show: false },
         collapsible: { on : false,toggle:false },
         stripeRows : true,
         pasteModel: { on: false },
-        //title: "CARGOS ORIGINALES",
+        title: "Marca",
         showBottom: false,
         showTop: true,
         swipeModel: { on: false },
         
-        colModel: [         
-            { title: "Código",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Nombre",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
+        colModel: [
+        { title: "", width: 50, type: 'checkBoxSelection',dataType: "bool",dataIndx: "C3",align:"center", editor: false, cb: {select: true} },         
+        { title: "Código",  resizable: false, width: 240, dataType: "string", dataIndx: "C1",halign:"center", align:"left"},
+        { title: "Nombre",width: 240, dataType: "number", dataIndx: "C2",halign:"center", align:"right"},            
         ],  
         selectionModel: { type: "row" }  
     };  
@@ -134,7 +136,7 @@ function fn_setea_grid_tarifa()
         height:250,
         rowBorders:true,
         fillHandle: "",
-        editable:false,
+        editable:true,
         selectionModel: { type: "row", mode:"single"},        
         numberCell: { show: false },
         collapsible: { on : false,toggle:false },
@@ -142,14 +144,15 @@ function fn_setea_grid_tarifa()
         pasteModel: { on: false },
         pageModel: { rPP: 100, type: "local", rPPOptions:[100,300,500] },
         postRenderInterval: -1,        
-        //title: "CARGOS NUEVOS",
+        title: "Modelo de Medidores",
         showBottom: false,
         showTop: true,
         swipeModel: { on: false },
         
-        colModel: [         
-            { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Marca", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
+        colModel: [
+        { title: "", width: 50, type: 'checkBoxSelection',dataType: "bool",dataIndx: "C3",align:"center", editor: false, cb: {select: true} },         
+        { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
+        { title: "Marca", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
         ],      
         selectionModel: { type: "row" }
     };  
@@ -170,7 +173,7 @@ function fn_setea_grid_tarifa()
         height:250,
         rowBorders:true,
         fillHandle: "",
-        editable:false,
+        editable:true,
         selectionModel: { type: "row", mode:"single"},        
         numberCell: { show: false },
         collapsible: { on : false,toggle:false },
@@ -178,14 +181,15 @@ function fn_setea_grid_tarifa()
         pasteModel: { on: false },
         pageModel: { rPP: 100, type: "local", rPPOptions:[100,300,500] },
         postRenderInterval: -1,        
-        //title: "CARGOS NUEVOS",
+        title: "Diámetro",
         showBottom: false,
         showTop: true,
         swipeModel: { on: false },
         
-        colModel: [         
-            { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
-            { title: "Nombre", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
+        colModel: [
+        { title: "", width: 50, type: 'checkBoxSelection',dataType: "bool",dataIndx: "C3",align:"center", editor: false, cb: {select: true} },         
+        { title: "Código",  resizable: false, width: 240, dataType: "number", dataIndx: "C1",halign:"center", align:"left"},
+        { title: "Nombre", width: 240, dataType: "double", dataIndx: "C2",halign:"center", align:"center"},           
         ],      
         selectionModel: { type: "row" }
     };  
