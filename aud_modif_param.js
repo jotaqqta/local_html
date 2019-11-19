@@ -22,24 +22,6 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#tx_cargo').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_amort').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_niv_imp').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
-    jQuery('#tx_niv_pre').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_ord_i').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
     //INGRESA LOS TITULOS
@@ -56,21 +38,21 @@ $(document).ready(function () {
 
     $("._input_selector").inputmask("dd/mm/yyyy");
 
-    
+
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();    
     //FUNCIONES  DE LOS COMBOS
-    fn_tip_agru();
-    fn_nom_agru();
-    fn_cod_acc();
-    fn_amor();
     fn_limpiar();
+    fn_sistema();
+    fn_aplicacion();
+    fn_rol();
+    
+
     //DIBUJA LOS ICONOS DE LOS BOTONES     
-    $("#co_buscar").html("<span class='glyphicon glyphicon-search'></span> Buscar");
+    $("#co_buscar").html("<span class='glyphicon glyphicon-search'></span> Filtro");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_ant").html("<span class='glyphicon glyphicon-arrow-left'></span> Anterior");
     $("#co_sig").html("<span class='glyphicon glyphicon-arrow-right'></span> Siguiente");
-    $("#co_selec").html("<span class='glyphicon glyphicon-plus'></span> Seleccionar");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     $("#co_volver_fil").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -110,6 +92,9 @@ $(document).ready(function () {
         $('#div_modal').modal('hide');
 
     });
+    $("#co_cancelar").on("click", function (e) {
+        window.close();
+    });
 
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     $("._input_selector").inputmask("dd/mm/yyyy");
@@ -118,27 +103,33 @@ $(document).ready(function () {
     //BOTONES
     $("#co_aceptar").on("click", function () {
         //Validación de informacion      
-		if ($("#cb_tip_agru").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO AGRUPACION!!!</strong></div>',3000);
-			$("#cb_tip_agru").focus();
+		if ($("#cb_sistemas").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO DE SISTEMAS!!!</strong></div>',3000);
+			$("#cb_sistemas").focus();
 			return;
 		}
-		 if ($("#cb_nom_agru").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR NOMBRE AGRUPACION!!!</strong></div>',3000);
-			$("#cb_nom_agru").focus();
+		 if ($("#cb_aplicacion").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR APLICACIÓN!!!</strong></div>',3000);
+			$("#cb_aplicacion").focus();
 			return;
 
 		 }
-		 if ($("#cb_cod_acc").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO ACCIÓN!!!</strong></div>',3000);
-			$("#cb_cod_acc").focus();
+		 if ($("#tx_rol").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL!!!</strong></div>',3000);
+			$("#tx_rol").focus();
 			return;
 		 }
-		 if ($("#cb_amor").val() == "") {
-			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR AMORTIZADO!!!</strong></div>',3000);
-			$("#cb_amor").focus();
+		 if ($("#tx_fecha_ini").val() == "") {
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA DE INICIO!!!</strong></div>',3000);
+			$("#tx_fecha_ini").focus();
 			return;                				
 		 }
+          if ($("#tx_fecha_fin").val() == "") {
+            fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA DE FIN!!!</strong></div>',3000);
+            $("#tx_fecha_fin").focus();
+            return;                             
+         }
+
 		fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
 		fn_carga_grilla();
 		$("#div_prin").slideDown();
@@ -150,36 +141,7 @@ $(document).ready(function () {
     $("#div_modal").draggable({
         handle: ".modal-header"
     });
-    /*
-	//Evento doble click grilla principal
-    $grid_principal.pqGrid({
-        rowDblClick: function fn_sss(event, ui) {
-            if (ui.rowData) {
-                var dataCell = ui.rowData;
-                $("#div_prin").slideUp();
-                $("#div_filtros").slideDown();
-                $(window).scrollTop(0);
-                $grid_2.pqGrid("refreshView");           
-            }
-            fn_carga_grilla();
-        }
-    });*/
-	
-	//Evento doble click grilla secundaria
-	$grid_2.pqGrid({
-        rowDblClick: function fn_sss(event, ui) {
-            if (ui.rowData) {
-                var dataCell = ui.rowData;
-                $("#cb_tip_agru").val(dataCell.C2);
-                $("#cb_nom_agru").val(dataCell.C4);
-                $("#cb_cod_acc").val(dataCell.C5);
-                $("#cb_amor").val(dataCell.C6);
-				fn_nuevo();
-            }
-        }
-    });
-
-
+    
     //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //EXCEL    
     $("#co_excel").on("click", function (e) {
@@ -229,7 +191,7 @@ function fn_setea_grid_principal() {
         {
             cls: "pq-toolbar-export",
             items: [
-            { type: "button", label: "Buscar", attr: "id=co_buscar", cls: "btn btn-primary" },
+            { type: "button", label: "Filtro", attr: "id=co_buscar", cls: "btn btn-primary" },
             { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary" },
             { type: "button", label: "Cerrar", attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }
             ]
@@ -242,9 +204,9 @@ function fn_setea_grid_principal() {
         },
         dataModel: {
             data: [                
-                { C1: '0002', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0003', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
-                { C1: '0004', C2: 'SUBSIDIO POR CASO SOCIAL', C3: 'UNIDAD', C4: 'GEP-003-TX', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
+                { C1: 'Sistema 01', C2: 'CONSUMO DE AGUA NO FACTURADO', C3: 'UNIDAD', C4: '18/11/2019', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
+                { C1: 'Sistema 02', C2: 'SUBSIDIADO POR CASO SOCIAL', C3: 'UNIDAD', C4: '18/11/2019', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
+                { C1: 'Sistema 03', C2: 'SUBSIDIO POR CASO SOCIAL', C3: 'UNIDAD', C4: '18/11/2019', C5: '10000', C6: 11042019, C7: 12042019, C8: '122-222-22', C9: '1', C10: '2', C10: '3' },
                 
             ]
         }
@@ -252,91 +214,29 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Sistema", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Estructura", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Acción", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Fecha", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Rol", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Aplicación", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Descripción", width: 200, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Ip", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Estructura", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Acción", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Fecha", width: 85, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Rol", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Aplicación", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Descripción", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Ip", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
         { title: "Observaciones", width: 200, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
               
     ];
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
-    $grid_principal.pqGrid("refreshDataAndView");
-
-    //***********************************************************************************************
-    data = [
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3: 'SALDO', C4: '1', C5:'S', C6:'N' },
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },
-        { C1: 'TOTAL FLEXIBLE', C2: '1', C3:'SALDO', C4:'1', C5:'S', C6:'N' },        
-    ]
-    var obj2 = {
-        height: 500,
-        showTop: true,
-        showHeader: true,
-        roundCorners: true,
-        rowBorders: true,
-        fillHandle: "",
-        columnBorders: true,
-        editable: false,
-        selectionModel: { type: "row", mode: "single" },
-        showTitle: true,
-        collapsible: false,
-        numberCell: { show: false },
-        title: "Detalle",
-        pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500] },
-        scrollModel: { theme: true },
-        toolbar: {
-
-            cls: "pq-toolbar-export",
-            items: [
-                { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-primary" },
-                { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "cancelar", attr: "id=co_volver_fil", cls: "btn btn-default btn-sm" },
-            ]
-        }
-
-    };
-
-    obj2.colModel = [
-        { title: "Tipo Agrupación", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "codigo_tipo_agrup", width: 100, dataType: "string", dataIndx: "C2", halign: "center", align: "center", hidden: true },
-        { title: "Nombre Agrupación", width: 300, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-		{ title: "codigo nombre Agrupación", width: 300, dataType: "string", dataIndx: "C4", halign: "center", align: "left", hidden: true },
-        { title: "Cod. Acción", width: 300, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
-        { title: "Amortizado", width: 300, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
-        {
-            title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
-            render: function (ui) {
-
-                return "<button name='co_elim' id='co_elim' class='btn btn-primary btn-sm'>Eliminar</button>";
-            }
-        }
-    ];
-
-    obj2.dataModel = { data: data };
-
-    $grid_2 = $("#div_grid_sec").pqGrid(obj2);
+    $grid_principal.pqGrid("refreshDataAndView");    
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_limpiar() {
 
-    $("#cb_sistemas").val("0");
-    $("#cb_aplicacion").val("0");
-    $("#cb_aplicacion").val("0");
-    $("#tx_rol").val("0");
-    $("#tx_fecha_ini").val("0");
-    $("#tx_fecha_fin").focus();
-}
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_filtro() {
     parameters =
         {
             "func": "fn_grid_principal",
-            "empresa": $("#tx_empresa").val(),
+            "sistemas": $("#cb_sistemas").val(),
         };
 
 }
@@ -349,39 +249,26 @@ function fn_nuevo() {
 
     });
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-function fn_carga_grilla() {
-
-
-}
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_sistema() {
 
-    $("#cb_sistema").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
+    $("#cb_sistemas").html("<option value='' selected></option><option value='1'>Sistema 01</option> <option value='2' >Sistema 02</option> <option value='3'>Sistema 03</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
 //FUNCIONES COMBOS
 
-function fn_tip_agru() {
-    $("#cb_tip_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_aplicacion() {
+    $("#cb_aplicacion").html("<option value='' selected></option><option value='1'>CONSUMO DE AGUA NO FACTURADO</option> <option value='2' >SUBSIDIADO POR CASO SOCIAL</option> <option value='3'>SUBSIDIADO POR CASO SOCIAL</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~	
-function fn_nom_agru() {
-    $("#cb_nom_agru").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_rol() {
+    $("#tx_rol").html("<option value='' selected></option><option value='1'>CONSUMO DE AGUA NO FACTURADO</option> <option value='2' >SUBSIDIADO POR CASO SOCIAL</option> <option value='3'>SUBSIDIADO POR CASO SOCIAL</option>");
 }
 		
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_cod_acc() {
-    $("#cb_tip_acc").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_amor() {
-    $("#cb_amor").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
 function fn_mensaje(id,mensaje,segundos)
 {
 	$(id).show();
@@ -390,9 +277,10 @@ function fn_mensaje(id,mensaje,segundos)
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_limpiar(){
-    $("#cb_tip_agru").val("");
-    $("#cb_nom_agru").val("");
-    $("#cb_cod_acc").val("");
-    $("#cb_amor").val("");
+    $("#cb_sistemas").val("");
+    $("#cb_aplicacion").val("");
+    $("#tx_rol").val("");
+    $("#tx_fecha_ini").val("");
+    $("#tx_fecha_fin").val("");
 }
     
