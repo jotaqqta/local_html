@@ -87,77 +87,78 @@
 			<br>
 			<ul class="nav nav-tabs">
 				<li class="active"><a data-toggle="tab" href="#Principal">Generación Batch</a></li>
-				<li><a data-toggle="tab" href="#generales">Envío Aviso</a></li>
+				<li><a data-toggle="tab" href="#envio">Envío Aviso</a></li>
 				<li><a data-toggle="tab" href="#generales">Generación Online</a></li>
 			</ul>
 			<!-- INFORMACION DE LA PRIMER PESTAÑA -->
-			<div class="container">
+			<div class="tab-content">
 				<div id="Principal" class="tab-pane fade in active">
-					<br>
-					<div class="row">
-						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-							<label for="tx_num_secuencia">Número de Secuencia</label>
-							<input id="tx_num_secuencia" name="tx_num_secuencia" class="form-control inp_dis">
+					<div>
+						<br>
+						<div class="row">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_num_secuencia">Número de Secuencia</label>
+								<input id="tx_num_secuencia" name="tx_num_secuencia" class="form-control inp_dis">
+							</div>
 						</div>
-					</div>
-					<br>
-					<div class="row">	
-						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-							<label for="cb_centro_ope">Centro Operátivo</label>
-							<select id="cb_centro_ope" name="cb_centro_ope" class="form-control inp_dis"></select>
+						<br>
+						<div class="row">	
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="cb_centro_ope">Centro Operátivo</label>
+								<select id="cb_centro_ope" name="cb_centro_ope" class="form-control inp_dis"></select>
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="cb_centro_ope">Estado Suministro</label>
+								<select id="cb_centro_ope" name="cb_centro_ope" class="form-control inp_dis"></select>
+							</div>
 						</div>
-						<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-							<label for="cb_centro_ope">Estado Suministro</label>
-							<select id="cb_centro_ope" name="cb_centro_ope" class="form-control inp_dis"></select>
-						</div>
-					</div>
-					<br>
-					<div class="container">
-						<div class="well well-sm">Tipo de Moroso</div>
 						<br>
 						<div class="container">
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div>
-									<label class="radio-inline">
-										<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Sin Convenio
-									</label>
+							<div class="well well-sm">Tipo de Moroso</div>
+							<br>
+							<div class="container">
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+									<div>
+										<label class="radio-inline">
+											<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Sin Convenio
+										</label>
+									</div>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+									<div>
+										<label class="radio-inline">
+											<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenio Atrasado
+										</label>
+									</div>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+									<div>
+										<label class="radio-inline">
+											<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenio Al Día
+										</label>
+									</div>
 								</div>
 							</div>
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div>
-									<label class="radio-inline">
-										<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenio Atrasado
-									</label>
-								</div>
-							</div>
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div>
-									<label class="radio-inline">
-										<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Convenio Al Día
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>	
-					<br>
-					<div class="container">
-						<div class="well well-sm">Antigüedad</div>
+						</div>	
 						<br>
 						<div class="container">
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div>
-									<label class="radio-inline">
-										<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Todas
-									</label>
+							<div class="well well-sm">Antigüedad</div>
+							<br>
+							<div class="container">
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+									<div>
+										<label class="radio-inline">
+											<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Todas
+										</label>
+									</div>
 								</div>
-							</div>
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div>
-									<label class="radio-inline">
-										<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Rango
-									</label>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+									<div>
+										<label class="radio-inline">
+											<input type="radio" name="optradio" id="optradio" name="optradio" value="2"> Rango
+										</label>
+									</div>
 								</div>
-							</div>
 								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 									<label for="tx_inicial_ant">Inicial</label>
 									<input id="tx_inicial_ant" name="tx_inicial_ant" class="form-control inp_dis">
@@ -187,17 +188,16 @@
 									</label>
 								</div>
 							</div>
-								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-									<label for="tx_inicial_sec">Inicial</label>
-									<input id="tx_inicial_sec" name="tx_inicial_sec" class="form-control inp_dis">
-								</div>
-								<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-									<label for="tx_inicial_sec">Final</label>
-									<input id="tx_inicial_sec" name="tx_inicial_sec" class="form-control inp_dis">
-								</div>
+							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+								<label for="tx_inicial_sec">Inicial</label>
+								<input id="tx_inicial_sec" name="tx_inicial_sec" class="form-control inp_dis">
+							</div>
+							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+								<label for="tx_inicial_sec">Final</label>
+								<input id="tx_inicial_sec" name="tx_inicial_sec" class="form-control inp_dis">
 							</div>
 						</div>
-					</div>
+					</div>				
 					<div class="container">
 						<div class="well well-sm">Deuda</div>
 						<br>
@@ -211,8 +211,7 @@
 								<input id="tx_deu_fin" name="tx_deu_fin" class="form-control inp_dis">
 							</div>
 						</div>
-					</div>
-				</div>				
+					</div>					
 					<br>
 					<div class="container" id="div_prim">
 						<div class="form-horizontal flex-wrap">
@@ -231,36 +230,61 @@
 
 							</div>
 						</div>
-					</div>
-
+					</div>			
 					<br>
-		
-					<!-- PARAMQUERY PRINCIPAL -->
-					<div id="div_grid_principal">
-
+				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->				
+				<div id="envio" class="tab-pane fade">
+					<div>
+						<br>
+						<div class="row">					
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_para">Para:</label>
+								<input id="tx_para" name="tx_para" class="form-control inp_dis">
+							</div>
+						</div>
+						<br>
+						<div class="row">					
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_asunto">Asunto:</label>
+								<input id="tx_asunto" name="tx_asunto" class="form-control inp_dis">
+							</div>
+						</div>
+						<br>
+						<div class="row">							
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+								<label for="tx_asunto">Cuerpo:</label>
+								<input id="tx_asunto" name="tx_asunto" class="form-control inp_dis">
+							</div>
+						</div>
 					</div>
-					<br>
 				</div>
-
-
-
-				<!-- FORMULARIO DE LA SEGUNDA PESTAÑA -->
-				<div id="param" class="tab-pane fade">
-
-
-				</div>
-
-				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->
+			</div>			
+				<!-- FORMULARIO DE LA TERCERA PESTAÑA -->				
 				<div id="generales" class="tab-pane fade">
-
+					<div>
+						<br>
+						<div class="row">					
+							<div class="col-8 col-sm-8 col-md-8 col-lg-8">
+								<input id="tx_opera" name="tx_opera" class="form-control inp_dis">
+								<input type='file' id="tx_selecc" name="tx_selecc">
+							</div>
+						</div>
+						<div class="row">
+							<br>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4 mx-auto flex-wrap">
+								<button type="button" class="btn btn-basic" id="co_lim_gen" name="co_lim_gen"><span
+									class="glyphicon glyphicon-remove"></span>
+								Limpiar</button>
+							</div>
+						</div>
+					</div>
 				</div>
-
-			</div>
+			</div>			
+				<div class="container">
+					<div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+				</div>
 		</div>
-		<div class="container">
-			<div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
-		</div>
-	</div>
+	</div>	
 	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
 		<input type="hidden" id="tx_empresa" name="tx_empresa" value="">

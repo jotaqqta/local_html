@@ -143,7 +143,7 @@ $(document).ready(function () {
 
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_setea_grid_principal() {
+/*function fn_setea_grid_principal() {
 
 	var obj = {
 		height: "50%",
@@ -215,7 +215,7 @@ function fn_setea_grid_principal() {
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
-}
+}*/
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_diametro() {
 	$("#cb_mar_inp").html("<option value='0' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
