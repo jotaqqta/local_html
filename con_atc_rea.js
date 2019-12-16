@@ -43,6 +43,9 @@ $(document).ready(function () {
     fn_plazos();
     fn_limpiar();
 
+    // Ocultar combos
+    fn_ocultar();
+
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
     //INGRESA LOS TITULOS
@@ -74,14 +77,35 @@ $(document).ready(function () {
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
+    // H
+
+    $(function() {
+        $("#cb_fecha").val('1');
+        $("#cb_plazos").val('1');
+        $("#cb_canalcomu").val('1');
+        $("#cb_tipoaten").val('1');
+    });
+
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
 
     $("#co_filtro").on("click", fn_filtro);
 
-    $("#co_cerrar_t").on("click", function(e){
+    $("#co_cerrar_t").on("click", function(){
         window.close();
+    });
+
+
+
+    $("select[id=cb_fecha]").change(function(){
+
+        if ($('select[id=cb_fecha]').val() !== "1") {
+            fn_mostrar()
+        } else {
+            fn_ocultar()
+        }
     });
 
     $("#co_consultar").on("click", function() {
@@ -122,17 +146,17 @@ $(document).ready(function () {
                 $("#cb_fecha").focus();
                 return;
             }
-            if ($("#cb_rango").val() == ""){
+            if ($("#cb_rango").val() == "" && $("#cb_rango").is(":visible")){
                 fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN RANGO DE FECHAS!!!</strong></div>',3000);
                 $("#cb_rango").focus();
                 return;
             }
-            if ($("#cb_desde").val() == ""){
+            if ($("#cb_desde").val() == "" && $("#cb_rango").is(":visible")){
                 fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR DE INICIO!!!</strong></div>',3000);
                 $("#cb_desde").focus();
                 return;
             }
-            if ($("#cb_hasta").val() == ""){
+            if ($("#cb_hasta").val() == "" && $("#cb_rango").is(":visible")){
                 fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR DE FIN!!!</strong></div>',3000);
                 $("#cb_hasta").focus();
                 return;
@@ -169,18 +193,18 @@ $(document).ready(function () {
     });
 
 
-    $("#co_cancel").on("click", function (e){
+    $("#co_cancel").on("click", function (){
         $('#div_filtro_bts').modal('hide');
     });
 
-    $("#co_cerrar").on("click", function (e){
+    $("#co_cerrar").on("click", function (){
         window.close();
     });
 
 //BOTONES ELIMINAR DE LAS GRILLAS
 
 
-    $("#co_filtro").on("click", function(e){
+    $("#co_filtro").on("click", function(){
         fn_filtro();
     });
 
@@ -288,11 +312,11 @@ function fn_regional(){
 }
 function fn_tipoaten() {
 
-    $("#cb_tipoaten").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_tipoaten").html("<option value='' selected></option>Todos<option value='1'>Todos</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_canalcomu() {
 
-    $("#cb_canalcomu").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_canalcomu").html("<option value='' selected></option><option value='1'>Todos</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_mot_cliente(){
 
@@ -304,19 +328,19 @@ function fn_mot_empresa(){
 }
 function fn_fecha() {
 
-    $("#cb_fecha").html("<option value='' selected></option><option value='1'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_fecha").html("<option value='' selected></option>Todos<option value='1' selected='selected'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_rango() {
 
-    $("#cb_rango").html("<option value='' selected></option><option value='1'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_rango").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_desde() {
 
-    $("#cb_desde").html("<option value='' selected></option><option value='1'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_desde").html("<option value='' selected></option><option value='1' >OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_hasta() {
 
-    $("#cb_hasta").html("<option value='' selected></option><option value='1'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_hasta").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_estado() {
 
@@ -325,23 +349,29 @@ function fn_estado() {
 
 function fn_plazos() {
 
-    $("#cb_plazos").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_plazos").html("<option value='' selected></option>Todos<option value='1'>Todos</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
+function fn_ocultar() {
+    $("#fecha_filtro").hide();
+    $("#fecha_filtro1").hide();
+    $("#fecha_filtro2").hide();
+}
+
+function fn_mostrar() {
+    $("#fecha_filtro").show();
+    $("#fecha_filtro1").show();
+    $("#fecha_filtro2").show();
+}
 
 function fn_carga_grilla() {
 
 
 }
 
-
-function fn_gen() {
-    alert('Se genero.');
-}
-
 function fn_limpiar(){
     $("#cb_regional").val("");
-    $("#chk_retenidas").prop("checked", false)
+    $("#chk_retenidas").prop("checked", false);
     $("#cb_tipoaten").val("");
     $("#cb_canalcomu").val("");
     $("#cb_mot_cliente").val("");
