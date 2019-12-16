@@ -29,12 +29,13 @@ $(document).ready(function () {
 	});
 
 	$("._input_selector").inputmask("dd/mm/yyyy");
-	fn_reg();
-	fn_mar();
-	fn_mod();
-	fn_contra();
-	fn_inspec();
-	fn_diam();
+	fn_cierre();
+	fn_dia();
+	fn_estado();
+	fn_plazo();
+	fn_canal_comuni();
+	fn_tipo_aten();
+    fn_buscar_por();
 
 
 
@@ -174,44 +175,51 @@ function fn_carga_orden() {
 }
 
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_reg() {
-	$("#cb_reg").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+
+function fn_cierre () {
+	$("#cb_cierre").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
-function fn_contra() {
-	$("#cb_contra").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+
+function fn_estado () {
+	$("#cb_estado").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
-function fn_inspec() {
-	$("#cb_inspec").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+function fn_dia () {
+	$("#cb_dia").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
-function fn_mar() {
-	$("#cb_mar").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+function fn_plazo() {
+	$("#cb_plazo").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
-function fn_mod() {
-	$("#cb_mod").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+function fn_canal_comuni() {
+	$("#cb_canal_comuni").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
-function fn_diam() {
-	$("#cb_diam").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+function  fn_tipo_aten() {
+	$("#cb_tipo_aten").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+
+}
+function fn_buscar_por() {
+	$("#cb_buscar_por").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
 function fn_limpiar() {
 	//IDENTIFICACIÓN
-	$("#tx_fec_ini").val("");
-	$('#tx_fec_fin').val("");
-	$("#cb_reg").val("0");
-	$('#cb_contra').val("0");
-	$("#cb_inspec").val("0");
-	$("#tx_med").val("");
-	$("#cb_mar").val("0");
-	$("#cb_mod").val("0");
-	$("#cb_diam").val("0");
-	$("#tx_num_sum").val("");
-	$("#tx_num_ord").val("");
+	$("#tx_desde").val("");
+	$("#tx_hasta").val("");
+	$("#cb_cierre").val("0");
+	$('#cb_estado').val("0");
+	$("#cb_dia").val("0");
+    $("#cb_plazo").val("0");
+	$('#cb_canal_comuni').val("0");
+	$("#cb_tipo_aten").val("0");
+    $("#cb_buscar_por").val("0");
+
+
 
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -275,4 +283,32 @@ function fn_validar_fecha(value) {
 		return false;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
