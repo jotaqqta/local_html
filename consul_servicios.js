@@ -36,18 +36,6 @@ $(document).ready(function () {
 	fn_tipo_aten();
     fn_buscar_por();
     $("#tx_desde").focus();
-    $("#tx_med").on("keydown", function (event) {
-		var tecla = event.which || event.keyCode;
-		if (tecla == 13) {
-			if (!$("#tx_cliente").prop("readonly"))  //Readonly se deshabilita el enter
-			{
-				$("#co_leer").trigger("click");
-				return false;
-			}
-		}
-
-	});
-	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
 	// SE INHABILITAN LOS IMPUT
 	$("#tx_desde").prop("disabled", true);
@@ -58,18 +46,18 @@ $(document).ready(function () {
 	});
     //DIBUJA LOS ICONOS DE LOS BOTONES     
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-    $("#co_cancelar").on("click", function () {
-		if ($.trim($("#co_cancelar").text()) == "Cancelar") {
+    $("#co_cerrar").on("click", function () {
+		if ($.trim($("#co_cerrar").text()) == "Cerrar") {
 			
-			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-			fn_limpiar();
+			$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+			
 			return;
 		}
 		else
 			window.close();
 	});
 
-	$("#co_reasignar").on("click", function () {
+	/*$("#co_reasignar").on("click", function () {
 		if ($("#cb_reasigna_nuevo").val() == "") {
 			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
 			return;
@@ -79,12 +67,10 @@ $(document).ready(function () {
 			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
 			return;
 		}
-		//////////////////////////////////////////////////////////////
-		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
-		//////////////////////////////////////////////////////////////
+	
 
 		return;
-	});
+	});*/
     	$("#cb_dia").on("click", function () {
 		if ($("#cb_dia").val() == "1") {
 				$("#tx_desde").prop("disabled", false);
@@ -95,10 +81,6 @@ $(document).ready(function () {
 			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
 			return;
 		}*/
-		//////////////////////////////////////////////////////////////
-		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
-		//////////////////////////////////////////////////////////////
-
 		return;
 	});
 	///EVENTO BOTONES///
@@ -106,26 +88,34 @@ $(document).ready(function () {
 		//Validación de informacion
 		if ($.trim($("#co_gen").text()) == "Generar") {
 			if ($("#cb_cierre").val() == "0") {
-
-
-				fn_mensaje_boostrap("SELECCIONE CAMPO EN CIERRE", g_titulo, $("#cb_cierre"));
+                fn_mensaje_boostrap("SELECCIONE CAMPO EN CIERRE", g_titulo, $("#cb_cierre"));
 				return;
 
 			}
+            if ($("#cb_dia").val() == "0") {
+                fn_mensaje_boostrap("SELECCIONE CAMPO DEL DIA", g_titulo, $("#cb_dia"));
+				return;
 
-			if (fn_validar_fecha($("#tx_desde").val()) == false) {
+			}
+            if (fn_validar_fecha($("#tx_desde").val()) == false) {
 				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE INICIO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_desde"));
 				return false;
+			}
+             if (fn_validar_fecha($("#tx_hasta").val()) == false) {
+				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_hasta"));
+				return false;
+			}
+            if ($("#tx_desde").val() == "") {
+
+				fn_mensaje_boostrap("DIGITE LA FECHA INICIAL", g_titulo, $("#tx_desde"));
+				return;
 			}
 			if ($("#tx_hasta").val() == "") {
 
 				fn_mensaje_boostrap("DIGITE LA FECHA FINAL", g_titulo, $("#tx_hasta"));
 				return;
 			}
-			if (fn_validar_fecha($("#tx_hasta").val()) == false) {
-				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_hasta"));
-				return false;
-			}
+		
 			if (SYNComp_Fechas($("#tx_desde").val(), $("#tx_hasta").val()) == ">") {
 				fn_mensaje_boostrap("FECHA DE INICIO DEBE SER MENOR QUE LA FECHA FINAL", g_titulo, $("#tx_desde"));
 				return;
@@ -134,17 +124,20 @@ $(document).ready(function () {
 		}
 
 	});
-	$("#co_cancel").on("click", function (e) {
+	$("#co_limpiar").on("click", function (e) {
 
 		fn_limpiar();
 
 	});
+    
+ 
 
 
 });
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_carga_orden() {
 	alert("Se cargo");
+    fn_limpiar();
 
 }
 
@@ -158,7 +151,7 @@ function fn_cierre () {
 }
 
 function fn_estado () {
-	$("#cb_estado").html("<option value='0'></option><option value='1'>Producción</option><option value='2'>Opcion 2</option>");
+	$("#cb_estado").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
 
 }
 function fn_dia () {
@@ -192,7 +185,8 @@ function fn_limpiar() {
 	$('#cb_canal_comuni').val("0");
 	$("#cb_tipo_aten").val("0");
     $("#cb_buscar_por").val("0");
-
+	$("#tx_desde").prop("disabled", true);
+	$("#tx_hasta").prop("disabled", true);
 
 
 }
