@@ -57,30 +57,14 @@ $(document).ready(function () {
 			window.close();
 	});
 
-	/*$("#co_reasignar").on("click", function () {
-		if ($("#cb_reasigna_nuevo").val() == "") {
-			fn_mensaje_boostrap("FAVOR INDIQUE EL ROL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
-
-		if ($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val()) {
-			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}
 	
-
-		return;
-	});*/
     	$("#cb_dia").on("click", function () {
 		if ($("#cb_dia").val() == "1") {
 				$("#tx_desde").prop("disabled", false);
 	            $("#tx_hasta").prop("disabled", false);
 		}
 
-		/*if ($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val()) {
-			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
-			return;
-		}*/
+
 		return;
 	});
 	///EVENTO BOTONES///
