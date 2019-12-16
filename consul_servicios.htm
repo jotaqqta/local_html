@@ -77,20 +77,20 @@
                                 <div class="well well-sm">Fecha</div>
 				       <div class="row">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-									<label for="tx_int">Cierre:</label>
-									<select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
+									<label for="cb_cierre">Cierre:</label>
+									<select id="cb_cierre" name="cb_cierre" type="text" class="form-control inp_dis"></select>
                                     </div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								    <label for="tx_intnd">Del dia:</label>
-								    <input id="tx_intnd" name="tx_intnd" type="text" class="form-control inp_dis">
+								    <label for="tx_dia">Del dia:</label>
+								    <input id="tx_dia" name="tx_dia" type="text" class="form-control inp_dis input_selector">
 								</div>
                            	<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-									<label for="tx_int">Desde:</label>
-								<select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
+									<label for="cb_desde">Desde:</label>
+								<select id="cb_desde" name="cb_desde" type="text" class="form-control inp_dis"></select>
                                     </div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								    <label for="tx_intnd">Hasta:</label>
-								    <input id="tx_intnd" name="tx_intnd" type="text" class="form-control inp_dis">
+								    <label for="tx_hasta">Hasta:</label>
+								    <input id="tx_hasta" name="tx_hasta" type="text" class="form-control input_selector">
 								</div>
                         	</div>                   
 				    	</div>
@@ -98,37 +98,33 @@
                                 <div class="well well-sm">Estado</div>
 							<div class="row">
 								 	<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-									<label for="tx_int">Estado:</label>
-								    <select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
+									<label for="cb_estado">Estado:</label>
+								    <select id="cb_estado" name="cb_estado" type="text" class="form-control inp_dis"></select>
                                     </div>
                                  	<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-									<label for="tx_int">Plazo:</label>
-								    <select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
+									<label for="cb_plazo">Plazo:</label>
+								    <select id="cb_plazo" name="cb_plazo" type="text" class="form-control inp_dis"></select>
                                     </div>
                         	</div>                   
 				    	</div>
                             <div class="container">
                                 <div class="well well-sm">Filtros</div>
 							<div class="row">
-								<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-									<label for="tx_patharb">Canal de comunciación</label>
-									<input id="tx_patharb" name="tx_patharb" type="text" class="form-control inp_dis">
+									<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<label for="cb_canal_comuni">Canal de comuncación:</label>
+								    <select id="cb_canal_comuni" name="cb_canal_comuni" type="text" class="form-control inp_dis"></select>
                                     </div>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								    <label for="tx_pathapl">Tipo de atención</label>
-								    <input id="tx_pathapl" name="tx_pathapl" type="text" class="form-control inp_dis">
-								</div>
+                                 	<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+									<label for="cb_tipo_plazo">Tipo de atención:</label>
+								    <select id="cb_tipo_plazo" name="cb_tipo_plazo" type="text" class="form-control inp_dis"></select>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								    <label for="cb_buscar_por"></label>
+                                    <select id="cb_buscar_por" name="cb_buscar_por" type="text" class="form-control inp_dis"></select>
+								    </div>
                         	</div>                   
 				    	</div>
-                            <div class="container">
-                                <div class="well well-sm">Buscar por:</div>
-							<div class="row">
-							    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-								    <label for="cb_facres"></label>
-                                    <select id="cb_facres" name="cb_facres" type="text" class="form-control inp_dis"></select>
-								</div>
-                            </div>                   
-				    	</div>
+                           
                 <br>
                 <div class="container" id="div_prim">
 				<div class="form-horizontal flex-wrap">
