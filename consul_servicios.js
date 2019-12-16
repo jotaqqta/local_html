@@ -2,7 +2,6 @@ var g_modulo = "Restricción al Cambio de Medidor";
 var g_titulo = "Consulta de servicios";
 var parameters = {};
 var my_url = "reasigna_ajuste.asp";
-
 var SFtotal1;
 var SFtotal2;
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -36,24 +35,8 @@ $(document).ready(function () {
 	fn_canal_comuni();
 	fn_tipo_aten();
     fn_buscar_por();
-
-
-
-	$("#tx_fec_ini").focus();
-
-
-	// EL CAMPO No. Orden lo limito a 8 digitos y solo numeros
-	jQuery('#tx_med').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_num_sum').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_num_ord').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-
-	$("#tx_med").on("keydown", function (event) {
+    $("#tx_desde").focus();
+    $("#tx_med").on("keydown", function (event) {
 		var tecla = event.which || event.keyCode;
 		if (tecla == 13) {
 			if (!$("#tx_cliente").prop("readonly"))  //Readonly se deshabilita el enter
@@ -67,42 +50,17 @@ $(document).ready(function () {
 	//Footer
 	$("#div_footer").load("/syn_globales/footer.htm");
 	// SE INHABILITAN LOS IMPUT
-	$("#tx_lec_ant").prop("disabled", true);
-	$("#tx_lec_ant2").prop("disabled", true);
+	$("#tx_desde").prop("disabled", true);
+	$("#tx_hasta").prop("disabled", true);
 
 	jQuery('#tx_cliente').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-
-
-	//DIBUJA LOS ICONOS DE LOS BOTONES     
-
-	//DIBUJA LOS ICONOS DE LOS BOTONES     
-
-
-	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-	$("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-	$("#co_excel3").html("<span class='glyphicon glyphicon-save'></span> Excel");
-
-	jQuery('#tx_fec_ini').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-	jQuery('#tx_fec_fin').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-
-
-	$("#tx_orden").bind("keydown", function (e) {
-		if (e.keyCode == 13) {
-			tab = true;
-			fn_leer();
-			return false;
-		}
-	});
-
-	$("#co_cancelar").on("click", function () {
+    //DIBUJA LOS ICONOS DE LOS BOTONES     
+    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+    $("#co_cancelar").on("click", function () {
 		if ($.trim($("#co_cancelar").text()) == "Cancelar") {
-			$("#co_leer").html("<span class='glyphicon glyphicon-search'></span> Leer");
+			
 			$("#co_cancelar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 			fn_limpiar();
 			return;
@@ -131,10 +89,10 @@ $(document).ready(function () {
 	$("#co_gen").on("click", function () {
 		//Validación de informacion
 		if ($.trim($("#co_gen").text()) == "Generar") {
-			if ($("#tx_fec_ini").val() == "") {
+			if ($("#cb_cierre").val() == "0") {
 
 
-				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO", g_titulo, $("#tx_fec_ini"));
+				fn_mensaje_boostrap("SELECCIONE CAMPO EN CIERRE", g_titulo, $("#cb_cierre"));
 				return;
 
 			}
@@ -184,7 +142,7 @@ function fn_cierre () {
 }
 
 function fn_estado () {
-	$("#cb_estado").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+	$("#cb_estado").html("<option value='0'></option><option value='1'>Producción</option><option value='2'>Opcion 2</option>");
 
 }
 function fn_dia () {
