@@ -85,6 +85,22 @@ $(document).ready(function () {
 
 		return;
 	});
+    	$("#cb_dia").on("click", function () {
+		if ($("#cb_dia").val() == "1") {
+				$("#tx_desde").prop("disabled", false);
+	            $("#tx_hasta").prop("disabled", false);
+		}
+
+		/*if ($("#tx_rol_actual").val() == $("#cb_reasigna_nuevo").val()) {
+			fn_mensaje_boostrap("DEBE SELECCIONAR UN USUARIO DIFERENTE AL ACTUAL", g_titulo, $("#cb_reasigna_nuevo"));
+			return;
+		}*/
+		//////////////////////////////////////////////////////////////
+		/////////////////SE ACTUALIZA EL REGISTRO/////////////////////
+		//////////////////////////////////////////////////////////////
+
+		return;
+	});
 	///EVENTO BOTONES///
 	$("#co_gen").on("click", function () {
 		//Validación de informacion
@@ -97,21 +113,21 @@ $(document).ready(function () {
 
 			}
 
-			if (fn_validar_fecha($("#tx_fec_ini").val()) == false) {
-				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE INICIO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_fec_ini"));
+			if (fn_validar_fecha($("#tx_desde").val()) == false) {
+				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE INICIO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_desde"));
 				return false;
 			}
-			if ($("#tx_fec_fin").val() == "") {
+			if ($("#tx_hasta").val() == "") {
 
-				fn_mensaje_boostrap("DIGITE LA FECHA FINAL", g_titulo, $("#tx_fec_fin"));
+				fn_mensaje_boostrap("DIGITE LA FECHA FINAL", g_titulo, $("#tx_hasta"));
 				return;
 			}
-			if (fn_validar_fecha($("#tx_fec_fin").val()) == false) {
-				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_fec_fin"));
+			if (fn_validar_fecha($("#tx_hasta").val()) == false) {
+				fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA FINAL. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#tx_hasta"));
 				return false;
 			}
-			if (SYNComp_Fechas($("#tx_fec_ini").val(), $("#tx_fec_fin").val()) == ">") {
-				fn_mensaje_boostrap("FECHA DE INICIO DEBE SER MENOR QUE LA FECHA FINAL", g_titulo, $("#tx_fec_ini"));
+			if (SYNComp_Fechas($("#tx_desde").val(), $("#tx_hasta").val()) == ">") {
+				fn_mensaje_boostrap("FECHA DE INICIO DEBE SER MENOR QUE LA FECHA FINAL", g_titulo, $("#tx_desde"));
 				return;
 			}
 			fn_carga_orden()
@@ -146,7 +162,7 @@ function fn_estado () {
 
 }
 function fn_dia () {
-	$("#cb_dia").html("<option value='0'></option><option value='1'>Opcion 1</option><option value='2'>Opcion 2</option>");
+	$("#cb_dia").html("<option value='0'></option><option value='1'>Producción</option><option value='2'>Opcion 2</option>");
 
 }
 function fn_plazo() {
