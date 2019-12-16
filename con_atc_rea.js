@@ -93,7 +93,7 @@ $(document).ready(function () {
 
     $("#co_filtro").on("click", fn_filtro);
 
-    $("#co_cerrar_t").on("click", function(){
+    $("#co_cerrar_t").on("click", function(e){
         window.close();
     });
 
@@ -101,11 +101,12 @@ $(document).ready(function () {
 
     $("select[id=cb_fecha]").change(function(){
 
-        if ($('select[id=cb_fecha]').val() !== "1") {
-            fn_mostrar()
-        } else {
+        if ($('select[id=cb_fecha]').val() === "1" || $('select[id=cb_fecha]').val() === "0") {
             fn_ocultar()
+        } else {
+            fn_mostrar()
         }
+
     });
 
     $("#co_consultar").on("click", function() {
@@ -328,7 +329,7 @@ function fn_mot_empresa(){
 }
 function fn_fecha() {
 
-    $("#cb_fecha").html("<option value='' selected></option>Todos<option value='1' selected='selected'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_fecha").html("<option value='0' selected></option>Todos<option value='1' selected='selected'>Todas</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 function fn_rango() {
 
@@ -369,9 +370,14 @@ function fn_carga_grilla() {
 
 }
 
+
+function fn_gen() {
+    alert('Se genero.');
+}
+
 function fn_limpiar(){
     $("#cb_regional").val("");
-    $("#chk_retenidas").prop("checked", false);
+    $("#chk_retenidas").prop("checked", false)
     $("#cb_tipoaten").val("");
     $("#cb_canalcomu").val("");
     $("#cb_mot_cliente").val("");
