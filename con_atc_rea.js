@@ -1,7 +1,8 @@
 var g_modulo = "Atención Integral de Clientes";
 var g_tit = "Atención Integral de Clientes";
 var $grid_principal;
-var $grid_2;
+var $grid_motivos;
+var $grid_ordenes;
 var sql_grid_prim = "";
 var sql_grid_2 = "";
 var sql_grid_3 = "";
@@ -71,13 +72,18 @@ $(document).ready(function () {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 
+    //DEFINE LAS GRILLAS SECUNDARIAS
+    fn_setea_grids_secundarias();
+
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
+    $("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_excel_2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
-    // H
+    // Setea valores predeterminados del filtro
 
     $(function() {
         $("#cb_fecha").val('1');
@@ -86,7 +92,7 @@ $(document).ready(function () {
         $("#cb_tipoaten").val('1');
     });
 
-
+    $("#div_second").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -178,12 +184,39 @@ $(document).ready(function () {
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             fn_carga_grilla();
             $("#div_prin").slideDown();
+            $("#div_second").slideDown();
             $("#div_filtro_bts").slideUp();
             $('#div_filtro_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
-    })
+    });
+
+    $("#co_motivos").on("click", function (){
+
+        fn_remove_primary();
+        fn_ocular_grillas();
+        fn_set_primary("#co_motivos", "#div_grid_motivos");
+        $grid_motivos.pqGrid("refreshView");
+
+    });
+    $("#co_ordenes").on("click", function (){
+
+        fn_remove_primary();
+        fn_ocular_grillas();
+        fn_set_primary("#co_ordenes", "#div_grid_ordenes");
+        $("#div_grid_ordenes_css").show();
+        $grid_ordenes.pqGrid("refreshView");
+
+    });
+    $("#co_clientes").on("click", function (){
+
+        fn_remove_primary();
+        fn_ocular_grillas();
+        fn_set_primary("#co_clientes", "#div_con_clientes");
+
+    });
+
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -193,7 +226,6 @@ $(document).ready(function () {
             window.close();
     });
 
-
     $("#co_cancel").on("click", function (){
         $('#div_filtro_bts').modal('hide');
     });
@@ -202,12 +234,40 @@ $(document).ready(function () {
         window.close();
     });
 
-//BOTONES ELIMINAR DE LAS GRILLAS
+    $("#co_volver").on("click", function (e) {
+        $("#div_prin").show();
+        $("#div_second").hide();
+        //$grid_principal.pqGrid( "refreshDataAndView" );
+        $(window).scrollTop(0);
+    });
+
+    //BOTON FILTRO GRILLA PRINCIPAL
 
 
     $("#co_filtro").on("click", function(){
         fn_filtro();
     });
+
+    //EVENTO DBL_CLICK DE LA GRILLA
+    $grid_principal.pqGrid({
+        rowDblClick: function( event, ui ) {
+            if (ui.rowData)
+            {
+                var dataCell = ui.rowData;
+                //g_cliente_selec = dataCell.c2;
+                fn_ocular_grillas();
+                $("#div_second").show();
+                $("#div_grid_motivos").show();
+                $("#div_prin").hide();
+                $grid_motivos.pqGrid("refreshView");
+                //periodo_fil = dataCell.C1;
+                //regional_fil = dataCell.C2;
+                //ciclo_fil = dataCell.C3;
+                //fn_grilla_dos();
+            }
+        }
+    });
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //EXCEL
@@ -239,37 +299,39 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
 
+    var data =  [
+        { C1: 'Normal', C2: '00/00/0000', C3: '31/12/2019', C4: '31/12/2019', C5: '(8000) PANAMÁ METRO', C6: 'TEXTO', C7: 'CIERRE', C8: '17/12/2019', C9: 15, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA"},
+        { C1: 'Prioritaria', C2: '12/02/2015',C3: '31/12/2049', C4: '31/12/2019', C5: '(6000) PANAMÁ SUR', C6:'TEXTO', C7: "CIERRE", C8: '17/12/2019', C9: 20, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA"},
+        { C1: 'Alta', C2: '15/05/2019', C3: '31/12/2019', C4: '31/12/2019', C5: '(7000) PANAMÁ NORTE', C6: 'TEXTO', C7: "CIERRE", C8: '17/12/2019', C9: 30, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA" },
+    ];
+
+    var data2 = [
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: '', C11: ''}
+    ];
+
     var obj = {
         height: "100%",
         showTop: true,
-        showBottom: true,
-        showHeader: true,
+        showBottom:true,
+        showTitle : false,
+        title: "",
         roundCorners: true,
         rowBorders: true,
         columnBorders: true,
-        editable: false,
-        editor: { type: "textbox", select: true, style: "outline:none;" },
-        selectionModel: { type: 'cell' },
-        numberCell: { show: true},
-        title: "",
-        showTitle: false,
-        pageModel: { type: "local" },
-        scrollModel: { theme: true },
-        toolbar:
-            {
-                cls: "pq-toolbar-export",
-                items:[
-                    { type: "button", label: "Filtro",    attr: "id=co_filtro",  cls: "btn btn-primary" },
-                    { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
-                    { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}
-                ]
-            },
-        dataModel:{ data: [
-                { C1: 'Normal', C2: '00/00/0000', C3: '31/12/2019', C4: '31/12/2019', C5: '(8000) PANAMÁ METRO', C6: 'TEXTO', C7: 'CIERRE', C8: '17/12/2019', C9: 15, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA"},
-                { C1: 'Prioritaria', C2: '12/02/2015',C3: '31/12/2049', C4: '31/12/2019', C5: '(6000) PANAMÁ SUR', C6:'TEXTO', C7: "CIERRE", C8: '17/12/2019', C9: 20, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA"},
-                { C1: 'Alta', C2: '15/05/2019', C3: '31/12/2019', C4: '31/12/2019', C5: '(7000) PANAMÁ NORTE', C6: 'TEXTO', C7: "CIERRE", C8: '17/12/2019', C9: 30, C10: "Texto de Ejemplo", C11: "Texto de Ejemplo", C12: "Soporte", C13: "Prioritaria", C14: "INTERNA" }
-
-            ] }
+        collapsible:true,
+        editable:false,
+        selectionModel: { type: 'row',mode:'single'},
+        numberCell: { show: true },
+        pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
+        scrollModel:{theme:true},
+        toolbar: {
+            cls: "pq-toolbar-export",
+            items:[
+                { type: "button", label: "Filtro",    attr: "id=co_filtro",  cls: "btn btn-primary" },
+                { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
+                { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}
+            ]
+        },
     };
 
     obj.colModel = [
@@ -288,11 +350,106 @@ function fn_setea_grid_principal() {
         { title: "Tipo de Atención", width: 90, dataType: "string", dataIndx: "C13", halign: "center", align: "center"},
         { title: "Canal de Comunicación", width: 100, dataType: "string", dataIndx: "C14", halign: "center", align: "center"}
     ];
+    obj.dataModel = { data: data };
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
-    $grid_principal.pqGrid("refreshDataAndView");
+
 }
+
+function fn_setea_grids_secundarias() {
+
+    //Setea grilla Motivos
+
+    var data2 =  [
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+    ];
+
+    var obj2 = {
+        height: "390",
+        showTop: true,
+        showBottom:true,
+        showTitle : false,
+        title: "",
+        roundCorners: true,
+        rowBorders: true,
+        columnBorders: true,
+        collapsible:true,
+        editable:false,
+        selectionModel: { type: 'row',mode:'single'},
+        numberCell: { show: true },
+        pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
+        scrollModel:{theme:true},
+        toolbar: false,
+    };
+
+    obj2.colModel = [
+        { title: "Motivo Cliente", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Motivo Empresa", width: 200, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
+        { title: "Tipo de Atención", width: 120, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Canal de Comunicación", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"},
+        { title: "Vencimiento Empresa",width: 140, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Vencimiento ASEP", width: 140, dataType: "string", dataIndx: "C6", halign: "center", align: "center"},
+        { title: "Respuesta",width: 100, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Motivo Ente", width: 80, dataType: "string", dataIndx: "C8", halign: "center", align: "center"},
+        { title: "Fecha Respuesta", width: 75, dataType: "string", dataIndx: "C9", halign: "center", align: "center"},
+        { title: "Rol Cierre", width: 200, dataType: "string", dataIndx: "C10", halign: "center", align: "left"},
+        { title: "Causa", width: 200, dataType: "string", dataIndx: "C11", halign: "center", align: "left"},
+    ];
+
+
+    obj2.dataModel = { data: data2 };
+
+    $grid_motivos = $("#div_grid_motivos").pqGrid(obj2);
+    $grid_motivos.pqGrid( "refreshDataAndView" );
+
+    //Setea grilla 2 Ordenes
+
+    var data3 =  [
+        { C1: 'Convenios de Pago Ordenes', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+    ];
+
+    var obj3 = {
+        width: "930",
+        height: "390",
+        showTop: true,
+        showBottom:true,
+        showTitle : false,
+        title: "",
+        roundCorners: true,
+        rowBorders: true,
+        columnBorders: true,
+        collapsible:true,
+        editable:false,
+        selectionModel: { type: 'row',mode:'single'},
+        numberCell: { show: true },
+        pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
+        scrollModel:{theme:true},
+        toolbar: false,
+    };
+
+    obj3.colModel = [
+        { title: "Tipo de Orden", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Numero de Orden", width: 200, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
+        { title: "Rol Actual", width: 120, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Rol Emisor", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center"},
+        { title: "Fecha",width: 140, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Fecha Finalización", width: 140, dataType: "string", dataIndx: "C6", halign: "center", align: "center"},
+    ];
+
+
+    obj3.dataModel = { data: data3 };
+
+    $grid_ordenes = $("#div_grid_ordenes").pqGrid(obj3);
+    $grid_ordenes.pqGrid( "refreshDataAndView" );
+
+}
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
 function fn_filtro(){
 
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
@@ -365,16 +522,42 @@ function fn_mostrar() {
     $("#fecha_filtro2").show();
 }
 
+function fn_set_primary(boton, grilla) {
+    $(boton).removeClass("btn-default").addClass("btn-primary");
+    $(grilla).show();
+
+}
+
+function fn_remove_primary() {
+    $("#co_motivos").removeClass("btn-primary").addClass("btn-default");
+    $("#co_ordenes").removeClass("btn-primary").addClass("btn-default");
+    $("#co_clientes").removeClass("btn-primary").addClass("btn-default");
+
+}
+
+function fn_ocular_grillas() {
+
+    $("#div_grid_motivos").hide();
+    $("#div_grid_ordenes").hide();
+    $("#div_grid_ordenes_css").hide();
+    $("#div_con_clientes").hide();
+
+}
+
+
 function fn_carga_grilla() {
 
+    fn_filtro();
+    var total_register;
+
+    alert("")
+    $grid_principal.pqGrid( "option", "dataModel", dataModel );
+    $grid_principal.pqGrid( "refreshDataAndView" );
+    $grid_principal.pqGrid( "option", "title", "Total Registros: " + total_register);
 
 }
 
-
-function fn_gen() {
-    alert('Se genero.');
-}
-
+// Limpiar Filtro
 function fn_limpiar(){
     $("#cb_regional").val("");
     $("#chk_retenidas").prop("checked", false)
@@ -388,6 +571,7 @@ function fn_limpiar(){
     $("#cb_hasta").val("");
     $("#cb_estado").val("");
     $("#cb_plazos").val("");
+    fn_ocultar()
 }
 function fn_mensaje(id,mensaje,segundos)
 {
