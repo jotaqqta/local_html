@@ -81,6 +81,7 @@ $(document).ready(function () {
     $("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel_2").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_excel_3").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
     // Setea valores predeterminados del filtro
@@ -93,6 +94,7 @@ $(document).ready(function () {
     });
 
     $("#div_second").hide();
+    $("#co_excel_3").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -192,28 +194,30 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_motivos").on("click", function (){
+    $("#tab_motivos").on("click", function (){
 
-        fn_remove_primary();
+        fn_remove_active();
         fn_ocular_grillas();
-        fn_set_primary("#co_motivos", "#div_grid_motivos");
+        fn_set_active("#tab_motivos", "#div_grid_motivos");
+        $("#co_excel_2").show();
         $grid_motivos.pqGrid("refreshView");
 
     });
-    $("#co_ordenes").on("click", function (){
+    $("#tab_ordenes").on("click", function (){
 
-        fn_remove_primary();
+        fn_remove_active();
         fn_ocular_grillas();
-        fn_set_primary("#co_ordenes", "#div_grid_ordenes");
+        fn_set_active("#tab_ordenes", "#div_grid_ordenes");
         $("#div_grid_ordenes_css").show();
+        $("#co_excel_3").show();
         $grid_ordenes.pqGrid("refreshView");
 
     });
-    $("#co_clientes").on("click", function (){
+    $("#tab_clientes").on("click", function (){
 
-        fn_remove_primary();
+        fn_remove_active();
         fn_ocular_grillas();
-        fn_set_primary("#co_clientes", "#div_con_clientes");
+        fn_set_active("#tab_clientes", "#div_con_clientes");
 
     });
 
@@ -237,6 +241,8 @@ $(document).ready(function () {
     $("#co_volver").on("click", function (e) {
         $("#div_prin").show();
         $("#div_second").hide();
+        fn_remove_active();
+        $("#tab_motivos").addClass("active");
         //$grid_principal.pqGrid( "refreshDataAndView" );
         $(window).scrollTop(0);
     });
@@ -258,6 +264,7 @@ $(document).ready(function () {
                 fn_ocular_grillas();
                 $("#div_second").show();
                 $("#div_grid_motivos").show();
+                $("#co_excel_2").show();
                 $("#div_prin").hide();
                 $grid_motivos.pqGrid("refreshView");
                 //periodo_fil = dataCell.C1;
@@ -294,7 +301,53 @@ $(document).ready(function () {
         }
     });
 
+    $("#co_excel_2").on("click", function (e) {
+
+        e.preventDefault();
+        var col_model=$( "#div_grid_motivos" ).pqGrid( "option", "colModel" );
+        var cabecera = "";
+        for (i = 0; i < col_model.length; i++){
+            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+        }
+        $("#excel_cabecera").val(cabecera);
+        var element =$grid_motivos.pqGrid("option","dataModel.data");
+        if (element)
+            a= element.length;
+        else
+            a = 0;
+        if(a > 0){
+            $("#tituloexcel").val(g_tit);
+            $("#sql").val(sql_grid_2);
+            $("#frm_Exel").submit();
+            return;
+        }
+    });
+
+    $("#co_excel_3").on("click", function (e) {
+
+        e.preventDefault();
+        var col_model=$( "#div_grid_ordenes" ).pqGrid( "option", "colModel" );
+        var cabecera = "";
+        for (i = 0; i < col_model.length; i++){
+            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+        }
+        $("#excel_cabecera").val(cabecera);
+        var element =$grid_ordenes.pqGrid("option","dataModel.data");
+        if (element)
+            a= element.length;
+        else
+            a = 0;
+        if(a > 0){
+            $("#tituloexcel").val(g_tit);
+            $("#sql").val(sql_grid_3);
+            $("#frm_Exel").submit();
+            return;
+        }
+    });
+
 });
+
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
@@ -407,14 +460,14 @@ function fn_setea_grids_secundarias() {
     //Setea grilla 2 Ordenes
 
     var data3 =  [
-        { C1: 'Convenios de Pago Ordenes', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
-        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
-        { C1: 'Convenios de Pago', C2: 'Solicitud de Convenios D', C3: 'Requerimiento Rapido', C4: 'Personal', C5: '24/10/2019 13:23:09', C6: '24/10/2019 13:23:09', C7: '', C8: '', C9: '', C10: "", C11: ""},
+        { C1: '', C2: '', C3: '', C4: "", C5: "", C6: ""},
+        { C1: '', C2: '', C3: '', C4: "", C5: "", C6: ""},
+        { C1: '', C2: '', C3: '', C4: "", C5: "", C6: ""},
     ];
 
     var obj3 = {
-        width: "930",
-        height: "390",
+        width: "932",
+        height: "375",
         showTop: true,
         showBottom:true,
         showTitle : false,
@@ -522,16 +575,16 @@ function fn_mostrar() {
     $("#fecha_filtro2").show();
 }
 
-function fn_set_primary(boton, grilla) {
-    $(boton).removeClass("btn-default").addClass("btn-primary");
+function fn_set_active(tab, grilla) {
+    $(tab).addClass("active");
     $(grilla).show();
 
 }
 
-function fn_remove_primary() {
-    $("#co_motivos").removeClass("btn-primary").addClass("btn-default");
-    $("#co_ordenes").removeClass("btn-primary").addClass("btn-default");
-    $("#co_clientes").removeClass("btn-primary").addClass("btn-default");
+function fn_remove_active() {
+    $("#tab_motivos").removeClass("active");
+    $("#tab_ordenes").removeClass("active");
+    $("#tab_clientes").removeClass("active");
 
 }
 
@@ -541,6 +594,8 @@ function fn_ocular_grillas() {
     $("#div_grid_ordenes").hide();
     $("#div_grid_ordenes_css").hide();
     $("#div_con_clientes").hide();
+    $("#co_excel_2").hide();
+    $("#co_excel_3").hide();
 
 }
 

@@ -57,13 +57,13 @@
     -->
     <style>
 
-        #div_botonera {
+        #div_tab {
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
             border-top: 1px solid #CCCCCC;
             border-left: 1px solid #CCCCCC;
             border-right: 1px solid #CCCCCC;
-            padding: 6px;
+            padding: 7px;
             width: 1140px;
             height: 50px;
         }
@@ -89,7 +89,7 @@
             border-bottom: 1px solid #CCCCCC;
             padding: 6px;
             width: 1140px;
-            height: 405px;
+            height: 390px;
         }
 
         @media screen and (max-width: 1401px) {
@@ -179,18 +179,19 @@
                         <br>
                     </div>
                     <div class="row">
-                        <div class="container" id="div_botonera">
+                        <div class="container" id="div_tab">
                             <div class="row">
                                 <div class="container col-xs-9">
-                                    <button id="co_motivos" class="btn btn-primary btn-group">Motivos</button>
-                                    &nbsp;
-                                    <button id="co_ordenes" class="btn btn-default btn-group">Ordenes</button>
-                                    &nbsp;
-                                    <button id="co_clientes" class="btn btn-default btn-group">Clientes</button>
+                                    <ul class="nav nav-tabs">
+                                        <li id="tab_motivos" role="presentation" class="active"><a href="#">Motivos</a></li>
+                                        <li id="tab_ordenes" role="presentation"><a href="#">Ordenes</a></li>
+                                        <li id="tab_clientes" role="presentation"><a href="#">Clientes</a></li>
+                                    </ul>
                                 </div>
                                 <div class="pull-right right col-xs-3">
                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                     <button id="co_excel_2" class="btn btn-primary"> Excel</button>
+                                    <button id="co_excel_3" class="btn btn-primary"> Excel</button>
                                     &nbsp;
                                     <button id="co_volver" class="btn btn-primary"> Volver</button>
                                 </div>
