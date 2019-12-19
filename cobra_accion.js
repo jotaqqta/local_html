@@ -53,8 +53,8 @@ $(document).ready(function() {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 	fn_grilla_principal();
-    fn_carga_tip_doc();
-    fn_carga_tip_doc2();
+    //fn_carga_tip_doc();
+    //fn_carga_tip_doc2();
     //fn_carga_tipo_cli();
     //fn_carga_tipo_inspec();
     //fn_carga_tipo_resp();
