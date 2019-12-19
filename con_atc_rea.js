@@ -420,7 +420,7 @@ function fn_setea_grids_secundarias() {
     ];
 
     var obj2 = {
-        height: "390",
+        height: "300",
         showTop: true,
         showBottom:true,
         showTitle : false,

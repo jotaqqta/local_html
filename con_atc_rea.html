@@ -148,21 +148,25 @@
                                             <label>Unidad:</label>
                                             <input id="tx_unidad" name="tx_unidad" class="form-control inp_dis _input_selector" readonly>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="row">
                                         <div class="col-xs-12">
-                                            <label>Duración del Contacto:</label>
-                                            <input id="tx_dura_conct" name="tx_dura_conct" class="form-control inp_dis _input_selector" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
                                             <label>Responsable:</label>
                                             <input id="tx_responsable" name="tx_responsable" class="form-control inp_dis _input_selector" readonly>
                                         </div>
-                                        <div class="col-xs-6">
-                                            <label>Rol Inicio:</label>
-                                            <input id="tx_rol_inicio" name="tx_rol_inicio" class="form-control inp_dis _input_selector" readonly>
+                                    </div>
+                                </div> <!-- style="height: 43px; -->
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-12" style="height: 10px;"></div>
+                                                <div class="col-xs-12">
+                                                    <button id="co_volver" class="btn btn-primary pull-right"> Volver</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <label>Duración del Contacto:</label>
+                                            <input id="tx_dura_conct" name="tx_dura_conct" class="form-control inp_dis _input_selector" readonly>
                                         </div>
                                         <div class="col-xs-12">
                                             <label>Vencimieto ASEP:</label>
@@ -171,6 +175,10 @@
                                         <div class="col-xs-12">
                                             <label>Canal:</label>
                                             <input id="tx_canal" name="tx_canal" class="form-control inp_dis _input_selector" readonly>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <label>Rol Inicio:</label>
+                                            <input id="tx_rol_inicio" name="tx_rol_inicio" class="form-control inp_dis _input_selector" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -181,19 +189,16 @@
                     <div class="row">
                         <div class="container" id="div_tab">
                             <div class="row">
-                                <div class="container col-xs-9">
+                                <div class="container col-xs-11">
                                     <ul class="nav nav-tabs">
                                         <li id="tab_motivos" role="presentation" class="active"><a href="#">Motivos</a></li>
                                         <li id="tab_ordenes" role="presentation"><a href="#">Ordenes</a></li>
                                         <li id="tab_clientes" role="presentation"><a href="#">Clientes</a></li>
                                     </ul>
                                 </div>
-                                <div class="pull-right right col-xs-3">
-                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <button id="co_excel_2" class="btn btn-primary"> Excel</button>
-                                    <button id="co_excel_3" class="btn btn-primary"> Excel</button>
-                                    &nbsp;
-                                    <button id="co_volver" class="btn btn-primary"> Volver</button>
+                                <div class="pull-right right col-xs-1">
+                                    <button id="co_excel_2" class="btn btn-primary pull-right"> Excel</button>
+                                    <button id="co_excel_3" class="btn btn-primary pull-right"> Excel</button>
                                 </div>
                             </div>
                         </div>
@@ -252,8 +257,9 @@
                                             <label for="tx_email">Email:</label>
                                             <input id="tx_email" name="tx_email" class="form-control inp_dis _input_selector" readonly>
                                         </div>
+                                        <div class="class-sx-6"><p>&nbsp;</p></div>
                                         <div class="col-sx-6">
-                                            <label for="chk_resp_auto">&nbsp; &nbsp; </label>
+                                            <label for="chk_resp_auto">&nbsp; &nbsp; &nbsp; </label>
                                             <input id="chk_resp_auto" name="chk_resp_auto" type="checkbox">&nbsp;
                                             <label for="chk_resp_auto">Respuesta Automatica</label>
                                         </div>
@@ -295,7 +301,6 @@
                         <div class="modal-body">
                             <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
                                 <div class="row">
-                                    <div class="well well-sm">Filtros Generales</div>
                                     <div class="col-xs-6">
                                         <label for="cb_regional">Regional</label>
                                         <select class="form-control input-normal inp_dis" id="cb_regional"
