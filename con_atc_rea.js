@@ -65,10 +65,6 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
-    // INICIA CON EL CURSOR EN EL CAMPO FECHA
-
-    $("._input_selector").inputmask("dd/mm/yyyy");
-
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 
