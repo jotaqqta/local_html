@@ -169,8 +169,8 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
 
                 fn_edit();
-                $("#cb_sistema_edit").val(dataCell.C1);
-                $("#tx_tipo_doc_edit").val(dataCell.C2);
+                $("#cb_sistema_edit").val(dataCell.C2);
+                $("#tx_tipo_doc_edit").val(dataCell.C3);
                 //regional_fil = dataCell.C2;
                 //ciclo_fil = dataCell.C3;
                 //fn_grilla_dos();
@@ -212,9 +212,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'MODULO ATENCION INTEGRAL CLIENTE', C2: 'AVISO CORTE'},
-        { C1: 'MODULO ATENCION INTEGRAL CLIENTE', C2: 'CARTA'},
-        { C1: 'MODULO ATENCION INTEGRAL CLIENTE', C2: 'COPIA CEDULA'}
+        { C1: 1, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'AVISO CORTE'},
+        { C1: 2, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'CARTA'},
+        { C1: 3, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'COPIA CEDULA'}
         ];
 
     var obj = {
@@ -240,15 +240,46 @@ function fn_setea_grid_principal() {
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"},
             ]
         },
+        refresh: function () {
+            $("#div_grid_principal > div.pq-grid-center > div.pq-grid-cont-outer > div > div > table > tbody").find("button.btn.btn-primary.btn-sm").button()
+                .bind("click", function (evt) {
+                    var $tr = $(this).closest("tr");
+                    var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
+                    var rowIndx = obj.rowIndx;
+                    $grid.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
+
+                    var DM = $grid.pqGrid("option", "dataModel");
+                    var datos = DM.data;
+                    var row = datos[rowIndx];
+
+                    var parameters = {
+                        "func":"fn_borrar",
+                        "p_ip":$("#tx_ip").val(),
+                        "p_rol":$("#tx_rol").val(),
+                        "p_equipo":$("#cb_equipo").val(),
+                        "p_rol_equipo":row.C1,
+                        "Empresa":$("#tx_empresa").val()
+                    };
+
+                    HablaServidor(my_url, parameters, 'text', function(text)
+                    {
+                        $grid.pqGrid("deleteRow", { rowIndx: rowIndx });
+                        fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+                    });
+                    return false;
+
+                });
+        }
     };
 
     obj.colModel = [
-        { title: "Sistema", width:500, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
-        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
+        { title: "ID", width:25, dataType: "number", dataIndx: "C1", halign: "center", align: "center", hidden: "true" },
+        { title: "Sistema", width:500, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C3", halign: "center", align: "left"},
         { title: "Eliminar",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
             render: function (ui) {
-                return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
-            }
+                return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
+            },
         },
     ];
     obj.dataModel = { data: data };

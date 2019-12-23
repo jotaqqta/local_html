@@ -90,17 +90,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Añadir nuevo documento</h4>
+                        <h4 class="modal-title" data-dismiss="modal">Nuevo documento</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_nuevo" role="form">
                                 <div class="row">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-12">
                                         <label for="cb_sistema">Sistema:</label>
                                         <select class="form-control input-normal _input_selector" id="cb_sistema"
                                                 name="cb_sistema"></select>
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-12">
                                         <label for="tx_tipo_doc">Tipo de Documento:</label>
                                         <input id="tx_tipo_doc" name="tx_tipo_doc" class="form-control">
                                     </div>
@@ -134,12 +134,12 @@
                 <div class="modal-body">
                     <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-12">
                                 <label for="cb_sistema_edit">Sistema:</label>
                                 <select class="form-control input-normal _input_selector" id="cb_sistema_edit"
                                         name="cb_sistema_edit"></select>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-12">
                                 <label for="tx_tipo_doc_edit">Tipo de Documento:</label>
                                 <input id="tx_tipo_doc_edit" name="tx_tipo_doc_edit" class="form-control">
                             </div>
@@ -186,9 +186,6 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
-</div>
 
 <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
     <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
