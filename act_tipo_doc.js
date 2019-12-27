@@ -169,7 +169,13 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
 
                 fn_edit();
-                $("#cb_sistema_edit").val(dataCell.C2);
+
+                $("#cb_sistema_edit option").each(function()
+                {
+                    if ($(this).text() === dataCell.C2) {
+                        $("#cb_sistema_edit").val($(this).val());
+                    }
+                });
                 $("#tx_tipo_doc_edit").val(dataCell.C3);
                 //regional_fil = dataCell.C2;
                 //ciclo_fil = dataCell.C3;
@@ -212,9 +218,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 1, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'AVISO CORTE'},
-        { C1: 2, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'CARTA'},
-        { C1: 3, C2: 'MODULO ATENCION INTEGRAL CLIENTE', C3: 'COPIA CEDULA'}
+        { C1: 1, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'AVISO CORTE'},
+        { C1: 2, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'CARTA'},
+        { C1: 3, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'COPIA CEDULA'}
         ];
 
     var obj = {
@@ -317,14 +323,9 @@ function fn_sistema(){
 }
 function fn_sistema_edit() {
 
-    $("#cb_sistema_edit").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+    $("#cb_sistema_edit").html("<option value='' selected></option><option value='1'>MODULO ATENCIÓN INTEGRAL CLIENTE</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_sistema(){
-
-    $("#cb_sistema").html("<option value='' selected></option>Todos<option value='1'>Todos</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
-
-}
 function fn_tipodoc() {
 
 }

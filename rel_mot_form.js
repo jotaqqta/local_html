@@ -34,6 +34,10 @@ $(document).ready(function () {
     fn_buzon();
     fn_tipo_form();
 
+    fn_tipo_orden_new();
+    fn_buzon_new();
+    fn_tipo_form_new();
+
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
     //INGRESA LOS TITULOS
@@ -58,14 +62,19 @@ $(document).ready(function () {
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+
+    $('#co_nuevo').prop( "disabled", true );
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
 
     $("#co_filtro").on("click", fn_filtro);
+
+    $("#co_nuevo").on("click", fn_new);
 
     $("#co_consultar").on("click", function() {
 
@@ -89,6 +98,9 @@ $(document).ready(function () {
             $("#div_prin").slideDown();
             $("#div_filtro_bts").slideUp();
             $('#div_filtro_bts').modal('hide');
+            $('#co_nuevo').prop( "disabled", false );
+            $("#tx_mot_client_n").val($("#cb_mot_client :selected").text());
+            $("#tx_mot_emp_n").val($("#cb_mot_emp :selected").text());
             $(window).scrollTop(0);
 
         }
@@ -128,6 +140,40 @@ $(document).ready(function () {
         }
     });
 
+    $("#co_guardar_new").on("click", function() {
+
+        if ($.trim($("#co_guardar_new").text()) == "Guardar") {
+
+            if ($("#cb_tipo_orden_new").val() == "") {
+
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
+                $("#cb_tipo_orden_new").focus();
+                return;
+            }
+
+            if ($("#cb_buzon_new").val() == "") {
+
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN BUZON!!!</strong></div>',3000);
+                $("#cb_buzon_new").focus();
+                return;
+            }
+
+            if ($("#cb_tipo_form_new").val() == "") {
+
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE FORMULARIO!!!</strong></div>',3000);
+                $("#cb_tipo_form_new").focus();
+                return;
+            }
+
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar_new"));
+            $("#div_prin").slideDown();
+            $("#div_new_bts").slideUp();
+            $('#div_new_bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+    });
+
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -146,6 +192,15 @@ $(document).ready(function () {
             window.close();
     });
 
+    $("#co_limpiar_new").on("click", function () {
+        if ($.trim($("#co_limpiar_new").text()) == "Limpiar") {
+            fn_limpiar_new();
+            return;
+        }
+        else
+            window.close();
+    });
+
     $("#co_cancel").on("click", function (){
         $('#div_filtro_bts').modal('hide');
     });
@@ -154,18 +209,21 @@ $(document).ready(function () {
         $('#div_edit_bts').modal('hide');
     });
 
+    $("#co_cancel_new").on("click", function (){
+        $('#div_new_bts').modal('hide');
+    });
+
     $("#co_cerrar").on("click", function (){ window.close(); });
 
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
         rowDblClick: function( event, ui ) {
-            if (ui.rowData)
-            {
+            if (ui.rowData) {
                 var dataCell = ui.rowData;
 
-                fn_edit();
-                $("#tx_mot_client").val(dataCell.C1);
-                $("#tx_mot_emp").val(dataCell.C2);
+                fn_edit(dataCell);
+                $("#tx_mot_client").val($("#cb_mot_client :selected").text());
+                $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
 
                 //regional_fil = dataCell.C2;
                 //ciclo_fil = dataCell.C3;
@@ -233,6 +291,7 @@ function fn_setea_grid_principal() {
         toolbar: {
             cls: "pq-toolbar-export",
             items:[
+                { type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Filtro",    attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"},
@@ -261,16 +320,44 @@ function fn_filtro(){
     $("#div_filtro_bts").on("shown.bs.modal", function () {
         $("#div_filtro_bts div.modal-footer button").focus();
 
-
     });
 }
 
-function fn_edit(){
+function fn_edit(dataCell){
+
+    $("#cb_tipo_orden option").each(function()
+    {
+        if ($(this).text() === dataCell.C3) {
+            $("#cb_tipo_orden").val($(this).val());
+        }
+    });
+
+    $("#cb_buzon option").each(function()
+    {
+        if ($(this).text() === dataCell.C4) {
+            $("#cb_buzon").val($(this).val());
+        }
+    });
+
+    $("#cb_tipo_form option").each(function()
+    {
+        if ($(this).text() === dataCell.C5) {
+            $("#cb_tipo_form").val($(this).val());
+        }
+    });
 
     $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_edit_bts").on("shown.bs.modal", function () {
         $("#div_edit_bts div.modal-footer button").focus();
 
+    });
+}
+
+function fn_new(){
+
+    $("#div_new_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_new_bts").on("shown.bs.modal", function () {
+        $("#div_new_bts div.modal-footer button").focus();
 
     });
 }
@@ -300,6 +387,21 @@ function fn_tipo_form(){
     $("#cb_tipo_form").html("<option value='' selected></option><option value='1'>Formulario Basico</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
+function fn_tipo_orden_new(){
+
+    $("#cb_tipo_orden_new").html("<option value='' selected></option><option value='1'>Orden Genérica</option> <option value='2' >Solicitud Generica</option>  <option value='3' >OPCION 03</option>");
+}
+
+function fn_buzon_new(){
+
+    $("#cb_buzon_new").html("<option value='' selected></option><option value='1'>Buzon Medidor 7000</option> <option value='2' >Buzon Medidor 8000</option>  <option value='3' >Buzon Medidor 8200</option> <option value='3' >Buzon Medidor 9000</option> <option value='3' >Buzon Medidor 1000</option>");
+}
+
+function fn_tipo_form_new(){
+
+    $("#cb_tipo_form_new").html("<option value='' selected></option><option value='1'>Formulario Basico</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
+}
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_carga_grilla() {
@@ -324,6 +426,13 @@ function fn_limpiar_edit(){
     $("#cb_tipo_orden").val("");
     $("#cb_buzon").val("");
     $("#cb_tipo_form").val("");
+}
+
+function fn_limpiar_new(){
+
+    $("#cb_tipo_orden_new").val("");
+    $("#cb_buzon_new").val("");
+    $("#cb_tipo_form_new").val("");
 }
 
 function fn_mensaje(id,mensaje,segundos)
