@@ -65,9 +65,9 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", fn_nuevo)
 
-    $("#co_guardar_new").on("click", function() {
+    $("#co_guardar").on("click", function() {
 
-        if ($.trim($("#co_guardar_new").text()) == "Guardar") {
+        if ($.trim($("#co_guardar").text()) == "Guardar") {
 
             if ($("#cb_tipo_atencion").val() == "") {
 
