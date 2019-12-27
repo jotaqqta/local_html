@@ -1,5 +1,5 @@
 var g_modulo = "Atención Integral de Clientes";
-var g_tit = "Relación Motivos Formularios";
+var g_tit = "Relación Motivo Documentos";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
