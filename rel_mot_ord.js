@@ -468,7 +468,7 @@ function fn_limpiar(){
 function fn_limpiar_edit(){
 
     $("#cb_canal_comu").val("");
-    $("#cb_tipo_orden").val("");
+    $("#cb_tipo_aten").val("");
     $("#cb_tipo_ord").val("");
     $("#cb_ind_eje").val("");
 }
@@ -476,7 +476,7 @@ function fn_limpiar_edit(){
 function fn_limpiar_new(){
 
     $("#cb_canal_comu_new").val("");
-    $("#cb_tipo_orden_new").val("");
+    $("#cb_tipo_aten_new").val("");
     $("#cb_tipo_ord_new").val("");
     $("#cb_ind_eje_new").val("");
 }
