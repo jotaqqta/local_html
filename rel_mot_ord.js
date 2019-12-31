@@ -3,8 +3,6 @@ var g_tit = "Relación Motivos Ordenes";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
-var edit;
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -107,6 +105,7 @@ $(document).ready(function () {
 
     $("#co_guardar_second").on("click", function() {
 
+        // Generar nuevo
         if ($.trim($("#co_guardar_second").text()) == "Guardar") {
 
             if ($("#cb_canal_comu").val() == "") {
@@ -137,10 +136,43 @@ $(document).ready(function () {
                 return;
             }
 
-            if (edit) {
-                // Funcion Editar
-            } else {
-                // Funcion crear / añadir nuevo
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+            $("#div_prin").slideDown();
+            $("#div_edit_bts").slideUp();
+            $('#div_edit_bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+
+        // Modificar
+        if ($.trim($("#co_guardar_second").text()) == "Modificar") {
+
+            if ($("#cb_canal_comu").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CANAL DE COMUNICACIÓN!!!</strong></div>',3000);
+                $("#cb_canal_comu").focus();
+                return;
+            }
+
+            if ($("#cb_tipo_aten").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
+                $("#cb_tipo_aten").focus();
+                return;
+            }
+
+            if ($("#cb_tipo_ord").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
+                $("#cb_tipo_ord").focus();
+                return;
+            }
+
+            if ($("#cb_ind_eje").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN INDICADOR DE EJECUCIÓN!!!</strong></div>',3000);
+                $("#cb_ind_eje").focus();
+                return;
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
@@ -150,6 +182,15 @@ $(document).ready(function () {
             $(window).scrollTop(0);
 
         }
+    });
+
+    $("#co_borrard").on("click", function( ) {
+
+        $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+        $("#dlg_confirm").on("shown.bs.modal", function () {
+            $("#dlg_confirm div.modal-footer button").focus();
+
+        });
     });
 
     $("#co_limpiar").on("click", function () {
@@ -186,8 +227,6 @@ $(document).ready(function () {
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
-
-                edit = true;
 
                 fn_edit(dataCell);
                 $("#tx_mot_client").val($("#cb_mot_client :selected").text());
@@ -299,6 +338,9 @@ function fn_filtro(){
 
 function fn_edit(dataCell){
 
+    $("#title_mod_new").html("Editar Motivo Orden");
+    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+
     $("#cb_canal_comu option").each(function()
     {
         if ($(this).text() === dataCell.C3) {
@@ -336,8 +378,10 @@ function fn_edit(dataCell){
 
 function fn_new(){
 
-    edit = false;
     fn_limpiar_second();
+
+    $("#title_mod_new").html("Generar nuevo Motivo Orden");
+    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
     $("#tx_mot_client").val($("#cb_mot_client :selected").text());
     $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());

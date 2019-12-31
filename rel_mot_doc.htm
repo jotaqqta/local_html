@@ -89,13 +89,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Editar Motivo Formularios</h4>
+                        <h4 class="modal-title" id="title_mod_new" data-dismiss="modal">Generar nuevo Motivo Documento</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_new" role="form">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <label for="cb_tipo_atencion">Tipo de atenciÃ³n:</label>
+                                    <label for="cb_tipo_atencion">Tipo de atención:</label>
                                     <select class="form-control input-normal _input_selector" id="cb_tipo_atencion"
                                             name="cb_tipo_atencion"></select>
                                 </div>
@@ -128,6 +128,29 @@
                         <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
                                 class="glyphicon glyphicon-grain"></span> Limpiar
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal confirmación borrar -->
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                    </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label">Estas seguro de eliminar esta Fila?</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+                        <button type="button" class="btn" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
                     </div>
                 </div>
             </div>

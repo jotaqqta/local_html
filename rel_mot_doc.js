@@ -4,7 +4,6 @@ var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
 
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
@@ -67,6 +66,7 @@ $(document).ready(function () {
 
     $("#co_guardar").on("click", function() {
 
+        // Nuevo
         if ($.trim($("#co_guardar").text()) == "Guardar") {
 
             if ($("#cb_tipo_atencion").val() == "") {
@@ -97,13 +97,22 @@ $(document).ready(function () {
                 return;
             }
 
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar_new"));
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_new_bts").slideUp();
             $('#div_new_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
+    });
+
+    $("#co_borrard").on("click", function( ) {
+
+        $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+        $("#dlg_confirm").on("shown.bs.modal", function () {
+            $("#dlg_confirm div.modal-footer button").focus();
+
+        });
     });
 
     $("#co_limpiar").on("click", function () {

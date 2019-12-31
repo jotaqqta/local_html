@@ -3,8 +3,6 @@ var g_tit = "Relación Motivos Formularios";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
-var edit;
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -106,6 +104,7 @@ $(document).ready(function () {
 
     $("#co_guardar_second").on("click", function() {
 
+        // Generar nuevo
         if ($.trim($("#co_guardar_second").text()) == "Guardar") {
 
             if ($("#cb_tipo_orden").val() == "") {
@@ -129,10 +128,36 @@ $(document).ready(function () {
                 return;
             }
 
-            if (edit) {
-                // Funcion editar
-            } else {
-                // Funcion crear / añadir nuevo
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+            $("#div_prin").slideDown();
+            $("#div_edit_bts").slideUp();
+            $('#div_edit_bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+
+        // Editar
+        if ($.trim($("#co_guardar_second").text()) == "Modificar") {
+
+            if ($("#cb_tipo_orden").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
+                $("#cb_tipo_orden").focus();
+                return;
+            }
+
+            if ($("#cb_buzon").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN BUZON!!!</strong></div>',3000);
+                $("#cb_buzon").focus();
+                return;
+            }
+
+            if ($("#cb_tipo_form").val() == "") {
+
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE FORMULARIO!!!</strong></div>',3000);
+                $("#cb_tipo_form").focus();
+                return;
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
@@ -178,8 +203,6 @@ $(document).ready(function () {
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
-
-                edit = true;
 
                 fn_edit(dataCell);
                 $("#tx_mot_client").val($("#cb_mot_client :selected").text());
@@ -282,6 +305,10 @@ function fn_filtro(){
 
 function fn_edit(dataCell){
 
+    $("#title_mod_new").html("Editar Motivo Formulario");
+    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+
+
     $("#cb_tipo_orden option").each(function()
     {
         if ($(this).text() === dataCell.C3) {
@@ -312,8 +339,10 @@ function fn_edit(dataCell){
 
 function fn_new(){
 
-    edit = false;
     fn_limpiar_second();
+
+    $("#title_mod_new").html("Generar nuevo Motivo Formulario");
+    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
     $("#tx_mot_client").val($("#cb_mot_client :selected").text());
     $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());

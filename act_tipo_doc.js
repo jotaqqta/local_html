@@ -3,8 +3,6 @@ var g_tit = "Actualización de Documentos";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
-var edit;
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -72,6 +70,7 @@ $(document).ready(function () {
 
     $("#co_guardar").on("click", function() {
 
+        // Generar nuevo
         if ($.trim($("#co_guardar").text()) == "Guardar") {
             if ($("#cb_sistema").val() == "") {
 
@@ -86,10 +85,28 @@ $(document).ready(function () {
                 return;
             }
 
-            if (edit) {
-                // Funcion editar
-            } else {
-                // Funcion crear / añadir nuevo
+
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+            $("#div_prin").slideDown();
+            $("#div_nuevo_bts").slideUp();
+            $('#div_nuevo_bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+
+        // Editar
+        if ($.trim($("#co_guardar").text()) == "Modificar") {
+            if ($("#cb_sistema").val() == "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
+                $("#cb_sistema").focus();
+                return;
+            }
+            if ($("#tx_tipo_doc").val() == "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
+                $("#tx_tipo_doc").focus();
+                return;
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
@@ -133,8 +150,6 @@ $(document).ready(function () {
             if (ui.rowData)
             {
                 var dataCell = ui.rowData;
-
-                edit = true;
 
                 fn_edit();
 
@@ -266,9 +281,10 @@ function fn_setea_grid_principal() {
 
 function fn_nuevo(){
 
-    edit = false;
-
     fn_limpiar();
+
+    $("#title_mod_new").html("Generar nuevo documento");
+    $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
     $("#div_nuevo_bts").modal({backdrop: "static",keyboard:false});
     $("#div_nuevo_bts").on("shown.bs.modal", function () {
@@ -278,6 +294,9 @@ function fn_nuevo(){
 }
 
 function fn_edit(){
+
+    $("#title_mod_new").html("Editar documento");
+    $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
     $("#div_nuevo_bts").modal({backdrop: "static",keyboard:false});
     $("#div_nuevo_bts").on("shown.bs.modal", function () {
