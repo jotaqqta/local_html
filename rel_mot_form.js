@@ -3,6 +3,7 @@ var g_tit = "Relación Motivos Formularios";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
+var edit;
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -30,13 +31,10 @@ $(document).ready(function () {
 
     fn_mot_cliente();
     fn_mot_empresa();
+
     fn_tipo_orden();
     fn_buzon();
     fn_tipo_form();
-
-    fn_tipo_orden_new();
-    fn_buzon_new();
-    fn_tipo_form_new();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -106,9 +104,9 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_guardar_edit").on("click", function() {
+    $("#co_guardar_second").on("click", function() {
 
-        if ($.trim($("#co_guardar_edit").text()) == "Guardar") {
+        if ($.trim($("#co_guardar_second").text()) == "Guardar") {
 
             if ($("#cb_tipo_orden").val() == "") {
 
@@ -131,6 +129,12 @@ $(document).ready(function () {
                 return;
             }
 
+            if (edit) {
+                // Funcion editar
+            } else {
+                // Funcion crear / añadir nuevo
+            }
+
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_edit_bts").slideUp();
@@ -140,39 +144,6 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_guardar_new").on("click", function() {
-
-        if ($.trim($("#co_guardar_new").text()) == "Guardar") {
-
-            if ($("#cb_tipo_orden_new").val() == "") {
-
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
-                $("#cb_tipo_orden_new").focus();
-                return;
-            }
-
-            if ($("#cb_buzon_new").val() == "") {
-
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN BUZON!!!</strong></div>',3000);
-                $("#cb_buzon_new").focus();
-                return;
-            }
-
-            if ($("#cb_tipo_form_new").val() == "") {
-
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE FORMULARIO!!!</strong></div>',3000);
-                $("#cb_tipo_form_new").focus();
-                return;
-            }
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar_new"));
-            $("#div_prin").slideDown();
-            $("#div_new_bts").slideUp();
-            $('#div_new_bts').modal('hide');
-            $(window).scrollTop(0);
-
-        }
-    });
 
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
@@ -183,18 +154,9 @@ $(document).ready(function () {
             window.close();
     });
 
-    $("#co_limpiar_edit").on("click", function () {
-        if ($.trim($("#co_limpiar_edit").text()) == "Limpiar") {
-            fn_limpiar_edit();
-            return;
-        }
-        else
-            window.close();
-    });
-
-    $("#co_limpiar_new").on("click", function () {
-        if ($.trim($("#co_limpiar_new").text()) == "Limpiar") {
-            fn_limpiar_new();
+    $("#co_limpiar_second").on("click", function () {
+        if ($.trim($("#co_limpiar_second").text()) == "Limpiar") {
+            fn_limpiar_second();
             return;
         }
         else
@@ -205,12 +167,8 @@ $(document).ready(function () {
         $('#div_filtro_bts').modal('hide');
     });
 
-    $("#co_cancel_edit").on("click", function (){
+    $("#co_cancel_second").on("click", function (){
         $('#div_edit_bts').modal('hide');
-    });
-
-    $("#co_cancel_new").on("click", function (){
-        $('#div_new_bts').modal('hide');
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -221,13 +179,12 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
+                edit = true;
+
                 fn_edit(dataCell);
                 $("#tx_mot_client").val($("#cb_mot_client :selected").text());
                 $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
 
-                //regional_fil = dataCell.C2;
-                //ciclo_fil = dataCell.C3;
-                //fn_grilla_dos();
             }
         }
     });
@@ -355,9 +312,15 @@ function fn_edit(dataCell){
 
 function fn_new(){
 
-    $("#div_new_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_new_bts").on("shown.bs.modal", function () {
-        $("#div_new_bts div.modal-footer button").focus();
+    edit = false;
+    fn_limpiar_second();
+
+    $("#tx_mot_client").val($("#cb_mot_client :selected").text());
+    $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
+
+    $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_edit_bts").on("shown.bs.modal", function () {
+        $("#div_edit_bts div.modal-footer button").focus();
 
     });
 }
@@ -387,21 +350,6 @@ function fn_tipo_form(){
     $("#cb_tipo_form").html("<option value='' selected></option><option value='1'>Formulario Basico</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
-function fn_tipo_orden_new(){
-
-    $("#cb_tipo_orden_new").html("<option value='' selected></option><option value='1'>Orden Genérica</option> <option value='2' >Solicitud Generica</option>  <option value='3' >OPCION 03</option>");
-}
-
-function fn_buzon_new(){
-
-    $("#cb_buzon_new").html("<option value='' selected></option><option value='1'>Buzon Medidor 7000</option> <option value='2' >Buzon Medidor 8000</option>  <option value='3' >Buzon Medidor 8200</option> <option value='3' >Buzon Medidor 9000</option> <option value='3' >Buzon Medidor 1000</option>");
-}
-
-function fn_tipo_form_new(){
-
-    $("#cb_tipo_form_new").html("<option value='' selected></option><option value='1'>Formulario Basico</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
-}
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_carga_grilla() {
@@ -421,18 +369,11 @@ function fn_limpiar(){
     $("#cb_mot_emp").val("");
 }
 
-function fn_limpiar_edit(){
+function fn_limpiar_second(){
 
     $("#cb_tipo_orden").val("");
     $("#cb_buzon").val("");
     $("#cb_tipo_form").val("");
-}
-
-function fn_limpiar_new(){
-
-    $("#cb_tipo_orden_new").val("");
-    $("#cb_buzon_new").val("");
-    $("#cb_tipo_form_new").val("");
 }
 
 function fn_mensaje(id,mensaje,segundos)

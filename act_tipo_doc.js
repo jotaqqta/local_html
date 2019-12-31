@@ -3,6 +3,7 @@ var g_tit = "Actualización de Documentos";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
+var edit;
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -29,7 +30,6 @@ $(document).ready(function () {
     //COMBOS
 
     fn_sistema();
-    fn_sistema_edit();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -86,6 +86,12 @@ $(document).ready(function () {
                 return;
             }
 
+            if (edit) {
+                // Funcion editar
+            } else {
+                // Funcion crear / añadir nuevo
+            }
+
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_nuevo_bts").slideUp();
@@ -95,37 +101,12 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_guardar_edit").on("click", function() {
-
-        if ($.trim($("#co_guardar_edit").text()) == "Guardar") {
-            if ($("#cb_sistema_edit").val() == "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
-                $("#cb_sistema_edit").focus();
-                return;
-            }
-            if ($("#tx_tipo_doc_edit").val() == "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
-                $("#tx_tipo_doc_edit").focus();
-                return;
-            }
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar_edit"));
-            $("#div_prin").slideDown();
-            $("#div_editar_bts").slideUp();
-            $('#div_editar_bts').modal('hide');
-            $(window).scrollTop(0);
-
-        }
-    });
 
     $("#co_borrard").on("click", function( ) {
 
         $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
         $("#dlg_confirm").on("shown.bs.modal", function () {
             $("#dlg_confirm div.modal-footer button").focus();
-
 
         });
     });
@@ -139,24 +120,9 @@ $(document).ready(function () {
             window.close();
     });
 
-    $("#co_limpiar_edit").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-            fn_limpiar_edit();
-            return;
-        }
-        else
-            window.close();
-    });
-
-
     $("#co_cancel").on("click", function (){
         $('#div_nuevo_bts').modal('hide');
     });
-
-    $("#co_cancel_edit").on("click", function (){
-        $('#div_editar_bts').modal('hide');
-    });
-
 
     $("#co_cerrar").on("click", function (){        window.close();
     });
@@ -168,15 +134,17 @@ $(document).ready(function () {
             {
                 var dataCell = ui.rowData;
 
+                edit = true;
+
                 fn_edit();
 
-                $("#cb_sistema_edit option").each(function()
+                $("#cb_sistema option").each(function()
                 {
                     if ($(this).text() === dataCell.C2) {
-                        $("#cb_sistema_edit").val($(this).val());
+                        $("#cb_sistema").val($(this).val());
                     }
                 });
-                $("#tx_tipo_doc_edit").val(dataCell.C3);
+                $("#tx_tipo_doc").val(dataCell.C3);
                 //regional_fil = dataCell.C2;
                 //ciclo_fil = dataCell.C3;
                 //fn_grilla_dos();
@@ -298,20 +266,22 @@ function fn_setea_grid_principal() {
 
 function fn_nuevo(){
 
+    edit = false;
+
+    fn_limpiar();
+
     $("#div_nuevo_bts").modal({backdrop: "static",keyboard:false});
     $("#div_nuevo_bts").on("shown.bs.modal", function () {
         $("#div_nuevo_bts div.modal-footer button").focus();
-
 
     });
 }
 
 function fn_edit(){
 
-    $("#div_editar_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_editar_bts").on("shown.bs.modal", function () {
-        $("#div_editar_bts div.modal-footer button").focus();
-
+    $("#div_nuevo_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_nuevo_bts").on("shown.bs.modal", function () {
+        $("#div_nuevo_bts div.modal-footer button").focus();
 
     });
 }
@@ -321,15 +291,7 @@ function fn_sistema(){
 
     $("#cb_sistema").html("<option value='' selected></option><option value='1'>MODULO ATENCIÓN INTEGRAL CLIENTE</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
-function fn_sistema_edit() {
-
-    $("#cb_sistema_edit").html("<option value='' selected></option><option value='1'>MODULO ATENCIÓN INTEGRAL CLIENTE</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-function fn_tipodoc() {
-
-}
-
 function fn_carga_grilla() {
 
     var total_register;
@@ -345,12 +307,6 @@ function fn_limpiar(){
 
     $("#cb_sistema").val("");
     $("#tx_tipo_doc").val("");
-}
-
-function fn_limpiar_edit(){
-
-    $("#cb_sistema_edit").val("");
-    $("#tx_tipo_doc_edit").val("");
 }
 
 function fn_mensaje(id,mensaje,segundos)

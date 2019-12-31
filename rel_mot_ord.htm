@@ -167,78 +167,45 @@
                     </div>
                     <div id="mensaje_edit"></div>
                     <div class="modal-footer">
-                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar_edit" type="button"><span
+                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar_second" type="button"><span
                                 class="glyphicon glyphicon-floppy-disk"></span> Guardar
                         </button>
-                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_edit" type="button"><span
+                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_second" type="button"><span
                                 class="glyphicon glyphicon-off"></span> Cancelar
                         </button>
-                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar_edit" type="button"><span
+                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar_second" type="button"><span
                                 class="glyphicon glyphicon-grain"></span> Limpiar
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal Nuevo -->
-        <div class="modal fade" id="div_new_bts" role="dialog">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
+        <!-- Modal confirmación borrar -->
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
                     <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Editar Motivo Formularios</h4>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
                     </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_new" role="form">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label>Motivo cliente:</label>
-                                    <input id="tx_mot_client_n" name="tx_mot_client_n" class="form-control" readonly>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label>Motivo empresa:</label>
-                                    <input id="tx_mot_emp_n" name="tx_mot_emp_n" class="form-control" readonly>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_canal_comu_new">Canal de comunicación:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_canal_comu_new"
-                                            name="cb_canal_comu_new"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_tipo_aten_new">Tipon de atención:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_tipo_aten_new"
-                                            name="cb_tipo_aten_new"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_tipo_ord_new">Tipo de Orden:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_tipo_ord_new"
-                                            name="cb_tipo_ord_new"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_ind_eje_new">Indicador de Ejecución:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_ind_eje_new"
-                                            name="cb_ind_eje_new"></select>
-                                </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label">Estas seguro de eliminar esta Fila?</div>
                             </div>
                         </form>
                     </div>
-                    <div id="mensaje_new"></div>
                     <div class="modal-footer">
-                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar_new" type="button"><span
-                                class="glyphicon glyphicon-floppy-disk"></span> Guardar
-                        </button>
-                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_new" type="button"><span
-                                class="glyphicon glyphicon-off"></span> Cancelar
-                        </button>
-                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar_new" type="button"><span
-                                class="glyphicon glyphicon-grain"></span> Limpiar
-                        </button>
+                        <button type="button" class="btn" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+                        <button type="button" class="btn" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
