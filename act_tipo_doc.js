@@ -232,7 +232,8 @@ function fn_setea_grid_principal() {
         refresh: function () {
             $("#div_grid_principal > div.pq-grid-center > div.pq-grid-cont-outer > div > div > table > tbody").find("button.btn.btn-primary.btn-sm").button()
                 .bind("click", function (evt) {
-                    var $tr = $(this).closest("tr");
+                    alert("HOLA");
+                    /*var $tr = $(this).closest("tr");
                     var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
                     var rowIndx = obj.rowIndx;
                     $grid.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
@@ -255,7 +256,7 @@ function fn_setea_grid_principal() {
                         $grid.pqGrid("deleteRow", { rowIndx: rowIndx });
                         fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
                     });
-                    return false;
+                    return false;*/
 
                 });
         }
@@ -265,7 +266,7 @@ function fn_setea_grid_principal() {
         { title: "ID", width:25, dataType: "number", dataIndx: "C1", halign: "center", align: "center", hidden: "true" },
         { title: "Sistema", width:500, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C3", halign: "center", align: "left"},
-        { title: "Eliminar",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
+        { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
             render: function (ui) {
                 return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
             },
