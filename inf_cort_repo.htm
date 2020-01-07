@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+
+    <script src="inf_cort_repo.js"></script>
+
+    <style>
+
+        #container-prin {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #CCCCCC;
+            padding: 7px;
+        }
+
+        #div_antiguedad {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #CCCCCC;
+            padding: 7px;
+        }
+
+        #separador {
+            border-top: 1px solid #CCCCCC;
+        }
+
+        #space {
+            height: 12px;
+        }
+
+        #space-01 {
+            height: 8px;
+        }
+
+        #space2 {
+            height: 25px;
+        }
+
+        #space3 {
+            width: 83px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <br>
+    <div class="container" id="container-prin">
+        <div id="div_prin">
+            <div class="container">
+                <div id="div_prin_header">
+                    <h4>Informes de Corte y Reposición</h4>
+                </div>
+                <div class="container" id="content">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Resumen de Reposiciones</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Informe de cargos por Corte y Repo</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Listado de Cargos Anulados</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Validacion de Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Anulaciones temporales de Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Resumen de cortes por Localidades</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Estadistica montos por Corte y Reposicion</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Informe control otorga Plazo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Resumen de Cortes Especiales</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Plantillas de Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Clientes sin Suministro</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Validación de Reposiciones</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Listado de Cargos Refacturados</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Estadistica de deuda por tramos de antigüedad</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Estadisticas de repeticion de claves por cortes no exitosos</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Clientes Autorepuestos</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Resumen de Corte del día</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Sujetos a Corte sin Medidor</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Suministros exentos de Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Gestion de corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Clientes notificados a Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Estadistica de clientes con nueva antigüedad</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro">Estadisticas de servicios cortados sin pago</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr id="separador">
+        <div id="div_second">
+            <div class="container">
+                <div class="row" id="filtro-basico">
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <label for="tx_fec_desde">Desde:</label>
+                                <input id="tx_fec_desde" class="form-control input-normal _input_selector">
+                            </div>
+                            <div class="col-xs-8">
+                                <label for="cb_sec_ini">Sector Inicial:</label>
+                                <select class="form-control input-normal inp_dis" id="cb_sec_ini"
+                                        name="cb_sec_ini"></select>
+                            </div>
+                            <div class="col-xs-8">
+                                <label for="cb_cen_opera">Centro Operativo:</label>
+                                <select class="form-control input-normal inp_dis" id="cb_cen_opera"
+                                        name="cb_cen_opera"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <label for="tx_fec_hasta">Hasta:</label>
+                                <input id="tx_fec_hasta" class="form-control input-normal _input_selector">
+                            </div>
+                            <div class="col-xs-8">
+                                <label for="cb_sec_fin">Sector Final:</label>
+                                <select class="form-control input-normal inp_dis" id="cb_sec_fin"
+                                        name="cb_sec_fin"></select>
+                            </div>
+                            <div class="col-xs-8">
+                                <label for="cb_localidad">Localidad:</label>
+                                <select class="form-control input-normal inp_dis" id="cb_localidad"
+                                        name="cb_localidad"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="filtro-1">
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <label for="cb_contratista">Contratista:</label>
+                                <select class="form-control input-normal inp_dis" id="cb_contratista"
+                                        name="cb_contratista"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12" id="space-01"></div>
+                            <div class="col-xs-3">
+                                <div class="row">
+                                    <div class="col-xs-12" id="space"></div>
+                                    <div class="col-xs-12">
+                                        <label class="text-center" style="text-align:center">Tipo de Proceso:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <div class="radio">
+                                            <label><input type="radio" name="opt_filtro_1">Masivo</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <div class="radio">
+                                            <label><input type="radio" name="opt_filtro_1">Especial</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="filtro-2">
+                    <div class="col-xs-12" id="space2"></div>
+                    <div class="col-xs-8">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-1" id="space3"></div>
+                                <div class="col-xs-10"  id="div_antiguedad">
+                                    <p>&nbsp; Antigüedad de la Deuda</p>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_1">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_1" name="chk_anti_1" type="checkbox">&nbsp;
+                                                <label for="chk_anti_1">Antigüedad 1</label>
+                                            </div>
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_2">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_2" name="chk_anti_2" type="checkbox">&nbsp;
+                                                <label for="chk_anti_2">Antigüedad 2</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_3">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_3" name="chk_anti_3" type="checkbox">&nbsp;
+                                                <label for="chk_anti_3">Antigüedad 3</label>
+                                            </div>
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_4_6">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_4_6" name="chk_anti_4_6" type="checkbox">&nbsp;
+                                                <label for="chk_anti_4_6">Antigüedad 4 a 6</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_7_11">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_7_11" name="chk_anti_7_11" type="checkbox">&nbsp;
+                                                <label for="chk_anti_7_11">Antigüedad 7 a 11</label>
+                                            </div>
+                                            <div class="col-sx-12">
+                                                <label for="chk_anti_may_11">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_anti_may_11" name="chk_anti_may_11" type="checkbox">&nbsp;
+                                                <label for="chk_anti_may_11">Antigüedad mayores a 11</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
