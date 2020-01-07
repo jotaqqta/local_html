@@ -1,5 +1,5 @@
 var g_modulo = "Corte y Reposición";
-var g_tit = "Relación Motivo Cliente - Motivo Empresa - Tipo de Atención";
+var g_tit = "Administración de Motivos de Corte";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
@@ -30,6 +30,9 @@ $(document).ready(function () {
     fn_tipo_motiv();
     fn_ind_pago();
 
+    fn_tipo_motiv_edit();
+    fn_ind_pago_edit();
+
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
     $("._input_selector").inputmask("dd/mm/yyyy");
     $("#tx_ciclo").inputmask({mask:"99", rightAlign: false, placeholder: ""});
@@ -57,7 +60,7 @@ $(document).ready(function () {
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
-    //$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
@@ -67,7 +70,7 @@ $(document).ready(function () {
 
     $("#co_filtro").on("click", fn_filtro);
 
-    //$("#co_nuevo").on("click", fn_new);
+    $("#co_nuevo").on("click", fn_new);
 
     $("#co_generar").on("click", function() {
 
@@ -82,30 +85,30 @@ $(document).ready(function () {
         }
     });
 
-    /*$("#co_generar_edit").on("click", function() {
+    $("#co_generar_edit").on("click", function() {
 
         // Generar nuevo
-        if ($.trim($("#co_generar").text()) == "Generar") {
+        if ($.trim($("#co_generar_edit").text()) == "Generar") {
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-            $('#div_filtro_bts').modal('hide');
+            $("#div_edit_new_bts").slideUp();
+            $('#div_edit_new_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
 
         // Modificar
-        if ($.trim($("#co_generar").text()) == "Guardad") {
+        if ($.trim($("#co_generar_edit").text()) == "Modificar") {
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-            $('#div_filtro_bts').modal('hide');
+            $("#div_edit_new_bts").slideUp();
+            $('#div_edit_new_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
-    });*/
+    });
 
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
@@ -116,34 +119,34 @@ $(document).ready(function () {
             window.close();
     });
 
-    /*$("#co_limpiar_edit").on("click", function () {
+    $("#co_limpiar_edit").on("click", function () {
         if ($.trim($("#co_limpiar_edit").text()) == "Limpiar") {
             fn_limpiar_second();
             return;
         }
         else
             window.close();
-    });*/
+    });
 
     $("#co_cancel").on("click", function (){
         $('#div_filtro_bts').modal('hide');
     });
 
-    /*$("#co_cancel_edit").on("click", function (){
+    $("#co_cancel_edit").on("click", function (){
         $('#div_edit_new_bts').modal('hide');
-    });*/
+    });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
     //EVENTO DBL_CLICK DE LA GRILLA
-    /*$grid_principal.pqGrid({
+    $grid_principal.pqGrid({
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
                 fn_edit(dataCell);
             }
         }
-    });*/
+    });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //EXCEL
@@ -210,6 +213,7 @@ function fn_setea_grid_principal() {
         toolbar: {
             cls: "pq-toolbar-export",
             items:[
+                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
@@ -241,7 +245,7 @@ function fn_filtro(){
     });
 }
 
-/*function fn_edit(dataCell){
+function fn_edit(dataCell){
 
     $("#title_mod_new").html("Editar");
     $("#co_generar_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
@@ -276,7 +280,7 @@ function fn_new(){
     fn_limpiar_second();
 
     $("#title_mod_new").html("Generar nuevo");
-    $("#co_generar_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
+    $("#co_generar_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
     $("#tx_mot_client").val($("#cb_mot_client :selected").text());
     $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
@@ -286,7 +290,7 @@ function fn_new(){
         $("#div_edit_new_bts div.modal-footer button").focus();
 
     });
-}*/
+}
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_tipo_motiv(){
@@ -297,6 +301,16 @@ function fn_tipo_motiv(){
 function fn_ind_pago(){
 
     $("#cb_ind_pago").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
+    //$("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
+}
+function fn_tipo_motiv_edit(){
+
+    $("#cb_tipo_motiv_edit").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
+    //$("#cb_tipo_motiv_edit").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
+}
+function fn_ind_pago_edit(){
+
+    $("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
     //$("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
 }
 
@@ -322,12 +336,12 @@ function fn_limpiar(){
     $("#cb_ind_pago").val("");
 }
 
-/*function fn_limpiar_second() {
+function fn_limpiar_second() {
     $("#tx_cod_motiv_edit").val("");
     $("#tx_desc_edit").val("");
     $("#cb_tipo_motiv_edit").val("");
     $("#cb_ind_pago_edit").val("");
-}*/
+}
 
 function fn_mensaje(id,mensaje,segundos)
 {

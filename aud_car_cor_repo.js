@@ -1,5 +1,5 @@
 var g_modulo = "Corte y Reposición";
-var g_tit = "Relación Motivo Cliente - Motivo Empresa - Tipo de Atención";
+var g_tit = "Auditoria de Cargos Para Corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
@@ -155,23 +155,23 @@ function fn_setea_grid_principal() {
     var data =  [
         { C1: 'PANAMÁ METRO', C2: 'CORT', C3: 'N', C4: '1 "', C5: '0009', C6: 'AGUA REINST. SERVICIO - INTERIOR', C7: '0', C8: 'Insertado', C9: '03/07/2012', C10: 'SYNERGIA4J' },
         { C1: 'PANAMÁ METRO', C2: 'CORT', C3: 'N', C4: '1 1/2 "', C5: '0009', C6: 'AGUA REINST. SERVICIO - INTERIOR', C7: '0', C8: 'Eliminado', C9: '03/07/2012', C10: 'SYNERGIA4J' },
-        { C1: 'BOCAS DEL TORO', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'COCLÉ', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'COLÓN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'CHIRIQUÍ', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'PANAMA ESTE Y DARIEN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'HERRERA', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'LOS SANTOS', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'PANAMÁ METRO', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'ARRAIJÁN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'PANAMÁ OESTE', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'VERAGUAS', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'BOCAS DEL TORO', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'COCLÉ', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'COLÓN', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'CHIRIQUÍ', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'PANAMÁ ESTE Y DARIE', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
-        { C1: 'HERRERA', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '005/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'BOCAS DEL TORO', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'COCLÉ', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'COLÓN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'CHIRIQUÍ', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'PANAMA ESTE Y DARIEN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'HERRERA', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'LOS SANTOS', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'PANAMÁ METRO', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'ARRAIJÁN', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'PANAMÁ OESTE', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'VERAGUAS', C2: 'CORT', C3: 'S', C4: '8 "', C5: '0108', C6: 'CORTE SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'BOCAS DEL TORO', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'COCLÉ', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'COLÓN', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'CHIRIQUÍ', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'PANAMÁ ESTE Y DARIE', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
+        { C1: 'HERRERA', C2: 'REPO', C3: 'N', C4: '8 "', C5: '0008', C6: 'REINST. SERVICIO AGUA POTABLE', C7: '269.16', C8: 'Modificado', C9: '05/09/2014', C10: 'RCARVAJAL' },
     ];
 
     var obj = {

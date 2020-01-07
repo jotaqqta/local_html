@@ -2,6 +2,7 @@ var g_modulo = "Atención Integral de Clientes";
 var g_tit = "Relación Motivos Ordenes";
 var $grid_principal;
 var sql_grid_prim = "";
+var my_url = "rel_mot_ord";
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -304,6 +305,38 @@ function fn_setea_grid_principal() {
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"},
             ]
         },
+        refresh: function () {
+            $("#div_grid_principal > div.pq-grid-center-o > div.pq-grid-center > div.pq-body-outer > div.pq-grid-cont > div.pq-cont-inner > div.pq-table-right > div.pq-grid-row > div.pq-grid-cell").find("button.btn.btn-primary.btn-sm").button()
+                .bind("click", function (evt) {
+                    var $tr = $(this).closest("tr");
+                    var obj = $grid_principal.pqGrid("getRowIndx", { $tr: $tr });
+                    var rowIndx = obj.rowIndx;
+                    $grid_principal.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
+
+                    var DM = $grid_principal.pqGrid("option", "dataModel");
+                    var datos = DM.data;
+                    var row = datos[rowIndx];
+
+                    var parameters = {
+                        "func":"fn_borrar",
+                        "p_ip":$("#tx_ip").val(),
+                        "p_rol":$("#tx_rol").val(),
+                        "p_equipo":$("#cb_equipo").val(),
+                        //"p_rol_equipo":row.C2,
+                        "Empresa":$("#tx_empresa").val()
+                    };
+
+                    alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
+
+                    HablaServidor(my_url, parameters, 'text', function(text)
+                    {
+                        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
+                        fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+                    });
+                    return false;
+
+                });
+        }
     };
 
     obj.colModel = [

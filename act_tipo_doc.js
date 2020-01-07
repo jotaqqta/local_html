@@ -2,6 +2,7 @@ var g_modulo = "Atención Integral de Clientes";
 var g_tit = "Actualización de Documentos";
 var $grid_principal;
 var sql_grid_prim = "";
+var my_url = "act_tipo_doc";
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -85,7 +86,6 @@ $(document).ready(function () {
                 return;
             }
 
-
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_nuevo_bts").slideUp();
@@ -151,15 +151,8 @@ $(document).ready(function () {
             {
                 var dataCell = ui.rowData;
 
-                fn_edit();
+                fn_edit(dataCell);
 
-                $("#cb_sistema option").each(function()
-                {
-                    if ($(this).text() === dataCell.C2) {
-                        $("#cb_sistema").val($(this).val());
-                    }
-                });
-                $("#tx_tipo_doc").val(dataCell.C3);
                 //regional_fil = dataCell.C2;
                 //ciclo_fil = dataCell.C3;
                 //fn_grilla_dos();
@@ -201,9 +194,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 1, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'AVISO CORTE'},
-        { C1: 2, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'CARTA'},
-        { C1: 3, C2: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C3: 'COPIA CEDULA'}
+        { C1: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C2: 'AVISO CORTE'},
+        { C1: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C2: 'CARTA'},
+        { C1: 'MODULO ATENCIÓN INTEGRAL CLIENTE', C2: 'COPIA CEDULA'}
         ];
 
     var obj = {
@@ -230,15 +223,14 @@ function fn_setea_grid_principal() {
             ]
         },
         refresh: function () {
-            $("#div_grid_principal > div.pq-grid-center > div.pq-grid-cont-outer > div > div > table > tbody").find("button.btn.btn-primary.btn-sm").button()
+            $("#div_grid_principal > div.pq-grid-center-o > div.pq-grid-center > div.pq-body-outer > div.pq-grid-cont > div.pq-cont-inner > div.pq-table-right > div.pq-grid-row > div.pq-grid-cell").find("button.btn.btn-primary.btn-sm").button()
                 .bind("click", function (evt) {
-                    alert("HOLA");
-                    /*var $tr = $(this).closest("tr");
-                    var obj = $grid.pqGrid("getRowIndx", { $tr: $tr });
+                    var $tr = $(this).closest("tr");
+                    var obj = $grid_principal.pqGrid("getRowIndx", { $tr: $tr });
                     var rowIndx = obj.rowIndx;
-                    $grid.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
+                    $grid_principal.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
 
-                    var DM = $grid.pqGrid("option", "dataModel");
+                    var DM = $grid_principal.pqGrid("option", "dataModel");
                     var datos = DM.data;
                     var row = datos[rowIndx];
 
@@ -247,25 +239,26 @@ function fn_setea_grid_principal() {
                         "p_ip":$("#tx_ip").val(),
                         "p_rol":$("#tx_rol").val(),
                         "p_equipo":$("#cb_equipo").val(),
-                        "p_rol_equipo":row.C1,
+                        //"p_rol_equipo":row.C2,
                         "Empresa":$("#tx_empresa").val()
                     };
 
+                    alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
+
                     HablaServidor(my_url, parameters, 'text', function(text)
                     {
-                        $grid.pqGrid("deleteRow", { rowIndx: rowIndx });
+                        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
                         fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
                     });
-                    return false;*/
+                    return false;
 
                 });
         }
     };
 
     obj.colModel = [
-        { title: "ID", width:25, dataType: "number", dataIndx: "C1", halign: "center", align: "center", hidden: "true" },
-        { title: "Sistema", width:500, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C3", halign: "center", align: "left"},
+        { title: "Sistema", width:500, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
         { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
             render: function (ui) {
                 return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
@@ -294,10 +287,19 @@ function fn_nuevo(){
     });
 }
 
-function fn_edit(){
+function fn_edit(dataCell){
 
     $("#title_mod_new").html("Editar documento");
     $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+
+    $("#tx_tipo_doc").val(dataCell.C2);
+
+    $("#cb_sistema option").each(function()
+    {
+        if ($(this).text() === dataCell.C1) {
+            $("#cb_sistema").val($(this).val());
+        }
+    });
 
     $("#div_nuevo_bts").modal({backdrop: "static",keyboard:false});
     $("#div_nuevo_bts").on("shown.bs.modal", function () {
