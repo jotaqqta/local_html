@@ -58,30 +58,15 @@
         }
 
         #div_antiguedad {
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
+            border-radius: 3px;
             border: 1px solid #CCCCCC;
             padding: 7px;
         }
 
-        #separador {
-            border-top: 1px solid #CCCCCC;
-        }
-
-        #space {
-            height: 12px;
-        }
-
-        #space-01 {
-            height: 8px;
-        }
-
-        #space2 {
-            height: 25px;
-        }
-
-        #space3 {
-            width: 83px;
+        #div_factor {
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
+            padding: 7px;
         }
 
     </style>
@@ -97,6 +82,7 @@
 
 <div class="bootstrap-syn">
     <br>
+    <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
     <div class="container" id="container-prin">
         <div id="div_prin">
             <div class="container">
@@ -108,81 +94,81 @@
                         <div class="col-xs-4">
                             <div class="row">
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Resumen de Reposiciones</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_1">Resumen de Reposiciones</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Informe de cargos por Corte y Repo</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_4">Informe de cargos por Corte y Repo</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Listado de Cargos Anulados</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_7">Listado de Cargos Anulados</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Validacion de Corte</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_10">Validacion de Corte</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Anulaciones temporales de Corte</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_13">Anulaciones temporales de Corte</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Resumen de cortes por Localidades</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_16">Resumen de cortes por Localidades</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Estadistica montos por Corte y Reposicion</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_19">Estadistica montos por Corte y Reposicion</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Informe control otorga Plazo</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="row">
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Resumen de Cortes Especiales</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Plantillas de Corte</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Clientes sin Suministro</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Validación de Reposiciones</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Listado de Cargos Refacturados</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Estadistica de deuda por tramos de antigüedad</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Estadisticas de repeticion de claves por cortes no exitosos</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Clientes Autorepuestos</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_22">Informe control otorga Plazo</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="row">
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Resumen de Corte del día</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_2">Resumen de Cortes Especiales</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Sujetos a Corte sin Medidor</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_5">Plantillas de Corte</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Suministros exentos de Corte</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_8">Clientes sin Suministro</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Gestion de corte</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_11">Validación de Reposiciones</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Clientes notificados a Corte</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_14">Listado de Cargos Refacturados</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Estadistica de clientes con nueva antigüedad</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_17">Estadistica de deuda por tramos de antigüedad</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="opt_filtro">Estadisticas de servicios cortados sin pago</label>
+                                    <label><input type="radio" name="opt_filtro" value="opt_20">Estadisticas de repeticion de claves por cortes no exitosos</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_23">Clientes Autorepuestos</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_3">Resumen de Corte del día</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_6">Sujetos a Corte sin Medidor</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_9">Suministros exentos de Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_12">Gestion de corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_15">Clientes notificados a Corte</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_18">Estadistica de clientes con nueva antigüedad</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro" value="opt_21">Estadisticas de servicios cortados sin pago</label>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +176,7 @@
                 </div>
             </div>
         </div>
-        <hr id="separador">
+        <hr style="border-top: 1px solid #CCCCCC">
         <div id="div_second">
             <div class="container">
                 <div class="row" id="filtro-basico">
@@ -218,6 +204,18 @@
                                 <label for="tx_fec_hasta">Hasta:</label>
                                 <input id="tx_fec_hasta" class="form-control input-normal _input_selector">
                             </div>
+                            <div class="col-xs-7">
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <button class="btn-sm btn-primary btn-default btn-group" id="co_generar" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Generar
+                                </button>
+                                <button class="btn-sm btn-primary btn-default btn-group" id="co_excel" type="button"><span
+                                        class="glyphicon glyphicon-save"></span> Excel
+                                </button>
+                                <button class="btn btn-secondary btn-sm btn-group" id="co_cerrar" type="button"><span
+                                        class="glyphicon glyphicon-off"></span> Cerrar
+                                </button>
+                            </div>
                             <div class="col-xs-8">
                                 <label for="cb_sec_fin">Sector Final:</label>
                                 <select class="form-control input-normal inp_dis" id="cb_sec_fin"
@@ -231,7 +229,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="filtro-1">
+                <div class="row" id="filtro-1" >
                     <div class="col-xs-6">
                         <div class="row">
                             <div class="col-xs-8">
@@ -243,12 +241,12 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="row">
-                            <div class="col-xs-12" id="space-01"></div>
+                            <div class="col-xs-12" style="height: 8px"></div>
                             <div class="col-xs-3">
                                 <div class="row">
-                                    <div class="col-xs-12" id="space"></div>
+                                    <div class="col-xs-12" style="height: 12px"></div>
                                     <div class="col-xs-12">
-                                        <label class="text-center" style="text-align:center">Tipo de Proceso:</label>
+                                        <label>Tipo de Proceso:</label>
                                     </div>
                                 </div>
                             </div>
@@ -269,14 +267,89 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="filtro-2">
-                    <div class="col-xs-12" id="space2"></div>
+                <div class="row" id="filtro-2" >
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label for="tx_deud_inicial">Deuda Inicial:</label>
+                                <input id="tx_deud_inicial" class="form-control input-normal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label for="tx_deud_final">Deuda Final:</label>
+                                <input id="tx_deud_final" class="form-control input-normal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="filtro-3" >
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12" style="height: 8px"></div>
+                            <div class="col-xs-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro_3">Diario</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="radio">
+                                    <label><input type="radio" name="opt_filtro_3">Mensual</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-8" style="height: 42px">
+                                <p> </p>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="tx_año">Año:</label>
+                                <input id="tx_año" class="form-control input-normal">
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="tx_mes">Mes:</label>
+                                <input id="tx_mes" class="form-control input-normal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-12" style="height: 8px"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="filtro-4">
+                    <div class="col-xs-12" style="height: 25px"></div>
                     <div class="col-xs-8">
                         <div class="container">
                             <div class="row">
-                                <div class="col-xs-1" id="space3"></div>
+                                <div class="col-xs-1" style="width: 370px"></div>
+                                <div class="col-xs-4"  id="div_factor">
+                                    <h5 style="height: 10px">&nbsp; Factor de Repetición</h5>
+                                    <div class="row">
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-4">
+                                            <label for="tx_mayor_igual">Mayor o igual a:</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input id="tx_mayor_igual" class="form-control input-normal _input_selector">
+                                        </div>
+                                        <div class="col-xs-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="filtro-5">
+                    <div class="col-xs-12" style="height: 25px"></div>
+                    <div class="col-xs-8">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-1" style="width: 83px"></div>
                                 <div class="col-xs-10"  id="div_antiguedad">
-                                    <p>&nbsp; Antigüedad de la Deuda</p>
+                                    <h5>&nbsp; Antigüedad de la Deuda</h5>
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <div class="col-sx-12">
@@ -320,6 +393,8 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <div id="mensaje_filtro"></div>
             </div>
         </div>
     </div>
