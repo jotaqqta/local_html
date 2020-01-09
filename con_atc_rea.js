@@ -256,17 +256,12 @@ $(document).ready(function () {
             if (ui.rowData)
             {
                 var dataCell = ui.rowData;
-                //g_cliente_selec = dataCell.c2;
                 fn_ocular_grillas();
                 $("#div_second").show();
                 $("#div_grid_motivos").show();
                 $("#co_excel_2").show();
                 $("#div_prin").hide();
                 $grid_motivos.pqGrid("refreshView");
-                //periodo_fil = dataCell.C1;
-                //regional_fil = dataCell.C2;
-                //ciclo_fil = dataCell.C3;
-                //fn_grilla_dos();
             }
         }
     });
