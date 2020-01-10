@@ -1,7 +1,6 @@
 var g_modulo = "Corte y Reposición";
 var g_tit = "Mantención de Días Máximo de Plazos";
 var $grid_principal;
-var confirmar;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -194,14 +193,12 @@ $(document).ready(function () {
 
     $("#co_confirm_yes").on( "click", function () {
         $('#dlg_confirm').modal('hide');
-        confirmar = true;
-        fn_eliminar();
+        fn_eliminar(true);
     });
 
     $("#co_confirm_no").on( "click", function () {
         $('#dlg_confirm').modal('hide');
-        confirmar = false;
-        fn_eliminar();
+        fn_eliminar(false);
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -241,9 +238,9 @@ function fn_mot_susp_type(){
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
-function fn_eliminar() {
+function fn_eliminar(confirm) {
 
-    if (confirmar) {
+    if (confirm) {
         // Acion de borrar
         fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
     }

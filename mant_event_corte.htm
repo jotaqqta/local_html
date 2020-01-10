@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+    <script src="mant_event_corte.js"></script>
+
+    <style>
+
+        #content {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-right: 1px solid #DDDDDD;
+            border-left: 1px solid #DDDDDD;
+            border-bottom: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <br>
+    <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+    <div class="container" id="container-prin">
+        <div style="position: absolute; left: 790px; top: 110px; width: 100px; z-index: 1; border-bottom: 1px solid #DDDDDD;"> &nbsp; </div>
+        <div id="div_prin">
+            <div class="row">
+                <div class="container col-xs-8">
+                    <ul class="nav nav-tabs">
+                        <li id="tab_event_corte" role="presentation" class="active"><a href="#">Eventos de Corte</a></li>
+                        <li id="tab_situa_encon" role="presentation"><a href="#">Situación encontrada</a></li>
+                        <li id="tab_acc_real" role="presentation"><a href="#">Acciones Realizadas</a></li>
+                        <li id="tab_event_situa_acc" role="presentation"><a href="#">Evento Situación Acción</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-4 btn-group text-right" style="border-bottom: 1px solid #DDDDDD; width: 375px; height: 42px">
+                    <button class="btn-sm btn-primary" id="co_leer" type="button"><span
+                            class="glyphicon glyphicon-search"></span> Leer
+                    </button>
+                    <button class="btn-sm btn-primary" id="co_modificar" type="button"><span
+                            class="glyphicon glyphicon-floppy-disk"></span> Modificar
+                    </button>
+                    <button class="btn-sm btn-primary" id="co_eliminar" type="button">
+                        <img src='/galeria/trash-solid.png'/>&nbsp;Eliminar
+                    </button>
+                    <button class="btn-sm btn-primary" id="co_inactivar" type="button"><span
+                            class="glyphicon glyphicon-remove"></span> Inactivar
+                    </button>
+                    <button class="btn-sm btn-secondary " id="co_cerrar" type="button"><span
+                            class="glyphicon glyphicon-off"></span> Cerrar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div id="content">
+                        <div style="width: 1120px; height: 10px"></div>
+                        <div id="div_event_corte">
+                            <div class="container" style="width: 100%;">
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <label>Codigo:</label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <select class="form-control input-normal inp_dis" id="cb_codigo"
+                                                name="cb_codigo"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <label>Descripción:</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <input id="tx_desc" class="form-control input-normal">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Cantidad días Normales</label>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input id="tx_cant_dias_norm" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Cantidad días Convenio</label>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input id="tx_cant_dias_conv" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6 ">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="height: 20px">
+                                                        <label>Repaso:</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <div class="radio" style="height: 2px">
+                                                            <label><input type="radio" name="opt_cort" value="opt_1">Si</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <div class="radio" style="height: 2px">
+                                                            <label><input type="radio" name="opt_cort" value="opt_2">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Cantidad días Repaso</label>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input id="tx_cant_dias_repa" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Estado suministro</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_state_sumi"
+                                                        name="cb_state_sumi"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Siguiente evento:</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_sig_event"
+                                                        name="cb_state_sumi"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div id="div_situa_encon">
+                            <div class="container" style="width: 100%;">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Centro operativo:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <select class="form-control input-normal inp_dis" id="cb_centro_oper"
+                                                name="cb_centro_oper"></select>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <label>Descripción:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input id="tx_desc_sit" class="form-control input-normal">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Código:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <select class="form-control input-normal inp_dis" id="cb_codigo_sit"
+                                                name="cb_codigo_sit"></select>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label>Repaso Reposición:</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_sit" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_sit" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div id="div_acc_real">
+                            <div class="container" style="width: 100%">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Centro operativo:</label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <select class="form-control input-normal inp_dis" id="cb_centro_oper_acc"
+                                                name="cb_centro_oper_acc"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Evento:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <select class="form-control input-normal inp_dis" id="cb_event"
+                                                        name="cb_event"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <label>Instancia Corte:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <select class="form-control input-normal inp_dis" id="cb_inst_cort"
+                                                        name="cb_inst_cort"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Descripción:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_desc_acc" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <label>Código:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <select class="form-control input-normal inp_dis" id="cb_codigo_acc"
+                                                        name="cb_codigo_sit"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Ingresa Sellos</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_sell" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_sell" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Indica Corte</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_indc_cort" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_indc_cort" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Ingresa Repone</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_repo" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_repo" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Indica Anomalia</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_indc_anom" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_indc_anom" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Ingresa Rotura Pavimento</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_rot_pav" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_ing_rot_pav" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Lleva cero corte no exitoso</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_lleva_cort_no_exit" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_lleva_cort_no_exit" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Aumenta corte no exitoso</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_aum_cort_no_exit" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_aum_cort_no_exit" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Repaso</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_repaso" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_repaso" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div id="div_event_situa_acc">
+                            <div class="container" style="width: 100%">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Centro Operativo</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_centro_oper_event"
+                                                        name="cb_centro_oper_event"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Registros Ingresados</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_reg_ing"
+                                                        name="cb_reg_ing"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Evento de corte:</label>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <select class="form-control input-normal inp_dis" id="cb_evnt_cort_type"
+                                                name="cb_evnt_cort_type"></select>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <select class="form-control input-normal inp_dis" id="cb_evnt_cort"
+                                                name="cb_evnt_cort"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Instancia de Corte:</label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select class="form-control input-normal inp_dis" id="cb_inst_cort_evnt"
+                                                name="cb_inst_cort_evnt"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Situación Encontrada:</label>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <select class="form-control input-normal inp_dis" id="cb_situ_encon_type"
+                                                name="cb_situ_encon_type"></select>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <select class="form-control input-normal inp_dis" id="cb_situ_encon"
+                                                name="cb_situ_encon"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Acción Realizada:</label>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <select class="form-control input-normal inp_dis" id="cb_acc_real_type"
+                                                name="cb_acc_real_type"></select>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <select class="form-control input-normal inp_dis" id="cb_acc_real"
+                                                name="cb_acc_real"></select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Zona Concesion</label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <select class="form-control input-normal inp_dis" id="cb_zon_conc"
+                                                name="cb_zon_conc"></select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Cumple Evento</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_cump_event" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_cump_event" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Atribuible al Cliente</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_atrib_client" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_atrib_client" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Inspecciona</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_inspec" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_inspec" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Genera Cobro?</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <select class="form-control input-normal inp_dis" id="cb_gen_cobro"
+                                                        name="cb_gen_cobro"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Incrementa Instancia</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_inc_inst" value="opt_1">Si</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <div class="radio" style="height: 2px">
+                                                    <label><input type="radio" name="opt_inc_inst" value="opt_2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Estado Conexion:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <select class="form-control input-normal inp_dis" id="cb_est_conex"
+                                                        name="cb_est_conex"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Días para repetir:</label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input id="tx_dias_rept" class="form-control input-normal">
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div id="div_filtros_basic">
+                            <div class="container" style="width: 100%">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label>Estado:</label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input id="tx_state" class="form-control input-normal">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Fecha Creación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_fech_crea" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Rol Creación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_rol_crea" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Fecha Modificación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_fech_modf" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Rol Modificación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_rol_modf" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Fecha Eliminación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_fech_elim" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Rol Eliminación:</label>
+                                            </div>
+                                            <div class="col-xs-5">
+                                                <input id="tx_rol_elim" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mensaje_edit"></div>
+        </div>
+        <!-- Modal confirmación borrar -->
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                    </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label" id="msg_confirm">Estas seguro de eliminar este Registro?</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-sm btn-primary" id="co_confirm_yes" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Confirmar
+                        </button>
+                        <button class="btn-sm btn-danger" id="co_confirm_no" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
