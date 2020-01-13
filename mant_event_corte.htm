@@ -109,7 +109,7 @@
                         <div id="div_event_corte">
                             <div class="container" style="width: 100%;">
                                 <div class="row">
-                                    <div class="col-xs-1">
+                                    <div class="col-xs-2">
                                         <label>Codigo:</label>
                                     </div>
                                     <div class="col-xs-2">
@@ -119,7 +119,7 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-xs-1">
+                                    <div class="col-xs-2">
                                         <label>Descripción:</label>
                                     </div>
                                     <div class="col-xs-4">
@@ -131,7 +131,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Cantidad días Normales</label>
+                                                <label>Cantidad días Normales:</label>
                                             </div>
                                             <div class="col-xs-4">
                                                 <input id="tx_cant_dias_norm" class="form-control input-normal">
@@ -141,7 +141,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Cantidad días Convenio</label>
+                                                <label>Cantidad días Convenio:</label>
                                             </div>
                                             <div class="col-xs-4">
                                                 <input id="tx_cant_dias_conv" class="form-control input-normal">
@@ -179,7 +179,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Cantidad días Repaso</label>
+                                                <label>Cantidad días Repaso:</label>
                                             </div>
                                             <div class="col-xs-4">
                                                 <input id="tx_cant_dias_repa" class="form-control input-normal">
@@ -192,7 +192,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Estado suministro</label>
+                                                <label>Estado suministro:</label>
                                             </div>
                                             <div class="col-xs-6">
                                                 <select class="form-control input-normal inp_dis" id="cb_state_sumi"
@@ -207,7 +207,7 @@
                                             </div>
                                             <div class="col-xs-6">
                                                 <select class="form-control input-normal inp_dis" id="cb_sig_event"
-                                                        name="cb_state_sumi"></select>
+                                                        name="cb_sig_event"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -218,42 +218,58 @@
                         <div id="div_situa_encon">
                             <div class="container" style="width: 100%;">
                                 <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Centro operativo:</label>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Centro operativo:</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_centro_oper"
+                                                        name="cb_centro_oper"></select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-3">
-                                        <select class="form-control input-normal inp_dis" id="cb_centro_oper"
-                                                name="cb_centro_oper"></select>
-                                    </div>
-                                    <div class="col-xs-1">
-                                        <label>Descripción:</label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <input id="tx_desc_sit" class="form-control input-normal">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Código:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <select class="form-control input-normal inp_dis" id="cb_codigo_sit"
+                                                        name="cb_codigo_sit"></select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Código:</label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <select class="form-control input-normal inp_dis" id="cb_codigo_sit"
-                                                name="cb_codigo_sit"></select>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <label>Repaso Reposición:</label>
-                                    </div>
-                                    <div class="col-xs-3">
+                                    <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <div class="radio" style="height: 2px">
-                                                    <label><input type="radio" name="opt_sit" value="opt_1">Si</label>
-                                                </div>
+                                                <label>Descripción:</label>
                                             </div>
+                                            <div class="col-xs-6">
+                                                <input id="tx_desc_sit" class="form-control input-normal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
                                             <div class="col-xs-4">
-                                                <div class="radio" style="height: 2px">
-                                                    <label><input type="radio" name="opt_sit" value="opt_2">No</label>
+                                                <label>Repaso Reposición:</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <div class="radio" style="height: 2px">
+                                                            <label><input type="radio" name="opt_sit" value="opt_1">Si</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <div class="radio" style="height: 2px">
+                                                            <label><input type="radio" name="opt_sit" value="opt_2">No</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -268,7 +284,7 @@
                                     <div class="col-xs-2">
                                         <label>Centro operativo:</label>
                                     </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-xs-3">
                                         <select class="form-control input-normal inp_dis" id="cb_centro_oper_acc"
                                                 name="cb_centro_oper_acc"></select>
                                     </div>
@@ -317,7 +333,7 @@
                                             </div>
                                             <div class="col-xs-5">
                                                 <select class="form-control input-normal inp_dis" id="cb_codigo_acc"
-                                                        name="cb_codigo_sit"></select>
+                                                        name="cb_codigo_acc"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -327,7 +343,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Ingresa Sellos</label>
+                                                <label>Ingresa Sellos:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -344,7 +360,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Indica Corte</label>
+                                                <label>Indica Corte:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -364,7 +380,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Ingresa Repone</label>
+                                                <label>Ingresa Repone:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -381,7 +397,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Indica Anomalia</label>
+                                                <label>Indica Anomalia:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -401,7 +417,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Ingresa Rotura Pavimento</label>
+                                                <label>Ingresa Rotura Pavimento:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -418,7 +434,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Lleva cero corte no exitoso</label>
+                                                <label>Lleva cero corte no exitoso:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -438,7 +454,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Aumenta corte no exitoso</label>
+                                                <label>Aumenta corte no exitoso:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -455,7 +471,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Repaso</label>
+                                                <label>Repaso:</label>
                                             </div>
                                             <div class="col-xs-3">
                                                 <div class="radio" style="height: 2px">
@@ -479,7 +495,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Centro Operativo</label>
+                                                <label>Centro Operativo:</label>
                                             </div>
                                             <div class="col-xs-6">
                                                 <select class="form-control input-normal inp_dis" id="cb_centro_oper_event"
@@ -490,7 +506,7 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4">
-                                                <label>Registros Ingresados</label>
+                                                <label>Registros Ingresados:</label>
                                             </div>
                                             <div class="col-xs-6">
                                                 <select class="form-control input-normal inp_dis" id="cb_reg_ing"
@@ -501,60 +517,70 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Evento de corte:</label>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Evento de corte:</label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <select class="form-control input-normal inp_dis" id="cb_evnt_cort_type"
+                                                        name="cb_evnt_cort_type"></select>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_evnt_cort"
+                                                        name="cb_evnt_cort"></select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-1">
-                                        <select class="form-control input-normal inp_dis" id="cb_evnt_cort_type"
-                                                name="cb_evnt_cort_type"></select>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Instancia de Corte:</label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_inst_cort_evnt"
+                                                        name="cb_inst_cort_evnt"></select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-5">
-                                        <select class="form-control input-normal inp_dis" id="cb_evnt_cort"
-                                                name="cb_evnt_cort"></select>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Situación Encontrada:</label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <select class="form-control input-normal inp_dis" id="cb_situ_encon_type"
+                                                        name="cb_situ_encon_type"></select>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_situ_encon"
+                                                        name="cb_situ_encon"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <label>Acción Realizada:</label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <select class="form-control input-normal inp_dis" id="cb_acc_real_type"
+                                                        name="cb_acc_real_type"></select>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <select class="form-control input-normal inp_dis" id="cb_acc_real"
+                                                        name="cb_acc_real"></select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-xs-2">
-                                        <label>Instancia de Corte:</label>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <select class="form-control input-normal inp_dis" id="cb_inst_cort_evnt"
-                                                name="cb_inst_cort_evnt"></select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Situación Encontrada:</label>
-                                    </div>
-                                    <div class="col-xs-1">
-                                        <select class="form-control input-normal inp_dis" id="cb_situ_encon_type"
-                                                name="cb_situ_encon_type"></select>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <select class="form-control input-normal inp_dis" id="cb_situ_encon"
-                                                name="cb_situ_encon"></select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Acción Realizada:</label>
-                                    </div>
-                                    <div class="col-xs-1">
-                                        <select class="form-control input-normal inp_dis" id="cb_acc_real_type"
-                                                name="cb_acc_real_type"></select>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <select class="form-control input-normal inp_dis" id="cb_acc_real"
-                                                name="cb_acc_real"></select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-2">
-                                        <label>Zona Concesion</label>
+                                        <label>Zona Concesión:</label>
                                     </div>
                                     <div class="col-xs-2">
                                         <select class="form-control input-normal inp_dis" id="cb_zon_conc"
@@ -753,10 +779,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="div_msg_err">
+                            <div class="container" style="width: 100%">
+                                <div class="row">
+                                    <br>
+                                    <div id="mensaje_edit"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="mensaje_edit"></div>
         </div>
         <!-- Modal confirmación borrar -->
         <div id="dlg_confirm" class="modal" role="dialog">
