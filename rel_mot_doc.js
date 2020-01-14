@@ -220,7 +220,9 @@ function fn_setea_grid_principal() {
                         "Empresa":$("#tx_empresa").val()
                     };
 
-                    alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
+                    //alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
+
+                    alert();
 
                     HablaServidor(my_url, parameters, 'text', function(text)
                     {

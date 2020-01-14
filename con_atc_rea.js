@@ -1,5 +1,5 @@
 var g_modulo = "Atención Integral de Clientes";
-var g_tit = "Atención Integral de Clientes";
+var g_tit = "Consulta de Atenciones Realizadas";
 var $grid_principal;
 var $grid_motivos;
 var $grid_ordenes;
