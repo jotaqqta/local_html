@@ -1,5 +1,5 @@
 var g_modulo = "Cobranza";
-var g_tit = "Informe de Campaña";
+var g_tit = "Informe de recaudacion para el contratista Inassa";
 var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "inf_camp_cobr_int";
@@ -27,6 +27,10 @@ $(document).ready(function () {
     });
 
     $("._input_selector").inputmask("dd/mm/yyyy");
+
+    // CARGAR COMBOS
+
+    fn_regional();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -64,6 +68,27 @@ $(document).ready(function () {
 
         if ($.trim($("#co_generar").text()) == "Consultar") {
 
+            if ($("#cb_regional").val() == "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
+                $("#cb_regional").focus();
+                return;
+            }
+
+            if ($("#tx_desde").val() == "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR UNA FECHA INICIO!!!</strong></div>',3000);
+                $("#tx_desde").focus();
+                return;
+            }
+
+            if ($("#tx_hasta").val() == "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UNA FECHA FIN!!!</strong></div>',3000);
+                $("#tx_hasta").focus();
+                return;
+            }
+
             if ($("#tx_desde").val() !== "") {
                 if (fn_validar_fecha($("#tx_desde").val()) === false) {
                     fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
@@ -80,22 +105,6 @@ $(document).ready(function () {
                 }
             }
 
-            if ($("#tx_desde_2").val() !== "") {
-                if (fn_validar_fecha($("#tx_desde_2").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fetx_desde_2c_desde").focus();
-                    return;
-                }
-            }
-
-            if ($("#tx_hasta_2").val() !== "") {
-                if (fn_validar_fecha($("#tx_hasta_2").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_hasta_2").focus();
-                    return;
-                }
-            }
-
             if ($("#tx_desde").val() !== "" && $("#tx_hasta").val() !== "") {
 
                 if (fn_fecha($("#tx_desde").val(), $("#tx_hasta").val()) === false) {
@@ -104,16 +113,6 @@ $(document).ready(function () {
                     return;
                 }
             }
-
-            if ($("#tx_desde_2").val() != "" && $("#tx_hasta_2").val() != "") {
-
-                if (fn_fecha($("#tx_desde_2").val(), $("#tx_hasta_2").val()) == false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO!!!</strong></div>', 3000);
-                    $("#tx_desde_2").focus();
-                    return;
-                }
-            }
-
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
@@ -166,22 +165,27 @@ $(document).ready(function () {
 
 });
 
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: '01', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/12/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000'},
-        { C1: '02', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/12/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '03', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/12/2022', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '1245', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/12/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '1057', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/05/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '789687', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '25/09/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '45278', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/05/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '425278', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/05/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '7899', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/05/2024', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
-        { C1: '4237', C2: 'TEXTO DE EJEMPLO', C3: '02/01/2020', C4: '05/05/2021', C5: '250', C6: '1.000.000', C7: '50', C8: '525.000' },
+        { C1: '(8100) ARRAIJAN', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(3000) COLON', C2: '02/02/2020', C3: '505', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8000) PANAMÁ METRO', C2: '02/02/2020', C3: '840', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8100) ARRAIJAN', C2: '02/02/2020', C3: '550', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(3000) COLON', C2: '02/02/2020', C3: '605', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8100) ARRAIJAN', C2: '02/02/2020', C3: '880', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8000) PANAMÁ METRO', C2: '02/02/2020', C3: '556', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(3000) COLON', C2: '02/02/2020', C3: '501', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8200) PANAMÁ OESTE', C2: '02/02/2020', C3: '870', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8000) PANAMÁ METRO', C2: '02/02/2020', C3: '784', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8000) PANAMÁ METRO', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8100) ARRAIJAN', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8200) PANAMÁ OESTE', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(3000) COLON', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8000) PANAMÁ METRO', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+        { C1: '(8100) ARRAIJAN', C2: '02/02/2020', C3: '500', C4: '5', C5: '10', C6: '205', C7: '950', C8: '201', C9: '514', C10: '1.256.201'},
+
     ];
 
     var obj = {
@@ -210,14 +214,16 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Campaña", width: 100, dataType: "integer", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 300, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
-        { title: "Fecha Creacion", width: 108, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-        { title: "Fecha Fin", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-        { title: "Cantidad Cliente Inicio", width: 125, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-        { title: "Deuda Inicial", width: 125, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
-        { title: "Cliente Regularizado", width: 125, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-        { title: "Deuda Regularizada", width: 125, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+        { title: "Regional", width: 200, dataType: "strig", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Fecha Pago", width: 85, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+        { title: "Cantidad Clientes", width: 128, dataType: "integer", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Pago 2 a 4", width: 80, dataType: "integer", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Pago 4 a 12", width: 100, dataType: "integer", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Pago 12 a 24", width: 100, dataType: "integer", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Pago 24 a 36", width: 100, dataType: "integer", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Pago 36 a 60", width: 100, dataType: "integer", dataIndx: "C8", halign: "center", align: "center" },
+        { title: "Pago Mayor a 60", width: 120, dataType: "integer", dataIndx: "C9", halign: "center", align: "center" },
+        { title: "Pago Total", width: 95, dataType: "integer", dataIndx: "C10", halign: "center", align: "center" },
     ];
     obj.dataModel = { data: data };
 
@@ -266,6 +272,13 @@ function fn_fecha(valor, valor2) {
 
 }
 
+/////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
+function fn_regional(){
+
+    $("#cb_regional").html("<option value='' selected></option><option value='1'>(3000) COLON</option> <option value='2' >(8000) PANAMÁ METRO</option>  <option value='3' >(8100) ARRAIJAN</option>  <option id='4'>(8200) PANAMÁ OESTE</option>");
+}
+
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_filtro(){
@@ -292,10 +305,9 @@ function fn_carga_grilla() {
 // Limpiar Filtro
 function fn_limpiar(){
 
+    $("#cb_regional").val("");
     $("#tx_desde").val("");
-    $("#tx_desde_2").val("");
     $("#tx_hasta").val("");
-    $("#tx_hasta_2").val("");
 }
 
 function fn_mensaje(id,mensaje,segundos)
