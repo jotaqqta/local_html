@@ -66,7 +66,6 @@ $(document).ready(function () {
 
     $("#div_second").hide();
     $("#ra").hide();
-    $("#co_excel_3").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -118,8 +117,6 @@ $(document).ready(function () {
 
         }
     });
-
-    $("#co_info").on( "click", fn_info);
 
     $("#co_filtro").on("click", fn_filtro);
 
@@ -197,51 +194,71 @@ $(document).ready(function () {
 
     $("#co_excel_2").on("click", function (e) {
 
-        e.preventDefault();
-        var col_model=$( "#div_grid_motivos" ).pqGrid( "option", "colModel" );
-        var cabecera = "";
-        for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+        if ($("#tab_uni_regional").is(":visible")) {
+            e.preventDefault();
+            var col_model=$( "#div_grid_regional" ).pqGrid( "option", "colModel" );
+            var cabecera = "";
+            for (i = 0; i < col_model.length; i++){
+                if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            }
+            $("#excel_cabecera").val(cabecera);
+            var element =$grid_regional.pqGrid("option","dataModel.data");
+            if (element)
+                a= element.length;
+            else
+                a = 0;
+            if(a > 0){
+                $("#tituloexcel").val(g_tit);
+                $("#sql").val(sql_grid_prim);
+                $("#frm_Exel").submit();
+                return;
+            }
         }
-        $("#excel_cabecera").val(cabecera);
-        var element =$grid_motivos.pqGrid("option","dataModel.data");
-        if (element)
-            a= element.length;
-        else
-            a = 0;
-        if(a > 0){
-            $("#tituloexcel").val(g_tit);
-            $("#sql").val(sql_grid_2);
-            $("#frm_Exel").submit();
-            return;
-        }
-    });
 
-    $("#co_excel_3").on("click", function (e) {
-
-        e.preventDefault();
-        var col_model=$( "#div_grid_ordenes" ).pqGrid( "option", "colModel" );
-        var cabecera = "";
-        for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+        if ($("#tab_uni_campaña").is(":visible")) {
+            e.preventDefault();
+            var col_model=$( "#div_grid_campaña" ).pqGrid( "option", "colModel" );
+            var cabecera = "";
+            for (i = 0; i < col_model.length; i++){
+                if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            }
+            $("#excel_cabecera").val(cabecera);
+            var element =$grid_campana.pqGrid("option","dataModel.data");
+            if (element)
+                a= element.length;
+            else
+                a = 0;
+            if(a > 0){
+                $("#tituloexcel").val(g_tit);
+                $("#sql").val(sql_grid_prim);
+                $("#frm_Exel").submit();
+                return;
+            }
         }
-        $("#excel_cabecera").val(cabecera);
-        var element =$grid_ordenes.pqGrid("option","dataModel.data");
-        if (element)
-            a= element.length;
-        else
-            a = 0;
-        if(a > 0){
-            $("#tituloexcel").val(g_tit);
-            $("#sql").val(sql_grid_3);
-            $("#frm_Exel").submit();
-            return;
+
+        if ($("#tab_uni_estado").is(":visible")) {
+            e.preventDefault();
+            var col_model=$( "#div_grid_estado" ).pqGrid( "option", "colModel" );
+            var cabecera = "";
+            for (i = 0; i < col_model.length; i++){
+                if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            }
+            $("#excel_cabecera").val(cabecera);
+            var element =$grid_estado.pqGrid("option","dataModel.data");
+            if (element)
+                a= element.length;
+            else
+                a = 0;
+            if(a > 0){
+                $("#tituloexcel").val(g_tit);
+                $("#sql").val(sql_grid_prim);
+                $("#frm_Exel").submit();
+                return;
+            }
         }
     });
 
 });
-
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
@@ -507,17 +524,6 @@ function fn_filtro(){
     });
 }
 
-function fn_info(){
-
-    $("#div_total_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_total_bts").on("shown.bs.modal", function () {
-        $("#div_total_bts div.modal-footer button").focus();
-
-    });
-}
-
-
-
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_campana(){
@@ -584,6 +590,7 @@ function fn_carga_grilla() {
 // Limpiar Filtro
 function fn_limpiar(){
 
+    $("#cb_campana").val("");
 }
 function fn_mensaje(id,mensaje,segundos)
 {
