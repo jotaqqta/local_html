@@ -95,7 +95,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Numero Cliente:</label>
+                                            <label for="tx_num_client">Numero Cliente:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_num_client" name="tx_num_client" class="form-control">
@@ -106,6 +106,12 @@
                                     <button class="btn-sm btn-primary" id="co_leer" type="button"><span
                                             class="glyphicon glyphicon-search"></span> Leer
                                     </button>
+                                    <button class="btn-sm btn-primary" id="co_con_pd" type="button"><span
+                                            class=" "></span> Consulta PD
+                                    </button>
+                                    <button class="btn-sm btn-primary" id="co_dep_garan" type="button"><span
+                                            class=" "></span> Deposito Garantia
+                                    </button>
                                     <button class="btn-sm btn-secundary" id="co_cerrar" type="button"><span
                                             class="glyphicon glyphicon-off"></span> Cerrar
                                     </button>
@@ -114,7 +120,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <label>Nombre Cliente:</label>
+                                    <label for="tx_nom_client">Nombre Cliente:</label>
                                 </div>
                                 <div class="col-xs-7">
                                     <input id="tx_nom_client" name="tx_nom_client" class="form-control" readonly>
@@ -123,7 +129,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <label>Dirección:</label>
+                                    <label for="tx_direc_client">Dirección:</label>
                                 </div>
                                 <div class="col-xs-8">
                                     <input id="tx_direc_client" name="tx_direc_client" class="form-control" readonly>
@@ -132,7 +138,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <label>Información Adicional:</label>
+                                    <label for="tx_info_add_client">Información Adicional:</label>
                                 </div>
                                 <div class="col-xs-9">
                                     <input id="tx_info_add_client" name="tx_info_add_client" class="form-control" readonly>
@@ -143,7 +149,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Ruta:</label>
+                                            <label for="tx_ruta">Ruta:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
@@ -153,7 +159,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Tarifa:</label>
+                                            <label for="tx_tarifa">Tarifa:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_tarifa" name="tx_tarifa" class="form-control" readonly>
@@ -166,7 +172,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Regional:</label>
+                                            <label for="tx_regional">Regional:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_regional" name="tx_regional" class="form-control" readonly>
@@ -176,7 +182,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Provincia:</label>
+                                            <label for="tx_provincia">Provincia:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_provincia" name="tx_provincia" class="form-control" readonly>
@@ -189,7 +195,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Distrito:</label>
+                                            <label for="tx_distrito">Distrito:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_distrito" name="tx_distrito" class="form-control" readonly>
@@ -199,7 +205,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Corregimiento:</label>
+                                            <label for="tx_corregimiento">Corregimiento:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_corregimiento" name="tx_corregimiento" class="form-control" readonly>
@@ -212,7 +218,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Estado Cliente:</label>
+                                            <label for="tx_state_client">Estado Cliente:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_state_client" name="tx_state_client" class="form-control" readonly>
@@ -222,7 +228,7 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <label>Estado Conexión:</label>
+                                            <label for="tx_state_conex">Estado Conexión:</label>
                                         </div>
                                         <div class="col-xs-6">
                                             <input id="tx_state_conex" name="tx_state_conex" class="form-control" readonly>
@@ -316,11 +322,103 @@
                 </div>
             </div>
         </div>
+        <!--inicio Modal Consulta-->
+        <div class="modal fade" id="div_con_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal" id="con_title">Presupuestos y Depositos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_con" role="form">
+                            <div class="row">
+                                <div class="container" style="width: 100%">
+                                    <div id="content_grid_3" style="height: 250px;">
+                                        <div id="div_grid_pre_dep"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="mensaje_con"></div>
+                    <div class="modal-footer">
+                        <button class="btn-sm btn-primary" id="co_ver_depo" type="button"><span
+                                class="glyphicon glyphicon-search"></span> Ver Deposito
+                        </button>
+                        <button class="btn-sm btn-primary" id="co_ver_pres" type="button"><span
+                                class="glyphicon glyphicon-search"></span> Ver Presupuesto
+                        </button>
+                        <button class="btn-sm btn-danger" id="co_cerrar_con" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--inicio Modal Deposito-->
+        <div class="modal fade" id="div_depo_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal" id="depo_title">Presupuestos y Depositos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_depo" role="form">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label for="tx_mont_dep_gart">Monto deposito de Garantia:</label>
+                                            <input id="tx_mont_dep_gart" name="tx_mont_dep_gart" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label for="tx_valor">Fecha Firma:</label>
+                                            <input id="tx_fech_firm" name="tx_valor" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label for="tx_valor">Fecha Inicio Construcción:</label>
+                                    <input id="tx_fech_ini_conts" name="tx_valor" class="form-control">
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="tx_cantidad">Fecha Fin Construcción:</label>
+                                    <input id="tx_fech_fin_conts" name="tx_cantidad" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label for="tx_desc">Construcción de:</label>
+                                    <textarea id="tx_conts" name="tx_desc" class="form-control" style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="mensaje_depo"></div>
+                    <div class="modal-footer">
+                        <button class="btn-sm btn-primary" id="co_grabar" type="button"><span
+                                class="glyphicon glyphicon-search"></span> Grabar
+                        </button>
+                        <button class="btn-sm btn-danger" id="co_cerrar_dep" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
+    <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
 </div>
 
 <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">

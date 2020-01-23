@@ -2,6 +2,7 @@ var g_modulo = "Cobranza";
 var g_tit = "Deposito Garantia Cliente Existente";
 var $grid_principal;
 var $grid_mano_obra;
+var $grid_pre_dep;
 var sql_grid_prim = "";
 var sql_grid_2 = "";
 var sql_grid_3 = "";
@@ -51,7 +52,9 @@ $(document).ready(function () {
     $("#tx_ip").val("127.0.0.1");
 
     //DEFINE LAS GRILLAS
-    fn_setea_grids();
+    fn_setea_grids_principales();
+    fn_setea_grid_secundaria();
+
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
@@ -60,6 +63,8 @@ $(document).ready(function () {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
     $("#div_grid_mano_obra").hide();
+    $("#co_con_pd").hide();
+    $("#co_dep_garan").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -80,6 +85,22 @@ $(document).ready(function () {
         fn_set_active("#tab_dep_mano_obra", "#div_grid_mano_obra")
 
     });
+    
+    $("#co_grabar").on( "click", function () {
+        
+        if ($.trim($("#co_grabar").text() === "Grabar")) {
+            
+            
+            
+
+            fn_mensaje_boostrap("Se modifico", g_tit, $("#co_modificar"));
+            $("#div_prin").slideDown();
+            $("#div_depo_bts").slideUp();
+            $('#div_depo_bts').modal('hide');
+            $(window).scrollTop(0);
+            
+        }
+    });
 
     $("#co_leer").on( "click", function () {
 
@@ -98,6 +119,7 @@ $(document).ready(function () {
             }
         }
 
+        fn_mostrar();
         fn_mensaje_boostrap("Se genéro", g_tit, $("#co_leer"));
         $(window).scrollTop(0);
     });
@@ -183,6 +205,15 @@ $(document).ready(function () {
         }
     });
 
+    $("#co_dep_garan").on("click", function () {
+        $("#div_depo_bts").modal({backdrop: "static", keyboard: false});
+
+        $("#div_depo_bts").on("shown.bs.modal", function () {
+            $("#div_depo_bts div.modal-footer button").focus();
+
+        });
+    });
+
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();
@@ -193,6 +224,14 @@ $(document).ready(function () {
 
     $("#co_cancel").on("click", function (){
         $('#div_edit_bts').modal('hide');
+    });
+
+    $("#co_cerrar_con").on("click", function (){
+        $('#div_con_bts').modal('hide');
+    });
+    
+    $("#co_cerrar_dep").on("click", function (){
+        $('#div_depo_bts').modal('hide');
     });
 
     $("#co_salir").on("click", function (){
@@ -232,36 +271,10 @@ $(document).ready(function () {
         }
     });
 
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//EXCEL
-    $("#co_excel").on("click", function (e) {
-
-        fn_filtro();
-        e.preventDefault();
-        var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
-        var cabecera = "";
-        for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-        }
-        $("#excel_cabecera").val(cabecera);
-        var element =$grid_principal.pqGrid("option","dataModel.data");
-        if (element)
-            a= element.length;
-        else
-            a = 0;
-        if(a > 0){
-            $("#tituloexcel").val(g_tit);
-            $("#sql").val(sql_grid_prim);
-            $("#frm_Exel").submit();
-            return;
-        }
-    });
-
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-function fn_setea_grids() {
+function fn_setea_grids_principales() {
 
     // Setea grilla Materiales
 
@@ -344,7 +357,64 @@ function fn_setea_grids() {
     obj2.dataModel = { data: data2 };
 
     $grid_mano_obra = $("#div_grid_mano_obra").pqGrid(obj2);
-    $grid_mano_obra.pqGrid( "refreshDataAndView" );
+
+}
+
+function fn_setea_grid_secundaria() {
+
+    // Setea grilla modal presupuestos y depositos
+
+    var obj = {
+        height: '100%',
+        showTop: true,
+        showBottom: true,
+        showHeader: true,
+        roundCorners: true,
+        rowBorders: true,
+        columnBorders: true,
+        editable: false,
+        editor: { type: "textbox", select: true, style: "outline:none;" },
+        selectionModel: { type: 'cell' },
+        numberCell: { show: true},
+        title: "Mantenedor de Tablas Generales",
+        pageModel: { type: "local" },
+        scrollModel: { theme: true },
+        toolbar: false,
+        dataModel:{ data: [
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+                { C1: '', C2: '',   C3: '', C4: '', C5: '', C6: '', C7: '' },
+            ] }
+    };
+
+    obj.colModel = [
+        { title: "Número de Presupuesto", width: 170, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Fecha Presupuesto", width: 130, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Número Deposito", width: 120, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Monto Deposito", width: 120, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Construcción", width: 120, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Fecha Inicio", width: 100, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Fecha Fin", width: 100, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+    ];
+
+    $grid_pre_dep = $("#div_grid_pre_dep").pqGrid(obj);
+    $grid_pre_dep.pqGrid("refreshDataAndView");
+
+    $("#co_con_pd").on("click", function () {
+        $("#div_con_bts").modal({backdrop: "static",keyboard:false});
+
+        $("#div_con_bts").on("shown.bs.modal", function () {
+            $("#div_con_bts div.modal-footer button").focus();
+
+        });
+
+    });
 
 }
 
@@ -409,6 +479,11 @@ function fn_remove_active() {
         $("#tab_dep_mano_obra").removeClass("active")
     }
 
+}
+
+function fn_mostrar() {
+    $("#co_con_pd").show();
+    $("#co_dep_garan").show();
 }
 
 function fn_ocultar() {
