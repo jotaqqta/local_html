@@ -55,13 +55,6 @@ $(document).ready(function () {
     fn_setea_grids_principales();
     fn_setea_grid_secundaria();
 
-
-    //DIBUJA LOS ICONOS DE LOS BOTONES
-
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-
     $("#div_grid_mano_obra").hide();
     $("#co_con_pd").hide();
     $("#co_dep_garan").hide();
