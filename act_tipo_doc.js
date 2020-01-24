@@ -261,7 +261,7 @@ function fn_setea_grid_principal() {
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
         { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
             render: function (ui) {
-                return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
             },
         },
     ];

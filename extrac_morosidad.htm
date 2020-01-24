@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+
+    <script src="extrac_morosidad.js"></script>
+
+    <style>
+
+        #content {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-left: 1px solid #DDDDDD;
+            border-right: 1px solid #DDDDDD;
+            border-bottom: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <br>
+    <div class="container">
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <div id="div_prin">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs">
+                                <li id="tab_extrac_gen_batch" role="presentation" class="active"><a href="#">Generación Batch</a></li>
+                                <li id="tab_extrac_env_avi" role="presentation"><a href="#">Envío Aviso</a></li>
+                                <li id="tab_extrac_gen_onl" role="presentation"><a href="#">Generación Online</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container" style="width: 100%">
+                            <div id="content">
+                                <div id="div_gen_batch">
+                                    <div class="container" style="width: 100%">
+                                        <div style="height: 10px"></div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <label for="tx_num_secuen">Número de Secuencia:</label>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input id="tx_num_secuen" name="tx_num_secuen" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div style="height: 15px"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <label for="cb_cent_opera">Centro operativo:</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <select class="form-control input-normal" id="cb_cent_opera"
+                                                                name="cb_cent_opera"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-5">
+                                                        <label for="cb_state_opera">Estado operativo:</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <select class="form-control input-normal" id="cb_state_opera"
+                                                                name="cb_state_opera"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 style="font-size: 15px;">Tipo de Moroso:</h4>
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_1">Sin Convenio</span>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_2">Convenio Atrasado</span>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_3">Convenio al Día</span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 style="font-size: 15px;">Antigüedad:</h4>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_antiguedad" value="opt_1">Todas</span>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_antiguedad" value="opt_2">Rango</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="height: 9px"></div>
+                                                    <div class="col-xs-6">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <label for="tx_desde">Desde:</label>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input id="tx_desde" name="tx_desde" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <label for="tx_hasta">Hasta</label>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input id="tx_hasta" name="tx_hasta" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 style="font-size: 15px;">Sector:</h4>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_sector" value="opt_1">Todos</span>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_sector" value="opt_2">Rango</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-12" style="height: 9px"></div>
+                                                    <div class="col-xs-6">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <label for="tx_desde_sector">Desde:</label>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input id="tx_desde_sector" name="tx_desde_sector" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <label for="tx_hasta_sector">Hasta</label>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input id="tx_hasta_sector" name="tx_hasta_sector" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_deuda_inicial">Deuda inicial:</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <input id="tx_deuda_inicial" name="tx_deuda_inicial" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_deuda_final">Deuda final:</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <input id="tx_deuda_final" name="tx_deuda_final" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-xs-4 text-left">
+                                                <button class="btn btn-sm btn-primary btn-group" id="co_anterior" type="button"><span
+                                                        class="glyphicon glyphicon-arrow-left"></span> Anterior
+                                                </button>
+                                                <button class="btn btn-sm btn-primary btn-group" id="co_siguiente" type="button">Siguiente <span
+                                                        class="glyphicon glyphicon-arrow-right"></span>
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-8 text-right">
+                                                <button class="btn btn-sm btn-primary btn-group" id="co_actualizar" type="button"><span
+                                                        class="glyphicon glyphicon-floppy-disk"></span> Actualizar
+                                                </button>
+                                                <button class="btn btn-sm btn-primary btn-group" id="co_nuevo" type="button"><span
+                                                        class="glyphicon glyphicon-plus"></span> Nuevo
+                                                </button>
+                                                <button class="btn btn-sm btn-primary btn-group" id="co_eliminar" type="button"><span
+                                                        class="glyphicon glyphicon-trash"></span> Eliminar
+                                                </button>
+                                                <button class="btn btn-sm btn-secondary btn-group" id="co_cerrar" type="button"><span
+                                                        class="glyphicon glyphicon-off"></span> Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_env_avi">
+                                    <div class="container" style="width: 100%">
+                                        <div style="height: 10px"></div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="tx_mail_para">Para:</label>
+                                                <input id="tx_mail_para" name="tx_mail_para" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div style="height: 10px"></div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="tx_mail_asunto">Asunto:</label>
+                                                <input id="tx_mail_asunto" name="tx_mail_asunto" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div style="height: 10px"></div>
+                                        <div class="row">
+                                            <div class="col-xs-12" style="overflow: auto">
+                                                <label for="tx_mail_cuerpo">Observaciones:</label>
+                                                <textarea id="tx_mail_cuerpo" name="tx_mail_cuerpo" class="form-control" style="resize: none; height: 125px"></textarea>
+                                            </div>
+                                        </div>
+                                        <div style="height: 10px"></div>
+                                    </div>
+                                </div>
+                                <div id="div_gen_onl">
+                                    <div class="container" style="width: 100%">
+                                        <div class="row">
+                                            <div class="col-xs-12" style="height: 20px"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3"></div>
+                                            <div class="col-xs-4">
+                                                <input id="input_file" type="file" name="input_file">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-xs-12 btn-group text-right">
+                                                <button class="btn-sm btn-primary pull-left" id="co_limpiar" type="button"><span
+                                                        class="glyphicon glyphicon-grain"></span> Limpiar
+                                                </button>
+                                                <button class="btn-sm btn-primary" id="co_generar" type="button"><span
+                                                        class="glyphicon glyphicon-ok"></span> Generar
+                                                </button>
+                                                <button class="btn-sm btn-secondary" id="co_cerrar_second" type="button"><span
+                                                        class="glyphicon glyphicon-off"></span> Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
+</div>
+
+</body>
+
+</html>

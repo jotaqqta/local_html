@@ -1,4 +1,4 @@
-var g_modulo = "Corte y CORTsición";
+var g_modulo = "Corte y Reposición";
 var g_tit = "Mantención de Cargos Para corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
@@ -348,7 +348,7 @@ function fn_setea_grid_principal() {
         { title: "Valor", width: 85, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
         { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
             render: function (ui) {
-                return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
             },
         },
     ];

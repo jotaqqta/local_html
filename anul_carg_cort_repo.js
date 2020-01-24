@@ -1,10 +1,9 @@
-var g_modulo = "Atención Integral de Clientes";
-var g_tit = "Relación Motivo Documentos";
+var g_modulo = "Corte y Reposición";
+var g_tit = "Anulación de Cargos Por Corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "anul_carg_cort_repo";
 var parameters = {};
-var selectedRow;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -185,9 +184,9 @@ function fn_setea_grid_principal() {
         { title: "Situación Encontrada", width: 225, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
         { title: "Acción Realizada", width: 179, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
         { title: "Fecha Fin Orden", width: 179, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
-        { title: "", editable: false, minWidth: 83, sortable: false,
+        { title: "", editable: false, minWidth: 113, sortable: false, halign: "center", align: "center",
             render: function (ui) {
-                return "<button name='co_borrar' class='btn btn-primary btn-sm'><img src='/galeria/trash-solid.png'/>&nbsp;Eliminar</button>";
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
             },
         }
     ];
