@@ -83,23 +83,23 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Filtro -->
+        <!-- Modal Filtro, Editar y Nuevo -->
         <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
-        <div class="modal fade" id="div_filtro_bts" role="dialog">
+        <div class="modal fade" id="div_filtro_new_edit_bts" role="dialog">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Filtro</h4>
+                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Filtro</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" id="row_cod_motiv">
                                     <label for="tx_cod_motiv">Codigo Motivo:</label>
-                                    <input id="tx_cod_motiv" class="form-control">
+                                    <input id="tx_cod_motiv" type="number" class="form-control">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" id="row_desc">
                                     <label for="tx_desc">Descripción:</label>
                                     <input id="tx_desc" class="form-control">
                                 </div>
@@ -116,7 +116,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="mensaje_filtro"></div>
+                    <div id="mensaje_filtro_new_edit"></div>
                     <div class="modal-footer">
                         <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar" type="button"><span
                                 class="glyphicon glyphicon-grain"></span> Limpiar
@@ -126,54 +126,6 @@
                                 class="glyphicon glyphicon-ok"></span> Consultar
                         </button>
                         <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
-                                class="glyphicon glyphicon-off"></span> Cancelar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Editar y Nuevo -->
-        <div class="modal fade" id="div_edit_new_bts" role="dialog">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" id="title_mod_new" data-dismiss="modal">Filtro</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_edit" role="form">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label for="tx_cod_motiv_edit">Codigo Motivo:</label>
-                                    <input id="tx_cod_motiv_edit" class="form-control">
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="tx_desc_edit">Descripción:</label>
-                                    <input id="tx_desc_edit" class="form-control">
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_tipo_motiv_edit">Tipo Motivo:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_tipo_motiv_edit"
-                                            name="cb_tipo_motiv_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_ind_pago_edit">Ind Pago:</label>
-                                    <select class="form-control input-normal _input_selector" id="cb_ind_pago_edit"
-                                            name="cb_ind_pago_edit"></select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="mensaje_edit"></div>
-                    <div class="modal-footer">
-                        <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar_edit" type="button"><span
-                                class="glyphicon glyphicon-grain"></span> Limpiar
-                        </button>
-
-                        <button class="btn-left btn-sm btn-primary btn-default" id="co_generar_edit" type="button"><span
-                                class="glyphicon glyphicon-ok"></span> Consultar
-                        </button>
-                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_edit" type="button"><span
                                 class="glyphicon glyphicon-off"></span> Cancelar
                         </button>
                     </div>

@@ -79,7 +79,9 @@ $(document).ready(function () {
 
     $("#co_nuevo").on( "click", function () {
 
-        // DO SOMETHING
+        fn_limpiar();
+
+        $("#co_actualizar").prop( "disabled", false);
 
     });
 
@@ -105,6 +107,10 @@ $(document).ready(function () {
 
         // DO SOMETHING
 
+    });
+
+    $("#co_limpiar").on( "click", function () {
+        fn_limpiar("file");
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -161,10 +167,18 @@ function fn_radio_change(radio, value) {
         $("input[name=opt_tipo_moro][value='opt_1']").prop('checked', true);
         $("input[name=opt_antiguedad][value='opt_1']").prop('checked', true);
         $("input[name=opt_sector][value='opt_1']").prop('checked', true);
+
         $("#tx_desde").prop( "disabled", true);
         $("#tx_hasta").prop( "disabled", true);
+
         $("#tx_desde_sector").prop( "disabled", true);
         $("#tx_hasta_sector").prop( "disabled", true);
+
+        $("#tx_desde").val("");
+        $("#tx_hasta").val("");
+
+        $("#tx_desde_sector").val("");
+        $("#tx_hasta_sector").val("");
     }
 
 }
@@ -210,6 +224,21 @@ function fn_disable_buttons() {
     $('#co_actualizar').prop( "disabled", true );
     $('#co_eliminar').prop( "disabled", true );
 
+}
+
+function fn_limpiar(type) {
+
+    if (type === "file") {
+        $("#input_file").val("");
+    } else {
+        $("#tx_num_secuen").val("");
+        $("#cb_cent_opera").val("");
+        $("#cb_state_opera").val("");
+        $("#tx_deuda_inicial").val("");
+        $("#tx_deuda_final").val("");
+
+        fn_radio_change();
+    }
 }
 
 function fn_mensaje(id,mensaje,segundos) {

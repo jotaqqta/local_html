@@ -30,9 +30,6 @@ $(document).ready(function () {
     fn_tipo_motiv();
     fn_ind_pago();
 
-    fn_tipo_motiv_edit();
-    fn_ind_pago_edit();
-
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
     $("._input_selector").inputmask("dd/mm/yyyy");
     $("#tx_ciclo").inputmask({mask:"99", rightAlign: false, placeholder: ""});
@@ -74,37 +71,61 @@ $(document).ready(function () {
 
     $("#co_generar").on("click", function() {
 
-        if ($.trim($("#co_generar").text()) == "Consultar") {
+        if ($.trim($("#co_generar").text()) === "Consultar") {
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-            $('#div_filtro_bts').modal('hide');
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
-    });
 
-    $("#co_generar_edit").on("click", function() {
+        if ($.trim($("#co_generar").text()) === "Generar") {
 
-        // Generar nuevo
-        if ($.trim($("#co_generar_edit").text()) == "Generar") {
+            if ($("#tx_cod_motiv").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UN CODIGO DE MOTIVO!!!</strong></div>',3000);
+                $("#tx_cod_motiv").focus();
+                return;
+            }
+
+            if ($("#tx_desc").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UNA DESCRIPCIÓN!!!</strong></div>',3000);
+                $("#tx_desc").focus();
+                return;
+            }
+
+            if ($("#cb_tipo_motiv").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UN TIPO DE MOTIVO!!!</strong></div>',3000);
+                $("#cb_tipo_motiv").focus();
+                return;
+            }
+
+            if ($("#cb_ind_pago").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR PAGO!!!</strong></div>',3000);
+                $("#cb_ind_pago").focus();
+                return;
+            }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
-            $("#div_edit_new_bts").slideUp();
-            $('#div_edit_new_bts').modal('hide');
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
 
         // Modificar
-        if ($.trim($("#co_generar_edit").text()) == "Modificar") {
+        if ($.trim($("#co_generar").text()) === "Modificar") {
 
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
+            fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
-            $("#div_edit_new_bts").slideUp();
-            $('#div_edit_new_bts').modal('hide');
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
@@ -119,22 +140,10 @@ $(document).ready(function () {
             window.close();
     });
 
-    $("#co_limpiar_edit").on("click", function () {
-        if ($.trim($("#co_limpiar_edit").text()) == "Limpiar") {
-            fn_limpiar_second();
-            return;
-        }
-        else
-            window.close();
-    });
-
     $("#co_cancel").on("click", function (){
-        $('#div_filtro_bts').modal('hide');
+        $('#div_filtro_new_edit_bts').modal('hide');
     });
 
-    $("#co_cancel_edit").on("click", function (){
-        $('#div_edit_new_bts').modal('hide');
-    });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
@@ -237,9 +246,17 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_bts").on("shown.bs.modal", function () {
-        $("#div_filtro_bts div.modal-footer button").focus();
+    fn_limpiar();
+
+    $("#title_mod").html("Filtrar");
+    $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
+
+    $("#row_cod_motiv").hide();
+    $("#row_desc").hide();
+
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
 
     });
@@ -247,29 +264,34 @@ function fn_filtro(){
 
 function fn_edit(dataCell){
 
-    $("#title_mod_new").html("Editar");
-    $("#co_generar_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+    $("#title_mod").html("Editar");
+    $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
-    $("#tx_cod_motiv_edit").val(dataCell.C1);
-    $("#tx_desc_edit").val(dataCell.C3);
+    if (!$("#row_cod_motiv").is( "visible") && !$("#row_desc").is( "visible")) {
+        $("#row_cod_motiv").show();
+        $("#row_desc").show();
+    }
 
-    $("#cb_tipo_motiv_edit option").each(function()
+    $("#tx_cod_motiv").val(dataCell.C1);
+    $("#tx_desc").val(dataCell.C3);
+
+    $("#cb_tipo_motiv option").each(function()
     {
         if ($(this).text() === dataCell.C2) {
-            $("#cb_tipo_motiv_edit").val($(this).val());
+            $("#cb_tipo_motiv").val($(this).val());
         }
     });
 
-    $("#cb_ind_pago_edit option").each(function()
+    $("#cb_ind_pago option").each(function()
     {
         if ($(this).text() === dataCell.C4) {
-            $("#cb_ind_pago_edit").val($(this).val());
+            $("#cb_ind_pago").val($(this).val());
         }
     });
 
-    $("#div_edit_new_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_edit_new_bts").on("shown.bs.modal", function () {
-        $("#div_edit_new_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 
@@ -277,17 +299,22 @@ function fn_edit(dataCell){
 
 function fn_new(){
 
-    fn_limpiar_second();
+    fn_limpiar();
 
-    $("#title_mod_new").html("Generar nuevo");
-    $("#co_generar_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+    $("#title_mod").html("Generar nuevo");
+    $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+
+    if (!$("#row_cod_motiv").is( "visible") && !$("#row_desc").is( "visible")) {
+        $("#row_cod_motiv").show();
+        $("#row_desc").show();
+    }
 
     $("#tx_mot_client").val($("#cb_mot_client :selected").text());
     $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
 
-    $("#div_edit_new_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_edit_new_bts").on("shown.bs.modal", function () {
-        $("#div_edit_new_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 }
@@ -301,16 +328,6 @@ function fn_tipo_motiv(){
 function fn_ind_pago(){
 
     $("#cb_ind_pago").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
-    //$("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
-}
-function fn_tipo_motiv_edit(){
-
-    $("#cb_tipo_motiv_edit").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
-    //$("#cb_tipo_motiv_edit").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
-}
-function fn_ind_pago_edit(){
-
-    $("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
     //$("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
 }
 
@@ -336,12 +353,6 @@ function fn_limpiar(){
     $("#cb_ind_pago").val("");
 }
 
-function fn_limpiar_second() {
-    $("#tx_cod_motiv_edit").val("");
-    $("#tx_desc_edit").val("");
-    $("#cb_tipo_motiv_edit").val("");
-    $("#cb_ind_pago_edit").val("");
-}
 
 function fn_mensaje(id,mensaje,segundos)
 {
