@@ -90,84 +90,79 @@ $(document).ready(function () {
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             //fn_carga_grilla();
             $("#div_prin").slideDown();
-            $("#div_filtro_bts").slideUp();
-            $('#div_filtro_bts').modal('hide');
-            $("#tx_mot_client_n").val($("#cb_mot_client :selected").text());
-            $("#tx_mot_emp_n").val($("#cb_mot_emp :selected").text());
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
-    });
-
-    $("#co_guardar_second").on("click", function() {
 
         // Generar nuevo
-        if ($.trim($("#co_guardar_second").text()) == "Guardar") {
+        if ($.trim($("#co_consultar").text()) == "Guardar") {
 
-            if ($("#cb_regional_edit").val() === "") {
+            if ($("#cb_regional").val() === "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
-                $("#cb_regional_edit").focus();
+                $("#cb_regional").focus();
                 return;
             }
 
-            if ($("#cb_evento_edit").val() == "") {
+            if ($("#cb_evento").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
-                $("#cb_evento_edit").focus();
+                $("#cb_evento").focus();
                 return;
             }
 
-            if ($("#cb_tiene_med_edit").val() == "") {
+            if ($("#cb_tiene_med").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR SI TIENE MEDIDOR!!!</strong></div>',3000);
-                $("#cb_tiene_med_edit").focus();
+                $("#cb_tiene_med").focus();
                 return;
             }
 
-            if ($("#cb_diametro_edit").val() == "") {
+            if ($("#cb_diametro").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN DIAMETRO!!!</strong></div>',3000);
-                $("#cb_diametro_edit").focus();
+                $("#cb_diametro").focus();
                 return;
             }
 
-            if ($("#cb_cargo_edit").val() == "") {
+            if ($("#cb_cargo").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CARGO!!!</strong></div>',3000);
-                $("#cb_cargo_edit").focus();
+                $("#cb_cargo").focus();
                 return;
             }
 
-            if ($("#tx_valor_edit").val() == "") {
+            if ($("#tx_valor").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
-                $("#tx_valor_edit").focus();
+                $("#tx_valor").focus();
                 return;
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
-            $("#div_edit_bts").slideUp();
-            $('#div_edit_bts').modal('hide');
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
 
         // Modificar
-        if ($.trim($("#co_guardar_second").text()) == "Modificar") {
+        if ($.trim($("#co_consultar").text()) == "Modificar") {
 
-            if ($("#tx_valor_edit").val() == "") {
+            if ($("#tx_valor").val() == "") {
 
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
-                $("#tx_valor_edit").focus();
+                $("#tx_valor").focus();
                 return;
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
-            $("#div_edit_bts").slideUp();
-            $('#div_edit_bts').modal('hide');
+            $("#div_filtro_new_edit_bts").slideUp();
+            $('#div_filtro_new_edit_bts').modal('hide');
             $(window).scrollTop(0);
 
         }
@@ -191,22 +186,8 @@ $(document).ready(function () {
             window.close();
     });
 
-    $("#co_limpiar_second").on("click", function () {
-        if ($.trim($("#co_limpiar_second").text()) == "Limpiar") {
-            fn_limpiar_second();
-            return;
-        }
-        else
-            window.close();
-    });
-
-
     $("#co_cancel").on("click", function (){
-        $('#div_filtro_bts').modal('hide');
-    });
-
-    $("#co_cancel_second").on("click", function (){
-        $('#div_edit_bts').modal('hide');
+        $('#div_filtro_new_edit_bts').modal('hide');
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -218,8 +199,6 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
 
                 fn_edit(dataCell);
-                $("#tx_mot_client").val($("#cb_mot_client :selected").text());
-                $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
 
             }
         }
@@ -360,85 +339,99 @@ function fn_setea_grid_principal() {
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
-function fn_filtro(){
-
-    $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_bts").on("shown.bs.modal", function () {
-        $("#div_filtro_bts div.modal-footer button").focus();
-
-    });
-}
-
-function fn_edit(dataCell){
-
-    edit = true;
-
-    fn_limpiar_second();
-
-    $("#title_mod_new").html("Editar Cargo Para corte y Reposición");
-    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
-
-    $("#cb_regional_edit option").each(function()
-    {
-        if ($(this).text() === dataCell.C1) {
-            $("#cb_regional_edit").val($(this).val());
-        }
-    });
-
-    $("#cb_evento_edit option").each(function()
-    {
-        if ($(this).text() === dataCell.C2) {
-            $("#cb_evento_edit").val($(this).val());
-        }
-    });
-
-    $("#cb_tiene_med_edit option").each(function()
-    {
-        if ($(this).text() === dataCell.C3) {
-            $("#cb_tiene_med_edit").val($(this).val());
-        }
-    });
-
-    $("#cb_diametro_edit option").each(function()
-    {
-        if ($(this).text() === dataCell.C4) {
-            $("#cb_diametro_edit").val($(this).val());
-        }
-    });
-
-    $("#tx_valor_edit").val(dataCell.C7);
-
-    $("#cb_regional_edit").prop( "disabled", true );
-    $("#cb_evento_edit").prop( "disabled", true );
-    $("#cb_tiene_med_edit").prop( "disabled", true );
-    $("#cb_diametro_edit").prop( "disabled", true );
-    $("#cb_cargo_edit").prop( "disabled", true );
-
-    $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_edit_bts").on("shown.bs.modal", function () {
-        $("#div_edit_bts div.modal-footer button").focus();
-
-    });
-}
-
-function fn_new(){
+function fn_filtro() {
 
     edit = false;
 
-    fn_limpiar_second();
 
-    $("#title_mod_new").html("Generar nuevo Cargo Para corte y Reposición");
-    $("#co_guardar_second").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
+    $("#title_fil_mod_new").html("Editar Cargo Para corte y Reposición");
+    $("#co_consultar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
-    $("#cb_regional_edit").prop( "disabled", false );
-    $("#cb_evento_edit").prop( "disabled", false );
-    $("#cb_tiene_med_edit").prop( "disabled", false );
-    $("#cb_diametro_edit").prop( "disabled", false );
-    $("#cb_cargo_edit").prop( "disabled", false );
+    fn_limpiar();
 
-    $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_edit_bts").on("shown.bs.modal", function () {
-        $("#div_edit_bts div.modal-footer button").focus();
+    $("#cb_regional").prop( "disabled", false );
+    $("#cb_evento").prop( "disabled", false );
+    $("#cb_tiene_med").prop( "disabled", false );
+    $("#cb_diametro").prop( "disabled", false );
+    $("#cb_cargo").prop( "disabled", false );
+
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+
+    });
+}
+
+function fn_edit(dataCell) {
+
+    edit = true;
+
+    fn_limpiar();
+
+    $("#title_fil_mod_new").html("Editar Cargo Para corte y Reposición");
+    $("#co_consultar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+
+    $("#cb_regional option").each(function()
+    {
+        if ($(this).text() === dataCell.C1) {
+            $("#cb_regional").val($(this).val());
+        }
+    });
+
+    $("#cb_evento option").each(function()
+    {
+        if ($(this).text() === dataCell.C2) {
+            $("#cb_evento").val($(this).val());
+        }
+    });
+
+    $("#cb_tiene_med option").each(function()
+    {
+        if ($(this).text() === dataCell.C3) {
+            $("#cb_tiene_med").val($(this).val());
+        }
+    });
+
+    $("#cb_diametro option").each(function()
+    {
+        if ($(this).text() === dataCell.C4) {
+            $("#cb_diametro").val($(this).val());
+        }
+    });
+
+    $("#tx_valor").val(dataCell.C7);
+
+    $("#cb_regional").prop( "disabled", true );
+    $("#cb_evento").prop( "disabled", true );
+    $("#cb_tiene_med").prop( "disabled", true );
+    $("#cb_diametro").prop( "disabled", true );
+    $("#cb_cargo").prop( "disabled", true );
+
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+
+    });
+}
+
+function fn_new() {
+
+    edit = false;
+
+    fn_limpiar();
+
+    $("#title_fil_mod_new").html("Generar nuevo Cargo Para corte y Reposición");
+    $("#co_consultar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
+
+    $("#cb_regional").prop( "disabled", false );
+    $("#cb_evento").prop( "disabled", false );
+    $("#cb_tiene_med").prop( "disabled", false );
+    $("#cb_diametro").prop( "disabled", false );
+    $("#cb_cargo").prop( "disabled", false );
+
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 }
@@ -449,35 +442,30 @@ function fn_regional(){
 
     $("#cb_regional").html("<option value='' selected></option><option value='1'>PANAMÁ METRO</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 
-    $("#cb_regional_edit").html("<option value='' selected></option><option value='1'>PANAMÁ METRO</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
 function fn_evento(){
 
     $("#cb_evento").html("<option value='' selected></option><option value='1'>CORT</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 
-    $("#cb_evento_edit").html("<option value='' selected></option><option value='1'>CORT</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
 function fn_tiene_med(){
 
     $("#cb_tiene_med").html("<option value='' selected></option><option value='1'>S</option> <option value='2' >N</option>  <option value='3' >OPCION 03</option>");
 
-    $("#cb_tiene_med_edit").html("<option value='' selected></option><option value='1'>S</option> <option value='2' >N</option>  <option value='3' >OPCION 03</option>");
 }
 
 function fn_diametro(){
 
     $("#cb_diametro").html("<option value='' selected></option><option value='1'>1 \"</option> <option value='2' >1 1/2 \"</option> <option value='3'>2 \"</option>  <option value='4'>3/4 \"</option>  <option value='5'>4 \"</option>  <option value='6'>5/8 \"</option>  <option value='7'>6 \"</option>  <option value='8'>8 \"</option>  <option value='9'>10 \"</option>");
 
-    $("#cb_diametro_edit").html("<option value='' selected></option><option value='1'>1 \"</option> <option value='2' >1 1/2 \"</option> <option value='3'>2 \"</option>  <option value='4'>3/4 \"</option>  <option value='5'>4 \"</option>  <option value='6'>5/8 \"</option>  <option value='7'>6 \"</option>  <option value='8'>8 \"</option>  <option value='9'>10 \"</option>");
 }
 
 function fn_cargo() {
 
     $("#cb_cargo").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 
-    $("#cb_cargo_edit").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -495,28 +483,19 @@ function fn_carga_grilla() {
 // Limpiar Filtro
 function fn_limpiar(){
 
-    $("#cb_regional").val("");
-    $("#cb_evento").val("");
-    $("#cb_tiene_med").val("");
-    $("#cb_diametro").val("");
-    $("#cb_cargo").val("");
-    $("#tx_valor").val("");
-}
-
-function fn_limpiar_second(){
-
     if (edit) {
-        $("#tx_valor_edit").val("");
+        $("#tx_valor").val("");
     } else {
-        $("#cb_regional_edit").val("");
-        $("#cb_evento_edit").val("");
-        $("#cb_tiene_med_edit").val("");
-        $("#cb_diametro_edit").val("");
-        $("#cb_cargo_edit").val("");
-        $("#tx_valor_edit").val("");
+        $("#cb_regional").val("");
+        $("#cb_evento").val("");
+        $("#cb_tiene_med").val("");
+        $("#cb_diametro").val("");
+        $("#cb_cargo").val("");
+        $("#tx_valor").val("");
     }
-}
 
+
+}
 
 function fn_mensaje(id,mensaje,segundos)
 {

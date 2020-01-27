@@ -61,6 +61,10 @@ $(document).ready(function () {
 
     fn_oculta_filtros();
 
+    $("input[name=opt_filtro][value='opt_1']").prop('checked', true);
+    $("#filtro-1").show();
+    $("#filtro-5").show();
+    $("#space").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -268,7 +272,9 @@ function fn_oculta_filtros() {
 function fn_mensaje(id,mensaje,segundos)
 {
     $(id).show();
+    $("#space").show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+    setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
 }
 

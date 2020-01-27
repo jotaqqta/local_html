@@ -85,12 +85,12 @@
         </div>
         <!--Inicio Modal Filtro -->
         <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
-        <div class="modal fade" id="div_filtro_bts" role="dialog">
+        <div class="modal fade" id="div_filtro_new_edit_bts" role="dialog">
             <div class="modal-dialog modal-xs">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Filtro Mantención de Cargos Para corte y Reposición</h4>
+                        <h4 class="modal-title" id="title_fil_mod_new" data-dismiss="modal">Filtro Mantención de Cargos Para corte y Reposición</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
@@ -136,64 +136,6 @@
                                 class="glyphicon glyphicon-off"></span> Cancelar
                         </button>
                         <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
-                                class="glyphicon glyphicon-grain"></span> Limpiar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal editar / generar nuevo -->
-        <div class="modal fade" id="div_edit_bts" role="dialog">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" id="title_mod_new" data-dismiss="modal">Editar Cargos Para corte y Reposición</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_edit" role="form">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <label for="cb_regional_edit">Regional:</label>
-                                    <select class="form-control input-normal" id="cb_regional_edit"
-                                            name="cb_regional_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_evento_edit">Evento:</label>
-                                    <select class="form-control input-normal" id="cb_evento_edit"
-                                            name="cb_evento_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_tiene_med_edit">Tiene medidor?</label>
-                                    <select class="form-control input-normal" id="cb_tiene_med_edit"
-                                            name="cb_tiene_med_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_diametro_edit">Diametro:</label>
-                                    <select class="form-control input-normal" id="cb_diametro_edit"
-                                            name="cb_diametro_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label for="cb_cargo_edit">Cargo:</label>
-                                    <select class="form-control input-normal" id="cb_cargo_edit"
-                                            name="cb_cargo_edit"></select>
-                                </div>
-                                <div class="col-xs-6">
-                                    <label>Valor:</label>
-                                    <input id="tx_valor_edit" name="tx_valor_edit" class="form-control">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="mensaje_edit"></div>
-                    <div class="modal-footer">
-                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar_second" type="button"><span
-                                class="glyphicon glyphicon-floppy-disk"></span> Guardar
-                        </button>
-                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_second" type="button"><span
-                                class="glyphicon glyphicon-off"></span> Cancelar
-                        </button>
-                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar_second" type="button"><span
                                 class="glyphicon glyphicon-grain"></span> Limpiar
                         </button>
                     </div>
