@@ -3,6 +3,7 @@ var g_tit = "Mantención de Cargos Para corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "mant_carg_cort_CORT";
+var filtro = {};
 var parameters = {};
 var edit;
 
@@ -74,18 +75,7 @@ $(document).ready(function () {
 
         if ($.trim($("#co_consultar").text()) === "Consultar") {
 
-            if ($("#cb_mot_client").val() === "") {
-
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
-                $("#cb_mot_client").focus();
-                return;
-            }
-            if ($("#cb_mot_emp").val() === "") {
-
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
-                $("#cb_mot_emp").focus();
-                return;
-            }
+            filtro = [ $("#cb_regional").val(), $("#cb_evento").val(), $("#cb_tiene_med").val(), $("#cb_diametro").val(), $("#cb_cargo").val() ];
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             //fn_carga_grilla();
@@ -354,6 +344,12 @@ function fn_filtro() {
     $("#cb_tiene_med").prop( "disabled", false );
     $("#cb_diametro").prop( "disabled", false );
     $("#cb_cargo").prop( "disabled", false );
+
+    $("#cb_regional").val(filtro[0]);
+    $("#cb_evento").val(filtro[1]);
+    $("#cb_tiene_med").val(filtro[2]);
+    $("#cb_diametro").val(filtro[3]);
+    $("#cb_cargo").val(filtro[4]);
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {

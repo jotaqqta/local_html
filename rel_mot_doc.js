@@ -54,6 +54,12 @@ $(document).ready(function () {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 
+    //DIBUJA LOS ICONOS DE LOS BOTONES
+
+    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS

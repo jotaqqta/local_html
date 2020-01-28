@@ -3,6 +3,8 @@ var g_tit = "Administración de Motivos de Corte";
 var $grid_principal;
 var sql_grid_prim = "";
 var parameters = {};
+var filtro = {};
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -72,6 +74,8 @@ $(document).ready(function () {
     $("#co_generar").on("click", function() {
 
         if ($.trim($("#co_generar").text()) === "Consultar") {
+
+            filtro = [ $("#cb_tipo_motiv").val(), $("#cb_ind_pago").val() ];
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
@@ -247,6 +251,9 @@ function fn_setea_grid_principal() {
 function fn_filtro(){
 
     fn_limpiar();
+
+    $("#cb_tipo_motiv").val(filtro[0]);
+    $("#cb_ind_pago").val(filtro[1]);
 
     $("#title_mod").html("Filtrar");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
