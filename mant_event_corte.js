@@ -48,10 +48,7 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
-    $("#cb_tip_pla").prop( "disabled", true );
-    $("#cb_mot_susp_type").prop( "disabled", true );
-    $("#cb_mot_susp").prop( "disabled", true );
-
+    $("#space").hide();
     fn_ocultar();
     fn_deshabilitar();
     $("#div_event_corte").show();
@@ -280,66 +277,6 @@ $(document).ready(function () {
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
-    $("select[id=cb_evnt_cort_type]").change(function(){
-
-        $("#cb_evnt_cort").val("");
-
-        if ($('select[id=cb_evnt_cort_type]').val() === "") {
-            $("#cb_evnt_cort").prop( "disabled", true);
-        } else {
-            $("#cb_evnt_cort").prop( "disabled", false);
-
-            if ($('select[id=cb_evnt_cort_type]').val() === "1") {
-
-            } else if ($('select[id=cb_evnt_cort_type]').val() === "2") {
-
-            } else if ($('select[id=cb_evnt_cort_type]').val() === "3") {
-
-            }
-        }
-
-    });
-
-    $("select[id=cb_situ_encon_type]").change(function(){
-
-        $("#cb_situ_encon").val("");
-
-        if ($('select[id=cb_situ_encon_type]').val() === "") {
-            $("#cb_situ_encon").prop( "disabled", true);
-        } else {
-            $("#cb_situ_encon").prop( "disabled", false);
-
-            if ($('select[id=cb_situ_encon_type]').val() === "1") {
-
-            } else if ($('select[id=cb_situ_encon_type]').val() === "2") {
-
-            } else if ($('select[id=cb_situ_encon_type]').val() === "3") {
-
-            }
-        }
-
-    });
-
-    $("select[id=cb_acc_real_type]").change(function(){
-
-        $("#cb_acc_real").val("");
-
-        if ($('select[id=cb_acc_real_type]').val() === "") {
-            $("#cb_acc_real").prop( "disabled", true);
-        } else {
-            $("#cb_acc_real").prop( "disabled", false);
-
-            if ($('select[id=cb_acc_real_type]').val() === "1") {
-
-            } else if ($('select[id=cb_acc_real_type]').val() === "2") {
-
-            } else if ($('select[id=cb_acc_real_type]').val() === "3") {
-
-            }
-        }
-
-    });
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 });
@@ -411,11 +348,6 @@ function fn_reg_ing() {
     $("#cb_reg_ing").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
 }
 
-function fn_evnt_cort_type() {
-
-    $("#cb_evnt_cort_type").html("<option value='' selected></option>  <option value='1'>1</option>  <option value='2'>2</option>  <option value='3'>3</option>")
-}
-
 function fn_evnt_cort() {
 
     $("#cb_evnt_cort").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
@@ -426,19 +358,9 @@ function fn_inst_cort_evnt() {
     $("#cb_inst_cort_evnt").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
 }
 
-function fn_situ_encon_type() {
-
-    $("#cb_situ_encon_type").html("<option value='' selected></option>  <option value='1'>1</option>  <option value='2'>2</option>  <option value='3'>3</option>")
-}
-
 function fn_situ_encon() {
 
     $("#cb_situ_encon").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
-}
-
-function fn_cc_real_type() {
-
-    $("#cb_acc_real_type").html("<option value='' selected></option>  <option value='1'>1</option>  <option value='2'>2</option>  <option value='3'>3</option>")
 }
 
 function fn_acc_real() {
@@ -476,12 +398,9 @@ function fn_cargar_combos() {
     fn_codigo_acc();
     fn_centro_oper_event();
     fn_reg_ing();
-    fn_evnt_cort_type();
     fn_evnt_cort();
     fn_inst_cort_evnt();
-    fn_situ_encon_type();
     fn_situ_encon();
-    fn_cc_real_type();
     fn_acc_real();
     fn_zon_conc();
     fn_gen_cobro();
@@ -518,9 +437,6 @@ function fn_deshabilitar() {
     $("#tx_rol_modf").prop( "disabled", true);
     $("#tx_fech_elim").prop( "disabled", true);
     $("#tx_rol_elim").prop( "disabled", true);
-    $("#cb_evnt_cort").prop( "disabled", true);
-    $("#cb_situ_encon").prop( "disabled", true);
-    $("#cb_acc_real").prop( "disabled", true);
 
 }
 
@@ -610,10 +526,13 @@ function fn_inactivar(confirm) {
 
 }
 
-function fn_mensaje(id,mensaje,segundos)
-{
+function fn_mensaje(id,mensaje,segundos) {
+
+
+    $("#space").show();
     $(id).show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+    setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
 }
 
