@@ -179,16 +179,16 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Tipo de Orden", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
-        { title: "Numero de Orden", width: 179, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
-        { title: "Situación Encontrada", width: 225, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-        { title: "Acción Realizada", width: 179, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
-        { title: "Fecha Fin Orden", width: 179, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
-        { title: "", editable: false, minWidth: 113, sortable: false, halign: "center", align: "center",
-            render: function (ui) {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
+        { title: "Tipo de Orden", width: 225, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Numero de Orden", width: 180, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
+        { title: "Situación Encontrada", width: 250, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
+        { title: "Acción Realizada", width: 180, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
+        { title: "Fecha Fin Orden", width: 180, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
+        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
-        }
+        },
     ];
     obj.dataModel = { data: data };
 

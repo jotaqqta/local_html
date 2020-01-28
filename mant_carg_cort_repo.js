@@ -322,11 +322,11 @@ function fn_setea_grid_principal() {
         { title: "Medidor", width: 65, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
         { title: "Diametro", width: 83, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
         { title: "Cod. Cargo", width: 80, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-        { title: "Descripción Cargo", width: 320, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
+        { title: "Descripción Cargo", width: 370, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
         { title: "Valor", width: 85, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
-        { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
+        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
             render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
         },
     ];

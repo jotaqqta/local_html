@@ -257,11 +257,11 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Sistema", width:500, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
-        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
-        { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
-            render: function (ui) {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
+        { title: "Sistema", width:525, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
+        { title: "Descripción", width: 525, dataType: "string", dataIndx: "C2", halign: "center", align: "left"},
+        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
         },
     ];

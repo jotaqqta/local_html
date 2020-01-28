@@ -232,12 +232,12 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Tipo de Atención", width: 250, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-        { title: "Motivo Cliente", width: 250, dataType: "strig", dataIndx: "C1", halign: "center", align: "left", },
-        { title: "Motivo Empresa", width: 250, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Motivo Cliente", width: 275, dataType: "strig", dataIndx: "C1", halign: "center", align: "left", },
+        { title: "Motivo Empresa", width: 275, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
         { title: "Documento", width: 250, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
-        { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
-            render: function (ui) {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
+        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
         },
     ];

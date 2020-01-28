@@ -340,15 +340,15 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Motivo Cliente", width:200, dataType: "strig", dataIndx: "C1", halign: "center", align: "left", },
-        { title: "Motivo Empresa", width:250, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Motivo Cliente", width:225, dataType: "strig", dataIndx: "C1", halign: "center", align: "left", },
+        { title: "Motivo Empresa", width:275, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
         { title: "Canal de Comunicación", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
         { title: "Tipo de Atención", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
         { title: "Tipo orden", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
         { title: "Indicador de Ejecución", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
-        { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
-            render: function (ui) {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
+        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
         },
     ];
