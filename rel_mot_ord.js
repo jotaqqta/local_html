@@ -10,7 +10,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
@@ -76,17 +76,17 @@ $(document).ready(function () {
 
     $("#co_consultar").on("click", function() {
 
-        if ($.trim($("#co_consultar").text()) == "Consultar") {
+        if ($.trim($("#co_consultar").text()) === "Consultar") {
 
-            if ($("#cb_mot_client").val() == "") {
+            if ($("#cb_mot_client").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
                 $("#cb_mot_client").focus();
                 return;
             }
-            if ($("#cb_mot_emp").val() == "") {
+            if ($("#cb_mot_emp").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
                 $("#cb_mot_emp").focus();
                 return;
             }
@@ -107,32 +107,32 @@ $(document).ready(function () {
     $("#co_guardar_second").on("click", function() {
 
         // Generar nuevo
-        if ($.trim($("#co_guardar_second").text()) == "Guardar") {
+        if ($.trim($("#co_guardar_second").text()) === "Guardar") {
 
-            if ($("#cb_canal_comu").val() == "") {
+            if ($("#cb_canal_comu").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CANAL DE COMUNICACIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CANAL DE COMUNICACIÓN!!!</strong></div>',3000);
                 $("#cb_canal_comu").focus();
                 return;
             }
 
-            if ($("#cb_tipo_aten").val() == "") {
+            if ($("#cb_tipo_aten").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
                 $("#cb_tipo_aten").focus();
                 return;
             }
 
-            if ($("#cb_tipo_ord").val() == "") {
+            if ($("#cb_tipo_ord").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
                 $("#cb_tipo_ord").focus();
                 return;
             }
 
-            if ($("#cb_ind_eje").val() == "") {
+            if ($("#cb_ind_eje").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN INDICADOR DE EJECUCIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN INDICADOR DE EJECUCIÓN!!!</strong></div>',3000);
                 $("#cb_ind_eje").focus();
                 return;
             }
@@ -146,32 +146,32 @@ $(document).ready(function () {
         }
 
         // Modificar
-        if ($.trim($("#co_guardar_second").text()) == "Modificar") {
+        if ($.trim($("#co_guardar_second").text()) === "Modificar") {
 
-            if ($("#cb_canal_comu").val() == "") {
+            if ($("#cb_canal_comu").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CANAL DE COMUNICACIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CANAL DE COMUNICACIÓN!!!</strong></div>',3000);
                 $("#cb_canal_comu").focus();
                 return;
             }
 
-            if ($("#cb_tipo_aten").val() == "") {
+            if ($("#cb_tipo_aten").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
                 $("#cb_tipo_aten").focus();
                 return;
             }
 
-            if ($("#cb_tipo_ord").val() == "") {
+            if ($("#cb_tipo_ord").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ORDEN!!!</strong></div>',3000);
                 $("#cb_tipo_ord").focus();
                 return;
             }
 
-            if ($("#cb_ind_eje").val() == "") {
+            if ($("#cb_ind_eje").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN INDICADOR DE EJECUCIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN INDICADOR DE EJECUCIÓN!!!</strong></div>',3000);
                 $("#cb_ind_eje").focus();
                 return;
             }
@@ -195,18 +195,16 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+        if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();
-            return;
         }
         else
             window.close();
     });
 
     $("#co_limpiar_second").on("click", function () {
-        if ($.trim($("#co_limpiar_second").text()) == "Limpiar") {
+        if ($.trim($("#co_limpiar_second").text()) === "Limpiar") {
             fn_limpiar_second();
-            return;
         }
         else
             window.close();
@@ -247,7 +245,7 @@ $(document).ready(function () {
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
         var cabecera = "";
         for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
         }
         $("#excel_cabecera").val(cabecera);
         var element =$grid_principal.pqGrid("option","dataModel.data");

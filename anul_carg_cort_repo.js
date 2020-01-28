@@ -10,7 +10,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
@@ -54,11 +54,11 @@ $(document).ready(function () {
 
     $("#co_leer").on("click", function() {
 
-        if ($.trim($("#co_leer").text()) == "Leer") {
+        if ($.trim($("#co_leer").text()) === "Leer") {
 
-            if ($("#tx_num_sumi").val() == "") {
+            if ($("#tx_num_sumi").val() === "") {
 
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!!</strong></div>',3000);
                 $("#tx_num_sumi").focus();
                 return;
             }
@@ -70,9 +70,9 @@ $(document).ready(function () {
             }
 
 
-            if ($("#tx_dig_ver").val() == "") {
+            if ($("#tx_dig_ver").val() === "") {
 
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UN DIGITO VERIFICADOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN DIGITO VERIFICADOR!!!</strong></div>',3000);
                 $("#tx_dig_ver").focus();
                 return;
             }
@@ -167,7 +167,7 @@ function fn_setea_grid_principal() {
 
                     alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
 
-                    HablaServidor(my_url, parameters, 'text', function(text)
+                    HablaServidor(my_url, parameters, 'text', function()
                     {
                         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
                         fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));

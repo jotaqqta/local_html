@@ -10,7 +10,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", fn_nuevo);
 
-    $("#co_cerrar_t").on("click", function(e){
+    $("#co_cerrar_t").on("click", function(){
         window.close();
     });
 
@@ -72,16 +72,16 @@ $(document).ready(function () {
     $("#co_guardar").on("click", function() {
 
         // Generar nuevo
-        if ($.trim($("#co_guardar").text()) == "Guardar") {
-            if ($("#cb_sistema").val() == "") {
+        if ($.trim($("#co_guardar").text()) === "Guardar") {
+            if ($("#cb_sistema").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
                 $("#cb_sistema").focus();
                 return;
             }
-            if ($("#tx_tipo_doc").val() == "") {
+            if ($("#tx_tipo_doc").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
                 $("#tx_tipo_doc").focus();
                 return;
             }
@@ -95,16 +95,16 @@ $(document).ready(function () {
         }
 
         // Editar
-        if ($.trim($("#co_guardar").text()) == "Modificar") {
-            if ($("#cb_sistema").val() == "") {
+        if ($.trim($("#co_guardar").text()) === "Modificar") {
+            if ($("#cb_sistema").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA SISTEMA!!!</strong></div>',3000);
                 $("#cb_sistema").focus();
                 return;
             }
-            if ($("#tx_tipo_doc").val() == "") {
+            if ($("#tx_tipo_doc").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR PONER UN TIPO DE DOCUMENTO!!!</strong></div>',3000);
                 $("#tx_tipo_doc").focus();
                 return;
             }
@@ -129,9 +129,8 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+        if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();
-            return;
         }
         else
             window.close();
@@ -170,7 +169,7 @@ $(document).ready(function () {
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
         var cabecera = "";
         for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
         }
         $("#excel_cabecera").val(cabecera);
         var element =$grid_principal.pqGrid("option","dataModel.data");

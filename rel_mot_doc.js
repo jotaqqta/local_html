@@ -10,7 +10,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
@@ -63,32 +63,32 @@ $(document).ready(function () {
     $("#co_guardar").on("click", function() {
 
         // Nuevo
-        if ($.trim($("#co_guardar").text()) == "Guardar") {
+        if ($.trim($("#co_guardar").text()) === "Guardar") {
 
-            if ($("#cb_tipo_atencion").val() == "") {
+            if ($("#cb_tipo_atencion").val() === "") {
 
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE ATENCIÓN!!!</strong></div>',3000);
                 $("#cb_tipo_atencion").focus();
                 return;
             }
 
-            if ($("#cb_mot_cliente").val() == "") {
+            if ($("#cb_mot_cliente").val() === "") {
 
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
                 $("#cb_mot_cliente").focus();
                 return;
             }
 
-            if ($("#cb_mot_empresa").val() == "") {
+            if ($("#cb_mot_empresa").val() === "") {
 
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
                 $("#cb_mot_empresa").focus();
                 return;
             }
 
-            if ($("#cb_documento").val() == "") {
+            if ($("#cb_documento").val() === "") {
 
-                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN DOCUMENTO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_new','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN DOCUMENTO!!!</strong></div>',3000);
                 $("#cb_documento").focus();
                 return;
             }
@@ -112,9 +112,8 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+        if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();
-            return;
         }
         else
             window.close();
@@ -135,7 +134,7 @@ $(document).ready(function () {
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
         var cabecera = "";
         for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
         }
         $("#excel_cabecera").val(cabecera);
         var element =$grid_principal.pqGrid("option","dataModel.data");
