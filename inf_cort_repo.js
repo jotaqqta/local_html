@@ -10,7 +10,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
@@ -32,7 +32,7 @@ $(document).ready(function () {
     fn_sec_fin();
     fn_cen_opera();
     fn_localidad();
-    fn_contratista()
+    fn_contratista();
 
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
     $("._input_selector").inputmask("dd/mm/yyyy");
@@ -61,9 +61,6 @@ $(document).ready(function () {
 
     fn_oculta_filtros();
 
-    $("input[name=opt_filtro][value='opt_1']").prop('checked', true);
-    $("#filtro-1").show();
-    $("#filtro-5").show();
     $("#space").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -71,40 +68,40 @@ $(document).ready(function () {
 
     $("#co_generar").on("click", function() {
 
-        if ($.trim($("#co_generar").text()) == "Generar") {
+        if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if ($("#tx_fec_desde").val() == "") {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
+            if ($("#tx_fec_desde").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
                 $("#tx_fec_desde").focus();
                 return;
             }
 
-            if ($("#tx_fec_hasta").val() == "") {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
+            if ($("#tx_fec_hasta").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
                 $("#tx_fec_desde").focus();
                 return;
             }
 
-            if ($("#tx_fec_desde").val() != "") {
-                if (fn_validar_fecha($("#tx_fec_desde").val()) == false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+            if ($("#tx_fec_desde").val() !== "") {
+                if (fn_validar_fecha($("#tx_fec_desde").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
                     $("#tx_fec_desde").focus();
                     return;
                 }
             }
 
-            if ($("#tx_fec_hasta").val() != "") {
-                if (fn_validar_fecha($("#tx_fec_hasta").val()) == false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+            if ($("#tx_fec_hasta").val() !== "") {
+                if (fn_validar_fecha($("#tx_fec_hasta").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
                     $("#tx_fec_desde").focus();
                     return;
                 }
             }
 
-            if ($("#tx_fec_desde").val() != "" && $("#tx_fec_hasta").val() != "") {
+            if ($("#tx_fec_desde").val() !== "" && $("#tx_fec_hasta").val() !== "") {
 
-                if (fn_fecha($("#tx_fec_desde").val(), $("#tx_fec_hasta").val()) == false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO!!!</strong></div>', 3000);
+                if (fn_fecha($("#tx_fec_desde").val(), $("#tx_fec_hasta").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO!!!</strong></div>', 3000);
                     $("#tx_fec_desde").focus();
                     return;
                 }
@@ -141,6 +138,9 @@ $(document).ready(function () {
         } else if (this.value === 'opt_21') {
             $("#filtro-5").show();
         }
+
+        $("#filtro-basico").show();
+        $("#space").show();
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -247,6 +247,10 @@ function fn_fecha(valor, valor2) {
 
 function fn_oculta_filtros() {
 
+    if ($("#filtro-basico").is(":visible")) {
+        $("#filtro-basico").hide();
+    }
+
     if ($("#filtro-1").is(":visible")) {
         $("#filtro-1").hide();
     }
@@ -266,6 +270,8 @@ function fn_oculta_filtros() {
     if ($("#filtro-5").is(":visible")) {
         $("#filtro-5").hide();
     }
+
+    $("#space1").hide();
 
 }
 

@@ -72,17 +72,17 @@ $(document).ready(function () {
 
     $("#co_consultar").on("click", function() {
 
-        if ($.trim($("#co_consultar").text()) == "Consultar") {
+        if ($.trim($("#co_consultar").text()) === "Consultar") {
 
-            if ($("#cb_mot_client").val() == "") {
+            if ($("#cb_mot_client").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO CLIENTE!!!</strong></div>',3000);
                 $("#cb_mot_client").focus();
                 return;
             }
-            if ($("#cb_mot_emp").val() == "") {
+            if ($("#cb_mot_emp").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO EMPRESA!!!</strong></div>',3000);
                 $("#cb_mot_emp").focus();
                 return;
             }
@@ -97,46 +97,46 @@ $(document).ready(function () {
         }
 
         // Generar nuevo
-        if ($.trim($("#co_consultar").text()) == "Guardar") {
+        if ($.trim($("#co_consultar").text()) === "Guardar") {
 
             if ($("#cb_regional").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
                 $("#cb_regional").focus();
                 return;
             }
 
-            if ($("#cb_evento").val() == "") {
+            if ($("#cb_evento").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
                 $("#cb_evento").focus();
                 return;
             }
 
-            if ($("#cb_tiene_med").val() == "") {
+            if ($("#cb_tiene_med").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR SI TIENE MEDIDOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR SI TIENE MEDIDOR!!!</strong></div>',3000);
                 $("#cb_tiene_med").focus();
                 return;
             }
 
-            if ($("#cb_diametro").val() == "") {
+            if ($("#cb_diametro").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN DIAMETRO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN DIAMETRO!!!</strong></div>',3000);
                 $("#cb_diametro").focus();
                 return;
             }
 
-            if ($("#cb_cargo").val() == "") {
+            if ($("#cb_cargo").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CARGO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CARGO!!!</strong></div>',3000);
                 $("#cb_cargo").focus();
                 return;
             }
 
-            if ($("#tx_valor").val() == "") {
+            if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
                 $("#tx_valor").focus();
                 return;
             }
@@ -150,11 +150,11 @@ $(document).ready(function () {
         }
 
         // Modificar
-        if ($.trim($("#co_consultar").text()) == "Modificar") {
+        if ($.trim($("#co_consultar").text()) === "Modificar") {
 
-            if ($("#tx_valor").val() == "") {
+            if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
                 $("#tx_valor").focus();
                 return;
             }
@@ -178,9 +178,8 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
+        if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();
-            return;
         }
         else
             window.close();
@@ -214,7 +213,7 @@ $(document).ready(function () {
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
         var cabecera = "";
         for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
         }
         $("#excel_cabecera").val(cabecera);
         var element =$grid_principal.pqGrid("option","dataModel.data");
@@ -285,7 +284,7 @@ function fn_setea_grid_principal() {
         },
         refresh: function () {
             $("#div_grid_principal > div.pq-grid-center-o > div.pq-grid-center > div.pq-body-outer > div.pq-grid-cont > div.pq-cont-inner > div.pq-table-right > div.pq-grid-row > div.pq-grid-cell").find("button.btn.btn-primary.btn-sm").button()
-                .bind("click", function (evt) {
+                .bind("click", function () {
                     var $tr = $(this).closest("tr");
                     var obj = $grid_principal.pqGrid("getRowIndx", { $tr: $tr });
                     var rowIndx = obj.rowIndx;
@@ -306,7 +305,7 @@ function fn_setea_grid_principal() {
 
                     alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
 
-                    HablaServidor(my_url, parameters, 'text', function(text)
+                    HablaServidor(my_url, parameters, 'text', function()
                     {
                         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
                         fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
@@ -326,7 +325,7 @@ function fn_setea_grid_principal() {
         { title: "Descripción Cargo", width: 320, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
         { title: "Valor", width: 85, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
         { title: "",  width: 108, dataType: "string", align: "center", editable: false, sortable: false,
-            render: function (ui) {
+            render: function () {
                 return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span> Eliminar</button>";
             },
         },
