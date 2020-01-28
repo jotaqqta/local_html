@@ -277,15 +277,10 @@ function fn_oculta_filtros() {
 
 function fn_mensaje(id,mensaje,segundos) {
 
-    if (!$("#space").is(":visible")) {
-        $("#space").show();
-        setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
-    }
-
     if (!$('input[type=radio][name=opt_filtro]').is(':checked')) {
-        $('#space2').css("height","25px");
+        $('#space2').css("height","20px");
     } else {
-        $('#space2').css("height","10px");
+        $('#space2').css("height","15px");
     }
 
     $(id).show();
