@@ -62,6 +62,7 @@ $(document).ready(function () {
     fn_oculta_filtros();
 
     $("#space").hide();
+    $("#space2").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -69,6 +70,11 @@ $(document).ready(function () {
     $("#co_generar").on("click", function() {
 
         if ($.trim($("#co_generar").text()) === "Generar") {
+
+            if (!$('input[type=radio][name=opt_filtro]').is(':checked')) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN FILTRO!!!</strong></div>', 3000);
+                return;
+            }
 
             if ($("#tx_fec_desde").val() === "") {
                 fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
@@ -271,16 +277,21 @@ function fn_oculta_filtros() {
         $("#filtro-5").hide();
     }
 
-    $("#space1").hide();
+    $("#space").hide();
 
 }
 
-function fn_mensaje(id,mensaje,segundos)
-{
+function fn_mensaje(id,mensaje,segundos) {
+
+    if (!$("#space").is(":visible")) {
+        $("#space").show();
+        setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
+    }
+
     $(id).show();
-    $("#space").show();
+    $("#space2").show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
-    setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
+    setTimeout(function(){$(id).html("");$("#space2").hide(); }, segundos);
 }
 
