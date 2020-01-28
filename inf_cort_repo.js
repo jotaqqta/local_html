@@ -84,7 +84,7 @@ $(document).ready(function () {
 
             if ($("#tx_fec_hasta").val() === "") {
                 fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
-                $("#tx_fec_desde").focus();
+                $("#tx_fec_hasta").focus();
                 return;
             }
 
@@ -99,7 +99,7 @@ $(document).ready(function () {
             if ($("#tx_fec_hasta").val() !== "") {
                 if (fn_validar_fecha($("#tx_fec_hasta").val()) === false) {
                     fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fec_desde").focus();
+                    $("#tx_fec_hasta").focus();
                     return;
                 }
             }
@@ -219,10 +219,8 @@ function fn_validar_fecha(value){
         var fecha = new Date(info[2], info[1]-1, info[0]);
         if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
             real = fecha.toISOString().substr(0,10).split('-');
-            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-                return true;
-            }
-            return false;
+            return info[0] === real[2] && info[1] === real[1] && info[2] === real[0];
+
         } else {
             return false;
         }
@@ -242,11 +240,7 @@ function fn_fecha(valor, valor2) {
     fecha2.reverse();
     Date.parse(fecha2);
 
-    if (fecha <= fecha2) {
-        return true;
-    } else {
-        return false;
-    }
+    return fecha <= fecha2;
 
 
 }
@@ -286,6 +280,12 @@ function fn_mensaje(id,mensaje,segundos) {
     if (!$("#space").is(":visible")) {
         $("#space").show();
         setTimeout(function(){$(id).html("");$("#space").hide(); }, segundos);
+    }
+
+    if (!$('input[type=radio][name=opt_filtro]').is(':checked')) {
+        $('#space2').css("height","25px");
+    } else {
+        $('#space2').css("height","10px");
     }
 
     $(id).show();

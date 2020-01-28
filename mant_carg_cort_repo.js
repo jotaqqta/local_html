@@ -11,7 +11,7 @@ $(document).keydown(function (e) {
 
     if (e.keyCode === 8) {
         var element = e.target.nodeName.toLowerCase();
-        if ((element != 'input' && element != 'textarea') || $(e.target).attr("readonly")) {
+        if ((element !== 'input' && element !== 'textarea') || $(e.target).attr("readonly")) {
             return false;
         }
     }
