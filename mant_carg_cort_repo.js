@@ -101,42 +101,42 @@ $(document).ready(function () {
 
             if ($("#cb_regional").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA REGIONAL!!!</strong></div>',3000);
                 $("#cb_regional").focus();
                 return;
             }
 
             if ($("#cb_evento").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
                 $("#cb_evento").focus();
                 return;
             }
 
             if ($("#cb_tiene_med").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR SI TIENE MEDIDOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR SI TIENE MEDIDOR!!!</strong></div>',3000);
                 $("#cb_tiene_med").focus();
                 return;
             }
 
             if ($("#cb_diametro").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN DIAMETRO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN DIAMETRO!!!</strong></div>',3000);
                 $("#cb_diametro").focus();
                 return;
             }
 
             if ($("#cb_cargo").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CARGO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CARGO!!!</strong></div>',3000);
                 $("#cb_cargo").focus();
                 return;
             }
 
             if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
                 $("#tx_valor").focus();
                 return;
             }
@@ -154,7 +154,7 @@ $(document).ready(function () {
 
             if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN VALOR!!!</strong></div>',3000);
                 $("#tx_valor").focus();
                 return;
             }
@@ -348,6 +348,7 @@ function fn_filtro() {
 
     fn_limpiar();
 
+    $("#div_tx_valor").hide();
     $("#cb_regional").prop( "disabled", false );
     $("#cb_evento").prop( "disabled", false );
     $("#cb_tiene_med").prop( "disabled", false );
@@ -398,6 +399,7 @@ function fn_edit(dataCell) {
         }
     });
 
+    $("#div_tx_valor").show();
     $("#tx_valor").val(dataCell.C7);
 
     $("#cb_regional").prop( "disabled", true );
@@ -422,6 +424,7 @@ function fn_new() {
     $("#title_fil_mod_new").html("Generar nuevo Cargo Para corte y Reposición");
     $("#co_consultar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
+    $("#div_tx_valor").show();
     $("#cb_regional").prop( "disabled", false );
     $("#cb_evento").prop( "disabled", false );
     $("#cb_tiene_med").prop( "disabled", false );

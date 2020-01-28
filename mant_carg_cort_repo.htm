@@ -63,6 +63,12 @@
             }
         }
 
+        #tx_valor::-webkit-outer-spin-button,
+        #tx_valor::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
     </style>
 </head>
 
@@ -120,9 +126,9 @@
                                     <select class="form-control input-normal" id="cb_cargo"
                                             name="cb_cargo"></select>
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6" id="div_tx_valor">
                                     <label for="tx_valor">Valor:</label>
-                                    <input id="tx_valor" name="tx_valor" class="form-control">
+                                    <input id="tx_valor" type="number" name="tx_valor" class="form-control">
                                 </div>
                             </div>
                         </form>
