@@ -126,10 +126,10 @@ $(document).ready(function () {
             // TAB 1
             if ($("#div_event_corte").is(":visible")) {
 
-                if ($("#cb_codigo").val() === "") {
+                if ($("#cb_tipo_event").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
-                    $("#cb_codigo").focus();
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE EVENTO!!!</strong></div>',3000);
+                    $("#cb_tipo_event").focus();
                     return;
                 }
             }
@@ -140,14 +140,14 @@ $(document).ready(function () {
 
                 if ($("#cb_centro_oper").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
                     $("#cb_centro_oper").focus();
                     return;
                 }
 
                 if ($("#cb_codigo_sit").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
                     $("#cb_codigo_sit").focus();
                     return;
                 }
@@ -160,28 +160,28 @@ $(document).ready(function () {
 
                 if ($("#cb_centro_oper_acc").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
                     $("#cb_centro_oper_acc").focus();
                     return;
                 }
 
                 if ($("#cb_event").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!!</strong></div>',3000);
                     $("#cb_event").focus();
                     return;
                 }
 
                 if ($("#cb_inst_cort").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!!</strong></div>',3000);
                     $("#cb_inst_cort").focus();
                     return;
                 }
 
                 if ($("#cb_codigo_acc").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
                     $("#cb_codigo_acc").focus();
                     return;
                 }
@@ -193,49 +193,49 @@ $(document).ready(function () {
 
                 if ($("#cb_centro_oper_event").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!!</strong></div>',3000);
                     $("#cb_centro_oper_event").focus();
                     return;
                 }
 
                 if ($("#cb_reg_ing").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN REGISTRO INGRESADO!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN REGISTRO INGRESADO!!!</strong></div>',3000);
                     $("#cb_reg_ing").focus();
                     return;
                 }
 
                 if ($("#cb_evnt_cort").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO DE CORTE!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO DE CORTE!!!</strong></div>',3000);
                     $("#cb_evnt_cort").focus();
                     return;
                 }
 
                 if ($("#cb_inst_cort_evnt").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!!</strong></div>',3000);
                     $("#cb_inst_cort_evnt").focus();
                     return;
                 }
 
                 if ($("#cb_situ_encon").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA SITUACIÓN ENCONTRADA!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA SITUACIÓN ENCONTRADA!!!</strong></div>',3000);
                     $("#cb_situ_encon").focus();
                     return;
                 }
 
                 if ($("#cb_acc_real").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA ACCIÓN REALIZADA!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA ACCIÓN REALIZADA!!!</strong></div>',3000);
                     $("#cb_acc_real").focus();
                     return;
                 }
 
                 if ($("#cb_zon_conc").val() === "") {
 
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA ZONA DE CONCESIÓN!!!</strong></div>',3000);
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA ZONA DE CONCESIÓN!!!</strong></div>',3000);
                     $("#cb_zon_conc").focus();
                     return;
                 }
@@ -350,9 +350,9 @@ $(document).ready(function () {
 
 //                             <-- TAB 1 (Eventos de Corte) -->
 
-function fn_codigo() {
+function fn_tipo_event() {
 
-    $("#cb_codigo").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
+    $("#cb_tipo_event").html("<option value='' selected></option>  <option value='1'>OPCION 01</option>  <option value='2'>OPCION 02</option>  <option value='3'>OPCION 03</option>")
 }
 
 function fn_state_sumi() {
@@ -465,7 +465,7 @@ function fn_est_conex() {
 
 function fn_cargar_combos() {
 
-    fn_codigo();
+    fn_tipo_event();
     fn_state_sumi();
     fn_sig_event();
     fn_centro_oper();
