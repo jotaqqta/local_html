@@ -3,6 +3,7 @@ var g_tit = "Deposito Garantia Cliente Existente";
 var $grid_principal;
 var $grid_mano_obra;
 var $grid_pre_dep;
+var rowIndx;
 var sql_grid_prim = "";
 var sql_grid_2 = "";
 var sql_grid_3 = "";
@@ -56,8 +57,7 @@ $(document).ready(function () {
     fn_setea_grid_secundaria();
 
     $("#div_grid_mano_obra").hide();
-    $("#co_con_pd").hide();
-    $("#co_dep_garan").hide();
+    fn_ocultar_botones();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -111,6 +111,9 @@ $(document).ready(function () {
                 return;
             }
         }
+
+        $("#co_cerrar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
+        $("#co_cerrar").removeClass("btn-secundary");
 
         fn_mostrar();
         fn_mensaje_boostrap("Se genéro", g_tit, $("#co_leer"));
@@ -200,11 +203,24 @@ $(document).ready(function () {
 
     $("#co_dep_garan").on("click", function () {
         $("#div_depo_bts").modal({backdrop: "static", keyboard: false});
-
         $("#div_depo_bts").on("shown.bs.modal", function () {
             $("#div_depo_bts div.modal-footer button").focus();
 
         });
+    });
+
+    $("#co_con_pd").on("click", function () {
+        $("#div_con_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_con_bts").on("shown.bs.modal", function () {
+            $("#div_con_bts div.modal-footer button").focus();
+        });
+
+        setTimeout(function() {
+
+            $grid_pre_dep.pqGrid("refreshView");
+
+        }, 400);
+
     });
 
     $("#co_limpiar").on("click", function () {
@@ -241,25 +257,39 @@ $(document).ready(function () {
     });
 
     $("#co_cerrar").on("click", function (){
-        window.close();
+
+        if ($.trim($("#co_cerrar").text()) === "Cancelar") {
+
+            fn_limpiar_prin();
+            fn_ocultar_botones();
+            $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+
+        }
+
+        if ($.trim($("#co_cerrar").text()) === "Cerrar") {
+
+            window.close();
+        }
     });
 
     $grid_principal.pqGrid({
-        rowDblClick: function( event, ui ) {
-            if (ui.rowData)
-            {
-                var dataCell = ui.rowData;
-                fn_edit(dataCell, 1);
+        beforeCheck: function( event, ui ) {
+            if (ui.check) {
+                rowIndx = ui.rowIndx;
+
+            } else {
+                rowIndx = undefined;
             }
         }
     });
 
     $grid_mano_obra.pqGrid({
-        rowDblClick: function( event, ui ) {
-            if (ui.rowData)
-            {
-                var dataCell = ui.rowData;
-                fn_edit(dataCell, 2);
+        beforeCheck: function( event, ui ) {
+            if (ui.check) {
+                rowIndx = ui.rowIndx;
+
+            } else {
+                rowIndx = undefined;
             }
         }
     });
@@ -294,7 +324,6 @@ function fn_setea_grids_principales() {
         rowBorders: true,
         columnBorders: true,
         collapsible:true,
-        editable:false,
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
@@ -303,10 +332,21 @@ function fn_setea_grids_principales() {
     };
 
     obj.colModel = [
-        { title: "Codigo", width: 268, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 269, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Valor", width: 268, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-        { title: "Cantidad", width: 269, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { dataIndx: "CH1", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                all: false,
+                header: false,
+                maxCheck: 1
+            }
+        },
+        { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
+        { title: "Cantidad", width: 244, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
+                return rowIndx === ui.rowIndx;
+            },
+        },
     ];
     obj.dataModel = { data: data };
 
@@ -331,7 +371,6 @@ function fn_setea_grids_principales() {
         rowBorders: true,
         columnBorders: true,
         collapsible:true,
-        editable:false,
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
@@ -340,12 +379,22 @@ function fn_setea_grids_principales() {
     };
 
     obj2.colModel = [
-        { title: "Codigo", width: 268, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 269, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-        { title: "Valor", width: 268, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-        { title: "Cantidad", width: 269, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { dataIndx: "CH1", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                all: false,
+                header: false,
+                maxCheck: 1
+            }
+        },
+        { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
+        { title: "Cantidad", width: 244, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
+                return rowIndx === ui.rowIndx;
+            },
+        },
     ];
-
 
     obj2.dataModel = { data: data2 };
 
@@ -398,16 +447,6 @@ function fn_setea_grid_secundaria() {
 
     $grid_pre_dep = $("#div_grid_pre_dep").pqGrid(obj);
     $grid_pre_dep.pqGrid("refreshDataAndView");
-
-    $("#co_con_pd").on("click", function () {
-        $("#div_con_bts").modal({backdrop: "static",keyboard:false});
-
-        $("#div_con_bts").on("shown.bs.modal", function () {
-            $("#div_con_bts div.modal-footer button").focus();
-
-        });
-
-    });
 
 }
 
@@ -510,6 +549,29 @@ function fn_limpiar(){
     $("#tx_cantidad").val("");
 
 }
+
+function fn_limpiar_prin() {
+
+    $("#tx_num_client").val("");
+    $("#tx_nom_client").val("");
+    $("#tx_direc_client").val("");
+    $("#tx_info_add_client").val("");
+    $("#tx_ruta").val("");
+    $("#tx_tarifa").val("");
+    $("#tx_regional").val("");
+    $("#tx_provincia").val("");
+    $("#tx_distrito").val("");
+    $("#tx_corregimiento").val("");
+    $("#tx_state_client").val("");
+    $("#tx_state_conex").val("");
+}
+
+function fn_ocultar_botones() {
+
+    $("#co_con_pd").hide();
+    $("#co_dep_garan").hide();
+}
+
 function fn_mensaje(id,mensaje,segundos)
 {
     $(id).show();

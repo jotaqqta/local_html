@@ -154,6 +154,12 @@ $(document).ready(function () {
             // TAB 3
             if ($("#div_acc_real").is(":visible")) {
 
+                if ($("#cb_tipo_event_acc").val() === "") {
+
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE EVENTO!!!</strong></div>',3000);
+                    $("#cb_tipo_event_acc").focus();
+                    return;
+                }
 
                 if ($("#cb_centro_oper_acc").val() === "") {
 
@@ -173,13 +179,6 @@ $(document).ready(function () {
 
                     fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!!</strong></div>',3000);
                     $("#cb_inst_cort").focus();
-                    return;
-                }
-
-                if ($("#cb_codigo_acc").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CODIGO!!!</strong></div>',3000);
-                    $("#cb_codigo_acc").focus();
                     return;
                 }
 
