@@ -194,11 +194,11 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: '1', C2: 'Corte', C3: '1000', C4: 'Excelente' },
-        { C1: '2', C2: 'Corte', C3: '2000', C4: 'Excelente' },
-        { C1: '3', C2: 'Corte', C3: '3000', C4: 'Bueno' },
-        { C1: '4', C2: 'Corte', C3: '4000', C4: 'Regular' },
-        { C1: '5', C2: 'Corte', C3: '5000', C4: 'Bueno' },       
+        { C1: '1', C2: 'Acoplador de Bronce', C3: '1000', C4: 'Excelente' },
+        { C1: '2', C2: 'Adapter Hembra PVC', C3: '2000', C4: 'Excelente' },
+        { C1: '3', C2: 'Cajilla Metalica con Accesorios', C3: '3000', C4: 'Bueno' },
+        { C1: '4', C2: 'Codo Adapter', C3: '4000', C4: 'Regular' },
+        { C1: '5', C2: 'Codo con Rosca', C3: '5000', C4: 'Bueno' },       
     ];
 
     var obj = {
@@ -267,25 +267,26 @@ function fn_edit(dataCell){
     $("#title_mod").html("Editar");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
-    if (!$("#row_cod_motiv").is( "visible") && !$("#row_desc").is( "visible")) {
-        $("#row_cod_motiv").show();
-        $("#row_desc").show();
+    if (!$("#row_id_rela").is( "visible") && !$("#row_nemo").is( "visible")) {
+        $("#row_nemo").show();
     }
 
-    $("#tx_cod_motiv").val(dataCell.C1);
-    $("#tx_desc").val(dataCell.C3);
+    $("#tx_id_rela").val(dataCell.C1);
+    $("#tx_nemo").val(dataCell.C2);
+    $("#tx_valor").val(dataCell.C3);
+    
 
-    $("#cb_tipo_motiv option").each(function()
+    $("#tx_valor option").each(function()
     {
         if ($(this).text() === dataCell.C2) {
-            $("#cb_tipo_motiv").val($(this).val());
+            $("#tx_valor").val($(this).val());
         }
     });
 
-    $("#cb_ind_pago option").each(function()
+    $("#cb_estado option").each(function()
     {
         if ($(this).text() === dataCell.C4) {
-            $("#cb_ind_pago").val($(this).val());
+            $("#cb_estado").val($(this).val());
         }
     });
 
@@ -304,14 +305,14 @@ function fn_new(){
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
-    if (!$("#row_cod_motiv").is( "visible") && !$("#row_desc").is( "visible")) {
-        $("#row_cod_motiv").show();
-        $("#row_desc").show();
+    if (!$("#row_id_rela").is( "visible") && !$("#row_nemo").is( "visible")) {
+        $("#row_id_rela").show();
+        $("#row_nemo").show();
 
     }
 
-    $("#tx_mot_client").val($("#cb_mot_client :selected").text());
-    $("#tx_mot_emp").val($("#cb_mot_emp :selected").text());
+    $("#tx_valor").val($("#tx_valor :selected").text());
+    $("#cb_estado").val($("#cb_estado :selected").text());
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
