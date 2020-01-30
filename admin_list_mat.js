@@ -22,10 +22,7 @@ $(document).keydown(function (e) {
 $(document).ready(function () {
     jQuery('#tx_id_rela').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_id_rela').keypress(function (tecla) {
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
+    });    
     jQuery('#tx_valor').keypress(function (tecla) {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
@@ -33,8 +30,9 @@ $(document).ready(function () {
     //COMBOS
 
     fn_estado();
-  
 
+
+ 
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
     $("._input_selector").inputmask("dd/mm/yyyy");
     $("#tx_ciclo").inputmask({mask:"99", rightAlign: false, placeholder: ""});
@@ -129,6 +127,25 @@ $(document).ready(function () {
         // Modificar
         if ($.trim($("#co_generar").text()) === "Modificar") {
 
+            if ($("#tx_nemo").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NEMOTÉCNICO!!!</strong></div>',3000);
+                $("#tx_nemo").focus();
+                return;
+            }
+            if ($("#tx_valor").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR VALOR!!!</strong></div>',3000);
+                $("#tx_valor").focus();
+                return;
+            }
+            if ($("#cb_estado").val() === "") {
+
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
+                $("#cb_estado").focus();
+                return;
+            }
+
             fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
             $("#div_filtro_new_edit_bts").slideUp();
@@ -160,6 +177,7 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
                 fn_edit(dataCell);
+            $("#tx_id_rela").prop("disabled",true);
             }
         }
     });
@@ -194,11 +212,11 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: '1', C2: 'Acoplador de Bronce', C3: '1000', C4: 'Excelente' },
-        { C1: '2', C2: 'Adapter Hembra PVC', C3: '2000', C4: 'Excelente' },
-        { C1: '3', C2: 'Cajilla Metalica con Accesorios', C3: '3000', C4: 'Bueno' },
-        { C1: '4', C2: 'Codo Adapter', C3: '4000', C4: 'Regular' },
-        { C1: '5', C2: 'Codo con Rosca', C3: '5000', C4: 'Bueno' },       
+        { C1: '20052', C2: 'Acoplador de Bronce', C3: '1000', C4: 'Excelente' },
+        { C1: '20008', C2: 'Adapter Hembra PVC', C3: '2000', C4: 'Excelente' },
+        { C1: '20070', C2: 'Cajilla Metalica con Accesorios', C3: '3000', C4: 'Bueno' },
+        { C1: '20062', C2: 'Codo Adapter', C3: '4000', C4: 'Regular' },
+        { C1: '20061', C2: 'Codo con Rosca', C3: '5000', C4: 'Bueno' },       
     ];
 
     var obj = {
@@ -243,16 +261,16 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
+    $("#tx_id_rela").prop("disabled",false);
+
     fn_limpiar();
 
-    $("#cb_tipo_motiv").val(filtro[0]);
+    $("#tx_id_rela").val(filtro[0]);
     $("#cb_ind_pago").val(filtro[1]);
 
     $("#title_mod").html("Filtrar");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
-    $("#row_cod_motiv").hide();
-    $("#row_desc").hide();
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -299,6 +317,7 @@ function fn_edit(dataCell){
 }
 
 function fn_new(){
+    $("#tx_id_rela").prop("disabled",false); 
 
     fn_limpiar();
 
