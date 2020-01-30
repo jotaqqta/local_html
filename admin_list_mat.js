@@ -23,22 +23,17 @@ $(document).ready(function () {
     jQuery('#tx_id_rela').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
-    jQuery('#tx_nemo').keypress(function (tecla){
-        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-
     jQuery('#tx_id_rela').keypress(function (tecla) {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
-
     jQuery('#tx_valor').keypress(function (tecla) {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
     //COMBOS
 
-    fn_tipo_motiv();
-    fn_ind_pago();
+    fn_estado();
+  
 
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
     $("._input_selector").inputmask("dd/mm/yyyy");
@@ -95,31 +90,31 @@ $(document).ready(function () {
 
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if ($("#tx_cod_motiv").val() === "") {
+            if ($("#tx_id_rela").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UN CODIGO DE MOTIVO!!!</strong></div>',3000);
-                $("#tx_cod_motiv").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ID DE RELACIÓN!!!</strong></div>',3000);
+                $("#tx_id_rela").focus();
                 return;
             }
 
-            if ($("#tx_desc").val() === "") {
+            if ($("#tx_nemo").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UNA DESCRIPCIÓN!!!</strong></div>',3000);
-                $("#tx_desc").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NEMOTÉCNICO!!!</strong></div>',3000);
+                $("#tx_nemo").focus();
                 return;
             }
 
-            if ($("#cb_tipo_motiv").val() === "") {
+            if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR UN TIPO DE MOTIVO!!!</strong></div>',3000);
-                $("#cb_tipo_motiv").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR UN VALOR!!!</strong></div>',3000);
+                $("#tx_valor").focus();
                 return;
             }
 
-            if ($("#cb_ind_pago").val() === "") {
+            if ($("#cb_estado").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INDICAR PAGO!!!</strong></div>',3000);
-                $("#cb_ind_pago").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
+                $("#cb_estado").focus();
                 return;
             }
 
@@ -312,6 +307,7 @@ function fn_new(){
     if (!$("#row_cod_motiv").is( "visible") && !$("#row_desc").is( "visible")) {
         $("#row_cod_motiv").show();
         $("#row_desc").show();
+
     }
 
     $("#tx_mot_client").val($("#cb_mot_client :selected").text());
@@ -325,15 +321,10 @@ function fn_new(){
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_tipo_motiv(){
+function fn_estado(){
 
-    $("#cb_tipo_motiv").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
+    $("#cb_estado").html("<option value='' selected></option><option value='1'>Excelente</option> <option value='2' >Bueno</option>  <option value='3' >Regular</option> <option value='3' >Malo</option> ");
     //$("#cb_tipo_motiv_edit").html("<option value='' selected></option><option value='1'>Corte</option> <option value='2' >Reposición</option>  <option value='3' >OPCION 03</option> ");
-}
-function fn_ind_pago(){
-
-    $("#cb_ind_pago").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
-    //$("#cb_ind_pago_edit").html("<option value='' selected></option><option value='1'>S</option> <option id='2'>N</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
