@@ -278,6 +278,7 @@ $(document).ready(function () {
                 rowIndx = ui.rowIndx;
 
             } else {
+                $("#co_gen_pre").prop( "disabled", true);
                 rowIndx = undefined;
             }
         }
@@ -289,8 +290,33 @@ $(document).ready(function () {
                 rowIndx = ui.rowIndx;
 
             } else {
+                $("#co_gen_pre").prop( "disabled", true);
                 rowIndx = undefined;
             }
+        }
+    });
+
+    $grid_principal.pqGrid({
+        cellSave: function( event, ui ) {
+
+            var dataCell = ui.rowData;
+
+            $("#co_gen_pre").prop( "disabled", false);
+
+
+            // FUNCION Y CODIGO PARA ENVIAR DATOS Y GUARDARLOS EN EL BACKEND
+        }
+    });
+
+    $grid_mano_obra.pqGrid({
+        cellSave: function( event, ui ) {
+
+            var dataCell = ui.rowData;
+
+            $("#co_gen_pre").prop( "disabled", false);
+
+
+            // FUNCION Y CODIGO PARA ENVIAR DATOS Y GUARDARLOS EN EL BACKEND
         }
     });
 
@@ -343,7 +369,7 @@ function fn_setea_grids_principales() {
         { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
         { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
-        { title: "Cantidad", width: 244, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
+        { title: "Cantidad", width: 244, dataType: "float", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
                 return rowIndx === ui.rowIndx;
             },
         },
@@ -390,7 +416,7 @@ function fn_setea_grids_principales() {
         { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
         { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
-        { title: "Cantidad", width: 244, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
+        { title: "Cantidad", width: 244, dataType: "float", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
                 return rowIndx === ui.rowIndx;
             },
         },
@@ -516,6 +542,8 @@ function fn_remove_active() {
 function fn_mostrar() {
     $("#co_con_pd").show();
     $("#co_dep_garan").show();
+    $("#co_gen_pre").show();
+
 }
 
 function fn_ocultar() {
@@ -570,6 +598,8 @@ function fn_ocultar_botones() {
 
     $("#co_con_pd").hide();
     $("#co_dep_garan").hide();
+    $("#co_gen_pre").hide();
+    $("#co_gen_pre").prop( "disabled", true);
 }
 
 function fn_mensaje(id,mensaje,segundos)
