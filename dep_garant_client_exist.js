@@ -3,7 +3,8 @@ var g_tit = "Deposito Garantia Cliente Existente";
 var $grid_principal;
 var $grid_mano_obra;
 var $grid_pre_dep;
-var rowIndx;
+var rowIndx = [];
+var rowIndx2 = [];
 var sql_grid_prim = "";
 var sql_grid_2 = "";
 var sql_grid_3 = "";
@@ -31,8 +32,7 @@ $(document).ready(function () {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
-    //COMBOS
-
+    $("._input_selector").inputmask("dd/mm/yyyy");
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -82,9 +82,74 @@ $(document).ready(function () {
     $("#co_grabar").on( "click", function () {
         
         if ($.trim($("#co_grabar").text() === "Grabar")) {
-            
-            
-            
+
+            if ($("#tx_mont_dep_gart").val() === "") {
+
+                fn_mensaje('#mensaje_depo','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN MONTO!!!</strong></div>',3000);
+                $("#tx_mont_dep_gart").focus();
+                return;
+            }
+
+            if ($("#tx_fech_firm").val() === "") {
+
+                fn_mensaje('#mensaje_depo','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA FECHA!!!</strong></div>',3000);
+                $("#tx_fech_firm").focus();
+                return;
+            }
+
+            if ($("#tx_fech_ini_conts").val() === "") {
+
+                fn_mensaje('#mensaje_depo','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA FECHA!!!</strong></div>',3000);
+                $("#tx_fech_ini_conts").focus();
+                return;
+            }
+
+            if ($("#tx_fech_fin_conts").val() === "") {
+
+                fn_mensaje('#mensaje_depo','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA FECHA!!!</strong></div>',3000);
+                $("#tx_fech_fin_conts").focus();
+                return;
+            }
+
+            if ($("#tx_conts").val() === "") {
+
+                fn_mensaje('#mensaje_depo','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR RELLENAR EL CAMPO!!!</strong></div>',3000);
+                $("#tx_conts").focus();
+                return;
+            }
+
+            if ($("#tx_fech_firm").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_firm").val()) === false) {
+                    fn_mensaje('#mensaje_depo', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fech_ini_conts").focus();
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_ini_conts").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_ini_conts").val()) === false) {
+                    fn_mensaje('#mensaje_depo', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fech_ini_conts").focus();
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_fin_conts").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_fin_conts").val()) === false) {
+                    fn_mensaje('#mensaje_depo', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fech_fin_conts").focus();
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_ini_conts").val() !== "" && $("#tx_fech_fin_conts").val() !== "") {
+
+                if (fn_fecha($("#tx_fech_ini_conts").val(), $("#tx_fech_fin_conts").val()) === false) {
+                    fn_mensaje('#mensaje_depo', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO!!!</strong></div>', 3000);
+                    $("#tx_fech_ini_conts").focus();
+                    return;
+                }
+            }
 
             fn_mensaje_boostrap("Se modifico", g_tit, $("#co_modificar"));
             $("#div_prin").slideDown();
@@ -118,87 +183,6 @@ $(document).ready(function () {
         fn_mostrar();
         fn_mensaje_boostrap("Se genéro", g_tit, $("#co_leer"));
         $(window).scrollTop(0);
-    });
-
-    $("#co_modificar").on("click", function() {
-
-        if ($.trim($("#co_modificar").text()) === "Modificar") {
-
-            if ($.trim($("#edit_title").text()) === "Editar Materiales") {
-                if ($("#tx_codigo").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN CÓDIGO!!!</strong></div>',3000);
-                    $("#tx_codigo").focus();
-                    return;
-                }
-
-                if ($("#tx_valor").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UN VALOR!!!</strong></div>',3000);
-                    $("#tx_valor").focus();
-                    return;
-                }
-
-                if ($("#tx_cantidad").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA CANTIDAD!!!</strong></div>',3000);
-                    $("#tx_cantidad").focus();
-                    return;
-                }
-
-                if ($("#tx_desc").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA DESCRIPCIÓN!!!</strong></div>',3000);
-                    $("#tx_desc").focus();
-                    return;
-                }
-
-                fn_mensaje_boostrap("Se modifico", g_tit, $("#co_modificar"));
-                $("#div_prin").slideDown();
-                $("#div_edit_bts").slideUp();
-                $('#div_edit_bts').modal('hide');
-                fn_carga_grilla();
-                $(window).scrollTop(0);
-            }
-
-            if ($.trim($("#edit_title").text()) === "Editar Mano de Obra") {
-                if ($("#tx_codigo").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN CÓDIGO!!!</strong></div>',3000);
-                    $("#tx_codigo").focus();
-                    return;
-                }
-
-                if ($("#tx_valor").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UN VALOR!!!</strong></div>',3000);
-                    $("#tx_valor").focus();
-                    return;
-                }
-
-                if ($("#tx_cantidad").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA CANTIDAD!!!</strong></div>',3000);
-                    $("#tx_cantidad").focus();
-                    return;
-                }
-
-                if ($("#tx_desc").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA DESCRIPCIÓN!!!</strong></div>',3000);
-                    $("#tx_desc").focus();
-                    return;
-                }
-
-                fn_mensaje_boostrap("Se modifico", g_tit, $("#co_modificar"));
-                $("#div_prin").slideDown();
-                $("#div_edit_bts").slideUp();
-                $('#div_edit_bts').modal('hide');
-                fn_carga_grilla();
-                $(window).scrollTop(0);
-            }
-
-        }
     });
 
     $("#co_dep_garan").on("click", function () {
@@ -275,11 +259,18 @@ $(document).ready(function () {
     $grid_principal.pqGrid({
         beforeCheck: function( event, ui ) {
             if (ui.check) {
-                rowIndx = ui.rowIndx;
+                rowIndx.push(ui.rowIndx);
 
             } else {
-                $("#co_gen_pre").prop( "disabled", true);
-                rowIndx = undefined;
+
+                if (rowIndx.includes(ui.rowIndx)) {
+                    var pos = rowIndx.indexOf(ui.rowIndx);
+                    rowIndx.splice(pos, 1);
+                }
+
+                if (rowIndx.length <= 0 && rowIndx2.length <= 0) {
+                    $("#co_gen_pre").prop( "disabled", true);
+                }
             }
         }
     });
@@ -287,11 +278,18 @@ $(document).ready(function () {
     $grid_mano_obra.pqGrid({
         beforeCheck: function( event, ui ) {
             if (ui.check) {
-                rowIndx = ui.rowIndx;
+                rowIndx2.push(ui.rowIndx);
 
             } else {
-                $("#co_gen_pre").prop( "disabled", true);
-                rowIndx = undefined;
+
+                if (rowIndx2.includes(ui.rowIndx)) {
+                    var pos = rowIndx2.indexOf(ui.rowIndx);
+                    rowIndx2.splice(pos, 1);
+                }
+
+                if (rowIndx.length <= 0 && rowIndx2.length <= 0) {
+                    $("#co_gen_pre").prop( "disabled", true);
+                }
             }
         }
     });
@@ -363,14 +361,13 @@ function fn_setea_grids_principales() {
             cb: {
                 all: false,
                 header: false,
-                maxCheck: 1
             }
         },
         { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
         { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
         { title: "Cantidad", width: 244, dataType: "float", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
-                return rowIndx === ui.rowIndx;
+            return rowIndx.includes(ui.rowIndx);
             },
         },
     ];
@@ -410,14 +407,13 @@ function fn_setea_grids_principales() {
             cb: {
                 all: false,
                 header: false,
-                maxCheck: 1
             }
         },
         { title: "Codigo", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
         { title: "Descripción", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", editable: false },
         { title: "Valor", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
         { title: "Cantidad", width: 244, dataType: "float", dataIndx: "C4", halign: "center", align: "center", editable: function(ui) {
-                return rowIndx === ui.rowIndx;
+                return rowIndx2.includes(ui.rowIndx);
             },
         },
     ];
@@ -519,6 +515,46 @@ function fn_edit(data, grilla){
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
+
+function fn_validar_fecha(value){
+    var real, info;
+    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+        info = value.split(/\//);
+        var fecha = new Date(info[2], info[1]-1, info[0]);
+        if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+            real = fecha.toISOString().substr(0,10).split('-');
+            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+
+function fn_fecha(valor, valor2) {
+
+    var fecha = valor.split("/");
+    fecha.reverse();
+    Date.parse(fecha);
+
+    var fecha2 = valor2.split("/");
+    fecha2.reverse();
+    Date.parse(fecha2);
+
+    if (fecha <= fecha2) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+}
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_set_active(tab, div_grilla) {
