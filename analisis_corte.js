@@ -318,6 +318,7 @@ function fn_carga_grilla() {
 
 function fn_limpiar() {
 
+    $("#tx_num_client").val("");
     $("#tx_nom_client").val("");
     $("#tx_direc_client").val("");
     $("#tx_cent_opera").val("");

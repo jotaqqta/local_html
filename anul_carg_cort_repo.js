@@ -69,14 +69,6 @@ $(document).ready(function () {
                 return;
             }
 
-
-            if ($("#tx_dig_ver").val() === "") {
-
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN DIGITO VERIFICADOR!!!</strong></div>',3000);
-                $("#tx_dig_ver").focus();
-                return;
-            }
-
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_new_bts").slideUp();
@@ -86,13 +78,28 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_borrard").on("click", function( ) {
 
-        $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-        $("#dlg_confirm").on("shown.bs.modal", function () {
-            $("#dlg_confirm div.modal-footer button").focus();
 
-        });
+    $("#co_confirm_yes").on("click", function( ) {
+
+        if ($("#tx_observacion").val() === "") {
+            fn_mensaje('#mensaje_confirm', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA OBSERVACIÓN!!!</strong></div>', 3000);
+            $("#tx_observacion").focus();
+            return;
+        }
+
+        fn_mensaje_boostrap("Se elimino", g_tit, $("#co_guardar"));
+        $("#div_prin").slideDown();
+        $("#dlg_confirm").slideUp();
+        $('#dlg_confirm').modal('hide');
+        $(window).scrollTop(0);
+    });
+
+    $("#co_confirm_no").on("click", function () {
+        $("#div_prin").slideDown();
+        $("#dlg_confirm").slideUp();
+        $('#dlg_confirm').modal('hide');
+        $(window).scrollTop(0);
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -147,7 +154,10 @@ function fn_setea_grid_principal() {
             $("#div_grid_principal > div.pq-grid-center-o > div.pq-grid-center > div.pq-body-outer > div.pq-grid-cont > div.pq-cont-inner > div.pq-table-right > div.pq-grid-row > div.pq-grid-cell").find("button.btn.btn-primary.btn-sm").button()
                 .bind("click", function () {
 
-                    var $tr = $(this).closest("tr");
+                    fn_borrar();
+
+
+                    /*var $tr = $(this).closest("tr");
                     var obj = $grid_principal.pqGrid("getRowIndx", { $tr: $tr });
                     var rowIndx = obj.rowIndx;
                     $grid_principal.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
@@ -172,7 +182,7 @@ function fn_setea_grid_principal() {
                         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
                         fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
                     });
-                    return false;
+                    return false;*/
 
                 });
         }
@@ -197,6 +207,15 @@ function fn_setea_grid_principal() {
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+function fn_borrar() {
+
+    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+    $("#dlg_confirm").on("shown.bs.modal", function () {
+        $("#dlg_confirm div.modal-footer button").focus();
+
+    });
+}
 
 function fn_carga_grilla() {
 
