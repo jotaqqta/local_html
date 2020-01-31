@@ -63,6 +63,7 @@ $(document).ready(function () {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
     $("#space").hide();
+    $("#co_cancelar").hide();
     fn_ocultar();
     fn_remove_active();
     fn_set_active("#tab_ana_parametros", "#div_grid_parametros")
@@ -112,8 +113,22 @@ $(document).ready(function () {
             }
         }
 
+        $("#co_leer").prop( "disabled", true);
+        $("#tx_num_client").prop( "disabled", true);
+        $("#co_cancelar").show();
+        $("#co_cerrar").hide();
+
         fn_mensaje_boostrap("Se genéro", g_tit, $("#co_leer"));
         $(window).scrollTop(0);
+    });
+
+    $("#co_cancelar").on("click", function () {
+
+        $("#co_leer").prop( "disabled", false);
+        $("#tx_num_client").prop( "disabled", false);
+        $("#co_cancelar").hide();
+        $("#co_cerrar").show();
+        fn_limpiar()
     });
 
     $("#co_cerrar").on("click", function () {
@@ -299,6 +314,23 @@ function fn_carga_grilla() {
     $grid_principal.pqGrid( "refreshDataAndView" );
     $grid_principal.pqGrid( "option", "title", "Total Registros: " + total_register);
 
+}
+
+function fn_limpiar() {
+
+    $("#tx_nom_client").val("");
+    $("#tx_direc_client").val("");
+    $("#tx_cent_opera").val("");
+    $("#tx_state_corte").val("");
+    $("#tx_inst_corte").val("");
+    $("#tx_state_notif").val("");
+    $("#tx_fech_notif").val("");
+    $("#tx_state_sumin").val("");
+    $("#tx_ind_auto").val("");
+    $("#tx_ind_conv").val("");
+    $("#tx_fech_afec_cort").val("");
+    $("#tx_ind_rest_cort").val("");
+    $("#tx_ind_susp").val("");
 }
 
 function fn_mensaje(id,mensaje,segundos)
