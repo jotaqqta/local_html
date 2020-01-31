@@ -472,48 +472,6 @@ function fn_setea_grid_secundaria() {
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-
-function fn_edit(data, grilla){
-
-    if (grilla === 1) {
-
-        fn_limpiar();
-
-        $("#tx_codigo").val(data.C1);
-        $("#tx_desc").val(data.C2);
-        $("#tx_valor").val(data.C3);
-        $("#tx_cantidad").val(data.C4);
-
-        $("#edit_title").html("Editar Materiales");
-
-        $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
-        $("#div_edit_bts").on("shown.bs.modal", function () {
-            $("#div_edit_bts div.modal-footer button").focus();
-
-        });
-    }
-
-    if (grilla === 2) {
-
-        fn_limpiar();
-
-        $("#tx_codigo").val(data.C1);
-        $("#tx_desc").val(data.C2);
-        $("#tx_valor").val(data.C3);
-        $("#tx_cantidad").val(data.C4);
-
-        $("#edit_title").html("Editar Mano de Obra");
-
-        $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
-        $("#div_edit_bts").on("shown.bs.modal", function () {
-            $("#div_edit_bts div.modal-footer button").focus();
-
-        });
-    }
-}
-
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 
 function fn_validar_fecha(value){

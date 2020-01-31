@@ -48,6 +48,8 @@ $(document).ready(function () {
     fn_setea_grid_principal();
 
     $("#space").hide();
+    $("#co_cancelar").hide();
+
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
@@ -57,8 +59,7 @@ $(document).ready(function () {
         if ($.trim($("#co_leer").text()) === "Leer") {
 
             if ($("#tx_num_sumi").val() === "") {
-
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!! </strong></div>', 3000);
                 $("#tx_num_sumi").focus();
                 return;
             }
@@ -69,6 +70,16 @@ $(document).ready(function () {
                 return;
             }
 
+            if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
+                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                $("#tx_num_sumi").focus();
+                return;
+            }
+
+            $("#co_leer").prop( "disabled", true);
+            $("#tx_num_sumi").prop( "disabled", true);
+            $("#co_cancelar").show();
+            $("#co_cerrar").hide();
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_new_bts").slideUp();
@@ -78,7 +89,12 @@ $(document).ready(function () {
         }
     });
 
-
+    $("#co_cancelar").on("click", function () {
+        $("#co_leer").prop( "disabled", false);
+        $("#tx_num_sumi").prop( "disabled", false);
+        $("#co_cancelar").hide();
+        $("#co_cerrar").show();
+    })
 
     $("#co_confirm_yes").on("click", function( ) {
 

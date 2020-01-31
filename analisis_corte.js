@@ -111,6 +111,12 @@ $(document).ready(function () {
                 $("#tx_num_client").focus();
                 return;
             }
+
+            if ($("#tx_num_client").val().includes("e") || $("#tx_num_client").val().includes(".") || $("#tx_num_client").val().includes(",") || $("#tx_num_client").val().includes("-") || $("#tx_num_client").val().includes("+")) {
+                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                $("#tx_num_client").focus();
+                return;
+            }
         }
 
         $("#co_leer").prop( "disabled", true);

@@ -68,6 +68,12 @@
             padding: 7px;
         }
 
+        #tx_num_sumi::-webkit-outer-spin-button,
+        #tx_num_sumi::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
     </style>
 </head>
 
@@ -92,7 +98,7 @@
                                     <label for="tx_num_sumi">Número de Suministro:</label>
                                 </div>
                                 <div class="col-xs-7">
-                                    <input id="tx_num_sumi" name="tx_num_sumi" class="form-control">
+                                    <input id="tx_num_sumi" type="number" name="tx_num_sumi" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -102,6 +108,9 @@
                     <div class="col-xs-12" style="height: 3px"></div>
                     <button class="btn btn-sm btn-primary btn-group" id="co_leer" type="button"><span
                             class="glyphicon glyphicon-search"></span> Leer
+                    </button>
+                    <button class="btn btn-sm btn-secundary btn-group" id="co_cancelar" type="button"><span
+                            class="glyphicon glyphicon-remove"></span> Cancelar
                     </button>
                     <button class="btn btn-sm btn-secundary btn-group" id="co_cerrar" type="button"><span
                             class="glyphicon glyphicon-off"></span> Cerrar
