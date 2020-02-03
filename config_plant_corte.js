@@ -3,6 +3,7 @@ var g_tit = "Configuración de Plantilla de Corte";
 var $grid_principal;
 var $grid_secundaria;
 var sql_grid_prim = "";
+var sql_grid_second = "";
 var my_url = "anul_carg_cort_repo";
 var parameters = {};
 
@@ -172,6 +173,29 @@ $(document).ready(function () {
         if (a > 0) {
             $("#tituloexcel").val(g_tit);
             $("#sql").val(sql_grid_prim);
+            $("#frm_Exel").submit();
+            return;
+        }
+    });
+
+    $("#co_excel2").on("click", function (e) {
+
+        fn_filtro();
+        e.preventDefault();
+        var col_model = $("#div_grid_second").pqGrid("option", "colModel");
+        var cabecera = "";
+        for (i = 0; i < col_model.length; i++) {
+            if (col_model[i].hidden !== true) cabecera += "<th>" + col_model[i].title + "</th>";
+        }
+        $("#excel_cabecera").val(cabecera);
+        var element = $grid_secundaria.pqGrid("option", "dataModel.data");
+        if (element)
+            a = element.length;
+        else
+            a = 0;
+        if (a > 0) {
+            $("#tituloexcel").val(g_tit);
+            $("#sql").val(sql_grid_second);
             $("#frm_Exel").submit();
             return;
         }
