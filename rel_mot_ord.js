@@ -290,6 +290,7 @@ function fn_setea_grid_principal() {
         columnBorders: true,
         collapsible:true,
         editable:false,
+        postRenderInterval: 0,
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
@@ -303,38 +304,6 @@ function fn_setea_grid_principal() {
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"},
             ]
         },
-        refresh: function () {
-            $("#div_grid_principal > div.pq-grid-center-o > div.pq-grid-center > div.pq-body-outer > div.pq-grid-cont > div.pq-cont-inner > div.pq-table-right > div.pq-grid-row > div.pq-grid-cell").find("button.btn.btn-primary.btn-sm").button()
-                .bind("click", function (evt) {
-                    var $tr = $(this).closest("tr");
-                    var obj = $grid_principal.pqGrid("getRowIndx", { $tr: $tr });
-                    var rowIndx = obj.rowIndx;
-                    $grid_principal.pqGrid("addClass", { rowIndx: rowIndx, cls: 'pq-row-delete' });
-
-                    var DM = $grid_principal.pqGrid("option", "dataModel");
-                    var datos = DM.data;
-                    var row = datos[rowIndx];
-
-                    var parameters = {
-                        "func":"fn_borrar",
-                        "p_ip":$("#tx_ip").val(),
-                        "p_rol":$("#tx_rol").val(),
-                        "p_equipo":$("#cb_equipo").val(),
-                        //"p_rol_equipo":row.C2,
-                        "Empresa":$("#tx_empresa").val()
-                    };
-
-                    alert("DEBUG: ¡Evento \"Borrar\" funcionando!");
-
-                    HablaServidor(my_url, parameters, 'text', function(text)
-                    {
-                        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
-                        fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
-                    });
-                    return false;
-
-                });
-        }
     };
 
     obj.colModel = [
@@ -344,10 +313,32 @@ function fn_setea_grid_principal() {
         { title: "Tipo de Atención", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "left" },
         { title: "Tipo orden", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "left" },
         { title: "Indicador de Ejecución", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "left" },
-        { title: "Eliminar",  width: 58, dataType: "string", align: "center", editable: false, sortable: false,
+        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
             render: function () {
                 return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
+            postRender: function (ui) {
+
+                var rowIndx = ui.rowIndx,
+                    $grid = this,
+                    $grid = $grid.getCell(ui);
+
+                $grid.find("button")
+                    .on("click", function () {
+
+                        $grid_principal.addClass({ rowIndx: ui.rowIndx, cls: 'pq-row-delete' });
+
+                        var ans = window.confirm("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
+                        $grid_principal.removeClass({ rowIndx: rowIndx, cls: 'pq-row-delete' });
+                        if (ans) {
+                            $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
+                        }
+
+                        /*HablaServidor(my_url, parameters, 'text', function() {
+                            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+                        });*/
+                    });
+            }
         },
     ];
     obj.dataModel = { data: data };

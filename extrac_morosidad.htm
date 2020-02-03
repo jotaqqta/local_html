@@ -60,6 +60,18 @@
             padding: 7px;
         }
 
+        #tx_deuda_inicial::-webkit-outer-spin-button,
+        #tx_deuda_inicial::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #tx_deuda_final::-webkit-outer-spin-button,
+        #tx_deuda_final::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
     </style>
 </head>
 
@@ -129,13 +141,13 @@
                                         <hr>
                                         <h4 style="font-size: 15px;">Tipo de Moroso:</h4>
                                         <div class="row">
-                                            <div class="col-xs-4 text-center">
+                                            <div class="col-xs-3">
                                                 <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_1">Sin Convenio</span>
                                             </div>
-                                            <div class="col-xs-4">
+                                            <div class="col-xs-3">
                                                 <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_2">Convenio Atrasado</span>
                                             </div>
-                                            <div class="col-xs-4">
+                                            <div class="col-xs-3">
                                                 <span class="radio radio-inline"><input class="radio-inline" type="radio" name="opt_tipo_moro" value="opt_3">Convenio al Día</span>
                                             </div>
                                         </div>
@@ -225,7 +237,7 @@
                                                         <label for="tx_deuda_inicial">Deuda inicial:</label>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <input id="tx_deuda_inicial" name="tx_deuda_inicial" class="form-control">
+                                                        <input id="tx_deuda_inicial" type="number" name="tx_deuda_inicial" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,7 +247,7 @@
                                                         <label for="tx_deuda_final">Deuda final:</label>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <input id="tx_deuda_final" name="tx_deuda_final" class="form-control">
+                                                        <input id="tx_deuda_final" type="number" name="tx_deuda_final" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -332,6 +344,22 @@
 <div class="container">
     <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
 </div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
 
 </body>
 
