@@ -109,25 +109,27 @@ $(document).ready(function () {
 
             if ($("#tx_descrip").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCIPCI&Oacute;N!!!</strong></div>',3000);
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCRIPCI&Oacute;N!!!</strong></div>',3000);
                 $("#tx_descrip").focus();
                 return;
             }
 
-            if ($("#tx_fe_crea").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA CREACI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_fe_crea").focus();
-                return;
+            if ($("#tx_fe_crea").val() !== "") {
+                if (fn_validar_fecha($("#tx_fe_crea").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fe_crea").focus();
+                    return;
+                }
             }
 
-            if ($("#tx_fe_modif").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA MODIFICACI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_fe_modif").focus();
-                return;
+            if ($("#tx_fe_modif").val() !== "") {
+                if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fe_modif").focus();
+                    return;
+                }
             }
-
+            
             if ($("#cb_estado").val() === "") {
 
                 fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
@@ -174,18 +176,20 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($("#tx_fe_crea").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA CREACI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_fe_crea").focus();
-                return;
+            if ($("#tx_fe_crea").val() !== "") {
+                if (fn_validar_fecha($("#tx_fe_crea").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fe_crea").focus();
+                    return;
+                }
             }
 
-            if ($("#tx_fe_modif").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA MODIFICACI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_fe_modif").focus();
-                return;
+            if ($("#tx_fe_modif").val() !== "") {
+                if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
+                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+                    $("#tx_fe_modif").focus();
+                    return;
+                }
             }
 
             if ($("#cb_estado").val() === "") {
@@ -227,6 +231,7 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
                 fn_edit(dataCell);
             $("#tx_codigo").prop("disabled",true);
+            $("#co_limpiar").hide();        
             }
         }
     });
@@ -314,10 +319,13 @@ function fn_filtro(){
 
     $("#tx_codigo").prop("disabled",false);
 
-    fn_limpiar();
+    fn_limpiar()
+    $("#co_limpiar").show();
 
     $("#tx_codigo").val(filtro[0]);
     $("#cb_agrup").val(filtro[1]);
+    $("#cb_estado").val(filtro[2]);
+
 
     $("#title_mod").html("Filtrar");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
@@ -375,6 +383,7 @@ function fn_new(){
     $("#tx_codigo").prop("disabled",false); 
 
     fn_limpiar();
+    $("#co_limpiar").show();
 
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
@@ -436,5 +445,25 @@ function fn_mensaje(id,mensaje,segundos)
     $(id).show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+}
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_validar_fecha(value){
+    var real, info;
+    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+        info = value.split(/\//);
+        var fecha = new Date(info[2], info[1]-1, info[0]);
+        if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+            real = fecha.toISOString().substr(0,10).split('-');
+            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
 }
 
