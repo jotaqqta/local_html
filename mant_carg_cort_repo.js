@@ -5,6 +5,7 @@ var sql_grid_prim = "";
 var my_url = "mant_carg_cort_CORT";
 var filtro = {};
 var parameters = {};
+var rowIndxG;
 var edit;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -181,6 +182,24 @@ $(document).ready(function () {
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
+    $("#co_confirm_yes").on( "click", function () {
+
+        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
+
+        /*HablaServidor(my_url, parameters, 'text', function() {
+            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+        });*/
+
+        $('#dlg_confirm').modal('hide');
+
+    });
+
+    $("#co_confirm_no").on( "click", function () {
+
+        $('#dlg_confirm').modal('hide');
+
+    });
+
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
         rowDblClick: function( event, ui ) {
@@ -289,25 +308,18 @@ function fn_setea_grid_principal() {
             },
             postRender: function (ui) {
 
-                var rowIndx = ui.rowIndx,
-                    $grid = this,
+                var rowIndx = ui.rowIndx;
+
+                var $grid = this,
                     $grid = $grid.getCell(ui);
 
                 $grid.find("button")
                     .on("click", function () {
 
-                        $grid_principal.addClass({ rowIndx: ui.rowIndx, cls: 'pq-row-delete' });
+                        fn_borrar(rowIndx);
 
-                        var ans = window.confirm("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
-                        $grid_principal.removeClass({ rowIndx: rowIndx, cls: 'pq-row-delete' });
-                        if (ans) {
-                            $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
-                        }
-
-                        /*HablaServidor(my_url, parameters, 'text', function() {
-                            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
-                        });*/
                     });
+
             }
         },
     ];
@@ -423,6 +435,19 @@ function fn_new() {
         $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
+}
+
+function fn_borrar(rowIndx) {
+
+    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
+
+    rowIndxG = rowIndx;
+
+    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+    $("#dlg_confirm").on("shown.bs.modal", function () {
+        $("#dlg_confirm div.modal-footer button").focus();
+    });
+
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
