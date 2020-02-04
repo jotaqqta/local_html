@@ -1,9 +1,5 @@
 var g_modulo = "Corte y Reposición";
 var g_tit = "Extractor de Morosidad";
-var $grid_principal;
-var sql_grid_prim = "";
-var my_url = "anul_carg_cort_repo";
-var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
