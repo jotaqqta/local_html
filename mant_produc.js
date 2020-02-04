@@ -322,6 +322,12 @@ function fn_filtro(){
     fn_limpiar()
     $("#co_limpiar").show();
 
+    $("#row_nom").hide();
+    $("#row_descrip").hide();
+    $("#row_fe_crea").hide();
+    $("#row_fe_modif").hide();
+
+
     $("#tx_codigo").val(filtro[0]);
     $("#cb_agrup").val(filtro[1]);
     $("#cb_estado").val(filtro[2]);
@@ -355,6 +361,12 @@ function fn_edit(dataCell){
     $("#tx_fe_crea").val(dataCell.C5);
     $("#tx_fe_modif").val(dataCell.C6);
     $("#cb_estado").val(dataCell.C7);
+
+    $("#row_nom").show();
+    $("#row_descrip").show();
+    $("#row_fe_crea").show();
+    $("#row_fe_modif").show();
+
     
 
     $("#tx_codigo option").each(function()
@@ -384,6 +396,11 @@ function fn_new(){
 
     fn_limpiar();
     $("#co_limpiar").show();
+
+     $("#row_nom").show();
+    $("#row_descrip").show();
+    $("#row_fe_crea").show();
+    $("#row_fe_modif").show();
 
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
