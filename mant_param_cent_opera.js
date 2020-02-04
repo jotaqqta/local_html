@@ -22,11 +22,6 @@ $(document).ready(function () {
     //INGRESA LOS TITULOS
     document.title = g_tit;
     document.body.scroll = "yes";
-    // Raiz
-    $("#div_header").load("syn_globales/header.htm", function () {
-        $("#div_mod0").html(g_modulo);
-        $("#div_tit0").html(g_tit);
-    });
 
     // COMBOS
 
