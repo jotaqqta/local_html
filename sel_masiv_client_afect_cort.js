@@ -81,14 +81,79 @@ $(document).ready(function () {
 
         if ($.trim($("#co_consultar").text()) === "Consultar") {
 
-            if ($("#tx_ruta").val() === "") {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE RUTA!!! </strong></div>', 3000);
-                $("#tx_ruta").focus();
+            if ($("#cb_inst_cort").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UNA INSTANCIA DE CORTE!!! </strong></div>', 3000);
+                $("#cb_inst_cort").focus();
                 return;
             }
 
+            if ($("#cb_actividad").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UNA ACTIVIDAD!!! </strong></div>', 3000);
+                $("#cb_actividad").focus();
+                return;
+            }
 
-            fn_mensaje_boostrap("Se modifico", g_tit, $("#co_guardar"));
+            if ($("#cb_tarifa").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UNA TARIFA!!! </strong></div>', 3000);
+                $("#cb_tarifa").focus();
+                return;
+            }
+
+            if ($("#cb_estado").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UN ESTADO!!! </strong></div>', 3000);
+                $("#cb_estado").focus();
+                return;
+            }
+
+            if ($("#cb_conexion").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UNA CONEXIÓN!!! </strong></div>', 3000);
+                $("#cb_conexion").focus();
+                return;
+            }
+
+            if ($("#cb_convenio").val() === "") {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UN CONVENIO!!! </strong></div>', 3000);
+                $("#cb_convenio").focus();
+                return;
+            }
+
+            if ($("#tx_deuda").val() === "" && $("#tx_deuda").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE LA DEUDA!!! </strong></div>', 3000);
+                $("#tx_deuda").focus();
+                return;
+            }
+
+            if ($("#tx_deuda_entre").val() === "" && $("#tx_deuda_entre").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE LA DEUDA!!! </strong></div>', 3000);
+                $("#tx_deuda_entre").focus();
+                return;
+            }
+
+            if ($("#tx_deuda_entre2").val() === "" && $("#tx_deuda_entre2").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE LA DEUDA!!! </strong></div>', 3000);
+                $("#tx_deuda_entre2").focus();
+                return;
+            }
+
+            if ($("#tx_deud_conv").val() === "" && $("#tx_deud_conv").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE LA DEUDA CONVENIO!!! </strong></div>', 3000);
+                $("#tx_deud_conv").focus();
+                return;
+            }
+
+            if ($("#tx_antig_deuda_conv").val() === "" && $("#tx_antig_deuda_conv").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE LA ANTIGÜEDAD DE LA DEUDA!!! </strong></div>', 3000);
+                $("#tx_antig_deuda_conv").focus();
+                return;
+            }
+
+            if ($("#tx_cant_cuot_fact").val() === "" && $("#tx_cant_cuot_fact").is(":visible")) {
+                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE EL VALOR DE CUOTAS FACTURADAS!!! </strong></div>', 3000);
+                $("#tx_cant_cuot_fact").focus();
+                return;
+            }
+
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
             $("#div_prin").slideDown();
             $("#div_filtro_bts").slideUp();
             $('#div_filtro_bts').modal('hide');
