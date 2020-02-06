@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+
+    <script src="sel_masiv_client_afect_cort.js"></script>
+
+    <style>
+
+        @media screen and (max-width: 1401px) {
+            #bd_prin {
+                height: calc(100vh - 102px);
+            }
+        }
+
+        @media screen and (min-width: 1402px) {
+            #bd_prin {
+                height: calc(100vh - 102px);
+            }
+        }
+
+        @media screen and (max-width: 1401px) {
+            #bd_second {
+                height: calc(95vh - 102px);
+            }
+        }
+
+        @media screen and (min-width: 1402px) {
+            #bd_second {
+                height: calc(95vh - 102px);
+            }
+        }
+
+        #content-second {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-top: 1px solid #C6C6C6;
+            border-left: 1px solid #C6C6C6;
+            border-right: 1px solid #C6C6C6;
+            padding: 7px;
+        }
+
+        .number::-webkit-outer-spin-button,
+        .number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .space {
+            height: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <br>
+    <div class="container">
+        <div id="div_prin">
+            <div id="bd_prin">
+                <!-- PARAMQUERY PRINCIPAL -->
+                <div id="div_grid_principal">
+                </div>
+            </div>
+        </div>
+        <div id="div_second">
+            <div id="content-second">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <label>Seleccionados:</label>
+                            </div>
+                            <div class="col-xs-5">
+                                <p class="text-center" id="selected"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="row">
+                            <div class="col-xs-7">
+                                <label>Deuda total Seleccionadas:</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <p id="selected_deuda"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <button class="btn btn-sm btn-primary btn-group" id="co_volver" type="button"><span
+                                class="glyphicon glyphicon-chevron-left"></span> Volver
+                        </button>
+                        <button class="btn btn-sm btn-primary btn-group" id="co_ver_clients" type="button"><span
+                                class="glyphicon glyphicon-search"></span> Ver Clientes
+                        </button>
+                        <button class="btn btn-sm btn-primary btn-group" id="co_generar_sol" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Generar Solicitudes de Corte
+                        </button>
+                        <button class="btn btn-sm btn-primary btn-group" id="co_excel_2" type="button"><span
+                                class="glyphicon glyphicon-save"></span> Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="bd_second">
+                <!-- PARAMQUERY SECUNDARIO -->
+                <div id="div_grid_second"></div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+
+        <!-- Modal Filtro -->
+        <div class="modal fade" id="div_filtro_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="title_mod_new" data-dismiss="modal">Filtro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_new" role="form">
+                            <div class="container" style="width: 100%">
+                                <div id="modal-content">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="tx_cent_opera">Centro Operativo:</label>
+
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <input id="tx_cent_opera" name="tx_cent_opera" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="cb_inst_cort">Instancia Corte:</label>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <select class="form-control input-normal" id="cb_inst_cort" name="cb_inst_cort"></select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="cb_actividad">Actividad:</label>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <select class="form-control input-normal" id="cb_actividad" name="cb_actividad"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="cb_tarifa">Tarifa:</label>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <select class="form-control input-normal" id="cb_tarifa" name="cb_tarifa"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space"></div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="cb_estado">Estado:</label>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <select class="form-control input-normal" id="cb_estado" name="cb_estado"></select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <label for="cb_conexion">Conexión:</label>
+                                                </div>
+                                                <div class="col-xs-7">
+                                                    <select class="form-control input-normal" id="cb_conexion" name="cb_conexion"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <label for="cb_convenio">Convenio:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <select class="form-control input-normal" id="cb_convenio" name="cb_convenio"></select>
+                                        </div>
+                                    </div>
+                                    <div class="space sin_conv"></div>
+                                    <div class="row sin_conv">
+                                        <div class="col-xs-3">
+                                            <label for="tx_deuda">Deuda:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_deuda" name="tx_deuda" type="number" class="form-control number">
+                                        </div>
+                                    </div>
+                                    <div class="space sin_conv"></div>
+                                    <div class="row sin_conv">
+                                        <div class="col-xs-3">
+                                            <label for="tx_deuda_entre">Antigüedad deuda:</label>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <label for="tx_deuda_entre">Entre</label>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <input id="tx_deuda_entre" name="tx_deuda_entre" maxlength="3" pattern="\d{3}" class="form-control number">
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <label for="tx_deuda_entre2">y</label>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <input id="tx_deuda_entre2" name="tx_deuda_entre2" maxlength="3" pattern="\d{3}" class="form-control number">
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <label>Periodos</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space con_conv"></div>
+                                    <div class="row con_conv">
+                                        <div class="col-xs-3">
+                                            <label for="tx_deud_conv">Deuda Convenio:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_deud_conv" name="tx_deud_conv" type="number" class="form-control number">
+                                        </div>
+                                    </div>
+                                    <div class="space con_conv"></div>
+                                    <div class="row con_conv">
+                                        <div class="col-xs-3">
+                                            <label for="tx_antig_deuda_conv">Antigüedad deuda Convenio:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_antig_deuda_conv" name="tx_antig_deuda_conv" type="number" class="form-control number">
+                                        </div>
+                                    </div>
+                                    <div class="space con_conv"></div>
+                                    <div class="row con_conv">
+                                        <div class="col-xs-3">
+                                            <label for="tx_cant_cuot_fact">Cantidad cuotas Facturadas:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_cant_cuot_fact" name="tx_cant_cuot_fact" type="number" class="form-control number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="mensaje_filtro"></div>
+                    <div class="modal-footer">
+                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Consultar
+                        </button>
+                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-off"></span> Cancelar
+                        </button>
+                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--inicio Modal Consulta-->
+        <div class="modal fade" id="div_see_clients_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal" id="con_title">Presupuestos y Depositos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_con" role="form">
+                            <div class="row">
+                                <div class="container" style="width: 100%">
+                                    <div id="content_grid_3" style="height: 250px;">
+                                        <div id="div_grid_terciaria"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="mensaje_con"></div>
+                    <div class="modal-footer">
+                        <button class="btn-sm btn-primary" id="co_excel_3" type="button"><span
+                                class="glyphicon glyphicon-save"></span> Excel
+                        </button>
+                        <button class="btn-sm btn-default" id="co_cerrar_2" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
