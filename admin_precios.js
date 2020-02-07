@@ -136,50 +136,51 @@ $(document).ready(function () {
 
             if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if ($("#tx_cod_val").val() === "") {
+				if ($("#tx_cod_val").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C&Oacute;DIGO VALOR!!!</strong></div>',3000);
-                $("#tx_cod_val").focus();
-                return;
-            }
+					fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C&Oacute;DIGO VALOR!!!</strong></div>',3000);
+					$("#tx_cod_val").focus();
+					return;
+				}
 
-            if ($("#tx_fe_apli").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_apli").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_apli").focus();
-                    return;
-                }
-            }
+				if ($("#tx_fe_apli").val() !== "") {
+					if (fn_validar_fecha($("#tx_fe_apli").val()) === false) {
+						fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+						$("#tx_fe_apli").focus();
+						return;
+					}
+				}
 
-            if ($("#tx_fe_modif").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_modif").focus();
-                    return;
-                }
-            }
+				if ($("#tx_fe_modif").val() !== "") {
+					if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
+						fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+						$("#tx_fe_modif").focus();
+						return;
+					}
+				}
 
-            if ($("#tx_valor").val() === "") {
+				if ($("#tx_valor").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR VALOR!!!</strong></div>',3000);
-                $("#tx_valor").focus();
-                return;
-            }
-   
-            /*if ($("#optradio").val() === "") {
+					fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR VALOR!!!</strong></div>',3000);
+					$("#tx_valor").focus();
+					return;
+				}
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
-                $("#optradio").focus();
-                return;
-            }*/
+				/*if ($("#optradio").val() === "") {
 
-            fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
+					fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
+					$("#optradio").focus();
+					return;
+				}*/
 
-        }
+				fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
+				$("#div_prin").slideDown();
+				$("#div_filtro_new_edit_bts").slideUp();
+				$('#div_filtro_new_edit_bts').modal('hide');
+				$(window).scrollTop(0);
+
+        	}
+		}
     });
 
     $("#co_limpiar").on("click", function () {
