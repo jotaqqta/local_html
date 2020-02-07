@@ -7,6 +7,7 @@ var sql_grid_prim = "";
 var sql_grid_second = "";
 var sql_grid_third = "";
 var my_url = "config_plant_corte";
+var checked;
 var parameters = {};
 var rowIndx = [];
 
@@ -186,7 +187,15 @@ $(document).ready(function () {
 
     $("#co_generar_sol").on("click", function () {
 
-        // DO SOMETHING
+        if (checked) {
+
+            // DO SOMETHING
+
+            fn_mensaje_boostrap("Se genero.", g_tit, $("#co_guardar"));
+        } else {
+            fn_mensaje_boostrap("Por favor seleccione una fila para poder generar.", g_tit, $("#co_guardar"));
+        }
+
     });
 
     $("#co_sel_client").on("click", function () {
@@ -258,6 +267,12 @@ $(document).ready(function () {
 
                 checkeadas++;
             });
+
+            if (checkeadas <= 0) {
+                checked = false;
+            } else if (checkeadas >= 1) {
+                checked = true;
+            }
 
             suma = suma.toFixed(2);
 
