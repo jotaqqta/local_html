@@ -264,6 +264,10 @@ $(document).ready(function () {
 
     $grid_principal.pqGrid({
         check: function( event, ui ) {
+
+            var isCheck = this.Checkbox('checkBox').isHeadChecked();
+
+
             if (ui.check) {
                 rowIndx.push(ui.rowIndx);
 
@@ -274,12 +278,19 @@ $(document).ready(function () {
                     rowIndx.splice(pos, 1);
                 }
 
+                if (!isCheck) {
+                    rowIndx = [];
+                }
+
             }
+
         }
     });
 
     $grid_secundaria.pqGrid({
         check: function( event, ui ) {
+
+            var isCheck = this.Checkbox('checkBox').isHeadChecked();
 
             if (ui.check) {
                 rowIndx2.push(ui.rowIndx);
@@ -287,17 +298,24 @@ $(document).ready(function () {
             } else {
 
                 if (rowIndx2.includes(ui.rowIndx)) {
-                    var pos = rowIndx.indexOf(ui.rowIndx);
-                    rowIndx.splice(pos, 1);
+                    var pos = rowIndx2.indexOf(ui.rowIndx);
+                    rowIndx2.splice(pos, 1);
+                }
+
+                if (!isCheck) {
+                    rowIndx2 = []
                 }
 
             }
 
             var suma = 0;
-            var checkeadas = 0;
+            var clientes = 0;
             this.Checkbox('checkBox').getCheckedNodes().map(function(rd) {
 
                 var val;
+                var val2;
+
+                val2 = rd.C5;
 
                 val = rd.C6;
 
@@ -307,12 +325,12 @@ $(document).ready(function () {
 
                 suma += parseFloat(val);
 
-                checkeadas++;
+                clientes += parseInt(val2);
             });
 
             suma = suma.toFixed(2);
 
-            $("#selected").html(checkeadas);
+            $("#selected").html(clientes);
             $("#selected_deuda").html(new Intl.NumberFormat().format(suma));
         }
     });
