@@ -565,6 +565,7 @@ function fn_set_grid_third() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
+        editable: false,
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
