@@ -6,10 +6,10 @@ var $grid_terciaria;
 var sql_grid_prim = "";
 var sql_grid_second = "";
 var sql_grid_third = "";
-var my_url = "config_plant_corte";
-var checked;
+var my_url = "sel_masiv_client_afect_cort";
 var parameters = {};
 var rowIndx = [];
+var rowIndx2 = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -154,7 +154,7 @@ $(document).ready(function () {
                 return;
             }
 
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             $("#div_prin").slideDown();
             $("#div_filtro_bts").slideUp();
             $('#div_filtro_bts').modal('hide');
@@ -187,38 +187,52 @@ $(document).ready(function () {
 
     $("#co_generar_sol").on("click", function () {
 
-        if (checked) {
+        if (rowIndx2.length >= 1) {
 
             // DO SOMETHING
 
-            fn_mensaje_boostrap("Se genero.", g_tit, $("#co_guardar"));
+            fn_mensaje_boostrap("Se genero.", g_tit, $("#co_generar_sol"));
         } else {
-            fn_mensaje_boostrap("Por favor seleccione una fila para poder generar.", g_tit, $("#co_guardar"));
+            fn_mensaje_boostrap("Por favor seleccione una fila para poder generar.", g_tit, $("#co_generar_sol"));
         }
 
     });
 
     $("#co_sel_client").on("click", function () {
 
-        // FUNCTION GET CHECKED
+        if (rowIndx.length >= 1) {
 
-        $("#div_prin").hide();
-        $("#div_second").show();
-        $grid_secundaria.pqGrid("refreshView");
+            // FUNCTION GET CHECKED
+
+            $("#div_prin").hide();
+            $("#div_second").show();
+            $grid_secundaria.pqGrid("refreshView");
+        } else {
+            fn_mensaje_boostrap("Por favor seleccione una fila para poder ingresar", g_tit, $("#co_sel_client"));
+        }
+
 
     });
 
     $("#co_ver_clients").on("click", function () {
-        $("#div_see_clients_bts").modal({backdrop: "static",keyboard:false});
-        $("#div_see_clients_bts").on("shown.bs.modal", function () {
-            $("#div_see_clients_bts div.modal-footer button").focus();
-        });
 
-        setTimeout(function() {
+        if (rowIndx2.length >= 1) {
 
-            $grid_terciaria.pqGrid("refreshView");
+            $("#div_see_clients_bts").modal({backdrop: "static",keyboard:false});
+            $("#div_see_clients_bts").on("shown.bs.modal", function () {
+                $("#div_see_clients_bts div.modal-footer button").focus();
+            });
 
-        }, 400);
+            setTimeout(function() {
+
+                $grid_terciaria.pqGrid("refreshView");
+
+            }, 400);
+        } else {
+            fn_mensaje_boostrap("Por favor seleccione una fila para poder visualizar.", g_tit, $("#co_generar_sol"));
+        }
+
+
 
     });
 
@@ -248,8 +262,36 @@ $(document).ready(function () {
         $("#div_prin").show();
     });
 
+    $grid_principal.pqGrid({
+        check: function( event, ui ) {
+            if (ui.check) {
+                rowIndx.push(ui.rowIndx);
+
+            } else {
+
+                if (rowIndx.includes(ui.rowIndx)) {
+                    var pos = rowIndx.indexOf(ui.rowIndx);
+                    rowIndx.splice(pos, 1);
+                }
+
+            }
+        }
+    });
+
     $grid_secundaria.pqGrid({
         check: function( event, ui ) {
+
+            if (ui.check) {
+                rowIndx2.push(ui.rowIndx);
+
+            } else {
+
+                if (rowIndx2.includes(ui.rowIndx)) {
+                    var pos = rowIndx.indexOf(ui.rowIndx);
+                    rowIndx.splice(pos, 1);
+                }
+
+            }
 
             var suma = 0;
             var checkeadas = 0;
@@ -267,12 +309,6 @@ $(document).ready(function () {
 
                 checkeadas++;
             });
-
-            if (checkeadas <= 0) {
-                checked = false;
-            } else if (checkeadas >= 1) {
-                checked = true;
-            }
 
             suma = suma.toFixed(2);
 
