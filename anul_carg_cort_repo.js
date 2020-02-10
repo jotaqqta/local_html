@@ -105,7 +105,13 @@ $(document).ready(function () {
             return;
         }
 
-        fn_mensaje_boostrap("Se elimino", g_tit, $("#co_guardar"));
+        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
+
+        /*HablaServidor(my_url, parameters, 'text', function() {
+            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+        });*/
+
+        fn_mensaje_boostrap("Se elimino", g_tit, $("#co_confirm_yes"));
         $("#div_prin").slideDown();
         $("#dlg_confirm").slideUp();
         $('#dlg_confirm').modal('hide');
