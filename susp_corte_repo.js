@@ -137,6 +137,19 @@ $(document).ready(function () {
         $('#div_new_bts').modal('hide');
     });
 
+    $("#co_medidores").on("click", function () {
+
+        $("#div_medidores_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_medidores_bts").on("shown.bs.modal", function () {
+            $("#div_medidores_bts div.modal-footer button").focus();
+        });
+    });
+
+    $("#co_cerrar_med").on("click", function () {
+
+        $('#div_medidores_bts').modal('hide');
+    });
+
     $("#co_confirm_yes").on("click", function () {
 
         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
@@ -157,6 +170,11 @@ $(document).ready(function () {
     $("#co_nuevo").on("click", function () {
 
         fn_nuevo();
+    });
+
+    $("#co_deuda").on("click", function () {
+
+        fn_mensaje_boostrap("Evento funcionando", g_tit, $("#co_consultar"));
     });
 
     $("#co_limpiar").on("click", function () {
@@ -233,7 +251,7 @@ function fn_set_grid_principal() {
         selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: {
-            cls: "pq-toolbar-export text-right",
+            cls: "pq-toolbar-export",
             items:[
                 { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-group btn-primary btn-sm" },
                 { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-group btn-primary btn-sm" },
