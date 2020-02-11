@@ -1,5 +1,5 @@
 var g_modulo = "Corte y Reposición";
-var g_tit = "Configuración de Plantilla de Corte";
+var g_tit = "Suspensión de Corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "sel_masiv_client_afect_cort";
@@ -121,6 +121,18 @@ $(document).ready(function () {
 
             if ($("#tx_cant_dias").val() === "") {
                 fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE LA CANTIDAD DE DÍAS!!! </strong></div>', 3000);
+                $("#tx_cant_dias").focus();
+                return;
+            }
+
+            if (!$.isNumeric($("#tx_cant_dias").val())) {
+                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                $("#tx_num_sumi").focus();
+                return;
+            }
+
+            if ($("#tx_cant_dias").val().includes("e") || $("#tx_cant_dias").val().includes(".") || $("#tx_cant_dias").val().includes(",") || $("#tx_cant_dias").val().includes("-") || $("#tx_cant_dias").val().includes("+")) {
+                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
                 $("#tx_cant_dias").focus();
                 return;
             }
