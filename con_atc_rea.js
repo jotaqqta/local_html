@@ -90,6 +90,7 @@ $(document).ready(function () {
     });
 
     $("#div_second").hide();
+    $("#ra").hide();
     $("#co_excel_3").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -237,6 +238,7 @@ $(document).ready(function () {
     $("#co_volver").on("click", function (e) {
         $("#div_prin").show();
         $("#div_second").hide();
+        $("#ra").hide();
         fn_remove_active();
         $("#tab_motivos").addClass("active");
         //$grid_principal.pqGrid( "refreshDataAndView" );
@@ -258,6 +260,7 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
                 fn_ocular_grillas();
                 $("#div_second").show();
+                $("#ra").show();
                 $("#div_grid_motivos").show();
                 $("#co_excel_2").show();
                 $("#div_prin").hide();
@@ -457,8 +460,7 @@ function fn_setea_grids_secundarias() {
     ];
 
     var obj3 = {
-        width: "932",
-        height: "375",
+        height: "300",
         showTop: true,
         showBottom:true,
         showTitle : false,
@@ -596,7 +598,7 @@ function fn_carga_grilla() {
     fn_filtro();
     var total_register;
 
-    alert("")
+    alert("");
     $grid_principal.pqGrid( "option", "dataModel", dataModel );
     $grid_principal.pqGrid( "refreshDataAndView" );
     $grid_principal.pqGrid( "option", "title", "Total Registros: " + total_register);
@@ -606,7 +608,7 @@ function fn_carga_grilla() {
 // Limpiar Filtro
 function fn_limpiar(){
     $("#cb_regional").val("");
-    $("#chk_retenidas").prop("checked", false)
+    $("#chk_retenidas").prop("checked", false);
     $("#cb_tipoaten").val("");
     $("#cb_canalcomu").val("");
     $("#cb_mot_cliente").val("");

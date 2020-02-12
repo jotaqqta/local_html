@@ -139,6 +139,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="container">
+<<<<<<< HEAD
                             <div class="row">
                                 <div class="col-sm-3" id="row_fe_apli">
                                     <label for="tx_fe_apli">Fecha Aplicaci&oacute;n:</label>
@@ -248,6 +249,68 @@
             </div>
         </div>
 
+=======
+                                <label for="row_cod_val">Definici&oacute;n de Precio</label>
+                        	<form class="form-horizontal flex-wrap" id="frm_new" role="form">                        
+								<label for="tx_cod">C&oacute;digo Valor</label>
+								<div class="row">                                
+									<div class="col-xs-2">                                    
+										<input id="tx_cod" type="number" name="tx_cod" class="form-control inp_dis">
+									</div>
+									<div class="col-xs-4">
+										<input id="tx_cod_2" type="number" name="tx_cod_2" class="form-control inp_dis">
+									</div>
+								</div>
+								<br>
+								<div class="col-sm-4">                                    
+									<input id="tx_cod_val_2" class="form-control inp_dis">
+								</div>
+                            
+                            	<br>                           
+								<div class="row">
+									<div class="col-sm-3" id="row_fe_apli">
+										<label for="tx_fe_apli">Fecha Aplicaci&oacute;n:</label>
+										<input id="tx_fe_apli" class="form-control _input_selector">
+									</div>                           
+									<div class="col-sm-3" id="row_fe_modif">
+										<label for="tx_fe_modif">Fecha Actualizaci&oacute;n:</label>
+										<input id="tx_fe_modif" class="form-control _input_selector">
+									</div>
+								</div>
+								<br>
+								<b><label for="row_cod_val">Valor</label></b>
+								<div class="row">
+									<div class="col-sm-3" id="tx_valor">
+										<label for="tx_valor">Valor Precio</label>
+										<input id="tx_valor" class="form-control inp_dis">
+									</div>
+									<br>
+									<div>
+										<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+										<label class="radio-inline" for="tx_tramo">Tiene Tramos S/N</label>
+										<input type="radio" name="optradio" id="optradio" name="optradio" value="2">
+										</div>
+									</div>
+								</div>
+                        	</form>
+						</div>
+						<br>
+						<div id="mensaje_edit"></div>
+						<div class="modal-footer">
+							<button class="btn-left btn-sm btn-primary btn-default" id="co_guardar" type="button"><span
+									class="glyphicon glyphicon-floppy-disk"></span> Guardar
+							</button>
+							<button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+									class="glyphicon glyphicon-off"></span> Cancelar
+							</button>
+							<button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
+									class="glyphicon glyphicon-grain"></span> Limpiar
+							</button>
+						</div>
+                	</div>
+            	</div>
+        	</div>
+		</div>
         <!-- Modal confirmaci? borrar -->
         <div id="dlg_confirm" class="modal" role="dialog">
             <div class="modal-dialog">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--suppress CssInvalidPropertyValue -->
+
 <html>
 
 <head>
@@ -57,50 +57,28 @@
     -->
     <style>
 
-        #div_tab {
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            border-top: 1px solid #DDDDDD;
+        #content_tab {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
             border-left: 1px solid #DDDDDD;
             border-right: 1px solid #DDDDDD;
+            border-bottom: 1px solid #DDDDDD;
             padding: 7px;
-            width: 1140px;
-            height: 50px;
         }
 
-        #div_con_clientes {
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-top: 1px solid #DDDDDD;
-            border-left: 1px solid #DDDDDD;
-            border-right: 1px solid #DDDDDD;
+        #botones-tab {
             border-bottom: 1px solid #DDDDDD;
-            padding: 6px;
-            width: 1140px;
-            height: 203px;
-        }
-
-        #div_grid_ordenes_css {
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-top: 1px solid #DDDDDD;
-            border-left: 1px solid #DDDDDD;
-            border-right: 1px solid #DDDDDD;
-            border-bottom: 1px solid #DDDDDD;
-            padding: 6px;
-            width: 1140px;
-            height: 390px;
         }
 
         @media screen and (max-width: 1401px) {
             #bd_prin {
-                height: calc(100vh - 82px);
+                height: calc(95vh - 82px);
             }
         }
 
         @media screen and (min-width: 1402px) {
             #bd_prin {
-                height: calc(100vh - 82px);
+                height: calc(95vh - 82px);
             }
         }
 
@@ -124,6 +102,7 @@
                     </div>
                 </div>
             </div>
+            <div id="ra" style="position: absolute; left: 980px; top: 413px; width: 230px; z-index: 1; border-bottom: 1px solid #DDDDDD;"> &nbsp; </div>
             <div id="div_second">
                 <div class="" id="bd_second">
                     <div class="row">
@@ -133,23 +112,23 @@
                                 <div class="col-xs-6">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <label>Numero de Atención:</label>
+                                            <label for="tx_num_ate">Numero de Atención:</label>
                                             <input id="tx_num_ate" name="tx_num_ate" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Fecha de Inicio:</label>
+                                            <label for="tx_fech_ini">Fecha de Inicio:</label>
                                             <input id="tx_fech_ini" name="tx_fech_ini" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Vencimiento empresa:</label>
+                                            <label for="tx_ven_emp">Vencimiento empresa:</label>
                                             <input id="tx_ven_emp" name="tx_ven_emp" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Unidad:</label>
+                                            <label for="tx_unidad">Unidad:</label>
                                             <input id="tx_unidad" name="tx_unidad" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Responsable:</label>
+                                            <label for="tx_responsable">Responsable:</label>
                                             <input id="tx_responsable" name="tx_responsable" class="form-control" readonly>
                                         </div>
                                     </div>
@@ -165,19 +144,19 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Duración del Contacto:</label>
+                                            <label for="tx_dura_conct">Duración del Contacto:</label>
                                             <input id="tx_dura_conct" name="tx_dura_conct" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Vencimieto ASEP:</label>
+                                            <label for="tx_ven_asep">Vencimieto ASEP:</label>
                                             <input id="tx_ven_asep" name="tx_ven_asep" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Canal:</label>
+                                            <label for="tx_canal">Canal:</label>
                                             <input id="tx_canal" name="tx_canal" class="form-control" readonly>
                                         </div>
                                         <div class="col-xs-12">
-                                            <label>Rol Inicio:</label>
+                                            <label for="tx_rol_inicio">Rol Inicio:</label>
                                             <input id="tx_rol_inicio" name="tx_rol_inicio" class="form-control" readonly>
                                         </div>
                                     </div>
@@ -186,109 +165,99 @@
                         </div>
                         <br>
                     </div>
-                    <div class="row">
-                        <div class="container" id="div_tab">
-                            <div class="row">
-                                <div class="container col-xs-11">
-                                    <ul class="nav nav-tabs">
-                                        <li id="tab_motivos" role="presentation" class="active"><a href="#">Motivos</a></li>
-                                        <li id="tab_ordenes" role="presentation"><a href="#">Ordenes</a></li>
-                                        <li id="tab_clientes" role="presentation"><a href="#">Clientes</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pull-right right col-xs-1">
-                                    <button id="co_excel_2" class="btn btn-primary pull-right"> Excel</button>
-                                    <button id="co_excel_3" class="btn btn-primary pull-right"> Excel</button>
-                                </div>
-                            </div>
+                    <div class="row" style="width: 100%">
+                        <div class="container col-xs-10">
+                            <ul class="nav nav-tabs">
+                                <li id="tab_motivos" role="presentation" class="active"><a href="#">Motivos</a></li>
+                                <li id="tab_ordenes" role="presentation"><a href="#">Ordenes</a></li>
+                                <li id="tab_clientes" role="presentation"><a href="#">Clientes</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-2 btn-group text-right" style="border-bottom: 1px solid #DDDDDD; height: 42px; border-bottom-right-radius: 3px">
+                            <button class="btn-sm btn-primary btn-sm" id="co_excel_2" type="button"><span
+                                    class="glyphicon glyphicon-save"></span> Excel
+                            </button>
+                            <button class="btn-sm btn-primary btn-sm" id="co_excel_3" type="button"><span
+                                    class="glyphicon glyphicon-save"></span> Excel
+                            </button>
                         </div>
                     </div>
-                    <!-- CLIENTE -->
                     <div class="row">
-                        <div class="container" id="div_con_clientes">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <label for="tx_nombre">Nombre:</label>
-                                            <input id="tx_nombre" name="tx_nombre" class="form-control" readonly>
+                        <div class="container" style="width: 100%">
+                            <div id="content_tab">
+                                <!-- CLIENTE -->
+                                <div class="row" id="div_con_clientes">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="tx_nombre">Nombre:</label>
+                                                <input id="tx_nombre" name="tx_nombre" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_suministro">Suministro:</label>
+                                                <input id="tx_suministro" name="tx_suministro" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_cen_operativo">Cen Operativo:</label>
+                                                <input id="tx_cen_operativo" name="tx_cen_operativo" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_telefono">Telefono:</label>
+                                                <input id="tx_telefono" name="tx_telefono" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_celular">Celular:</label>
+                                                <input id="tx_celular" name="tx_celular" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_tipo_client">Tipo Cliente:</label>
+                                                <input id="tx_tipo_client" name="tx_tipo_client" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_ruta">Ruta:</label>
+                                                <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
+                                            </div>
                                         </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_suministro">Suministro:</label>
-                                            <input id="tx_suministro" name="tx_suministro" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_cen_operativo">Cen Operativo:</label>
-                                            <input id="tx_cen_operativo" name="tx_cen_operativo" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_telefono">Telefono:</label>
-                                            <input id="tx_telefono" name="tx_telefono" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_celular">Celular:</label>
-                                            <input id="tx_celular" name="tx_celular" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_tipo_client">Tipo Cliente:</label>
-                                            <input id="tx_tipo_client" name="tx_tipo_client" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_ruta">Ruta:</label>
-                                            <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="tx_direccion">Dirección:</label>
+                                                <input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_doc_ident">Tipo de Documento:</label>
+                                                <input id="tx_doc_ident" name="tx_doc_ident" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="tx_doc_numero">Numero:</label>
+                                                <input id="tx_doc_numero" name="tx_doc_numero" class="form-control" readonly>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <label for="tx_email">Email:</label>
+                                                <input id="tx_email" name="tx_email" class="form-control" readonly>
+                                            </div>
+                                            <div><p>&nbsp;</p></div>
+                                            <div class="col-sx-6">
+                                                <label for="chk_resp_auto">&nbsp; &nbsp; &nbsp; </label>
+                                                <input id="chk_resp_auto" name="chk_resp_auto" type="checkbox">&nbsp;
+                                                <label for="chk_resp_auto">Respuesta Automatica</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <label for="tx_direccion">Dirección:</label>
-                                            <input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_doc_ident">Tipo de Documento:</label>
-                                            <input id="tx_doc_ident" name="tx_doc_ident" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <label for="tx_doc_numero">Numero:</label>
-                                            <input id="tx_doc_numero" name="tx_doc_numero" class="form-control" readonly>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <label for="tx_email">Email:</label>
-                                            <input id="tx_email" name="tx_email" class="form-control" readonly>
-                                        </div>
-                                        <div><p>&nbsp;</p></div>
-                                        <div class="col-sx-6">
-                                            <label for="chk_resp_auto">&nbsp; &nbsp; &nbsp; </label>
-                                            <input id="chk_resp_auto" name="chk_resp_auto" type="checkbox">&nbsp;
-                                            <label for="chk_resp_auto">Respuesta Automatica</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PARAMQUERY MOTIVOS -->
-                    <div id="div_grid_motivos">
-                    </div>
-                    <!-- PARAMQUERY ORDENES -->
-                    <div class="row">
-                        <div class="container" id="div_grid_ordenes_css">
-                            <div class="row">
-                                <div class="col-xs-1">
-                                    <p></p>
-                                </div>
-                                <div class="col-xs-10">
-                                    <div id="div_grid_ordenes"></div>
-                                </div>
-                                <div class="col-xs-1">
-                                    <p></p>
-                                </div>
+
+                                <!-- PARAMQUERY MOTIVOS -->
+                                <div id="div_grid_motivos"></div>
+
+                                <!-- PARAMQUERY ORDENES -->
+                                <div id="div_grid_ordenes"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
             <!--inicio Modal botón Filtros-->
             <div class="modal fade" id="div_filtro_bts" role="dialog">
@@ -392,10 +361,6 @@
             </div>
             <br>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
     </div>
 
     <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">

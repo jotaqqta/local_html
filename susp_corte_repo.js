@@ -1,5 +1,5 @@
 var g_modulo = "Corte y Reposición";
-var g_tit = "Configuración de Plantilla de Corte";
+var g_tit = "Suspensión de Corte y Reposición";
 var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "sel_masiv_client_afect_cort";
@@ -125,6 +125,18 @@ $(document).ready(function () {
                 return;
             }
 
+            if (!$.isNumeric($("#tx_cant_dias").val())) {
+                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                $("#tx_num_sumi").focus();
+                return;
+            }
+
+            if ($("#tx_cant_dias").val().includes("e") || $("#tx_cant_dias").val().includes(".") || $("#tx_cant_dias").val().includes(",") || $("#tx_cant_dias").val().includes("-") || $("#tx_cant_dias").val().includes("+")) {
+                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                $("#tx_cant_dias").focus();
+                return;
+            }
+
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             $("#div_prin").slideDown();
             $("#div_new_bts").slideUp();
@@ -135,6 +147,19 @@ $(document).ready(function () {
 
     $("#co_cancel").on("click", function (){
         $('#div_new_bts').modal('hide');
+    });
+
+    $("#co_medidores").on("click", function () {
+
+        $("#div_medidores_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_medidores_bts").on("shown.bs.modal", function () {
+            $("#div_medidores_bts div.modal-footer button").focus();
+        });
+    });
+
+    $("#co_cerrar_med").on("click", function () {
+
+        $('#div_medidores_bts').modal('hide');
     });
 
     $("#co_confirm_yes").on("click", function () {
@@ -157,6 +182,11 @@ $(document).ready(function () {
     $("#co_nuevo").on("click", function () {
 
         fn_nuevo();
+    });
+
+    $("#co_deuda").on("click", function () {
+
+        fn_mensaje_boostrap("Evento funcionando", g_tit, $("#co_consultar"));
     });
 
     $("#co_limpiar").on("click", function () {
@@ -233,7 +263,7 @@ function fn_set_grid_principal() {
         selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: {
-            cls: "pq-toolbar-export text-right",
+            cls: "pq-toolbar-export",
             items:[
                 { type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-group btn-primary btn-sm" },
                 { type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-group btn-primary btn-sm" },

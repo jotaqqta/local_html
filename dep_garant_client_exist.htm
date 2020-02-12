@@ -78,6 +78,10 @@
             margin: 0;
         }
 
+        .space {
+            height: 15px;
+        }
+
     </style>
 </head>
 
@@ -89,179 +93,175 @@
 </div>
 
 <div class="bootstrap-syn">
-    <br>
+    <div class="space"></div>
     <div class="container">
         <div id="div_prin">
-            <div class="" id="bd_prin">
-                <div class="row">
-                    <div class="container">
-                        <div id="content">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-2">
-                                            <div class="col-xs-12" style="height: 8px"></div>
-                                            <label for="tx_num_client">Numero Cliente:</label>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <div class="col-xs-12" style="height: 8px"></div>
-                                            <input id="tx_num_client" type="number" name="tx_num_client" class="form-control">
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <button class="btn btn-sm btn-primary btn-group" id="co_leer" type="button"><span
-                                                    class="glyphicon glyphicon-search"></span> Leer
-                                            </button>
-                                            <button class="btn btn-sm btn-secundary btn-group" id="co_cerrar" type="button"><span
-                                                    class="glyphicon glyphicon-off"></span> Cerrar
-                                            </button>
-                                            <button class="btn btn-sm btn-primary btn-group" id="co_con_pd" type="button"><span
-                                                    class=" "></span> Consulta PD
-                                            </button>
-                                            <button class="btn btn-sm btn-primary btn-group" id="co_gen_pre" type="button"><span
-                                                    class=" "></span> Generar Presupuesto
-                                            </button>
-                                            <button class="btn btn-sm btn-primary btn-group" id="co_dep_garan" type="button"><span
-                                                    class=" "></span> Deposito Garantia
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
+            <div id="content">
+                <div class="container" style="width: 100%">
+                    <div class="row">
+                        <div class="col-xs-12">
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <label for="tx_nom_client">Nombre Cliente:</label>
+                                    <div class="col-xs-12" style="height: 8px"></div>
+                                    <label for="tx_num_client">Numero Cliente:</label>
                                 </div>
-                                <div class="col-xs-9">
-                                    <input id="tx_nom_client" name="tx_nom_client" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <label for="tx_direc_client">Dirección:</label>
-                                </div>
-                                <div class="col-xs-9">
-                                    <input id="tx_direc_client" name="tx_direc_client" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <label for="tx_info_add_client">Información Adicional:</label>
-                                </div>
-                                <div class="col-xs-9">
-                                    <input id="tx_info_add_client" name="tx_info_add_client" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_ruta">Ruta:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-4">
+                                    <div class="col-xs-8" style="height: 8px"></div>
+                                    <input id="tx_num_client" type="number" name="tx_num_client" class="form-control">
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_tarifa">Tarifa:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_tarifa" name="tx_tarifa" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                    <button class="btn btn-sm btn-primary btn-group" id="co_leer" type="button"><span
+                                            class="glyphicon glyphicon-search"></span> Leer
+                                    </button>
+                                    <button class="btn btn-sm btn-secundary btn-group" id="co_cerrar" type="button"><span
+                                            class="glyphicon glyphicon-off"></span> Cerrar
+                                    </button>
+                                    <button class="btn btn-sm btn-primary btn-group" id="co_con_pd" type="button"><span
+                                            class=" "></span> Consulta PD
+                                    </button>
+                                    <button class="btn btn-sm btn-primary btn-group" id="co_gen_pre" type="button"><span
+                                            class=" "></span> Generar Presupuesto
+                                    </button>
+                                    <button class="btn btn-sm btn-primary btn-group" id="co_dep_garan" type="button"><span
+                                            class=" "></span> Deposito Garantia
+                                    </button>
                                 </div>
                             </div>
-                            <br>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label for="tx_nom_client">Nombre Cliente:</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input id="tx_nom_client" name="tx_nom_client" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label for="tx_direc_client">Dirección:</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input id="tx_direc_client" name="tx_direc_client" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label for="tx_info_add_client">Información Adicional:</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input id="tx_info_add_client" name="tx_info_add_client" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_regional">Regional:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_regional" name="tx_regional" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-4">
+                                    <label for="tx_ruta">Ruta:</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_provincia">Provincia:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_provincia" name="tx_provincia" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
                                 </div>
                             </div>
-                            <br>
+                        </div>
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_distrito">Distrito:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_distrito" name="tx_distrito" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-4">
+                                    <label for="tx_tarifa">Tarifa:</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_corregimiento">Corregimiento:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_corregimiento" name="tx_corregimiento" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_tarifa" name="tx_tarifa" class="form-control" readonly>
                                 </div>
                             </div>
-                            <br>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_state_client">Estado Cliente:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_state_client" name="tx_state_client" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-4">
+                                    <label for="tx_regional">Regional:</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label for="tx_state_conex">Estado Conexión:</label>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <input id="tx_state_conex" name="tx_state_conex" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_regional" name="tx_regional" class="form-control" readonly>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-12" style="height: 5px">
-                                    <label>&nbsp;</label>
+                                <div class="col-xs-4">
+                                    <label for="tx_provincia">Provincia:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_provincia" name="tx_provincia" class="form-control" readonly>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div id="mensaje_prin"></div>
+                                <div class="col-xs-4">
+                                    <label for="tx_distrito">Distrito:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_distrito" name="tx_distrito" class="form-control" readonly>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_corregimiento">Corregimiento:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_corregimiento" name="tx_corregimiento" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_state_client">Estado Cliente:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_state_client" name="tx_state_client" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_state_conex">Estado Conexión:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_state_conex" name="tx_state_conex" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" style="height: 5px">
+                            <label>&nbsp;</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div id="mensaje_prin"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
+        <div class="space"></div>
         <div id="div_second">
             <div id="bd_second">
                 <div class="row">
