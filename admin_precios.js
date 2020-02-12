@@ -162,8 +162,6 @@ $(document).ready(function () {
         } else {
             fn_mensaje_boostrap("Por favor seleccione una fila para poder ingresar", g_tit, $("#co_sel_prec"));
         }
-
-
     });
 
 
@@ -269,7 +267,7 @@ function fn_set_grid_principal() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
-        editable: false,
+        editable: true,
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
@@ -286,6 +284,13 @@ function fn_set_grid_principal() {
     };
 
     obj.colModel = [
+            { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                all: true,
+                header: true,
+            }
+        },
         { title: "Fecha Aplic", width: 300, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
         { title: "Fecha Act", width: 300, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
         { title: "Valor", width: 300, dataType: "strig", dataIndx: "C3", halign: "center", align: "center", },
@@ -339,7 +344,7 @@ function fn_set_grid_second() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
-        editable: true,
+        editable: false,
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
@@ -353,16 +358,7 @@ function fn_set_grid_second() {
             ]
         },
     };
-
-    obj.colModel = [
-            { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
-            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
-            cb: {
-                all: true,
-                header: true,
-            }
-        },
-
+        obj.colModel = [
         { title: "Tramo", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
         { title: "Inicio", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
         { title: "Fin", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
