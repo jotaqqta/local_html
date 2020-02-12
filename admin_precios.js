@@ -1,5 +1,5 @@
 var g_modulo = "Administrador Tarifario";
-var g_tit = "Actualización de Precios";
+var g_tit = "Actualizaci&oacute;n de Precios";
 var $grid_principal;
 var $grid_secundaria;
 var sql_grid_prim = "";
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     // COMBOS
 
-    //fn_set_grid_principal();
+    fn_set_grid_principal();
     fn_set_grid_second();
 
     // Footer  // Raiz
@@ -52,11 +52,12 @@ $(document).ready(function () {
     // BUTTONS ICONS
 
     $("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    $("#co_sel_prec").html("<span class='glyphicon glyphicon-plus'></span> Selecci&oacute;n de Precios");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
-    $("#div_second").show();
+    $("#div_second").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -149,18 +150,37 @@ $(document).ready(function () {
 
     });
 
+     $("#co_sel_prec").on("click", function () {
+
+        if (rowIndx.length >= 1) {
+
+            // FUNCTION GET CHECKED
+
+            $("#div_prin").hide();
+            $("#div_second").show();
+            $grid_secundaria.pqGrid("refreshView");
+        } else {
+            fn_mensaje_boostrap("Por favor seleccione una fila para poder ingresar", g_tit, $("#co_sel_prec"));
+        }
+
+
+    });
+
+
     $grid_principal.pqGrid( {
         rowDblClick: function (event, ui) {
             if (ui.rowData)
             {
                 var dataCell = ui.rowData;
 
+                fn_edit(dataCell);
+
                 // --> Funcion cargar info <--
 
                 $("#div_prin").hide();
-                $("#div_second").show();
+                $("#div_second").show();            
                 $grid_secundaria.pqGrid("refreshView");
-            }
+             }
         }
     });
 
@@ -168,14 +188,14 @@ $(document).ready(function () {
         rowDblClick: function (event, ui) {
             if (ui.rowData)
             {
-                alert("Grilla");
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell);
+               
 
             }
         }
     });
+   
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -234,32 +254,10 @@ $(document).ready(function () {
 function fn_set_grid_principal() {
 
     var data =  [
-        { C1: '1', C2: 'PLANTILLA CICLO 01/8000' },
-        { C1: '2', C2: 'PLANTILLA CICLO 02/8000' },
-        { C1: '3', C2: 'PLANTILLA CICLO 03/8000' },
-        { C1: '4', C2: 'PLANTILLA CICLO 04/8000' },
-        { C1: '5', C2: 'PLANTILLA CICLO 05/8000' },
-        { C1: '6', C2: 'PLANTILLA CICLO 06/8000' },
-        { C1: '7', C2: 'PLANTILLA CICLO 07/8000' },
-        { C1: '8', C2: 'PLANTILLA CICLO 08/8000' },
-        { C1: '9', C2: 'PLANTILLA CICLO 09/8000' },
-        { C1: '10', C2: 'PLANTILLA CICLO 10/8000' },
-        { C1: '11', C2: 'PLANTILLA CICLO 11/8000' },
-        { C1: '12', C2: 'PLANTILLA CICLO 12/8000' },
-        { C1: '13', C2: 'PLANTILLA CICLO 13/8000' },
-        { C1: '14', C2: 'PLANTILLA CICLO 14/8000' },
-        { C1: '15', C2: 'PLANTILLA CICLO 15/8000' },
-        { C1: '16', C2: 'PLANTILLA CICLO 16/8000' },
-        { C1: '17', C2: 'PLANTILLA CICLO 17/8000' },
-        { C1: '18', C2: 'PLANTILLA CICLO 18/8000' },
-        { C1: '19', C2: 'PLANTILLA CICLO 19/8000' },
-        { C1: '20', C2: 'PLANTILLA CICLO 20/8000' },
-        { C1: '25', C2: 'PLANTILLA CICLO 25/8000' },
-        { C1: '27', C2: 'PLANTILLA CICLO 27/8000' },
-        { C1: '28', C2: 'PLANTILLA CICLO 28/8000' },
-        { C1: '29', C2: 'PLANTILLA CICLO 29/8000' },
-        { C1: '30', C2: 'PLANTILLA CICLO 30/8000' },
-        { C1: '35', C2: 'PLANTILLA CICLO 35/8000' },
+        { C1: '11/02/2020', C2: '11/02/2020', C3: '0.0005', C4: 'S' },
+        { C1: '11/02/2020', C2: '11/02/2020', C3: '0.0006', C4: 'S' },
+        { C1: '11/02/2020', C2: '11/02/2020', C3: '0.0006', C4: 'N' },
+        
     ];
 
     var obj = {
@@ -282,33 +280,17 @@ function fn_set_grid_principal() {
             items: [
                 {type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm"},
                 {type: "button", label: "Cerrar", attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"},
+                {type: "button", label: "Excel", attr: "id=co_sel_prec", cls: "btn btn-primary btn-sm"},
             ]
         },
     };
 
     obj.colModel = [
-        { title: "Codigo", width: 55, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 970, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
-        { title: "Eliminar", width: 66, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-            render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-            },
-            postRender: function (ui) {
+        { title: "Fecha Aplic", width: 300, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Fecha Act", width: 300, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+        { title: "Valor", width: 300, dataType: "strig", dataIndx: "C3", halign: "center", align: "center", },
+        { title: "Con Tramo", width: 200, dataType: "strig", dataIndx: "C4", halign: "center", align: "center", },
 
-                var rowIndx = ui.rowIndx;
-
-                var $grid = this,
-                    $grid = $grid.getCell(ui);
-
-                $grid.find("button")
-                    .on("click", function () {
-
-                        fn_borrar(rowIndx);
-
-                    });
-
-            }
-        },
     ];
 
     obj.dataModel = { data: data };
@@ -357,7 +339,7 @@ function fn_set_grid_second() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
-        editable: false,
+        editable: true,
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
@@ -373,28 +355,20 @@ function fn_set_grid_second() {
     };
 
     obj.colModel = [
-        { title: "Ruta", width: 512, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Ciclo", width: 512, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
-        { title: "Eliminar", width: 66, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-            render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-            },
-            postRender: function (ui) {
-
-                var rowIndx = ui.rowIndx;
-
-                var $grid = this,
-                    $grid = $grid.getCell(ui);
-
-                $grid.find("button")
-                    .on("click", function () {
-
-                        fn_borrar(rowIndx);
-
-                    });
-
+            { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                all: true,
+                header: true,
             }
         },
+
+        { title: "Tramo", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Inicio", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+        { title: "Fin", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+        { title: "Valor", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+        { title: "Factor Aplicaci&oacute;n", width: 200, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", },
+
     ];
 
     obj.dataModel = { data: data };
@@ -415,12 +389,14 @@ function fn_set_grid_second() {
 
 function fn_edit(dataCell) {
 
-    $("#tx_ruta").val(dataCell.C1);
-    $("#tx_ciclo").val(dataCell.C2);
+    $("#tx_fe_apli").val(dataCell.C1);
+    $("#tx_fe_modif").val(dataCell.C2);
+    $("#tx_valor").val(dataCell.C1);
+    $("#tx_tramo").val(dataCell.C2);
 
     $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_edit_bts").on("shown.bs.modal", function () {
-        $("#div_edit_bts div.modal-footer button").focus();
+    $("#div_edit_bts div.modal-footer button").focus();
     });
 }
 
