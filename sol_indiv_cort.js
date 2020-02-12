@@ -27,11 +27,11 @@ $(document).ready(function () {
         return false;
     });
 
-    $("._input_selector").inputmask("dd/mm/yyyy");
-
     //INGRESA LOS TITULOS
     document.title = g_tit;
     document.body.scroll = "yes";
+
+    $("._input_selector").inputmask("dd/mm/yyyy");
 
     // Raiz
     $("#div_header").load("syn_globales/header.htm", function () {
@@ -41,6 +41,10 @@ $(document).ready(function () {
 
     // COMBOS
 
+    fn_ins_cort();
+    fn_motivo();
+
+    fn_deshabilitar();
 
     // Footer  // Raiz
     $("#div_footer").load("syn_globales/footer.htm");
@@ -95,54 +99,6 @@ $(document).ready(function () {
 
     });
 
-    $("#co_guardar").on( "click", function () {
-
-        if ($.trim($("#co_guardar").text()) === "Guardar") {
-
-            if ($("#cb_tipo_susp").val() === "") {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UN TIPO DE SUSPENCIÓN!!! </strong></div>', 3000);
-                $("#cb_tipo_susp").focus();
-                return;
-            }
-
-            if ($("#cb_motiv_susp").val() === "") {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UN MOTIVO DE SUSPENCIÓN!!! </strong></div>', 3000);
-                $("#cb_motiv_susp").focus();
-                return;
-            }
-
-            if ($("#cb_tipo_plazo").val() === "") {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONE UN TIPO DE PLAZO!!! </strong></div>', 3000);
-                $("#cb_tipo_plazo").focus();
-                return;
-            }
-
-            if ($("#tx_cant_dias").val() === "") {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE LA CANTIDAD DE DÍAS!!! </strong></div>', 3000);
-                $("#tx_cant_dias").focus();
-                return;
-            }
-
-            if (!$.isNumeric($("#tx_cant_dias").val())) {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
-                return;
-            }
-
-            if ($("#tx_cant_dias").val().includes("e") || $("#tx_cant_dias").val().includes(".") || $("#tx_cant_dias").val().includes(",") || $("#tx_cant_dias").val().includes("-") || $("#tx_cant_dias").val().includes("+")) {
-                fn_mensaje('#mensaje_new', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_cant_dias").focus();
-                return;
-            }
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
-            $("#div_prin").slideDown();
-            $("#div_new_bts").slideUp();
-            $('#div_new_bts').modal('hide');
-            $(window).scrollTop(0);
-        }
-    });
-
     $("#co_cancel").on("click", function (){
         $('#div_new_bts').modal('hide');
     });
@@ -154,6 +110,36 @@ $(document).ready(function () {
             $("#div_medidores_bts div.modal-footer button").focus();
         });
     });
+
+    $("#tx_fech_soli_real_h").blur(function () {
+        if ($("#tx_fech_soli_real_h").val() >= 24) {
+            $("#tx_fech_soli_real_h").val("24");
+        }
+    });
+
+    $("#tx_fech_notif_h").blur(function () {
+        if ($("#tx_fech_notif_h").val() >= 24) {
+            $("#tx_fech_notif_h").val("24");
+        }
+    });
+
+    $("#tx_fech_soli_real_m").blur(function () {
+        if ($("#tx_fech_soli_real_m").val() >= 60) {
+            $("#tx_fech_soli_real_m").val("59");
+        }
+    });
+
+    $("#tx_fech_notif_m").blur(function () {
+        if ($("#tx_fech_notif_m").val() >= 60) {
+            $("#tx_fech_notif_m").val("59");
+        }
+    });
+
+    $("#co_cerrar_med").on("click", function () {
+
+        $('#div_medidores_bts').modal('hide');
+    });
+
 
     $("#co_deuda").on("click", function () {
 
@@ -175,38 +161,11 @@ $(document).ready(function () {
         window.close();
     });
 
-    $("#co_volver").on( "click", function () {
-        $("#div_second").hide();
-        $("#div_prin").show();
-    });
-
-
+});
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
-    $("#co_excel").on("click", function (e) {
-
-        e.preventDefault();
-        var col_model = $("#div_grid_principal").pqGrid("option", "colModel");
-        var cabecera = "";
-        for (i = 0; i < col_model.length; i++) {
-            if (col_model[i].hidden !== true) cabecera += "<th>" + col_model[i].title + "</th>";
-        }
-        $("#excel_cabecera").val(cabecera);
-        var element = $grid_principal.pqGrid("option", "dataModel.data");
-        if (element)
-            a = element.length;
-        else
-            a = 0;
-        if (a > 0) {
-            $("#tituloexcel").val(g_tit);
-            $("#sql").val(sql_grid_prim);
-            $("#frm_Exel").submit();
-            return;
-        }
-    });
-
-});
+//                                  <-- Grids -->
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -215,9 +174,14 @@ $(document).ready(function () {
 
 //                                  <-- Combos -->
 
-function fn_tipo_susp(){
+function fn_ins_cort(){
 
-    $("#cb_tipo_susp").html("<option value='' selected></option><option value='1'>CORTE</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#cb_inst_cort").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+}
+
+function fn_motivo(){
+
+    $("#cb_motivo").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -235,7 +199,6 @@ function fn_limpiar() {
         $("#tx_servicio").val("");
         $("#tx_estado").val("");
 
-
 }
 
 function fn_deshabilitar() {
@@ -248,19 +211,9 @@ function fn_deshabilitar() {
 
 function fn_mensaje(id, mensaje, segundos) {
 
-    if (id === "#mensaje_prin") {
-        $(id).show();
-        $(id).html(mensaje);
-        setTimeout(function () { $(id).html(""); $(id).hide() }, segundos);
-
-        $("#space-msg").show();
-        setTimeout(function () { $("#space-msg").hide() }, segundos);
-    } else if (id === "#mensaje_new") {
         $(id).show();
         $(id).html(mensaje);
         setTimeout(function () {$(id).html("");$(id).hide() }, segundos);
-    }
-
 }
 
 
