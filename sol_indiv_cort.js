@@ -16,6 +16,10 @@ $(document).keydown(function (e) {
             return false;
         }
     }
+
+    if (e.keyCode === 13 && $("#tx_num_sumi").val() !== "" && $("#tx_num_sumi").is(":enabled")) {
+        fn_leer();
+    }
 });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -53,50 +57,88 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
-    // BUTTONS ICONS
-
-    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
+    $('input[type=radio][name=opt_val_ord]').filter('[value="opt_2"]').attr('checked', true);
 
     $("#co_cancelar").hide();
-    $("#space-msg").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                              <-- Buttons - Listeners -->
 
     $("#co_leer").on("click", function () {
-        if ($.trim($("#co_leer").text()) === "Leer") {
 
-            if ($("#tx_num_sumi").val() === "") {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+        fn_leer();
+
+    });
+
+    $("#co_ingresar").on("click", function () {
+
+        if ($.trim($("#co_ingresar").text()) === "Ingresar") {
+
+            if ($("#cb_inst_cort").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!! </strong></div>', 3000);
+                $("#cb_inst_cort").focus();
                 return;
             }
 
-            if (!$.isNumeric($("#tx_num_sumi").val())) {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+            if ($("#tx_fech_soli_real").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE SOLICITUD REAL!!! </strong></div>', 3000);
+                $("#tx_fech_soli_real").focus();
                 return;
             }
 
-            if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+            if ($("#tx_fech_soli_real_h").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
+                $("#tx_fech_soli_real_h").focus();
+                return;
+            }
+
+            if ($("#tx_fech_soli_real_m").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
+                $("#tx_fech_soli_real_m").focus();
+                return;
+            }
+
+            if ($("#cb_motivo").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO!!! </strong></div>', 3000);
+                $("#cb_motivo").focus();
+                return;
+            }
+
+            if ($("#tx_fech_notif").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE NOTIFICACIÓN!!! </strong></div>', 3000);
+                $("#tx_fech_notif").focus();
+                return;
+            }
+
+            if ($("#tx_fech_notif_h").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
+                $("#tx_fech_notif_h").focus();
+                return;
+            }
+
+            if ($("#tx_fech_notif_m").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
+                $("#tx_fech_notif_m").focus();
+                return;
+            }
+
+            if ($("#tx_observacion").val() === "") {
+                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA OBSERVACIÓN!!! </strong></div>', 3000);
+                $("#tx_observacion").focus();
                 return;
             }
         }
 
-        fn_mensaje_boostrap("Se genero", g_tit, $("#co_leer"));
-        $("#tx_num_sumi").prop("disabled", true);
-        $("#co_leer").prop("disabled", true);
-        $("#co_medidores").prop("disabled", false);
-        $("#co_deuda").prop("disabled", false);
-        $("#co_excel").prop("disabled", false);
-        $("#co_nuevo").prop("disabled", false);
-        $("#co_cancelar").show();
-        $("#co_cerrar").hide();
+        fn_mensaje_boostrap("Boton funcionando", g_tit, $("#co_ingresar"));
 
+    });
+
+    $("#tx_num_sumi").keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode === '13'){
+            alert('You pressed a "enter" key in textbox');
+        }
     });
 
     $("#co_cancel").on("click", function (){
@@ -201,12 +243,73 @@ function fn_limpiar() {
 
 }
 
+function fn_leer() {
+
+    if ($.trim($("#co_leer").text()) === "Leer") {
+
+        if ($("#tx_num_sumi").val() === "") {
+            fn_mensaje_boostrap("POR FAVOR INDIQUE UN NUMERO DE SUMINISTRO", g_tit, $("#co_leer"));
+            $("#tx_num_sumi").focus();
+            return;
+        }
+
+        if (!$.isNumeric($("#tx_num_sumi").val())) {
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#co_leer"));
+            $("#tx_num_sumi").focus();
+            return;
+        }
+
+        if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes("E") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#co_leer"));
+            $("#tx_num_sumi").focus();
+            return;
+        }
+    }
+
+    fn_mensaje_boostrap("Se genero", g_tit, $("#co_leer"));
+    $("#tx_num_sumi").prop("disabled", true);
+    $("#co_leer").prop("disabled", true);
+    $("#co_ingresar").prop("disabled", false);
+    $("#co_medidores").prop("disabled", false);
+    $("#co_deuda").prop("disabled", false);
+    $("#co_excel").prop("disabled", false);
+    $("#co_nuevo").prop("disabled", false);
+
+    $('input[type=radio][name=opt_val_ord]').attr('disabled', false);
+    $("#cb_inst_cort").prop("disabled", false);
+    $("#cb_motivo").prop("disabled", false);
+    $("#tx_fech_soli_real").prop("disabled", false);
+    $("#tx_fech_soli_real_h").prop("disabled", false);
+    $("#tx_fech_soli_real_m").prop("disabled", false);
+    $("#tx_fech_notif").prop("disabled", false);
+    $("#tx_fech_notif_h").prop("disabled", false);
+    $("#tx_fech_notif_m").prop("disabled", false);
+    $("#tx_observacion").prop("disabled", false);
+
+    $("#co_cancelar").show();
+    $("#co_cerrar").hide();
+}
+
 function fn_deshabilitar() {
 
     $("#co_medidores").prop("disabled", true);
     $("#co_deuda").prop("disabled", true);
     $("#co_excel").prop("disabled", true);
     $("#co_nuevo").prop("disabled", true);
+    $("#co_ingresar").prop("disabled", true);
+
+    $('input[type=radio][name=opt_val_ord]').attr('disabled', true);
+    $("#cb_inst_cort").prop("disabled", true);
+    $("#cb_motivo").prop("disabled", true);
+    $("#tx_fech_soli_real").prop("disabled", true);
+    $("#tx_fech_soli_real_h").prop("disabled", true);
+    $("#tx_fech_soli_real_m").prop("disabled", true);
+    $("#tx_fech_notif").prop("disabled", true);
+    $("#tx_fech_notif_h").prop("disabled", true);
+    $("#tx_fech_notif_m").prop("disabled", true);
+    $("#tx_observacion").prop("disabled", true);
+
+
 }
 
 function fn_mensaje(id, mensaje, segundos) {
