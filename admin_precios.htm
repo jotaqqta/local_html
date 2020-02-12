@@ -101,23 +101,35 @@
 <div class="bootstrap-syn">
     <br>
     <div class="container">
-        <!--<div id="div_prin">
-            <div id="bd_prin">
-                <!-- PARAMQUERY PRINCIPAL -->
-                <!--<div id="div_grid_principal">
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+                <div class="container">
+                    <div>
+                        <div class="well well-sm">Definici&oacute;n de Precio</div>
+                    </div>
+                    <div id="Principal" class="tab-pane fade in active">
+                        <div>
+                            <div class="row">
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                                    <label for="tx_cod">C&oacute;digo Valor</label>
+                                    <input id="tx_cod" type="text" name="tx_cod" class="form-control inp_dis">
+                                </div>                                
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label for="tx_cod_2"> </label>                         
+                                    <input id="tx_cod_2" name="tx_cod_2" class="form-control inp_dis">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>    
+        <div id="div_prin">
+            <div class="" id="bd_prin">
+            <!-- PARAMQUERY PRINCIPAL -->
+                <div id="div_grid_principal">
                 </div>
             </div>
-        </div>-->   
-        <div id="div_second">
-            <div id="bd_second">
-                <!-- PARAMQUERY SECUNDARIO -->
-                <div id="div_grid_second"></div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
-
-        <!-- Modal Editar -->
+        </div>  
+        <!-- Modal 1 Editar -->
         <div class="modal fade" id="div_edit_bts" role="dialog">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -127,23 +139,6 @@
                     </div>
                     <div class="modal-body">
                         <div class="container">
-                                <label for="row_cod_val">Definici&oacute;n de Precio</label>
-                        <form class="form-horizontal flex-wrap" id="frm_new" role="form">                        
-                            <label for="tx_cod">C&oacute;digo Valor</label>
-                            <div class="row">                                
-                                <div class="col-xs-2">                                    
-                                    <input id="tx_cod" type="number" name="tx_cod" class="form-control inp_dis">
-                                </div>
-                                <div class="col-xs-4">
-                                    <input id="tx_cod_2" type="number" name="tx_cod_2" class="form-control inp_dis">
-                                </div>
-                            </div>
-                        <br>
-                                <div class="col-sm-4">                                    
-                                    <input id="tx_cod_val_2" class="form-control inp_dis">
-                                </div>
-                            </div>
-                            <br>                           
                             <div class="row">
                                 <div class="col-sm-3" id="row_fe_apli">
                                     <label for="tx_fe_apli">Fecha Aplicaci&oacute;n:</label>
@@ -164,11 +159,76 @@
                             <br>
                                 <div>
                                     <div class="col-2 col-sm-2 col-md-2 col-lg-2">
-                                    <label class="radio-inline" for="tx_tramo">Tiene Tramos S/N</label>
+                                    <label class="radio-inline" for="tx_tramo">Tiene Tramos (S/N)</label>
                                     <input type="radio" name="optradio" id="optradio" name="optradio" value="2">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                        </form>
+                    <br>
+                    <div id="mensaje_edit"></div>
+                    <div class="modal-footer">
+                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar" type="button"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                        </button>
+                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-off"></span> Cancelar
+                        </button>
+                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="div_second">
+            <div id="bd_second">
+                <!-- PARAMQUERY SEGUNDO -->
+                <div id="div_grid_second"></div>
+            </div>
+        </div>
+                <!-- Modal 2 Editar -->
+        <div class="modal fade" id="div_edit_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="title_mod_new" data-dismiss="modal">Editar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">                                
+                          <div class="row">
+                                <div class="col-sm-3" id="row_precio">
+                                    <label for="tx_precio">Precio</label>
+                                    <input id="tx_precio" class="form-control _input_selector">
+                                </div>                           
+                                <div class="col-sm-3" id="row_fe_modif">
+                                    <label for="tx_fe_vig">Fecha Vigencia</label>
+                                    <input id="tx_fe_vig" class="form-control _input_selector">
+                                </div>
+                            </div>
+                            <br>                           
+                            <div class="row">
+                                <div class="col-sm-3" id="row_fe_apli">                                   
+                                    <input id="tx_fe_apli" class="form-control _input_selector">
+                                </div>                           
+                                <div class="col-sm-3" id="row_fe_modif">                                   
+                                    <input id="tx_fe_modif" class="form-control _input_selector">
+                                </div>
+                                <div class="col-sm-3" id="row_fe_modif">                                   
+                                    <input id="tx_fe_modif" class="form-control _input_selector">
+                                </div>
+                                <div class="col-sm-3" id="row_fe_modif">                                   
+                                    <input id="tx_fe_modif" class="form-control _input_selector">
+                                </div>
+                                <div class="col-sm-3" id="row_fe_modif">                                   
+                                    <input id="tx_fe_modif" class="form-control _input_selector">
+                                </div>
+                            </div>
+                            <br>
                         </div>
                         </form>
                     <br>
