@@ -157,7 +157,7 @@
 
         <!--inicio Modal Editar-->
         <div class="modal fade" id="div_edit_bts" role="dialog">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
@@ -166,25 +166,11 @@
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_edit" role="form">
                             <div class="row">
-                                <div class="col-xs-3">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <label for="tx_codigo">Codigo:</label>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <input id="tx_codigo" name="tx_codigo" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-2">
+                                    <label for="tx_desc">Descripción:</label>
                                 </div>
-                                <div class="col-xs-9">
-                                    <div class="row">
-                                        <div class="col-xs-2">
-                                            <label for="tx_desc">Descripción:</label>
-                                        </div>
-                                        <div class="col-xs-10">
-                                            <input id="tx_desc" name="tx_desc" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-10">
+                                    <input id="tx_desc" name="tx_desc" class="form-control" readonly>
                                 </div>
                             </div>
                             <hr>
@@ -208,20 +194,16 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-12">
                                             <label for="tx_fech_aplic">Fecha Aplicación:</label>
-                                        </div>
-                                        <div class="col-xs-7">
                                             <input id="tx_fech_aplic" name="tx_fech_aplic" class="form-control _input_selector">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-xs-12">
                                             <label for="tx_fech_actua">Fecha Actualización:</label>
-                                        </div>
-                                        <div class="col-xs-7">
                                             <input id="tx_fech_actua" name="tx_fech_actua" class="form-control _input_selector">
                                         </div>
                                     </div>
@@ -248,34 +230,20 @@
 
         <!--inicio Modal Editar 2-->
         <div class="modal fade" id="div_edit_2_bts" role="dialog">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Modificar</h4>
+                        <h4 class="modal-title" data-dismiss="modal">Modificación de Tramo</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_edit2" role="form">
                             <div class="row">
-                                <div class="col-xs-3">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <label for="tx_codigo_2">Codigo:</label>
-                                        </div>
-                                        <div class="col-xs-8">
-                                            <input id="tx_codigo_2" name="tx_codigo_2" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-2">
+                                    <label for="tx_desc_2">Descripción:</label>
                                 </div>
-                                <div class="col-xs-9">
-                                    <div class="row">
-                                        <div class="col-xs-2">
-                                            <label for="tx_desc_2">Descripción:</label>
-                                        </div>
-                                        <div class="col-xs-10">
-                                            <input id="tx_desc_2" name="tx_desc_2" class="form-control" readonly>
-                                        </div>
-                                    </div>
+                                <div class="col-xs-10">
+                                    <input id="tx_desc_2" name="tx_desc_2" class="form-control" readonly>
                                 </div>
                             </div>
                             <hr>
@@ -328,10 +296,10 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="row">
-                                        <div class="col-xs-2">
+                                        <div class="col-xs-3">
                                             <label for="tx_fact_aplic">Factor Aplicado:</label>
                                         </div>
-                                        <div class="col-xs-10">
+                                        <div class="col-xs-9">
                                             <input id="tx_fact_aplic" name="tx_fact_aplic" class="form-control">
                                         </div>
                                     </div>

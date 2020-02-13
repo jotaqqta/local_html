@@ -249,10 +249,6 @@ $(document).ready(function () {
                     return rd.C2;
                 });
 
-                $("#tx_codigo_2").val(this.Checkbox('checkBox').getCheckedNodes().map(function(rd){
-                    return rd.C1;
-                }));
-
                 $("#tx_desc_2").val(this.Checkbox('checkBox').getCheckedNodes().map(function(rd){
                     return rd.C2;
                 }));
@@ -459,7 +455,6 @@ function fn_edit(dataCell, grid) {
 
     if (grid === 1) {
 
-        $("#tx_codigo").val(dataCell.C1);
         $("#tx_desc").val(dataCell.C2);
 
         $("#tx_valor_precio").val(dataCell.C5);
