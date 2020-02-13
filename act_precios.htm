@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+
+    <script src="act_precios.js"></script>
+
+    <style>
+
+        @media screen and (max-width: 1401px) {
+            #bd_prin {
+                height: calc(100vh - 102px);
+            }
+        }
+
+        @media screen and (min-width: 1402px) {
+            #bd_prin {
+                height: calc(100vh - 102px);
+            }
+        }
+
+        @media screen and (max-width: 1401px) {
+            #bd_second {
+                height: calc(95vh - 102px);
+            }
+        }
+
+        @media screen and (min-width: 1402px) {
+            #bd_second {
+                height: calc(95vh - 102px);
+            }
+        }
+
+        #content-second {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-top: 1px solid #C6C6C6;
+            border-left: 1px solid #C6C6C6;
+            border-right: 1px solid #C6C6C6;
+            padding: 7px;
+        }
+
+        .number::-webkit-outer-spin-button,
+        .number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .space {
+            height: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <br>
+    <div class="container">
+        <div id="div_prin">
+            <div id="bd_prin">
+                <!-- PARAMQUERY PRINCIPAL -->
+                <div id="div_grid_principal">
+                </div>
+            </div>
+        </div>
+        <div id="div_second">
+            <div id="content-second">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <label for="tx_precio">Precio:</label>
+                            </div>
+                            <div class="col-xs-10">
+                                <input id="tx_precio" name="tx_precio" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="tx_fech_vig">Fecha Vigente:</label>
+                            </div>
+                            <div class="col-xs-6">
+                                <input id="tx_fech_vig" name="tx_fech_vig" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        <button class="btn btn-sm btn-primary btn-group" id="co_volver" type="button"><span
+                                class="glyphicon glyphicon-chevron-left"></span> Volver
+                        </button>
+                        <button class="btn btn-sm btn-primary btn-group" id="co_excel_2" type="button"><span
+                                class="glyphicon glyphicon-save"></span> Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="bd_second">
+                <!-- PARAMQUERY SECUNDARIO -->
+                <div id="div_grid_second"></div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+
+        <!--inicio Modal Editar-->
+        <div class="modal fade" id="div_edit_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal">Modificar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_edit" role="form">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <label for="tx_codigo">Codigo:</label>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="tx_codigo" name="tx_codigo" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_desc">Descripción:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_desc" name="tx_desc" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <label for="tx_valor_precio">Valor Precio:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_valor_precio" name="tx_valor_precio" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input id="chk_resp_auto" name="chk_resp_auto" type="checkbox">&nbsp;
+                                    <label for="chk_resp_auto">Tiene Tramos (S/N)</label>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <label for="tx_fech_aplic">Fecha Aplicación:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_fech_aplic" name="tx_fech_aplic" class="form-control _input_selector">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <label for="tx_fech_actua">Fecha Actualización:</label>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <input id="tx_fech_actua" name="tx_fech_actua" class="form-control _input_selector">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div id="mensaje_edit"></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-group btn-sm btn-primary pull-left" id="co_limpiar" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-primary" id="co_modificar" type="button"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Modificar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-default" id="co_cancelar" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--inicio Modal Editar 2-->
+        <div class="modal fade" id="div_edit_2_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal">Modificar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_edit2" role="form">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <label for="tx_codigo_2">Codigo:</label>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <input id="tx_codigo_2" name="tx_codigo_2" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-9">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_desc_2">Descripción:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_desc_2" name="tx_desc_2" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_tramo">Tramo:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_tramo" name="tx_tramo" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_inicio">Inicio:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_inicio" name="tx_inicio" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_fin">Fin:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_fin" name="tx_fin" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_valor">Valor:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_valor" type="number" name="tx_valor" class="form-control number">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="tx_fact_aplic">Factor Aplicado:</label>
+                                        </div>
+                                        <div class="col-xs-10">
+                                            <input id="tx_fact_aplic" name="tx_fact_aplic" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="mensaje_edit_2"></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-group btn-sm btn-primary pull-left" id="co_limpiar_2" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-primary" id="co_modificar_2" type="button"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Modificar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-default" id="co_cancelar_2" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal confirmación borrar -->
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                    </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label" id="confirm_msg"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+                        <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
