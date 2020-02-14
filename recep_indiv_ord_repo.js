@@ -4,7 +4,6 @@ var $grid_principal;
 var sql_grid_prim = "";
 var my_url = "sel_masiv_client_afect_cort";
 var parameters = {};
-var rowIndxG;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -77,57 +76,75 @@ $(document).ready(function () {
 
         if ($.trim($("#co_ingresar").text()) === "Ingresar") {
 
-            if ($("#cb_inst_cort").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!! </strong></div>', 3000);
-                $("#cb_inst_cort").focus();
+            if ($("#tx_numero_med").val() === "") {
+                fn_mensaje_boostrap("FAVOR INGRESE UN NUMERO DE MEDIDOR", g_tit, $("#co_leer"));
+                $("#tx_numero_med").focus();
                 return;
             }
 
-            if ($("#tx_fech_soli_real").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE SOLICITUD REAL!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real").focus();
+            if ($("#tx_marca").val() === "") {
+                fn_mensaje_boostrap("FAVOR INGRESE UNA MARCA DE MEDIDOR", g_tit, $("#co_leer"));
+                $("#tx_marca").focus();
                 return;
             }
 
-            if ($("#tx_fech_soli_real_h").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real_h").focus();
+            if ($("#tx_modelo").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE UN MODELO DE MEDIDOR", g_tit, $("#co_leer"));
+                $("#tx_modelo").focus();
                 return;
             }
 
-            if ($("#tx_fech_soli_real_m").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real_m").focus();
+            if ($("#tx_lectura").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA LECTURA", g_tit, $("#co_leer"));
+                $("#tx_lectura").focus();
                 return;
             }
 
-            if ($("#cb_motivo").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO!!! </strong></div>', 3000);
-                $("#cb_motivo").focus();
+            if ($("#cb_diametro_conex").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN DIAMETRO DE CONEXIÓN", g_tit, $("#co_leer"));
+                $("#cb_diametro_conex").focus();
                 return;
             }
 
-            if ($("#tx_fech_notif").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE NOTIFICACIÓN!!! </strong></div>', 3000);
-                $("#tx_fech_notif").focus();
+            if ($("#cb_situacion_encont").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE UNA SITUACIÓN ENCONTRADA", g_tit, $("#co_leer"));
+                $("#cb_situacion_encont").focus();
                 return;
             }
 
-            if ($("#tx_fech_notif_h").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
-                $("#tx_fech_notif_h").focus();
+            if ($("#cb_acc_realizada").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE UNA ACCIÓN REALIZADA", g_tit, $("#co_leer"));
+                $("#cb_acc_realizada").focus();
                 return;
             }
 
-            if ($("#tx_fech_notif_m").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
-                $("#tx_fech_notif_m").focus();
+            if ($("#tx_fech_eje_real").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA FECHA DE EJECUCIÓN REAL", g_tit, $("#co_leer"));
+                $("#tx_fech_eje_real").focus();
                 return;
             }
 
-            if ($("#tx_observacion").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA OBSERVACIÓN!!! </strong></div>', 3000);
-                $("#tx_observacion").focus();
+            if ($("#tx_fech_eje_real_h").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE LAS HORAS", g_tit, $("#co_leer"));
+                $("#tx_fech_eje_real_h").focus();
+                return;
+            }
+
+            if ($("#tx_fech_eje_real_m").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE LOS MINUTOS", g_tit, $("#co_leer"));
+                $("#tx_fech_eje_real_m").focus();
+                return;
+            }
+
+            if ($("#cb_ejecutor").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE UN EJECUTOR", g_tit, $("#co_leer"));
+                $("#cb_ejecutor").focus();
+                return;
+            }
+
+            if ($("#tx_observacion_terreno").val() === "") {
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA OBSERVACIÓN", g_tit, $("#co_leer"));
+                $("#tx_observacion_terreno").focus();
                 return;
             }
         }
@@ -136,26 +153,19 @@ $(document).ready(function () {
 
     });
 
-    $("#tx_num_sumi").keypress(function(event){
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if(keycode === '13'){
-            alert('You pressed a "enter" key in textbox');
-        }
-    });
-
     $("#co_cancel").on("click", function (){
         $('#div_new_bts').modal('hide');
     });
 
     $("#tx_fech_eje_real_h").blur(function () {
-        if ($("#tx_fech_soli_real_h").val() >= 24) {
-            $("#tx_fech_soli_real_h").val("24");
+        if ($("#tx_fech_eje_real_h").val() >= 24) {
+            $("#tx_fech_eje_real_h").val("24");
         }
     });
 
     $("#tx_fech_eje_real_m").blur(function () {
-        if ($("#tx_fech_soli_real_m").val() >= 60) {
-            $("#tx_fech_soli_real_m").val("59");
+        if ($("#tx_fech_eje_real_m").val() >= 60) {
+            $("#tx_fech_eje_real_m").val("59");
         }
     });
 
@@ -169,6 +179,9 @@ $(document).ready(function () {
         $("#co_leer").prop("disabled", false);
         $("#co_cancelar").hide();
         $("#co_cerrar").show();
+
+        $("#tx_num_ord").focus();
+
     });
 
     $("#co_cerrar").on("click", function () {
@@ -213,6 +226,21 @@ function fn_ejecutor(){
 //                                  <-- Functions -->
 
 function fn_limpiar() {
+
+    $("#tx_num_ord").val("");
+    $("#tx_num_sumi").val("");
+
+    $("#tx_oficina").val("");
+    $("#tx_fech_soli").val("");
+    $("#tx_nombre").val("");
+    $("#tx_direcc_sumi").val("");
+    $("#tx_distrito").val("");
+    $("#tx_corregimiento").val("");
+    $("#tx_ruta").val("");
+    $("#tx_tarifa").val("");
+    $("#tx_motivo").val("");
+    $("#tx_formulario").val("");
+    $("#tx_observacion").val("");
 
     $("#tx_numero_med").val("");
     $("#tx_marca").val("");
