@@ -87,25 +87,24 @@
 									<button type="button" class="btn btn-sm btn-primary btn-group" id="co_leer" name="co_leer"
 									style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-search"></span>
 									Leer</button>
-									<button type="button" class="btn btn-sm btn-primary btn-group" id="co_medid" name="co_medid"
+									<button type="button" disabled="disabled" class="btn btn-sm btn-primary btn-group" id="co_medid" name="co_medid"
 									style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-list-alt"></span>
 									Medidores</button>
-									<button type="button" class="btn btn-sm btn-primary btn-group" id="co_deuda" name="co_deuda"
+									<button type="button" disabled="disabled" class="btn btn-sm btn-primary btn-group" id="co_deuda" name="co_deuda"
 									style="padding: 4px 12px;width:85px"><span class="glyphicon glyphicon-usd"></span>
 									Deuda</button>
 								</div>
 							</div>
 						</div>
 				<br>
+
 					<br>	
 						<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_nomb">Nombre</label>
 								<input id="tx_nomb" name="tx_nomb" type="text" class="form-control inp_dis">
 							</div>
-						</div>
-					  	<div class="row">
-							<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_dir">Direcci&oacute;n</label>
 								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="">
 							</div>
@@ -159,16 +158,13 @@
 								<input id="tx_ult_eve" name="tx_ult_eve" type="text" class="form-control inp_dis">
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="tc_fe_eve">Fecha Evento</label>
-								<input id="tc_fe_eve" name="tc_fe_eve" class="form-control inp_dis">
+								<label for="tx_fe_eve">Fecha Evento</label>
+								<input id="tx_fe_eve" name="tx_fe_eve" class="form-control _input_selector">
 							</div>
 						</div>
     			    </div>
 			    </div>
 			<br>
-			<div class="container" id="div_prim">
-				
-			</div>
 			<br>
 				<!-- DETALLE -->
 				  	<div class="container">				  	
@@ -180,7 +176,7 @@
 							</div>
 							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 								<label for="tx_fec_sol_real">Fecha Solicitud Real</label>
-								<input id="tx_fec_sol_real" name="tx_fec_sol_real" type="text" class="form-control inp_dis">
+								<input id="tx_fec_sol_real" name="tx_fec_sol_real" type="text" class="form-control _input_selector">
 							</div>
                             <div class="col-1 col-sm-1 col-md-1 col-lg-1">
 								<label for="tx_hora"></label>
@@ -208,7 +204,6 @@
     				</div>
             	</div>
             <br>
-			<div class="container" id="div_prim">
 				<div class="form-horizontal flex-wrap">
 					<label class="col-sm-4"></label>
 					<div class="mx-auto flex-wrap">
@@ -220,13 +215,49 @@
 							Cancelar</button>
 					</div>
 				</div>
-			</div>
 		</div>
 		<div class="container">
 			<div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
 		</div>
 		</div>
 		</div>
+						<!-- Modal Filtro, Editar y Nuevo -->
+        <div class="modal fade" id="div_edit_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Medidores</h4>
+                    </div>
+                	<div class="modal-body">
+                    	<form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
+                        <div class="row">
+                            <div class="col-sm-4" id="row_num">
+                                <label for="tx_num">N&uacute;mero</label>
+                                <input id="tx_num" class="form-control inp_dis">
+                            </div>
+                            <div class="col-sm-4" id="row_marca">
+                                <label for="tx_marca">Marca</label>
+                                <input id="tx_marca" class="form-control input-normal_input_selector"> 
+                            </div>
+                            <div class="col-sm-4" id="row_tip">
+                                <label for="tx_tipo">Tipo</label>
+                                <input id="tx_tipo" class="form-control input-normal_input_selector">
+                            </div>                            
+                        </div>
+                    </div>    
+                        <div class="modal-footer">
+                        	<div class="col-sm-4" id="row_cant_med">
+                                <label for="tx_cant_med">Cantidad Medidores</label>
+                                <input id="tx_tipo" class="form-control input-normal_input_selector">
+                            </div>
+                       			<button class="btn btn-sm btn-primary btn-group" data-dismiss="modal" id="co_cancel" type="button"><span
+                            	class="glyphicon glyphicon-off"></span>Cancelar
+                        		</button>
+                       	</div>
+                    </div>
+                </div>
+           </div>
 		<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>   
 		
 		<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">

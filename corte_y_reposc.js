@@ -25,33 +25,30 @@ $(document).ready(function() {
 		$("#div_tit0").html(g_titulo);	
 	});
 
+     $("#div_filtro_bts_").on("shown.bs.modal", function () {
+       $("#tx_can_com").focus();
+   });
+}
+
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");	
 		
 	$("#tx_cliente").focus();
    
-    fn_giro();
-	fn_localidad();
-    fn_monedalocal();
-    fn_radica();
-    fn_estado();
-    fn_resumen();
-    
+
+    fn_modal_1();
     
     
         
     $("._input_selector").inputmask("dd/mm/yyyy");
-    $('input[name="optradio"]').prop('disabled', false);
+
     ///Validación Solo números pestaña "Mantenedor Empresa"/// 
-	jQuery('#tx_rut').keypress(function(tecla) {
+	jQuery('#tx_num_sum').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
     jQuery('#tx_tel').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_fax').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
+   
     ///Validación Solo números pestaña "Instalación Parámetros"///
     ///Datos Generales///
     jQuery('#tx_cantsec').keypress(function(tecla) {
@@ -59,115 +56,6 @@ $(document).ready(function() {
     });
     jQuery('#tx_numcuen').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_valdia').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_permin').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_parsen').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_bolse').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Limites Generales///
-    jQuery('#tx_limin30').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_limin60').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_limin').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_limax30').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_limax60').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Números Históricos///
-     jQuery('#tx_fact').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_conve').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_refac').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_corte').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_pagos').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Irregularidades///
-    jQuery('#tx_consup').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_disup').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_consumo').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_porinf').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_porsup').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-     jQuery('#tx_facinfe').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_facsup').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Decimales///
-    jQuery('#tx_desfis').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_desmon').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_destasa').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_calfis').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_calmon').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-     jQuery('#tx_caltasa').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Días///
-    jQuery('#tx_dialib').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_difac').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_diarep').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-     ///Validación Solo números pestaña "Otros Datos Generales"///
-    ///Formato Fecha///
-    jQuery('#tx_externo').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_interno').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    ///Otros///
-    jQuery('#cb_canrefac').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    
     
     
      //BOTONES-EVENTOS
@@ -258,6 +146,11 @@ $(document).ready(function() {
         }
         
     });
+
+        $("#co_leer").on("click", function () {
+        //Validación de informacion
+        if ($.trim($("#co_lim").text()) == "Limpiar") {
+            fn_modal_1();
     	
     
  
@@ -305,6 +198,15 @@ function fn_carga_grilla(){
 }
 function fn_gen(){
      alert('Se genero.');
+}
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+
+function fn_modal_1(){
+   $("#div_edit_bts").modal({ backdrop: "static", keyboard: false });
+   $("#div_edit_bts").on("shown.bs.modal", function () {
+       $("#tx_num").focus();
+   });
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
