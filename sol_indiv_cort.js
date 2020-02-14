@@ -76,56 +76,47 @@ $(document).ready(function () {
         if ($.trim($("#co_ingresar").text()) === "Ingresar") {
 
             if ($("#cb_inst_cort").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!! </strong></div>', 3000);
-                $("#cb_inst_cort").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UNA INSTANCIA DE CORTE", g_tit, $("#cb_inst_cort"));
                 return;
             }
 
             if ($("#tx_fech_soli_real").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE SOLICITUD REAL!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA FECHA DE SOLICITUD REAL", g_tit, $("#tx_fech_soli_real"));
                 return;
             }
 
             if ($("#tx_fech_soli_real_h").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real_h").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA HORA", g_tit, $("#tx_fech_soli_real_h"));
                 return;
             }
 
             if ($("#tx_fech_soli_real_m").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
-                $("#tx_fech_soli_real_m").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE MINUTOS", g_tit, $("#tx_fech_soli_real_m"));
                 return;
             }
 
             if ($("#cb_motivo").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO!!! </strong></div>', 3000);
-                $("#cb_motivo").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN MOTIVO", g_tit, $("#cb_motivo"));
                 return;
             }
 
             if ($("#tx_fech_notif").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA FECHA DE NOTIFICACIÓN!!! </strong></div>', 3000);
-                $("#tx_fech_notif").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA FECHA DE NOTIFICACIÓN", g_tit, $("#tx_fech_notif"));
                 return;
             }
 
             if ($("#tx_fech_notif_h").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA HORA!!! </strong></div>', 3000);
-                $("#tx_fech_notif_h").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA HORA", g_tit, $("#tx_fech_notif_h"));
                 return;
             }
 
             if ($("#tx_fech_notif_m").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE MINUTOS!!! </strong></div>', 3000);
-                $("#tx_fech_notif_m").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE MINUTOS", g_tit, $("#tx_fech_notif_m"));
                 return;
             }
 
             if ($("#tx_observacion").val() === "") {
-                fn_mensaje('#mensaje_second', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDIQUE UNA OBSERVACIÓN!!! </strong></div>', 3000);
-                $("#tx_observacion").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA OBSERVACIÓN", g_tit, $("#tx_fech_notif_m"));
                 return;
             }
         }
@@ -185,7 +176,7 @@ $(document).ready(function () {
 
     $("#co_deuda").on("click", function () {
 
-        fn_mensaje_boostrap("Evento funcionando", g_tit, $("#co_consultar"));
+        fn_mensaje_boostrap("Evento funcionando", g_tit, $("#co_deuda"));
     });
 
     $("#co_cancelar").on("click", function () {
@@ -248,20 +239,17 @@ function fn_leer() {
     if ($.trim($("#co_leer").text()) === "Leer") {
 
         if ($("#tx_num_sumi").val() === "") {
-            fn_mensaje_boostrap("POR FAVOR INDIQUE UN NUMERO DE SUMINISTRO", g_tit, $("#co_leer"));
-            $("#tx_num_sumi").focus();
+            fn_mensaje_boostrap("POR FAVOR INDIQUE UN NUMERO DE SUMINISTRO", g_tit, $("#tx_num_sumi"));
             return;
         }
 
         if (!$.isNumeric($("#tx_num_sumi").val())) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_sumi").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#tx_num_sumi"));
             return;
         }
 
         if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes("E") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_sumi").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO INGRESADO", g_tit, $("#tx_num_sumi"));
             return;
         }
     }

@@ -85,44 +85,31 @@ $(document).ready(function () {
         if ($.trim($("#co_ingresar").text()) == "Ingresar") {
 
             if ($("#cb_rol_func").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN ROL!!!</strong></div>',3000);
-                $("#cb_rol_func").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN ROL", g_tit, $("#cb_rol_func"));
                 return;
             }
 
             if ($("#cb_tip_pla_type").val() === "") {
-
-                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE PLAZO!!!</strong></div>',3000);
-                $("#cb_tip_pla_type").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN TIPO DE PLAZO", g_tit, $("#cb_tip_pla_type"));
                 return;
             }
 
             if ($("#cb_tip_pla").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE PLAZO!!!</strong></div>',3000);
-                $("#cb_tip_pla").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN TIPO DE PLAZO", g_tit, $("#cb_tip_pla"));
                 return;
             }
-
             if ($("#cb_mot_susp_type").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN!!!</strong></div>',3000);
-                $("#cb_mot_susp_type").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN", g_tit, $("#cb_mot_susp_type"));
                 return;
             }
 
             if ($("#cb_mot_susp").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN!!!</strong></div>',3000);
-                $("#cb_mot_susp").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN", g_tit, $("#cb_mot_susp"));
                 return;
             }
 
             if ($("#tx_dias_susp_max").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR LOS DIAS DE SUSPENSIÓN MÁXIMOS!!!</strong></div>',3000);
-                $("#tx_dias_susp_max").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR LOS DIAS DE SUSPENSIÓN MÁXIMOS", g_tit, $("#tx_dias_susp_max"));
                 return;
             }
 
@@ -134,47 +121,34 @@ $(document).ready(function () {
 
     $("#co_modificar").on("click", function() {
 
-        if ($.trim($("#co_modificar").text()) == "Modificar") {
+        if ($.trim($("#co_modificar").text()) === "Modificar") {
 
             if ($("#cb_rol_func").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN ROL!!!</strong></div>',3000);
-                $("#cb_rol_func").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN ROL", g_tit, $("#cb_rol_func"));
                 return;
             }
 
             if ($("#cb_tip_pla_type").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE PLAZO!!!</strong></div>',3000);
-                $("#cb_tip_pla_type").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN TIPO DE PLAZO", g_tit, $("#cb_tip_pla_type"));
                 return;
             }
 
             if ($("#cb_tip_pla").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE PLAZO!!!</strong></div>',3000);
-                $("#cb_tip_pla").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN TIPO DE PLAZO", g_tit, $("#cb_tip_pla"));
                 return;
             }
-
             if ($("#cb_mot_susp_type").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN!!!</strong></div>',3000);
-                $("#cb_mot_susp_type").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN", g_tit, $("#cb_mot_susp_type"));
                 return;
             }
 
             if ($("#cb_mot_susp").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN!!!</strong></div>',3000);
-                $("#cb_mot_susp").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN MOTIVO DE SUSPENSIÓN", g_tit, $("#cb_mot_susp"));
                 return;
             }
 
             if ($("#tx_dias_susp_max").val() === "") {
-
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR LOS DIAS DE SUSPENSIÓN MÁXIMOS!!!</strong></div>',3000);
-                $("#tx_dias_susp_max").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR LOS DIAS DE SUSPENSIÓN MÁXIMOS", g_tit, $("#tx_dias_susp_max"));
                 return;
             }
 

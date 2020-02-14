@@ -61,17 +61,15 @@ $(document).ready(function () {
 
     $("#co_leer").on("click", function () {
 
-        if ($.trim($("#co_leer").text()) == "Leer") {
+        if ($.trim($("#co_leer").text()) === "Leer") {
 
-            if ($("#tx_num_client").val() == "") {
-                fn_mensaje('#mensaje_err', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE CLIENTE!!!</strong></div>', 3000);
-                $("#tx_num_client").focus();
+            if ($("#tx_num_client").val() === "") {
+                fn_mensaje_boostrap("FAVOR INGRESAR UN NUMERO DE CLIENTE", g_tit, $("#tx_num_client"));
                 return;
             }
 
-            if ($("#tx_num_client_2").val() == "") {
-                fn_mensaje('#mensaje_err', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE CLIENTE!!!</strong></div>', 3000);
-                $("#tx_num_client_2").focus();
+            if ($("#tx_num_client_2").val() === "") {
+                fn_mensaje_boostrap("FAVOR INGRESAR UN NUMERO DE CLIENTE", g_tit, $("#tx_num_client_2"));
                 return;
             }
 

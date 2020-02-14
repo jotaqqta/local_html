@@ -67,20 +67,17 @@ $(document).ready(function () {
         if ($.trim($("#co_leer").text()) === "Leer") {
 
             if ($("#tx_num_sumi").val() === "") {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN NUMERO DE SUMINISTRO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN NUMERO DE SUMINISTRO", g_tit, $("#tx_num_sumi"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_num_sumi").val())) {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_sumi"));
                 return;
             }
 
             if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
-                fn_mensaje('#mensaje_prin', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_num_sumi").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_sumi"));
                 return;
             }
         }
