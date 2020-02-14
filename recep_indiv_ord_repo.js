@@ -76,26 +76,20 @@ $(document).ready(function () {
 
         if ($.trim($("#co_ingresar").text()) === "Ingresar") {
 
-            if ($("#tx_numero_med").val() === "") {
-                fn_mensaje_boostrap("FAVOR INGRESE UN NUMERO DE MEDIDOR", g_tit, $("#co_leer"));
-                $("#tx_numero_med").focus();
-                return;
-            }
-
-            if ($("#tx_marca").val() === "") {
-                fn_mensaje_boostrap("FAVOR INGRESE UNA MARCA DE MEDIDOR", g_tit, $("#co_leer"));
-                $("#tx_marca").focus();
-                return;
-            }
-
-            if ($("#tx_modelo").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE UN MODELO DE MEDIDOR", g_tit, $("#co_leer"));
-                $("#tx_modelo").focus();
-                return;
-            }
-
             if ($("#tx_lectura").val() === "") {
                 fn_mensaje_boostrap("FAVOR INDIQUE UNA LECTURA", g_tit, $("#co_leer"));
+                $("#tx_lectura").focus();
+                return;
+            }
+
+            if (!$.isNumeric($("#tx_lectura").val())) {
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#co_leer"));
+                $("#tx_lectura").focus();
+                return;
+            }
+
+            if ($("#tx_lectura").val().includes("e") || $("#tx_lectura").val().includes("E") || $("#tx_lectura").val().includes(".") || $("#tx_lectura").val().includes(",") || $("#tx_lectura").val().includes("-") || $("#tx_lectura").val().includes("+")) {
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#co_leer"));
                 $("#tx_lectura").focus();
                 return;
             }
