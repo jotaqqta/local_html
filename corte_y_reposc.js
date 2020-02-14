@@ -29,10 +29,12 @@ $(document).ready(function() {
        $("#tx_can_com").focus();
    	});
 
+    $("#co_medid").prop( "disabled", true);
+    $("#co_deuda").prop( "disabled", true);
 
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");	
-		
+	
 	$("#tx_cliente").focus();
        
     $("._input_selector").inputmask("dd/mm/yyyy");
@@ -41,98 +43,42 @@ $(document).ready(function() {
 	jQuery('#tx_num_sum').keypress(function(tecla) {
         if(tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
-    jQuery('#tx_tel').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
-    ///Validación Solo números pestaña "Instalación Parámetros"///
-    ///Datos Generales///
-    jQuery('#tx_cantsec').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-    jQuery('#tx_numcuen').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});
     
      //BOTONES-EVENTOS
 	 $("#co_cancelar").on("click", function (e) {
         window.close(); 
-    }); 
-     $("#cb_prov").on("change", function(evt){
-        if($(this).val()!= ""){
-		 	$("#cb_dist").prop("disabled", false);
-         	fn_distrito();
-    	}
-       else{ 
-           $("#cb_dist").val("");
-           $("#cb_corre").val("");
-           $("#cb_barrio").val("");
-           $("#cb_dist").prop("disabled", true);
-           $("#cb_corre").prop("disabled", true);
-           $("#cb_barrio").prop("disabled", true);
-        }
     });
-	
-    $("#cb_dist").on("change", function(evt){
-        if($(this).val()!= ""){
-		 	$("#cb_corre").prop("disabled", false);
-          	fn_corregimiento();
-    	}
-       else{ 
-           $("#cb_corre").val("");
-           $("#cb_barrio").val("");
-           $("#cb_corre").prop("disabled", true);
-           $("#cb_barrio").prop("disabled", true);  
-       }
-    });
-	
-      $("#cb_corre").on("change", function(evt){
-        if($(this).val()!= ""){
-		 	$("#cb_barrio").prop("disabled", false);
-         	fn_barrio();
-    	}
-       else{ 
-           $("#cb_barrio").val("");
-           $("#cb_barrio").prop("disabled", true);  
-       	}
-    });
-    
-    $("#co_gen").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_gen").text()) == "Generar"){
-			if ($("#fec_sum_in").val() == ""){
-				fn_mensaje_boostrap("DIGITE LA FECHA DE INICIO.", g_titulo, $("#fec_sum_in"));
-				return;
-			}
-			else{
-				if(fn_validar_fecha($("#fec_sum_in").val()) == false){
-					fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_in"));
-					//fn_mensaje_bootstrap_fecv();
-					return false;
-				}	
-			}
-		   if ($("#fec_sum_fin").val() == ""){
-				fn_mensaje_boostrap("DIGITE LA FECHA FINAL.", g_titulo, $("#fec_sum_fin"));
-				return;
-		   }
-			else{
-				if(fn_validar_fecha($("#fec_sum_fin").val()) == false){
-					fn_mensaje_boostrap("INFORMACIÓN INCORRECTA EN EL CAMPO FECHA DE PROCESO. EL FORMATO ES DD/MM/YYYY.", g_titulo, $("#fec_sum_fin"));
-					//fn_mensaje_bootstrap_fecv();
-					return false;
-				}
-			} 
-		}
-	   fn_mensaje_boostrap("Se genero", g_titulo, $("#co_gen"));
-	   fn_carga_grilla(); 
-	   fn_limpiar();
+
+    $("#co_cancel").on("click", function (e) {
+    $("#div_edit_bts").modal("hide"); 
     });
     
 
-    $("#co_lim").on("click", function () {
+    
+    $("#co_leer").on("click", function () {
 		//Validación de informacion
-		if ($.trim($("#co_lim").text()) == "Limpiar") {
+		if ($.trim($("#co_leer").text()) == "Leer"){
+			if ($("#tx_num_sum").val() == ""){
+				fn_mensaje_boostrap("DIGITE EL N&Uacute;MERO DE SUMINISTRO.", g_titulo, $("#tx_num_sum"));
+				return;
+			}
+            $("#co_medid").prop( "disabled", false);
+            fn_leer();
+
+		}
+
+    });
+    
+
+    /*$("#co_medid").on("click", function () {
+		//Validación de informacion
+		if ($.trim($("#co_medid").text()) == "Limpiar") {
             fn_limpiar();
         }   
+    });*/
+
+    $("#co_medid").on("click", function (){
+        $('#div_edit_bts').modal('show');
     });
 
 	$("#co_leer").on("click", function () {
@@ -179,6 +125,9 @@ function fn_carga_grilla(){
 function fn_gen(){
      alert('Se genero.');
 }
+
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
