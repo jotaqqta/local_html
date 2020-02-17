@@ -53,20 +53,17 @@ $(document).ready(function () {
         if ($.trim($("#co_leer").text()) === "Leer") {
 
             if ($("#cb_cent_opera").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN CENTRO OPERATIVO!!! </strong></div>', 3000);
-                $("#cb_cent_opera").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN CENTRO OPERATIVO", g_tit, $("#cb_cent_opera"));
                 return;
             }
 
             if ($("#cb_evento").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN EVENTO!!! </strong></div>', 3000);
-                $("#cb_evento").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN EVENTO", g_tit, $("#cb_evento"));
                 return;
             }
 
             if ($("#cb_inst_corte").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UNA INSTANCIA DE CORTE!!! </strong></div>', 3000);
-                $("#cb_inst_corte").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UNA INSTANCIA DE CORTE", g_tit, $("#cb_inst_corte"));
                 return;
             }
 
@@ -83,116 +80,98 @@ $(document).ready(function () {
         if ($.trim($("#co_ingresar").text()) === "Modificar") {
 
             if ($("#tx_deuda_entre").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD!!! </strong></div>', 3000);
-                $("#tx_deuda_entre").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_deuda_entre").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_entre").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if ($("#tx_deuda_entre").val().includes("e") || $("#tx_deuda_entre").val().includes(".") || $("#tx_deuda_entre").val().includes(",") || $("#tx_deuda_entre").val().includes("-") || $("#tx_deuda_entre").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_entre").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if ($("#tx_deuda_entre2").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD!!! </strong></div>', 3000);
-                $("#tx_deuda_entre2").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_deuda_entre2").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_entre2").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if ($("#tx_deuda_entre2").val().includes("e") || $("#tx_deuda_entre2").val().includes(".") || $("#tx_deuda_entre2").val().includes(",") || $("#tx_deuda_entre2").val().includes("-") || $("#tx_deuda_entre2").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_entre2").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE ANTIGÜEDAD", g_tit, $("#tx_deuda_entre"));
                 return;
             }
 
             if ($("#tx_deuda").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN VALOR DE DEUDA!!! </strong></div>', 3000);
-                $("#tx_deuda").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE DEUDA", g_tit, $("#tx_deuda"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_deuda").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda"));
                 $("#tx_deuda").focus();
                 return;
             }
 
             if ($("#tx_deuda").val().includes("e") || $("#tx_deuda").val().includes("-") || $("#tx_deuda").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda"));
                 return;
             }
 
             if ($("#tx_antig_deuda_conv").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UNA ANTIGUËDAD DE LA DEUDA!!! </strong></div>', 3000);
-                $("#tx_antig_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR INDICAR UNA ANTIGUËDAD DE LA DEUDA", g_tit, $("#tx_antig_deuda_conv"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_antig_deuda_conv").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_antig_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_antig_deuda_conv"));
                 return;
             }
 
             if ($("#tx_antig_deuda_conv").val().includes("e") || $("#tx_antig_deuda_conv").val().includes(".") || $("#tx_antig_deuda_conv").val().includes(",") || $("#tx_antig_deuda_conv").val().includes("-") || $("#tx_antig_deuda_conv").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_antig_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_antig_deuda_conv"));
                 return;
             }
 
             if ($("#tx_deuda_conv").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UN VALOR DE CONVENIO!!! </strong></div>', 3000);
-                $("#tx_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UN VALOR DE CONVENIO", g_tit, $("#tx_deuda_conv"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_deuda_conv").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda_conv"));
                 return;
             }
 
             if ($("#tx_deuda_conv").val().includes("e") || $("#tx_deuda_conv").val().includes("-") || $("#tx_deuda_conv").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_deuda_conv").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_deuda_conv"));
                 return;
             }
 
             if ($("#tx_cant_cuot_fact").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR LA CANTIDAD DE CUOTAS FACTURADAS!!! </strong></div>', 3000);
-                $("#tx_cant_cuot_fact").focus();
+                fn_mensaje_boostrap("FAVOR INDICAR LA CANTIDAD DE CUOTAS FACTURADAS", g_tit, $("#tx_cant_cuot_fact"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_cant_cuot_fact").val())) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_cant_cuot_fact").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_cant_cuot_fact"));
                 return;
             }
 
             if ($("#tx_cant_cuot_fact").val().includes("e") || $("#tx_cant_cuot_fact").val().includes(".") || $("#tx_cant_cuot_fact").val().includes(",") || $("#tx_cant_cuot_fact").val().includes("-") || $("#tx_cant_cuot_fact").val().includes("+")) {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!! </strong></div>', 3000);
-                $("#tx_cant_cuot_fact").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_cant_cuot_fact"));
                 return;
             }
 
             if ($("#cb_tipo_agrup").val() === "") {
-                fn_mensaje('#mensaje_error', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN TIPO DE AGRUPACIÓN!!! </strong></div>', 3000);
-                $("#cb_tipo_agrup").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN TIPO DE AGRUPACIÓN", g_tit, $("#cb_tipo_agrup"));
                 return;
             }
 

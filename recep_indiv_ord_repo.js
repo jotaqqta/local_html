@@ -77,68 +77,57 @@ $(document).ready(function () {
         if ($.trim($("#co_ingresar").text()) === "Ingresar") {
 
             if ($("#tx_lectura").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE UNA LECTURA", g_tit, $("#co_leer"));
-                $("#tx_lectura").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA LECTURA", g_tit, $("#tx_lectura"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_lectura").val())) {
-                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#co_leer"));
-                $("#tx_lectura").focus();
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
                 return;
             }
 
             if ($("#tx_lectura").val().includes("e") || $("#tx_lectura").val().includes("E") || $("#tx_lectura").val().includes(".") || $("#tx_lectura").val().includes(",") || $("#tx_lectura").val().includes("-") || $("#tx_lectura").val().includes("+")) {
-                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#co_leer"));
-                $("#tx_lectura").focus();
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
                 return;
             }
 
             if ($("#cb_diametro_conex").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONAR UN DIAMETRO DE CONEXIÓN", g_tit, $("#co_leer"));
-                $("#cb_diametro_conex").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN DIAMETRO DE CONEXIÓN", g_tit, $("#cb_diametro_conex"));
                 return;
             }
 
             if ($("#cb_situacion_encont").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE UNA SITUACIÓN ENCONTRADA", g_tit, $("#co_leer"));
-                $("#cb_situacion_encont").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONE UNA SITUACIÓN ENCONTRADA", g_tit, $("#cb_situacion_encont"));
                 return;
             }
 
             if ($("#cb_acc_realizada").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE UNA ACCIÓN REALIZADA", g_tit, $("#co_leer"));
-                $("#cb_acc_realizada").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONE UNA ACCIÓN REALIZADA", g_tit, $("#cb_acc_realizada"));
                 return;
             }
 
             if ($("#tx_fech_eje_real").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE UNA FECHA DE EJECUCIÓN REAL", g_tit, $("#co_leer"));
-                $("#tx_fech_eje_real").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA FECHA DE EJECUCIÓN REAL", g_tit, $("#tx_fech_eje_real"));
                 return;
             }
 
             if ($("#tx_fech_eje_real_h").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE LAS HORAS", g_tit, $("#co_leer"));
-                $("#tx_fech_eje_real_h").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE LAS HORAS", g_tit, $("#tx_fech_eje_real_h"));
                 return;
             }
 
             if ($("#tx_fech_eje_real_m").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE LOS MINUTOS", g_tit, $("#co_leer"));
-                $("#tx_fech_eje_real_m").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE LOS MINUTOS", g_tit, $("#tx_fech_eje_real_m"));
                 return;
             }
 
             if ($("#cb_ejecutor").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE UN EJECUTOR", g_tit, $("#co_leer"));
-                $("#cb_ejecutor").focus();
+                fn_mensaje_boostrap("FAVOR SELECCIONE UN EJECUTOR", g_tit, $("#cb_ejecutor"));
                 return;
             }
 
             if ($("#tx_observacion_terreno").val() === "") {
-                fn_mensaje_boostrap("FAVOR INDIQUE UNA OBSERVACIÓN", g_tit, $("#co_leer"));
-                $("#tx_observacion_terreno").focus();
+                fn_mensaje_boostrap("FAVOR INDIQUE UNA OBSERVACIÓN", g_tit, $("#tx_observacion_terreno"));
                 return;
             }
         }
@@ -256,32 +245,27 @@ function fn_leer() {
     if ($.trim($("#co_leer").text()) === "Leer") {
 
         if ($("#tx_num_ord").val() === "" && $("#tx_num_sumi").val() === "") {
-            fn_mensaje_boostrap("POR FAVOR INDIQUE UN NUMERO DE ORDEN / SUMINISTRO", g_tit, $("#co_leer"));
-            $("#tx_num_ord").focus();
+            fn_mensaje_boostrap("POR FAVOR INDIQUE UN NUMERO DE ORDEN / SUMINISTRO", g_tit, $("#tx_num_ord"));
             return;
         }
 
         if ($("#tx_num_ord").val() !== "" && !$.isNumeric($("#tx_num_ord").val())) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_ord").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#tx_num_ord"));
             return;
         }
 
         if ($("#tx_num_ord").val() !== "" && $("#tx_num_ord").val().includes("e") || $("#tx_num_ord").val().includes("E") || $("#tx_num_ord").val().includes(".") || $("#tx_num_ord").val().includes(",") || $("#tx_num_ord").val().includes("-") || $("#tx_num_ord").val().includes("+")) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_ord").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#tx_num_ord"));
             return;
         }
 
         if ($("#tx_num_sumi").val() !== "" && !$.isNumeric($("#tx_num_sumi").val())) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_sumi").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#tx_num_sumi"));
             return;
         }
 
         if ($("#tx_num_sumi").val() !== "" && $("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes("E") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#co_leer"));
-            $("#tx_num_sumi").focus();
+            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#tx_num_sumi"));
             return;
         }
     }

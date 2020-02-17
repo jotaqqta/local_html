@@ -165,20 +165,25 @@ $(document).ready(function () {
         if ($.trim($("#co_leer").text() === "Leer")) {
 
             if ($("#tx_num_client").val() === "") {
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INDICAR UN NÚMERO DE CLIENTE!!!</strong></div>',3000);
-                $("#tx_num_client").focus();
+                fn_mensaje_boostrap("FAVOR INDICAR UN NÚMERO DE CLIENTE", g_tit, $("#tx_num_client"));
                 return;
             }
 
             if (!$.isNumeric($("#tx_num_client").val())) {
-                fn_mensaje('#mensaje_prin','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR COMPROBAR EL VALOR INGRESADO!!!</strong></div>',3000);
-                $("#tx_num_client").focus();
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
+                return;
+            }
+
+            if ($("#tx_num_client").val().includes("e") || $("#tx_num_client").val().includes(".") || $("#tx_num_client").val().includes(",") || $("#tx_num_client").val().includes("-") || $("#tx_num_client").val().includes("+")) {
+                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
                 return;
             }
         }
 
         $("#co_cerrar").html("<span class='glyphicon glyphicon-remove'></span> Cancelar");
         $("#co_cerrar").removeClass("btn-secundary");
+
+        $("#tx_num_client").prop("disabled", true);
 
         fn_mostrar();
         fn_mensaje_boostrap("Se genéro", g_tit, $("#co_leer"));
@@ -244,6 +249,7 @@ $(document).ready(function () {
 
         if ($.trim($("#co_cerrar").text()) === "Cancelar") {
 
+            $("#tx_num_client").prop("disabled", false);
             fn_limpiar_prin();
             fn_ocultar_botones();
             $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");

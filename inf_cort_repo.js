@@ -72,34 +72,29 @@ $(document).ready(function () {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
             if (!$('input[type=radio][name=opt_filtro]').is(':checked')) {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR SELECCIONAR UN FILTRO!!!</strong></div>', 3000);
+                fn_mensaje_boostrap("FAVOR SELECCIONAR UN FILTRO", g_tit, $("#co_generar"));
                 return;
             }
 
             if ($("#tx_fec_desde").val() === "") {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
-                $("#tx_fec_desde").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA", g_tit, $("#tx_fec_desde"));
                 return;
             }
-
             if ($("#tx_fec_hasta").val() === "") {
-                fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR INGRESAR UNA FECHA!!!</strong></div>', 3000);
-                $("#tx_fec_hasta").focus();
+                fn_mensaje_boostrap("FAVOR INGRESAR UNA FECHA", g_tit, $("#tx_fec_hasta"));
                 return;
             }
 
             if ($("#tx_fec_desde").val() !== "") {
                 if (fn_validar_fecha($("#tx_fec_desde").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fec_desde").focus();
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fec_desde"));
                     return;
                 }
             }
 
             if ($("#tx_fec_hasta").val() !== "") {
                 if (fn_validar_fecha($("#tx_fec_hasta").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fec_hasta").focus();
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fec_hasta"));
                     return;
                 }
             }
@@ -107,8 +102,7 @@ $(document).ready(function () {
             if ($("#tx_fec_desde").val() !== "" && $("#tx_fec_hasta").val() !== "") {
 
                 if (fn_fecha($("#tx_fec_desde").val(), $("#tx_fec_hasta").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO!!!</strong></div>', 3000);
-                    $("#tx_fec_desde").focus();
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_fec_desde"));
                     return;
                 }
             }
