@@ -102,64 +102,64 @@
 						<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_nom">Nombre</label>
-								<input id="tx_nom" name="tx_nom" type="text" class="form-control inp_dis">
+								<input id="tx_nom" name="tx_nom" type="text" class="form-control inp_dis" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_dir">Direcci&oacute;n</label>
-								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="">
+								<input id="tx_dir" name="tx_dir" type="text" class="form-control inp_dis" value="" disabled>
 							</div>
 						</div>
 							<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_ope">Centro Operativo</label>
-								<input id="tx_ope" name="tx_ope" type="text" class="form-control inp_dis" value="">
+								<input id="tx_ope" name="tx_ope" type="text" class="form-control inp_dis" value="" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_ruta">Ruta</label>
-								<input id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis" value="">
+								<input id="tx_ruta" name="tx_ruta" type="text" class="form-control inp_dis" value="" disabled>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_sum">Tipo Suministro</label>
-								<input id="tx_sum" name="tx_sum" type="text" class="form-control inp_dis">
+								<input id="tx_sum" name="tx_sum" type="text" class="form-control inp_dis" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_cat">Categor&iacute;a</label>
-								<input id="tx_cat" name="tx_cat" type="text" class="form-control inp_dis">
+								<input id="tx_cat" name="tx_cat" type="text" class="form-control inp_dis" disabled>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_serv">Servicio</label>
-								<input id="tx_serv" name="tx_serv" type="text" class="form-control inp_dis">
+								<input id="tx_serv" name="tx_serv" type="text" class="form-control inp_dis" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label  for="tx_estado">Estado</label>
-								<input id="tx_estado" name="tx_estado" class="form-control inp_dis">
+								<input id="tx_estado" name="tx_estado" class="form-control inp_dis" disabled>
 							</div>
 						</div>
 
 					   <div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_locali">Localidad</label>
-								<input id="tx_locali" name="tx_locali" type="text" class="form-control inp_dis">
+								<input id="tx_locali" name="tx_locali" type="text" class="form-control inp_dis" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_tarif">Tarifa</label>
-								<input id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis">
+								<input id="tx_tarif" name="tx_tarif" type="text" class="form-control inp_dis" disabled>
 							</div>
 						</div>
 
 						<div class="row">			      
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_ult_eve">&Uacute;ltimo Evento</label>
-								<input id="tx_ult_eve" name="tx_ult_eve" type="text" class="form-control inp_dis">
+								<input id="tx_ult_eve" name="tx_ult_eve" type="text" class="form-control inp_dis" disabled>
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
 								<label for="tx_fe_eve">Fecha Evento</label>
-								<input id="tx_fe_eve" name="tx_fe_eve" class="form-control _input_selector">
+								<input id="tx_fe_eve" name="tx_fe_eve" class="form-control _input_selector" disabled>
 							</div>
 						</div>
     			    
@@ -207,10 +207,10 @@
 				<div class="form-horizontal flex-wrap">
 					<label class="col-sm-4"></label>
 					<div class="mx-auto flex-wrap">
-						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_crear" name="co_modif"
+						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_crear" name="co_crear"
 							style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
 							Ingresar</button>
-						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_cerrar" name="co_cancelar"
+						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_cancelar" name="co_cancelar"
 							style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-off"></span>
 							Cancelar</button>
 					</div>
@@ -239,20 +239,22 @@
                                 <label for="tx_marca">Marca</label>
                                 <input id="tx_marca" class="form-control input-normal_input_selector"> 
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-4" id="row_tip">
                                 <label for="tx_tipo">Tipo</label>
                                 <input id="tx_tipo" class="form-control input-normal_input_selector">
-                            </div>                            
-                        </div>
-						</form>
-                    </div>    
-                        <div class="modal-footer">
-                        	<div class="col-sm-4" id="row_cant_med">
+                            </div>
+                            <div class="col-sm-4" id="row_cant_med">
                                 <label for="tx_cant_med">Cantidad Medidores</label>
                                 <input id="tx_cant_med" class="form-control input-normal_input_selector">
                             </div>
+                        </div>                            
+                    </div>
+						</form>                        
+                        <div class="modal-footer">                        	
                        			<button class="btn btn-sm btn-primary btn-group" data-dismiss="modal" id="co_cancel" type="button"><span
-                            	class="glyphicon glyphicon-off"></span>Cancelar
+                            	class="glyphicon glyphicon-remove-circle"></span>Cerrar
                         		</button>
                        	</div>
                     </div>

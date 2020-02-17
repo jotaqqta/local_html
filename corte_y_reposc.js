@@ -20,23 +20,23 @@ $(document).ready(function() {
     document.title = g_titulo ;
 	document.body.scroll = "yes";
 
+
     $("#div_header").load("syn_globales/header.htm", function() {
 		$("#div_mod0").html(g_modulo);
 		$("#div_tit0").html(g_titulo);	
 	});
 
-     $("#div_filtro_bts_").on("shown.bs.modal", function () {
-       $("#tx_can_com").focus();
-   	});
 
     $("#co_medid").prop( "disabled", true);
     $("#co_deuda").prop( "disabled", true);
 
+    //FUNCIONES COMBOS
+    fn_corte();
+    fn_reposicion();
+
+
 	//Footer
-	$("#div_footer").load("syn_globales/footer.htm");	
-	
-	$("#tx_cliente").focus();
-       
+	$("#div_footer").load("syn_globales/footer.htm");		     
     $("._input_selector").inputmask("dd/mm/yyyy");
 
     ///Validación Solo números pestaña "Mantenedor Empresa"/// 
@@ -45,10 +45,12 @@ $(document).ready(function() {
     });
     
      //BOTONES-EVENTOS
+     //BOTON CANCELAR VENTANA
 	 $("#co_cancelar").on("click", function (e) {
-        window.close(); 
-    });
+            fn_cancelar();
 
+    });
+    //BOTON CERRAR MODAL
     $("#co_cancel").on("click", function (e) {
     $("#div_edit_bts").modal("hide"); 
     });
@@ -63,105 +65,72 @@ $(document).ready(function() {
 				return;
 			}
             $("#co_medid").prop( "disabled", false);
+            $("#co_deuda").prop( "disabled", false);
+            $("#co_leer").prop( "disabled", true);
+            $("#tx_num_sum").prop( "disabled", true);
             fn_leer();
 
 		}
 
     });
-    
-
-    /*$("#co_medid").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_medid").text()) == "Limpiar") {
-            fn_limpiar();
-        }   
-    });*/
 
     $("#co_medid").on("click", function (){
         $('#div_edit_bts').modal('show');
     });
 
-	$("#co_leer").on("click", function () {
-		//Validación de informacion
-		if ($.trim($("#co_lim").text()) == "Limpiar") {
-			fn_modal_1();
-		}
-	});
    
 });
 
 
-
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_giro() {
-	$("#cb_giro").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_corte() {
+	$("#cb_mot_repo").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
-function fn_localidad() {
-	$("#cb_local").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+function fn_reposicion() {
+	$("#cb_inst_re").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
 		
-function fn_monedalocal() {
-	$("#cb_mone").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-function fn_radica() {
-	$("#cb_radica").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-function fn_estado() {
-	$("#cb_estado").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
-		
-function fn_resumen() {
-	$("#cb_facres").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
-}
 
-function fn_carga_grilla(){
+function fn_leer(){
+
+        $("#tx_nom").val("Roberto Roena");   
+        $("#tx_dir").val("Calle 1");
+        $("#tx_ope").val("1");
+        $("#tx_ruta").val("1");
+        $("#tx_sum").val("1");
+        $("#tx_cat").val("1");
+        $("#tx_serv").val("1");
+        $("#tx_estado").val("Activo");
+        $("#tx_locali").val("Cali");
+        $("#tx_tarif").val("1");
+        $("#tx_ult_eve").val("1");
+        $("#tx_fe_eve").val("17/02/2020");
       
 }
-		
-function fn_gen(){
-     alert('Se genero.');
-}
 
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+function fn_cancelar(){
+        $("#tx_num_sum").val("");
+        $("#tx_nom").val("");   
+        $("#tx_dir").val("");
+        $("#tx_ope").val("");
+        $("#tx_ruta").val("");
+        $("#tx_sum").val("");
+        $("#tx_cat").val("");
+        $("#tx_serv").val("");
+        $("#tx_estado").val("");
+        $("#tx_locali").val("");
+        $("#tx_tarif").val("");
+        $("#tx_ult_eve").val("");
+        $("#tx_fe_eve").val("");
+        $("#co_medid").prop( "disabled", true);
+        $("#co_deuda").prop( "disabled", true);
+        $("#co_leer").prop( "disabled", false);
+        $("#tx_num_sum").prop( "disabled", false);
+        $("#tx_num_sum").focus();
+    }
 
-
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-
-function fn_modal_1(){
-   $("#div_edit_bts").modal({ backdrop: "static", keyboard: false });
-   $("#div_edit_bts").on("shown.bs.modal", function () {
-       $("#tx_num").focus();
-   });
-}
-
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-
-function fn_limpiar(){
-        $("#fec_sum_in").val(""); 
-        $("#fec_sum_fin").val(""); 	
-    	$("#num_cli").val("");
-    	$("#rut_com").val("");
-    	$("#num_med").val("");
-    	$("#fec_sum").val("");
-    	$("#mar_inp").val("");
-    	$("#diam_inp").val("");
-    	$("#tar_inp").val("");
-    	$("#cb_prov").val("");
-    	$("#cb_dist").val("");
-    	$("#cb_corre").val("");
-    	$("#cb_barrio").val("");
-    	$('input[name="optradio"]').prop('checked', false);
-	    $('input[name="optradio"]').prop('checked', false);
-        $("#cb_dist").prop("disabled", true);
-        $("#cb_corre").prop("disabled", true);
-        $("#cb_barrio").prop("disabled", true); 
-  
-}
-		
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_validar_fecha(value){
 	var real, info;
