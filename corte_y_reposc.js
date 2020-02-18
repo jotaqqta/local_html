@@ -76,7 +76,7 @@ $(document).ready(function() {
 
     $("#co_crear").on("click", function () {
 
-        if ($.trim($("#co_crear").text()) === "Generar") {
+        //if ($.trim($("#co_crear").text()) === "Generar") {
 
             if ($("#cb_mot_repo").val() === "") {
                 fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&oacute;N", g_tit, $("#cb_mot_repo"));
@@ -98,20 +98,20 @@ $(document).ready(function() {
                 return;
             }
 
-            if ($("#cb_inst_re").val() !== "") {
+            if ($("#cb_inst_re").val() == "") {
                 fn_mensaje_boostrap("FAVOR SELECCIONAR INSTACIA DE CORTE", g_tit, $("#cb_inst_re"));
                 return;
                 }
             
 
-            if ($("#tx_obser").val() !== "") {
-                fn_mensaje_boostrap("FAVOR DIGITAR OBSERVACI&oacute;N", g_tit, $("#tx_obser"));
+            if ($("#tx_obser").val() == "") {
+                fn_mensaje_boostrap("FAVOR DIGITAR OBSERVACIÓN", g_tit, $("#tx_obser"));
                 return;
                 }
-            }
+         // }
             
             
-            fn_mensaje_boostrap("Se ingres&oacute;", g_tit, $("#co_crear"));
+          fn_mensaje_boostrap("Se ingres&oacute;", g_tit, $(""));
            
 
     });
