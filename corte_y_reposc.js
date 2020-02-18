@@ -79,7 +79,7 @@ $(document).ready(function() {
         //if ($.trim($("#co_crear").text()) === "Generar") {
 
             if ($("#cb_mot_repo").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&oacute;N", g_tit, $("#cb_mot_repo"));
+                fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&Oacute;N", g_tit, $("#cb_mot_repo"));
                 return;
             }
 
@@ -110,7 +110,11 @@ $(document).ready(function() {
                 }
          // }
             
-            
+            if(document.getElementById('tx_obser').value.length < 15) {
+                fn_mensaje_boostrap("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
+                return;
+            }
+                        
           fn_mensaje_boostrap("Se ingres&oacute;", g_tit, $(""));
            
 
