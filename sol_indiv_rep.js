@@ -202,6 +202,12 @@ function fn_cancelar(){
         $("#co_deuda").prop( "disabled", true);
         $("#co_leer").prop( "disabled", false);
         $("#tx_num_sum").prop( "disabled", false);
+        $("#cb_mot_repo").val("");
+        $("#tx_fec_sol_real").val("");
+        $("#tx_hora").val("");
+        $("#tx_min").val("");
+        $("#cb_inst_re").val("");
+        $("#tx_obser").val("");
         $("#tx_num_sum").focus();
     }
 
