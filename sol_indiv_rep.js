@@ -38,6 +38,9 @@ $(document).ready(function() {
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");		     
     $("._input_selector").inputmask("dd/mm/yyyy");
+    $("#tx_hora").inputmask({mask:"99", rightAlign: true, placeholder: ""});
+    $("#tx_min").inputmask({mask:"99", rightAlign: true, placeholder: ""});
+
 
     ///Validación Solo números pestaña "Mantenedor Empresa"/// 
 	jQuery('#tx_num_sum').keypress(function(tecla) {
@@ -114,7 +117,19 @@ $(document).ready(function() {
                 fn_mensaje_boostrap("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
                 return;
             }
-                        
+
+
+            if ($("#tx_hora").val() > 23) {
+                fn_mensaje_boostrap("HORA NO PERMITIDA, FAVOR DIGITAR ENTRE 00 Y 23 HORAS", g_tit, $("#tx_hora"));
+                return;
+                }
+
+
+            if ($("#tx_min").val() > 59) {
+                fn_mensaje_boostrap("MINUTOS NO PERMITIDOS, FAVOR DIGITAR ENTRE 00 Y 59 MINUTOS", g_tit, $("#tx_min"));
+                return;
+                }
+                      
           fn_mensaje_boostrap("Se ingres&oacute;", g_tit, $(""));
            
 
@@ -124,6 +139,19 @@ $(document).ready(function() {
         $('#div_edit_bts').modal('show');
     });
 
+
+
+    $("#tx_hora").blur(function () {
+        if ($("#tx_hora").val() >= 24) {
+            $("#tx_hora").val("23");
+        }
+    });
+
+    $("#tx_min").blur(function () {
+        if ($("#tx_min").val() >= 60) {
+            $("#tx_min").val("59");
+        }
+    });
    
 });
 
