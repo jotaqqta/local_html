@@ -57,6 +57,12 @@
             padding: 7px;
         }
 
+        .number::-webkit-outer-spin-button,
+        .number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         .space {
             height: 15px;
         }
@@ -123,7 +129,7 @@
                                 <label for="tx_num_client">Numero de cliente:</label>
                             </div>
                             <div class="col-xs-8">
-                                <input id="tx_num_client" name="tx_num_client" class="form-control">
+                                <input id="tx_num_client" type="number" name="tx_num_client" class="form-control number">
                             </div>
                         </div>
                     </div>

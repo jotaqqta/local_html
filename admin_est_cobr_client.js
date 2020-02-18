@@ -68,8 +68,13 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($("#tx_num_client_2").val() === "") {
-                fn_mensaje_boostrap("FAVOR INGRESAR UN NUMERO DE CLIENTE", g_tit, $("#tx_num_client_2"));
+            if (!$.isNumeric($("#tx_num_client").val())) {
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE CLIENTE INGRESADO", g_tit, $("#tx_num_client"));
+                return;
+            }
+
+            if ($("#tx_num_client").val().includes("e") || $("#tx_num_client").val().includes("E") || $("#tx_num_client").val().includes(".") || $("#tx_num_client").val().includes(",") || $("#tx_num_client").val().includes("-") || $("#tx_num_client").val().includes("+")) {
+                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE CLIENTE INGRESADO", g_tit, $("#tx_num_client"));
                 return;
             }
 

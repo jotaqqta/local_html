@@ -99,12 +99,12 @@ $(document).ready(function () {
 
     $("#co_consultar").on("click", function() {
 
-        if ($.trim($("#co_consultar").text()) == "Consultar") {
+        if ($.trim($("#co_consultar").text()) === "Consultar") {
 
-            if ($("#cb_campana").val() == "") {
+            if ($("#cb_campana").val() === "") {
 
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UN PLAZO!!!</strong></div>',3000);
-                $("#cb_plazos").focus();
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR UNA CAMPAÑA!!!</strong></div>',3000);
+                $("#cb_campana").focus();
                 return;
             }
 

@@ -23,6 +23,8 @@ $(document).ready(function () {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
+    $(".number").inputmask("integer");
+
     //COMBOS
 
     fn_rol_funcion();

@@ -35,6 +35,8 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
+    $(".number").inputmask("integer");
+
     // COMBOS
 
     fn_tipo_susp();
@@ -71,12 +73,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!$.isNumeric($("#tx_num_sumi").val())) {
-                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_sumi"));
-                return;
-            }
-
-            if ($("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
+            if ($("#tx_num_sumi").val().includes("-")) {
                 fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_sumi"));
                 return;
             }

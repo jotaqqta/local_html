@@ -53,6 +53,8 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
+    $(".number").inputmask("integer");
+
     //DEFINE LAS GRILLAS
     fn_setea_grids_principales();
 
@@ -105,12 +107,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!$.isNumeric($("#tx_num_client").val())) {
-                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
-                return;
-            }
-
-            if ($("#tx_num_client").val().includes("e") || $("#tx_num_client").val().includes(".") || $("#tx_num_client").val().includes(",") || $("#tx_num_client").val().includes("-") || $("#tx_num_client").val().includes("+")) {
+            if ($("#tx_num_client").val().includes("-")) {
                 fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
                 return;
             }

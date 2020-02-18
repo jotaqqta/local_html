@@ -35,6 +35,7 @@ $(document).ready(function () {
     document.body.scroll = "yes";
 
     $("._input_selector").inputmask("dd/mm/yyyy");
+    $(".number").inputmask("integer");
 
     // Raiz
     $("#div_header").load("syn_globales/header.htm", function () {
@@ -81,12 +82,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!$.isNumeric($("#tx_lectura").val())) {
-                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
-                return;
-            }
-
-            if ($("#tx_lectura").val().includes("e") || $("#tx_lectura").val().includes("E") || $("#tx_lectura").val().includes(".") || $("#tx_lectura").val().includes(",") || $("#tx_lectura").val().includes("-") || $("#tx_lectura").val().includes("+")) {
+            if ($("#tx_lectura").val().includes("-")) {
                 fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
                 return;
             }
@@ -249,22 +245,12 @@ function fn_leer() {
             return;
         }
 
-        if ($("#tx_num_ord").val() !== "" && !$.isNumeric($("#tx_num_ord").val())) {
+        if ($("#tx_num_ord").val() !== "" && $("#tx_num_ord").val().includes("-")) {
             fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#tx_num_ord"));
             return;
         }
 
-        if ($("#tx_num_ord").val() !== "" && $("#tx_num_ord").val().includes("e") || $("#tx_num_ord").val().includes("E") || $("#tx_num_ord").val().includes(".") || $("#tx_num_ord").val().includes(",") || $("#tx_num_ord").val().includes("-") || $("#tx_num_ord").val().includes("+")) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE ORDEN INGRESADO", g_tit, $("#tx_num_ord"));
-            return;
-        }
-
-        if ($("#tx_num_sumi").val() !== "" && !$.isNumeric($("#tx_num_sumi").val())) {
-            fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#tx_num_sumi"));
-            return;
-        }
-
-        if ($("#tx_num_sumi").val() !== "" && $("#tx_num_sumi").val().includes("e") || $("#tx_num_sumi").val().includes("E") || $("#tx_num_sumi").val().includes(".") || $("#tx_num_sumi").val().includes(",") || $("#tx_num_sumi").val().includes("-") || $("#tx_num_sumi").val().includes("+")) {
+        if ($("#tx_num_sumi").val() !== "" && $("#tx_num_sumi").val().includes("-")) {
             fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE SUMINISTRO INGRESADO", g_tit, $("#tx_num_sumi"));
             return;
         }

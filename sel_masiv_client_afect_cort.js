@@ -40,6 +40,16 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
+    $(".number").inputmask("integer");
+
+    $(".number_float").inputmask("decimal",{
+        radixPoint:".",
+        groupSeparator: ",",
+        digits: 2,
+        autoUnmask: true,
+        autoGroup: true
+    });
+
     // COMBOS
 
     fn_convenio();

@@ -35,6 +35,7 @@ $(document).ready(function () {
     document.body.scroll = "yes";
 
     $("._input_selector").inputmask("dd/mm/yyyy");
+    $(".number").inputmask("integer");
 
     // Raiz
     $("#div_header").load("syn_globales/header.htm", function () {
@@ -81,12 +82,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!$.isNumeric($("#tx_lectura").val())) {
-                fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
-                return;
-            }
-
-            if ($("#tx_lectura").val().includes("e") || $("#tx_lectura").val().includes("E") || $("#tx_lectura").val().includes(".") || $("#tx_lectura").val().includes(",") || $("#tx_lectura").val().includes("-") || $("#tx_lectura").val().includes("+")) {
+            if ($("#tx_lectura").val().includes("-")) {
                 fn_mensaje_boostrap("POR FAVOR VERIFIQUE EL NUMERO DE LECTURA INGRESADO", g_tit, $("#tx_lectura"));
                 return;
             }

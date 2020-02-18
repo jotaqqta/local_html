@@ -33,6 +33,7 @@ $(document).ready(function () {
     });
 
     $("._input_selector").inputmask("dd/mm/yyyy");
+    $(".number").inputmask("integer");
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -169,12 +170,7 @@ $(document).ready(function () {
                 return;
             }
 
-            if (!$.isNumeric($("#tx_num_client").val())) {
-                fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
-                return;
-            }
-
-            if ($("#tx_num_client").val().includes("e") || $("#tx_num_client").val().includes(".") || $("#tx_num_client").val().includes(",") || $("#tx_num_client").val().includes("-") || $("#tx_num_client").val().includes("+")) {
+            if ($("#tx_num_client").val().includes("-")) {
                 fn_mensaje_boostrap("FAVOR COMPROBAR EL VALOR INGRESADO", g_tit, $("#tx_num_client"));
                 return;
             }

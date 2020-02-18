@@ -24,7 +24,15 @@ $(document).ready(function () {
     document.body.scroll = "yes";
 
     $("._input_selector").inputmask("dd/mm/yyyy");
+    $(".number").inputmask("integer");
 
+    $(".number_float").inputmask("decimal",{
+        radixPoint:".",
+        groupSeparator: ",",
+        digits: 2,
+        autoUnmask: true,
+        autoGroup: true
+    });
 
     // COMBOS
 
