@@ -1,5 +1,5 @@
 var g_modulo="Solicitud de Corte y Reposici&oacute;n";
-var g_titulo="Solicitud Individual de Reposici&oacute;n";
+var g_tit="Solicitud Individual de Reposici&oacute;n";
 var parameters={};
 var my_url="corte_y_reposc.asp";
 var $grid;
@@ -17,13 +17,13 @@ $(document).keydown(function(e) {
 $(document).ready(function() {
     $("button").on("click", function(){return false;});
 
-    document.title = g_titulo ;
+    document.title = g_tit;
 	document.body.scroll = "yes";
 
 
     $("#div_header").load("syn_globales/header.htm", function() {
 		$("#div_mod0").html(g_modulo);
-		$("#div_tit0").html(g_titulo);	
+		$("#div_tit0").html(g_tit);	
 	});
 
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
 		//Validación de informacion
 		if ($.trim($("#co_leer").text()) == "Leer"){
 			if ($("#tx_num_sum").val() == ""){
-				fn_mensaje_boostrap("DIGITE EL N&Uacute;MERO DE SUMINISTRO.", g_titulo, $("#tx_num_sum"));
+				fn_mensaje_boostrap("DIGITE EL N&Uacute;MERO DE SUMINISTRO.", g_tit, $("#tx_num_sum"));
 				return;
 			}
             $("#co_medid").prop( "disabled", false);
@@ -71,6 +71,48 @@ $(document).ready(function() {
             fn_leer();
 
 		}
+
+    }); 
+
+    $("#co_crear").on("click", function () {
+
+        if ($.trim($("#co_crear").text()) === "Generar") {
+
+            if ($("#cb_mot_repo").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&oacute;N", g_tit, $("#cb_mot_repo"));
+                return;
+            }
+
+            if ($("#tx_fec_sol_real").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE FECHA SOLICITUD REAL", g_tit, $("#tx_fec_sol_real"));
+                return;
+            }
+
+            if ($("#tx_hora").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE HORA", g_tit, $("#tx_hora"));
+                return;
+            }
+
+            if ($("#tx_min").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE MINUTOS", g_tit, $("#tx_min"));
+                return;
+            }
+
+            if ($("#cb_inst_re").val() !== "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONAR INSTACIA DE CORTE", g_tit, $("#cb_inst_re"));
+                return;
+                }
+            
+
+            if ($("#tx_obser").val() !== "") {
+                fn_mensaje_boostrap("FAVOR DIGITAR OBSERVACI&oacute;N", g_tit, $("#tx_obser"));
+                return;
+                }
+            }
+            
+            
+            fn_mensaje_boostrap("Se ingres&oacute;", g_tit, $("#co_crear"));
+           
 
     });
 
@@ -130,6 +172,7 @@ function fn_cancelar(){
         $("#tx_num_sum").prop( "disabled", false);
         $("#tx_num_sum").focus();
     }
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_validar_fecha(value){
