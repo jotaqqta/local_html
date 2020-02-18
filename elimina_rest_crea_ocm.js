@@ -7,9 +7,7 @@ var sql_grid_second = "";
 var my_url = "elimina_rest_crea_ocm";
 var parameters = {};
 var unCheck;
-var edit = false;
 var rowIndx = [];
-var rowIndx2 = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -40,6 +38,7 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
+    $("._input_selector").inputmask("dd/mm/yyyy");
     $(".number").inputmask("integer");
 
     // COMBOS
@@ -50,10 +49,10 @@ $(document).ready(function () {
     fn_modelo();
     fn_rango_inicial();
     fn_rango_final();
-    fn_fech_desde();
-    fn_fech_hasta();
-    fn_fech_int_desde();
-    fn_fech_int_hasta();
+    tx_fech_desde();
+    tx_fech_hasta();
+    tx_fech_int_desde();
+    tx_fech_int_hasta();
     fn_motiv_cambio();
 
     fn_set_grid_principal();
@@ -95,6 +94,50 @@ $(document).ready(function () {
                 return;
             }
 
+            if ($("#tx_fech_desde").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_desde").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fech_desde"));
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_hasta").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_hasta").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fech_desde"));
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_desde").val() !== "" && $("#tx_fech_hasta").val() !== "") {
+
+                if (fn_fecha($("#tx_fech_desde").val(), $("#tx_fech_hasta").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_fech_desde"));
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_int_desde").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_int_desde").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fech_int_desde"));
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_int_hasta").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_int_hasta").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fech_int_hasta"));
+                    return;
+                }
+            }
+
+            if ($("#tx_fech_int_desde").val() !== "" && $("#tx_fech_int_hasta").val() !== "") {
+
+                if (fn_fecha($("#tx_fech_int_desde").val(), $("#tx_fech_int_hasta").val()) === false) {
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_fech_int_desde"));
+                    return;
+                }
+            }
+
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             $("#div_second").slideDown();
             $("#div_prin").slideUp();
@@ -124,26 +167,14 @@ $(document).ready(function () {
 
     $('input[type=checkbox][name=chk_int_creacion_ocm]').click(function(){
         if($(this).is(":checked")){
-            $("#cb_fech_int_desde").prop( "disabled", false );
-            $("#cb_fech_int_desde").focus();
-            $("#cb_fech_int_hasta").prop( "disabled", false );
+            $("#tx_fech_int_desde").prop( "disabled", false );
+            $("#tx_fech_int_desde").focus();
+            $("#tx_fech_int_hasta").prop( "disabled", false );
         }
 
         if (!$(this).is(":checked")){
-            $("#cb_fech_int_desde").prop( "disabled", true );
-            $("#cb_fech_int_hasta").prop( "disabled", true );
-        }
-    });
-
-    $('input[type=checkbox][name=chk_localidades]').click(function(){
-        if($(this).is(":checked")){
-            edit = true;
-            $grid_secundaria.pqGrid("refreshView");
-        }
-
-        if (!$(this).is(":checked")){
-            edit = false;
-            $grid_secundaria.pqGrid("refreshView");
+            $("#tx_fech_int_desde").prop( "disabled", true );
+            $("#tx_fech_int_hasta").prop( "disabled", true );
         }
     });
 
@@ -209,7 +240,6 @@ $(document).ready(function () {
 
                 this.Checkbox('checkBox').unCheckAll();
                 unCheck = false;
-                edit = false;
                 $grid_secundaria.pqGrid("refreshView");
 
             }
@@ -220,17 +250,17 @@ $(document).ready(function () {
         check: function( event, ui ) {
 
             if (ui.check) {
-                rowIndx2.push(ui.rowIndx);
+                rowIndx.push(ui.rowIndx);
 
             } else {
 
-                if (rowIndx2.includes(ui.rowIndx)) {
-                    var pos = rowIndx2.indexOf(ui.rowIndx);
-                    rowIndx2.splice(pos, 1);
+                if (rowIndx.includes(ui.rowIndx)) {
+                    var pos = rowIndx.indexOf(ui.rowIndx);
+                    rowIndx.splice(pos, 1);
                 }
 
                 if (!this.Checkbox('checkBox').isHeadChecked()) {
-                    rowIndx2 = []
+                    rowIndx = []
                 }
 
             }
@@ -407,20 +437,17 @@ function fn_set_grid_second() {
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
-        selectionModel: {type: 'all', mode: 'block'},
+        selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: false,
     };
 
     obj.colModel = [
-        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: function () {
-                return edit;
-            },
+        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
             type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
             cb: {
                 all: true,
                 header: true,
-                select: true
             }
         },
         { title: "Código", width: 522, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
@@ -469,24 +496,24 @@ function fn_rango_final(){
     $("#cb_rango_final").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
-function fn_fech_desde(){
+function tx_fech_desde(){
 
-    $("#cb_fech_desde").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#tx_fech_desde").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
-function fn_fech_hasta(){
+function tx_fech_hasta(){
 
-    $("#cb_fech_hasta").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#tx_fech_hasta").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
-function fn_fech_int_desde(){
+function tx_fech_int_desde(){
 
-    $("#cb_fech_int_desde").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#tx_fech_int_desde").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
-function fn_fech_int_hasta(){
+function tx_fech_int_hasta(){
 
-    $("#cb_fech_int_hasta").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#tx_fech_int_hasta").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
 function fn_motiv_cambio(){
@@ -499,6 +526,45 @@ function fn_motiv_cambio(){
 
 //                                  <-- Functions -->
 
+function fn_validar_fecha(value){
+    var real, info;
+    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+        info = value.split(/\//);
+        var fecha = new Date(info[2], info[1]-1, info[0]);
+        if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+            real = fecha.toISOString().substr(0,10).split('-');
+            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+
+function fn_fecha(valor, valor2) {
+
+    var fecha = valor.split("/");
+    fecha.reverse();
+    Date.parse(fecha);
+
+    var fecha2 = valor2.split("/");
+    fecha2.reverse();
+    Date.parse(fecha2);
+
+    if (fecha <= fecha2) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+}
+
 function fn_limpiar(type) {
 
     if (type === undefined) {
@@ -510,19 +576,15 @@ function fn_limpiar(type) {
         $("#cb_modelo").val("");
         $("#cb_rango_inicial").val("");
         $("#cb_rango_final").val("");
-        $("#cb_fech_desde").val("");
-        $("#cb_fech_hasta").val("");
+        $("#tx_fech_desde").val("");
+        $("#tx_fech_hasta").val("");
         $("#chk_int_creacion_ocm").prop("checked", false);
         $("#chk_localidades").prop("checked", false);
-        $("#cb_fech_int_desde").val("");
-        $("#cb_fech_int_hasta").val("");
+        $("#tx_fech_int_desde").val("");
+        $("#tx_fech_int_hasta").val("");
 
-        edit = false;
-
-        $grid_secundaria.pqGrid("refreshView");
-
-        $("#cb_fech_int_desde").prop( "disabled", true );
-        $("#cb_fech_int_hasta").prop( "disabled", true );
+        $("#tx_fech_int_desde").prop( "disabled", true );
+        $("#tx_fech_int_hasta").prop( "disabled", true );
     }
 
     if (type === 1) {
@@ -534,19 +596,19 @@ function fn_limpiar(type) {
         $("#cb_modelo").val("");
         $("#cb_rango_inicial").val("");
         $("#cb_rango_final").val("");
-        $("#cb_fech_desde").val("");
-        $("#cb_fech_hasta").val("");
+        $("#tx_fech_desde").val("");
+        $("#tx_fech_hasta").val("");
         $("#chk_int_creacion_ocm").prop("checked", false);
         $("#chk_localidades").prop("checked", false);
-        $("#cb_fech_int_desde").val("");
-        $("#cb_fech_int_hasta").val("");
+        $("#tx_fech_int_desde").val("");
+        $("#tx_fech_int_hasta").val("");
 
         unCheck = true;
 
         $grid_secundaria.pqGrid("refreshView");
 
-        $("#cb_fech_int_desde").prop( "disabled", true );
-        $("#cb_fech_int_hasta").prop( "disabled", true );
+        $("#tx_fech_int_desde").prop( "disabled", true );
+        $("#tx_fech_int_hasta").prop( "disabled", true );
     }
 
     if (type === 2) {

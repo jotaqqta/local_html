@@ -97,38 +97,14 @@
             <div id="content-second">
                 <div class="container" style="width: 100%">
                     <div class="row">
+                        <div style="height: 6px"></div>
                         <div class="col-xs-6">
                             <div class="row">
-                                <div style="height: 6px"></div>
                                 <div class="col-xs-4">
                                     <label for="cb_regional">Regional:</label>
                                 </div>
                                 <div class="col-xs-8">
                                     <select class="form-control input-normal" id="cb_regional" name="cb_regional"></select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-left">
-                            <button class="btn btn-group btn-sm btn-primary" id="co_consultar" type="button"><span
-                                    class="glyphicon glyphicon-ok"></span> Consultar
-                            </button>
-                            <button class="btn btn-group btn-sm btn-primary" id="co_limpiar" type="button"><span
-                                    class="glyphicon glyphicon-grain"></span> Limpiar
-                            </button>
-                            <button class="btn btn-group btn-sm btn-default" id="co_cancel" type="button"><span
-                                    class="glyphicon glyphicon-remove"></span> Cancelar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="space"></div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <label for="cb_motiv_rest">Motivo de Restricción:</label>
-                                </div>
-                                <div class="col-xs-8">
-                                    <select class="form-control input-normal" id="cb_motiv_rest" name="cb_motiv_rest"></select>
                                 </div>
                             </div>
                         </div>
@@ -148,6 +124,16 @@
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-4">
+                                    <label for="cb_motiv_rest">Motivo de Restricción:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <select class="form-control input-normal" id="cb_motiv_rest" name="cb_motiv_rest"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
                                     <label for="tx_num_medidor">Número Medidor:</label>
                                 </div>
                                 <div class="col-xs-8">
@@ -155,6 +141,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-4">
@@ -165,14 +154,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="space"></div>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <label for="cb_modelo">Modelo:</label>
-                        </div>
-                        <div class="col-xs-10">
-                            <select class="form-control input-normal" id="cb_modelo" name="cb_modelo"></select>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="cb_modelo">Modelo:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <select class="form-control input-normal" id="cb_modelo" name="cb_modelo"></select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div style="height: 10px"></div>
@@ -199,17 +189,16 @@
                             <div class="row">
                                 <h5>&nbsp; Fecha Creación Restricción:</h5>
                                 <div class="col-xs-2">
-                                    <label for="cb_fech_desde">Desde:</label>
+                                    <label for="tx_fech_desde">Desde:</label>
                                 </div>
                                 <div class="col-xs-4">
-                                    <select class="form-control input-normal" id="cb_fech_desde" name="cb_fech_desde"></select>
+                                    <input id="tx_fech_desde" name="tx_fech_desde" class="form-control _input_selector">
                                 </div>
                                 <div class="col-xs-2">
-                                    <label for="cb_fech_hasta">Hasta:</label>
+                                    <label for="tx_fech_hasta">Hasta:</label>
                                 </div>
                                 <div class="col-xs-4">
-                                    <select class="form-control input-normal" id="cb_fech_hasta" name="cb_fech_hasta"></select>
-
+                                    <input id="tx_fech_hasta" name="tx_fech_hasta" class="form-control _input_selector">
                                 </div>
                             </div>
                         </div>
@@ -225,35 +214,45 @@
                         <div class="container" style="width: 100%">
                             <h5>&nbsp; Fecha de Intento:</h5>
                             <div class="col-xs-2">
-                                <label for="cb_fech_int_desde">Desde:</label>
+                                <label for="tx_fech_int_desde">Desde:</label>
                             </div>
                             <div class="col-xs-2">
-                                <select class="form-control input-normal" id="cb_fech_int_desde" name="cb_fech_int_desde"></select>
+                                <input id="tx_fech_int_desde" name="tx_fech_int_desde" class="form-control _input_selector">
                             </div>
                             <div class="col-xs-2"></div>
                             <div class="col-xs-2">
-                                <label for="cb_fech_int_hasta">Hasta:</label>
+                                <label for="tx_fech_int_hasta">Hasta:</label>
                             </div>
                             <div class="col-xs-2">
-                                <select class="form-control input-normal" id="cb_fech_int_hasta" name="cb_fech_int_hasta"></select>
+                                <input id="tx_fech_int_hasta" name="tx_fech_int_hasta" class="form-control _input_selector">
                             </div>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-xs-6">
-                        <span class="checkbox-inline"><input type="checkbox" id="chk_localidades" name="chk_localidades"><label
-                                for="chk_localidades">Localidades</label></span>
-                        </div>
+                        <h5>&nbsp; Localidades:</h5>
                     </div>
                 </div>
-                <div class="space"></div>
                 <div class="row">
                     <div class="container" style="width: 100%;">
                         <div id="bd_second">
                             <!-- PARAMQUERY SECUNDARIO -->
                             <div id="div_grid_second"></div>
                         </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <button class="btn btn-group btn-sm btn-primary" id="co_consultar" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Consultar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-primary" id="co_limpiar" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
+                        </button>
+                        <button class="btn btn-group btn-sm btn-default" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
                     </div>
                 </div>
             </div>
