@@ -201,6 +201,9 @@ $(document).ready(function () {
     });
 
     $("#co_generar").on("click", function () {
+
+        fn_limpiar(2);
+
         $("#div_gen_bts").modal({backdrop: "static",keyboard:false});
         $("#div_gen_bts").on("shown.bs.modal", function () {
             $("#div_gen_bts div.modal-footer button").focus();
