@@ -84,52 +84,34 @@
 		<div class="container">
 			<br>
 			<div class="container">
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div>
-							<label class="radio-inline" for="rd_num_sum">Por N&uacute;mero Suministro</label>
-							<input type="radio" name="optradio" id="optradio" name="optradio" value="2">
-						</div>
-					</div>
-					<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-						<div>
-							<label class="radio-inline" for="rd_medidor">Por Medidor</label>
-							<input type="radio" name="optradio" id="optradio" name="optradio" value="2">
-						</div>
-					</div>
-					<br>
-				<br>
-				<div class="container">
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+				<div class="row">
+					<div class="col-3 col-sm-3 col-md-3 col-lg-3">
 						<label for="tx_num_sum">N&uacute;mero de Suministro</label>
 						<input id="tx_num_sum" name="cb_marca" type="text" class="form-control inp_dis">
 					</div>
-					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-						<label for="tx_num_sum_2"></label>
+					<div class="col-3 col-sm-3 col-md-3 col-lg-3">
+						<label for="tx_num_sum_2">N&uacute;mero de Medidor</label>
 						<input id="tx_num_sum_2" name="cb_modelo" type="text" class="form-control inp_dis">
 					</div>
-				</div>
-			</div>
-			<br>
-			<div class="container" id="div_prim">
-				<div class="form-horizontal flex-wrap">
-					<label class="col-sm-4"></label>
-
-					<div class="col-4 col-sm-4 col-md-4 col-lg-4 mx-auto flex-wrap">
-						<button type="button" class="btn btn-primary" id="co_leer" name="co_leer"><span
-								class="glyphicon glyphicon-search"></span>
+					<br>
+					<div class="container" id="div_prim">
+						<div class="form-horizontal flex-wrap">
+							<button type="button" class="btn btn-primary" id="co_leer" name="co_leer"><span
+									class="glyphicon glyphicon-search"></span>
 							Leer</button>
-						<button type="button" class="btn btn-basic" id="co_limpiar" name="co_limpiar"><span
-								class="glyphicon glyphicon-save"></span>
+							<button type="button" class="btn btn-basic" id="co_limpiar" name="co_limpiar"><span
+									class="glyphicon glyphicon-save"></span>
 							Limpiar</button>
-						<button type="button" class="btn btn-basic" id="co_cancel" name="co_cancel"><span
-								class="glyphicon glyphicon-off"></span>
+							<button type="button" class="btn btn-basic" id="co_cancel" name="co_cancel"><span
+									class="glyphicon glyphicon-off"></span>
 							Cancelar</button>
+						</div>
 					</div>
 				</div>
-			</div>
+				
 			<div class="tab-content">
 				<div id="Principal" class="tab-pane fade in active">
-                    <div>
+
 						<br>
 						<div class="row">
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
@@ -167,7 +149,7 @@
 								<input id="tx_subg_zona" name="tx_subg_zona" type="text" class="form-control inp_dis" readonly>
 							</div>						
 						</div>             
-                   
+                   	</div>
            			    <br>
 					<!-- PARAMQUERY PRINCIPAL -->
 					   <div id="div_grid_principal">
