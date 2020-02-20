@@ -79,6 +79,13 @@ $(document).ready(function () {
                 return;
             }
 
+            if ($("#tx_zona_inicial").val() !== "" || $("#tx_zona_final").val() !== "") {
+                if ($("#tx_zona_inicial").val() >= $("#tx_zona_final").val()) {
+                    fn_mensaje_boostrap("Zona Inicial fuera de rango", g_tit, $("#tx_zona_inicial"));
+                    return;
+                }
+            }
+
             if ($("#tx_fech_inst_desde").val() !== "") {
                 if (fn_validar_fecha($("#tx_fech_inst_desde").val()) === false) {
                     fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_fech_inst_desde"));
@@ -96,6 +103,13 @@ $(document).ready(function () {
             if ($("#tx_fech_inst_desde").val() !== "" && $("#tx_fech_inst_hasta").val() !== "") {
                 if (fn_fecha($("#tx_fech_inst_desde").val(), $("#tx_fech_inst_hasta").val()) === false) {
                     fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_fech_inst_desde"));
+                    return;
+                }
+            }
+
+            if ($("#tx_m3_desde").val() !== "" || $("#tx_m3_hasta").val() !== "") {
+                if ($("#tx_m3_desde").val() >= $("#tx_m3_hasta").val()) {
+                    fn_mensaje_boostrap("M3 Acomulados fuera de rango", g_tit, $("#tx_m3_desde"));
                     return;
                 }
             }
@@ -123,7 +137,7 @@ $(document).ready(function () {
 
             if ($("#tx_uso_desde").val() !== "" || $("#tx_uso_hasta").val() !== "") {
                 if ($("#tx_uso_desde").val() > $("#tx_uso_hasta").val()) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_vida_util_desde"));
+                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_uso_desde"));
                     return;
                 }
             }

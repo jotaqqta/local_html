@@ -218,14 +218,14 @@
                                     <label for="tx_zona_inicial">&nbsp; Zona Inicial:</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input id="tx_zona_inicial" name="tx_zona_inicial"
-                                           class="form-control _input_selector">
+                                    <input id="tx_zona_inicial" maxlength="3" name="tx_zona_inicial"
+                                           class="form-control number">
                                 </div>
                                 <div class="col-xs-3">
                                     <label for="tx_zona_final">&nbsp; Zona Final:</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input id="tx_zona_final" name="tx_zona_final" class="form-control _input_selector">
+                                    <input id="tx_zona_final" maxlength="3" name="tx_zona_final" class="form-control number">
                                 </div>
                             </div>
                         </div>
@@ -251,20 +251,20 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div class="well well-sm">m³ acomulados</div>
+                            <div class="well well-sm">M3 Acomulados</div>
                             <div class="row">
                                 <div class="col-xs-3">
                                     <label for="tx_m3_desde">&nbsp; Desde:</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input id="tx_m3_desde" name="tx_m3_desde"
+                                    <input id="tx_m3_desde" maxlength="3" name="tx_m3_desde"
                                            class="form-control number">
                                 </div>
                                 <div class="col-xs-3">
                                     <label for="tx_m3_hasta">&nbsp; Hasta:</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <input id="tx_m3_hasta" name="tx_m3_hasta" class="form-control number">
+                                    <input id="tx_m3_hasta" maxlength="3" name="tx_m3_hasta" class="form-control number">
                                 </div>
                             </div>
                         </div>
@@ -347,7 +347,6 @@
                     </div>
                 </div>
             </div>
-            <div class="space"></div>
         </div>
     </div>
 
@@ -403,6 +402,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
 </div>
 
 <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
