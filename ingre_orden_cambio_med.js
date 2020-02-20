@@ -73,7 +73,7 @@ $(document).ready(function () {
 		}
 	});
 
-	jQuery('#tx_num_med').keypress(function (tecla) {
+	jQuery('#tx_num_sum').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 	jQuery('#tx_num_fab').keypress(function (tecla) {
@@ -397,30 +397,21 @@ function fn_setea_grid_principal() {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
-		editable: false,
+		editable: true,
 		editor: { type: "textbox", select: true, style: "outline:none;" },
-		selectionModel: { type: 'cell' },
+		selectionModel: { type: 'row',mode:'single' },
 		numberCell: { show: true },
 		title: "Medidores",
-		pageModel: { type: "local" },
+		pageModel: { type: "local", },
 		scrollModel: { theme: true },
-		toolbar:
-		{
+		toolbar:{
 			cls: "pq-toolbar-export",
 			items: [
 			//	{ type: "button", label: "Excel", attr: "id=co_excel", cls: "btn btn-primary btn-sm" },
 			]
 		},
-		editModel: {
-			clicksToEdit: 1,
-			keyUpDown: true,
-			pressToEdit: true,
-			cellBorderWidth: 0
-		},
-		dataModel: {
-			data: []
-		}
 	};
+
 
 	obj.colModel = [
 		{ dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
@@ -436,6 +427,7 @@ function fn_setea_grid_principal() {
 		{ title: "Diametro"        , width: 270, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
 	
 	];
+	obj.dataModel = { data: data };
 
 	$grid = $("#div_grid_principal").pqGrid(obj);
 	//$grid.pqGrid("refreshDataAndView");
