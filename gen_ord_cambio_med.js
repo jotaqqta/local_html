@@ -75,24 +75,24 @@ $(document).ready(function () {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
             if ($("#cb_regional").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE UNA REGIONAL", g_tit, $("#cb_regional"));
+                fn_mensaje_boostrap("Error. Por favor seleccina una Regional.", g_tit, $("#cb_regional"));
                 return;
             }
 
             if ($("#cb_sect_inicial").val() !== "" || $("#cb_sect_final").val() !== "") {
 
                 if ($("#cb_sect_inicial").val() === "") {
-                    fn_mensaje_boostrap("FAVOR SELECCIONE UN SECTOR INICIAL", g_tit, $("#cb_sect_inicial"));
+                    fn_mensaje_boostrap("Error. Por favor seleccina un Sector Inicial.", g_tit, $("#cb_sect_inicial"));
                     return;
                 }
 
                 if ($("#cb_sect_final").val() === "") {
-                    fn_mensaje_boostrap("FAVOR SELECCIONE UN SECTOR FINAL", g_tit, $("#cb_sect_final"));
+                    fn_mensaje_boostrap("Error. Por favor seleccina un Sector Final.", g_tit, $("#cb_sect_final"));
                     return;
                 }
 
                 if ($("#cb_sect_inicial option:selected").text() > $("#cb_sect_final option:selected").text()) {
-                    fn_mensaje_boostrap("Rango Selector incorrecto", g_tit, $("#cb_sect_final"));
+                    fn_mensaje_boostrap("Error. El Rango Selector es incorrecto, recuerde que el rango inicial debe ser menor al final.", g_tit, $("#cb_sect_final"));
                     return;
                 }
             }
@@ -100,17 +100,17 @@ $(document).ready(function () {
             if ($("#tx_zona_inicial").val() !== "" || $("#tx_zona_final").val() !== "") {
 
                 if ($("#tx_zona_inicial").val() === "") {
-                    fn_mensaje_boostrap("FAVOR INDIQUE UNA ZONA INICIAL", g_tit, $("#tx_zona_inicial"));
+                    fn_mensaje_boostrap("Error. Por favor Indique una Zona Inicial.", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
 
                 if ($("#tx_zona_final").val() === "") {
-                    fn_mensaje_boostrap("FAVOR INDIQUE UNA ZONA FINAL", g_tit, $("#tx_zona_final"));
+                    fn_mensaje_boostrap("Error. Por favor Indique una Zona Final.", g_tit, $("#tx_zona_final"));
                     return;
                 }
 
                 if ($("#tx_zona_inicial").val() > $("#tx_zona_final").val()) {
-                    fn_mensaje_boostrap("Zona Inicial fuera de rango", g_tit, $("#tx_zona_inicial"));
+                    fn_mensaje_boostrap("Error. La Zona Inicial se encuentra fuera de rango.", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
             }
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
             if ($("#tx_fech_inst_desde").val() !== "" && $("#tx_fech_inst_hasta").val() !== "") {
                 if (fn_fecha($("#tx_fech_inst_desde").val(), $("#tx_fech_inst_hasta").val()) === false) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_fech_inst_desde"));
+                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_fech_inst_desde"));
                     return;
                 }
             }
@@ -139,17 +139,17 @@ $(document).ready(function () {
             if ($("#tx_m3_desde").val() !== "" || $("#tx_m3_hasta").val() !== "") {
 
                 if ($("#tx_m3_desde").val() === "") {
-                    fn_mensaje_boostrap("FAVOR INDIQUE UN NUMERO DE M3 INICIAL", g_tit, $("#tx_m3_desde"));
+                    fn_mensaje_boostrap("Error. Por favor indica un numero de m3 Inicial.", g_tit, $("#tx_m3_desde"));
                     return;
                 }
 
                 if ($("#tx_m3_hasta").val() === "") {
-                    fn_mensaje_boostrap("FAVOR INDIQUE UN NUMERO DE M3 FINAL", g_tit, $("#tx_m3_hasta"));
+                    fn_mensaje_boostrap("Error. Por favor indica un numero de m3 Final.", g_tit, $("#tx_m3_hasta"));
                     return;
                 }
 
                 if ($("#tx_m3_desde").val() > $("#tx_m3_hasta").val()) {
-                    fn_mensaje_boostrap("Cantidad de Acumulados fuera de rango", g_tit, $("#tx_m3_desde"));
+                    fn_mensaje_boostrap("Error. La Cantidad de Acumulados se encuentra fuera de rango", g_tit, $("#tx_m3_desde"));
                     return;
                 }
             }
@@ -170,14 +170,14 @@ $(document).ready(function () {
 
             if ($("#tx_vida_util_desde").val() !== "" && $("#tx_vida_util_hasta").val() !== "") {
                 if (fn_fecha($("#tx_vida_util_desde").val(), $("#tx_vida_util_hasta").val()) === false) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_vida_util_desde"));
+                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_vida_util_desde"));
                     return;
                 }
             }
 
             if ($("#tx_uso_desde").val() !== "" || $("#tx_uso_hasta").val() !== "") {
                 if ($("#tx_uso_desde").val() > $("#tx_uso_hasta").val()) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL RANGO DE TIEMPO INGRESADO", g_tit, $("#tx_uso_desde"));
+                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_uso_desde"));
                     return;
                 }
             }
@@ -188,7 +188,7 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        fn_limpiar(1);
+        fn_limpiar();
     });
 
     $("#co_limpiar_2").on("click", function () {
@@ -243,20 +243,73 @@ $(document).ready(function () {
         }
     });
 
-    /*$grid_secundaria.pqGrid({
+    $grid_localidades.pqGrid({
         refresh: function (event, ui) {
 
             if (unCheck) {
 
                 this.Checkbox('checkBox').unCheckAll();
-                unCheck = false;
-                $grid_secundaria.pqGrid("refreshView");
 
             }
         }
     });
 
-    $grid_secundaria.pqGrid({
+    $grid_tarifas.pqGrid({
+        refresh: function (event, ui) {
+
+            if (unCheck) {
+
+                this.Checkbox('checkBox').unCheckAll();
+
+            }
+        }
+    });
+
+    $grid_act_eco.pqGrid({
+        refresh: function (event, ui) {
+
+            if (unCheck) {
+
+                this.Checkbox('checkBox').unCheckAll();
+
+            }
+        }
+    });
+
+    $grid_marcas.pqGrid({
+        refresh: function (event, ui) {
+
+            if (unCheck) {
+
+                this.Checkbox('checkBox').unCheckAll();
+
+            }
+        }
+    });
+
+    $grid_modelos.pqGrid({
+        refresh: function (event, ui) {
+
+            if (unCheck) {
+
+                this.Checkbox('checkBox').unCheckAll();
+
+            }
+        }
+    });
+
+    $grid_diametros.pqGrid({
+        refresh: function (event, ui) {
+
+            if (unCheck) {
+
+                this.Checkbox('checkBox').unCheckAll();
+
+            }
+        }
+    });
+
+    /*$grid_secundaria.pqGrid({
         check: function( event, ui ) {
 
             if (ui.check) {
@@ -830,8 +883,52 @@ function fn_fecha(valor, valor2) {
 
 }
 
-function fn_limpiar(type) {
+function fn_limpiar() {
 
+    $("#cb_regional").val("");
+    $("#cb_tecnologia").val("");
+    $("#cb_clase_metro").val("");
+    $("#cb_propiedad").val("");
+    $("#tx_time_fabrica").val("");
+    $("#tx_cant_max_med").val("");
+    $("#chk_grandes_clientes").prop("checked", false);
+    $("#chk_cliente_directo").prop("checked", false);
+    $("#chk_cliente_normal").prop("checked", false);
+    $("#chk_matriz_remar").prop("checked", false);
+    $("#cb_sect_inicial").val("");
+    $("#cb_sect_final").val("");
+    $("#tx_zona_inicial").val("");
+    $("#tx_zona_final").val("");
+    $("#tx_fech_inst_desde").val("");
+    $("#tx_fech_inst_hasta").val("");
+    $("#tx_m3_desde").val("");
+    $("#tx_m3_hasta").val("");
+    $("#tx_vida_util_desde").val("");
+    $("#tx_vida_util_hasta").val("");
+    $("#tx_uso_desde").val("");
+    $("#tx_uso_hasta").val("");
+
+    unCheck = true;
+
+    $grid_localidades.pqGrid("refreshView");
+    $grid_tarifas.pqGrid("refreshView");
+    $grid_act_eco.pqGrid("refreshView");
+    $grid_marcas.pqGrid("refreshView");
+    $grid_modelos.pqGrid("refreshView");
+    $grid_diametros.pqGrid("refreshView");
+
+    setTimeout(function () {
+
+        unCheck = false;
+
+        $grid_localidades.pqGrid("refreshView");
+        $grid_tarifas.pqGrid("refreshView");
+        $grid_act_eco.pqGrid("refreshView");
+        $grid_marcas.pqGrid("refreshView");
+        $grid_modelos.pqGrid("refreshView");
+        $grid_diametros.pqGrid("refreshView");
+
+    }, 100);
 
 }
 
