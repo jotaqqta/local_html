@@ -80,7 +80,18 @@ $(document).ready(function () {
             }
 
             if ($("#tx_zona_inicial").val() !== "" || $("#tx_zona_final").val() !== "") {
-                if ($("#tx_zona_inicial").val() >= $("#tx_zona_final").val()) {
+
+                if ($("#tx_zona_inicial").val() === "") {
+                    fn_mensaje_boostrap("FAVOR INDIQUE UNA ZONA INICIAL", g_tit, $("#tx_zona_inicial"));
+                    return;
+                }
+
+                if ($("#tx_zona_final").val() === "") {
+                    fn_mensaje_boostrap("FAVOR INDIQUE UNA ZONA FINAL", g_tit, $("#tx_zona_final"));
+                    return;
+                }
+
+                if ($("#tx_zona_inicial").val() > $("#tx_zona_final").val()) {
                     fn_mensaje_boostrap("Zona Inicial fuera de rango", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
@@ -108,8 +119,19 @@ $(document).ready(function () {
             }
 
             if ($("#tx_m3_desde").val() !== "" || $("#tx_m3_hasta").val() !== "") {
-                if ($("#tx_m3_desde").val() >= $("#tx_m3_hasta").val()) {
-                    fn_mensaje_boostrap("M3 Acomulados fuera de rango", g_tit, $("#tx_m3_desde"));
+
+                if ($("#tx_m3_desde").val() === "") {
+                    fn_mensaje_boostrap("FAVOR INDIQUE UN NUMERO DE M3 INICIAL", g_tit, $("#tx_m3_desde"));
+                    return;
+                }
+
+                if ($("#tx_m3_hasta").val() === "") {
+                    fn_mensaje_boostrap("FAVOR INDIQUE UN NUMERO DE M3 FINAL", g_tit, $("#tx_m3_hasta"));
+                    return;
+                }
+
+                if ($("#tx_m3_desde").val() > $("#tx_m3_hasta").val()) {
+                    fn_mensaje_boostrap("Cantidad de Acumulados fuera de rango", g_tit, $("#tx_m3_desde"));
                     return;
                 }
             }
@@ -203,7 +225,7 @@ $(document).ready(function () {
         }
     });
 
-    $grid_secundaria.pqGrid({
+    /*$grid_secundaria.pqGrid({
         refresh: function (event, ui) {
 
             if (unCheck) {
@@ -235,7 +257,7 @@ $(document).ready(function () {
 
             }
         }
-    });
+    });*/
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
