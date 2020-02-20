@@ -75,24 +75,24 @@ $(document).ready(function () {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
             if ($("#cb_regional").val() === "") {
-                fn_mensaje_boostrap("Error. Por favor seleccina una Regional.", g_tit, $("#cb_regional"));
+                fn_mensaje_boostrap("Error, por favor seleccina una Regional.", g_tit, $("#cb_regional"));
                 return;
             }
 
             if ($("#cb_sect_inicial").val() !== "" || $("#cb_sect_final").val() !== "") {
 
                 if ($("#cb_sect_inicial").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor seleccina un Sector Inicial.", g_tit, $("#cb_sect_inicial"));
+                    fn_mensaje_boostrap("Error, por favor seleccina un Sector Inicial.", g_tit, $("#cb_sect_inicial"));
                     return;
                 }
 
                 if ($("#cb_sect_final").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor seleccina un Sector Final.", g_tit, $("#cb_sect_final"));
+                    fn_mensaje_boostrap("Error, por favor seleccina un Sector Final.", g_tit, $("#cb_sect_final"));
                     return;
                 }
 
                 if ($("#cb_sect_inicial option:selected").text() > $("#cb_sect_final option:selected").text()) {
-                    fn_mensaje_boostrap("Error. El Rango Selector es incorrecto, recuerde que el rango inicial debe ser menor al final.", g_tit, $("#cb_sect_final"));
+                    fn_mensaje_boostrap("Error, el rango final debe ser mayor o igual a la fecha inicial.", g_tit, $("#cb_sect_final"));
                     return;
                 }
             }
@@ -100,17 +100,17 @@ $(document).ready(function () {
             if ($("#tx_zona_inicial").val() !== "" || $("#tx_zona_final").val() !== "") {
 
                 if ($("#tx_zona_inicial").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor Indique una Zona Inicial.", g_tit, $("#tx_zona_inicial"));
+                    fn_mensaje_boostrap("Error, por favor Indique una Zona Inicial.", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
 
                 if ($("#tx_zona_final").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor Indique una Zona Final.", g_tit, $("#tx_zona_final"));
+                    fn_mensaje_boostrap("Error, por favor Indique una Zona Final.", g_tit, $("#tx_zona_final"));
                     return;
                 }
 
-                if ($("#tx_zona_inicial").val() > $("#tx_zona_final").val()) {
-                    fn_mensaje_boostrap("Error. La Zona Inicial se encuentra fuera de rango.", g_tit, $("#tx_zona_inicial"));
+                if (parseInt($("#tx_zona_inicial").val()) > parseInt($("#tx_zona_final").val())) {
+                    fn_mensaje_boostrap("Error, la Zona Inicial se encuentra fuera de rango.", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
             }
@@ -131,7 +131,7 @@ $(document).ready(function () {
 
             if ($("#tx_fech_inst_desde").val() !== "" && $("#tx_fech_inst_hasta").val() !== "") {
                 if (fn_fecha($("#tx_fech_inst_desde").val(), $("#tx_fech_inst_hasta").val()) === false) {
-                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_fech_inst_desde"));
+                    fn_mensaje_boostrap("Error, la fecha final debe ser mayor o igual a la fecha inicial", g_tit, $("#tx_fech_inst_desde"));
                     return;
                 }
             }
@@ -139,17 +139,17 @@ $(document).ready(function () {
             if ($("#tx_m3_desde").val() !== "" || $("#tx_m3_hasta").val() !== "") {
 
                 if ($("#tx_m3_desde").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor indica un numero de m3 Inicial.", g_tit, $("#tx_m3_desde"));
+                    fn_mensaje_boostrap("Error, por favor indica un numero de m3 Inicial.", g_tit, $("#tx_m3_desde"));
                     return;
                 }
 
                 if ($("#tx_m3_hasta").val() === "") {
-                    fn_mensaje_boostrap("Error. Por favor indica un numero de m3 Final.", g_tit, $("#tx_m3_hasta"));
+                    fn_mensaje_boostrap("Error, por favor indica un numero de m3 Final.", g_tit, $("#tx_m3_hasta"));
                     return;
                 }
 
-                if ($("#tx_m3_desde").val() > $("#tx_m3_hasta").val()) {
-                    fn_mensaje_boostrap("Error. La Cantidad de Acumulados se encuentra fuera de rango", g_tit, $("#tx_m3_desde"));
+                if (parseInt($("#tx_m3_desde").val()) > parseInt($("#tx_m3_hasta").val())) {
+                    fn_mensaje_boostrap("Error, la Cantidad de Acumulados se encuentra fuera de rango", g_tit, $("#tx_m3_desde"));
                     return;
                 }
             }
@@ -170,14 +170,25 @@ $(document).ready(function () {
 
             if ($("#tx_vida_util_desde").val() !== "" && $("#tx_vida_util_hasta").val() !== "") {
                 if (fn_fecha($("#tx_vida_util_desde").val(), $("#tx_vida_util_hasta").val()) === false) {
-                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_vida_util_desde"));
+                    fn_mensaje_boostrap("Error, la fecha final debe ser mayor o igual a la fecha inicial", g_tit, $("#tx_vida_util_desde"));
                     return;
                 }
             }
 
             if ($("#tx_uso_desde").val() !== "" || $("#tx_uso_hasta").val() !== "") {
-                if ($("#tx_uso_desde").val() > $("#tx_uso_hasta").val()) {
-                    fn_mensaje_boostrap("Error. Por favor verifica el rango de tiempo ingresado, recuerda que \"Desde\" no debe ser mayor que \"Hasta\".", g_tit, $("#tx_uso_desde"));
+
+                if ($("#tx_uso_desde").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indica un numero de años Inicial.", g_tit, $("#tx_uso_desde"));
+                    return;
+                }
+
+                if ($("#tx_uso_hasta").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indica un numero de años Final.", g_tit, $("#tx_uso_hasta"));
+                    return;
+                }
+
+                if (parseInt($("#tx_uso_desde").val()) > parseInt($("#tx_uso_hasta").val())) {
+                    fn_mensaje_boostrap("Error, la cantidad de años final debe ser mayor o igual a la cantidad inicial.", g_tit, $("#tx_uso_desde"));
                     return;
                 }
             }
@@ -214,22 +225,16 @@ $(document).ready(function () {
     });
 
     $("#tx_uso_desde").blur(function () {
-        if ($("#tx_uso_desde").val() >= 2200) {
-            $("#tx_uso_desde").val("2200");
-        }
 
-        if ($("#tx_uso_desde").val() < 1800) {
-            $("#tx_uso_desde").val("1800");
+        if ($("#tx_uso_desde").val() < 0) {
+            $("#tx_uso_desde").val("0");
         }
     });
 
     $("#tx_uso_hasta").blur(function () {
-        if ($("#tx_uso_hasta").val() >= 2200) {
-            $("#tx_uso_hasta").val("2200");
-        }
 
-        if ($("#tx_uso_hasta").val() < 1800) {
-            $("#tx_uso_hasta").val("1800");
+        if ($("#tx_uso_hasta").val() < 0) {
+            $("#tx_uso_hasta").val("0");
         }
     });
 
