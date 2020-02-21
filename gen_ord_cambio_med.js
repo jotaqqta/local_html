@@ -199,26 +199,8 @@ $(document).ready(function () {
         fn_limpiar();
     });
 
-    $("#co_limpiar_2").on("click", function () {
-        fn_limpiar(2);
-    });
-
-    $("#co_cancel").on("click", function (){
-        $("#div_prin").show();
-        $("#div_second").hide();
-    });
-
-    $("#co_cancelar_2").on("click", function (){
-        $('#div_gen_bts').modal('hide');
-    });
-
     $("#co_cerrar").on("click", function () {
         window.close();
-    });
-
-    $("#co_volver").on( "click", function () {
-        $("#div_second").hide();
-        $("#div_prin").show();
     });
 
     $("#tx_uso_desde").blur(function () {
