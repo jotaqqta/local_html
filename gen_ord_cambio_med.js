@@ -154,23 +154,20 @@ $(document).ready(function () {
                 }
             }
 
-            if ($("#tx_vida_util_desde").val() !== "") {
-                if (fn_validar_fecha($("#tx_vida_util_desde").val()) === false) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_vida_util_desde"));
+            if ($("#tx_vida_util_desde").val() !== "" || $("#tx_vida_util_hasta").val() !== "") {
+
+                if ($("#tx_vida_util_desde").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indica un numero de m3 Inicial.", g_tit, $("#tx_vida_util_desde"));
                     return;
                 }
-            }
 
-            if ($("#tx_vida_util_hasta").val() !== "") {
-                if (fn_validar_fecha($("#tx_vida_util_hasta").val()) === false) {
-                    fn_mensaje_boostrap("FAVOR VALIDAR EL FORMATO DE LA FECHA!!! RECUERDE QUE ES DD/MM/YYYY", g_tit, $("#tx_vida_util_hasta"));
+                if ($("#tx_vida_util_hasta").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indica un numero de m3 Final.", g_tit, $("#tx_vida_util_hasta"));
                     return;
                 }
-            }
 
-            if ($("#tx_vida_util_desde").val() !== "" && $("#tx_vida_util_hasta").val() !== "") {
-                if (fn_fecha($("#tx_vida_util_desde").val(), $("#tx_vida_util_hasta").val()) === false) {
-                    fn_mensaje_boostrap("Error, la fecha final debe ser mayor o igual a la fecha inicial", g_tit, $("#tx_vida_util_desde"));
+                if (parseInt($("#tx_vida_util_desde").val()) > parseInt($("#tx_vida_util_hasta").val())) {
+                    fn_mensaje_boostrap("Error, la Vida Util final debe ser mayor o igual a la Vida Util inicial.", g_tit, $("#tx_vida_util_desde"));
                     return;
                 }
             }
