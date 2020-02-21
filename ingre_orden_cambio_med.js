@@ -30,6 +30,10 @@ $(document).ready(function () {
 		$("#div_tit0").html(g_titulo);
 	});
 
+	   //FUNCIONES COMBOS
+    fn_motivo();
+    fn_ejecuta();
+
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
     //Se cargan las variables que vienen esde el server
@@ -76,7 +80,7 @@ $(document).ready(function () {
 	jQuery('#tx_num_sum').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
-	jQuery('#tx_num_fab').keypress(function (tecla) {
+	jQuery('#tx_num_med').keypress(function (tecla) {
 		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
 	});
 
@@ -89,7 +93,7 @@ $(document).ready(function () {
 	   else{
 	   	   if ($.trim($("#co_cancel").text()) == "Cancelar") {	
                $("#tx_num_med").focus();
-               fn_limpiar_fil();
+               //fn_limpiar_fil();
                fn_limpiar();
                //limpia la grilla
                $grid.pqGrid( 'option', 'dataModel.data', [] );
@@ -105,13 +109,12 @@ $(document).ready(function () {
         
       if ($.trim($("#co_leer").text()) == "Leer") {		    
 		    if($("#tx_num_sum").val()==""){
-				fn_mensaje_boostrap("DIGITE NUMERO DE SUMINISTRO", g_titulo, $("#tx_num_sum"));
+				fn_mensaje_boostrap("DIGITE NUMERO DE SUMINISTRO Y/O NUMERO DE MEDIDOR", g_titulo, $("#tx_num_sum"));
 				return;
 			}			
-			if($("#tx_num_med").val()==""){
-				fn_mensaje_boostrap("DEBE SELECCIONAR NUMERO DE MEDIDOR", g_titulo, $("#tx_num_med"));
-				return;
-			}
+
+			$("#tx_num_sum").prop( "disabled", true);
+			$("#tx_num_med").prop( "disabled", true);
 			fn_leer();
 			}
 
@@ -119,6 +122,31 @@ $(document).ready(function () {
  
     /////////////////////////////////////////////////////////////
 
+    $("#co_crear").on("click", function () {
+
+        //if ($.trim($("#co_crear").text()) === "Generar") {
+
+            if ($("#cb_mot").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&Oacute;N", g_titulo, $("#cb_mot"));
+                return;
+            }           
+
+            if(document.getElementById('tx_obser').value.length < 15) {
+                fn_mensaje_boostrap("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_titulo, $("#tx_obser"));
+                return;
+            }
+
+            if ($("#cb_ejec").val() === "") {
+                fn_mensaje_boostrap("FAVOR SELECCIONE QUI&Eacute;N EJECUTA", g_titulo, $("#cb_ejec"));
+                return;
+            }
+
+                     
+          fn_mensaje_boostrap("Se ingres&oacute;", g_titulo, $(""));
+           
+
+    });
+    /////////////////////////////////////////////////////////////
 	
 	$("#co_seleccionar").on("click", function(e){
 		    
@@ -126,7 +154,7 @@ $(document).ready(function () {
 
             $("#co_leer").html("<span class='glyphicon glyphicon-pencil'</span> Modificar"); 
             //bloqueo de campos para que no se modifiquen
-            $("#cb_marca").prop("disabled", true);
+            $("#tx_num_sum").prop("disabled", true);
             $("#cb_modelo").prop("disabled", true);
             $("#tx_num_med").prop("disabled", true);
 
@@ -216,9 +244,9 @@ $(document).ready(function () {
 
     });
 	////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
+
 	$("#co_limpiar").on("click", function () {
-		fn_limpiar_fil();
+		//fn_limpiar_fil();
 		fn_limpiar();
 		
 	});
@@ -273,6 +301,14 @@ function fn_validar_datos(){
 			}
 }
 
+//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+function fn_motivo() {
+	$("#cb_mot").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
+		
+function fn_ejecuta() {
+	$("#cb_ejec").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
+}
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_setea_grid_principal() {
@@ -530,69 +566,23 @@ function fn_leer(){
         $("#tx_dir").val("CALLE 1");
         $("#tx_local").val("1");
         $("#tx_tip_cli").val("1");
-        $("#tx_cat").val("RESIDENCIAL");
+        $("#tx_cat").val("1");
         $("#tx_subg_zona").val("1");
         
       
 }
 
 /////////////////////////////////////////////////////////
-function fn_limpiar_fil() {
-     $("#cb_marca").val("");
-	 $("#cb_modelo").val("");
-	 $("#tx_num_med").val("");
-	 $("#tx_num_fab").val("");
-	 
-	 $("#cb_marca").prop("disabled",false); 
-	 $("#cb_modelo").prop("disabled",false);
-	 $("#tx_num_med").prop("disabled",false);
-}
-/////////////////////////////////////////////////////////
 function fn_limpiar(){
-	$('#cb_alm_dest').val("");
-	$('#cb_alm_dest').prop("disabled",true);
-	
-	$('#cb_accion').val("");
-	$('#cb_accion').prop("disabled",true);
-	$('#cb_estado').val("");
-	$('#cb_estado').prop("disabled",true);
-	$('#cb_condicion').val("");
-	$('#cb_condicion').prop("disabled",true);
-	$('#tx_diam').val("");
-	$('#tx_diam').prop("disabled",true);
-	$('#tx_tec').val("");
-	$('#tx_tec').prop("disabled",true);
-	$('#tx_cls_metro').val("");
-	$('#tx_cls_metro').prop("disabled",true);
-	$('#tx_anio_fab').val("");
-	$('#tx_anio_fab').prop("disabled",true);
-	
-	$('#tx_anio_vida').val("");
-	$('#tx_anio_vida').prop("disabled",true);
-	$('#tx_anio_almacen').val("");
-	$('#tx_anio_almacen').prop("disabled",true);
-	$('#tx_error_exac').val("");
-	$('#tx_error_exac').prop("disabled",true);
-	$('#tx_max_cons').val("");
-	$('#tx_max_cons').prop("disabled",true);
-
-	$('#chk_prot').prop("checked",false);
-	//$('#chk_prot').prop("disabled",true);
-	$('#chk_patron').prop("checked",false);
-	$('#chk_patron').prop("disabled",true);
-	$('#chk_reac').prop("checked",false);
-	$('#chk_reac').prop("disabled",true);
-	$('#chk_reset').prop("checked",false);
-	$('#chk_reset').prop("disabled",true);
-	
-	$('#tx_fec_cre').val("");
-	$('#tx_fec_cre').prop("disabled",true);
-	$('#tx_anio_reac').val("");
-	$('#tx_anio_reac').prop("disabled",true);
-	$('#cb_clav_reac').val("");
-	$('#cb_clav_reac').prop("disabled",true);
-	$('#cb_pro_med').val("");
-	$('#cb_pro_med').prop("disabled",true);
+	 $("#tx_num_sum").val("");   
+        $("#tx_num_med").val("");
+        $("#tx_nom").val("");
+        $("#tx_ruta_lec").val("");
+        $("#tx_dir").val("");
+        $("#tx_local").val("");
+        $("#tx_tip_cli").val("");
+        $("#tx_cat").val("");
+        $("#tx_subg_zona").val("");
 	
     $grid.pqGrid( 'option', 'dataModel.data', [] );
     $grid.pqGrid( 'refreshView' );  //limpia la grilla principal
