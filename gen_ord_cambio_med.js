@@ -110,7 +110,7 @@ $(document).ready(function () {
                 }
 
                 if (parseInt($("#tx_zona_inicial").val()) > parseInt($("#tx_zona_final").val())) {
-                    fn_mensaje_boostrap("Error, la Zona Inicial se encuentra fuera de rango.", g_tit, $("#tx_zona_inicial"));
+                    fn_mensaje_boostrap("Error, la Zona final debe ser mayor o igual a la Zona inicial.", g_tit, $("#tx_zona_inicial"));
                     return;
                 }
             }
@@ -149,7 +149,7 @@ $(document).ready(function () {
                 }
 
                 if (parseInt($("#tx_m3_desde").val()) > parseInt($("#tx_m3_hasta").val())) {
-                    fn_mensaje_boostrap("Error, la Cantidad de Acumulados se encuentra fuera de rango", g_tit, $("#tx_m3_desde"));
+                    fn_mensaje_boostrap("Error, los M3 Acumulados finales deben ser mayores o iguales a los M3 Acomulados iniciales.", g_tit, $("#tx_m3_desde"));
                     return;
                 }
             }
