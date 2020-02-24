@@ -103,9 +103,18 @@ $(document).ready(function () {
                 return;
             }
 
+            alert($("#tx_nombre_resp").val());
+
             if ($("#tx_fech_mov_real").val()  === "") {
                 fn_mensaje_boostrap("Error, por favor ingresa una Fecha", g_tit, $("#tx_fech_mov_real"));
                 return;
+            }
+
+            if ($("#tx_fech_mov_real").val() !== "") {
+                if (fn_validar_fecha($("#tx_fech_mov_real").val()) === false) {
+                    fn_mensaje_boostrap("Error, por favor valida la fecha ingresada. Recuerda que es dd/mm/yyy", g_tit, $("#tx_fech_mov_real"));
+                    return;
+                }
             }
 
             if ($("#cb_type_ident").val()  === "") {
@@ -629,6 +638,26 @@ function fn_load_select(type) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                                  <-- Functions -->
+
+function fn_validar_fecha(value){
+    var real, info;
+    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
+        info = value.split(/\//);
+        var fecha = new Date(info[2], info[1]-1, info[0]);
+        if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
+            real = fecha.toISOString().substr(0,10).split('-');
+            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
 
 function fn_limpiar(type) {
 
