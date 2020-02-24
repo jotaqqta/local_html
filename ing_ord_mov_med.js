@@ -89,12 +89,14 @@ $(document).ready(function () {
             $("#co_cerrar").hide();
 
             fn_disable_enable("enable");
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_leer"));
             $(window).scrollTop(0);
         }
     });
 
     $("#co_ingresar").on( "click", function () {
+
+        var filasGridPrin = $grid_principal.pqGrid('option', 'dataModel.data' ).length;
+        var filasGridSecond = $grid_secundaria.pqGrid('option', 'dataModel.data' ).length;
 
         if ($.trim($("#co_ingresar").text()) === "Ingresar") {
 
@@ -102,8 +104,6 @@ $(document).ready(function () {
                 fn_mensaje_boostrap("Error, por favor ingresa un Nombre", g_tit, $("#tx_nombre_resp"));
                 return;
             }
-
-            alert($("#tx_nombre_resp").val());
 
             if ($("#tx_fech_mov_real").val()  === "") {
                 fn_mensaje_boostrap("Error, por favor ingresa una Fecha", g_tit, $("#tx_fech_mov_real"));
@@ -134,6 +134,13 @@ $(document).ready(function () {
 
             if ($("#cb_destino").val()  !== "" && $("#cb_destino_2").val() === "") {
                 fn_mensaje_boostrap("Error, por favor selecciona un Destino", g_tit, $("#cb_destino_2"));
+                return;
+            }
+
+            if (filasGridPrin >= 2 || filasGridSecond >= 2) {
+
+            } else {
+                fn_mensaje_boostrap("Error, no hay suficientes registros para ingreso Individual / Masivo.", g_tit, $("#co_agregar"));
                 return;
             }
 
@@ -346,6 +353,8 @@ $(document).ready(function () {
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
+
+    $grid_principal.pqGrid( "refresh")
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
