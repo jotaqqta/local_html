@@ -36,11 +36,7 @@ $(document).ready(function () {
 
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
-    //Se cargan las variables que vienen esde el server
-    //$("#tx_empresa").val(SYNSegCodEmpresa); //
-    //$("#tx_rol").val(SYNSegRol);
-    //$("#tx_ip").val(SYNSegIP);
-    //$("#tx_rolfun").val(SYNSegRolFuncion);
+
     
 	$("#tx_num_med").focus();
 	
@@ -50,16 +46,6 @@ $(document).ready(function () {
     //DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 
-	
-	/*
-    fn_marca();
-    fn_almacen_destino();
-	fn_clave_reacondicionamiento();
-	fn_propiedad_medidor();
-    fn_estado();
-	fn_accion();
-	fn_condicion();
-	*/
 
 
 	$("._input_selector").inputmask("dd/mm/yyyy");
@@ -92,10 +78,8 @@ $(document).ready(function () {
 	   }
 	   else{
 	   	   if ($.trim($("#co_cancel").text()) == "Cancelar") {	
-               $("#tx_num_med").focus();
-               //fn_limpiar_fil();
-               fn_limpiar();
-               //limpia la grilla
+               $("#tx_num_med").focus();               
+               fn_limpiar();               
                $grid.pqGrid( 'option', 'dataModel.data', [] );
                $grid.pqGrid( 'refreshView' );  
 
@@ -131,21 +115,36 @@ $(document).ready(function () {
                 return;
             }           
 
-            if(document.getElementById('tx_obser').value.length < 15) {
-                fn_mensaje_boostrap("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_titulo, $("#tx_obser"));
-                return;
-            }
+            
 
             if ($("#cb_ejec").val() === "") {
                 fn_mensaje_boostrap("FAVOR SELECCIONE QUI&Eacute;N EJECUTA", g_titulo, $("#cb_ejec"));
                 return;
             }
 
-                     
-          fn_mensaje_boostrap("Se ingres&oacute;", g_titulo, $(""));
-           
+            $('#div_edit_bts').modal('show');        
+          
+      
+    });
+    /////////////////BOTON ACEPTAR MODAL//////////////////////////
+    $("#co_aceptar").on( "click", function () {
+
+           	if(document.getElementById('tx_obser').value.length < 15) {
+              	fn_mensaje('#mensaje_obser', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR DIGITAR AL MENOS 15 CARACTERES</strong></div>', 3000);
+              	$("#tx_obser").focus();
+               	return;
+            }
+            $("#div_edit_bts").modal("hide"); 
+			fn_mensaje_boostrap("Se ingres&oacute;", g_titulo, $(""));
+    });
+
+	////////////BOTON CANCELAR MODAL///////////////////////////
+    $("#co_cancelar_obs").on( "click", function () {
+
+    		$("#div_edit_bts").modal("hide");
 
     });
+
     /////////////////////////////////////////////////////////////
 	
 	$("#co_seleccionar").on("click", function(e){
@@ -583,6 +582,10 @@ function fn_limpiar(){
         $("#tx_tip_cli").val("");
         $("#tx_cat").val("");
         $("#tx_subg_zona").val("");
+        $("#cb_mot").val("");
+        $("#cb_ejec").val("");
+        $("#optradio").val("");
+        
 	
     $grid.pqGrid( 'option', 'dataModel.data', [] );
     $grid.pqGrid( 'refreshView' );  //limpia la grilla principal
@@ -590,6 +593,12 @@ function fn_limpiar(){
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
+function fn_mensaje(id,mensaje,segundos)
+{
+   $(id).show();
+   $(id).html(mensaje);
+   setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+}
 
 
 

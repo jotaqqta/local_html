@@ -161,10 +161,14 @@
         <div class="tab-content">
                <div class="well well-sm">Informaci&oacute;n de la Solicitud</div>
                			<div class="row">
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
 								<label for="cb_mot">Motivo</label>
 								<select id="cb_mot" name="cb_mot" type="text" class="form-control inp_dis"></select>
-							</div>					
+							</div>
+							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+								<label for="cb_ejec">Qui&eacute;n Ejecuta?</label>
+								<select id="cb_ejec" name="cb_ejec" type="text" class="form-control inp_dis"></select>
+							</div>										
 							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
 								<div style="height: 5px"></div>
 								<label class="radio-inline" for="tx_tramo">Cambio Correctivo</label>
@@ -172,18 +176,39 @@
 							</div>
 						</div>
 					<br>
-						<div class="row">              
-	                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-								<label for="tx_obser">Observaci&oacute;n</label>
-	                        	<textarea rows="4" id="tx_obser" name="tx_obser" class="form-control inp_dis"></textarea>
+				<!-- Modal Observacion-->	
+		<div class="modal fade" id="div_edit_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Medidores</h4>
+                    </div>
+                	<div class="modal-body">
+                    	<form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
+							<div class="row">
+								<div class="col-sm-12" id="row_num">
+									<label for="tx_obser">Observación</label>
+									<textarea rows="4" id="tx_obser" name="tx_obser" class="form-control inp_dis"></textarea>
+								</div>
 							</div>
-						</div>
+						</form>
+					<div id="mensaje_obser"></div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_aceptar" data-dismiss="modal" 
+						name="co_aceptar" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
+						Aceptar</button>                       	
+                   		<button type="button" class="btn btn-sm btn-primary btn-group" id="co_cancelar_obs" data-dismiss="modal" 
+                   		name="co_cancelar_obs" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-remove-circle"></span>
+                    	Cancelar</button>
+                   	</div>
+					</div>
+                </div>
+           </div>
+        </div>
+
 					<br>	
-						<div class="row"> 
-							<div class="col-6 col-sm-6 col-md-6 col-lg-6">
-								<label for="cb_ejec">Qui&eacute;n Ejecuta?</label>
-								<select id="cb_ejec" name="cb_ejec" type="text" class="form-control inp_dis"></select>
-							</div>			
+						<div class="row">									
 							<div class="col-xs-6">
 								<div style="height: 10px"></div>					
 								<button type="button" class="btn btn-sm btn-primary btn-group" id="co_crear" name="co_crear">
