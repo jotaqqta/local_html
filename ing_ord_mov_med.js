@@ -38,7 +38,7 @@ $(document).ready(function () {
 
 //  <-- Select -->
 
-    fn_cent_operativo();
+    fn_regional();
     fn_type_ident();
     fn_destino();
     fn_marca();
@@ -60,22 +60,75 @@ $(document).ready(function () {
     $("#co_agregar").html("<span class='glyphicon glyphicon-plus'></span> Agregar");
     $("#co_agregar_2").html("<span class='glyphicon glyphicon-plus'></span> Agregar");
 
-    $("#co_control").prop("disabled", true);
-    $("#co_alerta").prop("disabled", true);
+    $("#co_ingresar").hide();
+    $("#co_cancelar").hide();
 
     fn_load_select();
+    fn_disable_enable();
     $("#div_grid_secundaria").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                              <-- Buttons - Listeners -->
 
-    $("#co_generar").on( "click", function () {
+    $("#co_leer").on( "click", function () {
 
-        if ($.trim($("#co_generar").text()) === "Generar") {
+        if ($.trim($("#co_leer").text()) === "Leer") {
 
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
+            if ($("#cb_regional").val() === "") {
+                fn_mensaje_boostrap("Error, por favor seleccione una Regional.", g_tit, $("#cb_regional"));
+                return;
+            }
+
+            $("#area").html("Texto de Ejemplo");
+            $("#area_2").html("Texto de Ejemplo");
+
+            $("#co_ingresar").show();
+            $("#co_cancelar").show();
+            $("#co_leer").hide();
+            $("#co_cerrar").hide();
+
+            fn_disable_enable("enable");
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_leer"));
             $(window).scrollTop(0);
+        }
+    });
+
+    $("#co_ingresar").on( "click", function () {
+
+        if ($.trim($("#co_ingresar").text()) === "Ingresar") {
+
+            if ($("#tx_nombre_resp").val()  === "") {
+                fn_mensaje_boostrap("Error, por favor ingresa un Nombre", g_tit, $("#tx_nombre_resp"));
+                return;
+            }
+
+            if ($("#tx_fech_mov_real").val()  === "") {
+                fn_mensaje_boostrap("Error, por favor ingresa una Fecha", g_tit, $("#tx_fech_mov_real"));
+                return;
+            }
+
+            if ($("#cb_type_ident").val()  === "") {
+                fn_mensaje_boostrap("Error, por favor selecciona un Tipo de Identificación", g_tit, $("#cb_type_ident"));
+                return;
+            }
+
+            if ($("#tx_num_ident").val()  === "") {
+                fn_mensaje_boostrap("Error, por favor ingresa un Número de Identificación", g_tit, $("#tx_num_ident"));
+                return;
+            }
+
+            if ($("#cb_destino").val()  === "") {
+                fn_mensaje_boostrap("Error, por favor selecciona un Destino", g_tit, $("#cb_destino"));
+                return;
+            }
+
+            if ($("#cb_destino").val()  !== "" && $("#cb_destino_2").val() === "") {
+                fn_mensaje_boostrap("Error, por favor selecciona un Destino", g_tit, $("#cb_destino_2"));
+                return;
+            }
+
+            fn_mensaje_boostrap("Se ingreso", g_tit, $("#co_ingresar"));
         }
     });
 
@@ -162,10 +215,12 @@ $(document).ready(function () {
     });
 
     $("#co_agregar").on( "click", function () {
+        fn_limpiar(2);
         fn_agregar(1);
     });
 
     $("#co_agregar_2").on( "click", function () {
+        fn_limpiar(3);
         fn_agregar(2);
     });
 
@@ -183,7 +238,11 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        fn_limpiar();
+        fn_limpiar(2);
+    });
+
+    $("#co_limpiar_2").on("click", function () {
+        fn_limpiar(3);
     });
 
     $("#co_confirm_yes").on( "click", function () {
@@ -206,6 +265,27 @@ $(document).ready(function () {
 
         $('#dlg_confirm').modal('hide');
 
+    });
+
+    $("#co_cancelar").on( "click", function () {
+
+        $("#co_ingresar").hide();
+        $("#co_cancelar").hide();
+        $("#co_leer").show();
+        $("#co_cerrar").show();
+
+        fn_limpiar(1);
+        fn_disable_enable();
+    });
+
+    $("#co_cancelar_2").on( "click", function () {
+
+        $('#div_agregar_bts').modal('hide');
+    });
+
+    $("#co_cancelar_3").on( "click", function () {
+
+        $('#div_agregar_masiv_bts').modal('hide');
     });
 
     $("select[id=cb_destino]").change(function(){
@@ -440,9 +520,9 @@ function fn_borrar(rowIndx) {
 
 //                                  <-- Combos -->
 
-function fn_cent_operativo(){
+function fn_regional(){
 
-    $("#cb_cent_opera").html("<option value='' selected></option><option value='1'>PANAMÁ METRO</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+    $("#cb_regional").html("<option value='' selected></option><option value='1'>PANAMÁ METRO</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
 function fn_type_ident(){
@@ -550,8 +630,69 @@ function fn_load_select(type) {
 
 //                                  <-- Functions -->
 
-function fn_limpiar() {
+function fn_limpiar(type) {
 
+    if (type === 1) {
+
+        $("#cb_regional").val("");
+        $("#area").html("");
+        $("#area_2").html("");
+        $("#tx_nombre_resp").val("");
+        $("#tx_fech_mov_real").val("");
+        $("#cb_type_ident").val("");
+        $("#tx_num_ident").val("");
+        $("#cb_destino").val("");
+        $("#cb_destino_2").val("");
+
+        fn_set_active("#tab_ing_indv", "#div_grid_principal");
+        $grid_principal.pqGrid("refreshView");
+
+    }
+
+    if (type === 2) {
+
+        $("#cb_marca").val("");
+        $("#cb_modelo").val("");
+        $("#tx_medidor").val("");
+        $("#cb_motivo").val("");
+    }
+
+    if (type === 3) {
+
+        $("#cb_marca_masiv").val("");
+        $("#cb_modelo_masiv").val("");
+        $("#cb_motivo_masiv").val("");
+        $("#tx_num_inicial").val("");
+        $("#tx_num_final").val("");
+
+    }
+
+}
+
+function fn_disable_enable(type) {
+
+    if (type === "enable") {
+        $("#tx_nombre_resp").prop( "disabled", false );
+        $("#tx_fech_mov_real").prop( "disabled", false );
+        $("#cb_type_ident").prop( "disabled", false );
+        $("#tx_num_ident").prop( "disabled", false );
+        $("#cb_destino").prop( "disabled", false );
+
+        $("#co_agregar").prop( "disabled", false );
+        $("#co_agregar_2").prop( "disabled", false );
+    }
+
+    if (type === undefined) {
+        $("#tx_nombre_resp").prop( "disabled", true );
+        $("#tx_fech_mov_real").prop( "disabled", true );
+        $("#cb_type_ident").prop( "disabled", true );
+        $("#tx_num_ident").prop( "disabled", true );
+        $("#cb_destino").prop( "disabled", true );
+
+        $("#co_agregar").prop( "disabled", true );
+        $("#co_agregar_2").prop( "disabled", true );
+
+    }
 }
 
 function fn_set_active(tab, div) {
