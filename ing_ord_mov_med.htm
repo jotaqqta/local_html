@@ -94,7 +94,7 @@
                                 <div class="col-xs-4">
                                     <label for="cb_cent_opera">Centro Operativo:</label>
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-8">
                                     <select class="form-control input-normal" id="cb_cent_opera"
                                             name="cb_cent_opera"></select>
                                 </div>
@@ -107,7 +107,7 @@
                             <button class="btn btn-group btn-sm btn-primary" id="co_generar" type="button"><span
                                     class="glyphicon glyphicon-list-alt"></span> Medidores
                             </button>
-                            <button class="btn btn-group btn-sm btn-default" id="co_cancel" type="button"><span
+                            <button class="btn btn-group btn-sm btn-default" id="co_cerrar" type="button"><span
                                     class="glyphicon glyphicon-off"></span> Cerrar
                             </button>
                         </div>
@@ -115,21 +115,23 @@
                     <div class="space"></div>
                     <div class="row">
                         <div class="col-xs-2">
-                            <label>Area:</label>
-                        </div>
-                        <div class="col-xs 4">
-                            <p id="coso">COSO</p>
+                            <label for="tx_area">Area:</label>
                         </div>
                         <div class="col-xs-4">
+                            <input id="tx_area" name="tx_area" class="form-control">
+                        </div>
+                        <div class="col-xs-4">
+                            <input id="tx_area_2" name="tx_area_2" class="form-control">
                         </div>
                     </div>
+                    <div class="space"></div>
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-4">
                                     <label for="tx_nombre_resp">Nombre Responsable:</label>
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-8">
                                     <input id="tx_nombre_resp" name="tx_nombre_resp" class="form-control">
                                 </div>
                             </div>
@@ -152,7 +154,7 @@
                                 <div class="col-xs-4">
                                     <label for="cb_type_ident">Tipo de Identificación:</label>
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-8">
                                     <select class="form-control input-normal" id="cb_type_ident"
                                             name="cb_type_ident"></select>
                                 </div>
@@ -208,45 +210,103 @@
 
     <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
 
-    <!--inicio Modal Generar-->
-    <div class="modal fade" id="div_gen_bts" role="dialog">
+    <!-- Inicio Modal Agregar -->
+    <div class="modal fade" id="div_agregar_bts" role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                    <h4 class="modal-title" data-dismiss="modal" id="gen_title">Presupuestos y Depositos</h4>
+                    <h4 class="modal-title" data-dismiss="modal" id="agr_title">Presupuestos y Depositos</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal flex-wrap" id="frm_con" role="form">
                         <div class="row">
-                            <div class="col-xs-7">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <label for="cb_motiv_cambio">Motivo Cambio</label>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <select class="form-control input-normal" id="cb_motiv_cambio"
-                                                name="cb_fech_int_hasta"></select>
-                                    </div>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="cb_marca">Marca:</label>
+                                <select class="form-control input-normal" id="cb_marca"
+                                        name="cb_marca"></select>
                             </div>
-                            <div class="col-xs-4 text-center">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <span class="checkbox-inline"><input type="checkbox" id="chk_clientes"
-                                                                             name="chk_clientes"><label
-                                                for="chk_clientes">Clientes</label></span>
-                                    </div>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="cb_modelo">Modelo:</label>
+                                <select class="form-control input-normal" id="cb_modelo"
+                                        name="cb_modelo"></select>
                             </div>
-
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="tx_medidor">Medidor:</label>
+                                <input id="tx_medidor" name="tx_medidor" class="form-control number">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="cb_motivo">Motivo:</label>
+                                <select class="form-control input-normal" id="cb_motivo"
+                                        name="cb_motivo"></select>
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div id="mensaje_gen"></div>
+                <div id="mensaje_agr"></div>
                 <div class="modal-footer">
-                    <button class="btn-sm btn-primary" id="co_generar_2" type="button"><span
-                            class="glyphicon glyphicon-save"></span> Generar
+                    <button class="btn-sm btn-primary" id="co_aceptar" type="button"><span
+                            class="glyphicon glyphicon-ok"></span> Aceptar
+                    </button>
+                    <button class="btn-sm btn-default" id="co_cancelar" type="button"><span
+                            class="glyphicon glyphicon-remove"></span> Cancelar
+                    </button>
+                    <button class="btn btn-group btn-sm btn-primary pull-left" id="co_limpiar" type="button"><span
+                            class="glyphicon glyphicon-grain"></span> Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inicio Modal Agregar Masivamente -->
+    <div class="modal fade" id="div_agregar_masiv_bts" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                    <h4 class="modal-title" data-dismiss="modal" id="agr_masiv_title">Presupuestos y Depositos</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal flex-wrap" id="frm_agr" role="form">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="cb_marca_masiv">Marca:</label>
+                                <select class="form-control input-normal" id="cb_marca_masiv"
+                                        name="cb_marca_masiv"></select>
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="cb_modelo_masiv">Modelo:</label>
+                                <select class="form-control input-normal" id="cb_modelo_masiv"
+                                        name="cb_modelo_masiv"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label for="cb_motivo_masiv">Motivo:</label>
+                                <select class="form-control input-normal" id="cb_motivo_masiv"
+                                        name="cb_motivo_masiv"></select>
+                            </div>
+                        </div>
+                        <div class="well well-sm">Numeración</div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label for="tx_num_inicial">Número Inicial:</label>
+                                <input id="tx_num_inicial" name="tx_num_inicial" class="form-control number">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="tx_num_final">Número Final:</label>
+                                <input id="tx_num_final" name="tx_num_final" class="form-control number">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="mensaje_agr_masiv"></div>
+                <div class="modal-footer">
+                    <button class="btn-sm btn-primary" id="co_aceptar_2" type="button"><span
+                            class="glyphicon glyphicon-ok"></span> Aceptar
                     </button>
                     <button class="btn-sm btn-default" id="co_cancelar_2" type="button"><span
                             class="glyphicon glyphicon-remove"></span> Cancelar
@@ -254,6 +314,30 @@
                     <button class="btn btn-group btn-sm btn-primary pull-left" id="co_limpiar_2" type="button"><span
                             class="glyphicon glyphicon-grain"></span> Limpiar
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal confirmación borrar -->
+    <div id="dlg_confirm" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" id="mod_alto">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                    <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                </div>
+                <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                    <form role="form">
+                        <div class="form-group">
+                            <div class="form-control-label" id="confirm_msg"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+                    <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
                 </div>
             </div>
         </div>
