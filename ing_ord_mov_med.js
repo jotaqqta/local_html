@@ -312,11 +312,6 @@ $(document).ready(function () {
 
         if ($("select[id=cb_marca]").val() === 1 || $("#cb_marca option:selected").text() === "AIME METER") {
             fn_load_select_modelo(1);
-        } else {
-
-            // REMOVER CUANDO SE AÑADAN MAS MODELOS
-
-            fn_load_select_modelo();
         }
 
     });
@@ -329,11 +324,6 @@ $(document).ready(function () {
 
         if ($("select[id=cb_marca_masiv]").val() === 1 || $("#cb_marca_masiv option:selected").text() === "AIME METER") {
             fn_load_select_modelo(1);
-        } else {
-
-            // REMOVER CUANDO SE AÑADAN MAS MODELOS
-
-            fn_load_select_modelo();
         }
 
     });
