@@ -242,8 +242,7 @@ function fn_limpiar(){
         $("#tx_subg_zona").val("");
         $("#cb_mot").val("");
         $("#cb_ejec").val("");
-        $("#optradio").val("");
-
+		$("#optradio").prop("checked", false);
 	
     $grid.pqGrid( 'option', 'dataModel.data', [] );
     $grid.pqGrid( 'refreshView' );  //limpia la grilla principal
