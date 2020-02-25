@@ -2,7 +2,6 @@ var g_modulo = "Medidores y Equipos";
 var g_tit = "Ingreso de ordenes de movimientos de medidor";
 var $grid_principal;
 var $grid_secundaria;
-var rowIndx = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -42,7 +41,6 @@ $(document).ready(function () {
     fn_type_ident();
     fn_destino();
     fn_marca();
-    fn_modelo();
     fn_motivo();
 
 //  <-- Grids -->
@@ -137,10 +135,10 @@ $(document).ready(function () {
                 return;
             }
 
-            if (filasGridPrin >= 2 || filasGridSecond >= 2) {
+            if (filasGridPrin >= 1 || filasGridSecond >= 1) {
 
             } else {
-                fn_mensaje_boostrap("Error, no hay suficientes registros para ingreso Individual / Masivo.", g_tit, $("#co_agregar"));
+                fn_mensaje_boostrap("Error, debe registrar al menos un medidor individual o masivo", g_tit, $("#co_agregar"));
                 return;
             }
 
@@ -261,28 +259,6 @@ $(document).ready(function () {
         fn_limpiar(3);
     });
 
-    $("#co_confirm_yes").on( "click", function () {
-
-        // GRID SECUNDARIA
-        if ($("#div_grid_principal").is(":visible")) {
-            $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-        }
-
-        // GRID PRINCIPAL
-        if ($("#div_grid_secundaria").is(":visible")) {
-            $grid_secundaria.pqGrid("deleteRow", { rowIndx: rowIndxG });
-        }
-
-        $('#dlg_confirm').modal('hide');
-
-    });
-
-    $("#co_confirm_no").on( "click", function () {
-
-        $('#dlg_confirm').modal('hide');
-
-    });
-
     $("#co_cancelar").on( "click", function () {
 
         $("#co_ingresar").hide();
@@ -324,6 +300,40 @@ $(document).ready(function () {
 
         if ($('select[id=cb_destino]').val() === "4") {
             fn_load_select(4);
+        }
+
+    });
+
+    $("select[id=cb_marca]").change(function () {
+
+        if ($("select[id=cb_marca]").val() === "") {
+            fn_load_select_modelo();
+        }
+
+        if ($("select[id=cb_marca]").val() === 1 || $("#cb_marca option:selected").text() === "AIME METER") {
+            fn_load_select_modelo(1);
+        } else {
+
+            // REMOVER CUANDO SE AÑADAN MAS MODELOS
+
+            fn_load_select_modelo();
+        }
+
+    });
+
+    $("select[id=cb_marca_masiv]").change(function () {
+
+        if ($("select[id=cb_marca_masiv]").val() === "") {
+            fn_load_select_modelo();
+        }
+
+        if ($("select[id=cb_marca_masiv]").val() === 1 || $("#cb_marca_masiv option:selected").text() === "AIME METER") {
+            fn_load_select_modelo(1);
+        } else {
+
+            // REMOVER CUANDO SE AÑADAN MAS MODELOS
+
+            fn_load_select_modelo();
         }
 
     });
@@ -523,19 +533,6 @@ function fn_agregar(modal) {
     }
 }
 
-function fn_borrar(rowIndx) {
-
-    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
-
-    rowIndxG = rowIndx;
-
-    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-    $("#dlg_confirm").on("shown.bs.modal", function () {
-        $("#dlg_confirm div.modal-footer button").focus();
-    });
-
-}
-
 //                                  <-- Combos -->
 
 function fn_regional(){
@@ -559,16 +556,55 @@ function fn_marca(){
     $("#cb_marca_masiv").html("<option value='' selected></option><option value='1'>AIME METER</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
 }
 
-function fn_modelo(){
-
-    $("#cb_modelo").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option> <option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>  <option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>  <option value='4'>AIME METER 5/8 TERMOPLOTICOS</option>  <option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
-    $("#cb_modelo_masiv").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option> <option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>  <option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>  <option value='4'>AIME METER 5/8 TERMOPLOTICOS</option>  <option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
-}
-
 function fn_motivo(){
 
     $("#cb_motivo").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
     $("#cb_motivo_masiv").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2' >OPCIÓN 02</option>  <option value='3' >OPCIÓN 03</option>");
+}
+
+function fn_load_select_modelo(type) {
+
+    /*
+    * Type = Modelos de medidor.
+    *
+    * 1 = AIME METER
+    * */
+
+    if ($("#div_grid_principal").is(":visible")) {
+
+        $("#cb_modelo").prop("disabled", false);
+
+        if (type === undefined) {
+            $("#cb_modelo").prop("disabled", true);
+            $("#cb_modelo").html("<option value='' selected>");
+        }
+
+        if (type === 1) {
+            $("#cb_modelo").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
+                "<option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>" +
+                "<option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>" +
+                "<option value='4'>AIME METER 5/8 TERMOPLOTICOS</option>" +
+                "<option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
+        }
+    }
+
+    if ($("#div_grid_secundaria").is(":visible")) {
+
+        $("#cb_modelo_masiv").prop("disabled", false);
+
+        if (type === undefined) {
+            $("#cb_modelo_masiv").prop("disabled", true);
+            $("#cb_modelo_masiv").html("<option value='' selected>");
+        }
+
+        if (type === 1) {
+            $("#cb_modelo_masiv").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
+                "<option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>" +
+                "<option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>" +
+                "<option value='4'>AIME METER 5/8 TERMOPLOTICOS</option>" +
+                "<option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
+        }
+    }
 }
 
 function fn_load_select(type) {
@@ -578,6 +614,7 @@ function fn_load_select(type) {
     if (type === undefined) {
 
         $("#cb_destino_2").prop("disabled", true);
+        $("#cb_destino_2").html("<option value='' selected></option>");
     }
 
     if (type === 1) {
@@ -647,6 +684,19 @@ function fn_load_select(type) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                                  <-- Functions -->
+
+function fn_borrar(rowIndx) {
+
+    if ($("#div_grid_principal").is(":visible")) {
+        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndx });
+    }
+
+    // GRID PRINCIPAL
+    if ($("#div_grid_secundaria").is(":visible")) {
+        $grid_secundaria.pqGrid("deleteRow", { rowIndx: rowIndx });
+    }
+
+}
 
 function fn_validar_fecha(value){
     var real, info;
@@ -726,6 +776,9 @@ function fn_disable_enable(type) {
         $("#cb_type_ident").prop( "disabled", true );
         $("#tx_num_ident").prop( "disabled", true );
         $("#cb_destino").prop( "disabled", true );
+
+        $("#cb_modelo").prop("disabled", true);
+        $("#cb_modelo_masiv").prop("disabled", true);
 
         $("#co_agregar").prop( "disabled", true );
         $("#co_agregar_2").prop( "disabled", true );
