@@ -50,27 +50,8 @@
 
 
     <style>
-        .panel-primary {
-            border-color: #cccccc;
-        }
-
-        .panel-primary > .panel-heading {
-            color: #404040;
-            font-weight: 600;
-            background-color: #ffffff;
-            border-color: #cccccc;
-        }
-
-        #grid_consulta_compensa {
-            float: center;
-        }
-
         #bd_prin {
             height: calc(100vh - 167px);
-        }
-
-        .input_ver {
-            margin-top: 8px;
         }
     </style>
 </head>
@@ -109,126 +90,112 @@
                     </button>
                 </div>
             </div>
-			<div style="height: 5px"></div>
-            <div class="tab-content">
-                <div id="Principal" class="tab-pane fade in active">
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_nom">Nombre</label>
-                            <input id="tx_nom" name="tx_nom" class="form-control inp_dis" readonly>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_ruta_lec">Ruta de Lectura</label>
-                            <input id="tx_ruta_lec" name="tx_ruta_lec" class="form-control inp_dis" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
-                            <label for="tx_dir">Direcci&oacute;n</label>
-                            <input id="tx_dir" name="tx_dir" class="form-control inp_dis">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_local">Localidad</label>
-                            <input id="tx_local" name="tx_local" class="form-control inp_dis" readonly>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_tip_cli">Tipo Cliente</label>
-                            <input id="tx_tip_cli" name="tx_tip_cli" type="text" class="form-control inp_dis" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_cat">Categor&iacute;a</label>
-                            <input id="tx_cat" name="tx_cat" type="text" class="form-control inp_dis"
-                                   readonly>
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <label for="tx_subg_zona">Subgerencial Zona</label>
-                            <input id="tx_subg_zona" name="tx_subg_zona" type="text" class="form-control inp_dis"
-                                   readonly>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <!-- PARAMQUERY PRINCIPAL -->
-                <div id="div_grid_principal">
-                </div>
-                <br>
-            </div>
-        
-        <div class="tab-content">
-               <div class="well well-sm">Informaci&oacute;n de la Solicitud</div>
-               			<div class="row">
-							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-								<label for="cb_mot">Motivo</label>
-								<select id="cb_mot" name="cb_mot" type="text" class="form-control inp_dis"></select>
-							</div>
-							<div class="col-4 col-sm-4 col-md-4 col-lg-4">
-								<label for="cb_ejec">Qui&eacute;n Ejecuta?</label>
-								<select id="cb_ejec" name="cb_ejec" type="text" class="form-control inp_dis"></select>
-							</div>										
-							<div class="col-2 col-sm-2 col-md-2 col-lg-2">
-								<div style="height: 5px"></div>
-								<label class="radio-inline" for="tx_tramo">Cambio Correctivo</label>
-								<input type="checkbox" name="optradio" id="optradio" name="optradio" value="2">
-							</div>
-						</div>
-					<br>
-				<!-- Modal Observacion-->	
-		<div class="modal fade" id="div_edit_bts" role="dialog">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Medidores</h4>
-                    </div>
-                	<div class="modal-body">
-                    	<form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
-							<div class="row">
-								<div class="col-sm-12" id="row_num">
-									<label for="tx_obser">Observaci&oacute;n</label>
-									<textarea rows="4" id="tx_obser" name="tx_obser" class="form-control inp_dis"></textarea>
-								</div>
-							</div>
-						</form>
-					<div id="mensaje_obser"></div>
-					<div class="modal-footer"> 
-						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_aceptar" data-dismiss="modal" 
-						name="co_aceptar" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-pencil"></span>
-						Aceptar</button>                       	
-                   		<button type="button" class="btn btn-sm btn-primary btn-group" id="co_cancelar_obs" data-dismiss="modal" 
-                   		name="co_cancelar_obs" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-remove-circle"></span>
-                    	Cancelar</button>
-                   	</div>
-					</div>
-                </div>
-           </div>
-        </div>
-
-					<br>	
-						<div class="row">									
-							<div class="col-xs-6">
-								<div style="height: 10px"></div>					
-								<button type="button" class="btn btn-sm btn-primary btn-group" id="co_crear" name="co_crear">
-								<span class="glyphicon glyphicon-pencil"></span>
-								Ingresar</button>						
-							</div>
-				    	</div>
-				    <div style="height: 10px"></div>
+			 
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_nom">Nombre</label>
+					<input id="tx_nom" name="tx_nom" class="form-control inp_dis" readonly>
 				</div>
-			</div>			
-        <div class="container">
-            <div class="panel-body" style="padding-left: 0px;" id="div_footer"></div>
-        </div>
-    </div>
-    <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_ruta_lec">Ruta de Lectura</label>
+					<input id="tx_ruta_lec" name="tx_ruta_lec" class="form-control inp_dis" readonly>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
+					<label for="tx_dir">Direcci&oacute;n</label>
+					<input id="tx_dir" name="tx_dir" class="form-control inp_dis">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_local">Localidad</label>
+					<input id="tx_local" name="tx_local" class="form-control inp_dis" readonly>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_tip_cli">Tipo Cliente</label>
+					<input id="tx_tip_cli" name="tx_tip_cli" type="text" class="form-control inp_dis" readonly>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_cat">Categor&iacute;a</label>
+					<input id="tx_cat" name="tx_cat" type="text" class="form-control inp_dis"
+						   readonly>
+				</div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="tx_subg_zona">Subgerencial Zona</label>
+					<input id="tx_subg_zona" name="tx_subg_zona" type="text" class="form-control inp_dis"
+						   readonly>
+				</div>
+			</div>
+               
+			<br>
+			<!-- PARAMQUERY PRINCIPAL -->
+			<div id="div_grid_principal">
+			</div>
 
-    <div id="dlg_medidor" class="modal fade" role="dialog" tabindex="-1">
+		   <div class="well well-sm">Informaci&oacute;n de la Solicitud</div>
+				<div class="row">
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<label for="cb_mot">Motivo</label>
+						<select id="cb_mot" name="cb_mot" type="text" class="form-control inp_dis"></select>
+					</div>
+					<div class="col-4 col-sm-4 col-md-4 col-lg-4">
+						<label for="cb_ejec">Qui&eacute;n Ejecuta?</label>
+						<select id="cb_ejec" name="cb_ejec" type="text" class="form-control inp_dis"></select>
+					</div>										
+					<div class="col-2 col-sm-2 col-md-2 col-lg-2">
+						<div style="height: 5px"></div>
+						<label class="radio-inline" for="tx_tramo">Cambio Correctivo</label>
+						<input type="checkbox" name="optradio" id="optradio" name="optradio" value="2">
+					</div>
+				</div>
+				<div class="row">									
+					<div class="col-xs-6">
+						<div style="height: 10px"></div>					
+						<button type="button" class="btn btn-sm btn-primary btn-group" id="co_crear" name="co_crear">
+						<span class="glyphicon glyphicon-pencil"></span>
+						Ingresar</button>						
+					</div>
+				</div>
+			</div>			 
+       	<div class="panel-body" id="div_footer"></div>  
     </div>
 </div>
 
+	<!-- Modal Observacion-->
+	<div class="modal fade" id="div_edit_bts" role="dialog">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+					<h4 class="modal-title" id="title_mod" data-dismiss="modal">Medidores</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
+						<div class="row">
+							<div class="col-sm-12" id="row_num">
+								<label for="tx_obser">Observaci&oacute;n</label>
+								<textarea rows="4" id="tx_obser" name="tx_obser" class="form-control inp_dis"></textarea>
+							</div>
+						</div>
+					</form>
+				<div id="mensaje_obser"></div>
+				<div class="modal-footer"> 
+					<button type="button" class="btn btn-sm btn-primary btn-group" id="co_aceptar" data-dismiss="modal" 
+					name="co_aceptar" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-floppy-disk"></span>
+					Aceptar</button>                       	
+					<button type="button" class="btn btn-sm btn-primary btn-group" id="co_cancelar_obs" data-dismiss="modal" 
+					name="co_cancelar_obs" style="padding: 4px 12px;width:100px"><span class="glyphicon glyphicon-remove"></span>
+					Cancelar</button>
+				</div>
+				</div>
+			</div>
+	   </div>
+	</div>
+    <div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+	
 <form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp" target="_blank">
     <input type="hidden" id="tx_empresa" name="tx_empresa" value="">
     <input type="hidden" id="tx_rolfun" name="tx_rolfun" value="">
