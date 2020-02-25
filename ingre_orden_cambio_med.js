@@ -82,7 +82,7 @@ $(document).ready(function () {
     $("#co_leer").on("click", function () {
         
       if ($.trim($("#co_leer").text()) == "Leer") {		    
-		    if($("#tx_num_sum").val()==""){
+		    if($("#tx_num_sum").val()=="" && ("#tx_num_med").val()==""){
 				fn_mensaje_boostrap("DIGITE NUMERO DE SUMINISTRO Y/O NUMERO DE MEDIDOR", g_titulo, $("#tx_num_sum"));
 				return;
 			}			
@@ -231,7 +231,7 @@ function fn_leer(){
 
 /////////////////////////////////////////////////////////
 function fn_limpiar(){
-	 $("#tx_num_sum").val("");   
+	 	$("#tx_num_sum").val("");   
         $("#tx_num_med").val("");
         $("#tx_nom").val("");
         $("#tx_ruta_lec").val("");
@@ -242,7 +242,8 @@ function fn_limpiar(){
         $("#tx_subg_zona").val("");
         $("#cb_mot").val("");
         $("#cb_ejec").val("");
-		$("#optradio").prop("checked", false);
+        $("#optradio").val("");
+
 	
     $grid.pqGrid( 'option', 'dataModel.data', [] );
     $grid.pqGrid( 'refreshView' );  //limpia la grilla principal
