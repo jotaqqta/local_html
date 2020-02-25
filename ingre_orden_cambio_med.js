@@ -81,8 +81,8 @@ $(document).ready(function () {
     //VALIDACION DE INFORMACION
     $("#co_leer").on("click", function () {
         
-      if ($.trim($("#co_leer").text()) == "Leer") {		    
-		    if($("#tx_num_sum").val()=="" && ("#tx_num_med").val()==""){
+      if ($.trim($("#co_leer").text()) == "Leer") {	    
+		    if($("#tx_num_sum").val()=="" && $("#tx_num_med").val()==""){
 				fn_mensaje_boostrap("DIGITE NUMERO DE SUMINISTRO Y/O NUMERO DE MEDIDOR", g_titulo, $("#tx_num_sum"));
 				return;
 			}			
