@@ -33,6 +33,7 @@ $(document).ready(function () {
 	   //FUNCIONES COMBOS
     fn_motivo();
     fn_ejecuta();
+    fn_correctivo();
 
 	//Footer
 	$("#div_footer").load("syn_globales/footer.htm");
@@ -155,6 +156,11 @@ function fn_motivo() {
 function fn_ejecuta() {
 	$("#cb_ejec").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option> <option value='3'>OPCION 03</option>");
 }
+
+function fn_correctivo() {
+	$("#cb_correc").html("<option value='' selected></option><option value='1'>SI</option> <option value='2' >NO</option>");
+}
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_setea_grid_principal() {
