@@ -283,21 +283,6 @@ $(document).ready(function () {
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//BOTON CONFIRMAR ELIMINAR
-$("#co_confirm_yes").on("click", function () {
-
-        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-
-
-        $('#dlg_confirm').modal('hide');
-
-    });
-//BOTON CANCELAR ELIMINAR
-    $("#co_confirm_no").on("click", function () {
-        $('#dlg_confirm').modal('hide');
-    });
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
 
     var data =  [
