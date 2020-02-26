@@ -222,6 +222,24 @@ $(document).ready(function () {
         $('#div_filtro_new_edit_bts').modal('hide');
     });
 
+    $("#co_confirm_yes").on( "click", function () {
+
+        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
+
+        /*HablaServidor(my_url, parameters, 'text', function() {
+            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+        });*/
+
+        $('#dlg_confirm').modal('hide');
+
+    });
+
+    $("#co_confirm_no").on( "click", function () {
+
+        $('#dlg_confirm').modal('hide');
+
+    });
+
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 

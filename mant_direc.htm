@@ -98,8 +98,8 @@
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
                         <h4 class="modal-title" id="title_mod" data-dismiss="modal">Filtro</h4>
                     </div>
-                <div class="modal-body">
-                    <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
                             <div class="row">
                                 <div class="col-sm-6" id="row_cod">
                                     <label for="cb_sistema">Sistema</label>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-sm-6" id="row_agrup">
                                     <label for="cb_cen_ope">Centro Operativo</label>
-                                    <select id="cb_cen_ope" class="form-control input-normal_input_selector" ></select> 
+                                    <select id="cb_cen_ope" class="form-control input-normal_input_selector"></select>
                                 </div>
                             </div>
                             <div class="row">
@@ -126,55 +126,57 @@
                                 <div class="col-sm-6" id="row_fe_crea">
                                     <label for="tx_tipo">Tipo PATH</label>
                                     <input id="tx_tipo" class="form-control">
-                                </div>                 
-                            </div>
-                    </form>
-                    <div id="mensaje_filtro_new_edit"></div>
-                    <div id="mensaje_filtro"></div>
-                    <div class="modal-footer">
-                        <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar" type="button"><span
-                                class="glyphicon glyphicon-grain"></span> Limpiar
-                        </button>
-
-                        <button class="btn-left btn-sm btn-primary btn-default" id="co_generar" type="button"><span
-                                class="glyphicon glyphicon-ok"></span> Consultar
-                        </button>
-                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
-                                class="glyphicon glyphicon-off"></span> Cancelar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        <!-- Modal confirmaciÃ³n borrar -->
-        <div id="dlg_confirm" class="modal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content" id="mod_alto">
-                    <div class="modal-header">
-                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-                    </div>
-                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
-                        <form role="form">
-                            <div class="form-group">
-                                <div class="form-control-label" id="confirm_msg"></div>
+                                </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
-                        <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-off"></span> No</button>
+                        <div id="mensaje_filtro_new_edit"></div>
+                        <div id="mensaje_filtro"></div>
+                        <div class="modal-footer">
+                            <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar"
+                                    type="button"><span
+                                    class="glyphicon glyphicon-grain"></span> Limpiar
+                            </button>
+
+                            <button class="btn-left btn-sm btn-primary btn-default" id="co_generar" type="button"><span
+                                    class="glyphicon glyphicon-ok"></span> Consultar
+                            </button>
+                            <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                    class="glyphicon glyphicon-off"></span> Cancelar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal confirmación borrar -->
+    <div id="dlg_confirm" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" id="mod_alto">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                    <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                </div>
+                <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                    <form role="form">
+                        <div class="form-group">
+                            <div class="form-control-label" id="confirm_msg"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-ok"></span> Si
+                    </button>
+                    <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-off"></span> No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 <form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
     <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
