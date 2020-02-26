@@ -280,31 +280,14 @@ $(document).ready(function () {
         $('#div_agregar_masiv_bts').modal('hide');
     });
 
-    $("select[id=cb_destino]").change(function(){
-
-        if ($('select[id=cb_destino]').val() === "") {
-            fn_load_select();
-        }
-
-        if ($('select[id=cb_destino]').val() === "1") {
-            fn_load_select(1);
-        }
-
-        if ($('select[id=cb_destino]').val() === "2") {
-            fn_load_select(2);
-        }
-
-        if ($('select[id=cb_destino]').val() === "3") {
-            fn_load_select(3);
-        }
-
-        if ($('select[id=cb_destino]').val() === "4") {
-            fn_load_select(4);
-        }
-
+    $("#cb_destino").on("change",function(){
+		if($("#cb_destino").val() == "")
+			$("#cb_destino_2").prop("disabled", true);
+		else
+    		fn_load_select($("#cb_destino").val());
     });
 
-    $("select[id=cb_marca]").change(function () {
+    $("#cb_marca_masiv").on("change", function () {
 
         if ($("select[id=cb_marca]").val() === "") {
             fn_load_select_modelo();
@@ -324,24 +307,11 @@ $(document).ready(function () {
 
     });
 
-    $("select[id=cb_marca_masiv]").change(function () {
-
-        if ($("select[id=cb_marca_masiv]").val() === "") {
-            fn_load_select_modelo();
-        }
-
-        if ($("select[id=cb_marca_masiv]").val() === "1" || $("#cb_marca_masiv option:selected").text() === "AIME METER") {
-            fn_load_select_modelo(1);
-        }
-
-        if ($("select[id=cb_marca_masiv]").val() === "2") {
-            fn_load_select_modelo(2);
-        }
-
-        if ($("select[id=cb_marca_masiv]").val() === "3") {
-            fn_load_select_modelo(3);
-        }
-
+    $("#cb_marca_masiv").on("change", function () {
+		if($("#cb_marca_masiv").val() == "")
+			$("#cb_modelo_masiv").prop("disabled", true);
+		else
+        fn_load_select_modelo($("#cb_marca_masiv").val());
     });
 
     $("#tx_uso_desde").blur(function () {
@@ -605,13 +575,9 @@ function fn_load_select_modelo(type) {
     if ($("#div_grid_secundaria").is(":visible")) {
 
         $("#cb_modelo_masiv").prop("disabled", false);
+        $("#cb_modelo_masiv").html("<option value='' selected></option>");
 
-        if (type === undefined) {
-            $("#cb_modelo_masiv").prop("disabled", true);
-            $("#cb_modelo_masiv").html("<option value='' selected></option>");
-        }
-
-        if (type === 1) {
+        if (type === "1") {
             $("#cb_modelo_masiv").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
                 "<option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>" +
                 "<option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>" +
@@ -619,11 +585,11 @@ function fn_load_select_modelo(type) {
                 "<option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
         }
 
-        if (type === 2) {
+        if (type === "2") {
             $("#cb_modelo_masiv").html("<option value='' selected></option>");
         }
 
-        if (type === 3) {
+        if (type === "3") {
             $("#cb_modelo_masiv").html("<option value='' selected></option>");
         }
     }
@@ -632,19 +598,14 @@ function fn_load_select_modelo(type) {
 function fn_load_select(type) {
 
     $("#cb_destino_2").prop("disabled", false);
+    $("#cb_destino_2").html("<option value='' selected></option>");
 
-    if (type === undefined) {
-
-        $("#cb_destino_2").prop("disabled", true);
-        $("#cb_destino_2").html("<option value='' selected></option>");
-    }
-
-    if (type === 1) {
+    if (type === "1") {
 
         $("#cb_destino_2").html("<option value='' selected></option><option value='1'>Laboratorio IDDAN</option>");
     }
 
-    if (type === 2) {
+    if (type === "2") {
 
         $("#cb_destino_2").html("<option value='' selected></option><option value='1'>24 DE DICIEMBRE</option> " +
             "<option value='2' >ALCALDE DÍAZ</option>" +
@@ -679,7 +640,7 @@ function fn_load_select(type) {
 
     }
 
-    if (type === 3) {
+    if (type === "3") {
 
         $("#cb_destino_2").html("<option value='' selected></option><option value='1'>ALMACEN CENTRAL IDDAN</option> " +
             "<option value='2' >ALMACEN MEDIDORES</option>" +
@@ -697,7 +658,7 @@ function fn_load_select(type) {
 
     }
 
-    if (type === 4) {
+    if (type === "4") {
         $("#cb_destino_2").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option>  <option value='2'>OPCIÓN 02</option>  <option value='3'>OPCIÓN 03</option>");
     }
 
