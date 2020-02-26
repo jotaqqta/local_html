@@ -147,84 +147,86 @@ $(document).ready(function () {
     });
 
     $("#co_aceptar").on("click", function () {
+
         if ($.trim($("#co_aceptar").text()) === "Aceptar") {
 
-            if ($("#cb_marca").val() === "") {
-                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
-                $("#cb_marca").focus();
-                return;
+            if ($("#agr_title").text() === "Agregar Ingreso Inidividual") {
+
+                if ($("#cb_marca").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
+                    $("#cb_marca").focus();
+                    return;
+                }
+
+                if ($("#cb_modelo").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
+                    $("#cb_modelo").focus();
+                    return;
+                }
+
+                if ($("#tx_medidor").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Medidor.</strong></div>',3000);
+                    $("#tx_medidor").focus();
+                    return;
+                }
+
+                if ($("#cb_motivo").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
+                    $("#cb_motivo").focus();
+                    return;
+                }
+
+                fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar"));
+                $("#div_prin").slideDown();
+                $("#div_agregar_bts").slideUp();
+                $('#div_agregar_bts').modal('hide');
+                $(window).scrollTop(0);
             }
 
-            if ($("#cb_modelo").val() === "") {
-                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
-                $("#cb_modelo").focus();
-                return;
+            if ($("#agr_title").text() === "Agregar Ingreso Masivo") {
+
+                if ($("#cb_marca").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
+                    $("#cb_marca").focus();
+                    return;
+                }
+
+                if ($("#cb_modelo").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
+                    $("#cb_modelo").focus();
+                    return;
+                }
+
+                if ($("#cb_motivo").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
+                    $("#cb_motivo").focus();
+                    return;
+                }
+
+                if ($("#tx_num_inicial").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Numero Inicial.</strong></div>',3000);
+                    $("#tx_num_inicial").focus();
+                    return;
+                }
+
+                if ($("#tx_num_final").val() === "") {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor un Numero Final.</strong></div>',3000);
+                    $("#tx_num_final").focus();
+                    return;
+                }
+
+                if (parseInt($("#tx_num_inicial").val()) > parseInt($("#tx_num_final").val())) {
+                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, el Numero Final debe ser mayor o igual al Numero Inicial.</strong></div>',6000);
+                    $("#tx_num_inicial").focus();
+                    return;
+                }
+
+                fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar_2"));
+                $("#div_prin").slideDown();
+                $("#div_agregar_bts").slideUp();
+                $('#div_agregar_bts').modal('hide');
+                $(window).scrollTop(0);
             }
-
-            if ($("#tx_medidor").val() === "") {
-                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Medidor.</strong></div>',3000);
-                $("#tx_medidor").focus();
-                return;
-            }
-
-            if ($("#cb_motivo").val() === "") {
-                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
-                $("#cb_motivo").focus();
-                return;
-            }
-
-            fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar"));
-            $("#div_prin").slideDown();
-            $("#div_agregar_bts").slideUp();
-            $('#div_agregar_bts').modal('hide');
-            $(window).scrollTop(0);
-        }
-    });
-
-    $("#co_aceptar_2").on("click", function () {
-        if ($.trim($("#co_aceptar_2").text()) === "Aceptar") {
-
-            if ($("#cb_marca_masiv").val() === "") {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
-                $("#cb_marca_masiv").focus();
-                return;
-            }
-
-            if ($("#cb_modelo_masiv").val() === "") {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
-                $("#cb_modelo_masiv").focus();
-                return;
-            }
-
-            if ($("#cb_motivo_masiv").val() === "") {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
-                $("#cb_motivo_masiv").focus();
-                return;
-            }
-
-            if ($("#tx_num_inicial").val() === "") {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Numero Inicial.</strong></div>',3000);
-                $("#tx_num_inicial").focus();
-                return;
-            }
-
-            if ($("#tx_num_final").val() === "") {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor un Numero Final.</strong></div>',3000);
-                $("#tx_num_final").focus();
-                return;
-            }
-
-            if (parseInt($("#tx_num_inicial").val()) > parseInt($("#tx_num_final").val())) {
-                fn_mensaje('#mensaje_agr_masiv','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, el Numero Final debe ser mayor o igual al Numero Inicial.</strong></div>',6000);
-                $("#tx_num_inicial").focus();
-                return;
-            }
-
-            fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar_2"));
-            $("#div_prin").slideDown();
-            $("#div_agregar_masiv_bts").slideUp();
-            $('#div_agregar_masiv_bts').modal('hide');
-            $(window).scrollTop(0);
         }
     });
 
@@ -281,50 +283,20 @@ $(document).ready(function () {
     });
 
     $("#cb_destino").on("change",function(){
-		if($("#cb_destino").val() == "")
-			$("#cb_destino_2").prop("disabled", true);
-		else
-    		fn_load_select($("#cb_destino").val());
-    });
-
-    $("#cb_marca_masiv").on("change", function () {
-
-        if ($("select[id=cb_marca]").val() === "") {
-            fn_load_select_modelo();
-        }
-
-        if ($("select[id=cb_marca]").val() === "1" || $("#cb_marca option:selected").text() === "AIME METER") {
-            fn_load_select_modelo(1);
-        }
-
-        if ($("select[id=cb_marca]").val() === "2") {
-            fn_load_select_modelo(2);
-        }
-
-        if ($("select[id=cb_marca]").val() === "3") {
-            fn_load_select_modelo(3);
-        }
-
-    });
-
-    $("#cb_marca_masiv").on("change", function () {
-		if($("#cb_marca_masiv").val() == "")
-			$("#cb_modelo_masiv").prop("disabled", true);
-		else
-        fn_load_select_modelo($("#cb_marca_masiv").val());
-    });
-
-    $("#tx_uso_desde").blur(function () {
-
-        if ($("#tx_uso_desde").val() < 0) {
-            $("#tx_uso_desde").val("0");
+		if($("#cb_destino").val() === "") {
+            $("#cb_destino_2").prop("disabled", true);
+            $("#cb_destino_2").html("<option value='' selected></option>");
+        } else {
+            fn_load_select($("#cb_destino").val());
         }
     });
 
-    $("#tx_uso_hasta").blur(function () {
-
-        if ($("#tx_uso_hasta").val() < 0) {
-            $("#tx_uso_hasta").val("0");
+    $("#cb_marca").on("change", function () {
+		if($("#cb_marca").val() !== "") {
+            fn_load_select_modelo($("#cb_marca").val());
+        } else {
+            $("#cb_modelo").prop("disabled", true);
+            $("#cb_modelo").html("<option value='' selected></option>");
         }
     });
 
@@ -492,6 +464,14 @@ function fn_agregar(modal) {
 
     if (modal === 1) {
         if ($("#div_grid_principal").is(":visible")) {
+
+            $("#agr_title").html("Agregar Ingreso Inidividual");
+
+            $("#div_numeracion").hide();
+            $("#div_medidor").show();
+            $("#div_motivo").removeClass("col-xs-12");
+            $("#div_motivo").addClass("col-xs-6");
+
             $("#div_agregar_bts").modal({backdrop: "static",keyboard:false});
             $("#div_agregar_bts").on("shown.bs.modal", function () {
                 $("#div_agregar_bts div.modal-footer button").focus();
@@ -501,9 +481,17 @@ function fn_agregar(modal) {
 
     if (modal === 2) {
         if ($("#div_grid_secundaria").is(":visible")) {
-            $("#div_agregar_masiv_bts").modal({backdrop: "static",keyboard:false});
-            $("#div_agregar_masiv_bts").on("shown.bs.modal", function () {
-                $("#div_agregar_masiv_bts div.modal-footer button").focus();
+
+            $("#agr_title").html("Agregar Ingreso Masivo");
+
+            $("#div_numeracion").show();
+            $("#div_medidor").hide();
+            $("#div_motivo").removeClass("col-xs-6");
+            $("#div_motivo").addClass("col-xs-12");
+
+            $("#div_agregar_bts").modal({backdrop: "static",keyboard:false});
+            $("#div_agregar_bts").on("shown.bs.modal", function () {
+                $("#div_agregar_bts div.modal-footer button").focus();
             });
         }
     }
@@ -550,12 +538,12 @@ function fn_load_select_modelo(type) {
 
         $("#cb_modelo").prop("disabled", false);
 
-        if (type === undefined) {
+        if (type === "0") {
             $("#cb_modelo").prop("disabled", true);
             $("#cb_modelo").html("<option value='' selected></option>");
         }
 
-        if (type === 1) {
+        if (type === "1") {
             $("#cb_modelo").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
                 "<option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>" +
                 "<option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>" +
@@ -563,22 +551,22 @@ function fn_load_select_modelo(type) {
                 "<option value='5'>AIME METER 6/9 TERMOPLOTICOS</option>");
         }
 
-        if (type === 2) {
+        if (type === "2") {
             $("#cb_modelo").html("<option value='' selected></option>");
         }
 
-        if (type === 3) {
+        if (type === "3") {
             $("#cb_modelo").html("<option value='' selected></option>");
         }
     }
 
     if ($("#div_grid_secundaria").is(":visible")) {
 
-        $("#cb_modelo_masiv").prop("disabled", false);
-        $("#cb_modelo_masiv").html("<option value='' selected></option>");
+        $("#cb_modelo").prop("disabled", false);
+        $("#cb_modelo").html("<option value='' selected></option>");
 
         if (type === "1") {
-            $("#cb_modelo_masiv").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
+            $("#cb_modelo").html("<option value='' selected></option><option value='1'>AIME METER 2/4 TERMOPLOTICOS</option" +
                 "<option value='2' >AIME METER 2/8 TERMOPLOTICOS</option>" +
                 "<option value='3' >AIME METER 3/4 TERMOPLOTICOS</option>" +
                 "<option value='4'>AIME METER 5/8 TERMOPLOTICOS</option>" +
@@ -586,11 +574,11 @@ function fn_load_select_modelo(type) {
         }
 
         if (type === "2") {
-            $("#cb_modelo_masiv").html("<option value='' selected></option>");
+            $("#cb_modelo").html("<option value='' selected></option>");
         }
 
         if (type === "3") {
-            $("#cb_modelo_masiv").html("<option value='' selected></option>");
+            $("#cb_modelo").html("<option value='' selected></option>");
         }
     }
 }
@@ -598,7 +586,6 @@ function fn_load_select_modelo(type) {
 function fn_load_select(type) {
 
     $("#cb_destino_2").prop("disabled", false);
-    $("#cb_destino_2").html("<option value='' selected></option>");
 
     if (type === "1") {
 
@@ -730,9 +717,9 @@ function fn_limpiar(type) {
 
     if (type === 3) {
 
-        $("#cb_marca_masiv").val("");
-        $("#cb_modelo_masiv").val("");
-        $("#cb_motivo_masiv").val("");
+        $("#cb_marca").val("");
+        $("#cb_modelo").val("");
+        $("#cb_motivo").val("");
         $("#tx_num_inicial").val("");
         $("#tx_num_final").val("");
 
@@ -759,9 +746,9 @@ function fn_disable_enable(type) {
         $("#cb_type_ident").prop( "disabled", true );
         $("#tx_num_ident").prop( "disabled", true );
         $("#cb_destino").prop( "disabled", true );
+        $("#cb_destino_2").prop( "disabled", true );
 
         $("#cb_modelo").prop("disabled", true);
-        $("#cb_modelo_masiv").prop("disabled", true);
 
         $("#co_agregar").prop( "disabled", true );
         $("#co_agregar_2").prop( "disabled", true );

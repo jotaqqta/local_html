@@ -302,10 +302,10 @@ function fn_nuevo_edit(type, dataCell){
 
         if (dataCell.C3 === "ACTIVO") {
             $("#co_estado").show();
-            $("#co_estado").html("<span class='glyphicon glyphicon-remove'></span> Desactivar");
+            $("#co_estado").html("<span class='glyphicon glyphicon-arrow-down'></span> Desactivar");
         } else {
             $("#co_estado").show();
-            $("#co_estado").html("<span class='glyphicon glyphicon-ok'></span> Activar");
+            $("#co_estado").html("<span class='glyphicon glyphicon-arrow-up'></span> Activar");
         }
     }
 
