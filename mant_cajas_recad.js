@@ -2,7 +2,7 @@ var g_modulo = "Módulo de Recaudación";
 var g_tit = "Mantenimiento de Cajas de Recaudo";
 var $grid_principal;
 var sql_grid_prim = "";
-var my_url = "rel_mot_doc";
+var my_url = "mant_cajas_recad";
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -118,15 +118,6 @@ $(document).ready(function () {
                     return;
                 }
 
-                if ($.trim($("#co_estado").text()) === "Activar") {
-
-                    // DO SOMETHING
-                }
-
-                if ($.trim($("#co_estado").text()) === "Desactivar") {
-                    // DO SOMETHING
-                }
-
                 fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
                 $("#div_prin").slideDown();
                 $("#div_new_edit_bts").slideUp();
@@ -139,9 +130,21 @@ $(document).ready(function () {
     $("#co_estado").on("click", function () {
 
         if ($.trim($("#co_estado").text()) === "Activar") {
-            $("#co_estado").html("<span class='glyphicon glyphicon-remove'></span> Desactivar");
+
+            // DO SOMETHING
+
+            $("#div_prin").slideDown();
+            $("#div_new_edit_bts").slideUp();
+            $('#div_new_edit_bts').modal('hide');
+            $(window).scrollTop(0);
         } else if ($.trim($("#co_estado").text()) === "Desactivar") {
-            $("#co_estado").html("<span class='glyphicon glyphicon-ok'></span> Activar");
+
+            // DO SOMETHING
+
+            $("#div_prin").slideDown();
+            $("#div_new_edit_bts").slideUp();
+            $('#div_new_edit_bts').modal('hide');
+            $(window).scrollTop(0);
         }
 
     });
