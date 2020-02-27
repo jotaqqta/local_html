@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     //COMBOS
 
-    fn_estado();
+    fn_combos();
 
 
  
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
         if ($.trim($("#co_generar").text()) === "Consultar") {
 
-            filtro = [ $("#cb_agrup").val()];
+            //filtro = [ $("#cb_agrup").val()];
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
@@ -87,56 +87,49 @@ $(document).ready(function () {
 
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if ($("#tx_codigo").val() === "") {
+                        if ($("#cb_sistema").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C&Oacute;DIGO!!!</strong></div>',3000);
-                $("#tx_codigo").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
+                $("#cb_sistema").focus();
                 return;
             }
 
-            if ($("#cb_agrup").val() === "") {
+            if ($("#cb_cen_ope").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NIVEL AGRUPACI&Oacute;N!!!</strong></div>',3000);
-                $("#cb_agrup").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CENTRO OPERATIVO!!!</strong></div>',3000);
+                $("#cb_cen_ope").focus();
                 return;
             }
 
-            if ($("#tx_nombre").val() === "") {
+            if ($("#tx_path_unix").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NOMBRE!!!</strong></div>',3000);
-                $("#tx_nombre").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
+                $("#tx_path_unix").focus();
                 return;
             }
 
-            if ($("#tx_descrip").val() === "") {
+            if ($("#tx_path_win").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCRIPCI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_descrip").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
+                $("#tx_path_win").focus();
                 return;
             }
 
-            if ($("#tx_fe_crea").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_crea").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_crea").focus();
+            if ($("#tx_tipo_path").val() === "") {
+               
+                    fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+                    $("#tx_tipo_path").focus();
                     return;
                 }
-            }
-
-            if ($("#tx_fe_modif").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_modif").focus();
-                    return;
-                }
-            }
             
-            if ($("#cb_estado").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
-                $("#cb_estado").focus();
-                return;
-            }
+            //if ($("#tx_fe_modif").val() !== "") {
+             //   if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
+            //        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+            //        $("#tx_fe_modif").focus();
+             //       return;
+             //   }
+            //}
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
@@ -149,57 +142,51 @@ $(document).ready(function () {
         // Modificar
         if ($.trim($("#co_generar").text()) === "Modificar") {
 
-            if ($("#tx_codigo").val() === "") {
+            if ($("#cb_sistema").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C&Oacute;DIGO!!!</strong></div>',3000);
-                $("#tx_codigo").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
+                $("#cb_sistema").focus();
                 return;
             }
 
-            if ($("#cb_agrup").val() === "") {
+            if ($("#cb_cen_ope").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NIVEL AGRUPACI&Oacute;N!!!</strong></div>',3000);
-                $("#cb_agrup").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CENTRO OPERATIVO!!!</strong></div>',3000);
+                $("#cb_cen_ope").focus();
                 return;
             }
 
-            if ($("#tx_nombre").val() === "") {
+            if ($("#tx_path_unix").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NOMBRE!!!</strong></div>',3000);
-                $("#tx_nombre").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
+                $("#tx_path_unix").focus();
                 return;
             }
 
-            if ($("#tx_descrip").val() === "") {
+            if ($("#tx_path_win").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCIPCI&Oacute;N!!!</strong></div>',3000);
-                $("#tx_descrip").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
+                $("#tx_path_win").focus();
                 return;
             }
 
-            if ($("#tx_fe_crea").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_crea").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE CREACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_crea").focus();
+            if ($("#tx_tipo_path").val() === "") {
+               
+                    fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+                    $("#tx_tipo_path").focus();
                     return;
                 }
-            }
+            
 
-            if ($("#tx_fe_modif").val() !== "") {
-                if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
-                    fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-                    $("#tx_fe_modif").focus();
-                    return;
-                }
-            }
+            //if ($("#tx_fe_modif").val() !== "") {
+             //   if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
+            //        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
+            //        $("#tx_fe_modif").focus();
+             //       return;
+             //   }
+            //}
 
-            if ($("#cb_estado").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ESTADO!!!</strong></div>',3000);
-                $("#cb_estado").focus();
-                return;
-            }
-
+           
             fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
             $("#div_filtro_new_edit_bts").slideUp();
@@ -220,6 +207,7 @@ $(document).ready(function () {
 
     $("#co_cancel").on("click", function (){
         $('#div_filtro_new_edit_bts').modal('hide');
+        fn_limpiar();
     });
 
     $("#co_confirm_yes").on( "click", function () {
@@ -249,8 +237,10 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
                 fn_edit(dataCell);
-            $("#tx_codigo").prop("disabled",true);
-            $("#co_limpiar").hide();        
+
+            $("#tx_sistema").prop("disabled",true);
+            $("#tx_cen_ope").prop("disabled",true);
+            $("#co_limpiar").hide();       
             }
         }
     });
@@ -286,9 +276,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: '20052', C2: '1', C3: 'ACOPBRO', C4: 'path', C5: 'pathw'},
-        { C1: '20008', C2: '2', C3: 'ADAPHE', C4: 'path', C5: 'pathw'},
-        { C1: '20070', C2: '3', C3: 'CAJMET', C4: 'path', C5: 'pathw'},
+        { C1: 'FACTURACION 1', C2: 'PANAMA METRO 1', C3: 'ACOPBRO', C4: 'path', C5: 'pathw'},
+        { C1: 'FACTURACION 2', C2: 'PANAMA METRO 2', C3: 'ADAPHE', C4: 'path', C5: 'pathw'},
+        { C1: 'FACTURACION 3', C2: 'PANAMA METRO 3', C3: 'CAJMET', C4: 'path', C5: 'pathw'},
            
     ];
 
@@ -357,32 +347,32 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    $("#tx_codigo").prop("disabled",false);
+    //$("#tx_codigo").prop("disabled",false);
 
     fn_limpiar()
     $("#co_limpiar").show();
 
-    $("#row_nom").hide();
-    $("#row_descrip").hide();
-    $("#row_fe_crea").hide();
-    $("#row_fe_modif").hide();
+    //$("#row_nom").hide();
+    //$("#row_descrip").hide();
+    //$("#row_fe_crea").hide();
+    //$("#row_fe_modif").hide();
 
 
-    $("#tx_codigo").val(filtro[0]);
-    $("#cb_agrup").val(filtro[1]);
-    $("#cb_estado").val(filtro[2]);
+    //$("#tx_codigo").val(filtro[0]);
+    //$("#cb_agrup").val(filtro[1]);
+    //$("#cb_estado").val(filtro[2]);
 
 
-    $("#title_mod").html("Filtrar");
-    $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
+    //$("#title_mod").html("Filtrar");
+    //$("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
 
-    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    //$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    //$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+    //$("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
 
-    });
+    //});
 }
 
 function fn_edit(dataCell){
@@ -390,17 +380,14 @@ function fn_edit(dataCell){
     $("#title_mod").html("Editar");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
-    if (!$("#row_cod").is( "visible") && !$("#row_agrup").is( "visible")) {
-        $("#row_agrup").show();
-    }
-
-    $("#tx_codigo").val(dataCell.C1);
-    $("#cb_agrup").val(dataCell.C2);
-    $("#tx_nombre").val(dataCell.C3);
-    $("#tx_descrip").val(dataCell.C4);
-    $("#tx_fe_crea").val(dataCell.C5);
-    $("#tx_fe_modif").val(dataCell.C6);
-    $("#cb_estado").val(dataCell.C7);
+    $("#combos").hide();
+    $("#texto").show();
+    $("#tx_sistema").val(dataCell.C1);
+    $("#tx_cen_ope").val(dataCell.C2);
+    $("#tx_path_unix").val(dataCell.C3);
+    $("#tx_path_win").val(dataCell.C4);
+    $("#tx_tipo_path").val(dataCell.C5);
+    
 
     $("#row_nom").show();
     $("#row_descrip").show();
@@ -409,66 +396,69 @@ function fn_edit(dataCell){
 
     
 
-    $("#tx_codigo option").each(function()
-    {
-        if ($(this).text() === dataCell.C1) {
-            $("#tx_codigo").val($(this).val());
-        }
-    });
+    //$("#tx_codigo option").each(function()
+    //{
+    //    if ($(this).text() === dataCell.C1) {
+    //        $("#tx_codigo").val($(this).val());
+    //    }
+    //});
 
-    $("#cb_estado option").each(function()
-    {
-        if ($(this).text() === dataCell.C7) {
-            $("#cb_estado").val($(this).val());
-        }
-    });
+    //$("#cb_sistema").each(function()
+    //{
+    //    if ($(this).text() === dataCell.C1) {
+    //        $("#cb_sistema").val($(this).val());
+    //    }
+    //});
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+       $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 
 }
 
 function fn_new(){
-    $("#tx_codigo").prop("disabled",false); 
+    $("#cb_sistema").prop("disabled",false); 
+    $("#combos").show();
+    $("#texto").hide();
+
 
     fn_limpiar();
     $("#co_limpiar").show();
 
-     $("#row_nom").show();
-    $("#row_descrip").show();
-    $("#row_fe_crea").show();
-    $("#row_fe_modif").show();
+    //$("#row_nom").show();
+    //$("#row_descrip").show();
+    //$("#row_fe_crea").show();
+    //$("#row_fe_modif").show();
 
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
-    if (!$("#row_cod").is( "visible") && !$("#row_agrup").is( "visible")) {
-        $("#row_cod").show();
-        $("#row_agrup").show();      
+    //if (!$("#row_cod").is( "visible") && !$("#row_agrup").is( "visible")) {
+    //    $("#row_cod").show();
+    //    $("#row_agrup").show();      
 
-    }
+    //}
 
-    $("#tx_nombre").val($("#tx_nombre :selected").text());
-    $("#tx_descrip").val($("#cb_estado :selected").text());
-    $("#tx_fe_crea").val($("#cb_estado :selected").text());
-    $("#tx_fe_modif").val($("#cb_estado :selected").text());
-    $("#cb_estado").val($("#cb_estado :selected").text());
+    //$("#tx_nombre").val($("#tx_nombre :selected").text());
+    //$("#tx_descrip").val($("#cb_estado :selected").text());
+    //$("#tx_fe_crea").val($("#cb_estado :selected").text());
+    //$("#tx_fe_modif").val($("#cb_estado :selected").text());
+    //$("#cb_estado").val($("#cb_estado :selected").text());
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_estado(){
+function fn_combos(){
 
-    $("#cb_sistema").html("<option value='' selected></option><option value='1'>1</option> <option value='2' >2</option>  <option value='3' >3</option> <option value='3' >4</option> ");
-    $("#cb_estado").html("<option value='' selected></option><option value='1'>Excelente</option> <option value='2' >Bueno</option>  <option value='3' >Regular</option> <option value='3' >Malo</option> ");
+    $("#cb_sistema").html("<option value='' selected></option><option value='1'>FACTURACION 1</option> <option value='2' >FACTURACION 2</option>  <option value='3' >FACTURACION 3</option> <option value='3' >FACTURACION 4</option> ");
+    $("#cb_cen_ope").html("<option value='' selected></option><option value='1'>PANAMA METRO 1</option> <option value='2' >PANAMA METRO 2</option>  <option value='3' >PANAMA METRO 3</option> <option value='3' >PANAMA METRO 4</option> ");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -502,13 +492,14 @@ function fn_carga_grilla() {
 
 function fn_limpiar(){
 
-    $("#tx_codigo").val("");
-    $("#cb_agrup").val("");
-    $("#tx_nombre").val("");
-    $("#tx_descrip").val("");
-    $("#tx_fe_crea").val("");
-    $("#tx_fe_modif").val("");
-    $("#cb_estado").val("");
+    $("#cb_sistema").val("");
+    $("#cb_cen_ope").val("");
+    $("#tx_sistema").val("");
+    $("#tx_cen_ope").val("");
+    $("#tx_path_unix").val("");
+    $("#tx_path_win").val("");
+    $("#tx_tipo_path").val("");
+   
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~

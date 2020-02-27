@@ -100,35 +100,46 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
-                            <div class="row">
-                                <div class="col-sm-6" id="row_cod">
+                            <div class="row" id='combos'>
+                                <div class="col-sm-6">
                                     <label for="cb_sistema">Sistema</label>
-                                    <select id="cb_sistema" class="form-control input-normal_input_selector"></select>
+                                    <select id="cb_sistema" class="form-control input-normal_input_selector" readonly></select>
                                 </div>
-                                <div class="col-sm-6" id="row_agrup">
+                                <div class="col-sm-6">
                                     <label for="cb_cen_ope">Centro Operativo</label>
-                                    <select id="cb_cen_ope" class="form-control input-normal_input_selector"></select>
+                                    <select id="cb_cen_ope" class="form-control input-normal_input_selector" readonly></select>
+                                </div>
+                            </div>
+                            <div class="row" id='texto'>
+                                <div class="col-sm-6">
+                                    <label for="tx_sistema">Sistema</label>
+                                    <input id="tx_sistema" class="form-control">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="tx_cen_ope">Centro Operativo</label>
+                                    <input id="tx_cen_ope" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12" id="row_nom">
+                                <div class="col-sm-12">
                                     <label for="tx_path_unix">PATH UNIX</label>
                                     <input id="tx_path_unix" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12" id="row_descrip">
+                                <div class="col-sm-12">
                                     <label for="tx_path_win">PATH WIN</label>
                                     <input id="tx_path_win" class="form-control">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6" id="row_fe_crea">
-                                    <label for="tx_tipo">Tipo PATH</label>
-                                    <input id="tx_tipo" class="form-control">
+                                <div class="col-sm-6">
+                                    <label for="tx_tipo_path">Tipo PATH</label>
+                                    <input id="tx_tipo_path" class="form-control">
                                 </div>
                             </div>
                         </form>
+                        <br>
                         <div id="mensaje_filtro_new_edit"></div>
                         <div id="mensaje_filtro"></div>
                         <div class="modal-footer">
