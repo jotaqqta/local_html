@@ -302,7 +302,7 @@ function fn_setea_grid_principal() {
             cls: "pq-toolbar-export",
             items:[
                 { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
-                //{ type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
                 
@@ -347,7 +347,8 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    //$("#tx_codigo").prop("disabled",false);
+    $("#texto").prop("disabled",false);
+    $("#texto").hide();
 
     fn_limpiar()
     $("#co_limpiar").show();
@@ -367,12 +368,12 @@ function fn_filtro(){
     //$("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
 
-    //$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    //$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    //$("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
 
-    //});
+    });
 }
 
 function fn_edit(dataCell){
@@ -419,7 +420,8 @@ function fn_edit(dataCell){
 }
 
 function fn_new(){
-    $("#cb_sistema").prop("disabled",false); 
+    $("#cb_sistema").prop("disabled",true);
+    $("#cb_cen_ope").prop("disabled",true); 
     $("#combos").show();
     $("#texto").hide();
 
