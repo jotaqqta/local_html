@@ -380,19 +380,9 @@ function fn_deshabilitar() {
 
 function fn_mensaje(id, mensaje, segundos) {
 
-    if (id === "#mensaje_prin") {
-        $(id).show();
-        $(id).html(mensaje);
-        setTimeout(function () { $(id).html(""); $(id).hide() }, segundos);
-
-        $("#space-msg").show();
-        setTimeout(function () { $("#space-msg").hide() }, segundos);
-    } else if (id === "#mensaje_new") {
-        $(id).show();
-        $(id).html(mensaje);
-        setTimeout(function () {$(id).html("");$(id).hide() }, segundos);
-    }
-
+    $(id).show();
+    $(id).html(mensaje);
+    setTimeout(function () {$(id).html("");$(id).hide() }, segundos);
 }
 
 

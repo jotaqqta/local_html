@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     // CARGAR COMBOS
 
-    fn_campaña();
+    fn_campana();
     fn_contatistas();
     fn_tip_cobr();
     fn_new_state_cobr();
@@ -104,7 +104,7 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_campaña (){
+function fn_campana (){
 
     $("#cb_campaña").html("<option value='' selected></option><option value='1'>OPCION 01</option> <option value='2' >OPCION 02</option>  <option value='3' >OPCION 03</option> ");
 }

@@ -75,7 +75,6 @@ $(document).ready(function () {
 
     $("#tab_ana_parametros").on("click", function () {
 
-
         fn_ocultar();
         fn_remove_active();
         fn_set_active("#tab_ana_parametros", "#div_grid_parametros")

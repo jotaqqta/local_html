@@ -80,11 +80,6 @@ $(document).ready(function () {
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_consultar"));
             //fn_carga_grilla();
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
 
         // Generar nuevo
@@ -133,11 +128,6 @@ $(document).ready(function () {
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
 
         // Modificar
@@ -150,22 +140,13 @@ $(document).ready(function () {
                 return;
             }
 
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
+            fn_mensaje_boostrap("Se Modifico", g_tit, $("#co_guardar"));
         }
-    });
 
-    $("#co_borrard").on("click", function( ) {
-
-        $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-        $("#dlg_confirm").on("shown.bs.modal", function () {
-            $("#dlg_confirm div.modal-footer button").focus();
-
-        });
+        $("#div_prin").slideDown();
+        $("#div_filtro_new_edit_bts").slideUp();
+        $('#div_filtro_new_edit_bts').modal('hide');
+        $(window).scrollTop(0);
     });
 
     $("#co_limpiar").on("click", function () {
@@ -239,8 +220,6 @@ $(document).ready(function () {
     });
 
 });
-
-
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 function fn_setea_grid_principal() {
@@ -334,7 +313,6 @@ function fn_setea_grid_principal() {
 function fn_filtro() {
 
     edit = false;
-
 
     $("#title_fil_mod_new").html("Editar Cargo Para corte y Reposición");
     $("#co_consultar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");

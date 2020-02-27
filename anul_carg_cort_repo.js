@@ -89,7 +89,7 @@ $(document).ready(function () {
         $("#tx_num_sumi").prop( "disabled", false);
         $("#co_cancelar").hide();
         $("#co_cerrar").show();
-    })
+    });
 
     $("#co_confirm_yes").on("click", function( ) {
 
@@ -117,24 +117,6 @@ $(document).ready(function () {
         $("#dlg_confirm").slideUp();
         $('#dlg_confirm').modal('hide');
         $(window).scrollTop(0);
-    });
-
-    $("#co_confirm_yes").on( "click", function () {
-
-        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-
-        /*HablaServidor(my_url, parameters, 'text', function() {
-            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
-        });*/
-
-        $('#dlg_confirm').modal('hide');
-
-    });
-
-    $("#co_confirm_no").on( "click", function () {
-
-        $('#dlg_confirm').modal('hide');
-
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -225,7 +207,8 @@ function fn_setea_grid_principal() {
 
 function fn_borrar(rowIndx) {
 
-    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
+    $("#tx_dlg_confirma").html("¿Eliminar fila " + (rowIndx + 1) + "?");
+    $("#tx_observacion").val("");
 
     rowIndxG = rowIndx;
 

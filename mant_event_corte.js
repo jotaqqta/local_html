@@ -462,7 +462,7 @@ function fn_eliminar(confirm) {
         // TAB 1
         if ($("#div_event_corte").is(":visible")) {
 
-            fn_mensaje_boostrap("Se ha eliminado el registro (TAB 1)", g_tit, $("#co_eliminar"));
+            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
 
 
         }
@@ -470,7 +470,7 @@ function fn_eliminar(confirm) {
         // TAB 2
         if ($("#div_situa_encon").is(":visible")) {
 
-            fn_mensaje_boostrap("Se ha eliminado el registro (TAB 2)", g_tit, $("#co_eliminar"));
+            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
 
 
         }
@@ -478,7 +478,7 @@ function fn_eliminar(confirm) {
         // TAB 3
         if ($("#div_acc_real").is(":visible")) {
 
-            fn_mensaje_boostrap("Se ha eliminado el registro (TAB 3)", g_tit, $("#co_eliminar"));
+            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
 
 
         }
@@ -490,7 +490,7 @@ function fn_inactivar(confirm) {
 
     if (confirm) {
 
-        fn_mensaje_boostrap("Se ha inactivado el registro (TAB 4)", g_tit, $("#co_inactivar"));
+        fn_mensaje_boostrap("Se ha inactivado el registro", g_tit, $("#co_inactivar"));
 
     }
 

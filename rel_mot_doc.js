@@ -109,15 +109,6 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_borrard").on("click", function( ) {
-
-        $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-        $("#dlg_confirm").on("shown.bs.modal", function () {
-            $("#dlg_confirm div.modal-footer button").focus();
-
-        });
-    });
-
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar();

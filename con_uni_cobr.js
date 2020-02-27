@@ -294,7 +294,7 @@ function fn_setea_grid_principal() {
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
         scrollModel:{theme:true},
-        summaryData: calcularTotal(data),
+        summaryData: calcularTotal(1, data),
         toolbar: {
             cls: "pq-toolbar-export",
             items:[
@@ -341,7 +341,7 @@ function fn_setea_grids_secundarias() {
         numberCell: { show: true },
         pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
         scrollModel:{theme:true},
-        summaryData: calcularTotal2(data2),
+        summaryData: calcularTotal(2, data2),
         toolbar: false,
     };
 
@@ -443,76 +443,43 @@ function fn_setea_grids_secundarias() {
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
-// Grilla principal
-function calcularTotal(datos) {
+
+function calcularTotal(grid, datos) {
     var suministrosTotal = 0,
         deudaTotal = 0,
+        data,
+        totalData;
+
+    // Grilla principal
+    if (grid === 1) {
         data = $grid_principal? $grid_principal.option('dataModel.data'): datos;
 
-    for (var i = 0; i < data.length; i++) {
-        var row = data[i];
-        suministrosTotal += (row["C2"] * 1);
-        deudaTotal += (row["C3"] * 1);
+        for (var i = 0; i < data.length; i++) {
+            var row = data[i];
+            suministrosTotal += (row["C2"] * 1);
+            deudaTotal += (row["C3"] * 1);
+        }
+
+        totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
     }
 
-    var totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
-
-    return [totalData];
-}
-
-// Grilla Regional
-function calcularTotal2(datos) {
-    var suministrosTotal = 0,
-        deudaTotal = 0,
+    // Grilla Regional
+    if (grid === 2) {
         data = $grid_regional? $grid_regional.option('dataModel.data'): datos;
 
-    for (var i = 0; i < data.length; i++) {
-        var row = data[i];
-        suministrosTotal += (row["C2"] * 1);
-        deudaTotal += (row["C3"] * 1);
+        for (var i = 0; i < data.length; i++) {
+            var row = data[i];
+            suministrosTotal += (row["C2"] * 1);
+            deudaTotal += (row["C3"] * 1);
+        }
+
+        totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
     }
-
-    var totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
-
-    return [totalData];
-}
-
-// Grilla Campaña
-function calcularTotal3(datos) {
-    var suministrosTotal = 0,
-        deudaTotal = 0,
-        data = $grid_campana? $grid_campana.option('dataModel.data'): datos;
-
-    for (var i = 0; i < data.length; i++) {
-        var row = data[i];
-        suministrosTotal += (row["C2"] * 1);
-        deudaTotal += (row["C3"] * 1);
-    }
-
-    var totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
-
-    return [totalData];
-}
-
-// Grilla Estado
-function calcularTotal3(datos) {
-    var suministrosTotal = 0,
-        deudaTotal = 0,
-        data = $grid_estado? $grid_estado.option('dataModel.data'): datos;
-
-    for (var i = 0; i < data.length; i++) {
-        var row = data[i];
-        suministrosTotal += (row["C2"] * 1);
-        deudaTotal += (row["C3"] * 1);
-    }
-
-    var totalData = { C1: "Total:", C2: suministrosTotal, C3: deudaTotal};
 
     return [totalData];
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
 
 function fn_filtro(){
 
@@ -550,7 +517,6 @@ function fn_remove_active() {
     if ($("#tab_uni_estado").hasClass("active")) {
         $("#tab_uni_estado").removeClass("active")
     }
-
 }
 
 function fn_ocultar() {
@@ -568,14 +534,6 @@ function fn_ocultar() {
     }
 
 }
-
-function fn_ocular_grillas() {
-
-    $("#div_grid_campaña").hide();
-    $("#div_grid_estado").hide();
-
-}
-
 
 function fn_carga_grilla() {
 

@@ -116,23 +116,18 @@ $(document).ready(function () {
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
 
         // Modificar
         if ($.trim($("#co_generar").text()) === "Modificar") {
 
             fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
+
+        $("#div_prin").slideDown();
+        $("#div_filtro_new_edit_bts").slideUp();
+        $('#div_filtro_new_edit_bts').modal('hide');
+        $(window).scrollTop(0);
     });
 
     $("#co_limpiar").on("click", function () {

@@ -92,21 +92,16 @@ $(document).ready(function () {
             }
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
-            $("#div_prin").slideDown();
-            $("#div_edit_new_bts").slideUp();
-            $('#div_edit_new_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
 
         if ($.trim($("#co_guardar").text()) == "Modificar") {
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
-            $("#div_prin").slideDown();
-            $("#div_edit_new_bts").slideUp();
-            $('#div_edit_new_bts').modal('hide');
-            $(window).scrollTop(0);
-
         }
+
+        $("#div_prin").slideDown();
+        $("#div_edit_new_bts").slideUp();
+        $('#div_edit_new_bts').modal('hide');
+        $(window).scrollTop(0);
     });
 
 
