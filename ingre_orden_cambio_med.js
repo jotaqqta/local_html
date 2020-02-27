@@ -98,51 +98,39 @@ $(document).ready(function () {
     /////////////////////////////////////////////////////////////
 
     $("#co_crear").on("click", function () {
+		if ($("#cb_mot").val() === "") {
+			fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&Oacute;N", g_titulo, $("#cb_mot"));
+			return;
+		}           
 
-        //if ($.trim($("#co_crear").text()) === "Generar") {
+		if ($("#cb_ejec").val() === "") {
+			fn_mensaje_boostrap("FAVOR SELECCIONE QUI&Eacute;N EJECUTA", g_titulo, $("#cb_ejec"));
+			return;
+		}
+		$('#div_edit_bts').modal('show');        
 
-            if ($("#cb_mot").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE MOTIVO DE REPOSICI&Oacute;N", g_titulo, $("#cb_mot"));
-                return;
-            }           
-
-            
-
-            if ($("#cb_ejec").val() === "") {
-                fn_mensaje_boostrap("FAVOR SELECCIONE QUI&Eacute;N EJECUTA", g_titulo, $("#cb_ejec"));
-                return;
-            }
-
-            $('#div_edit_bts').modal('show');        
-          
-      
     });
     /////////////////BOTON ACEPTAR MODAL//////////////////////////
     $("#co_aceptar").on( "click", function () {
-
-           	if(document.getElementById('tx_obser').value.length < 15) {
-              	fn_mensaje('#mensaje_obser', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR DIGITAR AL MENOS 15 CARACTERES</strong></div>', 3000);
-              	$("#tx_obser").focus();
-               	return;
-            }
-            $("#div_edit_bts").modal("hide"); 
-			fn_mensaje_boostrap("Se ingres&oacute;", g_titulo, $(""));
+		if(document.getElementById('tx_obser').value.length < 15) {
+			fn_mensaje('#mensaje_obser', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>FAVOR DIGITAR AL MENOS 15 CARACTERES</strong></div>', 3000);
+			$("#tx_obser").focus();
+			return;
+		}
+		$("#div_edit_bts").modal("hide"); 
+		fn_mensaje_boostrap("Se ingres&oacute;", g_titulo, $(""));
     });
 
 	////////////BOTON CANCELAR MODAL///////////////////////////
     $("#co_cancelar_obs").on( "click", function () {
-
-    		$("#div_edit_bts").modal("hide");
-
+    	$("#div_edit_bts").modal("hide");
     });
 
     /////////////////////////////////////////////////////////////
 	
-
 	$("#co_limpiar").on("click", function () {
 		//fn_limpiar_fil();
 		fn_limpiar();
-		
 	});
 
 });
@@ -160,7 +148,6 @@ function fn_ejecuta() {
 function fn_correctivo() {
 	$("#cb_correc").html("<option value='' selected></option><option value='1'>SI</option> <option value='2' >NO</option>");
 }
-
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 function fn_setea_grid_principal() {
@@ -231,8 +218,6 @@ function fn_leer(){
         $("#tx_tip_cli").val("1");
         $("#tx_cat").val("1");
         $("#tx_subg_zona").val("1");
-        
-      
 }
 
 /////////////////////////////////////////////////////////
@@ -250,7 +235,6 @@ function fn_limpiar(){
         $("#cb_ejec").val("");
         $("#optradio").val("");
 
-	
     $grid.pqGrid( 'option', 'dataModel.data', [] );
     $grid.pqGrid( 'refreshView' );  //limpia la grilla principal
 }

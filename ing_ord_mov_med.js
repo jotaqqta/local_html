@@ -177,11 +177,8 @@ $(document).ready(function () {
                 }
 
                 fn_mensaje_boostrap("Se agrego (Individual)", g_tit, $("#co_aceptar"));
-                $("#div_prin").slideDown();
-                $("#div_agregar_bts").slideUp();
-                $('#div_agregar_bts').modal('hide');
-                $(window).scrollTop(0);
-            } else {
+            } 
+			else {
 
                 if ($("#tx_num_inicial").val() === "") {
                     fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Numero Inicial.</strong></div>',3000);
@@ -202,11 +199,12 @@ $(document).ready(function () {
                 }
 
                 fn_mensaje_boostrap("Se agrego (Masivo)", g_tit, $("#co_aceptar_2"));
-                $("#div_prin").slideDown();
-                $("#div_agregar_bts").slideUp();
-                $('#div_agregar_bts').modal('hide');
-                $(window).scrollTop(0);
             }
+			
+			$("#div_prin").slideDown();
+			$("#div_agregar_bts").slideUp();
+			$('#div_agregar_bts').modal('hide');
+			$(window).scrollTop(0);
         }
     });
 
@@ -221,13 +219,11 @@ $(document).ready(function () {
     });
 
     $("#tab_ing_indv").on("click", function (){
-
         fn_set_active("#tab_ing_indv", "#div_grid_principal");
         $grid_principal.pqGrid("refreshView");
     });
 
     $("#tab_ing_masiv").on("click", function (){
-
         fn_set_active("#tab_ing_masiv", "#div_grid_secundaria");
         $grid_secundaria.pqGrid("refreshView");
 
@@ -247,18 +243,15 @@ $(document).ready(function () {
         $("#co_cancelar").hide();
         $("#co_leer").show();
         $("#co_cerrar").show();
-
         fn_limpiar(1);
         fn_disable_enable();
     });
 
     $("#co_cancelar_2").on( "click", function () {
-
         $('#div_agregar_bts').modal('hide');
     });
 
     $("#co_cancelar_3").on( "click", function () {
-
         $('#div_agregar_masiv_bts').modal('hide');
     });
 
@@ -277,16 +270,6 @@ $(document).ready(function () {
         } else {
             $("#cb_modelo").prop("disabled", true);
             $("#cb_modelo").html("<option value='' selected></option>");
-        }
-    });
-
-    $("#tx_time_fabrica").blur(function () {
-        if ($("#tx_time_fabrica").val() >= 2200) {
-            $("#tx_time_fabrica").val("2200");
-        }
-
-        if ($("#tx_time_fabrica").val() < 1800) {
-            $("#tx_time_fabrica").val("1800");
         }
     });
 
