@@ -90,39 +90,23 @@ $(document).ready(function () {
 
     $("#co_guardar_new_edit").on("click", function () {
 
-        if (fn_modal_activo()) {
-
-            if ($.trim($("#co_guardar_new_edit").text()) === "Modificar") {
-
-                if ($("#tx_nom_caja").val() === "") {
-                    fn_mensaje('#mensaje_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique un Nombre de Caja.</strong></div>',3000);
-                    $("#tx_nom_caja").focus();
-                    return;
-                }
-
-                fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
-                $("#div_prin").slideDown();
-                $("#div_new_edit_bts").slideUp();
-                $('#div_new_edit_bts').modal('hide');
-                $(window).scrollTop(0);
-            }
-        } else {
-
-            if ($.trim($("#co_guardar_new_edit").text()) === "Guardar") {
-
-                if ($("#tx_nom_caja").val() === "") {
-                    fn_mensaje('#mensaje_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique un Nombre de Caja.</strong></div>',3000);
-                    $("#tx_nom_caja").focus();
-                    return;
-                }
-
-                fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
-                $("#div_prin").slideDown();
-                $("#div_new_edit_bts").slideUp();
-                $('#div_new_edit_bts').modal('hide');
-                $(window).scrollTop(0);
-            }
+		if ($("#tx_nom_caja").val() === "") {
+			fn_mensaje('#mensaje_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique un Nombre de Caja.</strong></div>',3000);
+			$("#tx_nom_caja").focus();
+			return;
         }
+		var aux = "";
+		if ($.trim($("#co_guardar_new_edit").text()) === "Modificar") {
+			aux = "Se Modifico la Caja con exito!!!";
+		}
+		else {
+			aux = "Se creo la Caja con exito!!!";
+        }
+		fn_mensaje_boostrap(aux, g_tit, $("#co_generar"));
+		$("#div_prin").slideDown();
+		$("#div_new_edit_bts").slideUp();
+		$('#div_new_edit_bts').modal('hide');
+		$(window).scrollTop(0);
     });
 
     $("#co_estado").on("click", function () {
