@@ -150,19 +150,25 @@ $(document).ready(function () {
 
         if ($.trim($("#co_aceptar").text()) === "Aceptar") {
 
-            if ($("#agr_title").text() === "Agregar Ingreso Inidividual") {
+            if ($("#cb_marca").val() === "") {
+                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
+                $("#cb_marca").focus();
+                return;
+            }
 
-                if ($("#cb_marca").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
-                    $("#cb_marca").focus();
-                    return;
-                }
+            if ($("#cb_modelo").val() === "") {
+                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
+                $("#cb_modelo").focus();
+                return;
+            }
 
-                if ($("#cb_modelo").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
-                    $("#cb_modelo").focus();
-                    return;
-                }
+            if ($("#cb_motivo").val() === "") {
+                fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
+                $("#cb_motivo").focus();
+                return;
+            }
+
+            if (fn_modal_activo()) {
 
                 if ($("#tx_medidor").val() === "") {
                     fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Medidor.</strong></div>',3000);
@@ -170,38 +176,12 @@ $(document).ready(function () {
                     return;
                 }
 
-                if ($("#cb_motivo").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
-                    $("#cb_motivo").focus();
-                    return;
-                }
-
-                fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar"));
+                fn_mensaje_boostrap("Se agrego (Individual)", g_tit, $("#co_aceptar"));
                 $("#div_prin").slideDown();
                 $("#div_agregar_bts").slideUp();
                 $('#div_agregar_bts').modal('hide');
                 $(window).scrollTop(0);
-            }
-
-            if ($("#agr_title").text() === "Agregar Ingreso Masivo") {
-
-                if ($("#cb_marca").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una Marca.</strong></div>',3000);
-                    $("#cb_marca").focus();
-                    return;
-                }
-
-                if ($("#cb_modelo").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Modelo.</strong></div>',3000);
-                    $("#cb_modelo").focus();
-                    return;
-                }
-
-                if ($("#cb_motivo").val() === "") {
-                    fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo.</strong></div>',3000);
-                    $("#cb_motivo").focus();
-                    return;
-                }
+            } else {
 
                 if ($("#tx_num_inicial").val() === "") {
                     fn_mensaje('#mensaje_agr','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un Numero Inicial.</strong></div>',3000);
@@ -221,7 +201,7 @@ $(document).ready(function () {
                     return;
                 }
 
-                fn_mensaje_boostrap("Se agrego", g_tit, $("#co_aceptar_2"));
+                fn_mensaje_boostrap("Se agrego (Masivo)", g_tit, $("#co_aceptar_2"));
                 $("#div_prin").slideDown();
                 $("#div_agregar_bts").slideUp();
                 $('#div_agregar_bts').modal('hide');
@@ -666,6 +646,15 @@ function fn_borrar(rowIndx) {
         $grid_secundaria.pqGrid("deleteRow", { rowIndx: rowIndx });
     }
 
+}
+
+function fn_modal_activo() {
+
+    if ($("#div_numeracion").is(":visible") && !$("#div_numeracion").is(":visible")) {
+        return false;
+    } else if ($("#div_motivo").hasClass("col-xs-6")) {
+        return true;
+    }
 }
 
 function fn_validar_fecha(value){

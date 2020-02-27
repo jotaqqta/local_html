@@ -90,25 +90,23 @@ $(document).ready(function () {
 
     $("#co_guardar_new_edit").on("click", function () {
 
-        if ($("#title_mod_new_edit").text() === "Nueva Caja") {
+        if (fn_modal_activo()) {
 
-            if ($.trim($("#co_guardar_new_edit").text()) === "Guardar") {
+            if ($.trim($("#co_guardar_new_edit").text()) === "Modificar") {
 
-               if ($("#tx_nom_caja").val() === "") {
-                   fn_mensaje('#mensaje_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique un Nombre de Caja.</strong></div>',3000);
-                   $("#tx_nom_caja").focus();
-                   return;
-               }
+                if ($("#tx_nom_caja").val() === "") {
+                    fn_mensaje('#mensaje_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique un Nombre de Caja.</strong></div>',3000);
+                    $("#tx_nom_caja").focus();
+                    return;
+                }
 
-                fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
+                fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
                 $("#div_prin").slideDown();
                 $("#div_new_edit_bts").slideUp();
                 $('#div_new_edit_bts').modal('hide');
                 $(window).scrollTop(0);
             }
-        }
-
-        if ($("#title_mod_new_edit").text() === "Editar Caja") {
+        } else {
 
             if ($.trim($("#co_guardar_new_edit").text()) === "Guardar") {
 
@@ -118,7 +116,7 @@ $(document).ready(function () {
                     return;
                 }
 
-                fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
+                fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
                 $("#div_prin").slideDown();
                 $("#div_new_edit_bts").slideUp();
                 $('#div_new_edit_bts').modal('hide');
@@ -152,20 +150,6 @@ $(document).ready(function () {
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) === "Limpiar") {
             fn_limpiar(1);
-        }
-    });
-
-    $("#co_limpiar_new_edit").on("click", function () {
-        if ($("#title_mod_new_edit").text() === "Nueva Caja") {
-            if ($.trim($("#co_limpiar_new_edit").text()) === "Limpiar") {
-                fn_limpiar(2);
-            }
-        }
-
-        if ($("#title_mod_new_edit").text() === "Editar Caja") {
-            if ($.trim($("#co_limpiar_new_edit").text()) === "Limpiar") {
-                fn_limpiar(3);
-            }
         }
     });
 
@@ -288,8 +272,9 @@ function fn_nuevo_edit(type, dataCell){
 
         fn_limpiar(2);
 
-        $("#title_mod_new_edit").html("Nueva Caja");
         $("#co_estado").hide();
+        $("#title_mod_new_edit").html("Nueva Caja");
+        $("#co_guardar_new_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
     }
 
     if (type === "edit") {
@@ -299,6 +284,7 @@ function fn_nuevo_edit(type, dataCell){
         $("#title_mod_new_edit").html("Editar Caja");
         $("#tx_cod_caja").val(dataCell.C1);
         $("#tx_nom_caja").val(dataCell.C2);
+        $("#co_guardar_new_edit").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
         if (dataCell.C3 === "ACTIVO") {
             $("#co_estado").show();
@@ -333,6 +319,11 @@ function fn_carga_grilla() {
     $grid_principal.pqGrid( "refreshDataAndView" );
     $grid_principal.pqGrid( "option", "title", "Total Registros: " + total_register);
 
+}
+
+function fn_modal_activo() {
+
+    return $("#co_estado").is(":visible");
 }
 
 // Limpiar Filtro
