@@ -120,24 +120,66 @@
                                     <input id="tx_cen_ope" class="form-control">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id='tx_path_unix'>
                                 <div class="col-sm-12">
                                     <label for="tx_path_unix">PATH UNIX</label>
                                     <input id="tx_path_unix" class="form-control">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id='tx_path_win'>
                                 <div class="col-sm-12">
                                     <label for="tx_path_win">PATH WIN</label>
                                     <input id="tx_path_win" class="form-control">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id='tx_tipo_path'>
                                 <div class="col-sm-6">
                                     <label for="tx_tipo_path">Tipo PATH</label>
                                     <input id="tx_tipo_path" class="form-control">
                                 </div>
                             </div>
+                        </form>
+                        <br>
+                        <div id="mensaje_filtro_new_edit"></div>
+                        <div id="mensaje_filtro"></div>
+                        <div class="modal-footer">
+                            <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar"
+                                    type="button"><span
+                                    class="glyphicon glyphicon-grain"></span> Limpiar
+                            </button>
+
+                            <button class="btn-left btn-sm btn-primary btn-default" id="co_generar" type="button"><span
+                                    class="glyphicon glyphicon-ok"></span> Consultar
+                            </button>
+                            <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                    class="glyphicon glyphicon-off"></span> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- Modal Filtro -->
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+        <div class="modal fade" id="div_filtro_new_edit_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Filtro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_filtro" role="form">
+                            <div class="row" id='combos'>
+                                <div class="col-sm-6">
+                                    <label for="cb_sistema">Sistema</label>
+                                    <select id="cb_sistema" class="form-control input-normal_input_selector"></select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="cb_cen_ope">Centro Operativo</label>
+                                    <select id="cb_cen_ope" class="form-control input-normal_input_selector"></select>
+                                </div>
+                            </div>                           
                         </form>
                         <br>
                         <div id="mensaje_filtro_new_edit"></div>

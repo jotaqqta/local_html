@@ -347,11 +347,14 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    //$("#texto").prop("disabled",false);
-    $("#texto").show();
-    $("#combos").hide();
+    $("#texto").hide();
+    $("#combos").show();
     $("#tx_sistema").prop("disabled",false);
-    $("#tx_cen_ope").prop("disabled",false); 
+    $("#tx_cen_ope").prop("disabled",false);
+    $("#tx_path_unix").hide();
+    $("#tx_path_win").hide();
+    $("#tx_tipo_path").hide();
+
 
     fn_limpiar()
     $("#co_limpiar").show();
@@ -427,6 +430,11 @@ function fn_new(){
     $("#cb_cen_ope").prop("disabled",true); 
     $("#combos").show();
     $("#texto").hide();
+
+    
+    $("#tx_path_unix").show();
+    $("#tx_path_win").show();
+    $("#tx_tipo_path").show();
 
 
     fn_limpiar();
