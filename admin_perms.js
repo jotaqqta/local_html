@@ -2,7 +2,7 @@ var g_modulo = "Tratamiento de Ordenes Masivas";
 var g_tit = "Administrador de permisos";
 var $grid_principal;
 var $grid_secundaria;
-var rowData = {};
+var rowIndx = [];
 var sql_grid_prim = "";
 var parameters = {};
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
     $("#co_actualizar").on("click", function () {
 
-        fn_mensaje_boostrap("Evento Boton. Has seleccionado la fila: " + (rowData.id + 1) + " con la data: C1: " + rowData.dataC1 + ", C2: " + rowData.dataC2, g_tit, $("#co"));
+        fn_mensaje_boostrap("Evento Boton. Has seleccionado las filas " + rowIndx, g_tit, $("#co"));
 
     });
 
@@ -103,16 +103,33 @@ $(document).ready(function () {
 
     $grid_principal.pqGrid({
         check: function ( event, ui ) {
+
+            var isCheck = this.Checkbox('checkBox').isHeadChecked();
+
             if (ui.check) {
 
-                var dataCell = ui.rowData;
+                //var dataCell = ui.rowData;
 
-                rowData = { id: ui.rowIndx, dataC1: dataCell.C1, dataC2: dataCell.C2 };
+                rowIndx.push(ui.rowIndx);
+
+                //rowData = { id: ui.rowIndx, dataC1: dataCell.C1, dataC2: dataCell.C2 };
 
                 $("#co_actualizar").prop("disabled", false);
 
             } else {
-                $("#co_actualizar").prop("disabled", true);
+
+                if (rowIndx.includes(ui.rowIndx)) {
+                    var pos = rowIndx2.indexOf(ui.rowIndx);
+                    rowIndx.splice(pos, 1);
+                }
+
+                if (!isCheck) {
+                    rowIndx = []
+                }
+
+                if (rowIndx.length <= 0) {
+                    $("#co_actualizar").prop("disabled", true);
+                }
             }
         }
     });
@@ -166,28 +183,27 @@ function fn_setea_grid_principal() {
 
     var obj = {
         height: "100%",
-        showTop: true,
-        showBottom:true,
-        showTitle : false,
+        showtop: true,
+        showBottom: true,
+        showTitle: false,
         roundCorners: true,
         rowBorders: true,
         columnBorders: true,
-        collapsible:true,
-        selectionModel: { type: 'row',mode:'single'},
-        numberCell: { show: true },
-        pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
-        scrollModel:{theme:true},
+        collapsible: true,
+        postRenderInterval: 0,
+        scrollModel: {theme: true},
+        numberCell: {show: true},
+        selectionModel: {type: 'row', mode: 'single'},
+        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: false,
     };
 
     obj.colModel = [
         { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
-            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
             cb: {
-                all: false,
-                header: false,
-                maxCheck: 1,
-
+                all: true,
+                header: true,
             }
         },
         { title: "Tipo Orden", width: 531, dataType: "string", dataIndx: "C1", halign: "center", align: "left", editable: false },
@@ -226,7 +242,7 @@ function fn_setea_grid_secundaria() {
     ];
 
     var obj = {
-        height: 175,
+        height: 500,
         showTop: true,
         showBottom:true,
         showTitle : false,
@@ -236,6 +252,11 @@ function fn_setea_grid_secundaria() {
         columnBorders: true,
         collapsible:true,
         editable:false,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
@@ -244,8 +265,8 @@ function fn_setea_grid_secundaria() {
     };
 
     obj.colModel = [
-        { title: "Rol", width: 410, dataType: "string", dataIndx: "C1", halign: "center", align: "left" },
-        { title: "Nombre", width: 409, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
+        { title: "Rol", width: 410, dataType: "string", dataIndx: "C1", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Nombre", width: 409, dataType: "string", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
     ];
     obj.dataModel = { data: data };
 
