@@ -349,8 +349,8 @@ function fn_filtro(){
 
     $("#texto").hide();
     $("#combos").show();
-    $("#tx_sistema").prop("disabled",false);
-    $("#tx_cen_ope").prop("disabled",false);
+    $("#cb_sistema").prop("disabled",false);
+    $("#cb_cen_ope").prop("disabled",false);
     $("#tx_path_unix").hide();
     $("#tx_path_win").hide();
     $("#tx_tipo_path").hide();
