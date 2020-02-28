@@ -347,8 +347,11 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    $("#texto").prop("disabled",false);
-    $("#texto").hide();
+    //$("#texto").prop("disabled",false);
+    $("#texto").show();
+    $("#combos").hide();
+    $("#tx_sistema").prop("disabled",false);
+    $("#tx_cen_ope").prop("disabled",false); 
 
     fn_limpiar()
     $("#co_limpiar").show();
@@ -364,7 +367,7 @@ function fn_filtro(){
     //$("#cb_estado").val(filtro[2]);
 
 
-    //$("#title_mod").html("Filtrar");
+    $("#title_mod").html("Filtrar");
     //$("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
 
