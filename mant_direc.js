@@ -196,6 +196,20 @@ $(document).ready(function () {
         }
     });
 
+    $("#co_cancel_fil").on("click", function (){
+        $('#div_filtro__bts').modal('hide');
+        fn_limpiar();
+    });
+
+        $("#co_limpiar_fil").on("click", function () {
+        if ($.trim($("#co_limpiar_fil").text()) == "Limpiar") {
+            fn_limpiar();
+            return;
+        }
+        else
+            window.close();
+    });
+
     $("#co_limpiar").on("click", function () {
         if ($.trim($("#co_limpiar").text()) == "Limpiar") {
             fn_limpiar();
@@ -357,7 +371,7 @@ function fn_filtro(){
 
 
     fn_limpiar()
-    $("#co_limpiar").show();
+    $("#co_limpiar_fil").show();
 
     //$("#row_nom").hide();
     //$("#row_descrip").hide();
@@ -371,12 +385,12 @@ function fn_filtro(){
 
 
     $("#title_mod").html("Filtrar");
-    //$("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
+    $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
 
-    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro__bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro__bts").on("shown.bs.modal", function () {
+    $("#div_filtro__bts div.modal-footer button").focus();
 
 
     });
