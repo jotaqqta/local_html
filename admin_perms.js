@@ -52,9 +52,6 @@ $(document).ready(function () {
     fn_setea_grid_principal();
     fn_setea_grid_secundaria();
 
-    $("#co_actualizar").prop("disabled", true);
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //BOTONES-EVENTOS
 
@@ -75,7 +72,7 @@ $(document).ready(function () {
 
     $("#co_actualizar").on("click", function () {
 
-        fn_mensaje_boostrap("Evento Boton. Has seleccionado las filas " + rowIndx, g_tit, $("#co"));
+        fn_mensaje_boostrap("Evento Boton. " + rowIndx, g_tit, $("#co"));
 
     });
 
@@ -113,10 +110,6 @@ $(document).ready(function () {
                     }
                 }
 
-                if (this.Checkbox('checkBox').getCheckedNodes().length >= 1) {
-                    $("#co_actualizar").prop("disabled", false);
-                }
-
             } else {
 
                 if (ui.rows && ui.rows.length) {
@@ -127,11 +120,6 @@ $(document).ready(function () {
                         }
                     }
                 }
-
-                if (this.Checkbox('checkBox').getCheckedNodes().length <= 0) {
-                    $("#co_actualizar").prop("disabled", true);
-                }
-
             }
         }
     });
