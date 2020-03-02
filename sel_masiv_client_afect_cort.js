@@ -542,7 +542,7 @@ function fn_set_grid_second() {
 
     obj.colModel = [
         { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
-            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
             cb: {
                 all: true,
                 header: true,

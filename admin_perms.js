@@ -104,32 +104,34 @@ $(document).ready(function () {
     $grid_principal.pqGrid({
         check: function ( event, ui ) {
 
-            var isCheck = this.Checkbox('checkBox').isHeadChecked();
-
             if (ui.check) {
 
-                //var dataCell = ui.rowData;
+                if (ui.rows && ui.rows.length) {
+                    for (var i = 0; i < ui.rows.length; i++) {
+                        rowIndx.push(ui.rows[i].rowIndx);
+                        rowIndx.sort((a, b) => a - b);
+                    }
+                }
 
-                rowIndx.push(ui.rowIndx);
-
-                //rowData = { id: ui.rowIndx, dataC1: dataCell.C1, dataC2: dataCell.C2 };
-
-                $("#co_actualizar").prop("disabled", false);
+                if (this.Checkbox('checkBox').getCheckedNodes().length >= 1) {
+                    $("#co_actualizar").prop("disabled", false);
+                }
 
             } else {
 
-                if (rowIndx.includes(ui.rowIndx)) {
-                    var pos = rowIndx2.indexOf(ui.rowIndx);
-                    rowIndx.splice(pos, 1);
+                if (ui.rows && ui.rows.length) {
+                    for (var x = 0; x < ui.rows.length; x++) {
+                        if (rowIndx.includes(ui.rows[x].rowIndx)) {
+                            var pos = rowIndx.indexOf(ui.rows[x].rowIndx);
+                            rowIndx.splice(pos, 1);
+                        }
+                    }
                 }
 
-                if (!isCheck) {
-                    rowIndx = []
-                }
-
-                if (rowIndx.length <= 0) {
+                if (this.Checkbox('checkBox').getCheckedNodes().length <= 0) {
                     $("#co_actualizar").prop("disabled", true);
                 }
+
             }
         }
     });
@@ -193,7 +195,6 @@ function fn_setea_grid_principal() {
         postRenderInterval: 0,
         scrollModel: {theme: true},
         numberCell: {show: true},
-        selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: false,
     };
@@ -203,7 +204,9 @@ function fn_setea_grid_principal() {
             type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
             cb: {
                 all: true,
+                select: true,
                 header: true,
+
             }
         },
         { title: "Tipo Orden", width: 531, dataType: "string", dataIndx: "C1", halign: "center", align: "left", editable: false },
