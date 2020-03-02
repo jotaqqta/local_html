@@ -27,7 +27,6 @@ $(document).ready(function () {
     
 
     //COMBOS
-
     fn_combos();
 
 
@@ -38,9 +37,11 @@ $(document).ready(function () {
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
+
     //INGRESA LOS TITULOS
     document.title = g_tit;
     document.body.scroll = "yes";
+
     ///raiz/
     $("#div_header").load("syn_globales/header.htm", function () {
         $("#div_mod0").html(g_modulo);
@@ -64,8 +65,7 @@ $(document).ready(function () {
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//BOTONES-EVENTOS
+///////////////////////////////////BOTONES-EVENTOS/////////////////////////////////
 
     $("#co_filtro").on("click", fn_filtro);
 
@@ -75,7 +75,6 @@ $(document).ready(function () {
 
         if ($.trim($("#co_generar").text()) === "Consultar") {
 
-            //filtro = [ $("#cb_agrup").val()];
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
@@ -139,7 +138,7 @@ $(document).ready(function () {
 
         }
 
-        // Modificar
+/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
 
             if ($("#cb_sistema").val() === "") {
@@ -177,17 +176,8 @@ $(document).ready(function () {
                     return;
                 }
             
-
-            //if ($("#tx_fe_modif").val() !== "") {
-             //   if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
-            //        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-            //        $("#tx_fe_modif").focus();
-             //       return;
-             //   }
-            //}
-
-           
-            fn_mensaje_boostrap("Se modifico", g_tit, $("#co_generar"));
+          
+            fn_mensaje_boostrap("Se modificó", g_tit, $("#co_generar"));
             $("#div_prin").slideDown();
             $("#div_filtro_new_edit_bts").slideUp();
             $('#div_filtro_new_edit_bts').modal('hide');
@@ -228,10 +218,6 @@ $(document).ready(function () {
 
         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
 
-        /*HablaServidor(my_url, parameters, 'text', function() {
-            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
-        });*/
-
         $('#dlg_confirm').modal('hide');
 
     });
@@ -245,7 +231,7 @@ $(document).ready(function () {
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
-    //EVENTO DBL_CLICK DE LA GRILLA
+/////////////////////////////////EVENTO DBL_CLICK DE LA GRILLA/////////////////////////////////
     $grid_principal.pqGrid({
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
@@ -286,7 +272,7 @@ $(document).ready(function () {
 });
 
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+/////////////////////////////////GRILLA///////////////////////////////////////////
 function fn_setea_grid_principal() {
 
     var data =  [
@@ -357,7 +343,7 @@ function fn_setea_grid_principal() {
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+/////////////////////////////////FUNCIONES///////////////////////////////////////////
 
 function fn_filtro(){
 	
@@ -372,17 +358,7 @@ function fn_filtro(){
     fn_limpiar()
     $("#co_limpiar_fil").show();
 
-    //$("#row_nom").hide();
-    //$("#row_descrip").hide();
-    //$("#row_fe_crea").hide();
-    //$("#row_fe_modif").hide();
-
-
-    //$("#tx_codigo").val(filtro[0]);
-    //$("#cb_agrup").val(filtro[1]);
-    //$("#cb_estado").val(filtro[2]);
-
-
+   
     $("#title_mod").html("Filtrar");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
@@ -410,25 +386,9 @@ function fn_edit(dataCell){
 
     $("#tx_path_unix").show();
     $("#tx_path_win").show();
-    $("#tx_tipo_path").show();
-    //$("#row_fe_modif").show();
+    $("#tx_tipo_path").show();   
 
     
-
-    //$("#tx_codigo option").each(function()
-    //{
-    //    if ($(this).text() === dataCell.C1) {
-    //        $("#tx_codigo").val($(this).val());
-    //    }
-    //});
-
-    //$("#cb_sistema").each(function()
-    //{
-    //    if ($(this).text() === dataCell.C1) {
-    //        $("#cb_sistema").val($(this).val());
-    //    }
-    //});
-
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
        $("#div_filtro_new_edit_bts div.modal-footer button").focus();
@@ -450,25 +410,11 @@ function fn_new(){
     fn_limpiar();
     $("#co_limpiar").show();
 
-    //$("#row_nom").show();
-    //$("#row_descrip").show();
-    //$("#row_fe_crea").show();
-    //$("#row_fe_modif").show();
-
+   
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
-    //if (!$("#row_cod").is( "visible") && !$("#row_agrup").is( "visible")) {
-    //    $("#row_cod").show();
-    //    $("#row_agrup").show();      
-
-    //}
-
-    //$("#tx_nombre").val($("#tx_nombre :selected").text());
-    //$("#tx_descrip").val($("#cb_estado :selected").text());
-    //$("#tx_fe_crea").val($("#cb_estado :selected").text());
-    //$("#tx_fe_modif").val($("#cb_estado :selected").text());
-    //$("#cb_estado").val($("#cb_estado :selected").text());
+   
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -499,7 +445,7 @@ function fn_eliminar(rowIndx) {
 
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+////////////////////FUNCION CARGA GRILLA//////////////////////////////////////////////
 
 function fn_carga_grilla() {
 
@@ -511,7 +457,8 @@ function fn_carga_grilla() {
 
 }
 
-// Limpiar Filtro
+////////////////////FUNCION LIMPIAR FILTRO//////////////////////////////////////////////
+
 
 function fn_limpiar(){
 
@@ -525,14 +472,16 @@ function fn_limpiar(){
    
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+//////////////////////////////////////////////////////////////////
 function fn_mensaje(id,mensaje,segundos)
 {
     $(id).show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
+//////////////////////////////////////////////////////////////////
 function fn_validar_fecha(value){
     var real, info;
     if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
