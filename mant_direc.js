@@ -57,6 +57,7 @@ $(document).ready(function () {
 
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
+	$("#co_nuevo").prop("disabled", true);
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
