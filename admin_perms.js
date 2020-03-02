@@ -108,7 +108,7 @@ $(document).ready(function () {
 
                 if (ui.rows && ui.rows.length) {
                     for (var i = 0; i < ui.rows.length; i++) {
-                        rowIndx.push(ui.rows[i].rowIndx);
+                        rowIndx.push(ui.rows[i].rowIndx + 1);
                         rowIndx.sort((a, b) => a - b);
                     }
                 }
@@ -121,8 +121,8 @@ $(document).ready(function () {
 
                 if (ui.rows && ui.rows.length) {
                     for (var x = 0; x < ui.rows.length; x++) {
-                        if (rowIndx.includes(ui.rows[x].rowIndx)) {
-                            var pos = rowIndx.indexOf(ui.rows[x].rowIndx);
+                        if (rowIndx.includes(ui.rows[x].rowIndx + 1)) {
+                            var pos = rowIndx.indexOf(ui.rows[x].rowIndx + 1);
                             rowIndx.splice(pos, 1);
                         }
                     }
