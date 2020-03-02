@@ -360,8 +360,7 @@ function fn_setea_grid_principal() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_filtro(){
-
-    $("#texto").hide();
+	
     $("#combos").show();
     $("#cb_sistema").prop("disabled",false);
     $("#cb_cen_ope").prop("disabled",false);
@@ -402,7 +401,6 @@ function fn_edit(dataCell){
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
     $("#combos").hide();
-    $("#texto").show();
     $("#tx_sistema").val(dataCell.C1);
     $("#tx_cen_ope").val(dataCell.C2);
     $("#tx_path_unix").val(dataCell.C3);
@@ -443,8 +441,6 @@ function fn_new(){
     $("#cb_sistema").prop("disabled",true);
     $("#cb_cen_ope").prop("disabled",true); 
     $("#combos").show();
-    $("#texto").hide();
-
     
     $("#tx_path_unix").show();
     $("#tx_path_win").show();
