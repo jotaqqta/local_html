@@ -408,10 +408,10 @@ function fn_edit(dataCell){
     $("#tx_tipo_path").val(dataCell.C5);
     
 
-    $("#row_nom").show();
-    $("#row_descrip").show();
-    $("#row_fe_crea").show();
-    $("#row_fe_modif").show();
+    $("#tx_path_unix").show();
+    $("#tx_path_win").show();
+    $("#tx_tipo_path").show();
+    //$("#row_fe_modif").show();
 
     
 
