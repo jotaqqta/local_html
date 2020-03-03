@@ -72,6 +72,45 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", fn_new);
 
+    $("#co_generar_fil").on("click", function() {
+
+        if ($.trim($("#co_generar_fil").text()) === "Consultar") {
+
+
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
+            $("#div_prin").slideDown();
+            $("#div_filtro__bts").slideUp();
+            $('#div_filtro__bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+
+        if ($.trim($("#co_generar_fil").text()) === "Generar") {
+
+            if ($("#cb_sistema").val() === "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
+                $("#cb_sistema").focus();
+                return;
+            }
+
+            if ($("#cb_regional").val() === "") {
+
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
+                $("#cb_regional").focus();
+                return;
+            }
+
+
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
+            $("#div_prin").slideDown();
+            $("#div_filtro__bts").slideUp();
+            $('#div_filtro__bts').modal('hide');
+            $(window).scrollTop(0);
+
+        }
+    });
+
     $("#co_generar").on("click", function() {
 
         if ($.trim($("#co_generar").text()) === "Consultar") {
@@ -94,10 +133,10 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($("#cb_cen_ope").val() === "") {
+            if ($("#cb_regional").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CENTRO OPERATIVO!!!</strong></div>',3000);
-                $("#cb_cen_ope").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
+                $("#cb_regional").focus();
                 return;
             }
 
@@ -149,10 +188,10 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($("#cb_cen_ope").val() === "") {
+            if ($("#cb_regional").val() === "") {
 
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CENTRO OPERATIVO!!!</strong></div>',3000);
-                $("#cb_cen_ope").focus();
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
+                $("#cb_regional").focus();
                 return;
             }
 
@@ -313,7 +352,7 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Sistema", width: 210, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
-        { title: "Centro Operativo", width: 210, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Regional", width: 210, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
         { title: "PATH UNIX", width: 210, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
         { title: "PATH WIN", width: 210, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
         { title: "TIPO Path", width: 210, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
@@ -350,7 +389,7 @@ function fn_filtro(){
 	
     $("#combos").show();
     $("#cb_sistema").prop("disabled",false);
-    $("#cb_cen_ope").prop("disabled",false);
+    $("#cb_regional").prop("disabled",false);
     $("#tx_path_unix").hide();
     $("#tx_path_win").hide();
     $("#tx_tipo_path").hide();
@@ -400,7 +439,7 @@ function fn_edit(dataCell){
 
 function fn_new(){
     $("#cb_sistema").prop("disabled",true);
-    $("#cb_cen_ope").prop("disabled",true); 
+    $("#cb_regional").prop("disabled",true); 
     $("#combos").show();
     
     $("#tx_path_unix").show();
@@ -428,7 +467,7 @@ function fn_new(){
 function fn_combos(){
 
     $("#cb_sistema").html("<option value='' selected></option><option value='1'>FACTURACION 1</option> <option value='2' >FACTURACION 2</option>  <option value='3' >FACTURACION 3</option> <option value='3' >FACTURACION 4</option> ");
-    $("#cb_cen_ope").html("<option value='' selected></option><option value='1'>PANAMA METRO 1</option> <option value='2' >PANAMA METRO 2</option>  <option value='3' >PANAMA METRO 3</option> <option value='3' >PANAMA METRO 4</option> ");
+    $("#cb_regional").html("<option value='' selected></option><option value='1'>PANAMA METRO 1</option> <option value='2' >PANAMA METRO 2</option>  <option value='3' >PANAMA METRO 3</option> <option value='3' >PANAMA METRO 4</option> ");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -464,7 +503,7 @@ function fn_carga_grilla() {
 function fn_limpiar(){
 
     $("#cb_sistema").val("");
-    $("#cb_cen_ope").val("");
+    $("#cb_regional").val("");
     $("#tx_sistema").val("");
     $("#tx_cen_ope").val("");
     $("#tx_path_unix").val("");
