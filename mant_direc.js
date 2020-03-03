@@ -74,18 +74,9 @@ $(document).ready(function () {
 
     $("#co_generar_fil").on("click", function() {
 
+       
+
         if ($.trim($("#co_generar_fil").text()) === "Consultar") {
-
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
-            $("#div_prin").slideDown();
-            $("#div_filtro__bts").slideUp();
-            $('#div_filtro__bts').modal('hide');
-            $(window).scrollTop(0);
-
-        }
-
-        if ($.trim($("#co_generar_fil").text()) === "Generar") {
 
             if ($("#cb_sistema").val() === "") {
 
@@ -101,11 +92,9 @@ $(document).ready(function () {
                 return;
             }
 
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
-            $("#div_prin").slideDown();
-            $("#div_filtro__bts").slideUp();
+          
             $('#div_filtro__bts').modal('hide');
+            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
             $(window).scrollTop(0);
 
         }
@@ -215,12 +204,10 @@ $(document).ready(function () {
                     $("#tx_tipo_path").focus();
                     return;
                 }
+                      
             
-          
-            fn_mensaje_boostrap("Se modificó", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
             $('#div_filtro_new_edit_bts').modal('hide');
+            fn_mensaje_boostrap("Se modificó", g_tit, $("#co_generar"));
             $(window).scrollTop(0);
 
         }
@@ -502,8 +489,6 @@ function fn_carga_grilla() {
 
 function fn_limpiar(){
 
-    $("#cb_sistema").val("");
-    $("#cb_regional").val("");
     $("#tx_sistema").val("");
     $("#tx_cen_ope").val("");
     $("#tx_path_unix").val("");
