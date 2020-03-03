@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
-	$("#co_nuevo").prop("disabled", true);
+	$("#co_nuevo").prop("disabled", false);
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
@@ -215,12 +215,12 @@ $(document).ready(function () {
 
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-        fn_limpiar();
+        fn_limpiar_filtro();
     });
 
         $("#co_limpiar_fil").on("click", function () {
         if ($.trim($("#co_limpiar_fil").text()) == "Limpiar") {
-            fn_limpiar();
+            fn_limpiar_filtro();
             return;
         }
         else
@@ -266,7 +266,7 @@ $(document).ready(function () {
                 fn_edit(dataCell);
 
             $("#tx_sistema").prop("disabled",true);
-            $("#tx_cen_ope").prop("disabled",true);
+            $("#tx_regional").prop("disabled",true);
             $("#co_limpiar").hide();       
             }
         }
@@ -382,8 +382,8 @@ function fn_filtro(){
     $("#tx_tipo_path").hide();
 
 
-    fn_limpiar()
-    $("#co_limpiar_fil").show();
+    //fn_limpiar()
+    //$("#co_limpiar").show();
 
    
     $("#title_mod").html("Filtrar");
@@ -405,7 +405,7 @@ function fn_edit(dataCell){
 
     $("#combos").hide();
     $("#tx_sistema").val(dataCell.C1);
-    $("#tx_cen_ope").val(dataCell.C2);
+    $("#tx_regional").val(dataCell.C2);
     $("#tx_path_unix").val(dataCell.C3);
     $("#tx_path_win").val(dataCell.C4);
     $("#tx_tipo_path").val(dataCell.C5);
@@ -484,19 +484,29 @@ function fn_carga_grilla() {
 
 }
 
-////////////////////FUNCION LIMPIAR FILTRO//////////////////////////////////////////////
+////////////////////FUNCION LIMPIAR FILTRO MODAL EDITAR Y NUEVO//////////////////////////////////////////////
 
 
 function fn_limpiar(){
 
     $("#tx_sistema").val("");
-    $("#tx_cen_ope").val("");
+    $("#tx_regional").val("");
     $("#tx_path_unix").val("");
     $("#tx_path_win").val("");
     $("#tx_tipo_path").val("");
    
 }
 
+////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
+
+
+function fn_limpiar_filtro(){
+
+   $("#cb_sistema").val("");
+   $("#cb_regional").val("");
+   
+   
+}
 
 //////////////////////////////////////////////////////////////////
 function fn_mensaje(id,mensaje,segundos)
