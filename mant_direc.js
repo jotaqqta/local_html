@@ -25,15 +25,8 @@ $(document).ready(function () {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });    
     
-
     //COMBOS
     fn_combos();
-
-
- 
-    // INICIA CON EL CURSOR EN EL CAMPO FECHA
-    $("._input_selector").inputmask("dd/mm/yyyy");
-    
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -67,192 +60,121 @@ $(document).ready(function () {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
 ///////////////////////////////////BOTONES-EVENTOS/////////////////////////////////
-
+	$("#co_nuevo").prop("disabled", true);
+	
     $("#co_filtro").on("click", fn_filtro);
 
     $("#co_nuevo").on("click", fn_new);
 
     $("#co_generar_fil").on("click", function() {
-
-       
-
         if ($.trim($("#co_generar_fil").text()) === "Consultar") {
-
             if ($("#cb_sistema").val() === "") {
-
                 fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
                 $("#cb_sistema").focus();
                 return;
             }
 
             if ($("#cb_regional").val() === "") {
-
                 fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
                 $("#cb_regional").focus();
                 return;
             }
-
-          
+			
+			$("#co_nuevo").prop("disabled", false);
             $('#div_filtro__bts').modal('hide');
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
             $(window).scrollTop(0);
-
         }
     });
 
+	
     $("#co_generar").on("click", function() {
-
-        if ($.trim($("#co_generar").text()) === "Consultar") {
-
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);
-
-        }
-
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-                        if ($("#cb_sistema").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
-                $("#cb_sistema").focus();
-                return;
-            }
-
-            if ($("#cb_regional").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
-                $("#cb_regional").focus();
-                return;
-            }
-
             if ($("#tx_path_unix").val() === "") {
-
                 fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
                 $("#tx_path_unix").focus();
                 return;
             }
 
             if ($("#tx_path_win").val() === "") {
-
                 fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
                 $("#tx_path_win").focus();
                 return;
             }
 
             if ($("#tx_tipo_path").val() === "") {
-               
-                    fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-                    $("#tx_tipo_path").focus();
-                    return;
-                }
-            
+				fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+				$("#tx_tipo_path").focus();
+				return;
+			}
 
-            //if ($("#tx_fe_modif").val() !== "") {
-             //   if (fn_validar_fecha($("#tx_fe_modif").val()) === false) {
-            //        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR VALIDAR EL FORMATO DE LA FECHA DE MODIFICACI&Oacute;N!!! RECUERDE QUE ES DD/MM/YYYY</strong></div>', 3000);
-            //        $("#tx_fe_modif").focus();
-             //       return;
-             //   }
-            //}
-
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar"));
-            $("#div_prin").slideDown();
-            $("#div_filtro_new_edit_bts").slideUp();
             $('#div_filtro_new_edit_bts').modal('hide');
+			fn_mensaje_boostrap("Se genero", g_tit, $(""));
             $(window).scrollTop(0);
 
         }
 
-/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
+		/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
-
-            if ($("#cb_sistema").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
-                $("#cb_sistema").focus();
-                return;
-            }
-
-            if ($("#cb_regional").val() === "") {
-
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
-                $("#cb_regional").focus();
-                return;
-            }
-
             if ($("#tx_path_unix").val() === "") {
-
                 fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
                 $("#tx_path_unix").focus();
                 return;
             }
 
             if ($("#tx_path_win").val() === "") {
-
                 fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
                 $("#tx_path_win").focus();
                 return;
             }
 
             if ($("#tx_tipo_path").val() === "") {
-               
-                    fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-                    $("#tx_tipo_path").focus();
-                    return;
-                }
+				fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+				$("#tx_tipo_path").focus();
+				return;
+			}
                       
-            
             $('#div_filtro_new_edit_bts').modal('hide');
-            fn_mensaje_boostrap("Se modificó", g_tit, $("#co_generar"));
+            fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
 
         }
     });
 
+	
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-        fn_limpiar_filtro();
+		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "")
+			$("#co_nuevo").prop("disabled", true);
     });
 
-        $("#co_limpiar_fil").on("click", function () {
-        if ($.trim($("#co_limpiar_fil").text()) == "Limpiar") {
-            fn_limpiar_filtro();
-            return;
-        }
-        else
-            window.close();
+	
+	$("#co_limpiar_fil").on("click", function () {
+		fn_limpiar_filtro();
+		return;
     });
 
+	
     $("#co_limpiar").on("click", function () {
-        if ($.trim($("#co_limpiar").text()) == "Limpiar") {
-            fn_limpiar();
-            return;
-        }
-        else
-            window.close();
+		fn_limpiar();
+		return;
     });
 
+	
     $("#co_cancel").on("click", function (){
         $('#div_filtro_new_edit_bts').modal('hide');
-        fn_limpiar();
     });
 
+	
     $("#co_confirm_yes").on( "click", function () {
-
         $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-
         $('#dlg_confirm').modal('hide');
-
     });
 
+	
     $("#co_confirm_no").on( "click", function () {
-
         $('#dlg_confirm').modal('hide');
-
     });
 
 
@@ -263,11 +185,22 @@ $(document).ready(function () {
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
-                fn_edit(dataCell);
+                $("#title_mod").html("Editar");
+				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
-            $("#tx_sistema").prop("disabled",true);
-            $("#tx_regional").prop("disabled",true);
-            $("#co_limpiar").hide();       
+				$("#tx_sistema").val(dataCell.C1);
+				$("#tx_regional").val(dataCell.C2);
+				$("#tx_path_unix").val("dddd");
+				$("#tx_path_win").val(dataCell.C4);
+				$("#tx_tipo_path").val(dataCell.C5);
+				$("#LpGvBa41").val(dataCell.C5);
+
+				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
+				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
+				   $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+
+				});
+				
             }
         }
     });
@@ -358,9 +291,7 @@ function fn_setea_grid_principal() {
                     .on("click", function () {
 
                         fn_eliminar(rowIndx);
-
                     });
-
             }
         },
     ];
@@ -373,79 +304,31 @@ function fn_setea_grid_principal() {
 /////////////////////////////////FUNCIONES///////////////////////////////////////////
 
 function fn_filtro(){
-	
-    $("#combos").show();
-    $("#cb_sistema").prop("disabled",false);
-    $("#cb_regional").prop("disabled",false);
-    $("#tx_path_unix").hide();
-    $("#tx_path_win").hide();
-    $("#tx_tipo_path").hide();
 
-
-    //fn_limpiar()
-    //$("#co_limpiar").show();
-
-   
     $("#title_mod").html("Filtrar");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
-
     $("#div_filtro__bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro__bts").on("shown.bs.modal", function () {
-    $("#div_filtro__bts div.modal-footer button").focus();
-
-
+    	$("#div_filtro__bts div.modal-footer button").focus();
     });
 }
 
 function fn_edit(dataCell){
 
-    $("#title_mod").html("Editar");
-    $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
-
-    $("#combos").hide();
-    $("#tx_sistema").val(dataCell.C1);
-    $("#tx_regional").val(dataCell.C2);
-    $("#tx_path_unix").val(dataCell.C3);
-    $("#tx_path_win").val(dataCell.C4);
-    $("#tx_tipo_path").val(dataCell.C5);
-    
-
-    $("#tx_path_unix").show();
-    $("#tx_path_win").show();
-    $("#tx_tipo_path").show();   
-
-    
-    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-       $("#div_filtro_new_edit_bts div.modal-footer button").focus();
-
-    });
 
 }
 
 function fn_new(){
-    $("#cb_sistema").prop("disabled",true);
-    $("#cb_regional").prop("disabled",true); 
-    $("#combos").show();
-    
-    $("#tx_path_unix").show();
-    $("#tx_path_win").show();
-    $("#tx_tipo_path").show();
-
 
     fn_limpiar();
     $("#co_limpiar").show();
-
-   
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
-   
-
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    	$("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
     });
 }
@@ -488,9 +371,7 @@ function fn_carga_grilla() {
 
 
 function fn_limpiar(){
-
-    $("#tx_sistema").val("");
-    $("#tx_regional").val("");
+	
     $("#tx_path_unix").val("");
     $("#tx_path_win").val("");
     $("#tx_tipo_path").val("");
@@ -498,14 +379,10 @@ function fn_limpiar(){
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
-
-
 function fn_limpiar_filtro(){
-
    $("#cb_sistema").val("");
    $("#cb_regional").val("");
-   
-   
+    
 }
 
 //////////////////////////////////////////////////////////////////
@@ -516,24 +393,5 @@ function fn_mensaje(id,mensaje,segundos)
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
 
-//////////////////////////////////////////////////////////////////
-function fn_validar_fecha(value){
-    var real, info;
-    if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
-        info = value.split(/\//);
-        var fecha = new Date(info[2], info[1]-1, info[0]);
-        if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
-            real = fecha.toISOString().substr(0,10).split('-');
-            if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-                return true;
-            }
-            return false;
-        } else {
-            return false;
-        }
-    }
-    else {
-        return false;
-    }
-}
+
 
