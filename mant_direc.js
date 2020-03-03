@@ -215,7 +215,7 @@ $(document).ready(function () {
 
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-        fn_limpiar_filtro();
+        //fn_limpiar_filtro();
     });
 
         $("#co_limpiar_fil").on("click", function () {
