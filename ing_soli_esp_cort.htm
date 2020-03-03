@@ -72,98 +72,91 @@
     <div class="container">
         <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
         <div class="row">
-            <div class="col-xs-1"></div>
-            <div class="col-xs-10">
-                <div id="div_prin">
-                    <div class="row">
-                        <div id="content">
-                            <div id="div_gen_onl">
-                                <div class="container" style="width: 100%">
-                                    <div class="row">
-                                        <div class="col-xs-12" style="height: 20px"></div>
+            <div class="col-xs-12">
+                <div id="content">
+                    <div class="container" style="width: 100%">
+                        <div class="row">
+                            <div class="col-xs-12" style="height: 20px"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <label>Carga desde Archivo:</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input id="input_file" accept=".txt" type="file" name="input_file">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <label for="cb_inst_cort">Instancia de Corte:</label>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <label>Carga desde Archivo:</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input id="input_file" accept=".txt" type="file" name="input_file">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="row">
-                                                <div class="col-xs-4">
-                                                    <label for="cb_inst_cort">Instancia de Corte:</label>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <select class="form-control input-normal" id="cb_inst_cort"
-                                                            name="cb_inst_cort"></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <label for="cb_motivo">Motivo:</label>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <select class="form-control input-normal" id="cb_motivo"
-                                                            name="cb_motivo"></select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="height: 10px"></div>
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <label>Debe validarse:</label>
-                                                </div>
-                                                <div class="col-xs-3 text-center">
-                                                        <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_valid_si" name="opt_debe_valid" value="opt_1"><label
-                                                                for="rad_opt_valid_si">Si</label></span>
-                                                </div>
-                                                <div class="col-xs-3">
-                                                        <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_valid_no" name="opt_debe_valid" value="opt_2"><label
-                                                                for="rad_opt_valid_no">No</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <label for="tx_fech_prog_cort">Fecha Prog de Corte:</label>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <input id="tx_fech_prog_cort" name="tx_fech_prog_cort" class="form-control _input_selector">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="height: 10px"></div>
-                                    <div class="row">
-                                        <div class="col-xs-2">
-                                            <label for="tx_observ">Observación:</label>
-                                        </div>
-                                        <div class="col-xs-10">
-                                            <textarea id="tx_observ" name="tx_observ" class="form-control" style="height: 85px; resize: none;"></textarea>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-xs-12 btn-group text-right">
-                                            <button class="btn-sm btn-primary" id="co_ingresar" type="button"><span
-                                                    class="glyphicon glyphicon-ok"></span> Ingresar
-                                            </button>
-                                            <button class="btn-sm btn-secondary" id="co_cerrar_second" type="button"><span
-                                                    class="glyphicon glyphicon-off"></span> Cerrar
-                                            </button>
-                                        </div>
+                                    <div class="col-xs-7">
+                                        <select class="form-control input-normal" id="cb_inst_cort"
+                                                name="cb_inst_cort"></select>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label for="cb_motivo">Motivo:</label>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <select class="form-control input-normal" id="cb_motivo"
+                                                name="cb_motivo"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label>Debe validarse:</label>
+                                    </div>
+                                    <div class="col-xs-3 text-center">
+                                                        <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_valid_si" name="opt_debe_valid" value="opt_1"><label
+                                                                for="rad_opt_valid_si">Si</label></span>
+                                    </div>
+                                    <div class="col-xs-3">
+                                                        <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_valid_no" name="opt_debe_valid" value="opt_2"><label
+                                                                for="rad_opt_valid_no">No</label></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label for="tx_fech_prog_cort">Fecha Prog de Corte:</label>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <input id="tx_fech_prog_cort" name="tx_fech_prog_cort" class="form-control _input_selector">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <label for="tx_observ">Observación:</label>
+                            </div>
+                            <div class="col-xs-10">
+                                <textarea id="tx_observ" name="tx_observ" class="form-control" style="height: 85px; resize: none;"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-12 btn-group text-right">
+                                <button class="btn-sm btn-primary" id="co_ingresar" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Ingresar
+                                </button>
+                                <button class="btn-sm btn-secondary" id="co_cerrar_second" type="button"><span
+                                        class="glyphicon glyphicon-off"></span> Cerrar
+                                </button>
                             </div>
                         </div>
                     </div>
