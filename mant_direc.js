@@ -91,12 +91,8 @@ $(document).ready(function () {
     $("#co_generar").on("click", function() {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if (fn_val_general()== false){
-             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
+            if (fn_val_general())
                 return;   
-            }
-
-
 
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
@@ -107,10 +103,8 @@ $(document).ready(function () {
 		/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
             
-            if (fn_val_general()== false){
-             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
+            if (fn_val_general())
                 return;   
-            }
                       
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
@@ -361,23 +355,24 @@ function fn_limpiar(){
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
 function fn_val_general(){
 
-if ($("#tx_path_unix").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-                $("#tx_path_unix").focus();
-                return false;
-            }
+	if ($("#tx_path_unix").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
+		$("#tx_path_unix").focus();
+		return true;
+	}
 
-            if ($("#tx_path_win").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-                $("#tx_path_win").focus();
-                return false;
-            }
+	if ($("#tx_path_win").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
+		$("#tx_path_win").focus();
+		return true;
+	}
 
-            if ($("#tx_tipo_path").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-                $("#tx_tipo_path").focus();
-                return false;
-            }
+	if ($("#tx_tipo_path").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+		$("#tx_tipo_path").focus();
+		return true;
+	}
+	return false;
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
