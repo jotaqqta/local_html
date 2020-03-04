@@ -328,8 +328,11 @@ function fn_new(){
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    	$("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
+    $("#tx_sistema").val($("#cb_sistema option:selected").text());
+    $("#tx_regional").val($("#cb_regional option:selected").text());
+ 
     });
 }
 
