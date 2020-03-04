@@ -190,10 +190,9 @@ $(document).ready(function () {
 
 				$("#tx_sistema").val(dataCell.C1);
 				$("#tx_regional").val(dataCell.C2);
-				$("#tx_path_unix").val("dddd");
+				$("#tx_path_unix").val(dataCell.C3);
 				$("#tx_path_win").val(dataCell.C4);
 				$("#tx_tipo_path").val(dataCell.C5);
-				$("#LpGvBa41").val(dataCell.C5);
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -325,13 +324,12 @@ function fn_new(){
     $("#co_limpiar").show();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-
+	$("#tx_sistema").val($("#cb_sistema option:selected").text());
+    $("#tx_regional").val($("#cb_regional option:selected").text());
+	
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
-
-    $("#tx_sistema").val($("#cb_sistema option:selected").text());
-    $("#tx_regional").val($("#cb_regional option:selected").text());
+    	$("#div_filtro_new_edit_bts div.modal-footer button").focus();
  
     });
 }
