@@ -96,7 +96,7 @@ $(document).ready(function () {
             }
 
             if ($("#tx_observ").val().length <= 15) {
-                fn_mensaje_boostrap("Error, la Observación debe ser mas larga.", g_tit, $("#tx_observ"));
+                fn_mensaje_boostrap("Error, el campo observación debe tener al menos 15 carácteres.", g_tit, $("#tx_observ"));
                 return;
             }
 
