@@ -145,7 +145,7 @@ $(document).ready(function () {
 	
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "")
+		if ($("#cb_sistema").val() === "" || $("#cb_regional").val() === "")
 			$("#co_nuevo").prop("disabled", true);
     });
 
