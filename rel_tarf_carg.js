@@ -8,6 +8,8 @@ var sql_grid_prim = "";
 var sql_grid_second = "";
 var my_url = "config_plant_corte";
 var rowIndxG;
+var rowEdit = false;
+var rowData = {};
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -84,6 +86,9 @@ $(document).ready(function () {
         $("#div_edit_new").slideDown();
         $("#div_edit_new").show();
         $(window).scrollTop(0);
+
+        $grid_cargo.pqGrid("refreshData");
+        $grid_codigo_valor.pqGrid("refreshData");
     });
 
     $("#co_guardar").on( "click", function () {
@@ -171,8 +176,30 @@ $(document).ready(function () {
             {
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell);
+                rowData = { C1: dataCell.C1, C2: dataCell.C2, C3: dataCell.C3 };
 
+                fn_edit(dataCell);
+            }
+        }
+    });
+
+    $grid_cargo.pqGrid( {
+        refresh: function (event, ui) {
+
+            if (rowEdit) {
+
+                var data = this.getData();
+
+                for (var i = 0; i < data.length; i++) {
+
+                    if (rowData.C1 === data[i].C1 && rowData.C2 === data[i].C2) {
+
+                        this.setSelection({ rowIndx: i, focus: true });
+
+                        $("#selected_cargo").html(data[i].C1);
+                        $("#selected_desc").html(data[i].C2);
+                    }
+                }
             }
         }
     });
@@ -184,6 +211,27 @@ $(document).ready(function () {
 
             $("#selected_cargo").html(dataCell.C1);
             $("#selected_desc").html(dataCell.C2);
+        }
+    });
+
+    $grid_codigo_valor.pqGrid( {
+        refresh: function (event, ui) {
+
+            if (rowEdit) {
+
+                var data = this.getData();
+
+                for (var i = 0; i < data.length; i++) {
+
+                    if (rowData.C3 === data[i].C2) {
+
+                        this.setSelection({ rowIndx: i, focus: true });
+
+                        $("#selected_codigo").html(data[i].C1);
+                        $("#selected_valor").html(data[i].C2);
+                    }
+                }
+            }
         }
     });
 
@@ -482,6 +530,8 @@ function fn_activo(){
 
 function fn_edit(dataCell) {
 
+    rowEdit = true;
+
     fn_limpiar();
 
     $("#tx_fact_aplic").val(dataCell.C4);
@@ -508,6 +558,8 @@ function fn_edit(dataCell) {
 
     $grid_cargo.pqGrid("refreshView");
     $grid_codigo_valor.pqGrid("refreshView");
+
+    rowEdit = false;
 
 }
 
