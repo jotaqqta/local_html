@@ -87,53 +87,30 @@ $(document).ready(function () {
         }
     });
 
-	
+	/////////////////////////////////BOTON GENERAR/////////////////////////////////
     $("#co_generar").on("click", function() {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if ($("#tx_path_unix").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-                $("#tx_path_unix").focus();
-                return;
+            if (fn_val_general()== false){
+             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
+                return;   
             }
 
-            if ($("#tx_path_win").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-                $("#tx_path_win").focus();
-                return;
-            }
 
-            if ($("#tx_tipo_path").val() === "") {
-				fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-				$("#tx_tipo_path").focus();
-				return;
-			}
 
             $('#div_filtro_new_edit_bts').modal('hide');
-			fn_mensaje_boostrap("Se genero", g_tit, $(""));
+			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
 
         }
 
 		/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
-            if ($("#tx_path_unix").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-                $("#tx_path_unix").focus();
-                return;
+            
+            if (fn_val_general()== false){
+             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
+                return;   
             }
-
-            if ($("#tx_path_win").val() === "") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-                $("#tx_path_win").focus();
-                return;
-            }
-
-            if ($("#tx_tipo_path").val() === "") {
-				fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-				$("#tx_tipo_path").focus();
-				return;
-			}
                       
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
@@ -145,7 +122,7 @@ $(document).ready(function () {
 	
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-		if ($("#cb_sistema").val() === "" || $("#cb_regional").val() === "")
+		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "")
 			$("#co_nuevo").prop("disabled", true);
     });
 
@@ -190,9 +167,10 @@ $(document).ready(function () {
 
 				$("#tx_sistema").val(dataCell.C1);
 				$("#tx_regional").val(dataCell.C2);
-				$("#tx_path_unix").val(dataCell.C3);
+				$("#tx_path_unix").val("dddd");
 				$("#tx_path_win").val(dataCell.C4);
 				$("#tx_tipo_path").val(dataCell.C5);
+				$("#LpGvBa41").val(dataCell.C5);
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -324,12 +302,13 @@ function fn_new(){
     $("#co_limpiar").show();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-	$("#tx_sistema").val($("#cb_sistema option:selected").text());
-    $("#tx_regional").val($("#cb_regional option:selected").text());
-	
+
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    	$("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+
+    $("#tx_sistema").val($("#cb_sistema option:selected").text());
+    $("#tx_regional").val($("#cb_regional option:selected").text());
  
     });
 }
@@ -377,6 +356,28 @@ function fn_limpiar(){
     $("#tx_path_win").val("");
     $("#tx_tipo_path").val("");
    
+}
+
+////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
+function fn_val_general(){
+
+if ($("#tx_path_unix").val() === "") {
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
+                $("#tx_path_unix").focus();
+                return false;
+            }
+
+            if ($("#tx_path_win").val() === "") {
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
+                $("#tx_path_win").focus();
+                return false;
+            }
+
+            if ($("#tx_tipo_path").val() === "") {
+                fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
+                $("#tx_tipo_path").focus();
+                return false;
+            }
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
