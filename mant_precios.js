@@ -233,7 +233,7 @@ function fn_setea_grid_principal() {
             mode: "AND",
             header: true,
         },
-        //postRenderInterval: 0,
+        postRenderInterval: 0,
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
@@ -257,7 +257,7 @@ function fn_setea_grid_principal() {
                 return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
             },
                 postRender: function (ui) {
-                    alert("Aqui2");
+                   
 
                 var rowIndx = ui.rowIndx;
 
@@ -324,7 +324,7 @@ function fn_combos(){
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_eliminar(rowIndx) {
-    alert("Aqui");
+
     $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
 
     rowIndxG = rowIndx;
