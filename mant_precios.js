@@ -55,12 +55,12 @@ $(document).ready(function () {
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
+    //$("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
 ///////////////////////////////////BOTONES-EVENTOS/////////////////////////////////
-	$("#co_nuevo").prop("disabled", true);
+	$("#co_nuevo").prop("disabled", false);
 	
     $("#co_filtro").on("click", fn_filtro);
 
@@ -171,7 +171,7 @@ $(document).ready(function () {
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-				   $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+				$("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
 				});
 				
@@ -237,7 +237,15 @@ function fn_setea_grid_principal() {
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
         scrollModel:{theme:true},
-              toolbar: false,
+            toolbar: {
+            cls: "pq-toolbar-export",
+            items:[
+                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
+                { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
+                
+            ]
+        },
     };
 
     obj.colModel = [
@@ -250,44 +258,17 @@ function fn_setea_grid_principal() {
 
 }
 
-//    obj.colModel = [
-//        { title: "Código", width: 200, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
-//        { title: "Descripción", width: 850, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-//        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-//                render: function () {
-//                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-//            },
-//                postRender: function (ui) {
-
-//                var rowIndx = ui.rowIndx;
-
-//                var $grid = this,
-//                    $grid = $grid.getCell(ui);
-
-//                $grid.find("button")
-//                    .on("click", function () {
-
-//                        fn_eliminar(rowIndx);
-//                    });
-//            }
-//        },
-//    ];
-//    obj.dataModel = { data: data };
-
-//    $grid_principal = $("#div_grid_principal").pqGrid(obj);
-
-//}
 
 /////////////////////////////////FUNCIONES///////////////////////////////////////////
 
 function fn_filtro(){
 
-    $("#title_mod").html("Filtrar");
-    $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
+   $("#title_mod").html("Filtrar");
+   $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
     $("#div_filtro__bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro__bts").on("shown.bs.modal", function () {
-    	$("#div_filtro__bts div.modal-footer button").focus();
+   $("#div_filtro__bts").on("shown.bs.modal", function () {
+   	$("#div_filtro__bts div.modal-footer button").focus();
     });
 }
 
@@ -303,12 +284,12 @@ function fn_new(){
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 
-    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+    $("#div_filtro__bts").modal({backdrop: "static",keyboard:false});
+    $("#div_filtro__bts").on("shown.bs.modal", function () {
+    $("#div_filtro__bts div.modal-footer button").focus();
 
-    $("#tx_sistema").val($("#cb_sistema option:selected").text());
-    $("#tx_regional").val($("#cb_regional option:selected").text());
+    //$("#tx_cod").val($("#cb_sistema option:selected").text());
+    //$("#tx_descrip").val($("#cb_regional option:selected").text());
  
     });
 }
