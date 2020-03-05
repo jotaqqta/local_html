@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Nuevo -->
+        <!-- Modal Nuevo y Editar -->
         <div class="modal fade" id="div_filtro_new_edit_bts" role="dialog">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
@@ -101,14 +101,14 @@
                         <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label for="tx_cod_nu">Código</label>
-                                    <input id="tx_cod_nu" class="form-control" readonly>
+                                    <label for="tx_cod">Código</label>
+                                    <input id="tx_cod" class="form-control">
                                 </div>
                             </div>
                             <div class="row" >
                                 <div class="col-sm-12">
-                                    <label for="tx_descrip_nu">Descripción</label>
-                                    <input id="tx_descrip_nu" class="form-control" type="text" style="text-transform:uppercase;">
+                                    <label for="tx_descrip">Descripción</label>
+                                    <input id="tx_descrip" class="form-control" type="text" style="text-transform:uppercase;">
                                 </div>
                             </div>
                         </form>
@@ -124,56 +124,14 @@
                                     class="glyphicon glyphicon-ok"></span> Consultar
                             </button>
                             <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
-                                    class="glyphicon glyphicon-off"></span> Cancelar
+                                    class="glyphicon glyphicon-remove"></span> Cancelar
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Modal Editar -->
-        <div class="modal fade" id="div_filtro__bts" role="dialog" tabindex="-1">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" id="title_mod" data-dismiss="modal">Editar</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_edita" role="form">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <label for="tx_cod">Código</label>
-                                    <input id="tx_cod" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <label for="tx_descrip">Descripción</label>
-                                    <input id="tx_descrip" class="form-control" type="text" style="text-transform:uppercase;">
-                                </div>
-                            </div>
-                        </form>
-                        <br>
-                        <div id="mensaje_filtro_new_edita"></div>
-                         <div class="modal-footer">
-                            <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpia"
-                                    type="button"><span
-                                    class="glyphicon glyphicon-grain"></span> Limpiar
-                            </button>
-
-                            <button class="btn-left btn-sm btn-primary btn-default" id="co_genera" type="button"><span
-                                    class="glyphicon glyphicon-ok"></span> Consultar
-                            </button>
-                            <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancela" type="button"><span
-                                    class="glyphicon glyphicon-off"></span> Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>    
-        </div>
+        </div> 
+    </div>
     
     <!-- Modal Mensaje confirmación borrar -->
     <div id="dlg_confirm" class="modal" role="dialog">
