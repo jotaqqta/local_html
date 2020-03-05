@@ -66,10 +66,7 @@ $(document).ready(function () {
 
 //  <-- Buttons Icons -->
 
-    $("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
-    $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
     $("#div_second").hide();
@@ -211,6 +208,8 @@ $(document).ready(function () {
 
                 $("#tx_codigo").val(dataCell.C1);
                 $("#tx_desc").val(dataCell.C2);
+                $("#div_codigo").html(dataCell.C1);
+                $("#div_desc").html(dataCell.C2);
 
                 $("#div_prin").hide();
                 $("#div_second").show();
@@ -298,7 +297,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_excel2").on("click", function (e) {
+    $("#co_excel_2").on("click", function (e) {
 
         e.preventDefault();
         var col_model = $("#div_grid_second").pqGrid("option", "colModel");
@@ -420,14 +419,7 @@ function fn_set_grid_second() {
         numberCell: {show: true},
         selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
-        toolbar: {
-            cls: "pq-toolbar-export btn-group-sm",
-            items: [
-                {type: "button", label: "Volver", attr: "id=co_volver", cls: "btn btn-primary btn-sm"},
-                {type: "button", label: "Nuevo", attr: "id=co_nuevo", cls: "btn btn-primary btn-sm"},
-                {type: "button", label: "Excel", attr: "id=co_excel2", cls: "btn btn-primary btn-sm"},
-            ]
-        },
+        toolbar: false,
     };
 
     obj.colModel = [
@@ -476,9 +468,9 @@ function fn_set_grids_complementarias() {
     ];
 
     var obj = {
-        height: 250,
+        height: 225,
         showtop: true,
-        showBottom: true,
+        showBottom: false,
         showTitle: false,
         roundCorners: true,
         rowBorders: true,
@@ -487,7 +479,7 @@ function fn_set_grids_complementarias() {
         scrollModel: {theme: true},
         numberCell: {show: true},
         selectionModel: {type: 'row', mode: 'single'},
-        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
+        pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
         toolbar: false,
     };
 
@@ -517,9 +509,9 @@ function fn_set_grids_complementarias() {
     ];
 
     var obj2 = {
-        height: 250,
+        height: 225,
         showtop: true,
-        showBottom: true,
+        showBottom: false,
         showTitle: false,
         roundCorners: true,
         rowBorders: true,
@@ -528,7 +520,7 @@ function fn_set_grids_complementarias() {
         scrollModel: {theme: true},
         numberCell: {show: true},
         selectionModel: {type: 'row', mode: 'single'},
-        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
+        pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
         toolbar: false,
     };
 

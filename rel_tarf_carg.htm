@@ -75,10 +75,23 @@
             }
         }
 
+        #content_second {
+            border-top: 1px solid #C6C6C6;
+            border-left: 1px solid #C6C6C6;
+            border-right: 1px solid #C6C6C6;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            padding: 7px;
+        }
+
         #content_edit_new {
             border-radius: 3px;
             border: 1px solid #C6C6C6;
             padding: 7px;
+        }
+
+        .pq-search-txt {
+            text-transform: uppercase;
         }
 
     </style>
@@ -102,6 +115,35 @@
             </div>
         </div>
         <div id="div_second">
+            <div id="content_second">
+                <div class="container" style="width: 100%">
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <div style="height: 5px"></div>
+                            <label>Tarifa:</label>
+                        </div>
+                        <div class="col-xs-1">
+                            <div style="height: 5px"></div>
+                            <div id="div_codigo"></div>
+                        </div>
+                        <div class="col-xs-5">
+                            <div style="height: 5px"></div>
+                            <div id="div_desc"></div>
+                        </div>
+                        <div class="col-xs-5 text-right">
+                            <button class="btn btn-sm btn-primary btn-group" id="co_volver" type="button"><span
+                                    class="glyphicon glyphicon-chevron-left"></span> Volver
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-group" id="co_nuevo" type="button"><span
+                                    class="glyphicon glyphicon-plus"></span> Nuevo
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-group" id="co_excel_2" type="button"><span
+                                    class="glyphicon glyphicon-save"></span> Excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="bd_second">
                 <!-- PARAMQUERY SECUNDARIO -->
                 <div id="div_grid_second"></div>
@@ -182,9 +224,12 @@
                     <div style="height: 10px"></div>
                     <div class="row">
                         <div class="col-xs-12">
+                            <div class="well well-sm">Cargo</div>
+                        </div>
+                        <div class="col-xs-12">
                             <div class="row">
-                                <div class="col-xs-1">
-                                    <label >Cargo:</label>
+                                <div class="col-xs-2">
+                                    <label>Seleccionado:</label>
                                 </div>
                                 <div class="col-xs-1">
                                     <div id="selected_cargo"></div>
@@ -203,9 +248,12 @@
                     <div style="height: 10px"></div>
                     <div class="row">
                         <div class="col-xs-12">
+                            <div class="well well-sm">Codigo Valor</div>
+                        </div>
+                        <div class="col-xs-12">
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <label >Codigo Valor:</label>
+                                    <label>Seleccionado:</label>
                                 </div>
                                 <div class="col-xs-1">
                                     <div id="selected_codigo"></div>
