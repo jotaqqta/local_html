@@ -1,5 +1,5 @@
 var g_modulo = "Configuraci&oacute;n Base del Sistema";
-var g_tit = "Mantenedor de Productos";
+var g_tit = "Mantención Precios";
 var $grid_principal;
 var sql_grid_prim = "";
 var rowIndxG;
@@ -91,8 +91,12 @@ $(document).ready(function () {
     $("#co_generar").on("click", function() {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
-            if (fn_val_general())
+            if (fn_val_general()== false){
+             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
                 return;   
+            }
+
+
 
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
@@ -103,8 +107,10 @@ $(document).ready(function () {
 		/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
             
-            if (fn_val_general())
+            if (fn_val_general()== false){
+             fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FALTA INFORMACIÓN POR INGRESAR</strong></div>',3000);
                 return;   
+            }
                       
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
@@ -159,12 +165,9 @@ $(document).ready(function () {
                 $("#title_mod").html("Editar");
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
-				$("#tx_sistema").val(dataCell.C1);
-				$("#tx_regional").val(dataCell.C2);
-				$("#tx_path_unix").val(dataCell.C3);
-				$("#tx_path_win").val(dataCell.C4);
-				$("#tx_tipo_path").val(dataCell.C5);
-				$("#LpGvBa41").val(dataCell.C5);
+				$("#tx_cod").val(dataCell.C1);
+				$("#tx_descrip").val(dataCell.C2);
+				
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -207,9 +210,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'FACTURACION 1', C2: 'PANAMA METRO 1', C3: 'ACOPBRO', C4: 'path', C5: 'pathw'},
-        { C1: 'FACTURACION 2', C2: 'PANAMA METRO 2', C3: 'ADAPHE', C4: 'path', C5: 'pathw'},
-        { C1: 'FACTURACION 3', C2: 'PANAMA METRO 3', C3: 'CAJMET', C4: 'path', C5: 'pathw'},
+        { C1: '00702', C2: 'PRECIO RECONEXION INTERIOR'},
+        { C1: '00701', C2: 'PRECIO RECONEXION PANAMA Y COLON'},
+        { C1: '00700', C2: 'PAGO CARGO INFORMATIVO SERVICIO ALCANTARILLADO'},
            
     ];
 
@@ -224,53 +227,56 @@ function fn_setea_grid_principal() {
         columnBorders: true,
         collapsible:true,
         editable:false,
-        postRenderInterval: 0,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        //postRenderInterval: 0,
         selectionModel: { type: 'row',mode:'single'},
         numberCell: { show: true },
         pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
         scrollModel:{theme:true},
-        toolbar: {
-            cls: "pq-toolbar-export",
-            items:[
-                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
-                { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
-                
-            ]
-        },
+              toolbar: false,
     };
 
     obj.colModel = [
-        { title: "Sistema", width: 210, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
-        { title: "Regional", width: 210, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "PATH UNIX", width: 210, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-        { title: "PATH WIN", width: 210, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-        { title: "TIPO Path", width: 210, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-                render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-            },
-                postRender: function (ui) {
-
-                var rowIndx = ui.rowIndx;
-
-                var $grid = this,
-                    $grid = $grid.getCell(ui);
-
-                $grid.find("button")
-                    .on("click", function () {
-
-                        fn_eliminar(rowIndx);
-                    });
-            }
-        },
+        { title: "Código", width: 550, dataType: "string", dataIndx: "C1", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 550, dataType: "string", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
     ];
     obj.dataModel = { data: data };
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
 
 }
+
+//    obj.colModel = [
+//        { title: "Código", width: 200, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
+//        { title: "Descripción", width: 850, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+//        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+//                render: function () {
+//                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
+//            },
+//                postRender: function (ui) {
+
+//                var rowIndx = ui.rowIndx;
+
+//                var $grid = this,
+//                    $grid = $grid.getCell(ui);
+
+//                $grid.find("button")
+//                    .on("click", function () {
+
+//                        fn_eliminar(rowIndx);
+//                    });
+//            }
+//        },
+//    ];
+//    obj.dataModel = { data: data };
+
+//    $grid_principal = $("#div_grid_principal").pqGrid(obj);
+
+//}
 
 /////////////////////////////////FUNCIONES///////////////////////////////////////////
 
@@ -346,15 +352,13 @@ function fn_carga_grilla() {
 
 function fn_limpiar(){
 	
-    $("#tx_path_unix").val("");
-    $("#tx_path_win").val("");
-    $("#tx_tipo_path").val("");
+    $("#tx_cod").val("");
+    $("#tx_descrip").val("");    
    
 }
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
 function fn_val_general(){
-
 
     if ($("#tx_path_unix").val() === "") {
         fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
@@ -373,24 +377,6 @@ function fn_val_general(){
         $("#tx_tipo_path").focus();
         return false;
     }
-	if ($("#tx_path_unix").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-		$("#tx_path_unix").focus();
-		return true;
-	}
-
-	if ($("#tx_path_win").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-		$("#tx_path_win").focus();
-		return true;
-	}
-
-	if ($("#tx_tipo_path").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-		$("#tx_tipo_path").focus();
-		return true;
-	}
-
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////

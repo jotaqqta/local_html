@@ -37,6 +37,8 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
+    $(".number").inputmask("integer");
+
     // COMBOS
 
     fn_set_grid_principal();
