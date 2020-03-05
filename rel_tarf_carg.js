@@ -6,7 +6,7 @@ var $grid_cargo;
 var $grid_codigo_valor;
 var sql_grid_prim = "";
 var sql_grid_second = "";
-var my_url = "config_plant_corte";
+var my_url = "rel_tarf_carg";
 var grid_cargo;
 var grid_codigo_val;
 var rowIndxG;
@@ -278,7 +278,6 @@ $(document).ready(function () {
 
     $("#co_excel").on("click", function (e) {
 
-        fn_filtro();
         e.preventDefault();
         var col_model = $("#div_grid_principal").pqGrid("option", "colModel");
         var cabecera = "";
@@ -301,7 +300,6 @@ $(document).ready(function () {
 
     $("#co_excel2").on("click", function (e) {
 
-        fn_filtro();
         e.preventDefault();
         var col_model = $("#div_grid_second").pqGrid("option", "colModel");
         var cabecera = "";
