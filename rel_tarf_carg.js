@@ -7,6 +7,8 @@ var $grid_codigo_valor;
 var sql_grid_prim = "";
 var sql_grid_second = "";
 var my_url = "config_plant_corte";
+var grid_cargo;
+var grid_codigo_val;
 var rowIndxG;
 var rowEdit = false;
 var rowData = {};
@@ -79,7 +81,9 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", function () {
 
-        fn_limpiar();
+        fn_limpiar(1);
+
+        $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
         $("#div_second").slideUp();
         $("#div_second").hide();
@@ -87,14 +91,50 @@ $(document).ready(function () {
         $("#div_edit_new").show();
         $(window).scrollTop(0);
 
-        $grid_cargo.pqGrid("refreshData");
-        $grid_codigo_valor.pqGrid("refreshData");
+        rowEdit = true;
+
+        $grid_cargo.pqGrid("refreshView");
+        $grid_codigo_valor.pqGrid("refreshView");
+
+        grid_cargo.Checkbox('checkBox').unCheckAll();
+        grid_codigo_val.Checkbox('checkBox').unCheckAll();
+
+        rowEdit = false;
     });
 
     $("#co_guardar").on( "click", function () {
 
-        if ($.trim($("#co_guardar").text()) === "Guardar") {
+        if ($("#tx_fact_aplic").val() === "") {
+            fn_mensaje_boostrap("Error, por favor indique un Factor Aplicación.", g_tit, $("#tx_fact_aplic"));
+            return;
+        }
 
+        if ($("#cb_type_proc").val() === "") {
+            fn_mensaje_boostrap("Error, por favor seleccione un Tipo de Proceso.", g_tit, $("#cb_type_proc"));
+            return;
+        }
+
+        if ($("#cb_type_calc").val() === "") {
+            fn_mensaje_boostrap("Error, por favor seleccione un Tipo de Calculo.", g_tit, $("#cb_type_calc"));
+            return;
+        }
+
+        if ($("#cb_activo").val() === "") {
+            fn_mensaje_boostrap("Error, por favor indique si se encuentra activo.", g_tit, $("#cb_activo"));
+            return;
+        }
+
+        if (grid_cargo.Checkbox('checkBox').getCheckedNodes().length < 1) {
+            fn_mensaje_boostrap("Error, por favor selecciona un Cargo.", g_tit, $("#div_grid_cargo"));
+            return;
+        }
+
+        if (grid_codigo_val.Checkbox('checkBox').getCheckedNodes().length < 1) {
+            fn_mensaje_boostrap("Error, por favor selecciona un Codigo Valor.", g_tit, $("#div_grid_cod_valor"));
+            return;
+        }
+
+        if ($.trim($("#co_guardar").text()) === "Guardar") {
 
 
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_guardar"));
@@ -107,6 +147,7 @@ $(document).ready(function () {
             fn_mensaje_boostrap("Se modifico", g_tit, $("#co_guardar"));
         }
 
+
         $("#div_edit_new").slideUp();
         $("#div_edit_new").hide();
         $("#div_second").slideDown();
@@ -115,10 +156,11 @@ $(document).ready(function () {
     });
 
     $("#co_limpiar").on("click", function () {
-        fn_limpiar();
+        fn_limpiar(2);
     });
 
     $("#co_cancelar").on("click", function (){
+
         $("#div_edit_new").slideUp();
         $("#div_edit_new").hide();
         $("#div_second").slideDown();
@@ -151,6 +193,13 @@ $(document).ready(function () {
 
         $('#dlg_confirm').modal('hide');
 
+    });
+
+    $("#tx_fact_aplic").blur(function () {
+
+        if ($("#tx_fact_aplic").val() < 0) {
+            $("#tx_fact_aplic").val("1");
+        }
     });
 
     $grid_principal.pqGrid( {
@@ -187,19 +236,7 @@ $(document).ready(function () {
         refresh: function (event, ui) {
 
             if (rowEdit) {
-
-                var data = this.getData();
-
-                for (var i = 0; i < data.length; i++) {
-
-                    if (rowData.C1 === data[i].C1 && rowData.C2 === data[i].C2) {
-
-                        this.setSelection({ rowIndx: i, focus: true });
-
-                        $("#selected_cargo").html(data[i].C1);
-                        $("#selected_desc").html(data[i].C2);
-                    }
-                }
+                grid_cargo = this;
             }
         }
     });
@@ -207,10 +244,12 @@ $(document).ready(function () {
     $grid_cargo.pqGrid( {
         rowSelect: function (event, ui) {
 
-            var dataCell = ui.addList[0].rowData;
+            if (!rowEdit) {
+                var dataCell = ui.addList[0].rowData;
 
-            $("#selected_cargo").html(dataCell.C1);
-            $("#selected_desc").html(dataCell.C2);
+                $("#selected_cargo").html(dataCell.C1);
+                $("#selected_desc").html(dataCell.C2);
+            }
         }
     });
 
@@ -218,19 +257,7 @@ $(document).ready(function () {
         refresh: function (event, ui) {
 
             if (rowEdit) {
-
-                var data = this.getData();
-
-                for (var i = 0; i < data.length; i++) {
-
-                    if (rowData.C3 === data[i].C2) {
-
-                        this.setSelection({ rowIndx: i, focus: true });
-
-                        $("#selected_codigo").html(data[i].C1);
-                        $("#selected_valor").html(data[i].C2);
-                    }
-                }
+                grid_codigo_val = this;
             }
         }
     });
@@ -238,10 +265,12 @@ $(document).ready(function () {
     $grid_codigo_valor.pqGrid( {
         rowSelect: function (event, ui) {
 
-            var dataCell = ui.addList[0].rowData;
+            if (!rowEdit) {
+                var dataCell = ui.addList[0].rowData;
 
-            $("#selected_codigo").html(dataCell.C1);
-            $("#selected_valor").html(dataCell.C2);
+                $("#selected_codigo").html(dataCell.C1);
+                $("#selected_valor").html(dataCell.C2);
+            }
         }
     });
 
@@ -334,11 +363,15 @@ function fn_set_grid_principal() {
         columnBorders: true,
         collapsible: true,
         editable: false,
-        postRenderInterval: 0,
-        scrollModel: {theme: true},
-        numberCell: {show: true},
-        selectionModel: {type: 'row', mode: 'single'},
-        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200, 500]},
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        scrollModel: { theme: true},
+        numberCell: { show: true},
+        selectionModel: { type: 'row',mode:'single'},
+        pageModel: {rPP: 100, type: "local", rPPOptions: [50, 100, 200, 500]},
         toolbar: {
             cls: "pq-toolbar-export btn-group-sm",
             items: [
@@ -349,8 +382,8 @@ function fn_set_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Código", width: 91, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 1000, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
+        { title: "Código", width: 91, dataType: "string", dataIndx: "C1", halign: "center", align: "center", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 1000, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj.dataModel = { data: data };
@@ -453,7 +486,6 @@ function fn_set_grids_complementarias() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
-        editable: false,
         scrollModel: {theme: true},
         numberCell: {show: true},
         selectionModel: {type: 'row', mode: 'single'},
@@ -462,8 +494,17 @@ function fn_set_grids_complementarias() {
     };
 
     obj.colModel = [
-        { title: "Cargo", width: 522, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 522, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
+        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
+            cb: {
+                all: true,
+                select: true,
+                header: false,
+                maxCheck: 1
+            }
+        },
+        { title: "Cargo", width: 507, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 507, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
     ];
 
     obj.dataModel = { data: data };
@@ -486,7 +527,6 @@ function fn_set_grids_complementarias() {
         rowBorders: true,
         columnBorders: true,
         collapsible: true,
-        editable: false,
         scrollModel: {theme: true},
         numberCell: {show: true},
         selectionModel: {type: 'row', mode: 'single'},
@@ -495,8 +535,17 @@ function fn_set_grids_complementarias() {
     };
 
     obj2.colModel = [
-        { title: "Código", width: 522, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Valor", width: 522, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", },
+        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: false,
+            cb: {
+                all: true,
+                select: true,
+                header: false,
+                maxCheck: 1
+            }
+        },
+        { title: "Código", width: 507, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Valor", width: 507, dataType: "strig", dataIndx: "C2", halign: "center", align: "left",editable: false },
     ];
 
     obj2.dataModel = { data: data2 };
@@ -530,9 +579,11 @@ function fn_activo(){
 
 function fn_edit(dataCell) {
 
+    $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
+
     rowEdit = true;
 
-    fn_limpiar();
+    fn_limpiar(1);
 
     $("#tx_fact_aplic").val(dataCell.C4);
 
@@ -559,6 +610,59 @@ function fn_edit(dataCell) {
     $grid_cargo.pqGrid("refreshView");
     $grid_codigo_valor.pqGrid("refreshView");
 
+    fn_post_edit();
+}
+
+function fn_post_edit() {
+
+    grid_cargo.Checkbox('checkBox').unCheckAll();
+    grid_codigo_val.Checkbox('checkBox').unCheckAll();
+
+    var data = grid_cargo.getData();
+    var data2 = grid_codigo_val.getData();
+
+    for (var i = 0; i < data.length; i++) {
+
+        if (rowData.C1 === data[i].C1 && rowData.C2 === data[i].C2) {
+
+            var Check = [i].map(function( ri ){
+                return grid_cargo.getRowData({rowIndx: ri});
+            });
+
+            $("#selected_cargo").html(data[i].C1);
+            $("#selected_desc").html(data[i].C2);
+
+            grid_cargo.Checkbox('checkBox').checkNodes(Check);
+
+            break;
+        }
+    }
+
+    for (var x = 0; x < data2.length; x++) {
+
+        if (rowData.C3 === data2[x].C2) {
+
+            var Check2 = [x].map(function( ri ){
+                return grid_codigo_val.getRowData({rowIndx: ri});
+            });
+
+            $("#selected_codigo").html(data2[x].C1);
+            $("#selected_valor").html(data2[x].C2);
+
+            grid_codigo_val.Checkbox('checkBox').checkNodes(Check2);
+
+            break;
+        }
+    }
+
+    if (grid_cargo.Checkbox('checkBox').getCheckedNodes().length < 1) {
+        grid_cargo.Checkbox('checkBox').unCheckAll();
+    }
+
+    if (grid_codigo_val.Checkbox('checkBox').getCheckedNodes().length < 1) {
+        grid_codigo_val.Checkbox('checkBox').unCheckAll();
+    }
+
     rowEdit = false;
 
 }
@@ -576,17 +680,43 @@ function fn_borrar(rowIndx) {
 
 }
 
-function fn_limpiar() {
+function fn_limpiar(type) {
 
-    $("#tx_fact_aplic").val("");
-    $("#cb_type_proc").val("");
-    $("#cb_type_calc").val("");
-    $("#cb_activo").val("");
+    if (type === 1) {
 
-    $("#selected_cargo").html("");
-    $("#selected_desc").html("");
-    $("#selected_codigo").html("");
-    $("#selected_valor").html("");
+        $("#tx_fact_aplic").val("");
+        $("#cb_type_proc").val("");
+        $("#cb_type_calc").val("");
+        $("#cb_activo").val("");
+
+        $("#selected_cargo").html("");
+        $("#selected_desc").html("");
+        $("#selected_codigo").html("");
+        $("#selected_valor").html("");
+    }
+
+    if (type === 2) {
+
+        $("#tx_fact_aplic").val("");
+        $("#cb_type_proc").val("");
+        $("#cb_type_calc").val("");
+        $("#cb_activo").val("");
+
+        $("#selected_cargo").html("");
+        $("#selected_desc").html("");
+        $("#selected_codigo").html("");
+        $("#selected_valor").html("");
+
+        rowEdit = true;
+
+        $grid_cargo.pqGrid("refreshView");
+        $grid_codigo_valor.pqGrid("refreshView");
+
+        grid_cargo.Checkbox('checkBox').unCheckAll();
+        grid_codigo_val.Checkbox('checkBox').unCheckAll();
+
+        rowEdit = false;
+    }
 
 }
 
