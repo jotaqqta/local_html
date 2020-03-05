@@ -355,24 +355,6 @@ function fn_limpiar(){
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
 function fn_val_general(){
 
-
-    if ($("#tx_path_unix").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-        $("#tx_path_unix").focus();
-        return false;
-    }
-
-    if ($("#tx_path_win").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-        $("#tx_path_win").focus();
-        return false;
-    }
-
-    if ($("#tx_tipo_path").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-        $("#tx_tipo_path").focus();
-        return false;
-    }
 	if ($("#tx_path_unix").val() === "") {
 		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
 		$("#tx_path_unix").focus();
@@ -390,7 +372,7 @@ function fn_val_general(){
 		$("#tx_tipo_path").focus();
 		return true;
 	}
-
+	return false;
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
