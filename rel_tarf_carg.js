@@ -564,7 +564,7 @@ function fn_activo(){
 
 function fn_edit(dataCell) {
 
-    $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
+    $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
 
     rowEdit = true;
 
