@@ -21,7 +21,7 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#tx_codigo').keypress(function (tecla){
+    jQuery("#tx_cod").keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });    
     
@@ -303,6 +303,7 @@ function fn_new(){
     $("#co_limpiar").show();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+	$("#tx_cod").prop( "disabled", false);
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
