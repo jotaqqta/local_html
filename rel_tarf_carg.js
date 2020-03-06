@@ -463,7 +463,7 @@ function fn_set_grids_complementarias() {
     ];
 
     var obj = {
-        height: 225,
+        height: 300,
         showtop: true,
         showBottom: false,
         showTitle: false,
@@ -472,7 +472,7 @@ function fn_set_grids_complementarias() {
         columnBorders: true,
         collapsible: true,
         scrollModel: {theme: true},
-        numberCell: {show: true},
+        numberCell: {show: false},
         selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
         toolbar: false,
@@ -489,7 +489,7 @@ function fn_set_grids_complementarias() {
             }
         },
         { title: "Cargo", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 353, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Descripción", width: 383, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
     ];
 
     obj.dataModel = { data: data };
@@ -504,7 +504,7 @@ function fn_set_grids_complementarias() {
     ];
 
     var obj2 = {
-        height: 225,
+        height: 300,
         showtop: true,
         showBottom: false,
         showTitle: false,
@@ -513,7 +513,7 @@ function fn_set_grids_complementarias() {
         columnBorders: true,
         collapsible: true,
         scrollModel: {theme: true},
-        numberCell: {show: true},
+        numberCell: {show: false},
         selectionModel: {type: 'row', mode: 'single'},
         pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
         toolbar: false,
@@ -530,7 +530,7 @@ function fn_set_grids_complementarias() {
             }
         },
         { title: "Código", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Valor", width: 353, dataType: "strig", dataIndx: "C2", halign: "center", align: "left",editable: false },
+        { title: "Valor", width: 383, dataType: "strig", dataIndx: "C2", halign: "center", align: "left",editable: false },
     ];
 
     obj2.dataModel = { data: data2 };
