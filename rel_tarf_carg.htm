@@ -122,15 +122,11 @@
                             <div style="height: 5px"></div>
                             <label>Tarifa:</label>
                         </div>
-                        <div class="col-xs-1">
-                            <div style="height: 5px"></div>
-                            <div id="div_codigo"></div>
-                        </div>
                         <div class="col-xs-5">
                             <div style="height: 5px"></div>
-                            <div id="div_desc"></div>
+                            <label id="div_desc"></label>
                         </div>
-                        <div class="col-xs-5 text-right">
+                        <div class="col-xs-6 text-right">
                             <button class="btn btn-sm btn-primary btn-group" id="co_volver" type="button"><span
                                     class="glyphicon glyphicon-chevron-left"></span> Volver
                             </button>
@@ -166,9 +162,6 @@
                         <div class="col-xs-4">
                             <button class="btn btn-sm btn-primary btn-group" id="co_guardar" type="button"><span
                                     class="glyphicon glyphicon-floppy-disk"></span> Guardar
-                            </button>
-                            <button class="btn btn-sm btn-primary btn-group" id="co_limpiar" type="button"><span
-                                    class="glyphicon glyphicon-grain"></span> Limpiar
                             </button>
                             <button class="btn btn-sm btn-secundary btn-group" id="co_cancelar" type="button"><span
                                     class="glyphicon glyphicon-remove"></span> Cancelar
@@ -223,50 +216,55 @@
                     </div>
                     <div style="height: 10px"></div>
                     <div class="row">
-                        <div class="col-xs-12">
-                            <div class="well well-sm">Cargo</div>
-                        </div>
-                        <div class="col-xs-12">
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-2">
-                                    <label>Seleccionado:</label>
+                                <div class="col-xs-12">
+                                    <div class="well well-sm">Cargo</div>
                                 </div>
-                                <div class="col-xs-1">
-                                    <div id="selected_cargo"></div>
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label>Seleccionado:</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <div id="selected_cargo"></div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div id="selected_desc"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xs-4">
-                                    <div id="selected_desc"></div>
+                                <div class="col-xs-12" style="height: 5px"></div>
+                                <div class="container" style="width: 100%">
+                                    <!-- PARAMQUERY CARGO -->
+                                    <div id="div_grid_cargo"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12" style="height: 5px"></div>
-                        <div class="container" style="width: 100%">
-                            <!-- PARAMQUERY CARGO -->
-                            <div id="div_grid_cargo"></div>
-                        </div>
-                    </div>
-                    <div style="height: 10px"></div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="well well-sm">Codigo Valor</div>
-                        </div>
-                        <div class="col-xs-12">
+                        <div class="col-xs-6">
                             <div class="row">
-                                <div class="col-xs-2">
-                                    <label>Seleccionado:</label>
+                                <div class="col-xs-12">
+                                    <div class="well well-sm">Codigo Valor</div>
                                 </div>
-                                <div class="col-xs-1">
-                                    <div id="selected_codigo"></div>
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label>Seleccionado:</label>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <div id="selected_codigo"></div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div id="selected_valor"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xs-4">
-                                    <div id="selected_valor"></div>
+                                <div class="col-xs-12" style="height: 5px"></div>
+                                <div class="container" style="width: 100%">
+                                    <!-- PARAMQUERY CODIGO VALOR -->
+                                    <div id="div_grid_cod_valor"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12" style="height: 5px"></div>
-                        <div class="container" style="width: 100%">
-                            <!-- PARAMQUERY CODIGO VALOR -->
-                            <div id="div_grid_cod_valor"></div>
                         </div>
                     </div>
                 </div>

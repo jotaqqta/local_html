@@ -78,7 +78,7 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", function () {
 
-        fn_limpiar(1);
+        fn_limpiar();
 
         $("#co_guardar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Guardar");
 
@@ -152,10 +152,6 @@ $(document).ready(function () {
         $(window).scrollTop(0);
     });
 
-    $("#co_limpiar").on("click", function () {
-        fn_limpiar(2);
-    });
-
     $("#co_cancelar").on("click", function (){
 
         $("#div_edit_new").slideUp();
@@ -208,7 +204,6 @@ $(document).ready(function () {
 
                 $("#tx_codigo").val(dataCell.C1);
                 $("#tx_desc").val(dataCell.C2);
-                $("#div_codigo").html(dataCell.C1);
                 $("#div_desc").html(dataCell.C2);
 
                 $("#div_prin").hide();
@@ -493,8 +488,8 @@ function fn_set_grids_complementarias() {
                 maxCheck: 1
             }
         },
-        { title: "Cargo", width: 507, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 507, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Cargo", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 353, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
     ];
 
     obj.dataModel = { data: data };
@@ -534,8 +529,8 @@ function fn_set_grids_complementarias() {
                 maxCheck: 1
             }
         },
-        { title: "Código", width: 507, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Valor", width: 507, dataType: "strig", dataIndx: "C2", halign: "center", align: "left",editable: false },
+        { title: "Código", width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Valor", width: 353, dataType: "strig", dataIndx: "C2", halign: "center", align: "left",editable: false },
     ];
 
     obj2.dataModel = { data: data2 };
@@ -573,7 +568,7 @@ function fn_edit(dataCell) {
 
     rowEdit = true;
 
-    fn_limpiar(1);
+    fn_limpiar();
 
     $("#tx_fact_aplic").val(dataCell.C4);
 
@@ -672,42 +667,15 @@ function fn_borrar(rowIndx) {
 
 function fn_limpiar(type) {
 
-    if (type === 1) {
+    $("#tx_fact_aplic").val("");
+    $("#cb_type_proc").val("");
+    $("#cb_type_calc").val("");
+    $("#cb_activo").val("");
 
-        $("#tx_fact_aplic").val("");
-        $("#cb_type_proc").val("");
-        $("#cb_type_calc").val("");
-        $("#cb_activo").val("");
-
-        $("#selected_cargo").html("");
-        $("#selected_desc").html("");
-        $("#selected_codigo").html("");
-        $("#selected_valor").html("");
-    }
-
-    if (type === 2) {
-
-        $("#tx_fact_aplic").val("");
-        $("#cb_type_proc").val("");
-        $("#cb_type_calc").val("");
-        $("#cb_activo").val("");
-
-        $("#selected_cargo").html("");
-        $("#selected_desc").html("");
-        $("#selected_codigo").html("");
-        $("#selected_valor").html("");
-
-        rowEdit = true;
-
-        $grid_cargo.pqGrid("refreshView");
-        $grid_codigo_valor.pqGrid("refreshView");
-
-        grid_cargo.Checkbox('checkBox').unCheckAll();
-        grid_codigo_val.Checkbox('checkBox').unCheckAll();
-
-        rowEdit = false;
-    }
-
+    $("#selected_cargo").html("");
+    $("#selected_desc").html("");
+    $("#selected_codigo").html("");
+    $("#selected_valor").html("");
 }
 
 function fn_mensaje(id, mensaje, segundos) {
