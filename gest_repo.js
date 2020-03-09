@@ -236,6 +236,8 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
+    fn_limpiar();
+
     $("#div_filtro_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_bts").on("shown.bs.modal", function () {
         $("#div_filtro_bts div.modal-footer button").focus();
@@ -284,7 +286,7 @@ function fn_fecha(valor, valor2) {
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_state_repo(){
+function fn_state_repo() {
 
     $("#cb_state_repo").html("<option value='' selected></option><option value='1'>OPCIÓN 01</option> <option value='2'>OPCIÓN 02</option> <option value='3'>OPCIÓN 03</option>");
 }
@@ -304,7 +306,7 @@ function fn_carga_grilla() {
 
 // Limpiar Filtro
 
-function fn_limpiar(){
+function fn_limpiar() {
 
     $("#cb_state_repo").val("");
     $("#tx_fec_inicial").val("");
@@ -313,8 +315,7 @@ function fn_limpiar(){
     $('input[type=radio][name=opt_tipo_rep]').prop('checked', false);
 }
 
-function fn_mensaje(id,mensaje,segundos)
-{
+function fn_mensaje(id,mensaje,segundos) {
     $(id).show();
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
