@@ -69,15 +69,9 @@ $(document).ready(function () {
 
     $("#co_generar_fil").on("click", function() {
         if ($.trim($("#co_generar_fil").text()) === "Consultar") {
-            if ($("#cb_sistema").val() === "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
-                $("#cb_sistema").focus();
-                return;
-            }
-
-            if ($("#cb_regional").val() === "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR REGIONAL!!!</strong></div>',3000);
-                $("#cb_regional").focus();
+            if ($("#cb_tip_orden").val() === "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO ORDEN!!!</strong></div>',3000);
+                $("#cb_tip_orden").focus();
                 return;
             }
 			
@@ -310,7 +304,7 @@ function fn_new(){
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_tip_ord(){
 
-    $("#cb_tip_ord").html("<option value='' selected></option><option value='1'>AJUSTES</option> <option value='2' >INSTALACIÓN</option>  <option value='3' >REAJUSTE</option> <option value='3' >REINSTALACIÓN</option> ");
+    $("#cb_tip_orden").html("<option value='' selected></option><option value='1'>AJUSTES</option> <option value='2' >INSTALACIÓN</option>  <option value='3' >REAJUSTE</option> <option value='3' >REINSTALACIÓN</option> ");
     
 }
 
@@ -349,32 +343,48 @@ function fn_carga_grilla() {
 
 function fn_limpiar(){
 	
-    $("#tx_path_unix").val("");
-    $("#tx_path_win").val("");
-    $("#tx_tipo_path").val("");
+    $("#tx_rol_fun").val("");
+    $("#tx_rol_fun_2").val("");
+    $("#tx_rol_gen").val("");
+    $("#tx_rol_gen_2").val("");
+    $("#tx_equipo").val("");
+    $("#tx_equipo_2").val("");
+    $("#tx_oper").val("");
+    $("#tx_oper_2").val("");
+    $("#cb_estado").val("");
    
 }
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
 function fn_val_general(){
 
-	if ($("#tx_path_unix").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR PATH UNIX!!!</strong></div>',3000);
-		$("#tx_path_unix").focus();
+	if ($("#tx_rol_fun").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL FUNCIÓN!!!</strong></div>',3000);
+		$("#tx_rol_fun").focus();
 		return true;
 	}
 
-	if ($("#tx_path_win").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DIGITAR PATH WINDOWS!!!</strong></div>',3000);
-		$("#tx_path_win").focus();
+	if ($("#tx_rol_gen").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL GENÉRICO!!!</strong></div>',3000);
+		$("#tx_rol_gen").focus();
 		return true;
 	}
 
-	if ($("#tx_tipo_path").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO PATH</strong></div>', 3000);
-		$("#tx_tipo_path").focus();
+	if ($("#tx_equipo").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR EQUIPO</strong></div>', 3000);
+		$("#tx_equipo").focus();
 		return true;
 	}
+    if ($("#tx_oper").val() === "") {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C. OPER. ÁREA</strong></div>', 3000);
+        $("#tx_oper").focus();
+        return true;
+    }
+    if ($("#cb_estado").val() === "") {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR ESTADO</strong></div>', 3000);
+        $("#cb_estado").focus();
+        return true;
+    }
 	return false;
 }
 
