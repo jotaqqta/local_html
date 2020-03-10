@@ -1,5 +1,5 @@
 var g_modulo = "Administrador de Ordenes Masivas";
-var g_tit = "Mantenedor de Responsabilidades";
+var g_tit = "Administrador de Buzones por Tipo de Orden";
 var $grid_principal;
 var sql_grid_prim = "";
 var rowIndxG;
