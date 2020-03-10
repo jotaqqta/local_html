@@ -159,9 +159,15 @@ $(document).ready(function () {
 				$("#tx_equipo").val(dataCell.C3);
 				$("#tx_oper").val(dataCell.C4);
 
+                if(dataCell.C5 == "A")
+                    $("#co_activar").text("Desactivar");
+                else
+                if(dataCell.C5 == "D")
+                    $("#co_activar").text("Activar");
+
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-				   $("#div_filtro_new_edit_bts div.modal-footer button").focus();
+				$("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
 				});
 				
@@ -201,7 +207,7 @@ function fn_setea_grid_principal() {
 
     var data =  [
         { C1: 'REFA_NIV2', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D'},
-        { C1: 'MMA', C2: 'BUZÓN', C3: ' ', C4: '1000', C5: 'D'},
+        { C1: 'MMA', C2: 'BUZÓN', C3: ' ', C4: '1000', C5: 'A'},
         { C1: 'REFA_NIV1', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D'},
            
     ];
@@ -240,24 +246,7 @@ function fn_setea_grid_principal() {
         { title: "Equipo", width: 210, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
         { title: "C. Oper. Área", width: 210, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
         { title: "Estado", width: 210, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
-        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-                render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-            },
-                postRender: function (ui) {
 
-                var rowIndx = ui.rowIndx;
-
-                var $grid = this,
-                    $grid = $grid.getCell(ui);
-
-                $grid.find("button")
-                    .on("click", function () {
-
-                        fn_eliminar(rowIndx);
-                    });
-            }
-        },
     ];
     obj.dataModel = { data: data };
 
@@ -290,6 +279,7 @@ function fn_new(){
     $("#co_limpiar").show();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+    $("#co_activar").text("Activar");
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {

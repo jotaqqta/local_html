@@ -142,16 +142,16 @@
                                     <input id="tx_oper_2" class="form-control" type="text" style="text-transform:uppercase;">
                                 </div>
                             </div>
-                             <div class="row">
-                                <div class="col-sm-6">
-                                    <label for="cb_estado">Estado</label>
-                                    <select id="cb_estado" class="form-control"></select>
-                                </div>
-                            </div>   
+   
                         </form>
                         <br>
                         <div id="mensaje_filtro_new_edit"></div>
                          <div class="modal-footer">
+                            <button class="btn-sm btn-primary btn-default btn-group pull-center" id="co_activar"
+                                    type="button"><span
+                                    class="glyphicon glyphicon-check"></span> Activar
+                            </button>
+
                             <button class="btn-sm btn-primary btn-default btn-group pull-left" id="co_limpiar"
                                     type="button"><span
                                     class="glyphicon glyphicon-grain"></span> Limpiar
@@ -160,6 +160,7 @@
                             <button class="btn-left btn-sm btn-primary btn-default" id="co_generar" type="button"><span
                                     class="glyphicon glyphicon-ok"></span> Consultar
                             </button>
+
                             <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
                                     class="glyphicon glyphicon-remove"></span> Cancelar
                             </button>
@@ -177,7 +178,7 @@
                         <h4 class="modal-title" id="title_mod" data-dismiss="modal">Filtro</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
+                        <form class="form-horizontal flex-wrap" id="frm_filtrar" role="form">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label for="cb_tip_orden">Tipo Orden</label>
