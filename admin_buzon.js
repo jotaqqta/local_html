@@ -65,7 +65,21 @@ $(document).ready(function () {
 	
     $("#co_filtro").on("click", fn_filtro);
 
-    $("#co_activar").on("click", fn_activar);
+    $("#co_activar").on("click", function() {
+        if ($.trim($("#co_activar").text()) === "Activar") {
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE ACTIVÓ!!!</strong></div>',3000);
+                return;
+            }           
+        else            
+        if  ($.trim($("#co_activar").text()) === "Desactivar") {
+                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE DESACTIVÓ!!!</strong></div>',3000);
+                return;
+            }
+            $('#div_filtro_new_edit_bts').modal('hide');
+            $(window).scrollTop(0);            
+               
+    });
+
 
     $("#co_nuevo").on("click", fn_new);
 
@@ -97,7 +111,7 @@ $(document).ready(function () {
 
         }
 
-		/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
+	/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
         if ($.trim($("#co_generar").text()) === "Modificar") {
             
             if (fn_val_general())
@@ -279,9 +293,6 @@ function fn_edit(dataCell){
 }
 
 function fn_activar(){
-    $("#co_limpiar").show();
-    $("#title_mod").html("Generar nuevo");
-    $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Activar");
 
 }
 
@@ -291,16 +302,13 @@ function fn_new(){
     $("#co_limpiar").show();
     $("#co_activar").hide();
     $("#title_mod").html("Generar nuevo");
-    $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Activar");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-    $("#co_activar").text("Activar");
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
     $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
-    //$("#tx_sistema").val($("#cb_sistema option:selected").text());
-    //$("#tx_regional").val($("#cb_regional option:selected").text());
+ 
  
     });
 }
