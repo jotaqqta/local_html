@@ -155,6 +155,8 @@ $(document).ready(function () {
                 var dataCell = ui.rowData;
                 $("#title_mod").html("Editar");
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+                $("#co_activar").show();
+
 
 				$("#tx_rol_fun").val(dataCell.C1);
 				$("#tx_rol_gen").val(dataCell.C2);
@@ -162,10 +164,10 @@ $(document).ready(function () {
 				$("#tx_oper").val(dataCell.C4);
 
                     if(dataCell.C5 == "A")
-                       $("#co_activar").html("<span class='glyphicon glyphicon-chevron-up'></span> Activar");
+                       $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Desactivar");
                 else
                     if(dataCell.C5 == "D")
-                        $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Desactivar");
+                        $("#co_activar").html("<span class='glyphicon glyphicon-chevron-up'></span> Activar");
 
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
@@ -287,6 +289,7 @@ function fn_new(){
 
     fn_limpiar();
     $("#co_limpiar").show();
+    $("#co_activar").hide();
     $("#title_mod").html("Generar nuevo");
     $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Activar");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
