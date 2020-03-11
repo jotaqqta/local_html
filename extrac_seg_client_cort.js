@@ -37,6 +37,7 @@ $(document).ready(function () {
 
 
     fn_set_grid();
+    fn_radio_change();
 
     // Footer  // Raiz
     $("#div_footer").load("syn_globales/footer.htm");
@@ -56,6 +57,11 @@ $(document).ready(function () {
             fn_mensaje_boostrap("Se ingreso.", g_tit, $("#co_ingresar"));
         }
 
+    });
+
+    $('input[type=radio][name=opt_sector]').change(function() {
+
+        fn_radio_change(this.value);
     });
 
     $("#co_flch_right").on("click", function () {
@@ -311,6 +317,18 @@ function fn_motivo(){
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                                  <-- Functions -->
+
+function fn_radio_change(value) {
+
+    $("#tx_sector_inicial").val("");
+    $("#tx_sector_final").val("");
+
+    $("#div_radio_sector").hide();
+
+    if (value === "opt_2") {
+        $("#div_radio_sector").show();
+    }
+}
 
 function fn_limpiar() {
 
