@@ -255,7 +255,7 @@ function fn_set_grid() {
             }
         },
         { title: "id", width: 30, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false, hidden: true },
-        { title: "Descripción", width: 453, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Descripción", width: 359, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
     ];
 
     obj.dataModel = { data: data };
@@ -290,7 +290,7 @@ function fn_set_grid() {
             }
         },
         { title: "id", width: 30, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false, hidden: true },
-        { title: "Descripción", width: 453, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
+        { title: "Descripción", width: 359, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false },
     ];
 
     $grid_secundaria = $("#div_grid_secundaria").pqGrid(obj2);
