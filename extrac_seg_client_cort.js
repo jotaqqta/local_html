@@ -33,8 +33,14 @@ $(document).ready(function () {
         $("#div_tit0").html(g_tit);
     });
 
-    // COMBOS
-
+    $(".number").inputmask("integer");
+    $(".number_float").inputmask("decimal",{
+        radixPoint:".",
+        groupSeparator: ",",
+        digits: 2,
+        autoUnmask: true,
+        autoGroup: true
+    });
 
     fn_set_grid();
     fn_radio_change();
@@ -50,18 +56,87 @@ $(document).ready(function () {
 
 //                              <-- Buttons - Listeners -->
 
-    $("#co_ingresar").on("click", function () {
+    $("#co_actualizar").on("click", function () {
 
-        if ($.trim($("#co_ingresar").text() === "Ingresar")) {
+        if ($.trim($("#co_actualizar").text() === "Actualizar")) {
 
-            fn_mensaje_boostrap("Se ingreso.", g_tit, $("#co_ingresar"));
+            fn_mensaje_boostrap("Evento funcionando.", g_tit, $("#co_ingresar"));
         }
 
+    });
+
+    $("#co_eliminar").on("click", function () {
+
+        if ($.trim($("#co_eliminar").text() === "Eliminar")) {
+
+            fn_mensaje_boostrap("Evento funcionando.", g_tit, $("#co_ingresar"));
+        }
+
+    });
+
+    $("#co_nuevo").on("click", function () {
+
+        if ($.trim($("#co_nuevo").text() === "Nuevo")) {
+
+            fn_limpiar();
+        }
+    });
+
+    $("#co_guardar").on("click", function () {
+        if ($.trim($("#co_guardar").text() === "Guardar")) {
+
+            if ($("#tx_mail_para").val() === "") {
+                fn_mensaje('#mensaje_env_aviso','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un destinatario.</strong></div>',3000);
+                $("#tx_mail_para").focus();
+                return;
+            }
+
+            if ($("#tx_mail_asunto").val() === "") {
+                fn_mensaje('#mensaje_env_aviso','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica un asunto.</strong></div>',3000);
+                $("#tx_mail_asunto").focus();
+                return;
+            }
+
+            if ($("#tx_mail_cuerpo").val() === "") {
+                fn_mensaje('#mensaje_env_aviso','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor ingrese el cuerpo del correo.</strong></div>',3000);
+                $("#tx_mail_cuerpo").focus();
+                return;
+            }
+
+            if ($("#tx_mail_cuerpo").val().length <= 30) {
+                fn_mensaje('#mensaje_env_aviso','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, el cuerpo del correo es demasiado corto.</strong></div>',3000);
+                $("#tx_mail_cuerpo").focus();
+                return;
+            }
+
+            fn_mensaje_boostrap("Mensaje creado.", g_tit, $("#co_guardar"));
+            $("#div_env_aviso_bts").modal('hide');
+        }
+    });
+
+    $("#co_env_aviso").on("click", function () {
+        $("#div_env_aviso_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_env_aviso_bts").on("shown.bs.modal", function () {
+            $("#div_env_aviso_bts div.modal-footer button").focus();
+
+        });
     });
 
     $('input[type=radio][name=opt_sector]').change(function() {
 
         fn_radio_change(this.value);
+    });
+
+    $("#tx_sector_inicial").blur(function () {
+        if ($("#tx_sector_inicial").val() < 0) {
+            $("#tx_sector_inicial").val("0")
+        }
+    });
+
+    $("#tx_sector_final").blur(function () {
+        if ($("#tx_sector_final").val() < 0) {
+            $("#tx_sector_final").val("0")
+        }
     });
 
     $("#co_flch_right").on("click", function () {
@@ -193,8 +268,8 @@ $(document).ready(function () {
 
     });
 
-    $("#co_cancelar").on("click", function () {
-
+    $("#co_cancel").on("click", function () {
+        $("#div_env_aviso_bts").modal('hide');
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
@@ -306,14 +381,6 @@ function fn_set_grid() {
 
 //                                  <-- Combos -->
 
-function fn_inst_cort(){
-
-}
-
-function fn_motivo(){
-
-}
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                                  <-- Functions -->
@@ -330,8 +397,29 @@ function fn_radio_change(value) {
     }
 }
 
-function fn_limpiar() {
+function fn_limpiar(type) {
 
+    if (type === 1) {
+        $("#tx_mail_para").val("");
+        $("#tx_mail_asunto").val("");
+        $("#tx_mail_cuerpo").val("");
+    }
+
+    if (type === undefined) {
+
+        $("#tx_num_secuen").val("");
+        $("#tx_dias_ant").val("");
+        $("#tx_sector_inicial").val("");
+        $("#tx_sector_final").val("");
+        $("#tx_deuda_inicial").val("");
+        $("#tx_deuda_final").val("");
+        $('input[type=radio][name=opt_sector][value=opt_1]').prop('checked', true);
+        $("#div_radio_sector").hide();
+
+        $("#tx_mail_para").val("");
+        $("#tx_mail_asunto").val("");
+        $("#tx_mail_cuerpo").val("");
+    }
 
 }
 

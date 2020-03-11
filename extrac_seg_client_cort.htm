@@ -70,12 +70,8 @@
 <div class="bootstrap-syn">
     <br>
     <div class="container">
-        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
         <div id="content">
             <div class="container" style="width: 100%">
-                <!-- <div id="buttons">
-
-                </div>-->
                 <div class="row">
                     <div style="height: 5px"></div>
                     <div class="col-xs-6">
@@ -84,7 +80,7 @@
                                 <label for="tx_num_secuen">Numero secuencia:</label>
                             </div>
                             <div class="col-xs-7">
-                                <input id="tx_num_secuen" name="tx_num_secuen" class="form-control">
+                                <input id="tx_num_secuen" name="tx_num_secuen" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -94,7 +90,7 @@
                                 <label for="tx_dias_ant">Días anteriores:</label>
                             </div>
                             <div class="col-xs-9">
-                                <input id="tx_dias_ant" name="tx_dias_ant" class="form-control">
+                                <input id="tx_dias_ant" name="tx_dias_ant" maxlength="2" class="form-control number">
                             </div>
                         </div>
                     </div>
@@ -114,10 +110,10 @@
                         </div>
                     </div>
                     <div class="col-xs-2 text-center">
-                        <div style="height: 75px"> &nbsp;</div>
+                        <div style="height: 65px"> &nbsp;</div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-sm btn-primary btn-group-vertical" id="co_flch_right" type="button"><span
+                                <button class="btn btn-primary btn-group-vertical" id="co_flch_right" type="button"><span
                                         class="glyphicon glyphicon-chevron-right"></span>
                                 </button>
                             </div>
@@ -125,7 +121,7 @@
                         <div style="height: 5px"> &nbsp;</div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-sm btn-primary btn-group-vertical" id="co_flch_left" type="button"><span
+                                <button class="btn btn-primary btn-group-vertical" id="co_flch_left" type="button"><span
                                         class="glyphicon glyphicon-chevron-left"></span>
                                 </button>
                             </div>
@@ -150,7 +146,7 @@
                         <div class="col-xs-6">
                             <div class="row">
                                 <div class="col-xs-6 text-center">
-                                <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_sect_todos" name="opt_sector" value="opt_1"><label
+                                <span class="radio-inline"><input class="radio-inline" type="radio" id="rad_opt_sect_todos" name="opt_sector" value="opt_1" checked><label
                                         for="rad_opt_sect_todos">Todos</label></span>
                                 </div>
                                 <div class="col-xs-6">
@@ -167,7 +163,7 @@
                                             <label for="tx_sector_inicial">Inicial:</label>
                                         </div>
                                         <div class="col-xs-8">
-                                            <input id="tx_sector_inicial" name="tx_sector_inicial" class="form-control">
+                                            <input id="tx_sector_inicial" name="tx_sector_inicial" maxlength="2" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +173,7 @@
                                             <label for="tx_sector_final">Final</label>
                                         </div>
                                         <div class="col-xs-8">
-                                            <input id="tx_sector_final" name="tx_sector_final" class="form-control">
+                                            <input id="tx_sector_final" name="tx_sector_final" maxlength="2" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +196,7 @@
                                     <label for="tx_deuda_inicial">Deuda Inicial:</label>
                                 </div>
                                 <div class="col-xs-9">
-                                    <input id="tx_deuda_inicial" name="tx_deuda_inicial" class="form-control">
+                                    <input id="tx_deuda_inicial" name="tx_deuda_inicial" maxlength="13" class="form-control number_float">
                                 </div>
                             </div>
                         </div>
@@ -210,7 +206,7 @@
                                     <label for="tx_deuda_final">Deuda Final</label>
                                 </div>
                                 <div class="col-xs-9">
-                                    <input id="tx_deuda_final" name="tx_deuda_final" class="form-control">
+                                    <input id="tx_deuda_final" name="tx_deuda_final" maxlength="13" class="form-control number_float">
                                 </div>
                             </div>
                         </div>
@@ -225,11 +221,61 @@
                         <button class="btn btn-sm btn-primary btn-group" id="co_actualizar" type="button"><span
                                 class="glyphicon glyphicon-floppy-disk"></span> Actualizar
                         </button>
+                        <button class="btn btn-sm btn-primary btn-group" id="co_env_aviso" type="button"><span
+                                class="glyphicon glyphicon-envelope"></span> Envio Aviso
+                        </button>
                         <button class="btn btn-sm btn-primary btn-group" id="co_eliminar" type="button"><span
                                 class="glyphicon glyphicon-trash"></span> Eliminar
                         </button>
                         <button class="btn btn-sm btn-secondary btn-group" id="co_cerrar" type="button"><span
                                 class="glyphicon glyphicon-off"></span> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+        <!-- Inicio Modal Envio Aviso -->
+        <div class="modal fade" id="div_env_aviso_bts" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" data-dismiss="modal">Envio Aviso</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label for="tx_mail_para">Para:</label>
+                                <input id="tx_mail_para" name="tx_mail_para" class="form-control">
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label for="tx_mail_asunto">Asunto:</label>
+                                <input id="tx_mail_asunto" name="tx_mail_asunto" class="form-control">
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="row">
+                            <div class="col-xs-12" style="overflow: auto">
+                                <label for="tx_mail_cuerpo">Cuerpo:</label>
+                                <textarea id="tx_mail_cuerpo" name="tx_mail_cuerpo" class="form-control" style="resize: none; height: 75px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mensaje_env_aviso"></div>
+                    <div class="modal-footer">
+                        <button class="btn-left btn-sm btn-primary btn-default" id="co_guardar" type="button"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                        </button>
+                        <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-off"></span> Cancelar
+                        </button>
+                        <button class="pull-left btn-sm btn-primary btn-default" id="co_limpiar" type="button"><span
+                                class="glyphicon glyphicon-grain"></span> Limpiar
                         </button>
                     </div>
                 </div>
