@@ -65,6 +65,8 @@ $(document).ready(function () {
 	
     $("#co_filtro").on("click", fn_filtro);
 
+    $("#co_activar").on("click", fn_activar);
+
     $("#co_nuevo").on("click", fn_new);
 
     $("#co_generar_fil").on("click", function() {
@@ -159,11 +161,12 @@ $(document).ready(function () {
 				$("#tx_equipo").val(dataCell.C3);
 				$("#tx_oper").val(dataCell.C4);
 
-                if(dataCell.C5 == "A")
-                    $("#co_activar").text("Desactivar");
+                    if(dataCell.C5 == "A")
+                       $("#co_activar").html("<span class='glyphicon glyphicon-chevron-up'></span> Activar");
                 else
-                if(dataCell.C5 == "D")
-                    $("#co_activar").text("Activar");
+                    if(dataCell.C5 == "D")
+                        $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Desactivar");
+
 
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -273,11 +276,19 @@ function fn_edit(dataCell){
 
 }
 
+function fn_activar(){
+    $("#co_limpiar").show();
+    $("#title_mod").html("Generar nuevo");
+    $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Activar");
+
+}
+
 function fn_new(){
 
     fn_limpiar();
     $("#co_limpiar").show();
     $("#title_mod").html("Generar nuevo");
+    $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Activar");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
     $("#co_activar").text("Activar");
 
@@ -285,8 +296,8 @@ function fn_new(){
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
     $("#div_filtro_new_edit_bts div.modal-footer button").focus();
 
-    $("#tx_sistema").val($("#cb_sistema option:selected").text());
-    $("#tx_regional").val($("#cb_regional option:selected").text());
+    //$("#tx_sistema").val($("#cb_sistema option:selected").text());
+    //$("#tx_regional").val($("#cb_regional option:selected").text());
  
     });
 }
