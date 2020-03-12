@@ -60,7 +60,70 @@ $(document).ready(function () {
 
         if ($.trim($("#co_actualizar").text() === "Actualizar")) {
 
-            fn_mensaje_boostrap("Evento funcionando.", g_tit, $("#co_ingresar"));
+            if ($("#tx_dias_ant").val() === "") {
+                fn_mensaje_boostrap("Error, por favor indique los días anteriores.", g_tit, $("#tx_dias_ant"));
+                return;
+            }
+
+            if (parseInt($("#tx_dias_ant").val()) < 4) {
+                fn_mensaje_boostrap("Error, el numero de días debe ser mayor o igual a 4.", g_tit, $("#tx_dias_ant"));
+                return;
+            }
+
+            if ($('input[type=radio][name=opt_sector][value=opt_2]').is(":checked")) {
+
+                if ($("#tx_sector_inicial").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indique el sector Inicial.", g_tit, $("#tx_sector_inicial"));
+                    return;
+                }
+
+                if ($("#tx_sector_final").val() === "") {
+                    fn_mensaje_boostrap("Error, por favor indique el sector Final.", g_tit, $("#tx_sector_final"));
+                    return;
+                }
+
+                if (parseInt($("#tx_sector_inicial").val()) > parseInt($("#tx_sector_final").val())) {
+                    fn_mensaje_boostrap("Error, el Sector Inicial debe ser menor o igual que el Sector Final.", g_tit, $("#tx_sector_inicial"));
+                    return;
+                }
+            }
+
+            if ($("#tx_deuda_inicial").val() === "") {
+                fn_mensaje_boostrap("Error, por favor indique la Deuda Inicial.", g_tit, $("#tx_deuda_inicial"));
+                return;
+            }
+
+            if ($("#tx_deuda_final").val() === "") {
+                fn_mensaje_boostrap("Error, por favor indique la Deuda Final.", g_tit, $("#tx_deuda_final"));
+                return;
+            }
+
+            if (parseFloat($("#tx_deuda_inicial").val()) > parseFloat($("#tx_deuda_final").val())) {
+                fn_mensaje_boostrap("Error, la Deuda Inicial debe ser menor o igual que Deuda Final.", g_tit, $("#tx_sector_inicial"));
+                return;
+            }
+
+            if ($("#tx_mail_para").val() === "") {
+                fn_mensaje_boostrap("Error, el Correo no cuenta con destinatario.", g_tit, $("#co_env_aviso"));
+                return;
+            }
+
+            if ($("#tx_mail_asunto").val() === "") {
+                fn_mensaje_boostrap("Error, el Correo no cuenta con asunto.", g_tit, $("#co_env_aviso"));
+                return;
+            }
+
+            if ($("#tx_mail_cuerpo").val() === "") {
+                fn_mensaje_boostrap("Error, el Correo no cuenta con cuerpo.", g_tit, $("#co_env_aviso"));
+                return;
+            }
+
+            if ($("#tx_mail_cuerpo").val().length <= 30) {
+                fn_mensaje_boostrap("Error, el cuerpo del Correo es demasiado corto.", g_tit, $("#co_env_aviso"));
+                return;
+            }
+
+            fn_mensaje_boostrap("Se actualizo.", g_tit, $("#co_ingresar"));
         }
 
     });
