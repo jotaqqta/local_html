@@ -66,17 +66,16 @@ $(document).ready(function () {
     $("#co_filtro").on("click", fn_filtro);
 
     $("#co_activar").on("click", function() {
+		$('#div_filtro_new_edit_bts').modal('hide');
         if ($.trim($("#co_activar").text()) === "Activar") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE ACTIVÓ!!!</strong></div>',3000);
-                return;
-            }           
-        else            
-        if  ($.trim($("#co_activar").text()) === "Desactivar") {
-                fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE DESACTIVÓ!!!</strong></div>',3000);
-                return;
-            }
-            $('#div_filtro_new_edit_bts').modal('hide');
-            $(window).scrollTop(0);            
+			fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE ACTIVÓ!!!</strong></div>',3000);
+		}           
+      	else
+		{
+			fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE DESACTIVÓ!!!</strong></div>',3000);
+			return;
+		}
+        $(window).scrollTop(0);            
                
     });
 
