@@ -156,9 +156,9 @@ $(document).ready(function () {
         var data_grid_second = grid_secundaria.getData();
 
         var Checked = grid_principal.Checkbox('checkBox').getCheckedNodes();
-        var ids = grid_principal.SelectRow().getSelection().map(function(rowList){
+        /*var ids = grid_principal.SelectRow().getSelection().map(function(rowList){ // Obtiene las rows para ocultarlas.
             return rowList.rowIndx
-        });
+        });*/
 
         for (var i = 0; i < Checked.length; i++) {
 
