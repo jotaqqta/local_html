@@ -141,6 +141,8 @@ $(document).ready(function () {
 
     $("#co_flch_right").on("click", function () {
 
+        // Lineas comentadas: funcionalidad para ocultar y desocultar filas de la grilla izquierda al moverlas.
+
         update = true;
 
         $grid_principal.pqGrid("refreshView");
@@ -175,7 +177,7 @@ $(document).ready(function () {
                 if (!row_id_second.includes(checked_prin[y])) {
                     $grid_secundaria.pqGrid( "addRow", { rowData: { C1: Checked[y].C1, C2: Checked[y].C2 }, checkEditable: false } );
 
-                    grid_principal.addClass( {rowIndx: ids[y], cls: 'pq-hide'} );
+                    //grid_principal.addClass( {rowIndx: ids[y], cls: 'pq-hide'} ); //<-- Clase para ocultarlas -->
                 }
             }
 
@@ -183,15 +185,15 @@ $(document).ready(function () {
             for (var x = 0; x < checked_prin.length; x++) {
                 $grid_secundaria.pqGrid( "addRow", { rowData: { C1: Checked[x].C1, C2: Checked[x].C2 }, checkEditable: false } );
 
-                grid_principal.addClass( {rowIndx: ids[x], cls: 'pq-hide'} );
+                //grid_principal.addClass( {rowIndx: ids[x], cls: 'pq-hide'} ); //<-- Clase para ocultarlas -->
             }
         }
 
-        var rowToHide = grid_principal.getRowsByClass( { cls : 'pq-hide' } );
+        /*var rowToHide = grid_principal.getRowsByClass( { cls : 'pq-hide' } ); // Variable que obtiene las rows con esa clase
 
-        for (var k = 0; k < rowToHide.length; k++) {
+        for (var k = 0; k < rowToHide.length; k++) { // Función que oculta las rows con la clase pq-hide
             rowToHide[k].rowData.pq_hidden = true;
-        }
+        }*/
 
         grid_principal.Checkbox('checkBox').unCheckAll();
 
@@ -201,12 +203,13 @@ $(document).ready(function () {
 
     $("#co_flch_left").on("click", function () {
 
+        // Lineas comentadas: funcionalidad para ocultar y desocultar filas de la grilla izquierda al moverlas.
+
         var checked_second = [];
-        var rowsToUnHide = [];
-        rowDelete = [];
+        //var rowsToUnHide = [];
 
         var Checked = grid_secundaria.Checkbox('checkBox').getCheckedNodes();
-        var rowsWithHide = grid_principal.getRowsByClass( { cls : 'pq-hide' } );
+        //var rowsWithHide = grid_principal.getRowsByClass( { cls : 'pq-hide' } ); // Obtiene las rows para desocultar
         var ids = grid_secundaria.SelectRow().getSelection().map(function(rowList){
             return rowList.rowIndx
         });
@@ -216,33 +219,34 @@ $(document).ready(function () {
             checked_second.push(parseInt((Checked[i].C1)));
         }
 
-        for (var x = 0; x < rowsWithHide.length; x++) {
+        /*for (var x = 0; x < rowsWithHide.length; x++) { // Función para obtener el ID de las rows a desocultar
 
             rowsToUnHide.push(parseInt(rowsWithHide[x].rowData.C1))
-        }
+        }*/
 
         if (checked_second.length === 1) {
-            for (var y = 0; y < rowsToUnHide.length; y++) {
-                if (rowsToUnHide[y] === checked_second[0]) {
+            grid_secundaria.addClass( {rowIndx: ids[0], cls: 'pq-delete'} ); // En caso de usar la manera para ocultar moverlo a donde se encuentra el comentario <- AQUI ->
+            /*for (var y = 0; y < rowsToUnHide.length; y++) { // Función que compara las rows ocultas con las seleccionadas para mover a la izquierda (Unicamente una seleccionada)
+                if (rowsToUnHide[y] === checked_second[0]) { // Compara el ID de la row oculta con el ID de la row seleccionada (Es 0 por que es unicamente 1).
                     if (parseInt(rowsWithHide[y].rowData.C1) === checked_second[0]) {
-                        rowsWithHide[y].rowData.pq_hidden = false;
-                        grid_principal.removeClass( {rowIndx: rowsWithHide[y].rowIndx, cls: 'pq-hide'} );
-                        grid_secundaria.addClass( {rowIndx: ids[0], cls: 'pq-delete'} );
-
+                        //rowsWithHide[y].rowData.pq_hidden = false; // Desoculta
+                        //grid_principal.removeClass( {rowIndx: rowsWithHide[y].rowIndx, cls: 'pq-hide'} ); // Remueve la clase pq-hide
+                        // <- AQUI ->
                     }
                 }
-            }
+            }*/
         } else {
             for (var m = 0; m <= checked_second.length; m++) {
-                for (var z = 0; z < rowsToUnHide.length; z++) {
-                    if (rowsToUnHide[z] === checked_second[m]) {
+                grid_secundaria.addClass( {rowIndx: ids[m], cls: 'pq-delete'} ); // En caso de usar la manera para ocultar moverlo a donde se encuentra el comentario <- AQUI 2 ->
+                /*for (var z = 0; z < rowsToUnHide.length; z++) { // Función que compara las rows ocultas con las seleccionadas para mover a la izquierda (Varias seleccionadas)
+                    if (rowsToUnHide[z] === checked_second[m]) { // Compara el ID de la row oculta con el ID de la row seleccionada.
                         if (parseInt(rowsWithHide[z].rowData.C1) === checked_second[m]) {
-                            rowsWithHide[z].rowData.pq_hidden = false;
-                            grid_principal.removeClass( {rowIndx: rowsWithHide[z].rowIndx, cls: 'pq-hide'} );
-                            grid_secundaria.addClass( {rowIndx: ids[m], cls: 'pq-delete'} );
+                            //rowsWithHide[z].rowData.pq_hidden = false; // Desoculta la row
+                            //grid_principal.removeClass( {rowIndx: rowsWithHide[z].rowIndx, cls: 'pq-hide'} ); // Remueve la clase pq-hide
+                            // <- AQUI 2 ->
                         }
                     }
-                }
+                }*/
             }
         }
 
