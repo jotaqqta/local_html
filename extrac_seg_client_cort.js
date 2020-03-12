@@ -70,6 +70,13 @@ $(document).ready(function () {
                 return;
             }
 
+            var data = $grid_secundaria.pqGrid("option","dataModel.data");
+
+            if (data.length < 1) {
+                fn_mensaje_boostrap("Error, por favor seleccione una Situación Encontrada (Debe seleccionar almenos 1).", g_tit, $(""));
+                return;
+            }
+
             if ($('input[type=radio][name=opt_sector][value=opt_2]').is(":checked")) {
 
                 if ($("#tx_sector_inicial").val() === "") {
