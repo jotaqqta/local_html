@@ -68,12 +68,11 @@ $(document).ready(function () {
     $("#co_activar").on("click", function() {
 		$('#div_filtro_new_edit_bts').modal('hide');
         if ($.trim($("#co_activar").text()) === "Activar") {
-			fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE ACTIVÓ!!!</strong></div>',3000);
+			fn_mensaje_boostrap("Se Activó", g_tit, $(""));
 		}           
       	else
 		{
-			fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>SE DESACTIVÓ!!!</strong></div>',3000);
-			return;
+			fn_mensaje_boostrap("Se Desactivó", g_tit, $(""));
 		}
         $(window).scrollTop(0);            
                
