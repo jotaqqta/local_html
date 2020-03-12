@@ -80,7 +80,6 @@
 </div>
 
 <div class="bootstrap-syn">
-    <br>
     <div class="container">
         <div id="div_prin">
             <div class="" id="bd_prin">
@@ -106,7 +105,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="well well-sm">Asociaci&oacute;n de Roles</div>
-                                </div>    
+                                </div>
                                 <div class="col-sm-6">
                                     <label for="tx_rol_fun">Rol Funci&oacute;n</label>
                                     <input id="tx_rol_fun" class="form-control" type="text" style="text-transform:uppercase;">
@@ -146,11 +145,11 @@
                                     <input id="tx_oper_2" class="form-control" type="text" style="text-transform:uppercase;">
                                 </div>
                             </div>
-   
+
                         </form>
                         <br>
                         <div id="mensaje_filtro_new_edit"></div>
-                         <div class="modal-footer">
+                        <div class="modal-footer">
                             <button class="btn-sm btn-primary btn-default btn-group pull-center" id="co_activar"
                                     type="button"><span
                                     class="glyphicon glyphicon-check"></span> Activar
@@ -188,45 +187,46 @@
                                     <label for="cb_tip_orden">Tipo Orden</label>
                                     <select id="cb_tip_orden" class="form-control"></select>
                                 </div>
-                            </div>                            
-                        <br>
-                        <div id="mensaje_filtro"></div>
-                        <div class="modal-footer">
-                            <button class="btn-left btn-sm btn-primary btn-default" id="co_generar_fil" type="button"><span
-                                    class="glyphicon glyphicon-ok"></span> Consultar
-                            </button>
-                            <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_fil" type="button"><span
-                                    class="glyphicon glyphicon-remove"></span> Cancelar
-                            </button>
-                        </div>
+                            </div>
+                            <br>
+                            <div id="mensaje_filtro"></div>
+                            <div class="modal-footer">
+                                <button class="btn-left btn-sm btn-primary btn-default" id="co_generar_fil" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Consultar
+                                </button>
+                                <button class="btn-sm btn-default" data-dismiss="modal" id="co_cancel_fil" type="button"><span
+                                        class="glyphicon glyphicon-remove"></span> Cancelar
+                                </button>
+                            </div>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
-    
-    <!-- Modal Mensaje confirmación borrar -->
-    <div id="dlg_confirm" class="modal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content" id="mod_alto">
-                <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-                    <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-                </div>
-                <div class="modal-body" style=" padding:10px 15px 5px 15px;">
-                    <form role="form">
-                        <div class="form-group">
-                            <div class="form-control-label" id="confirm_msg"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span
-                            class="glyphicon glyphicon-ok"></span> Si
-                    </button>
-                    <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span
-                            class="glyphicon glyphicon-off"></span> No
-                    </button>
+
+        <!-- Modal Mensaje confirmación borrar -->
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
+                    <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
+                    </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label" id="confirm_msg"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span
+                                class="glyphicon glyphicon-ok"></span> Si
+                        </button>
+                        <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span
+                                class="glyphicon glyphicon-off"></span> No
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

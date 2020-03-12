@@ -66,16 +66,15 @@ $(document).ready(function () {
     $("#co_filtro").on("click", fn_filtro);
 
     $("#co_activar").on("click", function() {
-		$('#div_filtro_new_edit_bts').modal('hide');
         if ($.trim($("#co_activar").text()) === "Activar") {
 			fn_mensaje_boostrap("Se Activó", g_tit, $(""));
-		}           
-      	else
-		{
+		} else {
 			fn_mensaje_boostrap("Se Desactivó", g_tit, $(""));
 		}
-        $(window).scrollTop(0);            
-               
+
+        $('#div_filtro_new_edit_bts').modal('hide');
+        $(window).scrollTop(0);
+
     });
 
 
