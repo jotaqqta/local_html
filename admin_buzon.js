@@ -222,9 +222,9 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'REFA_NIV2', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D'},
-        { C1: 'MMA', C2: 'BUZÓN', C3: ' ', C4: '1000', C5: 'A'},
-        { C1: 'REFA_NIV1', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D'},
+        { C1: 'REFA_NIV2', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D', C6: 'Desactivado'},
+        { C1: 'MMA', C2: 'BUZÓN', C3: ' ', C4: '1000', C5: 'A', C6: 'Activo'},
+        { C1: 'REFA_NIV1', C2: 'BUZÓN', C3: ' ', C4: '0000', C5: 'D', C6: 'Desactivado'},
            
     ];
 
@@ -257,11 +257,12 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Rol Función", width: 210, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
-        { title: "Rol Genérico", width: 210, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "Equipo", width: 210, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
-        { title: "C. Oper. Área", width: 210, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-        { title: "Estado", width: 210, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Rol Función", width: 150, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
+        { title: "Rol Genérico", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Equipo", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "left" },
+        { title: "C. Oper. Área", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Estado", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
+        { title: "Estado", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
 
     ];
     obj.dataModel = { data: data };
