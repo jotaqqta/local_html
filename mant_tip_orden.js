@@ -229,8 +229,8 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'A', C4: 'ACTIVADO', C5: 'GENÉRICO', C6: 'ASIGNACIONES',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
-        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'D', C4: 'DESACTIVADO', C5: 'GENÉRICO', C6: 'ASIGNACIONES',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
+        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'A', C4: 'ACTIVADO', C5: '1', C6: '1',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
+        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'D', C4: 'DESACTIVADO', C5: '1', C6: '1',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
            
     ];
 
@@ -254,7 +254,6 @@ function fn_setea_grid_principal() {
             cls: "pq-toolbar-export",
             items:[
                 { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
-                //{ type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
                 
@@ -265,8 +264,8 @@ function fn_setea_grid_principal() {
     obj.colModel = [
         { title: "Orden", width: 150, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
         { title: "Descripción", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "Estado", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-        { title: "Estado", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: "true" },
+        { title: "Estado", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
+        { title: "Estado", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center"},
         { title: "Tipo Agrupación", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
         { title: "Sistema", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center", hidden: "true" },
         { title: "Nombre Menú", width: 150, dataType: "string", dataIndx: "C7", halign: "center", align: "center", hidden: "true" },
