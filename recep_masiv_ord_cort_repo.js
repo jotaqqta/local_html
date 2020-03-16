@@ -70,7 +70,7 @@ $(document).ready(function () {
             var data = $grid_principal.pqGrid("option", "dataModel.data");
 
             if (data.length < 1) {
-                fn_mensaje_boostrap("Error, por favor ingrese un archivo (Debe seleccionar almenos 1).", g_tit, $("#input_file"));
+                fn_mensaje_boostrap("Error, por favor ingrese un archivo (Debe ingresar almenos 1).", g_tit, $("#input_file"));
                 return;
             }
 
