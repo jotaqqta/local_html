@@ -21,7 +21,7 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#tx_codigo').keypress(function (tecla){
+    jQuery('#tx_dura').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });    
     
