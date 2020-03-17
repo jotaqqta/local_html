@@ -1,7 +1,9 @@
 var g_modulo = "Medidores y Equipos";
 var g_tit = "Mantención de Tablas de Parametros Generales de Medidores";
-var $grid_principal;
-var $grid_codigo;
+var $grid_motiv_camb;
+var $grid_situa_encon;
+var $grid_acc_rea;
+var rowIndxG;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -28,7 +30,9 @@ $(document).ready(function () {
 
     fn_cargar_combos();
 
-    fn_set_grid_principal();
+    fn_set_grid_motiv_camb();
+    fn_set_grid_situa_econ();
+    fn_set_grid_acc_rea();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () {
@@ -50,37 +54,37 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
-    $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-
-    $("#div_event_corte").show();
-    $("#co_inactivar").hide();
+    fn_hide();
+    $("#div_motiv_camb").show();
+    $("#row_radios_situa").hide();
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                              <-- Buttons - Listeners -->
 
-    $("#tab_motiv_camb").on( "click", function () {
+    $(".nav-tabs a").click(function(){
 
-        $("#tab_motiv_camb").tab('show');
+        $(this).tab('show');
+        fn_hide();
 
-    });
+        if (this.text === "Motivo Cambio") {
+            $("#div_motiv_camb").show();
+            $grid_motiv_camb.pqGrid("refreshView");
+        }
 
-    $("#tab_situa_encon").on( "click", function () {
+        if (this.text === "Situación Encontrada") {
+            $("#div_situa_encon").show();
+            $grid_situa_encon.pqGrid("refreshView");
+        }
 
-        $("#tab_situa_encon").tab('show');
+        if (this.text === "Acción Realizada") {
+            $("#div_acc_rea").show();
+            $grid_acc_rea.pqGrid("refreshView");
+        }
 
-    });
-
-    $("#tab_acc_real").on( "click", function () {
-
-        $("#tab_acc_real").tab('show');
-
-    });
-
-    $("#tab_relacion").on( "click", function () {
-
-        $("#tab_relacion").tab('show');
+        if (this.text === "Relación") {
+            $("#div_relacion").show();
+        }
 
     });
 
@@ -100,16 +104,41 @@ $(document).ready(function () {
                 return;
             }
 
-            if ($("#cb_estado").val() === "") {
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un estado.</strong></div>',3000);
-                $("#cb_estado").focus();
+            if ($("#cb_acc_rea").val() === "") {
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una acción.</strong></div>',3000);
+                $("#cb_acc_rea").focus();
                 return;
             }
 
-            if (!$('input[type=radio][name=opt_arch_palm]').is(":checked")) {
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si cuenta con Archivos Palm (Si o No).</strong></div>',3000);
-                $("#opt_arch_palm_si").focus();
-                return;
+            if ($("#div_motiv_camb").is(":visible")) {
+                if (!$('input[type=radio][name=opt_arch_palm]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si cuenta con Archivos Palm (Si o No).</strong></div>',3000);
+                    $("#opt_arch_palm_si").focus();
+                    return;
+                }
+            }
+
+            if ($("#div_situa_encon").is(":visible")) {
+                if (!$('input[type=radio][name=opt_genera_carta]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si Genera Cartera (Si o No).</strong></div>',3000);
+                    $("#opt_genera_carta_si").focus();
+                    return;
+                }
+
+                if (!$('input[type=radio][name=opt_camb_correct]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si cuenta con Cambio Correctivo (Si o No).</strong></div>',3000);
+                    $("#opt_camb_correct_si").focus();
+                    return;
+                }
+            }
+
+            if ($("#div_acc_rea").is(":visible")) {
+
+                if (!$('input[type=radio][name=opt_indq_ord_improc]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si Indica orden Inprocedente (Si o No).</strong></div>',3000);
+                    $("#opt_indq_ord_improc_si").focus();
+                    return;
+                }
             }
 
             fn_mensaje_boostrap("Se Modifico", g_tit, $("#co_modificar"));
@@ -119,90 +148,125 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_cancel_edit").on("click", function () {
+    $("#co_limpiar").on("click", fn_limpiar);
+
+    $("#co_cancel").on("click", function () {
         $('#div_edit_bts').modal('hide');
     });
 
     $("#co_confirm_yes").on( "click", function () {
+
+        if ($("#div_motiv_camb").is(":visible")) {
+            $grid_motiv_camb.pqGrid("deleteRow", { rowIndx: rowIndxG });
+        }
+
+        if ($("#div_situa_encon").is(":visible")) {
+            $grid_situa_encon.pqGrid("deleteRow", { rowIndx: rowIndxG });
+        }
+
+        if ($("#div_acc_rea").is(":visible")) {
+            $grid_acc_rea.pqGrid("deleteRow", { rowIndx: rowIndxG });
+        }
+
+        /*HablaServidor(my_url, parameters, 'text', function() {
+            fn_mensaje("EL MOVIMIENTO FUE ELIMINADO", g_titulo, $(""));
+        });*/
+
         $('#dlg_confirm').modal('hide');
 
-        if ($("div_event_situa_acc").is(":visible")) {
-            fn_inactivar(true);
-        } else {
-            fn_eliminar(true);
-        }
     });
 
     $("#co_confirm_no").on( "click", function () {
+
         $('#dlg_confirm').modal('hide');
 
-        if ($("div_event_situa_acc").is(":visible")) {
-            fn_inactivar(false);
-        } else {
-            fn_eliminar(false);
-        }
     });
 
     $("#co_cerrar").on("click", function (){ window.close(); });
 
     //EVENTO DBL_CLICK DE LA GRILLA
-    $grid_principal.pqGrid({
+    $grid_motiv_camb.pqGrid({
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
+                fn_edit(dataCell, 1);
+            }
+        }
+    });
 
-                $("#tx_codigo").val(dataCell.C1);
-                $("#tx_desc").val(dataCell.C2);
-                $("#tx_fech_crea").val(dataCell.C5);
-                $("#tx_fech_modif").val(dataCell.C6);
+    $grid_situa_encon.pqGrid({
+        rowDblClick: function( event, ui ) {
+            if (ui.rowData) {
+                var dataCell = ui.rowData;
 
-                $("#cb_estado option").each(function() {
-                    if ($(this).text() === dataCell.C7) {
-                        $("#cb_estado").val($(this).val());
-                    }
-                });
+                fn_edit(dataCell, 2);
+            }
+        }
+    });
 
-                $("#cb_acc_rea option").each(function() {
-                    if ($(this).text() === dataCell.C4) {
-                        $("#cb_acc_rea").val($(this).val());
-                    }
-                });
+    $grid_acc_rea.pqGrid({
+        rowDblClick: function( event, ui ) {
+            if (ui.rowData) {
+                var dataCell = ui.rowData;
 
-                $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
-                $("#div_edit_bts").on("shown.bs.modal", function () {
-                    $("#div_edit_bts div.modal-footer button").focus();
-
-                });
-
+                fn_edit(dataCell, 3);
             }
         }
     });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
-    $("#co_excel").on("click", function (e) {
+    /*$("#co_excel").on("click", function (e) {
 
-        fn_filtro();
-        e.preventDefault();
-        var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
+        var col_model;
+        var element;
         var cabecera = "";
-        for (i = 0; i < col_model.length; i++){
-            if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
+
+        if ($("#div_motiv_camb").is(":visible")) {
+            e.preventDefault();
+            col_model= $( "#div_motiv_camb" ).pqGrid( "option", "colModel" );
+
+            for (i = 0; i < col_model.length; i++){
+                if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            }
+
+            $("#excel_cabecera").val(cabecera);
+            element =$grid_motiv_camb.pqGrid("option","dataModel.data");
+
+            if (element)
+                a = element.length;
+            else
+                a = 0;
+            if(a > 0){
+                $("#tituloexcel").val(g_tit);
+                $("#sql").val(sql_grid_prim);
+                $("#frm_Exel").submit();
+                return;
+            }
         }
-        $("#excel_cabecera").val(cabecera);
-        var element =$grid_principal.pqGrid("option","dataModel.data");
-        if (element)
-            a= element.length;
-        else
-            a = 0;
-        if(a > 0){
-            $("#tituloexcel").val(g_tit);
-            $("#sql").val(sql_grid_prim);
-            $("#frm_Exel").submit();
-            return;
+
+        if ($("#div_situa_encon").is(":visible")) {
+            e.preventDefault();
+            col_model= $( "#div_situa_encon" ).pqGrid( "option", "colModel" );
+            for (i = 0; i < col_model.length; i++){
+                if(col_model[i].hidden !== true) cabecera += "<th>"+col_model[i].title+ "</th>";
+            }
+            $("#excel_cabecera").val(cabecera);
+            element =$grid_situa_encon.pqGrid("option","dataModel.data");
+            if (element)
+                a = element.length;
+            else
+                a = 0;
+            if(a > 0){
+                $("#tituloexcel").val(g_tit);
+                $("#sql").val(sql_grid_prim);
+                $("#frm_Exel").submit();
+                return;
+            }
         }
-    });
+
+    });*/
 
 });
 
@@ -210,8 +274,7 @@ $(document).ready(function () {
 
 //                                  <-- Grids -->
 
-
-function fn_set_grid_principal() {
+function fn_set_grid_motiv_camb() {
 
     // GRID MOTIVO CAMBIO
 
@@ -245,28 +308,23 @@ function fn_set_grid_principal() {
         editable: false,
         rowBorders: true,
         showTitle: false,
-        showBottom: false,
+        showBottom: true,
         collapsible: true,
         roundCorners: true,
         columnBorders: true,
-        numberCell: {show: false},
-        scrollModel: {theme: true},
+        postRenderInterval: 0,
+        numberCell: { show: true },
+        scrollModel: { theme: true },
         selectionModel: {type: 'row', mode: 'block'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200]},
-        toolbar: {
-            cls: "pq-toolbar-export btn-group-sm",
-            items:[
-                { type: "button", label: "Excel", attr:"id=co_excel", cls:"btn btn-primary btn-sm"},
-                { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm"}
-            ]
-        },
+        toolbar: false,
     };
 
     obj.colModel = [
         { title: "Código", width: 65, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Descripción", width: 295, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 287, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
         { title: "Archivo Paml", width: 100, dataType: "strig", dataIndx: "C3", halign: "center", align: "center" },
-        { title: "Acción", width: 232, dataType: "strig", dataIndx: "C4", halign: "center", align: "left" },
+        { title: "Acción", width: 240, dataType: "strig", dataIndx: "C4", halign: "center", align: "left" },
         { title: "Fecha Creación", width: 115, dataType: "strig", dataIndx: "C5", halign: "center", align: "center" },
         { title: "Fecha Modificación", width: 135, dataType: "strig", dataIndx: "C6", halign: "center", align: "center" },
         { title: "Estado", width: 75, dataType: "strig", dataIndx: "C7", halign: "center", align: "center" },
@@ -294,7 +352,145 @@ function fn_set_grid_principal() {
 
     obj.dataModel = { data: data };
 
-    $grid_principal = $("#div_grid_motiv_camb").pqGrid(obj);
+    $grid_motiv_camb = $("#div_grid_motiv_camb").pqGrid(obj);
+}
+
+function fn_set_grid_situa_econ() {
+
+    // GRID SITUACIÓN ENCONTRADA
+
+    var data =  [
+        { C1: 'AI', C2: 'ARRANQUE INTERVENIDO', C3: 'NO', C4: 'NO', C5: 'PENDIENTE O REENVIADA', C6: '22/07/2006', C7: '', C8: 'ACTIVO' },
+        { C1: 'AI', C2: 'AJUSTE DATOS (INSTALACIÓN)', C3: 'SI', C4: 'SI', C5: 'PENDIENTE O REENVIADA', C6: '22/07/2006', C7: '', C8: 'INACTIVO' },
+    ];
+
+    var obj = {
+        height: "100%",
+        showtop: true,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        editable: false,
+        rowBorders: true,
+        showTitle: false,
+        showBottom: true,
+        collapsible: true,
+        roundCorners: true,
+        columnBorders: true,
+        postRenderInterval: 0,
+        numberCell: { show: true },
+        scrollModel: { theme: true },
+        selectionModel: {type: 'row', mode: 'block'},
+        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200]},
+        toolbar: false,
+    };
+
+    obj.colModel = [
+        { title: "Código", width: 55, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Descripción", width: 260, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Genera Carta", width: 95, dataType: "strig", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Correctivo", width: 75, dataType: "strig", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Acción", width: 217, dataType: "strig", dataIndx: "C5", halign: "center", align: "left" },
+        { title: "Fecha Creación", width: 110, dataType: "strig", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Fecha Modificación", width: 130, dataType: "strig", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Estado", width: 75, dataType: "strig", dataIndx: "C8", halign: "center", align: "center" },
+        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
+            },
+            postRender: function (ui) {
+
+                var rowIndx = ui.rowIndx;
+
+                var $grid = this,
+                    $grid = $grid.getCell(ui);
+
+                $grid.find("button")
+                    .on("click", function () {
+
+                        fn_borrar(rowIndx);
+
+                    });
+
+            }
+        },
+    ];
+
+    obj.dataModel = { data: data };
+
+    $grid_situa_encon = $("#div_grid_situa_encon").pqGrid(obj);
+}
+
+function fn_set_grid_acc_rea() {
+
+    // GRID ACCIÓN  REALIZADA
+
+    var data =  [
+        { C1: 'IM', C2: 'INSTALACIÓN DE MEDIDOR', C3: 'NO', C4: '', C5: '28/07/2008', C6: '22/07/2012', C7: 'ACTIVO' },
+        { C1: 'CM', C2: 'CAMBIO DE MEDIDOR', C3: 'SI', C4: '', C5: '25/10/2007', C6: '12/04/2014', C7: 'INACTIVO' },
+        { C1: 'CN', C2: 'OCM NO EJECUTADA (IMPRCEDENTE)', C3: 'SI', C4: '', C5: '24/12/2009', C6: '02/12/2015', C7: 'ACTIVO' },
+        { C1: 'MA', C2: 'MEDIDOR NORMALIZADO', C3: 'NO', C4: '', C5: '12/11/2009', C6: '02/02/2018', C7: 'ACTIVO' },
+        { C1: 'RM', C2: 'RETIRO DE MEDIDOR', C3: 'NO', C4: '', C5: '18/02/2009', C6: '02/02/2018', C7: 'INACTIVO' },
+    ];
+
+    var obj = {
+        height: "100%",
+        showtop: true,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        editable: false,
+        rowBorders: true,
+        showTitle: false,
+        showBottom: true,
+        collapsible: true,
+        roundCorners: true,
+        columnBorders: true,
+        postRenderInterval: 0,
+        numberCell: { show: true },
+        scrollModel: { theme: true },
+        selectionModel: {type: 'row', mode: 'block'},
+        pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200]},
+        toolbar: false,
+    };
+
+    obj.colModel = [
+        { title: "Código", width: 65, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Descripción", width: 260, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Improcedente", width: 100, dataType: "strig", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Acción", width: 260, dataType: "strig", dataIndx: "C4", halign: "center", align: "left" },
+        { title: "Fecha Creación", width: 120, dataType: "strig", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Fecha Modificación", width: 140, dataType: "strig", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Estado", width: 72, dataType: "strig", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Eliminar", width: 58, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+            render: function () {
+                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
+            },
+            postRender: function (ui) {
+
+                var rowIndx = ui.rowIndx;
+
+                var $grid = this,
+                    $grid = $grid.getCell(ui);
+
+                $grid.find("button")
+                    .on("click", function () {
+
+                        fn_borrar(rowIndx);
+
+                    });
+
+            }
+        },
+    ];
+
+    obj.dataModel = { data: data };
+
+    $grid_acc_rea = $("#div_grid_acc_rea").pqGrid(obj);
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -323,6 +519,140 @@ function fn_acc_rea() {
 
 //                                  <-- Functions -->
 
+function fn_edit(dataCell, grid) {
+
+    if (grid === 1) {
+
+        $("#row1_pt_ii").html("");
+        $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-8\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
+        $("#row2_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"cb_estado\">Estado:</label> </div> <div class=\"col-xs-7\"> <select class=\"form-control\" id=\"cb_estado\" name=\"cb_estado\"> </select> </div> </div>");
+        $("#row3_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <div class=\"row\"> <div class=\"col-xs-12\"> <label>Archivos Palm:</label> </div> </div> </div> <div class=\"col-xs-6\"> <div class=\"row\"> <div class=\"col-xs-4\"><span class=\"radio-inline\"><input class=\"radio-inline\" type=\"radio\" id=\"opt_arch_palm_si\" name=\"opt_arch_palm\" value=\"opt_1\"><label for=\"opt_arch_palm_si\">Si</label></span> </div> <div class=\"col-xs-4\"> <span class=\"radio-inline\"><input class=\"radio-inline\" type=\"radio\" id=\"opt_arch_palm_no\" name=\"opt_arch_palm\" value=\"opt_2\"><label for=\"opt_arch_palm_no\">No</label></span> </div> </div> </div> </div>");
+        $("#row3_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"cb_acc_rea\">Acción a Realizar:</label> </div> <div class=\"col-xs-7\"> <select class=\"form-control\" id=\"cb_acc_rea\" name=\"cb_acc_rea\"></select> </div> </div>");
+
+        $("#row3").show();
+        $("#row_radios_situa").hide();
+
+        fn_estado();
+        fn_acc_rea();
+
+        $("#tx_codigo").val(dataCell.C1);
+        $("#tx_desc").val(dataCell.C2);
+        $("#tx_fech_crea").val(dataCell.C5);
+        $("#tx_fech_modif").val(dataCell.C6);
+
+        $("#cb_estado option").each(function() {
+            if ($(this).text() === dataCell.C7) {
+                $("#cb_estado").val($(this).val());
+            }
+        });
+
+        $("#cb_acc_rea option").each(function() {
+            if ($(this).text() === dataCell.C4) {
+                $("#cb_acc_rea").val($(this).val());
+            }
+        });
+    }
+
+    if (grid === 2) {
+
+        $("#row1_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-7\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
+        $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"cb_estado\">Estado:</label> </div> <div class=\"col-xs-8\"> <select class=\"form-control\" id=\"cb_estado\" name=\"cb_estado\"> </select> </div> </div>");
+        $("#row2_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"cb_acc_rea\">Acción:</label> </div> <div class=\"col-xs-7\"> <select class=\"form-control\" id=\"cb_acc_rea\" name=\"cb_acc_rea\"></select> </div> </div>");
+
+        $("#row3").hide();
+        $("#row_radios_situa").show();
+
+        fn_estado();
+        fn_acc_rea();
+
+        $("#tx_codigo").val(dataCell.C1);
+        $("#tx_desc").val(dataCell.C2);
+        $("#tx_fech_crea").val(dataCell.C6);
+        $("#tx_fech_modif").val(dataCell.C7);
+
+        if (dataCell.C3 === "SI") {
+            $('input[type=radio][name=opt_genera_carta][value=opt_1]').prop("checked", true);
+        } else if (dataCell.C3 === "NO") {
+            $('input[type=radio][name=opt_genera_carta][value=opt_2]').prop("checked", true);
+        }
+
+        if (dataCell.C4 === "SI") {
+            $('input[type=radio][name=opt_camb_correct][value=opt_1]').prop("checked", true);
+        } else if (dataCell.C4 === "NO") {
+            $('input[type=radio][name=opt_camb_correct][value=opt_2]').prop("checked", true);
+        }
+
+        $("#cb_estado option").each(function() {
+            if ($(this).text() === dataCell.C8) {
+                $("#cb_estado").val($(this).val());
+            }
+        });
+
+        $("#cb_acc_rea option").each(function() {
+            if ($(this).text() === dataCell.C5) {
+                $("#cb_acc_rea").val($(this).val());
+            }
+        });
+    }
+
+    if (grid === 3) {
+
+        $("#row1_pt_ii").html("");
+        $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-8\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
+        $("#row2_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"cb_estado\">Estado:</label> </div> <div class=\"col-xs-7\"> <select class=\"form-control\" id=\"cb_estado\" name=\"cb_estado\"> </select> </div> </div>");
+        $("#row3_pt_i").html("<div class=\"row\"> <div class=\"col-xs-6\"> <div class=\"row\"> <div class=\"col-xs-12\"> <label>Indica orden Improcedente:</label> </div> </div> </div> <div class=\"col-xs-6\"> <div class=\"row\"> <div class=\"col-xs-4\"><span class=\"radio-inline\"><input class=\"radio-inline\" type=\"radio\" id=\"opt_indq_ord_improc_si\" name=\"opt_indq_ord_improc\" value=\"opt_1\"><label for=\"opt_indq_ord_improc_si\">Si</label></span> </div> <div class=\"col-xs-4\"> <span class=\"radio-inline\"><input class=\"radio-inline\" type=\"radio\" id=\"opt_indq_ord_improc_no\" name=\"opt_indq_ord_improc\" value=\"opt_2\"><label for=\"opt_indq_ord_improc_no\">No</label></span> </div> </div> </div> </div>");
+        $("#row3_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"cb_acc_rea\">Acción:</label> </div> <div class=\"col-xs-7\"> <select class=\"form-control\" id=\"cb_acc_rea\" name=\"cb_acc_rea\"></select> </div> </div>");
+
+        $("#row3").show();
+        $("#row_radios_situa").hide();
+
+        fn_estado();
+        fn_acc_rea();
+
+        $("#tx_codigo").val(dataCell.C1);
+        $("#tx_desc").val(dataCell.C2);
+        $("#tx_fech_crea").val(dataCell.C5);
+        $("#tx_fech_modif").val(dataCell.C6);
+
+        if (dataCell.C3 === "SI") {
+            $('input[type=radio][name=opt_indq_ord_improc][value=opt_1]').prop("checked", true);
+        } else if (dataCell.C3 === "NO") {
+            $('input[type=radio][name=opt_indq_ord_improc][value=opt_2]').prop("checked", true);
+        }
+
+        $("#cb_estado option").each(function() {
+            if ($(this).text() === dataCell.C7) {
+                $("#cb_estado").val($(this).val());
+            }
+        });
+
+        $("#cb_acc_rea option").each(function() {
+            if ($(this).text() === dataCell.C4) {
+                $("#cb_acc_rea").val($(this).val());
+            }
+        });
+
+    }
+
+    $("#div_edit_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_edit_bts").on("shown.bs.modal", function () {
+        $("#div_edit_bts div.modal-footer button").focus();
+    });
+}
+
+function fn_borrar(rowIndx) {
+
+    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
+
+    rowIndxG = rowIndx;
+
+    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+    $("#dlg_confirm").on("shown.bs.modal", function () {
+        $("#dlg_confirm div.modal-footer button").focus();
+    });
+
+}
+
 function fn_cargar_combos() {
 
     fn_estado();
@@ -330,60 +660,34 @@ function fn_cargar_combos() {
 
 }
 
-function fn_confirmar(type) {
+function fn_hide() {
 
-    if (type === 1) {
-        $("#msg_confirm").html("¿Estas seguro de eliminar este Registro?")
-    } else if (type === 2) {
-        $("#msg_confirm").html("¿Estas seguro de inactivar este Registro?")
-    } else {
-        $("#msg_confirm").html("No se encontro el mensaje solicitado.")
-    }
-
-    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-    $("#dlg_confirm").on("shown.bs.modal", function () {
-        $("#dlg_confirm div.modal-footer button").focus();
-    });
+    $("#div_motiv_camb").hide();
+    $("#div_situa_encon").hide();
+    $("#div_acc_rea").hide();
+    $("#div_relacion").hide();
 }
 
-function fn_eliminar(confirm) {
+function fn_limpiar() {
 
-    // Acion de borrar
-    if (confirm) {
+    $("#tx_desc").val("");
+    $("#cb_estado").val("");
+    $("#cb_acc_rea").val("");
 
-        // TAB 1
-        if ($("#div_event_corte").is(":visible")) {
+    if ($("#div_motiv_camb").is(":visible")) {
 
-            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
-
-
-        }
-
-        // TAB 2
-        if ($("#div_situa_encon").is(":visible")) {
-
-            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
-
-
-        }
-
-        // TAB 3
-        if ($("#div_acc_real").is(":visible")) {
-
-            fn_mensaje_boostrap("Se ha eliminado el registro", g_tit, $("#co_eliminar"));
-
-
-        }
-
+        $('input[type=radio][name=opt_arch_palm]').prop("checked", false);
     }
-}
 
-function fn_inactivar(confirm) {
+    if ($("#div_situa_encon").is(":visible")) {
 
-    if (confirm) {
+        $('input[type=radio][name=opt_genera_carta]').prop("checked", false);
+        $('input[type=radio][name=opt_camb_correct]').prop("checked", false);
+    }
 
-        fn_mensaje_boostrap("Se ha inactivado el registro", g_tit, $("#co_inactivar"));
+    if ($("#div_acc_rea").is(":visible")) {
 
+        $('input[type=radio][name=opt_indq_ord_improc]').prop("checked", false);
     }
 
 }

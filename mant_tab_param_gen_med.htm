@@ -7,7 +7,7 @@
     <meta content="max-age=0" http-equiv="cache-control">
     <meta content="no-cache" http-equiv="cache-control">
     <meta content="0" http-equiv="expires">
-    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1982 1:00:00 GMT" http-equiv="expires">
     <meta content="no-cache" http-equiv="pragma">
 
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -51,13 +51,29 @@
 
         @media screen and (max-width: 1401px) {
             #bd_prin {
-                height: calc(80vh - 82px);
+                height: calc(82vh - 82px);
+            }
+
+            #bd_second {
+                height: calc(82vh - 82px);
+            }
+
+            #bd_third {
+                height: calc(82vh - 82px);
             }
         }
 
         @media screen and (min-width: 1402px) {
             #bd_prin {
-                height: calc(80vh - 82px);
+                height: calc(82vh - 82px);
+            }
+
+            #bd_second {
+                height: calc(82vh - 82px);
+            }
+
+            #bd_third {
+                height: calc(82vh - 82px);
             }
         }
 
@@ -96,31 +112,46 @@
             <div class="row">
                 <div class="container col-xs-12">
                     <ul class="nav nav-tabs">
-                        <li id="tab_motiv_camb" role="presentation" class="active"><a href="#">Motivo Cambio</a></li>
-                        <li id="tab_situa_encon" role="presentation"><a href="#">Situación encontrada</a></li>
-                        <li id="tab_acc_real" role="presentation"><a href="#">Acción Realizada</a></li>
-                        <li id="tab_relacion" role="presentation"><a href="#">Relación</a></li>
+                        <li id="tab_motiv_camb" role="presentation" class="active"><a>Motivo Cambio</a></li>
+                        <li id="tab_situa_encon" role="presentation"><a>Situación Encontrada</a></li>
+                        <li id="tab_acc_real" role="presentation"><a>Acción Realizada</a></li>
+                        <li id="tab_relacion" role="presentation"><a>Relación</a></li>
+                        <li class="pull-right text-center">
+                            <button class="btn btn-sm btn-default" id="co_cerrar" type="button"><span
+                                    class="glyphicon glyphicon-off"></span> Cerrar
+                            </button>
+                        </li>
+                        <li class="pull-right text-center">
+                            <button class="btn btn-sm btn-primary" id="co_excel" type="button"><span
+                                    class="glyphicon glyphicon-save"></span> Excel
+                            </button>
+                            &nbsp;
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="container">
                     <div id="content">
-                        <div style="height: 5px"></div>
                         <div id="div_motiv_camb">
-                            <div class="container" style="width: 100%;">
-                                <div id="bd_prin">
-                                    <!-- PARAMQUERY MOTIVO CAMBIO -->
-                                    <div id="div_grid_motiv_camb"></div>
-                                </div>
+                            <div id="bd_prin">
+                                <!-- PARAMQUERY MOTIVO CAMBIO -->
+                                <div id="div_grid_motiv_camb"></div>
                             </div>
                         </div>
-                        <div style="height: 10px"></div>
-                        <div id="div_botonera">
-                            <div class="row">
-
+                        <div id="div_situa_encon">
+                            <div id="bd_second">
+                                <!-- PARAMQUERY MOTIVO CAMBIO -->
+                                <div id="div_grid_situa_encon"></div>
                             </div>
                         </div>
+                        <div id="div_acc_rea">
+                            <div id="bd_third">
+                                <!-- PARAMQUERY ACCIÓN REALIZADA -->
+                                <div id="div_grid_acc_rea"></div>
+                            </div>
+                        </div>
+                        <div id="div_relacion"></div>
                     </div>
                 </div>
             </div>
@@ -128,18 +159,32 @@
 
         <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
 
-        <!--Inicio Modal Editar -->
+        <!--Inicio Modales Editar -->
         <div class="modal fade" id="div_edit_bts" role="dialog">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" data-dismiss="modal">Modificar</h4>
+                        <h4 class="modal-title" id="modal_edit_title" data-dismiss="modal">Modificar</h4>
                     </div>
                     <div class="modal-body">
                         <div class="space"></div>
                         <div class="row">
                             <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <label for="tx_codigo">Código:</label>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <input id="tx_codigo" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" id="row1_pt_ii"></div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div class="col-xs-6" id="row2_pt_i">
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <label for="tx_desc">Descripción:</label>
@@ -149,13 +194,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-6" id="row2_pt_ii">
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <label for="cb_estado">Estado:</label>
                                     </div>
                                     <div class="col-xs-7">
-                                        <select class="form-control input-normal inp_dis" id="cb_estado"
+                                        <select class="form-control" id="cb_estado"
                                                 name="cb_estado"></select>
                                     </div>
                                 </div>
@@ -185,8 +230,8 @@
                             </div>
                         </div>
                         <div class="space"></div>
-                        <div class="row">
-                            <div class="col-xs-6">
+                        <div class="row" id="row3">
+                            <div class="col-xs-6" id="row3_pt_i">
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="row">
@@ -209,7 +254,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-6" id="row3_pt_ii">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="row">
@@ -217,8 +262,57 @@
                                                 <label for="cb_acc_rea">Acción a Realizar:</label>
                                             </div>
                                             <div class="col-xs-7">
-                                                <select class="form-control input-normal inp_dis" id="cb_acc_rea"
+                                                <select class="form-control" id="cb_acc_rea"
                                                         name="cb_acc_rea"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row" id="row_radios_situa">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label>Genera Carta:</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <span class="radio-inline"><input class="radio-inline" type="radio" id="opt_genera_carta_si" name="opt_genera_carta" value="opt_1"><label
+                                                        for="opt_genera_carta_si">Si</label></span>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <span class="radio-inline"><input class="radio-inline" type="radio" id="opt_genera_carta_no" name="opt_genera_carta" value="opt_2"><label
+                                                        for="opt_genera_carta_no">No</label></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label>Cambio Correctivo:</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <span class="radio-inline"><input class="radio-inline" type="radio" id="opt_camb_correct_si" name="opt_camb_correct" value="opt_1"><label
+                                                        for="opt_camb_correct_si">Si</label></span>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <span class="radio-inline"><input class="radio-inline" type="radio" id="opt_camb_correct_no" name="opt_camb_correct" value="opt_2"><label
+                                                        for="opt_camb_correct_no">No</label></span>
                                             </div>
                                         </div>
                                     </div>
@@ -234,7 +328,7 @@
                         <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal" id="co_modificar" type="button"><span
                                 class="glyphicon glyphicon-floppy-disk"></span> Modificar
                         </button>
-                        <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel_edit" type="button"><span
+                        <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
                                 class="glyphicon glyphicon-remove"></span> Cancelar
                         </button>
                     </div>
@@ -254,17 +348,13 @@
                     <div class="modal-body" style=" padding:10px 15px 5px 15px;">
                         <form role="form">
                             <div class="form-group">
-                                <div class="form-control-label" id="msg_confirm">Estas seguro de eliminar este Registro?</div>
+                                <div class="form-control-label" id="confirm_msg"></div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-sm btn-primary" id="co_confirm_yes" type="button"><span
-                                class="glyphicon glyphicon-ok"></span> Confirmar
-                        </button>
-                        <button class="btn-sm btn-danger" id="co_confirm_no" type="button"><span
-                                class="glyphicon glyphicon-remove"></span> Cancelar
-                        </button>
+                        <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Si</button>
+                        <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
                     </div>
                 </div>
             </div>
