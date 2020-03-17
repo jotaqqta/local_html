@@ -168,6 +168,10 @@ $(document).ready(function () {
                 $("#title_mod").html("Editar");
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
                 $("#co_activar").show();
+                $("#co_limpiar").hide();                
+                $("#tx_tip_ord").prop( "disabled", true);
+                $("#tx_version").prop( "disabled", true);
+                
 
 
 				$("#tx_tip_ord").val(dataCell.C1);
@@ -306,11 +310,17 @@ function fn_activar(){
 
 function fn_new(){
 
+    $("#tx_tip_ord").prop( "disabled", false);
+    $("#tx_version").prop( "disabled", false);
+    
+    
+
     fn_limpiar();
     $("#co_limpiar").show();
     $("#co_activar").hide();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
