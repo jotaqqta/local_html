@@ -102,39 +102,21 @@ $(document).ready(function () {
 	/////////////////////////////////BOTON GENERAR/////////////////////////////////
     $("#co_generar").on("click", function() {
         if ($.trim($("#co_generar").text()) === "Generar") {
-
             if (fn_val_general())
-                return;
-
-
-                if(document.getElementById('tx_obser').value.length < 15) {
-                        fn_mensaje("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
-                    return;
-                    
+                return;       
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
-            }
-
-
         }
 
 	/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
-        if ($.trim($("#co_generar").text()) === "Modificar") {
-            
+        else{ 
             if (fn_val_general())
-                return;
-
-             if(document.getElementById('tx_obser').value.length < 15) {
-                        fn_mensaje("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
-                    return;
-                    
-                      
+                return;                             
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
-            }  
-
+             
         }
     });
 
@@ -460,6 +442,12 @@ function fn_val_general(){
         $("#tx_obser").focus();
         return true;
     }
+	
+	if($("#tx_obser").length < 15) {
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>OBSERVACIÓN DEBE TENER AL MENOS 15 CARACTERES</strong></div>', 3000);
+		$("#tx_obser").focus();
+		return true;
+	}
 	return false;
 }
 
