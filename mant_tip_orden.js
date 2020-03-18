@@ -30,6 +30,9 @@ $(document).ready(function () {
     fn_tip_agrup();
     fn_sistema();
 
+
+
+
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
 
@@ -101,11 +104,18 @@ $(document).ready(function () {
         if ($.trim($("#co_generar").text()) === "Generar") {
 
             if (fn_val_general())
-                return;   
+                return;
 
+
+                if(document.getElementById('tx_obser').value.length < 15) {
+                        fn_mensaje("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
+                    return;
+                    
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
+            }
+
 
         }
 
@@ -113,11 +123,17 @@ $(document).ready(function () {
         if ($.trim($("#co_generar").text()) === "Modificar") {
             
             if (fn_val_general())
-                return;   
+                return;
+
+             if(document.getElementById('tx_obser').value.length < 15) {
+                        fn_mensaje("FAVOR DIGITAR AL MENOS 15 CARACTERES", g_tit, $("#tx_obser"));
+                    return;
+                    
                       
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
+            }  
 
         }
     });
@@ -310,9 +326,9 @@ function fn_activar(){
 
 function fn_new(){
 
+
     $("#tx_tip_ord").prop( "disabled", false);
     $("#tx_version").prop( "disabled", false);
-    
     
 
     fn_limpiar();
@@ -440,7 +456,7 @@ function fn_val_general(){
         return true;
     }
     if ($("#tx_obser").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR OBSERVACIÓN</strong></div>', 3000);
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR OBSERVACIÓN</strong></div>', 3000);
         $("#tx_obser").focus();
         return true;
     }
