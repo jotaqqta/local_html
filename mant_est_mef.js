@@ -26,7 +26,7 @@ $(document).ready(function () {
     });    
     
     //COMBOS
-    fn_año();
+    fn_ano();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -380,9 +380,10 @@ function fn_new(){
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 
-function fn_año(){
-    $("#cb_año").html("<option value='' selected></option><option value='1'>2020</option> <option value='2' >2019</option>");
+function fn_ano(){
+    $("#cb_ano").html("<option value='' selected></option><option value='1'>2020</option> <option value='2' >2019</option>");
 }
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_eliminar(rowIndx) {
