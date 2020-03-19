@@ -65,18 +65,6 @@
             #bd_quarter {
                 height: calc(82vh - 82px);
             }
-
-            #bd_comp_prim {
-                height: calc(33vh - 82px);
-            }
-
-            #bd_comp_second {
-                height: calc(33vh - 82px);
-            }
-
-            #bd_comp_third {
-                height: calc(33vh - 82px);
-            }
         }
 
         @media screen and (min-width: 1402px) {
@@ -94,18 +82,6 @@
 
             #bd_quarter {
                 height: calc(82vh - 82px);
-            }
-
-            #bd_comp_prim {
-                height: calc(33vh - 82px);
-            }
-
-            #bd_comp_second {
-                height: calc(33vh - 82px);
-            }
-
-            #bd_comp_third {
-                height: calc(33vh - 82px);
             }
         }
 
@@ -199,45 +175,6 @@
                             <div id="bd_quarter">
                                 <!-- PARAMQUERY ACCIÓN REALIZADA -->
                                 <div id="div_grid_relacion"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="div_second">
-            <div class="row">
-                <div class="container">
-                    <div id="content-2">
-                        <div id="div_motiv_camb_2">
-                            <div id="bd_comp_prim">
-                                <!-- PARAMQUERY MOTIVO CAMBIO 2 -->
-                                <div id="div_grid_motiv_camb_2"></div>
-                            </div>
-                        </div>
-                        <div style="height: 10px"></div>
-                        <div id="div_situa_econ_2">
-                            <div id="bd_comp_second">
-                                <!-- PARAMQUERY SITUACIÓN ENCONTRADA 2 -->
-                                <div id="div_grid_situa_econ_2"></div>
-                            </div>
-                        </div>
-                        <div style="height: 10px"></div>
-                        <div id="div_acc_rea_2">
-                            <div id="bd_comp_third">
-                                <!-- PARAMQUERY ACCIÓN REALIZADA 2 -->
-                                <div id="div_grid_acc_rea_2"></div>
-                            </div>
-                        </div>
-                        <div style="height: 7px"></div>
-                        <div class="row">
-                            <div class="col-xs-12 text-right">
-                                <button class="btn btn-sm btn-group btn-primary" id="co_aceptar" type="button"><span
-                                        class="glyphicon glyphicon-ok"></span> Aceptar
-                                </button>
-                                <button class="btn btn-sm btn-group btn-default" id="co_cancelar" type="button"><span
-                                        class="glyphicon glyphicon-remove"></span> Cancelar
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -416,6 +353,40 @@
                                 class="glyphicon glyphicon-floppy-disk"></span> Modificar
                         </button>
                         <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_select_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="modal_select_title" data-dismiss="modal"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="div_motiv_camb_2">
+                            <!-- PARAMQUERY MOTIVO CAMBIO 2 -->
+                            <div id="div_grid_motiv_camb_2"></div>
+                        </div>
+                        <div id="div_situa_econ_2">
+                            <!-- PARAMQUERY SITUACIÓN ENCONTRADA 2 -->
+                            <div id="div_grid_situa_econ_2"></div>
+                        </div>
+                        <div id="div_acc_rea_2">
+                            <!-- PARAMQUERY ACCIÓN REALIZADA 2 -->
+                            <div id="div_grid_acc_rea_2"></div>
+                        </div>
+                    </div>
+                    <div id="mensaje_select"></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal" id="co_seleccionar" type="button"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Seleccionar
+                        </button>
+                        <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancelar" type="button"><span
                                 class="glyphicon glyphicon-remove"></span> Cancelar
                         </button>
                     </div>

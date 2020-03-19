@@ -64,6 +64,10 @@ $(document).ready(function () {
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
 
+    $("#co_motiv_camb").html("<span class='glyphicon glyphicon-list-alt'></span> Motivo Cambio");
+    $("#co_situa_encon").html("<span class='glyphicon glyphicon-list-alt'></span> Situación Encontrada");
+    $("#co_acc_rea").html("<span class='glyphicon glyphicon-list-alt'></span> Acción Realizada");
+
     fn_hide();
     $("#div_motiv_camb").show();
     $("#co_leer").hide();
@@ -103,31 +107,76 @@ $(document).ready(function () {
 
     });
 
-    $("#co_aceptar").on("click", function () {
+    $("#co_seleccionar").on("click", function () {
 
-        if ($.trim($("#co_aceptar").text()) === "Aceptar") {
+        if ($.trim($("#co_seleccionar").text()) === "Seleccionar") {
 
-            if (grid_motiv_camb_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
-                fn_mensaje_boostrap("Error, por favor selecciona un Motivo Cambio.", g_tit, $("#div_grid_cargo"));
-                return;
+            if ($("#div_motiv_camb_2").is(":visible")) {
+                if (grid_motiv_camb_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    fn_mensaje('#mensaje_select','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un Motivo Cambio.</strong></div>',3000);
+                    return;
+                }
             }
 
-            if (grid_situa_encon_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
-                fn_mensaje_boostrap("Error, por favor selecciona una Situación Encontrada.", g_tit, $("#div_grid_cod_valor"));
-                return;
+            if ($("#div_situa_econ_2").is(":visible")) {
+                if (grid_situa_encon_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    fn_mensaje('#mensaje_select','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona selecciona una Situación Encontrada.</strong></div>',3000);
+                    return;
+                }
             }
 
-            if (grid_acc_rea_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
-                fn_mensaje_boostrap("Error, por favor selecciona una Acción Realizada.", g_tit, $("#div_grid_cod_valor"));
-                return;
+            if ($("#div_acc_rea_2").is(":visible")) {
+                if (grid_acc_rea_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    fn_mensaje('#mensaje_select','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona selecciona una Acción Realizada.</strong></div>',3000);
+                    return;
+                }
             }
 
-            $("#div_second").slideUp();
-            $("#div_second").hide();
-            $("#div_prin").show();
-            $("#div_prin").slideDown();
+            $('#div_select_bts').modal('hide');
         }
 
+    });
+
+    $("#co_leer").on("click", function () {
+
+        if ($.trim($("#co_leer").text()) === "Leer") {
+
+            if (grid_motiv_camb_2 !== undefined && grid_situa_encon_2 !== undefined && grid_acc_rea_2 !== undefined) {
+
+                if (grid_motiv_camb_2.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    fn_mensaje_boostrap("Error, por favor selecciona un Motivo Cambio.", g_tit, $("#co_motiv_camb"));
+                    return;
+                }
+
+                if (grid_situa_encon_2.Checkbox('checkBox').getCheckedNodes().length < 1 || grid_situa_encon_2.Checkbox('checkBox').getCheckedNodes().length === undefined) {
+                    fn_mensaje_boostrap("Error, por favor selecciona una Situación Encontrada.", g_tit, $("#co_situa_encon"));
+                    return;
+                }
+
+                if (grid_acc_rea_2.Checkbox('checkBox').getCheckedNodes().length < 1 || grid_acc_rea_2.Checkbox('checkBox').getCheckedNodes().length === undefined) {
+                    fn_mensaje_boostrap("Error, por favor selecciona una Acción Realizada.", g_tit, $("#co_acc_rea"));
+                    return;
+                }
+
+            } else {
+                if (grid_motiv_camb_2 === undefined) {
+                    fn_mensaje_boostrap("Error, por favor selecciona un Motivo Cambio.", g_tit, $("#co_motiv_camb"));
+                    return;
+                }
+
+                if (grid_situa_encon_2 === undefined) {
+                    fn_mensaje_boostrap("Error, por favor selecciona una Situación Encontrada.", g_tit, $("#co_situa_encon"));
+                    return;
+                }
+
+                if (grid_acc_rea_2 === undefined) {
+                    fn_mensaje_boostrap("Error, por favor selecciona una Acción Realizada.", g_tit, $("#co_acc_rea"));
+                    return;
+                }
+            }
+
+            fn_mensaje_boostrap("Se genero.", g_tit, $("#div_grid_cod_valor"));
+        }
     });
 
     $("#co_modificar").on( "click", function () {
@@ -226,33 +275,29 @@ $(document).ready(function () {
         }
     });
 
+    $("#co_motiv_camb").on("click", function () {
+
+        fn_select(1);
+    });
+
+    $("#co_situa_encon").on("click", function () {
+
+        fn_select(2);
+    });
+
+    $("#co_acc_rea").on("click", function () {
+
+        fn_select(3);
+    });
+
     $("#co_limpiar").on("click", fn_limpiar);
 
     $("#co_cancel").on("click", function () {
         $('#div_edit_bts').modal('hide');
     });
 
-    $("#co_leer").on("click", function () {
-
-        $("#div_prin").slideUp();
-        $("#div_prin").hide();
-        $("#div_second").show();
-        $("#div_second").slideDown();
-
-        load = true;
-
-        $grid_motiv_camb_2.pqGrid("refreshView");
-        $grid_situa_encon_2.pqGrid("refreshView");
-        $grid_acc_rea_2.pqGrid("refreshView");
-
-        load = false;
-    });
-
     $("#co_cancelar").on("click", function () {
-        $("#div_second").slideUp();
-        $("#div_second").hide();
-        $("#div_prin").show();
-        $("#div_prin").slideDown();
+        $('#div_select_bts').modal('hide');
     });
 
     $("#co_confirm_yes").on( "click", function () {
@@ -655,7 +700,14 @@ function fn_set_grid_relacion() {
         scrollModel: { theme: true },
         selectionModel: {type: 'row', mode: 'block'},
         pageModel: {rPP: 50, type: "local", rPPOptions: [50, 100, 200]},
-        toolbar: false,
+        toolbar: {
+            cls: "pq-toolbar-export btn-group-sm",
+            items: [
+                {type: "button", label: "Motivo Acción", attr: "id=co_motiv_camb", cls: "btn btn-primary btn-sm"},
+                {type: "button", label: "Motivo Acción", attr: "id=co_situa_encon", cls: "btn btn-primary btn-sm"},
+                {type: "button", label: "Motivo Acción", attr: "id=co_acc_rea", cls: "btn btn-primary btn-sm"},
+            ]
+        },
     };
 
     obj.colModel = [
@@ -697,7 +749,7 @@ function fn_set_grid_complementarias() {
     ];
 
     var obj = {
-        height: "100%",
+        height: 250,
         showtop: true,
         filterModel: {
             on: true,
@@ -705,14 +757,13 @@ function fn_set_grid_complementarias() {
             header: true,
         },
         rowBorders: true,
-        showTitle: true,
+        showTitle: false,
         showBottom: false,
         collapsible: true,
         roundCorners: true,
         columnBorders: true,
-        title: "Motivo Cambio",
         postRenderInterval: 0,
-        numberCell: { show: true },
+        numberCell: { show: false },
         scrollModel: { theme: true },
         selectionModel: {type: 'row', mode: 'block'},
         pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
@@ -728,7 +779,7 @@ function fn_set_grid_complementarias() {
             }
         },
         { title: "Código", width: 80, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 965, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 738, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj.dataModel = { data: data };
@@ -757,7 +808,7 @@ function fn_set_grid_complementarias() {
     ];
 
     var obj2 = {
-        height: "100%",
+        height: 250,
         showtop: true,
         filterModel: {
             on: true,
@@ -765,15 +816,14 @@ function fn_set_grid_complementarias() {
             header: true,
         },
         rowBorders: true,
-        showTitle: true,
+        showTitle: false,
         showBottom: false,
         collapsible: true,
         roundCorners: true,
         columnBorders: true,
         postRenderInterval: 0,
-        numberCell: { show: true },
+        numberCell: { show: false },
         scrollModel: { theme: true },
-        title: "Situación Encontrada",
         selectionModel: {type: 'row', mode: 'block'},
         pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
         toolbar: false,
@@ -788,7 +838,7 @@ function fn_set_grid_complementarias() {
             }
         },
         { title: "Código", width: 80, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 965, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 738, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj2.dataModel = { data: data2 };
@@ -806,7 +856,7 @@ function fn_set_grid_complementarias() {
     ];
 
     var obj3 = {
-        height: "100%",
+        height: 250,
         showtop: true,
         filterModel: {
             on: true,
@@ -814,14 +864,13 @@ function fn_set_grid_complementarias() {
             header: true,
         },
         rowBorders: true,
-        showTitle: true,
+        showTitle: false,
         showBottom: false,
         collapsible: true,
         roundCorners: true,
         columnBorders: true,
         postRenderInterval: 0,
-        title: "Acción Realizada",
-        numberCell: { show: true },
+        numberCell: { show: false },
         scrollModel: { theme: true },
         selectionModel: {type: 'row', mode: 'block'},
         pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
@@ -837,7 +886,7 @@ function fn_set_grid_complementarias() {
             }
         },
         { title: "Código", width: 80, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 965, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 738, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj3.dataModel = { data: data3 };
@@ -849,8 +898,6 @@ function fn_set_grid_complementarias() {
 
 //                                  <-- Combos -->
 
-//                         <-- TAB 1 (Motivo Cambio - Modal) -->
-
 function fn_estado() {
 
     $("#cb_estado").html("<option value='' selected></option>  <option value='1'>ACTIVO</option> <option value='2'>INACTIVO</option>  <option value='3'>OPCION 03</option>")
@@ -860,12 +907,6 @@ function fn_acc_rea() {
 
     $("#cb_acc_rea").html("<option value='' selected></option>  <option value='1'>MEDIDOR NORMALIZADO</option> <option value='2'>OPCIÓN 02</option>  <option value='3'>OPCION 03</option>")
 }
-
-//                       <-- TAB 2 (Situación encontrada) -->
-
-//                        <-- TAB 3 (Acciones Realizadas) -->
-
-//                             <-- TAB 4 (Relación) -->
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -1016,6 +1057,47 @@ function fn_edit(dataCell, grid) {
     $("#div_edit_bts").on("shown.bs.modal", function () {
         $("#div_edit_bts div.modal-footer button").focus();
     });
+}
+
+function fn_select(type) {
+
+    load = true;
+
+    $("#div_motiv_camb_2").hide();
+    $("#div_situa_econ_2").hide();
+    $("#div_acc_rea_2").hide();
+
+    if (type === 1) {
+        $("#div_motiv_camb_2").show();
+        $("#modal_select_title").html("Seleccionar Motivo Cambio");
+        setTimeout(function() { $grid_motiv_camb_2.pqGrid("refreshView"); },500);
+    }
+
+    if (type === 2) {
+        $("#div_situa_econ_2").show();
+        $("#modal_select_title").html("Seleccionar Situación Encontrada");
+        setTimeout(function() { $grid_situa_encon_2.pqGrid("refreshView"); },500);
+    }
+
+    if (type === 3) {
+        $("#div_acc_rea_2").show();
+        $("#modal_select_title").html("Seleccionar Acción Realizada");
+        setTimeout(function() { $grid_acc_rea_2.pqGrid("refreshView"); },500);
+    }
+
+    $("#div_select_bts").modal({backdrop: "static",keyboard:false});
+    $("#div_select_bts").on("shown.bs.modal", function () {
+        $("#div_select_bts div.modal-footer button").focus();
+    });
+
+    setTimeout(function() {
+        $grid_motiv_camb_2.pqGrid("refreshView");
+        $grid_situa_encon_2.pqGrid("refreshView");
+        $grid_acc_rea_2.pqGrid("refreshView");
+
+        load = false;
+    },500);
+
 }
 
 function fn_borrar(rowIndx) {
