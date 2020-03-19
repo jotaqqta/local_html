@@ -61,6 +61,22 @@
             #bd_third {
                 height: calc(82vh - 82px);
             }
+
+            #bd_quarter {
+                height: calc(82vh - 82px);
+            }
+
+            #bd_comp_prim {
+                height: calc(33vh - 82px);
+            }
+
+            #bd_comp_second {
+                height: calc(33vh - 82px);
+            }
+
+            #bd_comp_third {
+                height: calc(33vh - 82px);
+            }
         }
 
         @media screen and (min-width: 1402px) {
@@ -75,6 +91,22 @@
             #bd_third {
                 height: calc(82vh - 82px);
             }
+
+            #bd_quarter {
+                height: calc(82vh - 82px);
+            }
+
+            #bd_comp_prim {
+                height: calc(33vh - 82px);
+            }
+
+            #bd_comp_second {
+                height: calc(33vh - 82px);
+            }
+
+            #bd_comp_third {
+                height: calc(33vh - 82px);
+            }
         }
 
         #content {
@@ -83,6 +115,12 @@
             border-right: 1px solid #DDDDDD;
             border-left: 1px solid #DDDDDD;
             border-bottom: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+        #content-2 {
+            border-radius: 3px;
+            border: 1px solid #C6C6C6;
             padding: 7px;
         }
 
@@ -127,6 +165,12 @@
                             </button>
                             &nbsp;
                         </li>
+                        <li class="pull-right text-center">
+                            <button class="btn btn-sm btn-primary" id="co_leer" type="button"><span
+                                    class="glyphicon glyphicon-search"></span> Leer
+                            </button>
+                            &nbsp;
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -151,7 +195,51 @@
                                 <div id="div_grid_acc_rea"></div>
                             </div>
                         </div>
-                        <div id="div_relacion"></div>
+                        <div id="div_relacion">
+                            <div id="bd_quarter">
+                                <!-- PARAMQUERY ACCIÓN REALIZADA -->
+                                <div id="div_grid_relacion"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="div_second">
+            <div class="row">
+                <div class="container">
+                    <div id="content-2">
+                        <div id="div_motiv_camb_2">
+                            <div id="bd_comp_prim">
+                                <!-- PARAMQUERY MOTIVO CAMBIO 2 -->
+                                <div id="div_grid_motiv_camb_2"></div>
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div id="div_situa_econ_2">
+                            <div id="bd_comp_second">
+                                <!-- PARAMQUERY SITUACIÓN ENCONTRADA 2 -->
+                                <div id="div_grid_situa_econ_2"></div>
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div id="div_acc_rea_2">
+                            <div id="bd_comp_third">
+                                <!-- PARAMQUERY ACCIÓN REALIZADA 2 -->
+                                <div id="div_grid_acc_rea_2"></div>
+                            </div>
+                        </div>
+                        <div style="height: 7px"></div>
+                        <div class="row">
+                            <div class="col-xs-12 text-right">
+                                <button class="btn btn-sm btn-group btn-primary" id="co_aceptar" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Aceptar
+                                </button>
+                                <button class="btn btn-sm btn-group btn-default" id="co_cancelar" type="button"><span
+                                        class="glyphicon glyphicon-remove"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -168,8 +256,7 @@
                         <h4 class="modal-title" id="modal_edit_title" data-dismiss="modal">Modificar</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="space"></div>
-                        <div class="row">
+                        <div class="row" id="row1">
                             <div class="col-xs-6">
                                 <div class="row">
                                     <div class="col-xs-4">
@@ -182,7 +269,7 @@
                             </div>
                             <div class="col-xs-6" id="row1_pt_ii"></div>
                         </div>
-                        <div class="space"></div>
+                        <div class="space" id="space1"></div>
                         <div class="row">
                             <div class="col-xs-6" id="row2_pt_i">
                                 <div class="row">
@@ -206,8 +293,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="space"></div>
-                        <div class="row">
+                        <div class="space" id="space2"></div>
+                        <div class="row" id="div_fechas">
                             <div class="col-xs-6">
                                 <div class="row">
                                     <div class="col-xs-4">
