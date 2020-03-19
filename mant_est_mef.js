@@ -1,5 +1,5 @@
-var g_modulo = "Administrador de Ordenes Masivas";
-var g_tit = "Mantenedor de Tipo de Orden";
+var g_modulo = "Módulo de Gestión";
+var g_tit = "Mantenimiento Estimados MEF";
 var $grid_principal;
 var sql_grid_prim = "";
 var rowIndxG;
@@ -21,17 +21,12 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 $(document).ready(function () {
-    jQuery('#tx_dura').keypress(function (tecla){
+    jQuery('#tx_codigo').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });    
     
     //COMBOS
-    fn_estado();
-    fn_tip_agrup();
-    fn_sistema();
-
-
-
+    fn_ano();
 
     // PARA ELIMINAR EL SUBMIT
     $("button").on("click", function () { return false; });
@@ -56,6 +51,10 @@ $(document).ready(function () {
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 	$("#co_nuevo").prop("disabled", false);
+
+    //DEFINE LA GRILLA SECUNDARIA
+    fn_setea_grid_second();
+    $("#co_nuevo").prop("disabled", false);
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
@@ -102,21 +101,26 @@ $(document).ready(function () {
 	/////////////////////////////////BOTON GENERAR/////////////////////////////////
     $("#co_generar").on("click", function() {
         if ($.trim($("#co_generar").text()) === "Generar") {
+
             if (fn_val_general())
-                return;       
+                return;   
+
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
+
         }
 
 	/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
-        else{ 
+        if ($.trim($("#co_generar").text()) === "Modificar") {
+            
             if (fn_val_general())
-                return;                             
+                return;   
+                      
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
-             
+
         }
     });
 
@@ -166,27 +170,17 @@ $(document).ready(function () {
                 $("#title_mod").html("Editar");
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
                 $("#co_activar").show();
-                $("#co_limpiar").hide();                
-                $("#tx_tip_ord").prop( "disabled", true);
-                $("#tx_version").prop( "disabled", true);
-                
 
 
-				$("#tx_tip_ord").val(dataCell.C1);
-                $("#tx_descrip").val(dataCell.C2);
-                $("#cb_estado").val(dataCell.C3);
-                $("#cb_tip_agrup").val(dataCell.C5);
-                $("#cb_sistema").val(dataCell.C6);
-                $("#tx_nom_menu").val(dataCell.C7);
-				$("#tx_version").val(dataCell.C8);
-				$("#tx_ruta_imagen").val(dataCell.C9);
-				$("#tx_dura").val(dataCell.C10);
-                $("#tx_obser").val(dataCell.C11);
+				$("#tx_rol_fun").val(dataCell.C1);
+				$("#tx_rol_gen").val(dataCell.C2);
+				$("#tx_equipo").val(dataCell.C3);
+				$("#tx_oper").val(dataCell.C4);
 
-                    if(dataCell.C3 == "A")
+                    if(dataCell.C5 == "A")
                        $("#co_activar").html("<span class='glyphicon glyphicon-chevron-down'></span> Desactivar");
                 else
-                    if(dataCell.C3 == "D")
+                    if(dataCell.C5 == "D")
                         $("#co_activar").html("<span class='glyphicon glyphicon-chevron-up'></span> Activar");
 
 
@@ -227,17 +221,18 @@ $(document).ready(function () {
 });
 
 
-/////////////////////////////////GRILLA///////////////////////////////////////////
+/////////////////////////////////GRILLAS///////////////////////////////////////////
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'A', C4: 'ACTIVADO', C5: '1', C6: '1',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
-        { C1: 'ARUT', C2: 'ASIGNACIÓN RUTA', C3: 'D', C4: 'DESACTIVADO', C5: '1', C6: '1',C7: 'RUTA', C8: '1', C9: '../TOM_IMAGENES/RUTA.GIF', C10: '100', C11: 'ASIGNACIÓN DE RUTA'},
+        { C1: 'SECTOR PÚBLICO', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
+        { C1: 'SECTOR PARTICULAR', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
+        { C1: 'OTROS INGRESOS', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
            
     ];
 
     var obj = {
-        height: "100%",
+        height: "50%",
         showTop: true,
         showBottom:true,
         showTitle : false,
@@ -255,7 +250,7 @@ function fn_setea_grid_principal() {
         toolbar: {
             cls: "pq-toolbar-export",
             items:[
-                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
+                { type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
                 
@@ -264,22 +259,82 @@ function fn_setea_grid_principal() {
     };
 
     obj.colModel = [
-        { title: "Orden", width: 150, dataType: "strig", dataIndx: "C1", halign: "center", align: "center", },
-        { title: "Descripción", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "Estado", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
-        { title: "Estado", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center"},
-        { title: "Tipo Agrupación", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
-        { title: "Sistema", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center", hidden: "true" },
-        { title: "Nombre Menú", width: 150, dataType: "string", dataIndx: "C7", halign: "center", align: "center", hidden: "true" },
-        { title: "Versión", width: 150, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
-        { title: "Ruta Imágen", width: 150, dataType: "string", dataIndx: "C9", halign: "center", align: "center", hidden: "true" },
-        { title: "Duración", width: 150, dataType: "string", dataIndx: "C10", halign: "center", align: "center", hidden: "true" },
-        { title: "Observación", width: 150, dataType: "string", dataIndx: "C11", halign: "center", align: "center", hidden: "true" },
+        { title: "Sector", width: 150, dataType: "strig", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Enero", width: 80, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Febrero", width: 80, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Marzo", width: 80, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Abril", width: 80, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Mayo", width: 80, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Junio", width: 80, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Julio", width: 80, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+        { title: "Agosto", width: 80, dataType: "string", dataIndx: "C9", halign: "center", align: "center" },
+        { title: "Septiembre", width: 80, dataType: "string", dataIndx: "C10", halign: "center", align: "center" },
+        { title: "Octubre", width: 80, dataType: "string", dataIndx: "C11", halign: "center", align: "center" },
+        { title: "Noviembe", width: 80, dataType: "string", dataIndx: "C12", halign: "center", align: "center" },
+        { title: "Diciembre", width: 80, dataType: "string", dataIndx: "C13", halign: "center", align: "center" },
 
     ];
     obj.dataModel = { data: data };
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
+
+}
+
+function fn_setea_grid_second() {
+
+    var data =  [
+        { C1: 'BOCAS DEL TORO', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
+        {C1: 'COCLÉ', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
+        { C1: 'COLÓN', C2: '1000', C3: '1000', C4: '1000', C5: '1000', C6: '1000', C7: '1000', C8: '1000', C9: '1000', C10: '1000', C11: '1000', C12: '1000', C13: '1000'},
+           
+    ];
+
+    var obj = {
+        height: "80%",
+        showTop: true,
+        showBottom:true,
+        showTitle : false,
+        title: "",
+        roundCorners: true,
+        rowBorders: true,
+        columnBorders: true,
+        collapsible:true,
+        editable:false,
+        postRenderInterval: 0,
+        selectionModel: { type: 'row',mode:'single'},
+        numberCell: { show: true },
+        pageModel: { rPP: 100, type: "local", rPPOptions: [100, 200, 500]},
+        scrollModel:{theme:true},
+        toolbar: {
+            cls: "pq-toolbar-export",
+            items:[
+                //{ type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
+                //{ type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
+                //{ type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
+                
+            ]
+        },
+    };
+
+    obj.colModel = [
+        { title: "Regional", width: 150, dataType: "strig", dataIndx: "C1", halign: "center", align: "center" },
+        { title: "Enero", width: 80, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Febrero", width: 80, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Marzo", width: 80, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+        { title: "Abril", width: 80, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+        { title: "Mayo", width: 80, dataType: "string", dataIndx: "C6", halign: "center", align: "center" },
+        { title: "Junio", width: 80, dataType: "string", dataIndx: "C7", halign: "center", align: "center" },
+        { title: "Julio", width: 80, dataType: "string", dataIndx: "C8", halign: "center", align: "center" },
+        { title: "Agosto", width: 80, dataType: "string", dataIndx: "C9", halign: "center", align: "center" },
+        { title: "Septiembre", width: 80, dataType: "string", dataIndx: "C10", halign: "center", align: "center" },
+        { title: "Octubre", width: 80, dataType: "string", dataIndx: "C11", halign: "center", align: "center" },
+        { title: "Noviembe", width: 80, dataType: "string", dataIndx: "C12", halign: "center", align: "center" },
+        { title: "Diciembre", width: 80, dataType: "string", dataIndx: "C13", halign: "center", align: "center" },
+
+    ];
+    obj.dataModel = { data: data };
+
+    $grid_principal = $("#div_grid_second").pqGrid(obj);
 
 }
 
@@ -308,17 +363,11 @@ function fn_activar(){
 
 function fn_new(){
 
-
-    $("#tx_tip_ord").prop( "disabled", false);
-    $("#tx_version").prop( "disabled", false);
-    
-
     fn_limpiar();
     $("#co_limpiar").show();
     $("#co_activar").hide();
     $("#title_mod").html("Generar nuevo");
     $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-
 
     $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
     $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -330,18 +379,11 @@ function fn_new(){
 }
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
-function fn_estado(){
-    $("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >DESACTIVADO</option> ");
-    
+
+function fn_ano(){
+    $("#cb_ano").html("<option value='' selected></option><option value='1'>2020</option> <option value='2' >2019</option>");
 }
 
-function fn_tip_agrup(){
-    $("#cb_tip_agrup").html("<option value='' selected></option><option value='1'>GENÉRICO</option> <option value='2' >GENÉRICO</option>");
-}
-
-function fn_sistema(){
-    $("#cb_sistema").html("<option value='' selected></option><option value='1'>ASIGNACIONES</option> <option value='2' >ASIGNACIONES</option>");
-}
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 
 function fn_eliminar(rowIndx) {
@@ -352,7 +394,7 @@ function fn_eliminar(rowIndx) {
 
     $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
     $("#dlg_confirm").on("shown.bs.modal", function () {
-    $("#dlg_confirm div.modal-footer button").focus();
+        $("#dlg_confirm div.modal-footer button").focus();
     });
 
 }
@@ -374,89 +416,57 @@ function fn_carga_grilla() {
 
 function fn_limpiar(){
 	
-    $("#tx_tip_ord").val("");
-    $("#tx_descrip").val("");
+    $("#tx_rol_fun").val("");
+    $("#tx_rol_fun_2").val("");
+    $("#tx_rol_gen").val("");
+    $("#tx_rol_gen_2").val("");
+    $("#tx_equipo").val("");
+    $("#tx_equipo_2").val("");
+    $("#tx_oper").val("");
+    $("#tx_oper_2").val("");
     $("#cb_estado").val("");
-    $("#cb_tip_agrup").val("");
-    $("#cb_sistema").val("");
-    $("#tx_nom_menu").val("");
-    $("#tx_version").val("");
-    $("#tx_ruta_imagen").val("");
-    $("#tx_dura").val("");
-    $("#tx_obser").val("");
    
 }
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
 function fn_val_general(){
 
-	if ($("#tx_tip_ord").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR TIPO DE ORDEN!!!</strong></div>',3000);
-		$("#tx_tip_ord").focus();
+	if ($("#tx_rol_fun").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL FUNCIÓN!!!</strong></div>',3000);
+		$("#tx_rol_fun").focus();
 		return true;
 	}
 
-	if ($("#tx_descrip").val() === "") {
+	if ($("#tx_rol_gen").val() === "") {
 		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL GENÉRICO!!!</strong></div>',3000);
-		$("#tx_descrip").focus();
+		$("#tx_rol_gen").focus();
 		return true;
 	}
 
-	if ($("#cb_estado").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR ESTADO</strong></div>', 3000);
-		$("#cb_estado").focus();
+	if ($("#tx_equipo").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR EQUIPO</strong></div>', 3000);
+		$("#tx_equipo").focus();
 		return true;
 	}
-    if ($("#cb_tip_agrup").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO DE AGRUPACIÓN</strong></div>', 3000);
-        $("#cb_tip_agrup").focus();
+    if ($("#tx_oper").val() === "") {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR C. OPER. ÁREA</strong></div>', 3000);
+        $("#tx_oper").focus();
         return true;
     }
-    if ($("#cb_sistema").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA</strong></div>', 3000);
-        $("#cb_sistema").focus();
+    if ($("#cb_estado").val() === "") {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR ESTADO</strong></div>', 3000);
+        $("#cb_estado").focus();
         return true;
     }
-        if ($("#tx_nom_menu").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NOMBRE MENÚ</strong></div>', 3000);
-        $("#tx_nom_menu").focus();
-        return true;
-    }
-        if ($("#tx_version").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR VERSIÓN</strong></div>', 3000);
-        $("#tx_version").focus();
-        return true;
-    }
-        if ($("#tx_ruta_imagen").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR AGREGAR IMAGEN</strong></div>', 3000);
-        $("#tx_ruta_imagen").focus();
-        return true;
-    }
-        if ($("#tx_dura").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DURACIÓN</strong></div>', 3000);
-        $("#tx_dura").focus();
-        return true;
-    }
-    if ($("#tx_obser").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR OBSERVACIÓN</strong></div>', 3000);
-        $("#tx_obser").focus();
-        return true;
-    }
-	
-	if($("#tx_obser").length < 15) {
-		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>OBSERVACIÓN DEBE TENER AL MENOS 15 CARACTERES</strong></div>', 3000);
-		$("#tx_obser").focus();
-		return true;
-	}
 	return false;
 }
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
-//function fn_limpiar_filtro(){
-//   $("#cb_sistema").val("");
-//   $("#cb_regional").val("");
+function fn_limpiar_filtro(){
+   $("#cb_sistema").val("");
+   $("#cb_regional").val("");
     
-//}
+}
 
 //////////////////////////////////////////////////////////////////
 function fn_mensaje(id,mensaje,segundos)
