@@ -85,9 +85,9 @@ $(document).ready(function () {
 
     $("#co_generar_fil").on("click", function() {
         if ($.trim($("#co_generar_fil").text()) === "Consultar") {
-            if ($("#cb_tip_orden").val() === "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO ORDEN!!!</strong></div>',3000);
-                $("#cb_tip_orden").focus();
+            if ($("#cb_ano").val() === "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR AÑO!!!</strong></div>',3000);
+                $("#cb_ano").focus();
                 return;
             }
 			
