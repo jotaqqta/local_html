@@ -80,6 +80,7 @@ $(document).ready(function () {
     $(".nav-tabs a").click(function(){
 
         $("#co_leer").hide();
+        $("#co_nuevo").show();
 
         $(this).tab('show');
         fn_hide();
@@ -103,8 +104,29 @@ $(document).ready(function () {
             $("#div_relacion").show();
 
             $("#co_leer").show();
+            $("#co_nuevo").hide();
         }
 
+    });
+
+    $("#co_nuevo").on("click", function () {
+
+        if ($.trim($("#co_nuevo").text()) === "Nuevo") {
+
+            if ($("#div_motiv_camb").is(":visible")) {
+                fn_new_edit(undefined, 1, false);
+            }
+
+            if ($("#div_situa_encon").is(":visible")) {
+                fn_new_edit(undefined, 2, false);
+
+            }
+
+            if ($("#div_acc_rea").is(":visible")) {
+                fn_new_edit(undefined, 3, false);
+
+            }
+        }
     });
 
     $("#co_seleccionar").on("click", function () {
@@ -179,9 +201,9 @@ $(document).ready(function () {
         }
     });
 
-    $("#co_modificar").on( "click", function () {
+    $("#co_mod_gen").on( "click", function () {
 
-        if ($.trim($("#co_modificar").text()) === "Modificar") {
+        if ($.trim($("#co_mod_gen").text()) === "Modificar") {
 
             if ($("#tx_desc").val() === "") {
                 fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica una descripción.</strong></div>',3000);
@@ -268,11 +290,66 @@ $(document).ready(function () {
                 }
             }
 
-            fn_mensaje_boostrap("Se Modifico", g_tit, $("#co_modificar"));
-            $('#div_edit_bts').modal('hide');
-            $(window).scrollTop(0);
+            fn_mensaje_boostrap("Se Modifico", g_tit, $("#co_mod_gen"));
 
         }
+
+        if ($.trim($("#co_mod_gen").text()) === "Generar") {
+
+            if ($("#tx_desc").val() === "") {
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indica una descripción.</strong></div>',3000);
+                $("#tx_desc").focus();
+                return;
+            }
+
+            if ($("#cb_estado").val() === "") {
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona un estado.</strong></div>',3000);
+                $("#cb_estado").focus();
+                return;
+            }
+
+            if ($("#cb_acc_rea").val() === "") {
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor selecciona una acción.</strong></div>',3000);
+                $("#cb_acc_rea").focus();
+                return;
+            }
+
+            if ($("#div_motiv_camb").is(":visible")) {
+                if (!$('input[type=radio][name=opt_arch_palm]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si cuenta con Archivos Palm (Si o No).</strong></div>',3000);
+                    $("#opt_arch_palm_si").focus();
+                    return;
+                }
+            }
+
+            if ($("#div_situa_encon").is(":visible")) {
+                if (!$('input[type=radio][name=opt_genera_carta]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si Genera Cartera (Si o No).</strong></div>',3000);
+                    $("#opt_genera_carta_si").focus();
+                    return;
+                }
+
+                if (!$('input[type=radio][name=opt_camb_correct]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si cuenta con Cambio Correctivo (Si o No).</strong></div>',3000);
+                    $("#opt_camb_correct_si").focus();
+                    return;
+                }
+            }
+
+            if ($("#div_acc_rea").is(":visible")) {
+
+                if (!$('input[type=radio][name=opt_indq_ord_improc]').is(":checked")) {
+                    fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por favor indique si Indica orden Inprocedente (Si o No).</strong></div>',3000);
+                    $("#opt_indq_ord_improc_si").focus();
+                    return;
+                }
+            }
+
+            fn_mensaje_boostrap("Se Genero", g_tit, $("#co_mod_gen"));
+        }
+
+        $('#div_edit_bts').modal('hide');
+        $(window).scrollTop(0);
     });
 
     $("#co_motiv_camb").on("click", function () {
@@ -336,7 +413,7 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell, 1);
+                fn_new_edit(dataCell, 1, true);
             }
         }
     });
@@ -346,7 +423,7 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell, 2);
+                fn_new_edit(dataCell, 2, true);
             }
         }
     });
@@ -356,7 +433,7 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell, 3);
+                fn_new_edit(dataCell, 3, true);
             }
         }
     });
@@ -366,7 +443,7 @@ $(document).ready(function () {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
 
-                fn_edit(dataCell, 4);
+                fn_new_edit(dataCell, 4, true);
             }
         }
     });
@@ -912,7 +989,7 @@ function fn_acc_rea() {
 
 //                                  <-- Functions -->
 
-function fn_edit(dataCell, grid) {
+function fn_new_edit(dataCell, grid, edit) {
 
     fn_limpiar();
 
@@ -922,7 +999,15 @@ function fn_edit(dataCell, grid) {
     $("#div_fechas").show();
     $("#row_radios_situa").hide();
 
+    if (edit) {
+        $("#co_mod_gen").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
+    } else {
+        $("#co_mod_gen").html("<span class='glyphicon glyphicon-ok'></span> Generar");
+    }
+
     if (grid === 1) {
+
+        $("#modal_edit_title").html("Generar nuevo Motivo Cambio");
 
         $("#row1_pt_ii").html("");
         $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-8\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
@@ -936,25 +1021,32 @@ function fn_edit(dataCell, grid) {
         fn_estado();
         fn_acc_rea();
 
-        $("#tx_codigo").val(dataCell.C1);
-        $("#tx_desc").val(dataCell.C2);
-        $("#tx_fech_crea").val(dataCell.C5);
-        $("#tx_fech_modif").val(dataCell.C6);
+        if (edit) {
 
-        $("#cb_estado option").each(function() {
-            if ($(this).text() === dataCell.C7) {
-                $("#cb_estado").val($(this).val());
-            }
-        });
+            $("#modal_edit_title").html("Modificar Motivo Cambio");
 
-        $("#cb_acc_rea option").each(function() {
-            if ($(this).text() === dataCell.C4) {
-                $("#cb_acc_rea").val($(this).val());
-            }
-        });
+            $("#tx_codigo").val(dataCell.C1);
+            $("#tx_desc").val(dataCell.C2);
+            $("#tx_fech_crea").val(dataCell.C5);
+            $("#tx_fech_modif").val(dataCell.C6);
+
+            $("#cb_estado option").each(function() {
+                if ($(this).text() === dataCell.C7) {
+                    $("#cb_estado").val($(this).val());
+                }
+            });
+
+            $("#cb_acc_rea option").each(function() {
+                if ($(this).text() === dataCell.C4) {
+                    $("#cb_acc_rea").val($(this).val());
+                }
+            });
+        }
     }
 
     if (grid === 2) {
+
+        $("#modal_edit_title").html("Genera nueva Situación Encontrada");
 
         $("#row1_pt_ii").html("<div class=\"row\"> <div class=\"col-xs-5\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-7\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
         $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"cb_estado\">Estado:</label> </div> <div class=\"col-xs-8\"> <select class=\"form-control\" id=\"cb_estado\" name=\"cb_estado\"> </select> </div> </div>");
@@ -966,37 +1058,44 @@ function fn_edit(dataCell, grid) {
         fn_estado();
         fn_acc_rea();
 
-        $("#tx_codigo").val(dataCell.C1);
-        $("#tx_desc").val(dataCell.C2);
-        $("#tx_fech_crea").val(dataCell.C6);
-        $("#tx_fech_modif").val(dataCell.C7);
+        if (edit) {
 
-        if (dataCell.C3 === "SI") {
-            $('input[type=radio][name=opt_genera_carta][value=opt_1]').prop("checked", true);
-        } else if (dataCell.C3 === "NO") {
-            $('input[type=radio][name=opt_genera_carta][value=opt_2]').prop("checked", true);
-        }
+            $("#modal_edit_title").html("Modificar Situación Encontrada");
 
-        if (dataCell.C4 === "SI") {
-            $('input[type=radio][name=opt_camb_correct][value=opt_1]').prop("checked", true);
-        } else if (dataCell.C4 === "NO") {
-            $('input[type=radio][name=opt_camb_correct][value=opt_2]').prop("checked", true);
-        }
+            $("#tx_codigo").val(dataCell.C1);
+            $("#tx_desc").val(dataCell.C2);
+            $("#tx_fech_crea").val(dataCell.C6);
+            $("#tx_fech_modif").val(dataCell.C7);
 
-        $("#cb_estado option").each(function() {
-            if ($(this).text() === dataCell.C8) {
-                $("#cb_estado").val($(this).val());
+            if (dataCell.C3 === "SI") {
+                $('input[type=radio][name=opt_genera_carta][value=opt_1]').prop("checked", true);
+            } else if (dataCell.C3 === "NO") {
+                $('input[type=radio][name=opt_genera_carta][value=opt_2]').prop("checked", true);
             }
-        });
 
-        $("#cb_acc_rea option").each(function() {
-            if ($(this).text() === dataCell.C5) {
-                $("#cb_acc_rea").val($(this).val());
+            if (dataCell.C4 === "SI") {
+                $('input[type=radio][name=opt_camb_correct][value=opt_1]').prop("checked", true);
+            } else if (dataCell.C4 === "NO") {
+                $('input[type=radio][name=opt_camb_correct][value=opt_2]').prop("checked", true);
             }
-        });
+
+            $("#cb_estado option").each(function() {
+                if ($(this).text() === dataCell.C8) {
+                    $("#cb_estado").val($(this).val());
+                }
+            });
+
+            $("#cb_acc_rea option").each(function() {
+                if ($(this).text() === dataCell.C5) {
+                    $("#cb_acc_rea").val($(this).val());
+                }
+            });
+        }
     }
 
     if (grid === 3) {
+
+        $("#modal_edit_title").html("Genera nueva Acción Realizada");
 
         $("#row1_pt_ii").html("");
         $("#row2_pt_i").html("<div class=\"row\"> <div class=\"col-xs-4\"> <label for=\"tx_desc\">Descripción:</label> </div> <div class=\"col-xs-8\"> <input id=\"tx_desc\" class=\"form-control\"> </div> </div>");
@@ -1010,32 +1109,38 @@ function fn_edit(dataCell, grid) {
         fn_estado();
         fn_acc_rea();
 
-        $("#tx_codigo").val(dataCell.C1);
-        $("#tx_desc").val(dataCell.C2);
-        $("#tx_fech_crea").val(dataCell.C5);
-        $("#tx_fech_modif").val(dataCell.C6);
+        if (edit) {
 
-        if (dataCell.C3 === "SI") {
-            $('input[type=radio][name=opt_indq_ord_improc][value=opt_1]').prop("checked", true);
-        } else if (dataCell.C3 === "NO") {
-            $('input[type=radio][name=opt_indq_ord_improc][value=opt_2]').prop("checked", true);
+            $("#modal_edit_title").html("Modifica Situación Encontrada");
+
+            $("#tx_codigo").val(dataCell.C1);
+            $("#tx_desc").val(dataCell.C2);
+            $("#tx_fech_crea").val(dataCell.C5);
+            $("#tx_fech_modif").val(dataCell.C6);
+
+            if (dataCell.C3 === "SI") {
+                $('input[type=radio][name=opt_indq_ord_improc][value=opt_1]').prop("checked", true);
+            } else if (dataCell.C3 === "NO") {
+                $('input[type=radio][name=opt_indq_ord_improc][value=opt_2]').prop("checked", true);
+            }
+
+            $("#cb_estado option").each(function() {
+                if ($(this).text() === dataCell.C7) {
+                    $("#cb_estado").val($(this).val());
+                }
+            });
+
+            $("#cb_acc_rea option").each(function() {
+                if ($(this).text() === dataCell.C4) {
+                    $("#cb_acc_rea").val($(this).val());
+                }
+            });
         }
-
-        $("#cb_estado option").each(function() {
-            if ($(this).text() === dataCell.C7) {
-                $("#cb_estado").val($(this).val());
-            }
-        });
-
-        $("#cb_acc_rea option").each(function() {
-            if ($(this).text() === dataCell.C4) {
-                $("#cb_acc_rea").val($(this).val());
-            }
-        });
-
     }
 
     if (grid === 4) {
+
+        $("#modal_edit_title").html("Modifica Relación");
 
         $("#div_fechas").hide();
         $("#row1").hide();
@@ -1130,9 +1235,13 @@ function fn_hide() {
 
 function fn_limpiar() {
 
+
     $("#tx_desc").val("");
+    $("#tx_codigo").val("");
     $("#cb_estado").val("");
     $("#cb_acc_rea").val("");
+    $("#tx_fech_crea").val("");
+    $("#tx_fech_modif").val("");
 
     if ($("#div_motiv_camb").is(":visible")) {
 
