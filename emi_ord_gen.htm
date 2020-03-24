@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+    <script src="emi_ord_gen.js"></script>
+
+    <style>
+
+        #content {
+            border-radius: 3px;
+            border: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+        #content-2 {
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-right: 1px solid #DDDDDD;
+            border-left: 1px solid #DDDDDD;
+            border-bottom: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+        .space {
+            height: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <div class="space"></div>
+    <div class="container" id="container-prin">
+        <div id="div_prin">
+            <div class="row">
+                <div id="content">
+                    <div class="container" style="width: 100%">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-12" style="height: 6px"></div>
+                                    <div class="col-xs-2">
+                                        <label for="tx_orden">Orden:</label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <input id="tx_orden" name="tx_orden" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="btn btn-sm btn-group btn-primary" id="co_enviar" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Enviar
+                                </button>
+                                <button class="btn btn-sm btn-group btn-primary" id="co_imprimir" type="button"><span
+                                        class="glyphicon glyphicon-print"></span> Imprimir
+                                </button>
+                                <button class="btn btn-sm btn-group btn-default" id="co_cancelar" type="button"><span
+                                        class="glyphicon glyphicon-remove"></span> Cancelar
+                                </button>
+                                <button class="btn btn-sm btn-group btn-default" id="co_cerrar" type="button"><span
+                                        class="glyphicon glyphicon-off"></span> Cerrar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label for="tx_origen">Origen:</label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <input id="tx_origen" name="tx_origen" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label for="tx_fech_inicio">Fecha inicio:</label>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <input id="tx_fech_inicio" name="tx_fech_inicio" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <label for="cb_localidad">Localidad:</label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <select class="form-control" id="cb_localidad" name="cb_localidad" readonly></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label for="cb_prioridad">Prioridad:</label>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <select class="form-control" id="cb_prioridad" name="cb_prioridad"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <label for="tx_ref">Referencia:</label>
+                            </div>
+                            <div class="col-xs-11">
+                                <input id="tx_ref" name="tx_ref" class="form-control">
+                            </div>
+                        </div>
+                        <div style="height: 10px"></div>
+                        <div class="row">
+                            <div class="container col-xs-12">
+                                <ul class="nav nav-tabs">
+                                    <li id="tab_dat_client" role="presentation" class="active"><a>Datos Cliente</a></li>
+                                    <li id="tab_dat_ord_gen" role="presentation"><a>Datos Órden Genérica</a></li>
+                                    <li id="tab_observ" role="presentation"><a>Observaciones</a></li>
+                                    <li class="pull-right text-center">
+                                        <button class="btn btn-sm btn-primary" id="co_direcc" type="button"><span
+                                                class="glyphicon glyphicon-book"></span> Direcciones
+                                        </button>
+                                    </li>
+                                    <li class="pull-right text-center">
+                                        <button class="btn btn-sm btn-primary" id="co_medidores" type="button"><span
+                                                class="glyphicon glyphicon-list-alt"></span> Medidores
+                                        </button>
+                                        &nbsp;
+                                    </li>
+                                    <li class="pull-right text-center">
+                                        <button class="btn btn-sm btn-primary" id="co_leer" type="button"><span
+                                                class="glyphicon glyphicon-search"></span> Leer
+                                        </button>
+                                        &nbsp;
+                                    </li>
+                                    <li class="pull-right text-center">
+                                        <button class="btn btn-sm btn-primary" id="co_buzon" type="button"><span
+                                                class="glyphicon glyphicon-list-alt"></span> Buzón
+                                        </button>
+                                        &nbsp;
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container" style="width: 100%">
+                                <div id="content-2">
+                                    <div id="div_dat_client">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_nro_sumi">Numero Suministro:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_nro_sumi" name="tx_nro_sumi" maxlength="8" class="form-control number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_nombre">Nombre:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_nombre" name="tx_nombre" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_direcc">Dirección:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_direcc" name="tx_direcc" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_tiene_doc">Tiene Documento:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_tiene_doc" name="tx_tiene_doc" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_rut">Rut:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_rut" name="tx_rut" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_ruta">Ruta:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_ruta" name="tx_ruta" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_tel">Teléfono:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_tel" name="tx_tel" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_mail">E-Mail:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_mail" name="tx_mail" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="div_dat_ord_gen">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="cb_canal_entrada">Canal de Entrada:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <select id="cb_canal_entrada" name="cb_canal_entrada" class="form-control"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="cb_tipo_aten">Tipo Atención:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <select id="cb_tipo_aten" name="cb_tipo_aten" class="form-control"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="cb_motiv_client">Motivo Cliente:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <select id="cb_motiv_client" name="cb_motiv_client" class="form-control"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="cb_motiv_empresa">Motivo Empresa:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <select id="cb_motiv_empresa" name="cb_motiv_empresa" class="form-control"></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="row">
+                                                    <div class="col-xs-4">
+                                                        <label for="tx_fech_venc">Fecha Vencimiento:</label>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <input id="tx_fech_venc" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <span class="checkbox-inline"><input class="checkbox-inline" type="checkbox" id="chk_buzon"><label
+                                                        for="chk_buzon">Buzón</label></span>
+                                            </div>
+                                        </div>
+                                        <div class="space" id="buzon_space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div id="div_buzon_i"></div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div id="div_buzon_ii"></div>
+                                            </div>
+                                        </div>
+                                        <div class="well well-sm">Atributos</div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div style="height: 50px"></div>
+                                                <label for="tx_observaciones_env">Observaciones de Envío:</label>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <textarea id="tx_observaciones_env" name="tx_observaciones_env" class="form-control" style="resize: none; height: 125px"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="space"></div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <div style="height: 50px"></div>
+                                                <label for="tx_observaciones_resp">Observaciones de Respuesta:</label>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <textarea id="tx_observaciones_resp" name="tx_observaciones_resp" class="form-control" style="resize: none; height: 125px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="div_observaciones">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <textarea id="tx_observaciones" name="tx_observaciones" class="form-control" style="resize: none; height: 175px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+
+        <div class="modal fade" id="div_buzon_bts" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                        <h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Seleccionar Buzón</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- PARAMQUERY BUZÓN -->
+                        <div id="div_grid_buzon"></div>
+                    </div>
+                    <div id="mensaje_select"></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal" id="co_seleccionar" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Seleccionar
+                        </button>
+                        <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel" type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
