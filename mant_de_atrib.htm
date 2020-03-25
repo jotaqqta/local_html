@@ -104,46 +104,45 @@
                         <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
                 <div class="row">
                     <div class="col-sm-6">
-                        <label for="tx_cod">Código</label>
+                        <label for="tx_cod">C&oacute;digo</label>
                         <input id="tx_cod" class="form-control" type="text" style="text-transform:uppercase;">
                     </div>
                     <div class="col-sm-6">
-                        <label for="tx_descrip">Descripción</label>
+                        <label for="tx_descrip">Descripci&oacute;n</label>
                         <input id="tx_descrip" class="form-control" type="text" style="text-transform:uppercase;">
                     </div>
                 </div>
                 <div class="row" >
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <label for="cb_tip_dato">Tipo de Dato</label>
                         <select id="cb_tip_dato" class="form-control" type="text" style="text-transform:uppercase;"></select>
-                    </div>
-                </div>                                                      
-                <div class="row">
+                    </div>               
                     <div class="col-sm-6">
                         <label for="cb_objeto">Objeto</label>
                         <select id="cb_objeto" class="form-control" type="text" style="text-transform:uppercase;"></select>
-                    </div>                            
+                    </div>
+                </div>
+                <div class="row" >                            
                     <div class="col-sm-6">
                         <label for="tx_long">Longitud</label>
                         <input id="tx_long" class="form-control" type="text" style="text-transform:uppercase;">
-                    </div>
-                </div>
-                <div class="row" >
+                    </div>               
                     <div class="col-sm-6">
-                        <label for="tx_rol_crea">Rol Creación</label>
+                        <label for="tx_rol_crea">Rol Creaci&oacute;n</label>
                         <input id="tx_rol_crea" class="form-control" type="text" style="text-transform:uppercase;">
-                    </div>                            
-                    <div class="col-sm-6">
-                        <label for="tx_fe_crea">Fecha Creación</label>
-                        <input id="tx_fe_crea" class="form-control _input_selector" type="text" style="text-transform:uppercase;">
                     </div>
                 </div>
-                <div class="row" >
-                    <div class="col-sm-6">
-                        <label for="tx_fe_modif">Fecha Modificación</label>
-                        <input id="tx_fe_modif" class="form-control _input_selector" type="text" style="text-transform:uppercase;">
-                    </div>                           
-                </div>
+                <div class="row" >                     
+                    <div class="col-sm-6" id='fecha_crea'>
+                        <label for="tx_fe_crea">Fecha Creaci&oacute;n</label>
+                        <input id="tx_fe_crea" class="form-control _input_selector" type="text" style="text-transform:uppercase;" readonly="">
+                    </div>                
+                    <div class="col-sm-6" id='fecha_modif'>
+                        <label for="tx_fe_modif">Fecha Modificaci&oacute;n</label>
+                        <input id="tx_fe_modif" class="form-control _input_selector" type="text" style="text-transform:uppercase;" readonly="">
+                    </div>
+                </div>                             
+            </div>
                          
 
                     </form>
