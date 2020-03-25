@@ -509,6 +509,8 @@ function fn_post_check() {
 
 function fn_limpiar() {
 
+    $("#tx_orden").val("");
+    $("#cb_localidad").val("");
     $("#tx_ref").val("");
     $("#cb_prioridad").val("");
 
@@ -517,7 +519,7 @@ function fn_limpiar() {
     $("#tx_ruta").val("");
     $("#tx_mail").val("");
     $("#tx_nombre").val("");
-    $("#tx_direcc").val("");
+    $("#tx_direccion").val("");
     $("#tx_nro_sumi").val("");
     $("#tx_tiene_doc").val("");
 
@@ -537,9 +539,10 @@ function fn_limpiar() {
 
         grid_principal.Checkbox('checkBox').unCheckAll();
 
-        $("#div_buzon_i").html("");
-        $("#div_buzon_ii").html("");
     }
+
+    $("#div_buzon_i").html("");
+    $("#div_buzon_ii").html("");
 
     $("#tx_observaciones").val("");
 
