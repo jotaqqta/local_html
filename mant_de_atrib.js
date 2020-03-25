@@ -170,12 +170,14 @@ $(document).ready(function () {
                 $("#title_mod").html("Editar");
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
                 $("#co_activar").show();
-                $("#co_limpiar").hide();                
-                $("#tx_cod").prop( "disabled", true);               
+                $("#co_limpiar").hide();
                 $("#fecha_crea").show();
-                $("#fecha_modif").show();
-                
-
+                $("#fecha_modif").show();               
+                $("#tx_cod").prop( "disabled", true);
+                $("#cb_tip_dato").prop( "disabled", true);
+                $("#cb_objeto").prop( "disabled", true);
+                $("#tx_rol_crea").prop( "disabled", true);              
+                              
 
 				$("#tx_cod").val(dataCell.C1);
                 $("#tx_descrip").val(dataCell.C2);
@@ -418,11 +420,6 @@ function fn_val_general(){
         if ($("#tx_fe_crea").val() === "") {
         fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA CREACIÓN</strong></div>', 3000);
         $("#tx_fe_crea").focus();
-        return true;
-    }
-        if ($("#tx_fe_modif").val() === "") {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA MODIFICACIÓN</strong></div>', 3000);
-        $("#tx_fe_modif").focus();
         return true;
     }
 	return false;
