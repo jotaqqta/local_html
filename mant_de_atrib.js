@@ -185,12 +185,6 @@ $(document).ready(function () {
                 $("#tx_rol_crea").val(dataCell.C6);
 				$("#tx_fe_crea").val(dataCell.C7);
 				$("#tx_fe_modif").val(dataCell.C8);
-
-                    if(dataCell.C3 == "1")
-                       $("#cb_tip_dato").val(dataCell.C9);
-                else
-                    if(dataCell.C3 == "2")
-                        $("#cb_tip_dato").val(dataCell.C9);
 				
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
