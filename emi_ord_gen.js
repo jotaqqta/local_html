@@ -452,6 +452,7 @@ function fn_disable_enable(action) {
 
     if (action) {
         $("#co_leer").prop("disabled", false);
+        $("#co_buzon").prop("disabled", true);
         $("#tx_nro_sumi").prop("disabled", false);
         $("#co_cerrar").show();
         $("#co_cancelar").hide();
@@ -476,6 +477,8 @@ function fn_cargar_data() {
     $("#tx_ruta").val("12-54-2145");
     $("#tx_tel").val("6546578");
     $("#tx_mail").val("eug-rob_p@yahoo.com");
+
+    $("#tx_fech_venc").val(fn_set_fecha_ven());
 
     $("#cb_canal_entrada").val("2");
     $("#cb_tipo_aten").val("3");
@@ -505,6 +508,17 @@ function fn_post_check() {
         $("#cb_tipo_aten").prop("disabled", false);
     }
 
+}
+
+function fn_set_fecha_ven() {
+
+    var day = new Date;
+
+    var suma = Math.floor(Math.random() * (10 - 1) + 1);
+
+    day.setDate(day.getDate() + suma);
+
+    return (day.getDate()) + "/" + (day.getMonth() + 1) + "/" + day.getFullYear();
 }
 
 function fn_limpiar() {
