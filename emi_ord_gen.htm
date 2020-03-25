@@ -90,15 +90,18 @@
                             <div class="col-xs-6">
                                 <div class="row">
                                     <div class="col-xs-12" style="height: 6px"></div>
-                                    <div class="col-xs-2">
-                                        <label for="tx_orden">Orden:</label>
+                                    <div class="col-xs-3">
+                                        <label for="tx_nro_sumi">Nro Suministro:</label>
                                     </div>
-                                    <div class="col-xs-10">
-                                        <input id="tx_orden" name="tx_orden" class="form-control" readonly>
+                                    <div class="col-xs-9">
+                                        <input id="tx_nro_sumi" name="tx_nro_sumi" maxlength="8" class="form-control number">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-6">
+                                <button class="btn btn-sm btn-primary" id="co_leer" type="button"><span
+                                        class="glyphicon glyphicon-search"></span> Leer
+                                </button>
                                 <button class="btn btn-sm btn-group btn-primary" id="co_enviar" type="button"><span
                                         class="glyphicon glyphicon-ok"></span> Enviar
                                 </button>
@@ -117,11 +120,34 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="row">
-                                    <div class="col-xs-2">
+                                    <div class="col-xs-3">
+                                        <label for="tx_orden">Orden:</label>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <input id="tx_orden" name="tx_orden" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3">
                                         <label for="tx_origen">Origen:</label>
                                     </div>
-                                    <div class="col-xs-10">
+                                    <div class="col-xs-9">
                                         <input id="tx_origen" name="tx_origen" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label for="cb_localidad">Localidad:</label>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <select class="form-control" id="cb_localidad" name="cb_localidad" readonly></select>
                                     </div>
                                 </div>
                             </div>
@@ -140,11 +166,11 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="row">
-                                    <div class="col-xs-2">
-                                        <label for="cb_localidad">Localidad:</label>
+                                    <div class="col-xs-3">
+                                        <label for="tx_ref">Referencia:</label>
                                     </div>
-                                    <div class="col-xs-10">
-                                        <select class="form-control" id="cb_localidad" name="cb_localidad" readonly></select>
+                                    <div class="col-xs-9">
+                                        <input id="tx_ref" name="tx_ref" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -157,15 +183,6 @@
                                         <select class="form-control" id="cb_prioridad" name="cb_prioridad"></select>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="space"></div>
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <label for="tx_ref">Referencia:</label>
-                            </div>
-                            <div class="col-xs-11">
-                                <input id="tx_ref" name="tx_ref" class="form-control">
                             </div>
                         </div>
                         <div style="height: 10px"></div>
@@ -187,12 +204,6 @@
                                         &nbsp;
                                     </li>
                                     <li class="pull-right text-center">
-                                        <button class="btn btn-sm btn-primary" id="co_leer" type="button"><span
-                                                class="glyphicon glyphicon-search"></span> Leer
-                                        </button>
-                                        &nbsp;
-                                    </li>
-                                    <li class="pull-right text-center">
                                         <button class="btn btn-sm btn-primary" id="co_buzon" type="button"><span
                                                 class="glyphicon glyphicon-list-alt"></span> Buzón
                                         </button>
@@ -209,10 +220,10 @@
                                             <div class="col-xs-6">
                                                 <div class="row">
                                                     <div class="col-xs-4">
-                                                        <label for="tx_nro_sumi">Numero Suministro:</label>
+                                                        <label for="tx_nro_sumi_nav">Numero Suministro:</label>
                                                     </div>
                                                     <div class="col-xs-8">
-                                                        <input id="tx_nro_sumi" name="tx_nro_sumi" maxlength="8" class="form-control number">
+                                                        <input id="tx_nro_sumi_nav" name="tx_nro_sumi_nav" class="form-control number" readonly >
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,10 +243,10 @@
                                             <div class="col-xs-6">
                                                 <div class="row">
                                                     <div class="col-xs-4">
-                                                        <label for="tx_direcc">Dirección:</label>
+                                                        <label for="tx_direccion">Dirección:</label>
                                                     </div>
                                                     <div class="col-xs-8">
-                                                        <input id="tx_direcc" name="tx_direcc" class="form-control" readonly>
+                                                        <input id="tx_direccion" name="tx_direccion" class="form-control" readonly>
                                                     </div>
                                                 </div>
                                             </div>

@@ -27,6 +27,11 @@ $(document).ready(function () {
 
     $(".number").inputmask("integer");
 
+    var day = new Date;
+
+    $("#tx_origen").val("Usuario de Prueba");
+    $("#tx_fech_inicio").val(day.getDate() + "/" + (day.getMonth() + 1) + "/" + day.getFullYear());
+
     //COMBOS
 
     fn_cargar_combos();
@@ -53,7 +58,6 @@ $(document).ready(function () {
     $("#tx_ip").val("127.0.0.1");
 
     fn_hide();
-    $("#co_leer").show();
     $("#co_medidores").show();
     $("#co_direcc").show();
     $("#buzon_space").hide();
@@ -75,7 +79,6 @@ $(document).ready(function () {
         fn_hide();
 
         if (this.text === "Datos Cliente") {
-            $("#co_leer").show();
             $("#co_medidores").show();
             $("#co_direcc").show();
             $("#div_dat_client").show();
@@ -187,6 +190,9 @@ $(document).ready(function () {
                 return;
             }
 
+            fn_cargar_data();
+            fn_post_check();
+            $("#tx_nro_sumi_nav").val($("#tx_nro_sumi").val());
             fn_disable_enable(false);
             fn_mensaje_boostrap("Se genero.", g_tit, $("#tx_nro_sumi"));
         }
@@ -417,7 +423,6 @@ function fn_cargar_combos() {
 
 function fn_hide() {
 
-    $("#co_leer").hide();
     $("#co_medidores").hide();
     $("#co_buzon").hide();
     $("#co_direcc").hide();
@@ -459,6 +464,49 @@ function fn_disable_enable(action) {
 
 }
 
+function fn_cargar_data() {
+
+    $("#tx_orden").val("Texto de Prueba");
+    $("#cb_localidad").val("2");
+
+    $("#tx_nombre").val("Maria Eugenia Robledo Perez");
+    $("#tx_direccion").val("PANAMÁ CENTRO CALLE LOS MARTIRES NRO 12. DPTO 14");
+    $("#tx_tiene_doc").val("Factura");
+    $("#tx_rut").val("5478156");
+    $("#tx_ruta").val("12-54-2145");
+    $("#tx_tel").val("6546578");
+    $("#tx_mail").val("eug-rob_p@yahoo.com");
+
+    $("#cb_canal_entrada").val("2");
+    $("#cb_tipo_aten").val("3");
+    $("#cb_motiv_client").val("1");
+    $("#cb_motiv_empresa").val("2");
+
+    $("#div_buzon_i").html('MEDIDOR 400');
+    $("#div_buzon_ii").html('BUZÓN MEDIDOR 4000');
+
+}
+
+function fn_post_check() {
+
+    if ($("#cb_motiv_empresa").val() !== "") {
+        $("#cb_tipo_aten").prop("disabled", false);
+        $("#cb_motiv_client").prop("disabled", false);
+        $("#cb_motiv_empresa").prop("disabled", false);
+    }
+
+    if ($("#cb_motiv_client").val() !== "") {
+        $("#cb_tipo_aten").prop("disabled", false);
+        $("#cb_motiv_client").prop("disabled", false);
+
+    }
+
+    if ($("#cb_tipo_aten").val() !== "") {
+        $("#cb_tipo_aten").prop("disabled", false);
+    }
+
+}
+
 function fn_limpiar() {
 
     $("#tx_ref").val("");
@@ -475,6 +523,7 @@ function fn_limpiar() {
 
     $("#tx_fech_venc").val("");
     $("#cb_tipo_aten").val("");
+    $("#tx_nro_sumi_nav").val("");
     $("#cb_motiv_client").val("");
     $("#cb_canal_entrada").val("");
     $("#cb_motiv_empresa").val("");
