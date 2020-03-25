@@ -171,8 +171,9 @@ $(document).ready(function () {
 				$("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Modificar");
                 $("#co_activar").show();
                 $("#co_limpiar").hide();                
-                $("#tx_cod").prop( "disabled", true);
-                $("#tx_descrip").prop( "disabled", true);
+                $("#tx_cod").prop( "disabled", true);               
+                $("#fecha_crea").show();
+                $("#fecha_modif").show();
                 
 
 
@@ -184,6 +185,12 @@ $(document).ready(function () {
                 $("#tx_rol_crea").val(dataCell.C6);
 				$("#tx_fe_crea").val(dataCell.C7);
 				$("#tx_fe_modif").val(dataCell.C8);
+
+                    if(dataCell.C3 == "1")
+                       $("#cb_tip_dato").val(dataCell.C9);
+                else
+                    if(dataCell.C3 == "2")
+                        $("#cb_tip_dato").val(dataCell.C9);
 				
 				$("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
 				$("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
@@ -226,8 +233,8 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: '7', C2: 'CONSUMO', C3: '1', C4: '1', C5: '256', C6: 'CONSULTO',C7: '24/03/2020', C8: ''},
-        { C1: '5', C2: 'NO. SEGURO SOCIAL', C3: '1', C4: '1', C5: '256', C6: 'CONSULTO',C7: '24/03/2020', C8: ''},
+        { C1: '7', C2: 'CONSUMO', C3: '1', C4: '1', C5: '256', C6: 'CONSULTO',C7: '24/03/2020', C8: '', C9:'NUMBER'},
+        { C1: '5', C2: 'NO. SEGURO SOCIAL', C3: '1', C4: '1', C5: '256', C6: 'CONSULTO',C7: '24/03/2020', C8: '', C9:'NUMBER'},
           
     ];
 
@@ -261,7 +268,8 @@ function fn_setea_grid_principal() {
     obj.colModel = [
         { title: "Código", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center", },
         { title: "Descripción", width: 200, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-        { title: "Tipo", width: 200, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+        { title: "Tipo", width: 200, dataType: "string", dataIndx: "C3", halign: "center", align: "center" , hidden: "true"},
+        { title: "Tipo", width: 200, dataType: "string", dataIndx: "C9", halign: "center", align: "center" },
         { title: "Objeto", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center" , hidden: "true" },
         { title: "Longitud", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
         { title: "Rol Creación", width: 150, dataType: "string", dataIndx: "C6", halign: "center", align: "center", hidden: "true" },
@@ -304,6 +312,8 @@ function fn_new(){
 
     $("#tx_cod").prop( "disabled", false);
     $("#tx_descrip").prop( "disabled", false);
+    $("#fecha_crea").hide();
+    $("#fecha_modif").hide();
     
     fn_limpiar();
     $("#co_limpiar").show();
