@@ -64,26 +64,12 @@ $(document).ready(function () {
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
     $("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-    $("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
 ///////////////////////////////////BOTONES-EVENTOS/////////////////////////////////
 	$("#co_nuevo").prop("disabled", false);
-	
-    $("#co_filtro").on("click", fn_filtro);
-
-    $("#co_activar").on("click", function() {
-        if ($.trim($("#co_activar").text()) === "Activar") {
-			fn_mensaje_boostrap("Se Activó", g_tit, $(""));
-		} else {
-			fn_mensaje_boostrap("Se Desactivó", g_tit, $(""));
-		}
-
-        $('#div_filtro_new_edit_bts').modal('hide');
-        $(window).scrollTop(0);
-
-    });
+	   
 
 
     $("#co_nuevo").on("click", fn_new);
@@ -123,20 +109,6 @@ $(document).ready(function () {
              
         }
     });
-
-	
-    $("#co_cancel_fil").on("click", function (){
-        $('#div_filtro__bts').modal('hide');
-		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "")
-			$("#co_nuevo").prop("disabled", true);
-    });
-
-	
-	$("#co_limpiar_fil").on("click", function () {
-		fn_limpiar_filtro();
-		return;
-    });
-
 	
     $("#co_limpiar").on("click", function () {
 		fn_limpiar();
@@ -147,20 +119,7 @@ $(document).ready(function () {
     $("#co_cancel").on("click", function (){
         $('#div_filtro_new_edit_bts').modal('hide');
     });
-
-	
-    $("#co_confirm_yes").on( "click", function () {
-        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-        $('#dlg_confirm').modal('hide');
-    });
-
-	
-    $("#co_confirm_no").on( "click", function () {
-        $('#dlg_confirm').modal('hide');
-    });
-
-
-    $("#co_cerrar").on("click", function (){ window.close(); });
+   
 
 /////////////////////////////////EVENTO DBL_CLICK DE LA GRILLA/////////////////////////////////
     $grid_principal.pqGrid({
@@ -281,19 +240,6 @@ function fn_setea_grid_principal() {
 }
 
 /////////////////////////////////FUNCIONES///////////////////////////////////////////
-
-function fn_filtro(){
-
-    $("#title_mod").html("Filtrar");
-    $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
-
-
-    $("#div_filtro__bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro__bts").on("shown.bs.modal", function () {
-    $("#div_filtro__bts div.modal-footer button").focus();
-    });
-}
-
 function fn_edit(dataCell){
 
 
@@ -427,12 +373,6 @@ function fn_val_general(){
 	return false;
 }
 
-////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
-//function fn_limpiar_filtro(){
-//   $("#cb_sistema").val("");
-//   $("#cb_regional").val("");
-    
-//}
 
 //////////////////////////////////////////////////////////////////
 function fn_mensaje(id,mensaje,segundos)
