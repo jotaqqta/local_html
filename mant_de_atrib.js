@@ -308,6 +308,8 @@ function fn_new(){
 
     $("#tx_cod").prop( "disabled", false);
     $("#tx_descrip").prop( "disabled", false);
+    $("#cb_tip_dato").prop( "disabled", false);
+    $("#cb_objeto").prop( "disabled", false);
     $("#fecha_crea").hide();
     $("#fecha_modif").hide();
     
