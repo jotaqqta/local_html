@@ -245,9 +245,6 @@ function fn_edit(dataCell){
 
 }
 
-function fn_activar(){
-
-}
 
 function fn_new(){
 
