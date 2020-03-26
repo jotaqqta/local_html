@@ -115,31 +115,38 @@ $(document).ready(function () {
             }
 
             if ($("#cb_canal_entrada").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor selecciona un Canal de Entrada.", g_tit, $("#cb_canal_entrada"));
                 return;
             }
 
             if ($("#cb_tipo_aten").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
+
                 fn_mensaje_boostrap("Error, por favor selecciona un Tipo de Atención.", g_tit, $("#cb_tipo_aten"));
                 return;
             }
 
             if ($("#cb_motiv_client").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor selecciona un Motivo Cliente.", g_tit, $("#cb_motiv_client"));
                 return;
             }
 
             if ($("#cb_motiv_empresa").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor selecciona un Motivo Empresa.", g_tit, $("#cb_motiv_empresa"));
                 return;
             }
 
             if ($("#chk_buzon").is(":checked")) {
                 if (grid_principal === undefined) {
+                    fn_check_nav("#tab_dat_ord_gen'", "#div_dat_ord_gen");
                     fn_mensaje_boostrap("Error, por favor selecciona un Buzón.", g_tit, $("#co_buzon"));
                     return;
                 } else {
                     if (grid_principal.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                        fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                         fn_mensaje_boostrap("Error, por favor selecciona un Buzón.", g_tit, $("#co_buzon"));
                         return;
                     }
@@ -147,26 +154,31 @@ $(document).ready(function () {
             }
 
             if ($("#tx_observaciones_env").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor indica alguna Observación de Envío.", g_tit, $("#tx_observaciones_env"));
                 return;
             }
 
             if ($("#tx_observaciones_env").val().length < 15) {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor indica alguna Observación de Envío mas larga.", g_tit, $("#tx_observaciones_env"));
                 return;
             }
 
             if ($("#tx_observaciones_resp").val() === "") {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor indica alguna Observación de Respuesta.", g_tit, $("#tx_observaciones_resp"));
                 return;
             }
 
             if ($("#tx_observaciones_resp").val().length < 15) {
+                fn_check_nav("#tab_dat_ord_gen", "#div_dat_ord_gen");
                 fn_mensaje_boostrap("Error, por favor indica alguna Observación de Respuesta mas larga.", g_tit, $("#tx_observaciones_resp"));
                 return;
             }
 
             if ($("#tx_observaciones").val() === "") {
+                fn_check_nav("#tab_observ", "#div_observaciones");
                 fn_mensaje_boostrap("Error, por favor indica alguna Observación.", g_tit, $("#tx_observaciones"));
                 return;
             }
@@ -177,8 +189,8 @@ $(document).ready(function () {
             }
 
             fn_mensaje_boostrap("Se envío.", g_tit, $(""));
-            // fn_limpiar() Limpiar todos los datos
-            // fn_disable_enable(true); Desactivar todos los campos y resetear ventana
+            fn_limpiar();
+            fn_disable_enable(true);
         }
     });
 
@@ -190,11 +202,13 @@ $(document).ready(function () {
                 return;
             }
 
-            fn_cargar_data();
-            fn_post_check();
-            $("#tx_nro_sumi_nav").val($("#tx_nro_sumi").val());
-            fn_disable_enable(false);
-            fn_mensaje_boostrap("Se genero.", g_tit, $("#tx_nro_sumi"));
+            fn_leer();
+        }
+    });
+
+    $("#tx_nro_sumi").keypress( function (e) {
+        if (e.which === 13) {
+            fn_leer();
         }
     });
 
@@ -408,6 +422,40 @@ function fn_motiv_empresa() {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 //                                  <-- Functions -->
+
+function fn_leer() {
+
+    fn_cargar_data();
+    fn_post_check();
+    $("#tx_nro_sumi_nav").val($("#tx_nro_sumi").val());
+    fn_disable_enable(false);
+    fn_mensaje_boostrap("Se genero.", g_tit, $("#tx_nro_sumi"));
+}
+
+function fn_check_nav(nav, div) {
+
+    if (!$(div).is(":visible")) {
+        $(nav).tab('show');
+
+        fn_hide();
+
+        if (div === "#div_dat_client") {
+            $("#co_medidores").show();
+            $("#co_direcc").show();
+            $("#div_dat_client").show();
+        }
+
+        if (div === "#div_dat_ord_gen") {
+            $("#co_buzon").show();
+            $("#div_dat_ord_gen").show();
+        }
+
+        if (div === "#div_observaciones") {
+            $("#div_observaciones").show();
+        }
+    }
+
+}
 
 function fn_cargar_combos() {
 
