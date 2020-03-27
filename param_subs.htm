@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="IE=10" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+    <meta content="max-age=0" http-equiv="cache-control">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="0" http-equiv="expires">
+    <meta content="Tue, 01 Jan 1980 1:00:00 GMT" http-equiv="expires">
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Jquery   /raiz/-->
+    <link href="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <script src="jquery/jquery-3.1.1.min.js"></script>
+    <script src="jquery/jquery-ui/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Validaciones con inputmask -->
+
+    <script src="jquery/jquery.inputmask.bundle.min.js"></script>
+    <!--/raiz/   /inputmask4x/-->
+    <script src="jquery/inputmask.numeric.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.extensions.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+    <script src="jquery/inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask -->
+    <script src="jquery/jquery.inputmask.min.js"></script>
+    <!--/inputmask4x/inputmask-->
+
+    <!-- Paramquery -->
+    <link href="pqgrid/v5.6/pqgrid.min.css" rel="stylesheet">
+    <link href="pqgrid/v5.6/themes/bootstrap/pqgrid.css" rel="stylesheet">
+    <script src="pqgrid/v5.6/pqgrid.min.js"></script>
+    <script src="pqgrid/v5.6/localize/pq-localize-es.js"></script>
+
+    <!-- Boostrap -->
+    <link href="bootstrap/v3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/v3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Principales -->
+    <script src="syn_globales/syn_util.js"></script>
+    <link href="syn_dinamicos/header.css" rel="stylesheet">
+    <link href="syn_dinamicos/synergia.css" rel="stylesheet">
+
+    <script src="param_subs.js"></script>
+
+    <style>
+
+        #content {
+            border-radius: 3px;
+            border: 1px solid #DDDDDD;
+            padding: 7px;
+        }
+
+        .space {
+            height: 7px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container" id="header">
+    <div id="div_header">
+    </div>
+</div>
+
+<div class="bootstrap-syn">
+    <div class="space"></div>
+    <div class="container" id="container-prin">
+        <div id="div_prin">
+            <div id="content">
+                <div class="container" style="width: 100%">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-12" style="height: 6px"></div>
+                                <div class="col-xs-4">
+                                    <label for="tx_nro_cliente">Número Cliente:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_nro_cliente" name="tx_nro_cliente" maxlength="8" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <button class="btn btn-sm btn-group btn-primary" id="co_leer" type="button"><span
+                                    class="glyphicon glyphicon-search"></span> Leer
+                            </button>
+                            <button class="btn btn-sm btn-group btn-primary" id="co_ing_modf" type="button"><span
+                                    class="glyphicon glyphicon-ok"></span> Ingresar
+                            </button>
+                            <button class="btn btn-sm btn-group btn-default" id="co_cancelar" type="button"><span
+                                    class="glyphicon glyphicon-remove"></span> Cancelar
+                            </button>
+                            <button class="btn btn-sm btn-group btn-default" id="co_cerrar" type="button"><span
+                                    class="glyphicon glyphicon-off"></span> Cerrar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <label for="tx_nombre_cliente">Nombre Cliente:</label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input id="tx_nombre_cliente" name="tx_nombre_cliente" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_comuna">Comuna:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_comuna" name="tx_comuna" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_cod_municipal">Codigo Municipal:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_cod_municipal" name="tx_cod_municipal" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well well-sm">Subsidio</div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_cant_subs">Cantidad de Subsidios:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_cant_subs" name="tx_cant_subs" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_limite_subs">Limite del Subsidio (Gls):</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_limite_subs" name="tx_limite_subs" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <label for="tx_durac_max_subs_periodo">Duración Máxima Subsidio Periodo:</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <input id="tx_durac_max_subs_periodo" name="tx_durac_max_subs_periodo" class="form-control number">
+                        </div>
+                    </div>
+                    <div class="well well-sm">Máxima Cantidad Saldos Periodos</div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label for="tx_ingreso">Ingreso:</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input id="tx_ingreso" name="tx_ingreso" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label for="tx_notificacion">Notificación:</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input id="tx_notificacion" name="tx_notificacion" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label for="tx_anular">Anular:</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    <input id="tx_anular" name="tx_anular" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well well-sm">Rango Tolerancia Deuda</div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_monto_inf">Monto Inferior:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_monto_inf" name="tx_monto_inf" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_monto_super">Monto Superior:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_monto_super" name="tx_monto_super" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well well-sm">Rango de Porcentaje de Subsidio</div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_carg_fijo_inf">Cargo Fijo Inferior:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_carg_fijo_inf" name="tx_carg_fijo_inf" maxlength="3" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_carg_fijo_super">Cargo Fijo Superior:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_carg_fijo_super" name="tx_carg_fijo_super" maxlength="3" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_carg_var_inf">Cargo Variable Inferior:</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input id="tx_carg_var_inf" name="tx_carg_var_inf" maxlength="3" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <label for="tx_carg_var_super">Cargo Variable Superior:</label>
+                                </div>
+                                <div class="col-xs-8">
+                                    <input id="tx_carg_var_super" name="tx_carg_var_super" maxlength="3" class="form-control number">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label for="cb_tam_max_diam_fact">Tamaño Máximo de Diametro de Facturación:</label>
+                        </div>
+                        <div class="col-xs-8">
+                            <select id="cb_tam_max_diam_fact" name="cb_tam_max_diam_fact" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="div_msg_bts" role="dialog" tabindex="-1"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel-body" style="padding-left: 0;" id="div_footer"></div>
+</div>
+
+<form action="syn_globales/excel_reporte_v2.asp" id="frm_Exel" method="post" name="frm_Exel" target="_blank">
+    <input id="tx_empresa" name="tx_empresa" type="hidden" value="">
+    <input id="tx_rolfun" name="tx_rolfun" type="hidden" value="">
+    <input id="tx_rol" name="tx_rol" type="hidden" value="">
+    <input id="tx_ip" name="tx_ip" type="hidden" value="">
+    <input id="tx_cen_rolfun" name="tx_cen_rolfun" type="hidden" value="">
+    <input id="sql" name="sql" type="hidden" value="">
+    <input id="Rol" name="Rol" type="hidden" value="">
+    <input id="tituloexcel" name="tituloexcel" type="hidden">
+    <input id="excel_archivo" name="excel_archivo" type="hidden">
+    <input id="filtro" name="filtro" type="hidden">
+    <input id="excel_cabecera" name="excel_cabecera" type="hidden">
+    <input id="tx_pietotal" name="tx_pietotal" type="hidden">
+    <input id="align_vertical_titulo" name="align_vertical_titulo" type="hidden" value="left">
+</form>
+
+</body>
+
+</html>
