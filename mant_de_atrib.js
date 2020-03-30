@@ -74,20 +74,7 @@ $(document).ready(function () {
 
     $("#co_nuevo").on("click", fn_new);
 
-    $("#co_generar_fil").on("click", function() {
-        if ($.trim($("#co_generar_fil").text()) === "Consultar") {
-            if ($("#cb_tip_orden").val() === "") {
-                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR TIPO ORDEN!!!</strong></div>',3000);
-                $("#cb_tip_orden").focus();
-                return;
-            }
-			
-			$("#co_nuevo").prop("disabled", false);
-            $('#div_filtro__bts').modal('hide');
-            fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
-            $(window).scrollTop(0);
-        }
-    });
+
 
 	/////////////////////////////////BOTON GENERAR/////////////////////////////////
     $("#co_generar").on("click", function() {

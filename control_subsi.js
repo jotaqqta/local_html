@@ -27,6 +27,7 @@ $(document).ready(function () {
     jQuery('#tx_mes').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
+
     
     //COMBOS
     fn_cen_oper();
@@ -51,7 +52,10 @@ $(document).ready(function () {
     $("#tx_empresa").val("1");
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
+    $("#tx_mes").inputmask("mm/yyyy");
 
+
+    
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
 	$("#co_nuevo").prop("disabled", false);
@@ -187,8 +191,8 @@ $(document).ready(function () {
         }
     });
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-//EXCEL
+    //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+    //EXCEL
     $("#co_excel").on("click", function (e) {
 
         e.preventDefault();
@@ -211,7 +215,16 @@ $(document).ready(function () {
         }
     });
 
+//        $("#tx_mes").blur(function () {
+//         if ($("#tx_mes").val() >= 12) {
+        
+//             if (fn_val_general())
+//                 return;   
+//         }
+//     });
+
 });
+
 
 
 /////////////////////////////////GRILLA///////////////////////////////////////////
@@ -379,7 +392,7 @@ function fn_val_general(){
 		return true;
 	}
     if ($("#tx_mes").val() === "") {
-        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR MES</strong></div>', 3000);
+        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR MES!!!</strong></div>', 3000);
         $("#tx_mes").focus();
         return true;
     }
