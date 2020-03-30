@@ -77,12 +77,12 @@
             <div id="content">
                 <div class="container" style="width: 100%">
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-6 col-lg-6">
                             <label for="tx_nro_cliente">Número Cliente:</label>
                             <input id="tx_nro_cliente" name="tx_nro_cliente" maxlength="8" class="form-control number">
                         </div>
-                        <div class="col-xs-6">
-                            <div class="col-xs 12" style="height: 14px"></div>
+                        <div class="col-xs-6 col-lg-6">
+                            <div class="col-xs-12" style="height: 14px"></div>
                             <button class="btn btn-sm btn-group btn-primary" id="co_leer" type="button"><span
                                     class="glyphicon glyphicon-search"></span> Leer
                             </button>
@@ -98,77 +98,77 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-6 col-lg-6">
                             <label for="tx_nombre_cliente">Nombre Cliente:</label>
                             <input id="tx_nombre_cliente" name="tx_nombre_cliente" class="form-control" readonly>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-6 col-lg-6">
                             <label for="tx_comuna">Comuna:</label>
                             <input id="tx_comuna" name="tx_comuna" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="well well-sm">Subsidio</div>
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_cant_subs">Cantidad de Subsidios:</label>
                             <input id="tx_cant_subs" name="tx_cant_subs" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_limite_subs">Limite del Subsidio (Gls):</label>
                             <input id="tx_limite_subs" name="tx_limite_subs" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_durac_max_subs_periodo">Duración Máxima Subsidio Periodo:</label>
                             <input id="tx_durac_max_subs_periodo" name="tx_durac_max_subs_periodo" class="form-control number">
                         </div>
                     </div>
                     <div class="well well-sm">Máxima Cantidad Saldos Periodos</div>
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_ingreso">Ingreso:</label>
                             <input id="tx_ingreso" name="tx_ingreso" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_notificacion">Notificación:</label>
                             <input id="tx_notificacion" name="tx_notificacion" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_anular">Anular:</label>
                             <input id="tx_anular" name="tx_anular" class="form-control number">
                         </div>
                     </div>
                     <div class="well well-sm">Rango Tolerancia Deuda</div>
                     <div class="row">
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_monto_inf">Monto Inferior:</label>
                             <input id="tx_monto_inf" name="tx_monto_inf" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="tx_monto_super">Monto Superior:</label>
                             <input id="tx_monto_super" name="tx_monto_super" class="form-control number">
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-12 col-md-4 col-lg-4">
                             <label for="cb_tam_max_diam_fact">Tamaño Máximo de Diametro de Facturación:</label>
                             <select id="cb_tam_max_diam_fact" name="cb_tam_max_diam_fact" class="form-control"></select>
                         </div>
                     </div>
                     <div class="well well-sm">Rango de Porcentaje de Subsidio</div>
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-md-6 col-lg-3">
                             <label for="tx_carg_fijo_inf">Cargo Fijo Inferior:</label>
-                            <input id="tx_carg_fijo_inf" name="tx_carg_fijo_inf" maxlength="3" class="form-control number">
+                            <input id="tx_carg_fijo_inf" name="tx_carg_fijo_inf" maxlength="3" max="100" class="form-control number">
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-md-6 col-lg-3">
                             <label for="tx_carg_fijo_super">Cargo Fijo Superior:</label>
-                            <input id="tx_carg_fijo_super" name="tx_carg_fijo_super" maxlength="3" class="form-control number">
+                            <input id="tx_carg_fijo_super" name="tx_carg_fijo_super" maxlength="3" max="100" class="form-control number">
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-md-6 col-lg-3">
                             <label for="tx_carg_var_inf">Cargo Variable Inferior:</label>
-                            <input id="tx_carg_var_inf" name="tx_carg_var_inf" maxlength="3" class="form-control number">
+                            <input id="tx_carg_var_inf" name="tx_carg_var_inf" maxlength="3" max="100" class="form-control number">
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-12 col-md-6 col-lg-3">
                             <label for="tx_carg_var_super">Cargo Variable Superior:</label>
-                            <input id="tx_carg_var_super" name="tx_carg_var_super" maxlength="3" class="form-control number">
+                            <input id="tx_carg_var_super" name="tx_carg_var_super" maxlength="3" max="100" class="form-control number">
                         </div>
                     </div>
                 </div>

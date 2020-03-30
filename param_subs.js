@@ -25,7 +25,14 @@ $(document).ready(function () {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
-    $(".number").inputmask("integer");
+    $("#tx_mes").inputmask("mm/yyyy");
+
+    $(".number").inputmask({
+        alias: "integer",
+        placeholder: '',
+        allowPlus: false,
+        allowMinus: false
+    });
 
     //COMBOS
     fn_tam_max_diam_fact();
@@ -84,81 +91,46 @@ $(document).ready(function () {
         if ($("#tx_cant_subs").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique la Cantidad de Subsidios.", g_tit, $("#tx_cant_subs"));
             return;
-        } else {
-            if (parseInt($("#tx_cant_subs").val()) <= 0) {
-                fn_mensaje_boostrap("Error, la Cantidad de Subsidios debe ser Mayor que 0.", g_tit, $("#tx_cant_subs"));
-                return;
-            }
         }
 
         if ($("#tx_limite_subs").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique el Limite de Subsidios.", g_tit, $("#tx_limite_subs"));
             return;
-        } else {
-            if (parseInt($("#tx_limite_subs").val()) <= 0) {
-                fn_mensaje_boostrap("Error, el Limite de Subsidios debe ser Mayor que 0.", g_tit, $("#tx_limite_subs"));
-                return;
-            }
         }
 
         if ($("#tx_durac_max_subs_periodo").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique la Duración Máxima Subsidio Periodo.", g_tit, $("#tx_durac_max_subs_periodo"));
             return;
-        } else {
-            if (parseInt($("#tx_durac_max_subs_periodo").val()) <= 0) {
-                fn_mensaje_boostrap("Error, la Duración Máxima Subsidio Periodo debe ser Mayor que 0.", g_tit, $("#tx_durac_max_subs_periodo"));
-                return;
-            }
         }
 
         if ($("#tx_ingreso").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique la Cantidad Saldos de Ingresos.", g_tit, $("#tx_ingreso"));
             return;
-        } else {
-            if (parseInt($("#tx_ingreso").val()) <= 0) {
-                fn_mensaje_boostrap("Error, la Cantidad Saldos de Ingresos debe ser Mayor que 0.", g_tit, $("#tx_ingreso"));
-                return;
-            }
         }
 
         if ($("#tx_notificacion").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique la Cantidad Saldos de Notificación.", g_tit, $("#tx_notificacion"));
             return;
-        } else {
-            if (parseInt($("#tx_notificacion").val()) <= 0) {
-                fn_mensaje_boostrap("Error, la Cantidad Saldos de Notificación debe ser Mayor que 0.", g_tit, $("#tx_notificacion"));
-                return;
-            }
         }
 
         if ($("#tx_anular").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique la Cantidad Saldos de Anulación.", g_tit, $("#tx_anular"));
             return;
-        } else {
-            if (parseInt($("#tx_anular").val()) <= 0) {
-                fn_mensaje_boostrap("Error, la Cantidad Saldos de Anulación debe ser Mayor que 0.", g_tit, $("#tx_anular"));
-                return;
-            }
         }
 
         if ($("#tx_monto_inf").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique el Rango Inferior de Tolerancia de Deuda.", g_tit, $("#tx_monto_inf"));
             return;
-        } else {
-            if (parseInt($("#tx_monto_inf").val()) <= 0) {
-                fn_mensaje_boostrap("Error, el Rango Inferior de Tolerancia de Deuda debe ser Mayor que 0.", g_tit, $("#tx_monto_inf"));
-                return;
-            }
         }
 
         if ($("#tx_monto_super").val() === "") {
             fn_mensaje_boostrap("Error, por favor indique el Rango Superior de Tolerancia de Deuda.", g_tit, $("#tx_monto_super"));
             return;
-        } else {
-            if (parseInt($("#tx_monto_super").val()) <= 0) {
-                fn_mensaje_boostrap("Error, el Rango Superior de Tolerancia de Deuda debe ser Mayor que 0.", g_tit, $("#tx_monto_super"));
-                return;
-            }
+        }
+
+        if ($("#cb_tam_max_diam_fact").val() === "") {
+            fn_mensaje_boostrap("Error, por favor seleccione el Tamaño Máximo de Diametro de Facturación.", g_tit, $("#cb_tam_max_diam_fact"));
+            return;
         }
 
         if ($("#tx_carg_fijo_inf").val() === "") {
@@ -201,11 +173,6 @@ $(document).ready(function () {
             }
         }
 
-        if ($("#cb_tam_max_diam_fact").val() === "") {
-            fn_mensaje_boostrap("Error, por favor seleccione el Tamaño Máximo de Diametro de Facturación.", g_tit, $("#cb_tam_max_diam_fact"));
-            return;
-        }
-
         if (parseInt($("#tx_notificacion").val()) > parseInt($("#tx_anular").val())) {
             fn_mensaje_boostrap("Error, la Cantidad de Saldos de Notificiación no debe ser mayor a la cantidad de Saldos de Anulación.", g_tit, $("#tx_notificacion"));
             return;
@@ -239,49 +206,26 @@ $(document).ready(function () {
     });
 
     $("#tx_carg_fijo_inf").blur( function () {
-        if ($("#tx_carg_fijo_inf").val() <= 0) {
-            $("#tx_carg_fijo_inf").val("0")
-        }
-
         if ($("#tx_carg_fijo_inf").val() >= 100) {
             $("#tx_carg_fijo_inf").val("100")
         }
     });
 
     $("#tx_carg_fijo_super").blur( function () {
-        if ($("#tx_carg_fijo_super").val() <= 0) {
-            $("#tx_carg_fijo_super").val("0")
-        }
-
         if ($("#tx_carg_fijo_super").val() >= 100) {
             $("#tx_carg_fijo_super").val("100")
         }
     });
 
     $("#tx_carg_var_inf").blur( function () {
-        if ($("#tx_carg_var_inf").val() <= 0) {
-            $("#tx_carg_var_inf").val("0")
-        }
-
         if ($("#tx_carg_var_inf").val() >= 100) {
             $("#tx_carg_var_inf").val("100")
         }
     });
 
     $("#tx_carg_var_super").blur( function () {
-        if ($("#tx_carg_var_super").val() <= 0) {
-            $("#tx_carg_var_super").val("0")
-        }
-
         if ($("#tx_carg_var_super").val() >= 100) {
             $("#tx_carg_var_super").val("100")
-        }
-    });
-
-    $("#tx_nro_cliente").blur( function () {
-
-        if ($("#tx_nro_cliente").val() <= 0) {
-            $("#tx_nro_cliente").val("0");
         }
     });
 
