@@ -362,7 +362,7 @@ function fn_limpiar(){
 function fn_val_general(){
 
 	if ($("#cb_cen_oper").val() === "") {
-		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR CE. OPER.!!!</strong></div>',3000);
+		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR CEN. OPER.!!!</strong></div>',3000);
 		$("#cb_cen_oper").focus();
 		return true;
 	}
