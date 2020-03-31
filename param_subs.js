@@ -56,6 +56,7 @@ $(document).ready(function () {
     $("#tx_ip").val("127.0.0.1");
 
     $("#co_cancelar").hide();
+    fn_disable_enable(true);
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -315,15 +316,18 @@ function fn_disable_enable(action) {
     $("#cb_tam_max_diam_fact").prop("disabled", action);
 
     if (action) {
-        $("#co_leer").prop("disabled", false);
-        $("#tx_nro_cliente").prop("disabled", false);
-        $("#co_cancelar").hide();
         $("#co_cerrar").show();
+        $("#co_cancelar").hide();
+        $("#co_leer").prop("disabled", false);
+        $("#co_ing_modf").prop("disabled", true);
+        $("#tx_nro_cliente").prop("disabled", false);
+        $("#co_ing_modf").html("<span class='glyphicon glyphicon-ok'></span> Ingresar");
     } else {
-        $("#co_leer").prop("disabled", true);
-        $("#tx_nro_cliente").prop("disabled", true);
-        $("#co_cancelar").show();
         $("#co_cerrar").hide();
+        $("#co_cancelar").show();
+        $("#co_leer").prop("disabled", true);
+        $("#co_ing_modf").prop("disabled", false);
+        $("#tx_nro_cliente").prop("disabled", true);
     }
 }
 
