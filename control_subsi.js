@@ -52,8 +52,11 @@ $(document).ready(function () {
     $("#tx_empresa").val("1");
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
-    $("#tx_mes").inputmask("mm/yyyy");
+    //$("#tx_mes").inputmask("mm/yyyy");
 
+    $("#tx_mes").inputmask({
+        alias: "mm/yyyy",placeholder: '',
+    });
 
     
     //DEFINE LA GRILLA PRINCIPAL
