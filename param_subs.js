@@ -62,14 +62,6 @@ $(document).ready(function () {
 
 //                              <-- Buttons - Listeners -->
 
-    $(window).resize(function () {
-        if (parseInt($( window ).width()) < 931) {
-            $("#button_space").hide();
-        } else {
-            $("#button_space").show();
-        }
-    });
-
     $("#co_leer").on("click", function () {
 
         if ($.trim($("#co_leer").text() === "Leer")) {
