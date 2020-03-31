@@ -27,6 +27,9 @@ $(document).ready(function () {
     jQuery('#tx_mes').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
+    jQuery('#tx_subsid').keypress(function (tecla){
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
 
     
     //COMBOS
@@ -52,8 +55,6 @@ $(document).ready(function () {
     $("#tx_empresa").val("1");
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
-    //$("#tx_mes").inputmask("mm/yyyy");
-
     $("#tx_mes").inputmask({
         alias: "mm/yyyy",placeholder: '',
     });
@@ -61,7 +62,6 @@ $(document).ready(function () {
     
     //DEFINE LA GRILLA PRINCIPAL
     fn_setea_grid_principal();
-	$("#co_nuevo").prop("disabled", false);
 
     //DIBUJA LOS ICONOS DE LOS BOTONES
 
@@ -70,7 +70,6 @@ $(document).ready(function () {
     $("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
 
 ///////////////////////////////////BOTONES-EVENTOS/////////////////////////////////
-	$("#co_nuevo").prop("disabled", false);
 	
     $("#co_filtro").on("click", fn_filtro);
 
@@ -87,7 +86,6 @@ $(document).ready(function () {
     });
 
 
-    $("#co_nuevo").on("click", fn_new);
 
     $("#co_generar_fil").on("click", function() {
         if ($.trim($("#co_generar_fil").text()) === "Aceptar") {
@@ -96,7 +94,6 @@ $(document).ready(function () {
                 return;   
 
 			
-			$("#co_nuevo").prop("disabled", false);
             $('#div_filtro__bts').modal('hide');
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
             $(window).scrollTop(0);
@@ -132,8 +129,7 @@ $(document).ready(function () {
 	
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
-		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "")
-			$("#co_nuevo").prop("disabled", true);
+		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "");
     });
 
 	
@@ -141,31 +137,11 @@ $(document).ready(function () {
 		fn_limpiar_filtro();
 		return;
     });
-
-	
-    $("#co_limpiar").on("click", function () {
-		fn_limpiar();
-		return;
-    });
-
-	
+	 
     $("#co_cancel").on("click", function (){
         $('#div_filtro_new_edit_bts').modal('hide');
     });
-
-	
-    $("#co_confirm_yes").on( "click", function () {
-        $grid_principal.pqGrid("deleteRow", { rowIndx: rowIndxG });
-        $('#dlg_confirm').modal('hide');
-    });
-
-	
-    $("#co_confirm_no").on( "click", function () {
-        $('#dlg_confirm').modal('hide');
-    });
-
-
-    $("#co_cerrar").on("click", function (){ window.close(); });
+	    
 
 /////////////////////////////////EVENTO DBL_CLICK DE LA GRILLA/////////////////////////////////
     $grid_principal.pqGrid({
@@ -218,14 +194,6 @@ $(document).ready(function () {
         }
     });
 
-//        $("#tx_mes").blur(function () {
-//         if ($("#tx_mes").val() >= 12) {
-        
-//             if (fn_val_general())
-//                 return;   
-//         }
-//     });
-
 });
 
 
@@ -258,7 +226,6 @@ function fn_setea_grid_principal() {
         toolbar: {
             cls: "pq-toolbar-export",
             items:[
-                //{ type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Filtro",  attr: "id=co_filtro",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
@@ -287,7 +254,7 @@ function fn_setea_grid_principal() {
 
 function fn_filtro(){
 
-    $("#title_mod").html("Filtrar");
+    $("#title_mod").html("Filtro");
     $("#co_generar").html("<span class='glyphicon glyphicon-ok'></span> Consultar");
 
 
@@ -297,31 +264,6 @@ function fn_filtro(){
     });
 }
 
-function fn_edit(dataCell){
-
-
-}
-
-function fn_activar(){
-
-}
-
-function fn_new(){
-
-    fn_limpiar();
-    $("#co_limpiar").show();
-    $("#co_activar").hide();
-    $("#title_mod").html("Generar nuevo");
-    $("#co_generar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-
-    $("#div_filtro_new_edit_bts").modal({backdrop: "static",keyboard:false});
-    $("#div_filtro_new_edit_bts").on("shown.bs.modal", function () {
-    $("#div_filtro_new_edit_bts div.modal-footer button").focus();
-
- 
- 
-    });
-}
 
 /////////////////////////////////FUNCIONES COMBOS///////////////////////////////////////////
 function fn_cen_oper(){
