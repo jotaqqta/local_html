@@ -102,10 +102,11 @@ $(document).ready(function () {
 
     $("#cb_sistema").on("change", function () {
 
+        $("#cb_tipo_archiv").val("");
+
         if ($("#cb_sistema").val() !== "") {
             $("#cb_tipo_archiv").prop("disabled", false);
         } else {
-            $("#cb_tipo_archiv").val("");
             $("#cb_tipo_archiv").prop("disabled", true);
         }
     });
