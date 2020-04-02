@@ -370,12 +370,7 @@ function fn_setea_grid_principal() {
 		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C5", halign: "center", align: "right", hidden: "true" },
 		{ title: "Fecha Creación", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right", hidden: "true" },
 		{ title: "Fecha Modificación", width: 80, dataType: "number", dataIndx: "C7", halign: "center", align: "right", hidden: "true" },
-        { title: "Eliminar", width: 80, dataType: "string", align: "center", editable: false, minWidth: 100,       sortable: false,
-					render: function (ui) {
-						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
-						return "<button name='co_borrar' class='btn btn-primary btn-sm'>Eliminar</button>";
-					}
-				}  
+ 
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
