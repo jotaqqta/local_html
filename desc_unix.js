@@ -1,5 +1,5 @@
-var g_modulo = "Administrador Central";
-var g_tit = "Relación Tarifa Cargo";
+var g_modulo = "Utilitarios Synergia";
+var g_tit = "Descarga Unix";
 var $grid_principal;
 var grid_principal;
 var load = false;
