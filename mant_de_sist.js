@@ -79,10 +79,10 @@ $(document).ready(function () {
 	//$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    $("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
+    //$("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     
     
-	//$("#co_cerrar_t").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
+	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
@@ -92,9 +92,7 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_nuevo").on("click", function (e) {
-		fn_modal(1);
-	});
+    $("#co_nuevo").on("click", fn_new);
 	
     $("#co_editar").on("click", function (e) {
 		fn_modal(2);
@@ -106,7 +104,7 @@ $(document).ready(function () {
 	
     
     
-    $("#co_cerrar_t").on("click", function (e) {
+    $("#co_volver").on("click", function (e) {
         window.close(); 
     }); 
  
@@ -154,9 +152,10 @@ $(document).ready(function () {
     
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
-    $("#co_volver2").on("click", function (e) {
+    $("#co_volver").on("click", function (e) {
 		$("#div_prin").show();
 		$("#div_tabla").hide();
+		fn_limpiar();
 		//$grid_principal.pqGrid( "refreshDataAndView" );
 		$(window).scrollTop(0);
     });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -172,29 +171,44 @@ $(document).ready(function () {
     //BOTONES
     
     //BOTONES-FILTRO
-	$("#co_aceptar").on("click", function () {
+	$("#co_modif").on("click", function () {
 		//Validacin de informacion
 		//if ($.trim($("#co_aceptar").text()) == "Aceptar") {
 			
-			if ($("#cb_regional").val() ==""){
-				fn_mensaje_boostrap("CAMPO REGIONAL OBLIGATORIOS", g_tit, $("#cb_regional"));
+			if ($("#tx_cod_sist").val() ==""){
+				fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#cb_regional"));
 				fn_lim_fil_reg();
 				
                 return false;
                 
 			};
 			
-            if ($("#cb_ciclo").val()==""){
-				fn_mensaje_boostrap("CAMPO CICLO OBLIGATORIO", g_tit, $("#cb_ciclo"));
+            if ($("#cb_estado").val()==""){
+				fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#cb_ciclo"));
                  fn_lim_fil_ci();
                  return false;
 			};
             
-			if ($("#cb_ruta").val()==""){
-				fn_mensaje_boostrap("CAMPO RUTA OBLIGATORIO", g_tit, $("#cb_ruta"));
+			if ($("#tx_cen_op_1").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO CLIENTE", g_tit, $("#cb_ruta"));
 				return false;
 			}
 			
+			if ($("#tx_cen_op_usu_1").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO USUARIO", g_tit, $("#cb_ruta"));
+				return false;
+			}
+
+			if ($("#tx_fecha_crea").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITAR FECHA CREACIÓN", g_tit, $("#cb_ruta"));
+				return false;
+			}
+
+			if ($("#tx_fecha_modif").val()==""){
+				fn_mensaje_boostrap("FAVOR DIGITAR FECHA MODIFICACIÓN", g_tit, $("#cb_ruta"));
+				return false;
+			}
+
             fn_carga_grilla();
             $('#div_modal').modal('hide');
             //fn_lim_filtro(); 
@@ -276,18 +290,21 @@ $(document).ready(function () {
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
-			if (ui.rowData) 
-				{
+			if (ui.rowData) {
 					var dataCell = ui.rowData;
 					//g_cliente_selec = dataCell.c2;
 					$("#div_prin").hide();
                     $("#div_tabla").show();
-    				
-					//$grid_2.pqGrid("refreshView");
-					//periodo_fil = dataCell.C1;
-					//regional_fil = dataCell.C2;
-					//ciclo_fil = dataCell.C3;
-					//fn_grilla_dos();
+
+                    $("#tx_cod_sist").val(dataCell.C1);
+                    $("#tx_cod_sist_2").val(dataCell.C2);
+                    $("#cb_estado").val(dataCell.C3);
+                    $("#tx_cen_op_1").val(dataCell.C4);
+                    $("#tx_cen_op_2").val(dataCell.C5);
+                    $("#tx_cen_op_usu_1").val(dataCell.C6);
+                    $("#tx_cen_op_usu_2").val(dataCell.C7);
+                    $("#tx_fecha_crea").val(dataCell.C8);
+                    $("#tx_fecha_modif").val(dataCell.C9);					
 				}
 			}
 	});
@@ -356,20 +373,21 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: 'ACTIVADO', C4: 'AGR1', C5: 'AGRUPACIÓN', C6: '01/04/2020', C7: '01/04/2020' }, 
-             { C1: 'ASEO', C2: 'ASEO',   C3: 'ROL COMPROBANTES ABONO', C4: 'A', C5: 'S', C6: '10' },
-             { C1: 'ASIG', C2: 'ASIGNACIONES',   C3: 'ACCIONES DE CAMBIO A REALIZAR', C4: 'A', C5: 'S', C6: '10'},              
+             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: '1', C4: 'AGR1', C5: 'AGRUPACIÓN1', C6: 'AGTE', C7: 'AGRUPACION TOTAL EMPRESA', C8: '01/04/2020', C9: '01/04/2020' }, 
+                        
         ] }
 	};
 	
     obj.colModel = [
 		{ title: "Sistema",   width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Descripcion", width: 350, dataType: "string", dataIndx: "C2", halign: "center",  align:"center" },
+		{ title: "Descripción", width: 350, dataType: "string", dataIndx: "C2", halign: "center",  align:"center" },
 		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
 		{ title: "Centro Operativo Cliente", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: "true" },
-		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C5", halign: "center", align: "right", hidden: "true" },
-		{ title: "Fecha Creación", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right", hidden: "true" },
-		{ title: "Fecha Modificación", width: 80, dataType: "number", dataIndx: "C7", halign: "center", align: "right", hidden: "true" },
+		{ title: "Centro Operativo Cliente", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
+		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right", hidden: "true" },
+		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C7", halign: "center", align: "right", hidden: "true" },
+		{ title: "Fecha Creación", width: 80, dataType: "number", dataIndx: "C8", halign: "center", align: "right", hidden: "true" },
+		{ title: "Fecha Modificación", width: 80, dataType: "number", dataIndx: "C9", halign: "center", align: "right", hidden: "true" },
  
 	];
 
@@ -509,17 +527,11 @@ function fn_filtro()
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_modal(num) {
+function fn_new() {
 	
-    $("#tx_nuevo").val(num);
-    
-    fn_limpia_modal();
-	
-	$("#div_modal").modal({ backdrop: "static", keyboard: false });
-	$("#div_modal").on("shown.bs.modal", function () {
-		$("#div_modal div.modal-footer button").focus();
 
-	});
+	$("#div_prin").hide();
+    $("#div_tabla").show();
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -543,6 +555,21 @@ function fn_limpia_modal()
 	$("#tx_nomtabla").val("");
 	$("#tx_desc").val("");
 	$("#cb_modif").val("");	
+}
+
+function fn_limpiar(){
+	
+    $("#tx_cod_sist").val("");
+    $("#tx_cod_sist_2").val("");
+    $("#cb_estado").val("");
+    $("#tx_cen_op_1").val("");
+    $("#tx_cen_op_2").val("");
+    $("#tx_cen_op_usu_1").val("");
+    $("#tx_cen_op_usu_2").val("");
+    $("#tx_fecha_crea").val("");
+    $("#tx_fecha_modif").val("");
+    
+   
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
