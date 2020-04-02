@@ -337,16 +337,14 @@ function fn_setea_grid_principal() {
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Mantenedor de Tablas Generales",
+		title: "",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
 		{
 			cls: "pq-toolbar-export",
 			items:[
-				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" },
-				{ type: "button", label: "Modificar",attr: "id=co_editar", cls: "btn btn-primary" },
-                { type: "button", label: "Imprimir", attr: "id=co_imprimir",cls: "btn btn-primary btn-sm" }, 
+				{ type: "button", label: "Nuevo",    attr: "id=co_nuevo",  cls: "btn btn-primary" },				
                 { type: "button", label: "Excel",    attr: "id=co_excel",  cls: "btn btn-primary btn-sm" },       
                 { type: "button", label: "Cerrar",   attr: "id=co_cerrar", cls: "btn btn-secondary btn-sm" }               
 				]
