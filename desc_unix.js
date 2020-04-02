@@ -155,11 +155,11 @@ $(document).ready(function () {
 function fn_set_grid_principal() {
 
     var data =  [
-        { C1: 'FACRO204_20200323_20100101.xls', C2: '2020/03/23', C3: '50022' },
-        { C1: 'Morosidad_Corpo_Mes_2019_20200106.xls', C2: '2020/01/26', C3: '675705' },
-        { C1: 'Morosidad_Corporativos_20200106.xls', C2: '2020/01/06', C3: '1570228' },
-        { C1: 'Morosidad_Corporativos_20200103.xls', C2: '2020/01/03', C3: '1387330' },
-        { C1: 'MORCO_MES_2019_20200102.xls', C2: '2020/01/02', C3: '675705' },
+        { C1: 'FACRO204_20200323_20100101.xls', C2: '2020/03/23', C3: '50022', C4: 'https://www.miserver.com/files/50022' },
+        { C1: 'Morosidad_Corpo_Mes_2019_20200106.xls', C2: '2020/01/26', C3: '675705', C4: 'https://www.miserver.com/files/12345' },
+        { C1: 'Morosidad_Corporativos_20200106.xls', C2: '2020/01/06', C3: '1570228', C4: 'https://www.miserver.com/files/54678' },
+        { C1: 'Morosidad_Corporativos_20200103.xls', C2: '2020/01/03', C3: '1387330', C4: 'https://www.miserver.com/files/35467' },
+        { C1: 'MORCO_MES_2019_20200102.xls', C2: '2020/01/02', C3: '675705', C4: 'https://www.miserver.com/files/45631' },
     ];
 
     var obj = {
@@ -203,6 +203,7 @@ function fn_set_grid_principal() {
         { title: "Nombre", width: 860, dataType: "string", dataIndx: "C1", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
         { title: "Fecha", width: 100, dataType: "strig", dataIndx: "C2", halign: "center", align: "center", editable: false, filter: { crules: [{ condition: 'contain' }] } },
         { title: "Tamaño", width: 100, dataType: "strig", dataIndx: "C3", halign: "center", align: "center", editable: false },
+        { title: "URL", width: 100, dataType: "strig", dataIndx: "C4", halign: "center", align: "center", hidden: true, editable: false },
     ];
 
     obj.dataModel = { data: data };
