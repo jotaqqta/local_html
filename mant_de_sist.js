@@ -4,21 +4,8 @@ var g_tit = "Mantenci&oacute;n de sistemas";
 var $grid_principal;
 var $grid_2;
 var $grid_3;
-
-var sql_grid_prim = "";
-var sql_grid_2    = "";
-var sql_grid_3    = "";
-
-
 var parameters = {};
-//var Filtros = [];
-//var dataReg = [];
 
-
-//var url = "adm_tablas_gen.asp";
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
 
@@ -30,7 +17,6 @@ $(document).keydown(function (e) {
 	}
 });
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).ready(function () {
 
@@ -50,36 +36,26 @@ $(document).ready(function () {
 	
 	$("#excel_archivo").val("tablas_generales.xls");
 	
-	//Se cargan las variables que vienen desde el server
-	/*$("#tx_empresa").val(SYNSegCodEmpresa);
-	$("#tx_rol").val(SYNSegRol);
-	$("#tx_ip").val(SYNSegIP);
-	$("#tx_rolfun").val(SYNSegRolFuncion);
-	*/
     $("#tx_empresa").val("1");
 	$("#tx_rol").val("SYNERGIA");
 	$("#tx_ip").val("127.0.0.1");
 	
     // INICIA CON EL CURSOR EN EL CAMPO FECHA
-	
-	$("._input_selector").inputmask("dd/mm/yyyy");
+		$("._input_selector").inputmask("dd/mm/yyyy");
     
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
+
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
 	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-	//$("#co_eliminar").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
     
 	$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	//$("#co_editar2").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-	//$("#co_eliminar2").html("<span class='glyphicon glyphicon glyphicon-minus'></span> Eliminar");
 
     $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    //$("#co_volver2").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
     
     
 	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
@@ -108,33 +84,7 @@ $(document).ready(function () {
         window.close(); 
     }); 
  
-	
-	/*$("#co_act").on("click", function (e) {
-		fn_actualizar();
-	});*/
-	//BOTONES ELIMINAR DE LAS GRILLAS
-    $("#co_eliminar").on("click", function (e) {
-		 
-		//alert(dataReg.C1 +  "-" +  dataReg.C2);
-		
-		$("#dlg_confirmamod").modal({backdrop: "static",keyboard:false});					
-		$("#dlg_confirmamod").on("shown.bs.modal", function () {
-			$("#co_confirmamod_no").focus();
-				});
-    	
-	});
-    
-    $("#co_eliminar2").on("click", function (e) {
-		 
-		//alert(dataReg.C1 +  "-" +  dataReg.C2);
-		
-		$("#dlg_confirmamod2").modal({backdrop: "static",keyboard:false});					
-		$("#dlg_confirmamod2").on("shown.bs.modal", function () {
-			$("#co_confirmamod2_no").focus();
-				});
-    	
-	});
-    
+
     
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_close").on("click", function (e) {
@@ -147,74 +97,60 @@ $(document).ready(function () {
 		fn_limpia_modal2();
 	});
     
-
-         
-    
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+	/*jQuery('#tx_lec_ant').keypress(function (tecla) {
+		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+	});*/
+  
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+	//BOTONES 
 
     $("#co_volver").on("click", function (e) {
 		$("#div_prin").show();
 		$("#div_tabla").hide();
-		fn_limpiar();
-		//$grid_principal.pqGrid( "refreshDataAndView" );
+		fn_limpiar();	
 		$(window).scrollTop(0);
-    });//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-
+    });
 	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	$("._input_selector").inputmask("dd/mm/yyyy");
-
-	/*jQuery('#tx_lec_ant').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});*/
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-    //BOTONES
-    
-    //BOTONES-FILTRO
+	    
 	$("#co_modif").on("click", function () {
-		//Validacin de informacion
-		//if ($.trim($("#co_aceptar").text()) == "Aceptar") {
+					
+		if ($("#tx_cod_sist").val() ==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#cb_regional"));
+			fn_lim_fil_reg();
 			
-			if ($("#tx_cod_sist").val() ==""){
-				fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#cb_regional"));
-				fn_lim_fil_reg();
-				
-                return false;
-                
-			};
-			
-            if ($("#cb_estado").val()==""){
-				fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#cb_ciclo"));
-                 fn_lim_fil_ci();
-                 return false;
-			};
-            
-			if ($("#tx_cen_op_1").val()==""){
-				fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO CLIENTE", g_tit, $("#cb_ruta"));
-				return false;
-			}
-			
-			if ($("#tx_cen_op_usu_1").val()==""){
-				fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO USUARIO", g_tit, $("#cb_ruta"));
-				return false;
-			}
+	        return false;
+	        
+		};
+		
+	    if ($("#cb_estado").val()==""){
+			fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#cb_ciclo"));
+	         fn_lim_fil_ci();
+	         return false;
+		};
+	    
+		if ($("#tx_cen_op_1").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO CLIENTE", g_tit, $("#cb_ruta"));
+			return false;
+		}
+		
+		if ($("#tx_cen_op_usu_1").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO USUARIO", g_tit, $("#cb_ruta"));
+			return false;
+		}
 
-			if ($("#tx_fecha_crea").val()==""){
-				fn_mensaje_boostrap("FAVOR DIGITAR FECHA CREACIÓN", g_tit, $("#cb_ruta"));
-				return false;
-			}
+		if ($("#tx_fecha_crea").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA CREACIÓN", g_tit, $("#cb_ruta"));
+			return false;
+		}
 
-			if ($("#tx_fecha_modif").val()==""){
-				fn_mensaje_boostrap("FAVOR DIGITAR FECHA MODIFICACIÓN", g_tit, $("#cb_ruta"));
-				return false;
-			}
+		if ($("#tx_fecha_modif").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA MODIFICACIÓN", g_tit, $("#cb_ruta"));
+			return false;
+		}
 
-            fn_carga_grilla();
-            $('#div_modal').modal('hide');
-            //fn_lim_filtro(); 
-                
-            
-        //}
+	    fn_carga_grilla();
+	    $('#div_modal').modal('hide');
 	});
     
 	$("#co_limpiar").on("click", function () {
@@ -236,8 +172,6 @@ $(document).ready(function () {
     $("#div_modal2").draggable({
         handle: ".modal-header"
     });
-	
-    //Filtros = [];
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -300,50 +234,20 @@ $(document).ready(function () {
                     $("#tx_cod_sist_2").val(dataCell.C2);
                     $("#cb_estado").val(dataCell.C3);
                     $("#tx_cen_op_1").val(dataCell.C4);
-                    $("#tx_cen_op_2").val(dataCell.C5);
-                    $("#tx_cen_op_usu_1").val(dataCell.C6);
-                    $("#tx_cen_op_usu_2").val(dataCell.C7);
-                    $("#tx_fecha_crea").val(dataCell.C8);
-                    $("#tx_fecha_modif").val(dataCell.C9);					
+                    $("#tx_cen_op_usu_1").val(dataCell.C5);
+                    $("#tx_fecha_crea").val(dataCell.C6);
+                    $("#tx_fecha_modif").val(dataCell.C7);					
 				}
 			}
-	});
+	});	
 	
-	//EVENTO DBL_CLICK DE LA GRILLA CICLO - RUTA
-    /*$grid_2.pqGrid({
-		rowDblClick: function( event, ui ) {
-			if (ui.rowData) 
-				{
-					var dataCell = ui.rowData;
-					//g_cliente_selec = dataCell.c2;
-					$("#tx_codigo").val(dataCell.c1);
-                    $("#tx_descod").val(dataCell.c2);
-                    $("#tx_val1").val(dataCell.c3);
-                    $("#tx_val2").val(dataCell.c4);
-                    $("#tx_fecing").val(dataCell.c5);
-                    $("#tx_fecmod").val(dataCell.c6);
-                    //$("#div_tabla").hide();
-    				//$("#div_ter").show();
-					//ruta_fil = dataCell.C4;
-                    //fn_grilla_tres();
-                    $("#div_modal2").modal({ backdrop: "static", keyboard: false });
-                    $("#div_modal2").on("shown.bs.modal", function () {
-                        $("#div_modal2 div.modal-footer button").focus();
-
-				      });
-                }
-        }
-    });*/
-
-	    	 
-	 
 });
            
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 function fn_setea_grid_principal() {
 	
 	var obj = {
-		height: 540,
+		height: "100%",
 		showTop: true,
 		showBottom: true,
 		showHeader: true,
@@ -373,157 +277,25 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: '1', C4: 'AGR1', C5: 'AGRUPACIÓN1', C6: 'AGTE', C7: 'AGRUPACION TOTAL EMPRESA', C8: '01/04/2020', C9: '01/04/2020' }, 
+             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: '1', C4: 'AGRUPACIÓN 1', C5: 'AGRUPACION TOTAL EMPRESA', C6: '01/04/2020', C7: '01/04/2020' }, 
                         
         ] }
 	};
 	
     obj.colModel = [
-		{ title: "Sistema",   width: 100, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+    	{ title: "Sistema", width: 350, dataType: "string", dataIndx: "C1", halign: "center",  align:"center", hidden: "true"  },
 		{ title: "Descripción", width: 350, dataType: "string", dataIndx: "C2", halign: "center",  align:"center" },
 		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
 		{ title: "Centro Operativo Cliente", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: "true" },
-		{ title: "Centro Operativo Cliente", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center", hidden: "true" },
-		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right", hidden: "true" },
-		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C7", halign: "center", align: "right", hidden: "true" },
-		{ title: "Fecha Creación", width: 80, dataType: "number", dataIndx: "C8", halign: "center", align: "right", hidden: "true" },
-		{ title: "Fecha Modificación", width: 80, dataType: "number", dataIndx: "C9", halign: "center", align: "right", hidden: "true" },
+		{ title: "Centro Operativo Usuario", width: 80, dataType: "number", dataIndx: "C5", halign: "center", align: "right", hidden: "true" },
+		{ title: "Fecha Creación", width: 80, dataType: "number", dataIndx: "C6", halign: "center", align: "right", hidden: "true" },
+		{ title: "Fecha Modificación", width: 80, dataType: "number", dataIndx: "C7", halign: "center", align: "right", hidden: "true" },
  
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
-    
-    /*GRILLA 2*************************************************************/
-    
-    //Setea grid2
-	/*data =  [
-	  { c1: '01', c2: 'PARAMETRO TABLA 1', c3: 'D', c4: '8', c5:'80'},
-      { c1: '02', c2: 'PARAMETRO TABLA 2', c3: 'A', c4: '18', c5:'80'},
-      { c1: '03', c2: 'PARAMETRO TABLA 3', c3: 'A', c4: '28', c5:'80'},
-      { c1: '04', c2: 'PARAMETRO TABLA 4', c3: 'A', c4: '38', c5:'80'},
-      { c1: '05', c2: 'PARAMETRO TABLA 5', c3: 'A', c4: '48', c5:'80'},
-	 ]
-    var obj2 = {
-        height: "100%",
-        showTop: true,
-        showHeader: true,
-        roundCorners: true,
-        rowBorders: true,
-		fillHandle: "",
-        columnBorders: true,
-        editable:false,
-        selectionModel: { type: "row", mode:"single"},
-        showTitle:true,
-        collapsible:false,
-        numberCell: { show: false },
-        title: "Detalle",
-		pageModel: { rPP: 200, type: "local", rPPOptions: [100, 200, 500]},
-        scrollModel:{theme:true},
-        toolbar:
-        {
-            cls: "pq-toolbar-export",
-            items:
-            [
-				{ type: "button", label: "Nuevo",  attr: "id=co_nuevo2", cls: "btn btn-primary" },
-				{ type: "button", label: "Excel",  attr:"id=co_excel2",  cls:"btn btn-primary btn-sm"},
-				{ type: "button", label: "Volver", attr:"id=co_volver2", cls:"btn btn-default btn-sm"}
-            ]
-        }
-    };
-	
-	obj2.colModel = [
-        { title: "Código", width: 100, dataType: "string", dataIndx: "c1", halign:"center", align:"center"},
-        { title: "Descricpión", width: 300, dataType: "string", dataIndx: "c2", halign:"center", align:"left" },
-        { title: "Estado", width: 100, dataType: "string", dataIndx: "c3", halign:"center", align:"center" },
-        { title: "Valor 1", width: 100, dataType: "string", dataIndx: "c4", halign:"center", align:"left" },
-        { title: "Valor 2", width: 140, dataType: "number", dataIndx: "c5", halign:"center", align:"right" },
-        { title: "Eliminar",width: 80, dataType: "string", align: "center", editable: false, minWidth: 100, sortable: false,
-					render: function (ui) {
-						//return "<button class='btn btn-primary glyphicon glyphicon-remove btn_grid'><span class=''></span>Eliminar</button>";
-						return "<button name='co_borra2' class='btn btn-primary btn-sm'>Eliminar</button>";
-					}
-				}
-    ];
-	
-	obj2.dataModel = { data: data };
-    $grid_2 = $("#div_grid_sec").pqGrid(obj2);
-	//$grid_2.pqGrid( "option", "dataModel.data", [] );
-    $grid_2.pqGrid( "refreshDataAndView" );
-	//$grid_2.pqGrid( "scrollRow", { rowIndxPage: 10 } );*/
-
-}
-
-//***********************************************************
-function fn_actualiza_datos(clave1, lectura1, cliente, medidor, tipomed, marca, modelo, clave2, lectura2){
-	
-		//alert(clave1+'||'+ lectura1+'||'+ cliente+'||'+ medidor+'||'+ tipomed+'||'+ marca+'||'+ modelo)
-	flag = 0;
-	parameters = 
-    {
-		"func"       :"fn_actualiza_datos",
-		"empresa"    :$("#tx_empresa").val(),
-		"RolFun"     :$("#tx_rolfun").val(),
-		"rol"        :$("#tx_rol").val(),
-		"ip"         :$("#tx_ip").val(),
-				
-				
-		"p_clavelec" : clave1,
-        "p_lecterr"  : lectura1,
-		"p_clavelec2" : clave2,
-        "p_lecterr2"  : lectura2,
-		
-		"p_cliente"  : cliente,
-        "p_medidor"  : medidor,
-        
-		"p_tipomed"  : tipomed,
-		"p_marca"    : marca,
-		"p_modelo"   : modelo,
-        
-		"p_lector"   : $("#cb_lector").val(),
-        "p_fecha"    : $("#fec_lect").val(),
-        
-    };
-	
-	
-	HablaServidor(url,parameters,"text", function(text) 
-	{
-		if(text == ""){
-			//fn_mensaje_boostrap("ACCIN REALIZADA", g_titulo, $(""));
-			//$grid_principal.pqGrid( "refreshDataAndView" );
-						
-		}
-		else
-			fn_mensaje_boostrap(text, g_tit, $(""));
-
-	});
-
-    
-		  
-}
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_filtro()
-{
-	parameters = 
-    {
-		"func":"fn_grid_principal",
-		"empresa":$("#tx_empresa").val(),
-		/*"p_sistema":$("#cb_regional").val(),
-        "p_ciclo":$("#cb_ciclo").val(),
-        "p_ruta":$("#cb_ruta").val(),
-        "p_lector":$("#cb_lector").val(),
-        "p_fecha":$("#fec_lect").val(),*/
-        
-    };
-	/*Filtros = [];
-	if ($("#cb_regional").val()!='' ) {Filtros.push('Regional = '+$("#cb_regional :selected").text()); }
-	if ($("#cb_ciclo").val()!='' ) {Filtros.push('Ciclo = '+$("#cb_ciclo:selected").text());  }
-	if ($("#cb_ruta").val()!='' ) {	Filtros.push('Ruta = '+$("#cb_ruta:selected").text());  }
-	if ($("#cb_lector").val()!='' ) {Filtros.push('Lector = '+$("#cb_lector:selected").text());}
-	if ($("#fec_lect").val()!=''  ) {Filtros.push('Fecha Lectura Terreno = '+$("#fec_lect").val() );}
-	$("#filtro").val(Filtros);*/
+   
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -532,20 +304,6 @@ function fn_new() {
 
 	$("#div_prin").hide();
     $("#div_tabla").show();
-}
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_modal2(num) {
-	
-    $("#tx_nuevo2").val(num);
-    
-    fn_limpia_modal2();
-	
-	$("#div_modal2").modal({ backdrop: "static", keyboard: false });
-	$("#div_modal2").on("shown.bs.modal", function () {
-		$("#div_modal2 div.modal-footer button").focus();
-
-	});
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -560,30 +318,16 @@ function fn_limpia_modal()
 function fn_limpiar(){
 	
     $("#tx_cod_sist").val("");
-    $("#tx_cod_sist_2").val("");
     $("#cb_estado").val("");
     $("#tx_cen_op_1").val("");
-    $("#tx_cen_op_2").val("");
     $("#tx_cen_op_usu_1").val("");
-    $("#tx_cen_op_usu_2").val("");
     $("#tx_fecha_crea").val("");
     $("#tx_fecha_modif").val("");
     
    
 }
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-function fn_limpia_modal2() 
-{
-	$("#tx_val1").val("");
-	$("#tx_val1").val("");
-	$("#tx_descod").val("");
-	$("#tx_codigo").val("");
-    $("#tx_fecing").val("");
-	$("#tx_fecmod").val("");
-}
-	
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+
 function fn_carga_grilla() {
 	
 	fn_filtro();
@@ -623,25 +367,6 @@ function fn_carga_grilla() {
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
 function fn_estado() {
-      /*
-    	$("#cb_regional").html("");
-		$("#cb_ciclo").html("");
-	    $("#cb_ruta").html("");
-	
-		parameters = 
-			{
-				"func":"fn_regional",
-				"empresa":$("#tx_empresa").val(),
-				//"rol":$("#tx_rol").val()
-			};
-		
-		HablaServidor(url,parameters,'text', function(text) 
-			{
-				if(text != "")
-					$("#cb_regional").html(text);
-			});
-*/
-
 	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
 }
 

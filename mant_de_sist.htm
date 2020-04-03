@@ -92,30 +92,32 @@
 		<br>	
             
             <div id="div_prin">
-				<div class="panel-body" id="bd_prin">
+				<div class="container" id="bd_prin">
 					<!-- PARAMQUERY PRINCIPAL -->
 					<div id="div_grid_principal"> 
 
 					</div>
 				</div>
 			</div>
-		<!-- INFORMACION DEL FORMULARIO -->	
+			<!-- INFORMACION DEL FORMULARIO -->	
 			<div id="div_tabla" style="display: none">
 				<div class="panel-body" id="bd_prin">					
 			<div class="tab-content">
 				<div id="Principal" class="tab-pane fade in active">
 				  	<div class="container">
+				  		<div class="well well-sm">Mantenedor de Sistemas</div>
 						<div class="row">
-							<div class="col-sm-4">
-								<label for="tx_cod_sist">C&oacute;digo Sistema</label>
-								<input id="tx_cod_sist" class="form-control inp_dis" type="text">
+							<div class="col-sm-12">
+								<label for="tx_cod_sist"></label>
+								<input id="tx_cod_sist" class="form-control inp_dis" type="text" style="display: none;">
 							</div>
-							<div class="col-sm-4">
-								<label for="tx_cod_sist_2"></label>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="tx_cod_sist_2">C&oacute;digo Sistema</label>
 								<input id="tx_cod_sist_2" class="form-control inp_dis" type="text">
-							</div>
-
-							<div class="col-sm-4">
+							</div>																					
+							<div class="col-sm-6">
 								<label for="cb_estado">Estado</label>
 								<select id="cb_estado" class="form-control inp_dis" type="text"></select>
 							</div>
@@ -126,18 +128,8 @@
 								<input id="tx_cen_op_1" class="form-control inp_dis" type="text">
 							</div>
 							<div class="col-sm-6">
-								<label for="tx_cen_op_2"></label>
-								<input id="tx_cen_op_2" class="form-control inp_dis" type="text">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
 								<label for="tx_cen_op_usu_1">Centro Oper&aacute;tivo Usuario</label>
 								<input id="tx_cen_op_usu_1" class="form-control inp_dis" type="text">
-							</div>
-							<div class="col-sm-6">
-								<label for="tx_cen_op_usu_2"></label>
-								<input id="tx_cen_op_usu_2" class="form-control inp_dis" type="text">
 							</div>
 						</div>
 						<div class="row">
