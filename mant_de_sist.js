@@ -115,7 +115,7 @@ $(document).ready(function () {
 	    
 	$("#co_modif").on("click", function () {
 					
-		if ($("#tx_cod_sist").val() ==""){
+		if ($("#tx_cod_sist_2").val() ==""){
 			fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#cb_regional"));
 			fn_lim_fil_reg();
 			
@@ -149,8 +149,8 @@ $(document).ready(function () {
 			return false;
 		}
 
-	    fn_carga_grilla();
-	    $('#div_modal').modal('hide');
+			fn_mensaje_boostrap("Se modificó", g_tit, $(""));
+            $(window).scrollTop(0);
 	});
     
 	$("#co_limpiar").on("click", function () {
@@ -161,17 +161,6 @@ $(document).ready(function () {
 		else
 			window.close();
 	});
-
-
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	
-	$("#div_modal").draggable({
-        handle: ".modal-header"
-    });
-	
-    $("#div_modal2").draggable({
-        handle: ".modal-header"
-    });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
