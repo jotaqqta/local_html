@@ -283,7 +283,7 @@ function fn_setea_grid_principal() {
 	};
 	
     obj.colModel = [
-    	{ title: "Sistema", width: 350, dataType: "string", dataIndx: "C1", halign: "center",  align:"center", hidden: "true"  },
+    	{ title: "Sistema", width: 350, dataType: "string", dataIndx: "C1", halign: "center",  align:"center", hidden: "true" },
 		{ title: "Descripción", width: 350, dataType: "string", dataIndx: "C2", halign: "center",  align:"center" },
 		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
 		{ title: "Centro Operativo Cliente", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: "true" },
@@ -317,7 +317,8 @@ function fn_limpia_modal()
 
 function fn_limpiar(){
 	
-    $("#tx_cod_sist").val("");
+	$("#tx_cod_sist").val("");
+    $("#tx_cod_sist_2").val("");
     $("#cb_estado").val("");
     $("#tx_cen_op_1").val("");
     $("#tx_cen_op_usu_1").val("");
