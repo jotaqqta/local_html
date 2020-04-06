@@ -61,6 +61,10 @@ $(document).ready(function () {
     fn_disable();
     $("#co_buzon").hide();
     $("#div_dat_gen").show();
+    $("#cb_tipo_aten").prop("disabled", true);
+    $("#cb_motiv_client").prop("disabled", true);
+    $("#cb_motiv_empresa").prop("disabled", true);
+    $("#tx_buzon_rol").prop("disabled", true);
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
@@ -73,10 +77,16 @@ $(document).ready(function () {
 
         if (this.text === "Datos Generales") {
             $("#div_dat_gen").show();
+
+            if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
+                $("#co_buzon").show();
+            }
         }
+
 
         if (this.text === "Observaciones") {
             $("#div_observaciones").show();
+            $("#co_buzon").hide();
         }
 
     });
@@ -155,6 +165,25 @@ $(document).ready(function () {
             return;
         }
 
+        if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
+            if (grid_principal === undefined) {
+                fn_check_nav("#tab_dat_gen'", "#div_dat_gen");
+                fn_mensaje_boostrap("Error, por favor selecciona un Buzón.", g_tit, $("#co_buzon"));
+                return;
+            } else {
+                if (grid_principal.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    fn_check_nav("#tab_dat_gen", "#div_dat_gen");
+                    fn_mensaje_boostrap("Error, por favor selecciona un Buzón.", g_tit, $("#co_buzon"));
+                    return;
+                }
+            }
+        } else {
+            if ($("#tx_buzon_rol").val() === "") {
+                fn_mensaje_boostrap("Error, por favor indica un Rol.", g_tit, $("#tx_buzon_rol"));
+                return;
+            }
+        }
+
         if ($("#tx_observaciones").val() === "") {
             fn_check_nav("#tab_observ", "#div_observaciones");
             fn_mensaje_boostrap("Error, por favor indica alguna Observación.", g_tit, $("#tx_observaciones"));
@@ -179,8 +208,8 @@ $(document).ready(function () {
 
             $("#buzon_data").show();
 
-            $("#buzon_i").html(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
-            $("#buzon_ii").html(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
+            $("#tx_buzon_id").val(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+            $("#tx_buzon_rol").val(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
 
             $('#div_buzon_bts').modal('hide');
         }
@@ -207,11 +236,12 @@ $(document).ready(function () {
     $("input[type='radio'][name='opt_dat_gen']").on("click", function () {
         if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
             $("#co_buzon").show();
+            $("#tx_buzon_rol").val("");
+            $("#tx_buzon_rol").prop("disabled", true);
         } else {
             $("#co_buzon").hide();
-            $("#buzon_data").hide();
-            $("#buzon_i").html("");
-            $("#buzon_ii").html("");
+            $("#tx_buzon_rol").val("");
+            $("#tx_buzon_rol").prop("disabled", false);
             grid_principal.Checkbox('checkBox').unCheckAll();
         }
     });
@@ -440,30 +470,6 @@ function fn_disable() {
     $("#tx_nombre").prop("disabled", true);
     $("#tx_ruta").prop("disabled", true);
     $("#tx_direccion").prop("disabled", true);
-
-    $("#cb_tipo_aten").prop("disabled", true);
-    $("#cb_motiv_client").prop("disabled", true);
-    $("#cb_motiv_empresa").prop("disabled", true);
-
-}
-
-function fn_post_check() {
-
-    if ($("#cb_motiv_empresa").val() !== "") {
-        $("#cb_tipo_aten").prop("disabled", false);
-        $("#cb_motiv_client").prop("disabled", false);
-        $("#cb_motiv_empresa").prop("disabled", false);
-    }
-
-    if ($("#cb_motiv_client").val() !== "") {
-        $("#cb_tipo_aten").prop("disabled", false);
-        $("#cb_motiv_client").prop("disabled", false);
-
-    }
-
-    if ($("#cb_tipo_aten").val() !== "") {
-        $("#cb_tipo_aten").prop("disabled", false);
-    }
 
 }
 
