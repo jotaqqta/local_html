@@ -195,7 +195,6 @@ $(document).ready(function () {
             fn_mensaje_boostrap("Error, por favor indica alguna Observación mas larga.", g_tit, $("#tx_observaciones"));
             return;
         }
-
     });
 
     $("#co_seleccionar").on("click", function () {
