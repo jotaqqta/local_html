@@ -45,6 +45,8 @@ $(document).ready(function () {
     
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
+	//DEFINE LA GRILLA SECUNDARIA
+	//fn_set_grid_secundaria();
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
@@ -161,6 +163,23 @@ $(document).ready(function () {
 		else
 			window.close();
 	});
+
+	 $("#co_cliente").on("click", function () {
+        $("#div_cliente_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_cliente_bts").on("shown.bs.modal", function () {
+        $("#div_cliente_bts div.modal-footer button").focus();
+        });
+
+        setTimeout(function() {
+
+            load = true;
+
+            $grid_principal.pqGrid("refreshView");
+
+            load = false;
+
+        }, 400);
+    });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -285,6 +304,52 @@ function fn_setea_grid_principal() {
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
 	$grid_principal.pqGrid("refreshDataAndView");
    
+}
+
+function fn_set_grid_secundaria() {
+
+    // GRID MOTIVO CAMBIO
+
+    var data =  [
+        { C1: 'AGR', C2: 'AGRUPACIÓN' },
+    ];
+
+    var obj = {
+        height: 225,
+        showtop: true,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        rowBorders: true,
+        showTitle: false,
+        showBottom: false,
+        collapsible: true,
+        roundCorners: true,
+        columnBorders: true,
+        numberCell: { show: false },
+        scrollModel: { theme: true },
+        selectionModel: {type: 'row', mode: 'block'},
+        pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
+        toolbar: false,
+    };
+
+    obj.colModel = [
+        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                maxCheck: 1,
+                select: true
+            }
+        },
+        { title: "Buzón", width: 265, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+    ];
+
+    obj.dataModel = { data: data };
+
+    $grid_principal = $("#div_grid_cliente").pqGrid(obj);
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
