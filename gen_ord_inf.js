@@ -519,4 +519,3 @@ function fn_mensaje(id,mensaje,segundos) {
     $(id).html(mensaje);
     setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
-
