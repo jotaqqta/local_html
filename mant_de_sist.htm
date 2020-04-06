@@ -126,7 +126,7 @@
 							</div>
 							<div class="col-sm-1">
                                 <div style="height: 13px"></div>
-                                <button type="button" class="btn btn-sm btn-primary" id="co_cliente"
+                                <button type="button" class="btn btn-basic" id="co_cliente"
 										name="co_cliente"><span>&nbsp;&nbsp;&nbsp;&nbsp; ? &nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</button>
 							</div>
@@ -136,7 +136,7 @@
 							</div>
 							<div class="col-xs-1">
                                 <div style="height: 13px"></div>
-                                <button type="button" class="btn btn-sm btn-primary" id="co_usuario"
+                                <button type="button" class="btn btn-basic" id="co_usuario"
 										name="co_usuario"><span>&nbsp;&nbsp;&nbsp;&nbsp; ? &nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</button>
 							</div>
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Modal 1 -->
                 <div class="modal fade" id="div_cliente_bts" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -190,6 +190,33 @@
                                         class="glyphicon glyphicon-ok"></span> Seleccionar
                                 </button>
                                 <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel"
+                                        type="button"><span
+                                        class="glyphicon glyphicon-remove"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal 2 -->
+                <div class="modal fade" id="div_usuario_bts" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                                <h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Seleccionar
+                                    Usuario</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- PARAMQUERY OPERATIVO USUARIO -->
+                                <div id="div_grid_usuario"></div>
+                            </div>
+                            <div id="mensaje_select"></div>
+                            <div class="modal-footer">
+                                <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal"
+                                        id="co_seleccionar2" type="button"><span
+                                        class="glyphicon glyphicon-ok"></span> Seleccionar
+                                </button>
+                                <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel2"
                                         type="button"><span
                                         class="glyphicon glyphicon-remove"></span> Cancelar
                                 </button>

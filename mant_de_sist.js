@@ -3,6 +3,7 @@ var g_tit = "Mantenci&oacute;n de sistemas";
 
 var $grid_principal;
 var $grid_secundaria;
+var $grid_terciaria;
 var $grid_2;
 var $grid_3;
 var parameters = {};
@@ -48,6 +49,8 @@ $(document).ready(function () {
 	fn_setea_grid_principal();
 	//DEFINE LA GRILLA SECUNDARIA
 	fn_set_grid_secundaria();
+	//DEFINE LA GRILLA TERCERA
+	fn_set_grid_terciaria();
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
@@ -90,13 +93,13 @@ $(document).ready(function () {
 
     
 	//BOTONES CERRAR DE LOS MODALES
-    $("#co_close").on("click", function (e) {
-		$('#div_modal').modal('hide');
+    $("#co_cancel").on("click", function (e) {
+		$('#div_cliente_bts').modal('hide');
 		fn_limpia_modal();
 	});
     
-    $("#co_close2").on("click", function (e) {
-		$('#div_modal2').modal('hide');
+    $("#co_cancel2").on("click", function (e) {
+		$('#div_usuario_bts').modal('hide');
 		fn_limpia_modal2();
 	});
     
@@ -165,22 +168,23 @@ $(document).ready(function () {
 			window.close();
 	});
 
-	 $("#co_cliente").on("click", function () {
+	$("#co_cliente").on("click", function () {
         $("#div_cliente_bts").modal({backdrop: "static",keyboard:false});
         $("#div_cliente_bts").on("shown.bs.modal", function () {
         $("#div_cliente_bts div.modal-footer button").focus();
-        });
+        });        
+	});
 
-        setTimeout(function() {
+	 $("#co_usuario").on("click", function () {
+        $("#div_usuario_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_usuario_bts").on("shown.bs.modal", function () {
+        $("#div_usuario_bts div.modal-footer button").focus();
+        });        
+	});
 
-            load = true;
 
-            $grid_principal.pqGrid("refreshView");
 
-            load = false;
 
-        }, 400);
-    });
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
@@ -248,11 +252,13 @@ $(document).ready(function () {
                     $("#tx_fecha_modif").val(dataCell.C7);					
 				}
 			}
+
 	});	
 	
 });
            
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+    // GRID PRINCIPAL
 function fn_setea_grid_principal() {
 	
 	var obj = {
@@ -306,13 +312,13 @@ function fn_setea_grid_principal() {
 	$grid_principal.pqGrid("refreshDataAndView");
    
 }
-
+    // GRID CENTRO OPERATIVO CLIENTE
 function fn_set_grid_secundaria() {
 
-    // GRID MOTIVO CAMBIO
+
 
     var data =  [
-        { C1: 'AGR', C2: 'AGRUPACIÓN' },
+        { C1: 'AGR', C4: 'AGRUPACIÓN1' },
     ];
 
     var obj = {
@@ -344,14 +350,63 @@ function fn_set_grid_secundaria() {
                 select: true
             }
         },
-        { title: "Buzón", width: 265, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Centro", width: 265, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C4", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj.dataModel = { data: data };
 
     $grid_secundaria = $("#div_grid_cliente").pqGrid(obj);
-    $grid_secundaria.pqGrid("refreshDataAndView");
+    //$grid_principal.pqGrid( "refreshDataAndView" );
+}
+
+    // GRID CENTRO OPERATIVO USUARIO
+function fn_set_grid_terciaria() {
+
+
+
+    var data =  [
+        { C1: 'AGR', C5: 'AGRUPACIÓN TOTAL EMPRESA' },
+    ];
+
+    var obj = {
+        height: 225,
+        showtop: true,
+        filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
+        rowBorders: true,
+        showTitle: false,
+        showBottom: false,
+        collapsible: true,
+        roundCorners: true,
+        columnBorders: true,
+        numberCell: { show: false },
+        scrollModel: { theme: true },
+        selectionModel: {type: 'row', mode: 'block'},
+        pageModel: {rPP: 500, type: "local", rPPOptions: [500, 1000, 2000]},
+        toolbar: false,
+    };
+
+    obj.colModel = [
+        { dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                maxCheck: 1,
+                select: true
+            }
+        },
+        { title: "Centro", width: 265, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C5", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+    ];
+
+    obj.dataModel = { data: data };
+
+    $grid_terciaria = $("#div_grid_usuario").pqGrid(obj);
+	
+
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -421,6 +476,7 @@ function fn_carga_grilla() {
     $grid_principal.pqGrid( "refreshDataAndView" );
 	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
 }
+
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
 function fn_estado() {
