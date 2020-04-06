@@ -2,6 +2,7 @@ var g_modulo = "Tratamiento de Ordenes Masivas";
 var g_tit = "Mantenci&oacute;n de sistemas";
 
 var $grid_principal;
+var $grid_secundaria;
 var $grid_2;
 var $grid_3;
 var parameters = {};
@@ -46,7 +47,7 @@ $(document).ready(function () {
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 	//DEFINE LA GRILLA SECUNDARIA
-	//fn_set_grid_secundaria();
+	fn_set_grid_secundaria();
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
@@ -349,7 +350,8 @@ function fn_set_grid_secundaria() {
 
     obj.dataModel = { data: data };
 
-    $grid_principal = $("#div_grid_cliente").pqGrid(obj);
+    $grid_secundaria = $("#div_grid_cliente").pqGrid(obj);
+    $grid_secundaria.pqGrid("refreshDataAndView");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
