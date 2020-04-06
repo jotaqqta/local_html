@@ -511,7 +511,6 @@ function fn_limpiar(zone) {
         $("#tx_observaciones").val("");
 
     }
-
 }
 
 function fn_mensaje(id,mensaje,segundos) {
