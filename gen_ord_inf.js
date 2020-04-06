@@ -162,6 +162,7 @@ $(document).ready(function () {
         }
 
         if ($("#tx_observaciones").val().length < 15) {
+            fn_check_nav("#tab_observ", "#div_observaciones");
             fn_mensaje_boostrap("Error, por favor indica alguna Observación mas larga.", g_tit, $("#tx_observaciones"));
             return;
         }
