@@ -63,7 +63,7 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
     fn_estado();
-    //fn_lect();
+   
  
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
@@ -77,11 +77,10 @@ $(document).ready(function () {
     $("#co_nuevo2").on("click", function (e) {
 		fn_modal2(1);
 	});
-	
-    
+	    
     
     $("#co_volver").on("click", function (e) {
-        window.close(); 
+        window.close();
     }); 
  	
 
@@ -210,7 +209,6 @@ $(document).ready(function () {
 //EXCEL    
 	$("#co_excel").on("click", function (e) {
 		
-		fn_filtro();
 		e.preventDefault();
         var col_model=$( "#div_grid_principal" ).pqGrid( "option", "colModel" );
 		var cabecera = "";
@@ -225,7 +223,6 @@ $(document).ready(function () {
 			a= 0;
 		if(a>0){
 			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_prim);	
 			$("#frm_Exel").submit();
 			return;
 		}	
@@ -234,7 +231,6 @@ $(document).ready(function () {
     
     $("#co_excel2").on("click", function (e) {
 		e.preventDefault();
-		fn_filtro_2();
         var col_model=$( "#div_grid_sec" ).pqGrid( "option", "colModel" );
 		var cabecera = "";
 		for (i=0; i< col_model.length; i++){
@@ -450,11 +446,12 @@ function fn_limpiar(){
     
    
 }
+
+
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_carga_grilla() {
 	
-	fn_filtro();
 	var total_register;
    
     var dataModel = 
@@ -470,7 +467,6 @@ function fn_carga_grilla() {
         {
 			total_register = $.trim(dataJSON.totalRecords);
 			var data = dataJSON.data;
-			sql_grid_prim = dataJSON.sql;
 			
 			if(total_register>=1)
 			{
