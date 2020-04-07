@@ -4,9 +4,9 @@ var g_tit = "Mantenci&oacute;n de sistemas";
 var $grid_principal;
 var $grid_secundaria;
 var $grid_terciaria;
+var $grid_aux_terciaria;
 var grid_aux_secundaria;
 var $grid_2;
-var $grid_3;
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -56,15 +56,8 @@ $(document).ready(function () {
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
 	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
-	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");
-    
-	$("#co_nuevo2").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-
-    $("#co_excel2").html("<span class='glyphicon glyphicon-save'></span> Excel");
-    
-    
+	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");     
 	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
@@ -92,33 +85,11 @@ $(document).ready(function () {
     }); 
  	
 
- 	//$("#co_seleccionar").on("click", function (e) {
-
- 		        //if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
-    //        if ($grid_secundaria === undefined) {
-                //fn_check_nav("#tab_dat_gen'", "#div_dat_gen");
-    //            fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
-    //            return;
-    //        } else {
-    //            if ($grid_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
-                    //fn_check_nav("#tab_dat_gen", "#div_dat_gen");
-    //                fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
-    //                return;
-    //            }
-    //        }
-        //}
-        //else {
-        //    if ($("#tx_cen_op_1").val() === "") {
-        //        fn_mensaje_boostrap("Error, por favor indica un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
-        //        return;
-        //    }
-        //}
-	//}	);
     
 	$("#co_seleccionar").on("click", function () {
 
 		if (grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
-			fn_mensaje('#msj_modal_cli','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por selecciona un cliente.</strong></div>',3000);
+			fn_mensaje('#msj_modal_cli','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN CLIENTE</strong></div>',3000);
 			return;
 		}
 
@@ -129,20 +100,39 @@ $(document).ready(function () {
 		
     });
 
+    $("#co_seleccionar2").on("click", function () {
+
+		if (grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+			fn_mensaje('#msj_modal_usu','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN USUARIO</strong></div>',3000);
+			return;
+		}
+
+		$("#id_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+		$("#tx_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C5; }));
+
+		$('#div_usuario_bts').modal('hide');
+		
+    });
+
+
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
-		$('#div_cliente_bts').modal('hide');
+		$('#div_cliente_bts').modal('hide');		
 	});
+
+	$grid_terciaria.pqGrid({
+        refresh: function ( event, ui ) {            
+                grid_aux_terciaria = this;            
+        }
+    });
     
     $("#co_cancel2").on("click", function (e) {
 		$('#div_usuario_bts').modal('hide');
 	});
     
 	$grid_secundaria.pqGrid({
-        refresh: function ( event, ui ) {
-            //if (load) {
-                grid_aux_secundaria = this;
-            //}
+        refresh: function ( event, ui ) {            
+                grid_aux_secundaria = this;            
         }
     });
   
