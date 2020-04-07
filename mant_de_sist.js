@@ -4,6 +4,7 @@ var g_tit = "Mantenci&oacute;n de sistemas";
 var $grid_principal;
 var $grid_secundaria;
 var $grid_terciaria;
+var grid_aux_secundaria;
 var $grid_2;
 var $grid_3;
 var parameters = {};
@@ -114,21 +115,18 @@ $(document).ready(function () {
         //}
 	//}	);
     
- 	    $("#co_seleccionar").on("click", function () {
+	$("#co_seleccionar").on("click", function () {
 
-        if ($.trim($("#co_seleccionar").text() === "Seleccionar")) {
-            if ($grid_principal.Checkbox('checkBox').getCheckedNodes().length < 1) {
-                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, Seleccionar Centro Operativo Cliente</strong></div>',3000);
-                return;
-            }
+		if (grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+			fn_mensaje('#msj_modal_cli','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, por selecciona un cliente.</strong></div>',3000);
+			return;
+		}
 
-            //$("#buzon_data").show();
+		$("#id_cen_ope_cli").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+		$("#tx_cen_op_1").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
 
-            $("#tx_cen_op_1").val($grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
-            //$("#tx_buzon_rol").val(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
-
-            $('#div_cliente_bts').modal('hide');
-        }
+		$('#div_cliente_bts').modal('hide');
+		
     });
 
 	//BOTONES CERRAR DE LOS MODALES
@@ -140,10 +138,13 @@ $(document).ready(function () {
 		$('#div_usuario_bts').modal('hide');
 	});
     
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-	/*jQuery('#tx_lec_ant').keypress(function (tecla) {
-		if (tecla.charCode < 48 || tecla.charCode > 57) return false;
-	});*/
+	$grid_secundaria.pqGrid({
+        refresh: function ( event, ui ) {
+            //if (load) {
+                grid_aux_secundaria = this;
+            //}
+        }
+    });
   
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	//BOTONES 
@@ -347,7 +348,7 @@ function fn_set_grid_secundaria() {
 
 
     var data =  [
-        { C1: 'AGR', C4: 'AGRUPACIÓN1' },
+        { C1: 'AGR', C2: 'AGRUPACIÓN1' },
     ];
 
     var obj = {
@@ -380,7 +381,7 @@ function fn_set_grid_secundaria() {
             }
         },
         { title: "Centro", width: 265, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
-        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C4", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
+        { title: "Descripción", width: 553, dataType: "strig", dataIndx: "C2", halign: "center", align: "left", editable: false, filter: { crules: [{ condition: 'contain' }] } },
     ];
 
     obj.dataModel = { data: data };
@@ -504,26 +505,11 @@ function fn_estado() {
 	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
 }
 
-//*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
-function fn_validar_fecha(value){
-	var real, info;
+function fn_mensaje(id,mensaje,segundos) {
 
-	if (/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/.test(value)) {
-		info = value.split(/\//);
-		var fecha = new Date(info[2], info[1]-1, info[0]);
-		if ( Object.prototype.toString.call(fecha) === '[object Date]' ){
-			real = fecha.toISOString().substr(0,10).split('-');
-			if (info[0] === real[2] && info[1] === real[1] && info[2] === real[0]) {
-				return true;
-			}
-			return false;
-		}else{
-		return false;
-		}
-	}
-	else {
-	return false;
-	}
+    $(id).show();
+    $(id).html(mensaje);
+    setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
 }
 
