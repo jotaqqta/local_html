@@ -89,8 +89,30 @@ $(document).ready(function () {
     $("#co_volver").on("click", function (e) {
         window.close(); 
     }); 
- 
+ 	
 
+ 	$("#co_cliente").on("click", function (e) {
+
+ 		        //if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
+            if (grid_secundaria === undefined) {
+                //fn_check_nav("#tab_dat_gen'", "#div_dat_gen");
+                fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
+                return;
+            } else {
+                if (grid_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                    //fn_check_nav("#tab_dat_gen", "#div_dat_gen");
+                    fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
+                    return;
+                }
+            }
+        //}
+        //else {
+        //    if ($("#tx_cen_op_1").val() === "") {
+        //        fn_mensaje_boostrap("Error, por favor indica un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
+        //        return;
+        //    }
+        //}
+}	);
     
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
@@ -120,36 +142,35 @@ $(document).ready(function () {
 	$("#co_modif").on("click", function () {
 					
 		if ($("#tx_cod_sist_2").val() ==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#cb_regional"));
-			fn_lim_fil_reg();
-			
+			fn_mensaje_boostrap("FAVOR DIGITAR CODIGO SISTEMA", g_tit, $("#tx_cod_sist_2"));
+						
 	        return false;
 	        
 		};
 		
 	    if ($("#cb_estado").val()==""){
-			fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#cb_ciclo"));
-	         fn_lim_fil_ci();
+			fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#cb_estado"));
+	         
 	         return false;
 		};
 	    
 		if ($("#tx_cen_op_1").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO CLIENTE", g_tit, $("#cb_ruta"));
+			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO CLIENTE", g_tit, $("#tx_cen_op_1"));
 			return false;
 		}
 		
 		if ($("#tx_cen_op_usu_1").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO USUARIO", g_tit, $("#cb_ruta"));
+			fn_mensaje_boostrap("FAVOR DIGITAR CENTRO OPERATIVO USUARIO", g_tit, $("#tx_cen_op_usu_1"));
 			return false;
 		}
 
 		if ($("#tx_fecha_crea").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR FECHA CREACIÓN", g_tit, $("#cb_ruta"));
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA CREACIÓN", g_tit, $("#tx_fecha_crea"));
 			return false;
 		}
 
 		if ($("#tx_fecha_modif").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR FECHA MODIFICACIÓN", g_tit, $("#cb_ruta"));
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA MODIFICACIÓN", g_tit, $("#tx_fecha_modif"));
 			return false;
 		}
 
@@ -348,7 +369,7 @@ function fn_set_grid_secundaria() {
     obj.dataModel = { data: data };
 
     $grid_secundaria = $("#div_grid_cliente").pqGrid(obj);
-    //$grid_principal.pqGrid( "refreshDataAndView" );
+    
 }
 
     // GRID CENTRO OPERATIVO USUARIO
