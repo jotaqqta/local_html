@@ -91,20 +91,20 @@ $(document).ready(function () {
     }); 
  	
 
- 	$("#co_cliente").on("click", function (e) {
+ 	//$("#co_seleccionar").on("click", function (e) {
 
  		        //if ($("input[type='radio'][name='opt_dat_gen']:checked").val() === "opt_buzon") {
-            if (grid_secundaria === undefined) {
+    //        if ($grid_secundaria === undefined) {
                 //fn_check_nav("#tab_dat_gen'", "#div_dat_gen");
-                fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
-                return;
-            } else {
-                if (grid_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+    //            fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
+    //            return;
+    //        } else {
+    //            if ($grid_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
                     //fn_check_nav("#tab_dat_gen", "#div_dat_gen");
-                    fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
-                    return;
-                }
-            }
+    //                fn_mensaje_boostrap("Error, por favor selecciona un Centro Operativo Cliente.", g_tit, $("#tx_cen_op_1"));
+    //                return;
+    //            }
+    //        }
         //}
         //else {
         //    if ($("#tx_cen_op_1").val() === "") {
@@ -112,8 +112,25 @@ $(document).ready(function () {
         //        return;
         //    }
         //}
-}	);
+	//}	);
     
+ 	    $("#co_seleccionar").on("click", function () {
+
+        if ($.trim($("#co_seleccionar").text() === "Seleccionar")) {
+            if ($grid_principal.Checkbox('checkBox').getCheckedNodes().length < 1) {
+                fn_mensaje('#mensaje_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>Error, Seleccionar Centro Operativo Cliente</strong></div>',3000);
+                return;
+            }
+
+            //$("#buzon_data").show();
+
+            $("#tx_cen_op_1").val($grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+            //$("#tx_buzon_rol").val(grid_principal.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
+
+            $('#div_cliente_bts').modal('hide');
+        }
+    });
+
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
 		$('#div_cliente_bts').modal('hide');
