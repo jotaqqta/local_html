@@ -6,7 +6,6 @@ var $grid_secundaria;
 var $grid_terciaria;
 var $grid_aux_terciaria;
 var grid_aux_secundaria;
-var $grid_2;
 var parameters = {};
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
@@ -68,15 +67,7 @@ $(document).ready(function () {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_nuevo").on("click", fn_new);
-	
-    $("#co_editar").on("click", function (e) {
-		fn_modal(2);
-	});
-	
-    $("#co_nuevo2").on("click", function (e) {
-		fn_modal2(1);
-	});
+    $("#co_nuevo").on("click", fn_new);   
 	    
     
     $("#co_volver").on("click", function (e) {
@@ -201,10 +192,6 @@ $(document).ready(function () {
         });        
 	});
 
-
-
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 //EXCEL    
 	$("#co_excel").on("click", function (e) {
@@ -226,30 +213,8 @@ $(document).ready(function () {
 			$("#frm_Exel").submit();
 			return;
 		}	
-    });
-			
+    });			
     
-    $("#co_excel2").on("click", function (e) {
-		e.preventDefault();
-        var col_model=$( "#div_grid_sec" ).pqGrid( "option", "colModel" );
-		var cabecera = "";
-		for (i=0; i< col_model.length; i++){
-			if(col_model[i].hidden != true) cabecera += "<th>"+col_model[i].title+ "</th>";
-		}
-		$("#excel_cabecera").val(cabecera);
-		var element =$grid_2.pqGrid("option","dataModel.data");
-		if (element)
-			a= element.length;
-		else 
-			a= 0;
-		if(a>0){
-			$("#tituloexcel").val(g_tit);
-			$("#sql").val(sql_grid_dos);	
-			$("#frm_Exel").submit();
-			return;
-	    }	
-    });
-
     //EVENTO DBL_CLICK DE LA GRILLA
     $grid_principal.pqGrid({
 		rowDblClick: function( event, ui ) {
@@ -308,7 +273,7 @@ function fn_setea_grid_principal() {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: '1', C4: 'AGRUPACIÓN 1', C5: 'AGRUPACION TOTAL EMPRESA', C6: '01/04/2020', C7: '01/04/2020' }, 
+             { C1: 'AIC', C2: 'ATENCIÓN INTEGRAL DE CLIENTE', C3: '1', C4: 'AGRUPACIÓN1', C5: 'AGRUPACION TOTAL EMPRESA', C6: '01/04/2020', C7: '01/04/2020' }, 
                         
         ] }
 	};
@@ -432,7 +397,7 @@ function fn_new() {
 	$("#div_prin").hide();
     $("#div_tabla").show();
 }
-
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_limpiar(){
 	
@@ -446,8 +411,6 @@ function fn_limpiar(){
     
    
 }
-
-
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 function fn_carga_grilla() {
@@ -485,12 +448,12 @@ function fn_carga_grilla() {
 	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
 }
 
-
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
 function fn_estado() {
 	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
 }
 
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
 function fn_mensaje(id,mensaje,segundos) {
 
