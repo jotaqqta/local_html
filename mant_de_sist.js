@@ -54,7 +54,6 @@ $(document).ready(function () {
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
-	$("#co_editar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");     
 	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
@@ -230,12 +229,15 @@ $(document).ready(function () {
                     $("#tx_cen_op_1").val(dataCell.C4);
                     $("#tx_cen_op_usu_1").val(dataCell.C5);
                     $("#tx_fecha_crea").val(dataCell.C6);
-                    $("#tx_fecha_modif").val(dataCell.C7);					
-				}
+                    $("#tx_fecha_modif").val(dataCell.C7);
+
+                    $("#co_modif").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");				
+				}				
 			}
 
-	});	
-	
+	});
+
+
 });
            
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -396,6 +398,7 @@ function fn_new() {
 
 	$("#div_prin").hide();
     $("#div_tabla").show();
+    $("#co_modif").html("<span class='glyphicon glyphicon-floppy-disk'></span> Nuevo");
 }
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
