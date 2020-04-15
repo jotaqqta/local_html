@@ -327,7 +327,7 @@ function fn_limpiar(){
 		return true;
 	}
 	if ($("#tx_hora_fin").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR HORA FINAL</strong></div>', 3000);
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR HORA FINAL!!!</strong></div>', 3000);
 		$("#tx_hora_fin").focus();
 		return true;
 	}
@@ -347,7 +347,7 @@ function fn_limpiar(){
         return true;
     }
     if ($("#tx_hora_fin").val() > 23) {
-        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ENTRE 00 Y 23 HORAS</strong></div>', 3000);
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ENTRE 00 Y 23 HORAS!!!</strong></div>', 3000);
         $("#tx_hora_fin").focus();
         return true;
     }
