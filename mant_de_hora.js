@@ -89,14 +89,13 @@ $(document).ready(function () {
 
 
 
-
-
     $("#co_generar_fil").on("click", function() {
-        if ($.trim($("#co_generar_fil").text()) === "Aceptar") {
-            
-            if (fn_val_general())
-                return;   
-
+        if ($.trim($("#co_generar_fil").text()) === "Aceptar") {            
+            if ($("#cb_sistema").val() === "") {
+                fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
+                $("#cb_sistema").focus();
+                return;
+            }
 			
             $('#div_filtro__bts').modal('hide');
             fn_mensaje_boostrap("Se genero", g_tit, $("#co_generar_fil"));
@@ -104,9 +103,9 @@ $(document).ready(function () {
         }
     });
 
-	/////////////////////////////////BOTON GENERAR/////////////////////////////////
-    $("#co_generar").on("click", function() {
-        if ($.trim($("#co_generar").text()) === "Generar") {
+	/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
+    $("#co_modif").on("click", function() {
+        if ($.trim($("#co_modif").text()) === "Generar") {
 
             if (fn_val_general())
                 return;   
@@ -114,29 +113,25 @@ $(document).ready(function () {
             $('#div_filtro_new_edit_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
-
-        }
-
-	/////////////////////////////////BOTON MODIFICAR/////////////////////////////////
-        if ($.trim($("#co_modif").text()) === "Modificar") {
-            
-            if (fn_val_general())
-                return;   
-                      
+        }	
+    else
+        {
+        if (fn_val_general())
+                return;                             
             $('#div_filtro_new_edit_bts').modal('hide');
             fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
-
         }
     });
 
-	
+	/////////////////////////////////BOTON CANCELAR FILTRO/////////////////////////////////
+
     $("#co_cancel_fil").on("click", function (){
         $('#div_filtro__bts').modal('hide');
 		if ($("#tx_path_unix").val() === "" || $("#tx_path_win").val() === "");
     });
 
-	
+	/////////////////////////////////BOTON LIMPIAR FILTRO/////////////////////////////////
 	$("#co_limpiar_fil").on("click", function () {
 		fn_limpiar_filtro();
 		return;
@@ -152,7 +147,7 @@ $(document).ready(function () {
         rowDblClick: function( event, ui ) {
             if (ui.rowData) {
                 var dataCell = ui.rowData;
-                $("#title_mod").html("Consultar");
+                $("#title_mod").html("Editar");
 
 
 				$("#tx_hora_ini").val(dataCell.C2);
@@ -319,32 +314,74 @@ function fn_limpiar(){
 }
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
-function fn_val_general(){
-
-	if ($("#cb_sistema").val() === "") {
-		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SISTEMA!!!</strong></div>',3000);
-		$("#cb_sistema").focus();
-		return true;
-	}
+    function fn_val_general(){
 
 	if ($("#tx_hora_ini").val() === "") {
-		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR SUBSIDIADOR!!!</strong></div>',3000);
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR HORA INICIAL!!!</strong></div>',3000);
 		$("#tx_hora_ini").focus();
 		return true;
 	}
-
-	if ($("#tx_ano").val() === "") {
-		fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR A&Ntilde;O</strong></div>', 3000);
-		$("#tx_ano").focus();
+	if ($("#tx_min_ini").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR MINUTO INICIAL!!!</strong></div>',3000);
+		$("#tx_min_ini").focus();
 		return true;
 	}
-    if ($("#tx_mes").val() === "") {
-        fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR MES!!!</strong></div>', 3000);
-        $("#tx_mes").focus();
+	if ($("#tx_hora_fin").val() === "") {
+		fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR HORA FINAL</strong></div>', 3000);
+		$("#tx_hora_fin").focus();
+		return true;
+	}
+    if ($("#tx_min_fin").val() === "") {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR MINUTO FINAL!!!</strong></div>', 3000);
+        $("#tx_min_fin").focus();
         return true;
     }
-	return false;
-}
+    if ($("#tx_hora_ini").val() > 23) {
+        fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR HORA INICIAL ENTRE 00 Y 23 HORAS!!!</strong></div>',3000);
+        $("#tx_hora_ini").focus();
+        return true;
+    }
+    if ($("#tx_min_ini").val() > 59) {
+        fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ENTRE 00 Y 59 MINUTOS!!!</strong></div>',3000);
+        $("#tx_min_ini").focus();
+        return true;
+    }
+    if ($("#tx_hora_fin").val() > 23) {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ENTRE 00 Y 23 HORAS</strong></div>', 3000);
+        $("#tx_hora_fin").focus();
+        return true;
+    }
+    if ($("#tx_min_fin").val() > 59) {
+        fn_mensaje('#mensaje_filtro_new_edit', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ENTRE 00 Y 59 MINUTOS!!!</strong></div>', 3000);
+        $("#tx_min_fin").focus();
+        return true;
+    }
+	   return false;
+    }
+
+   $("#tx_hora_ini").blur(function () {
+        if ($("#tx_hora_ini").val() >= 24) {
+            $("#tx_hora_ini").val("23");
+        }
+    });
+
+    $("#tx_min_ini").blur(function () {
+        if ($("#tx_min_ini").val() >= 60) {
+            $("#tx_min_ini").val("59");
+        }
+    });
+
+    $("#tx_hora_fin").blur(function () {
+        if ($("#tx_hora_fin").val() >= 24) {
+            $("#tx_hora_fin").val("23");
+        }
+    });
+
+    $("#tx_min_fin").blur(function () {
+        if ($("#tx_min_fin").val() >= 60) {
+            $("#tx_min_fin").val("59");
+        }
+    });
 
 ////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
 function fn_limpiar_filtro(){

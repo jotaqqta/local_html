@@ -397,7 +397,7 @@ function fn_val_general(){
 	}
 
 	if ($("#tx_descrip").val() === "") {
-		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR ROL GENÉRICO!!!</strong></div>',3000);
+		fn_mensaje('#mensaje_filtro_new_edit','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCRIPCIÓN!!!</strong></div>',3000);
 		$("#tx_descrip").focus();
 		return true;
 	}
