@@ -57,9 +57,7 @@ $(document).ready(function () {
     $("#tx_empresa").val("1");
     $("#tx_rol").val("SYNERGIA");
     $("#tx_ip").val("127.0.0.1");
-    $("#tx_mes").inputmask({
-        alias: "mm/yyyy",placeholder: '',
-    });
+    
 
     
     //DEFINE LA GRILLA PRINCIPAL
@@ -269,21 +267,6 @@ function fn_sistema(){
     
 }
 
-//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-
-function fn_eliminar(rowIndx) {
-
-    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
-
-    rowIndxG = rowIndx;
-
-    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-    $("#dlg_confirm").on("shown.bs.modal", function () {
-        $("#dlg_confirm div.modal-footer button").focus();
-    });
-
-}
-
 ////////////////////FUNCION CARGA GRILLA//////////////////////////////////////////////
 
 function fn_carga_grilla() {
@@ -294,23 +277,6 @@ function fn_carga_grilla() {
     $grid_principal.pqGrid( "refreshDataAndView" );
     $grid_principal.pqGrid( "option", "title", "Total Registros: " + total_register);
 
-}
-
-////////////////////FUNCION LIMPIAR MODAL EDITAR Y NUEVO//////////////////////////////////////////////
-
-
-function fn_limpiar(){
-	
-    $("#tx_rol_fun").val("");
-    $("#tx_rol_fun_2").val("");
-    $("#tx_rol_gen").val("");
-    $("#tx_rol_gen_2").val("");
-    $("#tx_equipo").val("");
-    $("#tx_equipo_2").val("");
-    $("#tx_oper").val("");
-    $("#tx_oper_2").val("");
-    $("#cb_estado").val("");
-   
 }
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
@@ -382,15 +348,6 @@ function fn_limpiar(){
             $("#tx_min_fin").val("59");
         }
     });
-
-////////////////////FUNCION LIMPIAR FILTRO MODAL FILTRO//////////////////////////////////////////////
-function fn_limpiar_filtro(){
-   $("#cb_cen_oper").val("");
-   $("#tx_subsid").val("");
-   $("#tx_ano").val("");
-   $("#tx_mes").val("");
-    
-}
 
 //////////////////////////////////////////////////////////////////
 function fn_mensaje(id,mensaje,segundos)
