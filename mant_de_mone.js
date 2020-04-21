@@ -231,6 +231,7 @@ $(document).ready(function () {
 					var dataCell = ui.rowData;
 					
                   	$("#modal_select_title").html("Editar");
+                  	$("#co_aceptar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
                     $("#tx_simbo").val(dataCell.C4);
                     $("#tx_decim_cal").val(dataCell.C5);
                     $("#tx_deci_desp").val(dataCell.C6);
@@ -319,7 +320,8 @@ $(document).ready(function () {
 		$("#modal_select_title").html("Nuevo");
 		$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
 	    $("#div_atrib_bts").on("shown.bs.modal", function () {
-	    $("#div_atrib_bts div.modal-footer button").focus();	 
+	    $("#div_atrib_bts div.modal-footer button").focus();
+	    $("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");	 
 	 
 	    });
 
