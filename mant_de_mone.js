@@ -352,7 +352,7 @@ $(document).ready(function () {
 	}
 
 	if ($("#tx_deci_desp").val() === "") {
-		fn_mensaje('#msj_modal_atrib', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DECIMALES DESPLIEGUE</strong></div>', 3000);
+		fn_mensaje('#msj_modal_atrib', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DECIMALES DESPLIEGUE!!!</strong></div>', 3000);
 		$("#tx_deci_desp").focus();
 		return true;
 	}
