@@ -25,6 +25,10 @@ $(document).ready(function () {
 	jQuery('#tx_cod_mone').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
+    
+    jQuery('#tx_cod_moned').keypress(function (tecla){
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
 
 	// PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function () { return false; });
@@ -64,6 +68,7 @@ $(document).ready(function () {
     //FUNCIONES DE CAMPOS
     fn_empresa();
     fn_estado();
+    fn_esta();
 
    
  
@@ -151,7 +156,7 @@ $(document).ready(function () {
     });
 	
 	    
-	$("#co_guardar").on("click", function () {
+	$("#co_leer").on("click", function () {
 					
 		if ($("#cb_empresa").val() ==""){
 			fn_mensaje_boostrap("FAVOR SELECCIONAR EMPRESA", g_tit, $("#cb_empresa"));
@@ -232,9 +237,13 @@ $(document).ready(function () {
 					
                   	$("#modal_select_title").html("Editar");
                   	$("#co_aceptar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
+                  	$("#tx_cod_moned").val(dataCell.C1);
+                  	$("#tx_desc").val(dataCell.C2);
+                  	$("#cb_esta").val(dataCell.C3);
                     $("#tx_simbo").val(dataCell.C4);
                     $("#tx_decim_cal").val(dataCell.C5);
                     $("#tx_deci_desp").val(dataCell.C6);
+                    $("#tx_fech_ingreso").val(dataCell.C7);
                     $("#tx_fech_modif").val(dataCell.C8);
                     $("#tx_rol_modif").val(dataCell.C9);
                     
@@ -329,10 +338,14 @@ $(document).ready(function () {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 		function fn_limpiar(){
-	
+	$("#tx_cod_moned").val("");
+	$("#tx_desc").val("");
+	$("#cb_esta").val("");
 	$("#tx_simbo").val("");
     $("#tx_decim_cal").val("");
     $("#tx_deci_desp").val("");
+    $("#tx_deci_desp").val("");
+    $("#tx_fech_ingreso").val("");
     $("#tx_fech_modif").val("");
     $("#tx_rol_modif").val("");       
    
@@ -340,6 +353,24 @@ $(document).ready(function () {
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
         function fn_val_general(){
+
+    if ($("#tx_cod_moned").val() === "") {
+		fn_mensaje('#msj_modal_atrib','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR CÓDIGO MONEDA!!!</strong></div>',3000);
+		$("#tx_cod_moned").focus();
+		return true;
+	}
+
+	if ($("#tx_desc").val() === "") {
+		fn_mensaje('#msj_modal_atrib','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR DESCRIPCIÓN!!!</strong></div>',3000);
+		$("#tx_desc").focus();
+		return true;
+	}
+
+	if ($("#cb_esta").val() === "") {
+		fn_mensaje('#msj_modal_atrib', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR ESTADO!!!</strong></div>', 3000);
+		$("#cb_esta").focus();
+		return true;
+	}
 
 	if ($("#tx_simbo").val() === "") {
 		fn_mensaje('#msj_modal_atrib','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR SÍMBOLO!!!</strong></div>',3000);
@@ -404,6 +435,10 @@ function fn_empresa() {
 
 function fn_estado() {
 	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
+}
+
+function fn_esta() {
+	$("#cb_esta").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
