@@ -30,6 +30,15 @@ $(document).ready(function () {
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
 
+    jQuery('#tx_decim_cal').keypress(function (tecla){
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+
+    jQuery('#tx_deci_desp').keypress(function (tecla){
+        if (tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+
+
 	// PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function () { return false; });
 	//INGRESA LOS TITULOS
@@ -206,6 +215,21 @@ $(document).ready(function () {
         });        
 	});
 
+
+	$("#tx_decim_cal").blur(function () {
+        if ($("#tx_decim_cal").val() >= 10) {
+            $("#tx_decim_cal").val("09");
+        }
+    });
+
+    $("#tx_deci_desp").blur(function () {
+        if ($("#tx_deci_desp").val() >= 10) {
+            $("#tx_deci_desp").val("09");
+        }
+    });
+   
+
+
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		//EXCEL    
 	$("#co_excel").on("click", function (e) {
@@ -246,6 +270,7 @@ $(document).ready(function () {
                     $("#tx_fech_ingreso").val(dataCell.C7);
                     $("#tx_fech_modif").val(dataCell.C8);
                     $("#tx_rol_modif").val(dataCell.C9);
+                    $("#tx_cod_moned").prop( "disabled", true);
                     
 
                     $("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
@@ -327,6 +352,7 @@ $(document).ready(function () {
 		
 		$("#modal_select_title").html("Nuevo");
 		$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+		$("#tx_cod_moned").prop( "disabled", true);
 
 		fn_limpiar();
 
