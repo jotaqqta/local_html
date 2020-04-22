@@ -25,7 +25,7 @@ $(document).ready(function () {
 	jQuery('#tx_cod_mone').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
-    
+
     jQuery('#tx_cod_moned').keypress(function (tecla){
         if (tecla.charCode < 48 || tecla.charCode > 57) return false;
     });
@@ -324,13 +324,16 @@ $(document).ready(function () {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		function fn_new() {
 
+		
+		$("#modal_select_title").html("Nuevo");
+		$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+
 		fn_limpiar();
 
-		$("#modal_select_title").html("Nuevo");
 		$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
 	    $("#div_atrib_bts").on("shown.bs.modal", function () {
 	    $("#div_atrib_bts div.modal-footer button").focus();
-	    $("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");	 
+	    	 
 	 
 	    });
 
