@@ -271,7 +271,7 @@ $(document).ready(function () {
                     $("#tx_fech_modif").val(dataCell.C8);
                     $("#tx_rol_modif").val(dataCell.C9);
                     $("#tx_cod_moned").prop( "disabled", true);
-                    
+                                      
 
                     $("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
 					$("#div_atrib_bts").on("shown.bs.modal", function () {
@@ -322,8 +322,8 @@ $(document).ready(function () {
             cellBorderWidth: 0
         },
 		dataModel:{ data: [
-             { C1: '1', C2: 'BALBOA', C3: 'A', C4: 'B', C5: '2', C6: '2', C7: '20/04/2020', C8: '20/04/2020', C9: 'TEST' },
-             { C1: '2', C2: 'DOLAR', C3: 'A', C4: 'US$', C5: '2', C6: '2', C7: '20/04/2020', C8: '20/04/2020', C9: 'RLU' },
+             { C1: '1', C2: 'BALBOA', C3: '1', C4: 'ACTIVADO', C5: 'B', C6: '2', C7: '2', C8: '20/04/2020', C9: '20/04/2020', C10: 'TEST' },
+             { C1: '2', C2: 'DOLAR', C3: '2', C4: 'DESACTIVADO', C5: 'US$', C6: '2', C7: '2', C8: '20/04/2020', C9: '20/04/2020', C10: 'RLU' },
                         
         ] }
 	};
@@ -331,14 +331,14 @@ $(document).ready(function () {
     obj.colModel = [
     	{ title: "Cod. Moneda", width: 100, dataType: "string", dataIndx: "C1", halign: "center",  align:"center"},
 		{ title: "Descripci&oacute;n", width: 100, dataType: "string", dataIndx: "C2", halign: "center",  align:"center" },
-		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "Símbolo", width: 100, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Dec. Calculo", width: 100, dataType: "number", dataIndx: "C5", halign: "center", align: "center" },
-		{ title: "Dec. Despliegue", width: 100, dataType: "number", dataIndx: "C6", halign: "center", align: "center" },
-		{ title: "Fecha Ingreso", width: 100, dataType: "number", dataIndx: "C7", halign: "center", align: "center" },
-		{ title: "Fecha Modificación", width: 100, dataType: "number", dataIndx: "C8", halign: "center", align: "center" },
-		{ title: "Rol Modificador", width: 100, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
- 
+		{ title: "Estado", width: 100, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden:"true" },
+		{ title: "Estado", width: 120, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		{ title: "Símbolo", width: 100, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "Dec. Calculo", width: 100, dataType: "number", dataIndx: "C6", halign: "center", align: "center" },
+		{ title: "Dec. Despliegue", width: 100, dataType: "number", dataIndx: "C7", halign: "center", align: "center" },
+		{ title: "Fecha Ingreso", width: 100, dataType: "number", dataIndx: "C8", halign: "center", align: "center" },
+		{ title: "Fecha Modificación", width: 100, dataType: "number", dataIndx: "C9", halign: "center", align: "center" },
+		{ title: "Rol Modificador", width: 100, dataType: "number", dataIndx: "C10", halign: "center", align: "center" }, 		
 	];
 
 	$grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -463,11 +463,11 @@ function fn_empresa() {
 }
 
 function fn_estado() {
-	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
+	$("#cb_estado").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >DESACTIVADO</option>");
 }
 
 function fn_esta() {
-	$("#cb_esta").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >INACTIVO</option>");
+	$("#cb_esta").html("<option value='' selected></option><option value='1'>ACTIVADO</option> <option value='2' >DESACTIVADO</option>");
 }
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
