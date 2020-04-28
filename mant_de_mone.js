@@ -264,12 +264,12 @@ $(document).ready(function () {
                   	$("#tx_cod_moned").val(dataCell.C1);
                   	$("#tx_desc").val(dataCell.C2);
                   	$("#cb_esta").val(dataCell.C3);
-                    $("#tx_simbo").val(dataCell.C4);
-                    $("#tx_decim_cal").val(dataCell.C5);
-                    $("#tx_deci_desp").val(dataCell.C6);
-                    $("#tx_fech_ingreso").val(dataCell.C7);
-                    $("#tx_fech_modif").val(dataCell.C8);
-                    $("#tx_rol_modif").val(dataCell.C9);
+                    $("#tx_simbo").val(dataCell.C5);
+                    $("#tx_decim_cal").val(dataCell.C6);
+                    $("#tx_deci_desp").val(dataCell.C7);
+                    $("#tx_fech_ingreso").val(dataCell.C8);
+                    $("#tx_fech_modif").val(dataCell.C9);
+                    $("#tx_rol_modif").val(dataCell.C10);
                     $("#tx_cod_moned").prop( "disabled", true);
                                       
 

@@ -212,7 +212,7 @@ function fn_setea_grid_principal() {
 
     obj.colModel = [
         { title: "Código", width: 300, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-        { title: "Cuadrilla", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+        { title: "Nombre Cuadrilla", width: 300, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
         { title: "Empresa Contratista", width: 250, dataType: "string", dataIndx: "C3", halign: "center", align: "center", hidden: "true" },
         { title: "Actividad", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center", hidden: "true" },
         { title: "Cod. Inspector", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center" , hidden: "true" },
