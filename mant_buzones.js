@@ -272,28 +272,12 @@ $(document).ready(function () {
     $grid_secundaria.pqGrid({
 		rowDblClick: function( event, ui ) {
 			if (ui.rowData) {
-					var dataCell = ui.rowData;
-					
-                  	//$("#modal_select_title").html("Editar");
-                  	//$("#co_aceptar").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
-
-                  	$('#div_atrib_bts').modal('hide');
-                  	
-                  	$("#cb_buzon").val(dataCell.C1);
-                	$("#tx_nombre").val(dataCell.C2);
-                	$("#cb_area").val(dataCell.C3);
-
-                	
-                     		                 
-
-                    $("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
-					$("#div_atrib_bts").on("shown.bs.modal", function () {
-					$("#div_atrib_bts div.modal-footer button").focus();
-						//$grid_secundaria.pqGrid("refreshDataAndView");
-					
-
-
-				});				
+				var dataCell = ui.rowData;
+				$('#div_atrib_bts').modal('hide');
+				$("#cb_buzon").val(dataCell.C1);
+				$("#tx_nombre").val(dataCell.C2);
+				$("#cb_area").val(dataCell.C3);	                 
+				fn_mensaje_boostrap("Se selecciono la fila: " + dataCell.C1, g_tit, $());
 			}
 		}
 
@@ -303,15 +287,13 @@ $(document).ready(function () {
 
 		
            
-		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
-    	// GRID PRINCIPAL
-	function fn_setea_grid_principal() {
+//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+// GRID PRINCIPAL
+function fn_setea_grid_principal() {
 
     var data =  [
         { C1: 'OMEDING 0003', C2: 'ACTUALIZACION ESTADO DE MEDIDOR'},
-        { C1: 'ACT EST MEDIDOR', C2: 'ACTUALIZACION ESTADO DE MEDIDOR- (NUEVO)'},
-        
-           
+        { C1: 'ACT EST MEDIDOR', C2: 'ACTUALIZACION ESTADO DE MEDIDOR- (NUEVO)'},  
     ];
 
     var obj = {
@@ -322,6 +304,7 @@ $(document).ready(function () {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
+		postRenderInterval: -1,
 		editable: false,
         editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
@@ -342,29 +325,23 @@ $(document).ready(function () {
          },
 	};
 
-  	    obj.colModel = [
-        { title: "Recurso", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center", filter: { crules: [{ condition: 'contain' }] } },
-        { title: "Nombre de Recurso", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
-                { title: "Eliminar", width: 110, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
-                render: function () {
-                return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
-            },
-                postRender: function (ui) {
-                   
-
-                var rowIndx = ui.rowIndx;
-
-                var $grid = this,
-                    $grid = $grid.getCell(ui);
-
-                $grid.find("button")
-                    .on("click", function () {
-
-                        fn_eliminar(rowIndx);
-                    });
-            }
-        },
-    ];
+	obj.colModel = [
+		{ title: "Recurso", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center", filter: { crules: [{ condition: 'contain' }] } },
+		{ title: "Nombre de Recurso", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+		{ title: "Eliminar", width: 110, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+			render: function () {
+				return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
+			},
+			postRender: function (ui) {
+				var rowIndx = ui.rowIndx;
+				var $grid = this;
+				$grid = $grid.getCell(ui);
+				$grid.find("button").on("click", function () {
+					//$grid_secundaria.deleteRow({ rowIndx: ui.rowIndx });
+				});
+			}
+		}
+	];
     obj.dataModel = { data: data };
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
@@ -479,20 +456,6 @@ $(document).ready(function () {
 	return false;
     }
 
-////////////////////MENSAJE CONFIRMAR ELIMINACION REGISTRO//////////////////////////////////////////////
-
-function fn_eliminar(rowIndx) {
-
-    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
-
-    rowIndxG = rowIndx;
-
-    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
-    $("#dlg_confirm").on("shown.bs.modal", function () {
-        $("#dlg_confirm div.modal-footer button").focus();
-    });
-
-}
 
 function fn_carga_grilla() {
 	

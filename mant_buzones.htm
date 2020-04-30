@@ -125,7 +125,7 @@
 
     <!-- Modal 2 -->
     <div class="modal fade" id="div_mant_bts" role="dialog">
-            <div class="modal-dialog modal-centered">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
@@ -134,7 +134,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
                     <div class="row">                         
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <label for="cb_buzon">Buzón</label>
                                     <select id="cb_buzon" class="form-control inp_dis" type="text"></select>
                                 </div>
@@ -146,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <label for="cb_area">Área</label>
                                     <select id="cb_area" class="form-control inp_dis" type="text"></select>
                                 </div>
@@ -200,10 +200,9 @@
     </div>
 
 
-
 	<!--Modal de mensajes-->
 	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
-
+</div>
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp"
 		  target="_blank">
 		<input type="hidden" id="tx_empresa" name="tx_empresa" value="">
