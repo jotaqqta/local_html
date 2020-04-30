@@ -335,6 +335,7 @@ $(document).ready(function () {
             items:[
                 { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
+                { type: "button", label: "Filtro",   attr:"id=co_filtro",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
                 
             ]
