@@ -316,9 +316,9 @@ function fn_setea_grid_principal() {
 		{
             cls: "pq-toolbar-export",
             items:[
-                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },
-                { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
+                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },                
                 { type: "button", label: "Filtro",   attr:"id=co_filtro",    cls:"btn btn-primary btn-sm"},
+                { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
                 
             ]
@@ -326,8 +326,8 @@ function fn_setea_grid_principal() {
 	};
 
 	obj.colModel = [
-		{ title: "Recurso", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center", filter: { crules: [{ condition: 'contain' }] } },
-		{ title: "Nombre de Recurso", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left", filter: { crules: [{ condition: 'contain' }] } },
+		{ title: "Recurso", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Nombre de Recurso", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
 		{ title: "Eliminar", width: 110, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
 			render: function () {
 				return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
@@ -337,7 +337,8 @@ function fn_setea_grid_principal() {
 				var $grid = this;
 				$grid = $grid.getCell(ui);
 				$grid.find("button").on("click", function () {
-					//$grid_secundaria.deleteRow({ rowIndx: ui.rowIndx });
+					
+					fn_borrar(rowIndx);
 				});
 			}
 		}
@@ -345,7 +346,6 @@ function fn_setea_grid_principal() {
     obj.dataModel = { data: data };
 
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
-	//$grid_principal.pqGrid("refreshDataAndView");
 
 }
 
@@ -361,6 +361,11 @@ function fn_setea_grid_principal() {
 		rowBorders: true,
 		columnBorders: true,
 		editable: false,
+		filterModel: {
+            on: true,
+            mode: "AND",
+            header: true,
+        },
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
@@ -396,6 +401,8 @@ function fn_setea_grid_principal() {
 		function fn_filtro(){
 
 	    $("#title_mod").html("Filtrar");
+	    $("#tx_nombre").prop( "disabled", true);
+	    $("#cb_area").prop( "disabled", true);
 		
 		fn_limpiar();	    
 
@@ -403,6 +410,19 @@ function fn_setea_grid_principal() {
 	    $("#div_mant_bts").on("shown.bs.modal", function () {
 	    $("#div_mant_bts div.modal-footer button").focus();
 	    });
+	}
+
+		function fn_borrar(rowIndx) {
+
+	    $("#confirm_msg").html("¿Estas seguro de que quieres eliminar la fila " + (rowIndx + 1) + "?");
+
+	    rowIndxG = rowIndx;
+
+	    $("#dlg_confirm").modal({backdrop: "static",keyboard:false});
+	    $("#dlg_confirm").on("shown.bs.modal", function () {
+	        $("#dlg_confirm div.modal-footer button").focus();
+	    });
+
 	}
 
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
