@@ -297,7 +297,7 @@ function fn_setea_grid_principal() {
     ];
 
     var obj = {
-        height: "300%",
+        height: "500%",
         showTop: true,
         showBottom:true,
         showHeader: true,
@@ -309,7 +309,7 @@ function fn_setea_grid_principal() {
         editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "",
+		title: "Recursos asociados al Buzón",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
@@ -460,19 +460,7 @@ function fn_setea_grid_principal() {
 		$("#cb_buzon").focus();
 		return true;
 	}
-
-	if ($("#tx_nombre").val() === "") {
-		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR NOMBRE!!!</strong></div>',3000);
-		$("#tx_nombre").focus();
-		return true;
-	}
-
-	if ($("#cb_area").val() === "") {
-		fn_mensaje('#mensaje_filtro', '<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR ÁREA!!!</strong></div>', 3000);
-		$("#cb_area").focus();
-		return true;
-	}
-	
+		
 	return false;
     }
 

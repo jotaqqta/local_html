@@ -84,125 +84,113 @@
 </head>
 
 <body>
-<div id="header" class="container">
+<div class="container" id="header">
     <div id="div_header">
     </div>
 </div>
 <div class="bootstrap-syn">   
     <!-- INFORMACION DEL FORMULARIO -->            
-            <div class="container" id="bd_sec">
-                <div class="tab-content">
-                    <div id="Principal" class="tab-pane fade in active">
-                        <div class="well well-sm">Recursos asociados al Buzón</div>                        
+    <div class="container" >
+        <div id="div_prin">
+            <div class="" id="bd_prin">                           
+                    <!-- PARAMQUERY PRINCIPAL -->
+                    <div id="div_grid_principal">
+                    </div>
+                </div>
+            </div>
+        </div>         
+    
+<!-- Modal 1 -->
+    	<div class="modal fade" id="div_atrib_bts" role="dialog">
+    		<div class="modal-dialog modal-lg">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+    					<h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Selección de Buzón</h4>                    
+    				</div>
+                    <div class="modal-body">            
+                        <!-- PARAMQUERY SECUNDARIO -->
+                        <div id="div_grid_secundaria"></div>                
+                    </div>
+    				<div id="msj_modal_atrib"></div>
+    				<div class="modal-footer">					
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="div_mant_bts" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
+                            <h4 class="modal-title" id="title_mod" data-dismiss="modal"></h4>
+                        </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
+                        <div class="row">                         
+                                    <div class="col-sm-12">
+                                        <label for="cb_buzon">Buzón</label>
+                                        <select id="cb_buzon" class="form-control inp_dis" type="text"></select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="tx_nombre">Nombre</label>
+                                        <input id="tx_nombre" class="form-control inp_dis" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="cb_area">Área</label>
+                                        <select id="cb_area" class="form-control inp_dis" type="text"></select>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
                         <br>
-                        <div class="container">
-                            <!-- PARAMQUERY PRINCIPAL -->
-                            <div id="div_grid_principal">
-                            </div>
+                        <div id="mensaje_filtro"></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal"
+                                id="co_aceptar" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Aceptar
+                            </button>
+                            <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel"
+                                type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                            </button> 
                         </div>
                     </div>
                 </div>
-            </div> 
-        
-	<!-- Modal 1 -->
-	<div class="modal fade" id="div_atrib_bts" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-					<h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Selección de Buzón</h4>                    
-				</div>
-                <div class="modal-body">            
-                    <!-- PARAMQUERY SECUNDARIO -->
-                    <div id="div_grid_secundaria"></div>                
-                </div>
-				<div id="msj_modal_atrib"></div>
-				<div class="modal-footer">					
-				</div>
-			</div>
-		</div>
-	</div>
-
-    <!-- Modal 2 -->
-    <div class="modal fade" id="div_mant_bts" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
+            </div>
+        <div id="dlg_confirm" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" id="mod_alto">
                     <div class="modal-header">
-                        <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-                        <h4 class="modal-title" id="title_mod" data-dismiss="modal"></h4>
+                        <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                        <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
                     </div>
-                <div class="modal-body">
-                    <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
-                    <div class="row">                         
-                                <div class="col-sm-12">
-                                    <label for="cb_buzon">Buzón</label>
-                                    <select id="cb_buzon" class="form-control inp_dis" type="text"></select>
-                                </div>
+                    <div class="modal-body" style=" padding:10px 15px 5px 15px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="form-control-label" id="confirm_msg"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <label for="tx_nombre">Nombre</label>
-                                    <input id="tx_nombre" class="form-control inp_dis" type="text">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <label for="cb_area">Área</label>
-                                    <select id="cb_area" class="form-control inp_dis" type="text"></select>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-                    <br>
-                    <div id="mensaje_filtro"></div>
+                        </form>
+                    </div>
                     <div class="modal-footer">
-                        <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal"
-                            id="co_aceptar" type="button"><span
-                            class="glyphicon glyphicon-ok"></span> Aceptar
+                        <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span
+                                class="glyphicon glyphicon-ok"></span> Si
                         </button>
-                        <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel"
-                            type="button"><span
-                            class="glyphicon glyphicon-remove"></span> Cancelar
-                        </button> 
+                        <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span
+                                class="glyphicon glyphicon-off"></span> No
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    <div id="dlg_confirm" class="modal" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content" id="mod_alto">
-                <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
-                    <h4 class="modal-title" id="tx_dlg_confirma">Advertencia</h4>
-                </div>
-                <div class="modal-body" style=" padding:10px 15px 5px 15px;">
-                    <form role="form">
-                        <div class="form-group">
-                            <div class="form-control-label" id="confirm_msg"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-primary" id="co_confirm_yes" data-dismiss="modal"><span
-                            class="glyphicon glyphicon-ok"></span> Si
-                    </button>
-                    <button type="button" class="btn btn-sm btn-default" id="co_confirm_no" data-dismiss="modal"><span
-                            class="glyphicon glyphicon-off"></span> No
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-            <div class="panel-body" style="padding-left: 0px;" id="div_footer" ></div>   
-    </div>
-
-
-	<!--Modal de mensajes-->
-	<div id="div_msg_bts" class="modal fade" role="dialog" tabindex="-1"></div>
+    </div> 
 </div>
 	<form id="frm_Exel" name="frm_Exel" method="post" action="syn_globales/excel_reporte_v2.asp"
 		  target="_blank">
