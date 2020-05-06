@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="syn_dinamicos/synergia.css">
 
 
-    <script src="mant_buzones.js"></script>
+    <script src="modif_fecha_corte.js"></script>
 
     <!-- Archivos importantes
 
@@ -103,22 +103,38 @@
     
 <!-- Modal 1 -->
     	<div class="modal fade" id="div_atrib_bts" role="dialog">
-    		<div class="modal-dialog modal-lg">
+    		<div class="modal-dialog modal-sm">
     			<div class="modal-content">
     				<div class="modal-header">
     					<a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
-    					<h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Selección de Buzón</h4>                    
+    					<h4 class="modal-title" id="modal_select_title" data-dismiss="modal">Modificar</h4>                    
     				</div>
-                    <div class="modal-body">            
-                        <!-- PARAMQUERY SECUNDARIO -->
-                        <div id="div_grid_secundaria"></div>                
-                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal flex-wrap" id="frm_modif" role="form">            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="tx_cort_nueva">Corte despues de (Nueva)</label>
+                                    <input id="tx_cort_nueva" class="form-control _input_selector" type="text">
+                                </div>
+                            </div>
+                        </form>           
+                    </div>                    
     				<div id="msj_modal_atrib"></div>
-    				<div class="modal-footer">					
-    				</div>
-    			</div>
-    		</div>
-    	</div>
+    				<div class="modal-footer">
+                            <button class="btn btn-sm btn-group btn-primary" data-dismiss="modal"
+                                id="co_aceptar_modif" type="button"><span
+                                class="glyphicon glyphicon-ok"></span> Aceptar
+                            </button>
+                            <button class="btn btn-sm btn-group btn-default" data-dismiss="modal" id="co_cancel_modif"
+                                type="button"><span
+                                class="glyphicon glyphicon-remove"></span> Cancelar
+                            </button> 
+                        </div>
+                    </div>
+    		    </div>
+    	   </div>
+        </div>
+
 
         <!-- Modal 2 -->
         <div class="modal fade" id="div_mant_bts" role="dialog">
@@ -128,28 +144,22 @@
                             <a aria-label="close" class="close" data-dismiss="modal" href="#">&times;</a>
                             <h4 class="modal-title" id="title_mod" data-dismiss="modal"></h4>
                         </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
-                        <div class="row">                         
+                        <div class="modal-body">
+                            <form class="form-horizontal flex-wrap" id="frm_editar" role="form">
+                                <div class="row">                         
                                     <div class="col-sm-12">
-                                        <label for="cb_buzon">Buzón</label>
-                                        <select id="cb_buzon" class="form-control inp_dis" type="text"></select>
+                                        <label for="cb_sector">Sector</label>
+                                        <select id="cb_sector" class="form-control inp_dis" type="text"></select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <label for="tx_nombre">Nombre</label>
-                                        <input id="tx_nombre" class="form-control inp_dis" type="text">
+                                        <label for="tx_cort_actual">Corte despues de (Actual)</label>
+                                        <input id="tx_cort_actual" class="form-control _input_selector" type="text">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <label for="cb_area">Área</label>
-                                        <select id="cb_area" class="form-control inp_dis" type="text"></select>
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
+                                </div>                                
+                            </form>
+                        </div>
                         <br>
                         <div id="mensaje_filtro"></div>
                         <div class="modal-footer">

@@ -1,5 +1,5 @@
-var g_modulo = "Administrador Central";
-var g_tit = "Mantención de Buzones";
+var g_modulo = "Corte y Reposición";
+var g_tit = "Modificación Fecha Corte";
 
 var $grid_principal;
 var $grid_secundaria;
@@ -52,7 +52,7 @@ $(document).ready(function () {
 	
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
-	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
+	$("#co_modif").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");     
 	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
@@ -60,8 +60,8 @@ $(document).ready(function () {
 	
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
-    fn_buzon();
-    fn_area();
+    fn_sector();
+    
     
 
    
@@ -69,7 +69,7 @@ $(document).ready(function () {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_nuevo").on("click", fn_new);   
+    $("#co_modif").on("click", fn_modif);   
 	    
     
     $("#co_volver").on("click", function (e) {
@@ -83,7 +83,7 @@ $(document).ready(function () {
         if ($.trim($("#co_aceptar").text()) === "Aceptar") {
             if (fn_val_general())
                 return;       
-            $('#div_mant_bts').modal('hide');
+            $('#div_atrib_bts').modal('hide');
 			fn_mensaje_boostrap("Se generó", g_tit, $(""));
             $(window).scrollTop(0);
         }
@@ -140,12 +140,12 @@ $(document).ready(function () {
 
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
-		$('#div_atrib_bts').modal('hide');		
+		$('#div_mant_bts').modal('hide');		
 	});
 
     
-    $("#co_cancel2").on("click", function (e) {
-		$('#div_usuario_bts').modal('hide');
+    $("#co_cancel_modif").on("click", function (e) {
+		$('#div_atrib_bts').modal('hide');
 	});
     
 
@@ -161,37 +161,16 @@ $(document).ready(function () {
     });
 	
 	    
-	$("#co_leer").on("click", function () {
+	$("#co_aceptar_modif").on("click", function () {
 					
-		if ($("#cb_empresa").val() ==""){
-			fn_mensaje_boostrap("FAVOR SELECCIONAR EMPRESA", g_tit, $("#cb_empresa"));
+		if ($("#tx_cort_nueva").val() ==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA CORTE", g_tit, $("#tx_cort_nueva"));
 						
 	        return false;
 	        
-		};
-		
-	    if ($("#cb_estado").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR MONEDA", g_tit, $("#cb_estado"));
-	         
-	         return false;
-		};
-	    
-		if ($("#tx_cen_op_1").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR DESCRIPCIÓN", g_tit, $("#tx_cen_op_1"));
-			return false;
-		}
-		
-		if ($("#tx_cen_op_usu_1").val()==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR FECHA INGRESO", g_tit, $("#tx_cen_op_usu_1"));
-			return false;
-		}
+		};	
 
-		if ($("#tx_fecha_crea").val()==""){
-			fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#tx_fecha_crea"));
-			return false;
-		}		
-
-			fn_mensaje_boostrap("Se creó", g_tit, $(""));
+			fn_mensaje_boostrap("Se modificó", g_tit, $(""));
             $(window).scrollTop(0);
 	});
 
@@ -275,8 +254,8 @@ $(document).ready(function () {
 function fn_setea_grid_principal() {
 
     var data =  [
-        { C1: 'OMEDING 0003', C2: 'ACTUALIZACION ESTADO DE MEDIDOR'},
-        { C1: 'ACT EST MEDIDOR', C2: 'ACTUALIZACION ESTADO DE MEDIDOR- (NUEVO)'},  
+        { C1: '414958', C2: '200502570', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},
+        { C1: '447293', C2: '200560670', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},  
     ];
 
     var obj = {
@@ -288,18 +267,18 @@ function fn_setea_grid_principal() {
 		rowBorders: true,
 		columnBorders: true,
 		postRenderInterval: -1,
-		editable: false,
+		editable: true,
         editor: { type: "textbox", select: true, style: "outline:none;" },
 		selectionModel: { type: 'cell' },
 		numberCell: { show: true},
-		title: "Recursos asociados al Buzón",
+		title: "Modificación Fecha Corte Clientes Convenio Atrasado",
 		pageModel: { type: "local" },
 		scrollModel: { theme: true },
 		toolbar:
 		{
             cls: "pq-toolbar-export",
             items:[
-                { type: "button", label: "Nuevo",  attr: "id=co_nuevo",  cls: "btn btn-primary btn-sm" },                
+                { type: "button", label: "Nuevo",  attr: "id=co_modif",  cls: "btn btn-primary btn-sm" },                
                 { type: "button", label: "Filtro",   attr:"id=co_filtro",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
@@ -309,9 +288,19 @@ function fn_setea_grid_principal() {
 	};
 
 	obj.colModel = [
-		{ title: "Recurso", width: 200, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Nombre de Recurso", width: 500, dataType: "string", dataIndx: "C2", halign: "center", align: "left" },
-		{ title: "Eliminar", width: 110, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+	{ dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
+            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
+            cb: {
+                all: true,
+                header: true,
+            }
+        },
+		{ title: "No. Cliente", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
+		{ title: "Ruta", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
+		{ title: "Fecha Corte", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
+		{ title: "Fecha Vencimiento", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
+		{ title: "Antigüedad Deuda", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "Eliminar", width: 150, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
 			render: function () {
 				return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
 			},
@@ -384,8 +373,8 @@ function fn_setea_grid_principal() {
 		function fn_filtro(){
 
 	    $("#title_mod").html("Filtrar");
-	    $("#tx_nombre").prop( "disabled", true);
-	    $("#cb_area").prop( "disabled", true);
+	    //$("#tx_nombre").prop( "disabled", true);
+	    //$("#cb_area").prop( "disabled", true);
 		
 		fn_limpiar();	    
 
@@ -409,7 +398,7 @@ function fn_setea_grid_principal() {
 	}
 
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
-		function fn_new() {
+		function fn_modif() {
 		
 		
 		//$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
@@ -438,9 +427,15 @@ function fn_setea_grid_principal() {
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
         function fn_val_general(){
 
-    if ($("#cb_buzon").val() === "") {
-		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR BUZÓN!!!</strong></div>',3000);
-		$("#cb_buzon").focus();
+    if ($("#cb_sector").val() === "") {
+		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR SELECCIONAR SECTOR!!!</strong></div>',3000);
+		$("#cb_sector").focus();
+		return true;
+	}
+
+	if ($("#tx_cort_actual").val() === "") {
+		fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA CORTE ACTUAL!!!</strong></div>',3000);
+		$("#tx_cort_actual").focus();
 		return true;
 	}
 		
@@ -484,12 +479,8 @@ function fn_carga_grilla() {
 }
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
-function fn_buzon() {
-	$("#cb_buzon").html("<option value='' selected></option><option value='1'>CAME INGRESA</option> <option value='2' >CAME RECEPCIONA</option>");
-}
-
-function fn_area() {
-	$("#cb_area").html("<option value='' selected></option><option value='1'>0000</option> <option value='2' >1000</option>");
+function fn_sector() {
+	$("#cb_sector").html("<option value='' selected></option><option value='1'>CICLO 20</option> <option value='2' >CICLO 21</option>");
 }
 
 
