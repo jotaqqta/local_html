@@ -162,11 +162,11 @@ $(document).ready(function () {
 	
 	    
 	$("#co_aceptar_modif").on("click", function () {
-					
-		if ($("#tx_cort_nueva").val() ==""){
-			fn_mensaje_boostrap("FAVOR DIGITAR FECHA CORTE", g_tit, $("#tx_cort_nueva"));
-						
-	        return false;
+			
+		if ($("#tx_cort_nueva").val() == ""){
+			fn_mensaje('#mensaje_filtro','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0px;" role="alert"><strong>FAVOR DIGITAR FECHA NUEVA!!!</strong></div>',3000);
+				$("#tx_cort_nueva").focus();
+		return true;
 	        
 		};	
 
