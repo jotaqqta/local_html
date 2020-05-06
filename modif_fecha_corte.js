@@ -19,6 +19,9 @@ $(document).keydown(function (e) {
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).ready(function () {
 
+	
+
+
 	// PARA ELIMINAR EL SUBMIT
 	$("button").on("click", function () { return false; });
 	//INGRESA LOS TITULOS
@@ -39,7 +42,9 @@ $(document).ready(function () {
 	$("#tx_rol").val("SYNERGIA");
 	$("#tx_ip").val("127.0.0.1");
 	
-      
+    // INICIA CON EL CURSOR EN EL CAMPO FECHA
+		$("._input_selector").inputmask("dd/mm/yyyy");
+    
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
 	//DEFINE LA GRILLA SECUNDARIA
@@ -50,19 +55,26 @@ $(document).ready(function () {
 	$("#co_nuevo").html("<span class='glyphicon glyphicon-plus'></span> Nuevo");
     $("#co_excel").html("<span class='glyphicon glyphicon-save'></span> Excel");
 	$("#co_cerrar").html("<span class='glyphicon glyphicon-off'></span> Cerrar");     
+	$("#co_volver").html("<span class='glyphicon glyphicon-chevron-left'></span> Volver");
 	$("#co_filtro").html("<span class='glyphicon glyphicon-search'></span> Filtro");
 	
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
     fn_buzon();
     fn_area();
-     
+    
+
+   
  
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //BOTONES-EVENTOS
 	
-    $("#co_nuevo").on("click", fn_new);   	    
-       
+    $("#co_nuevo").on("click", fn_new);   
+	    
+    
+    $("#co_volver").on("click", function (e) {
+        window.close();
+    });
 
     $("#co_filtro").on("click", fn_filtro);
  	
@@ -96,16 +108,122 @@ $(document).ready(function () {
     $("#co_confirm_no").on( "click", function () {
         $('#dlg_confirm').modal('hide');
     });
-    	  
+    
+	$("#co_aceptar").on("click", function () {
+
+		if (grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+			fn_mensaje('#msj_modal_atrib','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN CLIENTE</strong></div>',3000);
+			return;
+		}
+
+		$("#id_cen_ope_cli").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+		$("#tx_cen_op_1").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
+
+		$('#div_atrib_bts').modal('hide');
+		
+    });
+
+    $("#co_seleccionar2").on("click", function () {
+
+		if (grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
+			fn_mensaje('#msj_modal_usu','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN USUARIO</strong></div>',3000);
+			return;
+		}
+
+		$("#id_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
+		$("#tx_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C5; }));
+
+		$('#div_usuario_bts').modal('hide');
+		
+    });
+
 
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
 		$('#div_atrib_bts').modal('hide');		
 	});
 
+    
+    $("#co_cancel2").on("click", function (e) {
+		$('#div_usuario_bts').modal('hide');
+	});
+    
+
+  
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	//BOTONES 
-     
+
+    $("#co_volver").on("click", function (e) {
+		$("#div_prin").show();
+		$("#div_tabla").hide();
+		fn_limpiar();	
+		$(window).scrollTop(0);
+    });
+	
+	    
+	$("#co_leer").on("click", function () {
+					
+		if ($("#cb_empresa").val() ==""){
+			fn_mensaje_boostrap("FAVOR SELECCIONAR EMPRESA", g_tit, $("#cb_empresa"));
+						
+	        return false;
+	        
+		};
+		
+	    if ($("#cb_estado").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR MONEDA", g_tit, $("#cb_estado"));
+	         
+	         return false;
+		};
+	    
+		if ($("#tx_cen_op_1").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR DESCRIPCIÓN", g_tit, $("#tx_cen_op_1"));
+			return false;
+		}
+		
+		if ($("#tx_cen_op_usu_1").val()==""){
+			fn_mensaje_boostrap("FAVOR DIGITAR FECHA INGRESO", g_tit, $("#tx_cen_op_usu_1"));
+			return false;
+		}
+
+		if ($("#tx_fecha_crea").val()==""){
+			fn_mensaje_boostrap("FAVOR SELECCIONAR ESTADO", g_tit, $("#tx_fecha_crea"));
+			return false;
+		}		
+
+			fn_mensaje_boostrap("Se creó", g_tit, $(""));
+            $(window).scrollTop(0);
+	});
+
+	$("#co_cliente").on("click", function () {
+        $("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_atrib_bts").on("shown.bs.modal", function () {
+			$grid_secundaria.pqGrid("refreshDataAndView");
+        	$("#div_atrib_bts div.modal-footer button").focus();
+        });        
+	});
+
+	 $("#co_usuario").on("click", function () {
+        $("#div_usuario_bts").modal({backdrop: "static",keyboard:false});
+        $("#div_usuario_bts").on("shown.bs.modal", function () {
+			$grid_terciaria.pqGrid("refreshDataAndView");
+        	$("#div_usuario_bts div.modal-footer button").focus();
+        });        
+	});
+
+
+	$("#tx_decim_cal").blur(function () {
+        if ($("#tx_decim_cal").val() >= 10) {
+            $("#tx_decim_cal").val("09");
+        }
+    });
+
+    $("#tx_deci_desp").blur(function () {
+        if ($("#tx_deci_desp").val() >= 10) {
+            $("#tx_deci_desp").val("09");
+        }
+    });
+   
     $("#co_cancel").on("click", function (){
         $('#div_mant_bts').modal('hide');
     });
@@ -149,6 +267,7 @@ $(document).ready(function () {
 	});
 
 });
+
 		
            
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
@@ -212,7 +331,7 @@ function fn_setea_grid_principal() {
     $grid_principal = $("#div_grid_principal").pqGrid(obj);
 
 }
-	//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
+
 	// GRID SECUNDARIA
 		function fn_setea_grid_secundaria() {
 	
@@ -292,6 +411,10 @@ function fn_setea_grid_principal() {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		function fn_new() {
 		
+		
+		//$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
+		$("#tx_cod_moned").prop( "disabled", true);
+
 		fn_limpiar();
 
 		$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
@@ -305,10 +428,9 @@ function fn_setea_grid_principal() {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
 		function fn_limpiar(){
-			
-		$("#cb_buzon").val("");
-		$("#tx_nombre").val("");
-		$("#cb_area").val("");
+	$("#cb_buzon").val("");
+	$("#tx_nombre").val("");
+	$("#cb_area").val("");
 	
    
 	}
@@ -326,56 +448,56 @@ function fn_setea_grid_principal() {
     }
 
 
-	function fn_carga_grilla() {
-		
-		var total_register;
-	   
-	    var dataModel = 
-	    {
-	        location: "remote",
-	        sorting: "local",
-	        dataType: "json",
-	        method: "POST",
-	        sortDir: ["up", "down"],
-			async:false,
-	        url: url+"?"+jQuery.param( parameters ),
-	        getData: function (dataJSON) 
-	        {
-				total_register = $.trim(dataJSON.totalRecords);
-				var data = dataJSON.data;
-				
-				if(total_register>=1)
-				{
-					$("#co_excel").attr("disabled", false);
-				}
-	            return { data: dataJSON.data};
-	        },
-	        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-	        {
-				fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-	        }
-	    }
-		
-		$grid_principal.pqGrid( "option", "dataModel", dataModel );				
-	    $grid_principal.pqGrid( "refreshDataAndView" );
-		$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
-	}
+function fn_carga_grilla() {
+	
+	var total_register;
+   
+    var dataModel = 
+    {
+        location: "remote",
+        sorting: "local",
+        dataType: "json",
+        method: "POST",
+        sortDir: ["up", "down"],
+		async:false,
+        url: url+"?"+jQuery.param( parameters ),
+        getData: function (dataJSON) 
+        {
+			total_register = $.trim(dataJSON.totalRecords);
+			var data = dataJSON.data;
+			
+			if(total_register>=1)
+			{
+				$("#co_excel").attr("disabled", false);
+			}
+            return { data: dataJSON.data};
+        },
+        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
+        {
+			fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
+        }
+    }
+	
+	$grid_principal.pqGrid( "option", "dataModel", dataModel );				
+    $grid_principal.pqGrid( "refreshDataAndView" );
+	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
+}
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
-	function fn_buzon() {
-		$("#cb_buzon").html("<option value='' selected></option><option value='1'>CAME INGRESA</option> <option value='2' >CAME RECEPCIONA</option>");
-	}
+function fn_buzon() {
+	$("#cb_buzon").html("<option value='' selected></option><option value='1'>CAME INGRESA</option> <option value='2' >CAME RECEPCIONA</option>");
+}
 
-	function fn_area() {
-		$("#cb_area").html("<option value='' selected></option><option value='1'>0000</option> <option value='2' >1000</option>");
-	}
+function fn_area() {
+	$("#cb_area").html("<option value='' selected></option><option value='1'>0000</option> <option value='2' >1000</option>");
+}
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
-	function fn_mensaje(id,mensaje,segundos) {
+function fn_mensaje(id,mensaje,segundos) {
 
-	    $(id).show();
-	    $(id).html(mensaje);
-	    setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
-	}
+    $(id).show();
+    $(id).html(mensaje);
+    setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+}
