@@ -4,6 +4,7 @@ var g_tit = "Modificación Fecha Corte";
 var $grid_principal;
 var $grid_secundaria;
 var parameters = {};
+var vCon = 0;
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).keydown(function (e) {
@@ -18,8 +19,6 @@ $(document).keydown(function (e) {
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 $(document).ready(function () {
-
-	
 
 
 	// PARA ELIMINAR EL SUBMIT
@@ -61,8 +60,30 @@ $(document).ready(function () {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
     //FUNCIONES DE CAMPOS
     fn_sector();
+    //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
+
+    // FUNCION PARA VALIDAR QUE SE HAYA SELECCIONADO UN REGISTRO EN LA GRILLA EN EL CHECK BOX
+    $("#tx_vda_chk").val("false");
+    //var vCon = 0;
     
-    
+    $grid_principal.pqGrid({
+        check: function( event, ui ) {
+            if (ui.rowData) {
+                
+                var dataCell = ui.rowData;
+               
+                $("#tx_vda_chk").val(dataCell.C6);
+
+                if($("#tx_vda_chk").val() == "true"){
+                    vCon = vCon + 1;
+                   
+                }else{
+                    vCon = vCon - 1;
+                   
+                }                
+            }
+        }
+    });  
 
    
  
@@ -253,53 +274,47 @@ $(document).ready(function () {
 // GRID PRINCIPAL
 function fn_setea_grid_principal() {
 
-    var data =  [
-        { C1: '414958', C2: '200502570', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},
-        { C1: '447293', C2: '200560670', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},  
+	var data =  [
+         { C1: '414958', C2: '200502570', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},
+		 { C1: '447293', C2: '200560670', C3: '28/05/2019', C4: '29/03/2019', C5: '0'},  
+                   
     ];
 
-    var obj = {
-        height: "100%",
-        showTop: true,
-        showBottom:true,
-        showHeader: true,
+	var obj = {
+		height: "240",
+		showTop: true,
+		showBottom: true,
+		showHeader: true,
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
-		postRenderInterval: -1,
 		editable: true,
-        editor: { type: "textbox", select: true, style: "outline:none;" },
-		selectionModel: { type: 'cell' },
-		numberCell: { show: true},
+		editor: { type: "textbox", select: true, style: "outline:none;" },
+		//selectionModel: { type: 'row',mode:'single' },
+		//numberCell: { show: true },
+		selectionModel: { type: 'cell',mode:'single' },
+		numberCell: { show: true },
 		title: "Modificación Fecha Corte Clientes Convenio Atrasado",
-		pageModel: { type: "local" },
+		pageModel: { type: "local", },
 		scrollModel: { theme: true },
-		toolbar:
-		{
-            cls: "pq-toolbar-export",
-            items:[
-                { type: "button", label: "Nuevo",  attr: "id=co_modif",  cls: "btn btn-primary btn-sm" },                
+		toolbar:{
+			cls: "pq-toolbar-export",
+			items: [
+				{ type: "button", label: "Nuevo",  attr: "id=co_modif",  cls: "btn btn-primary btn-sm" },                
                 { type: "button", label: "Filtro",   attr:"id=co_filtro",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Excel",   attr:"id=co_excel",    cls:"btn btn-primary btn-sm"},
                 { type: "button", label: "Cerrar",  attr: "id=co_cerrar",  cls: "btn btn-secondary btn-sm"},
-                
-            ]
-         },
+			]
+		},
 	};
 
 	obj.colModel = [
-	{ dataIndx: "checkBox", maxWidth: 30, minWidth: 30, align: "center", resizable: false, title: "", dataType: 'bool', editable: true,
-            type: 'checkBoxSelection', cls: 'ui-state-default', sortable: false, editor: true,
-            cb: {
-                all: true,
-                header: true,
-            }
-        },
-		{ title: "No. Cliente", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center" },
-		{ title: "Ruta", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center" },
-		{ title: "Fecha Corte", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center" },
-		{ title: "Fecha Vencimiento", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center" },
-		{ title: "Antigüedad Deuda", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center" },
+		{ title: "", width: 50, type: 'checkBoxSelection',dataType: "bool",dataIndx: "C6",align:"center", editor: false, cb: {select: true} },
+		{ title: "No. Cliente", width: 150, dataType: "string", dataIndx: "C1", halign: "center", align: "center", editable: false },
+		{ title: "Ruta", width: 150, dataType: "string", dataIndx: "C2", halign: "center", align: "center", editable: false },
+		{ title: "Fecha Corte", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
+		{ title: "Fecha Vencimiento", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: false },
+		{ title: "Antigüedad Deuda", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", editable: false },
 		{ title: "Eliminar", width: 150, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
 			render: function () {
 				return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
@@ -315,9 +330,10 @@ function fn_setea_grid_principal() {
 			}
 		}
 	];
-    obj.dataModel = { data: data };
+	obj.dataModel = { data: data };
 
-    $grid_principal = $("#div_grid_principal").pqGrid(obj);
+	$grid_principal = $("#div_grid_principal").pqGrid(obj);
+	
 
 }
 
@@ -399,20 +415,37 @@ function fn_setea_grid_principal() {
 
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		function fn_modif() {
+
+		if (vCon == 0){
+			alert("No seleccionado");
+		}
+		else
+		{
+		if (vCon > 1){
+			alert("Solo seleccionar un solo registro");
+		}
+		else
+		{
+			if(vCon == 1){						
+				$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
+				$("#div_atrib_bts").on("shown.bs.modal", function () {
+					$grid_secundaria.pqGrid("refreshDataAndView");
+
+
+				});
+			}	
+		}
+	}
+				
 		
-		
+		/*
 		//$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
 		$("#tx_cod_moned").prop( "disabled", true);
 
-		fn_limpiar();
+		fn_limpiar();*/
 
-		$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
-	    $("#div_atrib_bts").on("shown.bs.modal", function () {
-	    	$grid_secundaria.pqGrid("refreshDataAndView");
-	    	 
-	 
-	    });
-
+		
+		
 	}
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
 
