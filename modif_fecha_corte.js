@@ -416,15 +416,13 @@ function fn_setea_grid_principal() {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		function fn_modif() {
 		
-			if (vCon == 0){
-				alert("No seleccionado");
+			if (vCon == 0){				
 				fn_mensaje_boostrap("FAVOR SELECCIONAR UN REGISTRO!!!", g_tit, $(""));
 				return;
 			}
 			else
 			{
 				if (vCon > 1){
-					alert("Solo seleccionar un solo registro");
 					fn_mensaje_boostrap(" NO PUEDE SELECCIONAR MÁS DE UN REGISTRO!!!", g_tit, $(""));
 				}
 				else
