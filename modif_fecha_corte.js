@@ -76,10 +76,10 @@ $(document).ready(function () {
 
                 if($("#tx_vda_chk").val() == "true"){
                     vCon = vCon + 1;
-                   
+                   //alert(vCon);
                 }else{
                     vCon = vCon - 1;
-                   
+                    //alert(vCon);
                 }                
             }
         }
@@ -415,27 +415,30 @@ function fn_setea_grid_principal() {
 
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 		function fn_modif() {
+		
+			if (vCon == 0){
+				alert("No seleccionado");
+				fn_mensaje_boostrap("FAVOR SELECCIONAR UN REGISTRO!!!", g_tit, $(""));
+				return;
+			}
+			else
+			{
+				if (vCon > 1){
+					alert("Solo seleccionar un solo registro");
+					fn_mensaje_boostrap(" NO PUEDE SELECCIONAR MÁS DE UN REGISTRO!!!", g_tit, $(""));
+				}
+				else
+				{
+					if (vCon == 1){						
+						$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
+						$("#div_atrib_bts").on("shown.bs.modal", function () {
+							$grid_principal.pqGrid("refreshDataAndView");
 
-		if (vCon == 0){
-			alert("No seleccionado");
-		}
-		else
-		{
-		if (vCon > 1){
-			alert("Solo seleccionar un solo registro");
-		}
-		else
-		{
-			if(vCon == 1){						
-				$("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
-				$("#div_atrib_bts").on("shown.bs.modal", function () {
-					$grid_secundaria.pqGrid("refreshDataAndView");
 
-
-				});
-			}	
-		}
-	}
+						});
+					}	
+				}
+			}
 				
 		
 		/*
