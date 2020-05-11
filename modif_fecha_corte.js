@@ -288,11 +288,12 @@ function fn_setea_grid_principal() {
 		roundCorners: true,
 		rowBorders: true,
 		columnBorders: true,
+		postRenderInterval: -1,
 		editable: true,
 		editor: { type: "textbox", select: true, style: "outline:none;" },
 		//selectionModel: { type: 'row',mode:'single' },
 		//numberCell: { show: true },
-		selectionModel: { type: 'cell',mode:'single' },
+		selectionModel: { type: 'cell'},
 		numberCell: { show: true },
 		title: "Modificación Fecha Corte Clientes Convenio Atrasado",
 		pageModel: { type: "local", },
@@ -315,11 +316,11 @@ function fn_setea_grid_principal() {
 		{ title: "Fecha Corte", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", editable: false },
 		{ title: "Fecha Vencimiento", width: 150, dataType: "string", dataIndx: "C4", halign: "center", align: "center", editable: false },
 		{ title: "Antigüedad Deuda", width: 150, dataType: "string", dataIndx: "C5", halign: "center", align: "center", editable: false },
-		{ title: "Eliminar", width: 150, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
+		{ title: "Quitar", width: 110, dataType: "string", halign: "center", align: "center", editable: false, sortable: false,
 			render: function () {
 				return "<button class='btn btn-sm btn-primary' id='co_cerrar_prin' type='button'><span class='glyphicon glyphicon-trash'></span></button>";
 			},
-			postRender: function (ui) {
+			postRender: function (ui) {				
 				var rowIndx = ui.rowIndx;
 				var $grid = this;
 				$grid = $grid.getCell(ui);
@@ -423,7 +424,7 @@ function fn_setea_grid_principal() {
 			else
 			{
 				if (vCon > 1){
-					fn_mensaje_boostrap(" NO PUEDE SELECCIONAR MÁS DE UN REGISTRO!!!", g_tit, $(""));
+					fn_mensaje_boostrap("NO PUEDE SELECCIONAR MÁS DE UN REGISTRO!!!", g_tit, $(""));
 				}
 				else
 				{
