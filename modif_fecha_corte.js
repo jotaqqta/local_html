@@ -2,7 +2,6 @@ var g_modulo = "Corte y Reposición";
 var g_tit = "Modificación Fecha Corte";
 
 var $grid_principal;
-var $grid_secundaria;
 var parameters = {};
 var vCon = 0;
 
@@ -46,9 +45,7 @@ $(document).ready(function () {
     
 	//DEFINE LA GRILLA PRINCIPAL
 	fn_setea_grid_principal();
-	//DEFINE LA GRILLA SECUNDARIA
-	fn_setea_grid_secundaria();
-	
+		
 
 	//DIBUJA LOS ICONOS DE LOS BOTONES     
 	$("#co_modif").html("<span class='glyphicon glyphicon-pencil'></span> Modificar");
@@ -64,7 +61,6 @@ $(document).ready(function () {
 
     // FUNCION PARA VALIDAR QUE SE HAYA SELECCIONADO UN REGISTRO EN LA GRILLA EN EL CHECK BOX
     $("#tx_vda_chk").val("false");
-    //var vCon = 0;
     
     $grid_principal.pqGrid({
         check: function( event, ui ) {
@@ -130,34 +126,7 @@ $(document).ready(function () {
         $('#dlg_confirm').modal('hide');
     });
     
-	$("#co_aceptar").on("click", function () {
-
-		if (grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
-			fn_mensaje('#msj_modal_atrib','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN CLIENTE</strong></div>',3000);
-			return;
-		}
-
-		$("#id_cen_ope_cli").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
-		$("#tx_cen_op_1").val(grid_aux_secundaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C2; }));
-
-		$('#div_atrib_bts').modal('hide');
-		
-    });
-
-    $("#co_seleccionar2").on("click", function () {
-
-		if (grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().length < 1) {
-			fn_mensaje('#msj_modal_usu','<div class="alert alert-danger" style="text-align:left;font-size:12px;margin-bottom: 0;" role="alert"><strong>ERROR, FAVOR SELECCIONAR UN USUARIO</strong></div>',3000);
-			return;
-		}
-
-		$("#id_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C1; }));
-		$("#tx_cen_op_usu_1").val(grid_aux_terciaria.Checkbox('checkBox').getCheckedNodes().map(function (ui) { return ui.C5; }));
-
-		$('#div_usuario_bts').modal('hide');
-		
-    });
-
+	
 
 	//BOTONES CERRAR DE LOS MODALES
     $("#co_cancel").on("click", function (e) {
@@ -174,14 +143,7 @@ $(document).ready(function () {
 		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 	//BOTONES 
 
-    $("#co_volver").on("click", function (e) {
-		$("#div_prin").show();
-		$("#div_tabla").hide();
-		fn_limpiar();	
-		$(window).scrollTop(0);
-    });
-	
-	    
+    	    
 	$("#co_aceptar_modif").on("click", function () {
 			
 		if ($("#tx_cort_nueva").val() == ""){
@@ -195,34 +157,7 @@ $(document).ready(function () {
             $(window).scrollTop(0);
 	});
 
-	$("#co_cliente").on("click", function () {
-        $("#div_atrib_bts").modal({backdrop: "static",keyboard:false});
-        $("#div_atrib_bts").on("shown.bs.modal", function () {
-			$grid_secundaria.pqGrid("refreshDataAndView");
-        	$("#div_atrib_bts div.modal-footer button").focus();
-        });        
-	});
-
-	 $("#co_usuario").on("click", function () {
-        $("#div_usuario_bts").modal({backdrop: "static",keyboard:false});
-        $("#div_usuario_bts").on("shown.bs.modal", function () {
-			$grid_terciaria.pqGrid("refreshDataAndView");
-        	$("#div_usuario_bts div.modal-footer button").focus();
-        });        
-	});
-
-
-	$("#tx_decim_cal").blur(function () {
-        if ($("#tx_decim_cal").val() >= 10) {
-            $("#tx_decim_cal").val("09");
-        }
-    });
-
-    $("#tx_deci_desp").blur(function () {
-        if ($("#tx_deci_desp").val() >= 10) {
-            $("#tx_deci_desp").val("09");
-        }
-    });
+		
    
     $("#co_cancel").on("click", function (){
         $('#div_mant_bts').modal('hide');
@@ -249,26 +184,10 @@ $(document).ready(function () {
 			$("#frm_Exel").submit();
 			return;
 		}	
-    });			
-    
-    //EVENTO DBL_CLICK DE LA GRILLA
-    $grid_secundaria.pqGrid({
-		rowDblClick: function( event, ui ) {
-			if (ui.rowData) {
-				var dataCell = ui.rowData;
-				$('#div_atrib_bts').modal('hide');
-				$("#cb_buzon").val(dataCell.C1);
-				$("#tx_nombre").val(dataCell.C2);
-				$("#cb_area").val(dataCell.C3);	                 
-				fn_mensaje_boostrap("Se selecciono la fila: " + dataCell.C1, g_tit, $());
-			}
-		}
+    });  
+  
 
-	});
-
-});
-
-		
+});		
            
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~///////////////GRILLAS///////////////~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~
 // GRID PRINCIPAL
@@ -290,9 +209,7 @@ function fn_setea_grid_principal() {
 		columnBorders: true,
 		postRenderInterval: -1,
 		editable: true,
-		editor: { type: "textbox", select: true, style: "outline:none;" },
-		//selectionModel: { type: 'row',mode:'single' },
-		//numberCell: { show: true },
+		editor: { type: "textbox", select: true, style: "outline:none;" },		
 		selectionModel: { type: 'cell'},
 		numberCell: { show: true },
 		title: "Modificación Fecha Corte Clientes Convenio Atrasado",
@@ -337,62 +254,13 @@ function fn_setea_grid_principal() {
 	
 
 }
-
-	// GRID SECUNDARIA
-		function fn_setea_grid_secundaria() {
 	
-	var obj = {
-		height: "300",
-		showTop: true,
-		showBottom: true,
-		showHeader: true,
-		roundCorners: true,
-		rowBorders: true,
-		columnBorders: true,
-		editable: false,
-		filterModel: {
-            on: true,
-            mode: "AND",
-            header: true,
-        },
-		editor: { type: "textbox", select: true, style: "outline:none;" },
-		selectionModel: { type: 'cell' },
-		numberCell: { show: true},
-		title: "",
-		pageModel: { type: "local" },
-		scrollModel: { theme: true },		
-        editModel: {
-            clicksToEdit: 1,
-            keyUpDown: true,
-            pressToEdit: true,
-            cellBorderWidth: 0
-        },
-		dataModel:{ data: [
-             { C1: '1', C2: 'ROL FUNCION CAME INGRESA', C3: '1' },
-             { C1: '2', C2: 'ROL FUNCION CAME RECEPCIONA', C3: '2' },
-                        
-        ] }
-	};
-	
-    obj.colModel = [
-    	{ title: "Buzón", width: 300, dataType: "string", dataIndx: "C1", halign: "center",  align:"center", filter: { crules: [{ condition: 'contain' }] } },
-		{ title: "Nombre", width: 300, dataType: "string", dataIndx: "C2", halign: "center",  align:"center", filter: { crules: [{ condition: 'contain' }] } },
-		{ title: "Área", width: 150, dataType: "string", dataIndx: "C3", halign: "center", align: "center", filter: { crules: [{ condition: 'contain' }] } },			
-	];
-
-	$grid_secundaria = $("#div_grid_secundaria").pqGrid(obj);
-	$grid_secundaria.pqGrid("refreshDataAndView");
-   
-		}
-
 		/////////////////////////////////FUNCIONES///////////////////////////////////////////
 
 		function fn_filtro(){
 
 	    $("#title_mod").html("Filtrar");
-	    //$("#tx_nombre").prop( "disabled", true);
-	    //$("#cb_area").prop( "disabled", true);
-		
+	   		
 		fn_limpiar();	    
 
 	    $("#div_mant_bts").modal({backdrop: "static",keyboard:false});
@@ -437,27 +305,8 @@ function fn_setea_grid_principal() {
 						});
 					}	
 				}
-			}
-				
-		
-		/*
-		//$("#co_aceptar").html("<span class='glyphicon glyphicon-floppy-disk'></span> Generar");
-		$("#tx_cod_moned").prop( "disabled", true);
-
-		fn_limpiar();*/
-
-		
-		
-	}
-		//~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
-
-		function fn_limpiar(){
-	$("#cb_buzon").val("");
-	$("#tx_nombre").val("");
-	$("#cb_area").val("");
-	
-   
-	}
+			}			
+		}
 
 ////////////////////FUNCION GENERAL MENSAJES//////////////////////////////////////////////
         function fn_val_general(){
@@ -478,52 +327,52 @@ function fn_setea_grid_principal() {
     }
 
 
-function fn_carga_grilla() {
-	
-	var total_register;
-   
-    var dataModel = 
-    {
-        location: "remote",
-        sorting: "local",
-        dataType: "json",
-        method: "POST",
-        sortDir: ["up", "down"],
-		async:false,
-        url: url+"?"+jQuery.param( parameters ),
-        getData: function (dataJSON) 
-        {
-			total_register = $.trim(dataJSON.totalRecords);
-			var data = dataJSON.data;
-			
-			if(total_register>=1)
-			{
-				$("#co_excel").attr("disabled", false);
-			}
-            return { data: dataJSON.data};
-        },
-        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
-        {
-			fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
-        }
-    }
-	
-	$grid_principal.pqGrid( "option", "dataModel", dataModel );				
-    $grid_principal.pqGrid( "refreshDataAndView" );
-	$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
-}
+	function fn_carga_grilla() {
+		
+		var total_register;
+	   
+	    var dataModel = 
+	    {
+	        location: "remote",
+	        sorting: "local",
+	        dataType: "json",
+	        method: "POST",
+	        sortDir: ["up", "down"],
+			async:false,
+	        url: url+"?"+jQuery.param( parameters ),
+	        getData: function (dataJSON) 
+	        {
+				total_register = $.trim(dataJSON.totalRecords);
+				var data = dataJSON.data;
+				
+				if(total_register>=1)
+				{
+					$("#co_excel").attr("disabled", false);
+				}
+	            return { data: dataJSON.data};
+	        },
+	        error: function(jqErr, err_stat, err_str) // ERROR EN EL ASP
+	        {
+				fn_mensaje_boostrap(jqErr.responseText, g_tit, $("") );
+	        }
+	    }
+		
+		$grid_principal.pqGrid( "option", "dataModel", dataModel );				
+	    $grid_principal.pqGrid( "refreshDataAndView" );
+		$grid_principal.pqGrid( "option", "title", "Total Registros: "+total_register);
+	}
 
 //*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*//FUNCIONES MODAL -  combos
-function fn_sector() {
-	$("#cb_sector").html("<option value='' selected></option><option value='1'>CICLO 20</option> <option value='2' >CICLO 21</option>");
-}
+	function fn_sector() {
+		$("#cb_sector").html("<option value='' selected></option><option value='1'>CICLO 20</option> <option value='2' >CICLO 21</option>");
+	}
 
 
 //~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*	
 
-function fn_mensaje(id,mensaje,segundos) {
+	function fn_mensaje(id,mensaje,segundos) {
 
-    $(id).show();
-    $(id).html(mensaje);
-    setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
-}
+	    $(id).show();
+	    $(id).html(mensaje);
+	    setTimeout(function(){$(id).html("");$(id).hide(); }, segundos);
+	}
